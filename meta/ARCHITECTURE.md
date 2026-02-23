@@ -17,6 +17,9 @@ Human engineers accumulate architectural taste implicitly over years. Agents hav
 
 Therefore: **all architectural decisions must be encoded, explicit, and machine-verifiable.**
 
+> [!IMPORTANT]
+> **This is the kind of architecture you usually postpone until you have hundreds of engineers. With coding agents, it's an early prerequisite.** The constraints are what allows speed without decay or architectural drift. Do not defer architecture — invest in it from day one.
+
 ---
 
 ## Layered Domain Model
@@ -80,29 +83,68 @@ When creating a new business domain:
 
 ---
 
+## Per-Worktree App Isolation
+
+Every agent task runs against its own **isolated application instance** in a dedicated git worktree.
+
+### Rules
+
+1. The application must be fully bootable per git worktree — no shared state between instances.
+2. Each instance has its own ephemeral observability stack (logs, metrics, traces). See [`meta/OBSERVABILITY.md`](./OBSERVABILITY.md).
+3. The observability stack is torn down when the worktree is removed — no cross-task contamination.
+4. Each instance is driveable via Chrome DevTools Protocol so the agent can validate UI behaviour without a human in the loop.
+
+### Why This Is an Architectural Requirement
+
+- Without worktree isolation, parallel agent tasks produce interfering signals.
+- Without agent-driveable instances, human QA becomes the bottleneck as throughput increases.
+- The full autonomy loop (bug reproduction → fix → validation) depends on this isolation.
+
+---
+
 ## Dependency Philosophy
 
 ### Prefer Boring, Composable Technologies
 
 Agents model technologies most accurately when those technologies:
 
-- Have stable, well-documented APIs
-- Are composable and predictable
-- Are well-represented in training data
+- Have **stable, well-documented APIs** — less drift from what the model learned during training
+- Are **composable and predictable** — easy to reason about in isolation
+- Are **well-represented in the model's training set** — mainstream, widely-used technologies are modelled more accurately than niche or novel ones
 
-**Prefer**: established standards, simple primitives, in-repo implementations of small utilities.
+**Prefer**: established standards, simple primitives, in-repo implementations of small utilities.  
 **Avoid**: opaque library internals, complex abstraction chains, rapidly evolving APIs.
+
+> The training-data representation argument is decisive: a technology that exists heavily in public codebases is one the agent can reason about accurately. A novel or opaque library is a source of hallucination and guessing.
+
+### Reimplement vs. Wrap — The Decision Rule
+
+When a dependency's behaviour is critical but its internals are opaque to the agent:
+
+| Situation | Decision |
+|---|---|
+| External package has stable, inspectable API | Wrap it. Use it as-is. |
+| External package behaviour is opaque or non-standard | Reimplement the needed subset in-repo. |
+| External package is large but only a small subset is needed | Reimplement the subset. |
+
+Reimplementing is not a last resort — it is sometimes the **cheaper** option when wrapping an opaque upstream creates ongoing uncertainty.
 
 ### Own Your Utilities
 
-If a utility's behavior is critical and an external package's behaviour is opaque or non-standard:
+When you implement a utility in-repo:
 
-- Implement the utility in-repo
 - Ensure 100% test coverage
 - Integrate with existing observability (logging, tracing, metrics)
 - Document its contract explicitly in the relevant layer
+- Register it in the shared utility index so future agents don't hand-roll duplicates
 
 > Example: rather than `p-limit`, a custom `mapWithConcurrency` helper tightly integrated with OpenTelemetry gives the agent full visibility, full testability, and full ownership.
+
+### Multi-Agent Interoperability
+
+Pulling more of the system into a form agents can inspect, validate, and modify directly increases leverage — **not just for one agent, but for all agents working on the codebase**.
+
+Legibility investments compound across agents. A well-structured, agent-readable repository benefits every tool in the ecosystem — primary coding agents, review agents, cleanup agents, and third-party agents alike. Design the repository for agent diversity, not a single vendor.
 
 ---
 
@@ -120,11 +162,18 @@ This prevents agents from accidentally building on guessed, unvalidated shapes.
 
 ## Domain Index
 
-*(Add each domain here as the project grows)*
+> **This table is a required, actively maintained artifact.** It is the agent's top-level map of all business domains. Every new domain must be registered here when its layer scaffold is created. An unregistered domain is invisible to future agents.
 
 | Domain | Layers Present | Owner | Status |
 |---|---|---|---|
-| *(none yet)* | — | — | — |
+| *(none yet — register the first domain here when created)* | — | — | — |
+
+Columns:
+
+- **Domain**: Business domain name (matches the directory name)
+- **Layers Present**: Comma-separated list of layers that exist (Types, Config, Repo, Service, Runtime, UI)
+- **Owner**: Team or agent responsible for this domain
+- **Status**: `active` / `deprecated` / `planned`
 
 ---
 
