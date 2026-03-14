@@ -12,18 +12,21 @@ Harness Engineering (HE) is an AI-first methodology focused on creating safe, co
 - **Strict Dependency Boundaries:** Enforce forward-only dependency chains (e.g., Types → Config → Repo → Service → Runtime → UI) to prevent spaghetti code and architectural drift.
 - **Tool Shed/Sandboxing:** Restrict the agent's actions to a specific, well-defined set of pre-approved APIs and tools.
 
-### 3. Automated Verification and Feedback Loops
+### 3. Foundational Infrastructure: Verification and Execution
 - **Per-Worktree Isolation:** Agents must operate in fully isolated environments (e.g., dedicated git worktrees) with their own ephemeral observability stacks (logs, metrics, traces) to prevent cross-task contamination.
 - **Parse at the Boundary:** Data validation happens strictly at system boundaries, ensuring agents do not hallucinate or guess data shapes deep in business logic.
-- **Reflection and Memory:** Providing agents with a "magic mirror" to observe the results of their actions and long-term storage of past successes/failures to prevent repeated mistakes.
+- **Self-Verification Loops:** Providing agents with tools to observe the results of their actions, run tests, and fix their own mistakes autonomously.
 
-### 4. Reward Engineering and Anti-Hacking
+### 4. Context Engineering: Memory and Reflection
+- **Reflection and Memory:** Providing agents with long-term storage of past successes/failures to prevent repeated mistakes and maintain durable context across sessions.
+
+### 5. Reward Engineering and Anti-Hacking
 - **Reward Shaping:** Providing incremental goals to guide agents toward beneficial outcomes.
 - **Preventing Reward Hacking:** Actively anticipating and designing penalties for "lazy or malicious" ways an AI might game its objectives (e.g., achieving a goal in a literal but destructive way).
 
-### 5. Human-in-the-Loop (HITL) and Escalation
+### 6. Human-in-the-Loop (HITL) and Escalation (Foundation)
 - **Judgment, Not Execution:** Human review is reserved for judgment calls, visual ambiguity, and architectural escalations—not for syntax checking. 
 - **Tooling Gap Identification:** If an operation requires human intervention (like copying/pasting terminal output), it is considered a tooling gap that must be encoded and automated.
 
-### 6. Predictable and Boring Technologies
+### 7. Predictable and Boring Technologies
 - **Favor Legibility:** Use established standards, simple primitives, and highly public technologies. Agents model well-documented and widely-used technologies much more accurately than niche, opaque, or rapidly evolving abstractions.

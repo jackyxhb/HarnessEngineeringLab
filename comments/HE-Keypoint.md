@@ -1,44 +1,42 @@
 **AI Agent Harness Engineering** is the practice of designing the infrastructure, constraints, and feedback loops that surround an AI model to channel its power productively. If the model provides the raw intelligence, the harness is the system that makes that intelligence useful and capable of doing actual work.
 
-When designing and working with AI Agent Harnesses, the following core aspects must be noted:
+When designing and working with AI Agent Harnesses, the following core aspects must be noted, organized by the **3-Pillar + 1-Foundation Framework**:
 
-### 1. Context Engineering and Memory Management
+### Foundational Infrastructure (Verify & Correct)
+
+The execution engine and orchestration layer that the harness is built upon. Agents need a safe environment with the right defaults to act, observe, and make progress.
+
+* **Sandboxes:** Harnesses provide isolated, on-demand execution environments equipped with necessary tooling like language runtimes, CLIs, and browsers.
+* **Bash and Code Execution:** Instead of forcing developers to pre-design a specific tool for every possible action, modern harnesses ship with a general-purpose bash tool. This allows the model to write and execute code to solve problems autonomously.
+* **Filesystems and Git:** Harnesses provide filesystems as a durable storage abstraction so agents can offload data, persist state across sessions, and use Git to version track, branch, and rollback work.
+* **Self-Verification Loops:** Agents must be able to observe the results of their actions. By utilizing test runners and logs within the sandbox, agents can write code, run test suites, read the error logs, and autonomously fix their mistakes.
+* **Ralph Loops:** To help agents complete complex, long-horizon tasks that span multiple context windows, harnesses use "Ralph Loops." This hook intercepts an agent's exit attempt and reinjects the original prompt into a fresh context window alongside the previous state, forcing the agent to continue progressing toward its goal.
+* **Rippable Middleware & Harness Versioning:** Composable middleware layers that add specific capabilities but can be easily removed as underlying AI models improve. The harness itself can be version-controlled and A/B tested.
+* **Escalation Policies:** Automated triggers and routing systems for when an agent gets stuck and requires human intervention.
+
+### Pillar 1: Context Engineering (Inform)
 
 An agent only knows what is in its context window, making the delivery of the right information at the exact right time a primary function of the harness.
 
 * **Static and Dynamic Context:** The harness must inject static context (like `AGENTS.md`, `CLAUDE.md`, and architecture specs) as well as dynamic context (like CI/CD pipeline status and directory structures) into the agent's environment.
 * **The Repository as the Single Source of Truth:** Anything the agent cannot access in-context effectively does not exist. Human-only knowledge hidden in Slack threads or external wikis will cause the agent to fail.
 * **Battling "Context Rot":** As an agent works, its context window fills up, which degrades performance. Harnesses must implement **compaction** (intelligently summarizing and offloading older context), **tool call offloading** (storing noisy tool outputs in the filesystem rather than context), and **progressive disclosure** of skills to keep the context window clean.
-* **Filesystems and Git:** Harnesses provide filesystems as a durable storage abstraction so agents can offload data, persist state across sessions, and use Git to version track, branch, and rollback work.
+* **Observability / Dashboards:** Integration of telemetry so agents can access real-time logs, metrics, traces, and CI/CD pipeline statuses as dynamic context.
 
-### 2. Architectural Constraints
+### Pillar 2: Architectural Constraints (Constrain)
 
 Instead of relying on prompt engineering (simply telling an agent to "write good code"), a harness mechanically restricts the agent's solution space.
 
 * **Enforcement Tools:** Harnesses utilize deterministic linters, structural tests, pre-commit hooks, and LLM-based auditors to mechanically enforce dependency rules and architectural boundaries.
 * **Productivity through Limitation:** Paradoxically, tightly constraining the agent prevents it from wasting tokens exploring dead ends, allowing it to converge on correct solutions faster.
 
-### 3. Execution Environments and Sandboxes
-
-Agents need a safe environment with the right defaults to act, observe, and make progress.
-
-* **Sandboxes:** Harnesses provide isolated, on-demand execution environments equipped with necessary tooling like language runtimes, CLIs, and browsers.
-* **Bash and Code Execution:** Instead of forcing developers to pre-design a specific tool for every possible action, modern harnesses ship with a general-purpose bash tool. This allows the model to write and execute code to solve problems autonomously.
-
-### 4. Feedback, Verification, and Long-Horizon Execution
-
-A harness without feedback is described as a "cage, not a guide".
-
-* **Self-Verification Loops:** Agents must be able to observe the results of their actions. By utilizing test runners and logs within the sandbox, agents can write code, run test suites, read the error logs, and autonomously fix their mistakes.
-* **Ralph Loops:** To help agents complete complex, long-horizon tasks that span multiple context windows, harnesses use "Ralph Loops." This hook intercepts an agent's exit attempt and reinjects the original prompt into a fresh context window alongside the previous state, forcing the agent to continue progressing toward its goal.
-
-### 5. Entropy Management ("Garbage Collection")
+### Pillar 3: Entropy Management (Maintain)
 
 Over time, codebases generated by AI accumulate "entropy," such as outdated documentation, dead code, or naming inconsistencies.
 
 * Harness engineering addresses this by deploying **periodic cleanup agents** (like dependency auditors and pattern enforcement agents) that run on automated schedules to keep the repository healthy and consistent.
 
-### 6. Common Harness Engineering Mistakes to Avoid
+### Common Harness Engineering Mistakes to Avoid
 
 When building a harness, engineers should be careful to avoid several known pitfalls:
 

@@ -1,27 +1,27 @@
 # Big picture for Harness Engineering
 
-## 1. The Starting Point: The Core Engine (Foundational Infrastructure)
+## Foundational Infrastructure (Verify & Correct)
 
 Before an agent can do anything, it needs a place to exist and operate. This is your underlying infrastructure layer.
 
 * **Where it fits:** This is the execution environment sitting underneath all other pillars.
 * **The Features in Action:** The agent is dropped into a secure **Bash Sandbox** with a durable **Filesystem & Git Workspace** to track its work. **Orchestration Logic** manages the routing of tasks (perhaps handing work off to sub-agents). If the agent fails, **Self-Verification** and **Ralph Loops** force it to keep trying to fix its own errors, while **Escalation Policies** alert human engineers if it gets permanently stuck. Meanwhile, the human team uses **Harness Versioning** and **Rippable Middleware** to test and update this entire engine as AI models improve.
 
-## 2. The Briefing: Context Engineering (Inform)
+## Pillar 1: Context Engineering (Inform)
 
 Once the engine is running, the agent needs to know what to do and how to do it without getting overwhelmed.
 
 * **Where it fits:** This happens at the start of a task and continuously feeds information into the execution engine.
 * **The Features in Action:** The agent first reads the **Repository as Truth** to understand project rules. For external or new data, it uses **Web Search & MCP Integration**. Because long tasks generate too much text, **Context Compaction** and **Tool Offloading** constantly clean up its memory, while **Progressive Skills** only loads the specific tools it needs right now. To stay on track for a complex feature, it relies on **Planning & State Files**, and uses **Observability / Dashboards** to read live CI/CD statuses.
 
-## 3. The Guardrails: Architectural Constraints (Constrain)
+## Pillar 2: Architectural Constraints (Constrain)
 
 While the agent is actively writing code in its sandbox, the system must mechanically prevent it from going down the wrong path.
 
 * **Where it fits:** These act as strict boundaries surrounding the execution engine, checking work in real-time.
 * **The Features in Action:** As the agent attempts to commit code, **Automated Linters** instantly reject formatting errors, and **Dependency Enforcement** physically blocks it from importing from the wrong architectural layers. Simultaneously, secondary **AI Auditors** review the primary agent's pull request to ensure it didn't violate the project's design philosophy.
 
-## 4. The Aftermath: Entropy Management (Maintain)
+## Pillar 3: Entropy Management (Maintain)
 
 After the agent successfully merges its code and the task is complete, the codebase needs long-term care.
 
