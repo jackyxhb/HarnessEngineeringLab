@@ -1,6 +1,6 @@
-# Core Features of Harness Engineering for SAS - Single Agent Systems
+# Core Features for SAS - Single Agent Systems
 
-## **Pillar 1: Context Engineering (Inform)**
+## Pillar 1: Context Engineering (Inform)
 
 *The largest pillar. This encompasses everything related to managing what the model sees, its memory, its durable storage, and its real-time knowledge.*
 
@@ -12,7 +12,7 @@
 * **Web Search & MCP Integration:** Utilizing external search and Model Context Protocol (MCP) tools to access up-to-date information beyond the model's training cutoff.
 * **Planning & State Files:** Using the filesystem to store plan files and injecting reminders into the context so the agent can decompose goals and stay on track.
 
-## **Pillar 2: Architectural Constraints (Constrain)**
+## Pillar 2: Architectural Constraints (Constrain)
 
 *This pillar mechanically enforces what good code looks like so the agent doesn't waste tokens exploring dead ends.*
 
@@ -20,7 +20,7 @@
 * **Dependency Enforcement:** Structural tests that mechanically restrict which architectural layers the agent can import from.
 * **AI Auditors:** Secondary LLM-based agents specifically tasked with reviewing the primary agent's output for architectural compliance.
 
-## **Pillar 3: Entropy Management (Maintain)**
+## Pillar 3: Entropy Management (Maintain)
 
 *Also known as "Garbage Collection," this pillar manages the health of the codebase over time as AI generates more code.*
 
@@ -30,7 +30,7 @@
 
 ---
 
-## **Foundational Infrastructure (Verify & Correct)**
+## Foundational Infrastructure (Execute)
 
 *It is the execution engine and orchestration layer that the harness is built upon.*
 

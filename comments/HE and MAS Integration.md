@@ -6,7 +6,7 @@ Single agents typically hit a performance ceiling when managing more than 10 to 
 
 Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework**:
 
-### Foundational Infrastructure (Execute, Orchestrate & Verify)
+## Foundational Infrastructure (Execute, Orchestrate & Verify)
 
 A foundational feature of a harness is providing secure execution sandboxes and durable filesystem/Git workspaces. In a multi-agent system, **the filesystem acts as the core primitive for context management and a shared ledger where multiple agents can collaborate**. This infrastructure makes advanced multi-agent structures possible, such as the "Blackboard" architecture, where a shared knowledge space allows diverse specialist agents to incrementally read, write, and refine partial solutions without stepping on each other's toes.
 
@@ -16,13 +16,13 @@ A production harness does not just manage one isolated agent; it manages complex
 * **Hierarchical:** The harness stacks multiple supervisor layers, breaking down complex workflows so mid-level supervisors can manage their own teams of workers.
 * **Peer-to-Peer (Decentralized):** The harness allows agents to communicate directly via message passing to negotiate and make distributed decisions.
 
-### Pillar 1: Context Engineering (Inform & Synchronize)
+## Pillar 1: Context Engineering (Inform & Synchronize)
 
 Multi-agent systems significantly expand the risk of "context rot" across multiple agents. The harness mitigates this through context engineering:
 
 * **Context Compaction & Tool Offloading:** The harness intelligently summarizes older context and strips noisy tool outputs so that agents communicating in a network do not suffer from "context rot".
 
-### Pillar 2: Architectural Constraints (Constrain & Protect)
+## Pillar 2: Architectural Constraints (Constrain & Protect)
 
 Harnesses enforce strict architectural boundaries to prevent agents from exploring dead ends. In a multi-agent setup, the harness uses the MAS mechanism itself as a guardrail. **Harnesses deploy secondary LLM-based "auditor" or "critic" agents whose specific role is to review the primary agent's output** for compliance, security, and architectural correctness. This creates a cooperative or competitive dynamic (like a parallel code review or a debate over competing hypotheses) where agents actively challenge each other to refine the final output.
 
@@ -30,7 +30,7 @@ Multi-agent systems also vastly expand the attack surface; one hallucinating or 
 
 * **Bounded Autonomy:** The harness enforces risk-based boundaries (such as requiring human approval for certain actions) and implements real-time guardrails to block malicious queries before they can propagate across the multi-agent workflow.
 
-### Pillar 3: Entropy Management (Maintain & Reconcile)
+## Pillar 3: Entropy Management (Maintain & Reconcile)
 
 As multiple agents generate code, execute tools, and interact, the system naturally accumulates "entropy"—such as documentation drift, circular dependencies, or dead code. The harness manages the long-term health of a multi-agent system by running **periodic, scheduled cleanup agents**. These specialized agents run automatically in the background to synchronize documentation and audit coding patterns, ensuring the shared repository remains healthy despite the high volume of AI-generated edits.
 

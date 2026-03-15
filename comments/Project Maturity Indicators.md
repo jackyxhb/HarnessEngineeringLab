@@ -1,5 +1,6 @@
+# Project Maturity Indicators
 
-# three alternative indicators to assess project maturity
+Three alternative indicators to assess project maturity:
 
 ## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework")
 

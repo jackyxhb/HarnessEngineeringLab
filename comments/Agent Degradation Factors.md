@@ -1,4 +1,6 @@
-# Factors and risks that cause AI agent system to degrade, fail, or act unpredictably
+# Agent Degradation Factors
+
+Factors and risks that cause AI agent system to degrade, fail, or act unpredictably.
 
 ## 1. Context and Memory Degradation
 

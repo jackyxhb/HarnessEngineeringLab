@@ -1,4 +1,6 @@
-# What must be prevented in AI Agent Harness and Multi-Agent System (MAS)
+# HE Prevention Checklist
+
+What must be prevented in AI Agent Harness and Multi-Agent System (MAS) to ensure secure, efficient, and accurate operation.
 
 To ensure an AI Agent Harness and Multi-Agent System (MAS) operates securely, efficiently, and accurately, several critical risks and failure modes must be explicitly prevented through system design.
 

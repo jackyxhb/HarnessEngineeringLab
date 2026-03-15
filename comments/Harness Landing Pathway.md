@@ -1,6 +1,8 @@
+# Harness Landing Pathway
+
 The practical pathway to landing a harness in a real project generally follows three maturity levels:
 
-### Step 1: The Basic Harness (Single Developer Level)
+## Step 1: The Basic Harness (Single Developer Level)
 
 The first step takes only 1-2 hours to set up and focuses on preventing the most common mistakes an AI agent will make on an individual project.
 At this stage, the pathway involves setting up:
@@ -10,7 +12,7 @@ At this stage, the pathway involves setting up:
 * A test suite that the agent can execute itself to self-verify its work.
 * A clear, consistently named directory structure so the agent can navigate the repository easily.
 
-### Step 2: The Team Harness (Small Team Level)
+## Step 2: The Team Harness (Small Team Level)
 
 Once the basic harness is working, the next step (taking about 1-2 days) scales the harness for 3-10 developers sharing a codebase, focusing on consistent agent behaviour across the team.
 The pathway here involves adding:
@@ -20,7 +22,7 @@ The pathway here involves adding:
 * "Documentation-as-code" that is validated by linters, ensuring the agent always has access to the most up-to-date specs.
 * Shared prompt templates for common tasks and specific code review checklists tailored for agent-generated Pull Requests.
 
-### Step 3: The Production Harness (Engineering Organisation Level)
+## Step 3: The Production Harness (Engineering Organisation Level)
 
 The final stage transforms the harness into an enterprise-grade system that allows dozens of concurrent agents to operate as autonomous contributors. Setting this up typically takes 1-2 weeks.
 The pathway to production involves integrating:
@@ -30,7 +32,7 @@ The pathway to production involves integrating:
 * **Observability and Tooling:** Integrating dashboards to monitor agent performance, allowing agents to read logs and metrics, and establishing escalation policies for when agents get stuck.
 * **Harness A/B Testing:** Versioning the harness to test which configurations yield the most productive agent output.
 
-### Guiding Principles for the Journey
+## Guiding Principles for the Journey
 
 As you progress along this pathway, there are a few critical rules to follow to ensure the harness actually works in reality:
 

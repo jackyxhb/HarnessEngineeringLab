@@ -1,6 +1,6 @@
-# How to Construct an Agent Project for a Specific Industry
+# Agent Project Build Guide
 
-> Example domain: Job seekers find matched job descriptions, then tailor their CV/Cover Letter for applications.
+How to Construct an Agent Project for a Specific Industry? Example domain: Job seekers find matched job descriptions, then tailor their CV/Cover Letter for applications.
 
 ---
 

@@ -1,8 +1,6 @@
-# How to Create a Robust Agent — General Principles
+# Robust Agent Principles
 
-> Distilled from OpenAI's Harness Engineering experience and broader agent design patterns.
-
----
+How to Create a Robust Agent — General Principles, distilled from OpenAI's Harness Engineering experience and broader agent design patterns.
 
 ## 1. Design the Environment, Not Just the Agent
 
