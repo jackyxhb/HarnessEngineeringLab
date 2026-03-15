@@ -37,3 +37,4 @@ As AI generates vast amounts of code, the harness must autonomously maintain rep
 
 * **Scheduled Cleanup Agents:** Dedicated agents that run automatically on daily, weekly, or event-triggered schedules to resolve circular dependencies and fix pattern deviations.
 * **Documentation Consistency Agents:** Agents assigned to actively audit and update project documentation to ensure it matches the current, living state of the codebase.
+* **Documentation Consolidation Pipelines:** Automated loops (Consolidation Loop) that update core documentation, track issue history, and prompt for Architectural Decision Records when new patterns are introduced.

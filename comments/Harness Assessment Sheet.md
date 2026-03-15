@@ -38,6 +38,7 @@
 * **Scheduled Cleanups:** Are there periodic cleanup agents running on a schedule (daily, weekly, or event-triggered)?
 * **Documentation Consistency:** Do dedicated agents actively verify that repository documentation matches the current state of the code?
 * **Pattern & Dependency Auditing:** Does the system automatically track and resolve circular dependencies, dead code, or deviations from established coding patterns?
+* **Documentation Consolidation:** Does the system mechanically run a consolidation loop to auto-update system counts, accumulate changelogs, and track issue history?
 
 ---
 

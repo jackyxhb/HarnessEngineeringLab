@@ -26,7 +26,7 @@ While the agent is actively writing code in its sandbox, the system must mechani
 After the agent successfully merges its code and the task is complete, the codebase needs long-term care.
 
 * **Where it fits:** This operates in the background, continuously sweeping the repository after the primary execution engine finishes a job.
-* **The Features in Action:** AI-generated codebases accumulate mess over time. To fix this, **Scheduled Cleanups** run automatically every night or week. **Documentation Sync** agents ensure that the READMEs and API docs still match the newly merged code, while **Pattern Auditing** agents hunt down dead code and circular dependencies that slipped past the initial guardrails.
+* **The Features in Action:** AI-generated codebases accumulate mess over time. To fix this, **Scheduled Cleanups** run automatically every night or week. **Documentation Sync** agents ensure that the READMEs and API docs still match the newly merged code, while **Pattern Auditing** agents hunt down dead code and circular dependencies that slipped past the initial guardrails. Finally, the **Consolidation Loop** auto-updates system counts, changelogs, and architectural records to prevent documentation disconnects.
 
 ## The Big Picture Summary
 

@@ -28,4 +28,4 @@
 
 *This happens last, continuously over time.* After tasks are completed and pull requests are merged, AI-generated codebases naturally accumulate "entropy" or technical debt.
 
-* **Scheduled Cleanups & Documentation Sync:** Dedicated agents run on daily or weekly schedules to automatically fix documentation drift, resolve circular dependencies, and clean up dead code.
+* **Scheduled Cleanups & Documentation Sync:** Dedicated agents run on daily or weekly schedules to automatically fix documentation drift, resolve circular dependencies, and clean up dead code. The system also runs **Consolidation Loops** to auto-update central system documentation, changelogs, and architectural records.

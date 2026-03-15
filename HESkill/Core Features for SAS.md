@@ -27,6 +27,7 @@
 * **Scheduled Cleanups:** Dedicated cleanup agents (like constraint violation scanners) running on daily or weekly schedules to catch code that slipped past earlier checks.
 * **Documentation Sync:** Agents that actively verify and update project documentation so it matches the current, living state of the code.
 * **Pattern Auditing:** Agents that track and resolve circular dependencies, dead code, or deviations from established coding patterns.
+* **Consolidation Loop:** Agents that auto-update core system counts, track issue history, maintain changelogs, and prompt for ADRs to keep central knowledge synchronized with the codebase.
 
 ---
 
