@@ -48,6 +48,14 @@ This workflow processes each document in the `comments/` folder one by one, comp
 
    f. After fixing (or confirming no conflicts), move to the next document.
 
-3. After all documents are processed, report a summary of:
+3. After all conflict fixes are done, rename each file in `comments/` with a short, straightforward, and concise name (max 5 words) that reveals the core content of the file. Rules:
+   - Use Title Case with spaces (e.g., `HE Big Picture.md`)
+   - Use `HE` prefix for general Harness Engineering docs
+   - Use `MAS` prefix for multi-agent specific content
+   - Do not exceed 5 words in the filename
+   - Rename via `mv` command
+
+4. After all documents are processed, report a summary of:
    - Which documents had conflicts and what was fixed
    - Which documents had no conflicts
+   - Old → New filename mapping for any renames
