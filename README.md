@@ -29,7 +29,7 @@ HarnessEngineeringLab/
 ├── HESkill/                 ← Core framework definitions (SAS & MAS)
 ├── comments/                ← Analysis, principles, and commentary
 ├── CaseStudy/               ← Real-world case studies
-├── HESmaples/               ← Sample implementations
+├── HESamples/               ← Sample implementations
 └── tmp/                     ← Working documents and drafts
 ```
 
