@@ -49,5 +49,6 @@ Compares each `comments/` document against canonical `HESkill/` definitions. Fix
 
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content.
 - **Consistency rule:** `HESkill/` is the single source of truth. Never contradict it in `comments/` or other directories.
+- **Gap evaluation:** Use `HESkill/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
 - **SAS vs MAS:** Single Agent Systems vs Multi-Agent Systems. MAS extends SAS with inter-agent communication, file locking, collective verification, bounded autonomy, and diverse collaboration.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages.
