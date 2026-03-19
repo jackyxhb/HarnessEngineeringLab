@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__multi-ai-collab__grok_think_deep"
+    ]
+  }
+}
