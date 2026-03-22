@@ -19,7 +19,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 **Foundation** features: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning
 
-**Pillar 1** features (8): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring
+**Pillar 1** features (9): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory
 
 **Pillar 2** features (4): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy
 
@@ -31,7 +31,6 @@ All content is organized under this canonical structure. When editing or creatin
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
 - `case-studies/` — Real-world case studies (e.g., SMS Agent design).
-- `HESamples/` — Sample implementations.
 - `tmp/` — Working documents and drafts.
 - `.agent/workflows/` — Agent workflow definitions.
 
@@ -65,7 +64,7 @@ To preserve tracking history and prevent monolithic execution failures, agents m
 
 ## Context Anchoring
 
-To prevent strategic drift across context window resets, agents rely on **A**nchors (P1-8).
+To prevent strategic drift across context window resets, agents rely on **Anchors** (P1-8).
 
 - **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.

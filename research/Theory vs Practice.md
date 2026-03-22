@@ -1,5 +1,7 @@
 # Theory vs Practice
 
+> _Canonical framework: `framework/Core Features for SAS.md` | Landing pathway: `research/Harness Landing Pathway.md`_
+
 In general, **AI Agent Harness Engineering** is the theoretical design of the infrastructure—the constraints, context delivery, verification tools, and feedback loops—that channels an AI model's power so it can complete useful work instead of acting unpredictably. It focuses on the core pillars of providing the agent with durable memory (filesystems), execution environments (sandboxes), and automated guardrails (linters and tests).
 
 When this discipline is **landed in a real project**, it transforms from theoretical infrastructure into highly specific, automated workflows that completely redefine the daily job of a software engineer. Rather than manually writing code, engineers focus on systems thinking, specifying intent, and orchestrating these environments.

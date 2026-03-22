@@ -16,7 +16,20 @@
     "AutoGen",
     "Worktrees",
     "reinject",
-    "overfitting"
+    "reinjection",
+    "reinjecting",
+    "overfitting",
+    "Analyse",
+    "behaviour",
+    "organisation",
+    "Organisation",
+    "Prioritisation",
+    "prioritised",
+    "remediations",
+    "Summarise",
+    "optimise",
+    "Sandboxing",
+    "worktree"
   ],
   "ignorePaths": [
     "node_modules",

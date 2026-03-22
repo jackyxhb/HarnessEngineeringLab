@@ -180,13 +180,13 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 2.2: Score Pillar 1 Features (P1-1 to P1-8)
+### Task 2.2: Score Pillar 1 Features (P1-1 to P1-9)
 
 **Input:** `HE-CLUES.md` (P1 section), `HE Gap Evaluation Framework.md` Part 2 (P1 section)
 **Actions:** Same as Task 2.1 but for Pillar 1 features.
-**Output:** `HE-SCORES-P1.md` — a 7×6 scoring matrix.
+**Output:** `HE-SCORES-P1.md` — a 9×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P1 section + `HE Gap Evaluation Framework.md` P1-1 to P1-8 (~160 lines).
+**Context needed:** `HE-CLUES.md` P1 section + `HE Gap Evaluation Framework.md` P1-1 to P1-9 (~200 lines).
 **Estimated tokens:** ~3,500
 
 ---
@@ -430,7 +430,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ## Appendix A: Task Dependency Graph
 
-```
+```text
 Phase 0 ─── 0.1 → 0.2
                     │
 Phase 1 ─── 1.1 ─┐

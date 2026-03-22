@@ -2,6 +2,8 @@
 
 Factors and risks that cause AI agent system to degrade, fail, or act unpredictably.
 
+> _Canonical framework: `framework/Core Features for SAS.md` | Prevention measures: `framework/HE Prevention Checklist.md`_
+
 ## 1. Context and Memory Degradation
 
 - **Context Rot:** As an agent works on long tasks, filling its context window with conversation history and noisy tool outputs significantly degrades its reasoning and performance.

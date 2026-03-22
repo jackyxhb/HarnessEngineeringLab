@@ -23,14 +23,14 @@ All harness engineering concepts are organized under a unified framework:
 
 ## Repository Structure
 
-```
+```text
 HarnessEngineeringLab/
 ├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
 ├── references/              ← Source articles and reference material
 ├── framework/               ← Core framework definitions & operational guides
 ├── research/                ← Analysis, principles, and commentary
 ├── case-studies/            ← Real-world case studies (CSAgent)
-├── HESamples/               ← Sample implementations (placeholder)
+├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
 ```
 

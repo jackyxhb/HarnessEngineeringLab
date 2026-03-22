@@ -2,6 +2,7 @@
 description: Systematically audit the workspace for entropy, deduplicate, standardize terms, and bridge broken concept chains
 ---
 
+<!-- markdownlint-disable MD029 -->
 # /reconcile — Workspace Entropy Reconciliation
 
 // turbo-all
@@ -59,5 +60,5 @@ When checking terminology, the following are the **single source of truth** labe
 | Pillar 1      | Context Engineering (Inform)          | `Core Features for SAS.md`   |
 | Pillar 2      | Architectural Constraints (Constrain) | `Core Features for SAS.md`   |
 | Pillar 3      | Entropy Management (Maintain)         | `Core Features for SAS.md`   |
-| Feature count | 24 core features                      | `HE Enhancement Options.md`  |
+| Feature count | 25 core features                      | `HE Enhancement Options.md`  |
 | Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |

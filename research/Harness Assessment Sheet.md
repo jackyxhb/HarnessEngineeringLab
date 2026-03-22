@@ -17,11 +17,15 @@ _Evaluates the safety of the agent's execution environment and its ability to co
 
 _Evaluates if the agent has the right information at the right time without overloading its context window._
 
-- **Single Source of Truth:** Is all necessary knowledge (API contracts, design documents) stored directly in the repository rather than in human heads, Slack, or external wikis?
-- **Static Context:** Are project-specific rules explicitly encoded in configuration files (e.g., `AGENTS.md`, `CLAUDE.md`) and validated by linters?
-- **Dynamic Context:** Can the agent easily access real-time observability data, directory structures, and CI/CD pipeline statuses?
-- **Context Rot Prevention:** Does the system utilize **compaction** (intelligently summarizing and offloading older context) and **tool call offloading** (storing large, noisy tool outputs in the filesystem) to keep the context window clean?
-- **Observability / Dashboards:** Is telemetry integrated so that human engineers can monitor agent success rates and analyze behavior patterns?
+- **Repository as Truth (P1-1):** Is all necessary knowledge (API contracts, design documents) stored directly in the repository rather than in human heads, Slack, or external wikis?
+- **Context Compaction (P1-2):** Does the system utilize compaction — intelligently summarizing and offloading older context — to prevent "context rot" as the context window fills up?
+- **Tool Offloading (P1-3):** Are large, noisy tool outputs stripped to head/tail tokens, with full results stored on the filesystem for later access?
+- **Progressive Skills (P1-4):** Are tools loaded on-demand based on the agent's current task, rather than all at startup?
+- **Observability / Dashboards (P1-5):** Is telemetry integrated so that agents can access real-time CI/CD statuses and human engineers can monitor agent behavior patterns?
+- **Web Search & MCP Integration (P1-6):** Can the agent access real-time external data beyond its training cutoff via web search or MCP servers?
+- **Planning & State Files (P1-7):** Does the agent decompose complex tasks into plan files with step-by-step breakdowns and injected reminders?
+- **Context Anchoring (P1-8):** Are critical decisions recorded to persistent memory files (what, why, target, background) and recalled at session start?
+- **Branch-Based Cognitive Memory (P1-9):** Are complex objectives decomposed into concurrent sub-task branches with structured commit messages acting as memory checkpoints?
 
 ## Pillar 2: Architectural Constraints (Constrain)
 

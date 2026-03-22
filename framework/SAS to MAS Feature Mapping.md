@@ -10,11 +10,11 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 | --- | ----------------------------- | ------------------------------ | ------------------------------------------------------------------------------- |
 | 1   | Repository as Truth           | Shared Repository as Truth     | Becomes a multi-agent shared ledger                                             |
 | 2   | Context Compaction            | Distributed Context Compaction | Each agent compacts independently; shared summaries sync via filesystem         |
-| 3   | Tool Call Offloading          | Tool Call Offloading           | No structural change; per-agent offloading                                      |
+| 3   | Tool Offloading               | Tool Offloading                | No structural change; per-agent offloading                                      |
 | 4   | Progressive Skills            | Progressive Skills             | Loaded per-agent role; specialist skills per topology                           |
 | 5   | Observability / Dashboards    | Distributed Observability      | Must track per-agent metrics + cross-agent correlations                         |
-| 6   | Static Context                | Shared Static Context          | AGENTS.md becomes multi-role; topology-aware                                    |
-| 7   | Dynamic Context               | Shared Dynamic Context         | Real-time state sync across agents via Blackboard                               |
+| 6   | Web Search & MCP Integration  | Shared Web Search & MCP        | Cached external lookups shared across agents; MCP servers serve the swarm       |
+| 7   | Planning & State Files        | Shared Task Lists & Blackboards| Centralized knowledge spaces where agents view statuses and claim work          |
 | 8   | Context Anchoring             | Distributed Context Anchoring  | Each agent anchors independently; shared anchor files sync strategic continuity |
 | 9   | Branch-Based Cognitive Memory | MAS Parallel Branches          | Parallel agents execute sub-task branches concurrently                          |
 
@@ -46,7 +46,8 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 | 21  | Self-Verification   | Collective Verification             | Consensus-seeking protocols; multi-agent vote before commit         |
 | 22  | Escalation Policies | Audit Trails & Accountability       | **Adds audit logs** for decentralized liability                     |
 | 23  | Bash Sandboxes      | Bash Sandboxes                      | Per-agent isolated environments                                     |
-| 24  | Rippable Middleware | Rippable Middleware                 | No structural change                                                |
+| 24  | Ralph Loops         | Ralph Loops                         | Per-agent exit interception; reinjection across context resets      |
+| 25  | Rippable Middleware | Rippable Middleware & Versioning    | No structural change; A/B testing across the swarm                  |
 
 ---
 
