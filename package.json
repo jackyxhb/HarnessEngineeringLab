@@ -1,0 +1,36 @@
+{
+  "name": "harnessengineeringlab",
+  "version": "1.0.0",
+  "description": "A knowledge base and research repository for **Harness Engineering** — the AI-first development methodology where humans design environments and agents write the code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "lint": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackyxhb/HarnessEngineeringLab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jackyxhb/HarnessEngineeringLab/issues"
+  },
+  "homepage": "https://github.com/jackyxhb/HarnessEngineeringLab#readme",
+  "devDependencies": {
+    "cspell": "^9.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "markdownlint-cli": "^0.48.0"
+  },
+  "lint-staged": {
+    "*.md": [
+      "markdownlint",
+      "cspell",
+      "node scripts/he-lint.js"
+    ]
+  }
+}

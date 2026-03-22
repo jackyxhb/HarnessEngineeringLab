@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "HarnessEngineeringLab",
+    "CSAgent",
+    "AGENTS",
+    "cursorrules",
+    "reinjects",
+    "Rippable",
+    "Ralph",
+    "blackboards",
+    "Coopetition",
+    "ArchUnit",
+    "LangGraph",
+    "AutoGen",
+    "Worktrees",
+    "reinject",
+    "overfitting"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "package-lock.json",
+    "package.json",
+    "scripts",
+    ".git"
+  ]
+}

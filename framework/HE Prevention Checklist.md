@@ -4,7 +4,7 @@ What must be prevented in AI Agent Harness and Multi-Agent System (MAS) to ensur
 
 To ensure an AI Agent Harness and Multi-Agent System (MAS) operates securely, efficiently, and accurately, several critical risks and failure modes must be explicitly prevented through system design.
 
-Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering:
+Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `ANCHORS.md`):
 
 ## Pillar 1: Prevent Context and Memory Degradation (Inform)
 

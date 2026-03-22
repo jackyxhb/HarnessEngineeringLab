@@ -2,7 +2,7 @@
 
 Three alternative indicators to assess project maturity:
 
-## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework")
+## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework" in `ANCHORS.md`)
 
 You can divide the project's maturity based on how many of the core areas of harness engineering have been successfully implemented:
 

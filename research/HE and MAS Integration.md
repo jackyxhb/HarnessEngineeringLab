@@ -4,7 +4,7 @@
 
 Single agents typically hit a performance ceiling when managing more than 10 to 15 tools or when their context windows become overwhelmed, making multi-agent systems necessary for complex, real-world tasks. However, multi-agent systems introduce severe challenges like quadratic coordination overhead, error propagation across agent chains, and state conflicts. Harness engineering provides the infrastructure to solve these exact systemic challenges.
 
-Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework**:
+Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `ANCHORS.md`):
 
 ## Foundational Infrastructure (Execute, Orchestrate & Verify)
 
