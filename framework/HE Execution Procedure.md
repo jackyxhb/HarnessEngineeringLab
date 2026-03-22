@@ -421,8 +421,8 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** Any updates from Task 6.1
 **Actions:**
 
-1. Propagate changes to `HESkill/` canonical documents.
-2. Run `/revise-comments` workflow to ensure `comments/` consistency.
+1. Propagate changes to `framework/` canonical documents.
+2. Run `/revise-comments` workflow to ensure `research/` consistency.
 
 **Output:** Updated HarnessEngineeringLab repository.
 

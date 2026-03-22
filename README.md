@@ -26,19 +26,19 @@ All harness engineering concepts are organized under a unified framework:
 ```
 HarnessEngineeringLab/
 ├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
-├── origins/                 ← Source articles and reference material
-├── HESkill/                 ← Core framework definitions & operational guides
-├── comments/                ← Analysis, principles, and commentary
-├── CaseStudy/               ← Real-world case studies (CSAgent)
+├── references/              ← Source articles and reference material
+├── framework/               ← Core framework definitions & operational guides
+├── research/                ← Analysis, principles, and commentary
+├── case-studies/            ← Real-world case studies (CSAgent)
 ├── HESamples/               ← Sample implementations (placeholder)
 └── tmp/                     ← Working documents and drafts
 ```
 
-### `origins/`
+### `references/`
 
 Original source articles that form the foundation of this research, including OpenAI's harness engineering methodology and derived requirements.
 
-### `HESkill/`
+### `framework/`
 
 The canonical framework definitions and operational guides (24 core features across 3 pillars + 1 foundation):
 
@@ -50,7 +50,7 @@ The canonical framework definitions and operational guides (24 core features acr
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 - **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
 
-### `comments/`
+### `research/`
 
 Supporting analysis and commentary documents covering:
 

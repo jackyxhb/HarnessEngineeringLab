@@ -27,7 +27,7 @@ Once the draft is approved, rigorously apply it across the canonical definitions
 ### Path A: Enriching an Existing Feature
 Selectively update the relevant sections of:
 - `~/.gemini/antigravity/skills/harnessing-agents/` skill files.
-- `/Users/macbook1/work/HE/HarnessEngineeringLab/HESkill/` docs.
+- `/Users/macbook1/work/HE/HarnessEngineeringLab/framework/` docs.
 Verify the framework remains sequentially numbered and consistent overall.
 
 ### Path B: Adding a New Feature
@@ -41,7 +41,7 @@ Modify the authoritative skill files in `~/.gemini/antigravity/skills/harnessing
 - **`prevention-checklist.md`**: Add a new prevention bullet under the relevant Pillar describing what failure modes this feature prevents.
 
 #### Step 2: Feedback to HarnessEngineeringLab Canonical Docs
-Propagate the feature additions to all canonical docs in `/Users/macbook1/work/HE/HarnessEngineeringLab/HESkill/`:
+Propagate the feature additions to all canonical docs in `/Users/macbook1/work/HE/HarnessEngineeringLab/framework/`:
 - **Core Feature Lists**: Update `Core Features for SAS.md` & `Core Features for MAS.md` with a summary bullet.
 - **Enhancement Options & Prevention**: Insert the new Actions/Tools in `HE Enhancement Options.md`. Add a prevention bullet in `HE Prevention Checklist.md` (if it exists).
 - **HE Gap Evaluation Framework**: 
@@ -52,7 +52,7 @@ Propagate the feature additions to all canonical docs in `/Users/macbook1/work/H
 - **HE Execution Procedure**: 
   - Header: Update the total feature count in the introductory paragraph.
   - Phase 1 & 2: Add inspection steps and update scoring task ranges/context estimates.
-- **Comments Directory**: Scan `comments/` for high-level docs referencing feature counts or Pillar breakdowns and update them.
+- **Research Directory**: Scan `research/` for high-level docs referencing feature counts or Pillar breakdowns and update them.
 
 #### Step 3: Verify Skill Consistency & Reconcile
 - Run checks to ensure the feature count is identical across all skill files and canonical docs.

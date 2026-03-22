@@ -36,10 +36,10 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Essential for avoiding hallucination and agent context drift over long periods.
 - **Date:** 2026-03-15
 
-### A3: HESkill/ as Canonical Source
+### A3: framework/ as Canonical Source
 
-- **What:** Designated the `HESkill/` directory as the authoritative source of truth, over the `comments/` directory.
-- **Why:** Prevents entropy and conflicting instructions. `comments/` contains analysis that must strictly align with the canonical definitions in `HESkill/`.
+- **What:** Designated the `framework/` directory as the authoritative source of truth, over the `research/` directory.
+- **Why:** Prevents entropy and conflicting instructions. `research/` contains analysis that must strictly align with the canonical definitions in `framework/`.
 - **Target:** Directory structure and all documentation files.
 - **Background:** Enforced mechanically by the `/revise-comments` workflow.
 - **Date:** 2026-03-16

@@ -27,10 +27,10 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `HESkill/` — **Canonical source of truth.** Core framework definitions for SAS and MAS, enhancement options, and prevention checklist. All other docs must be consistent with these files.
-- `comments/` — Analysis, principles, and commentary documents. Must align with `HESkill/` (enforced by the `/revise-comments` workflow).
-- `origins/` — Original source articles (reference material, rarely modified).
-- `CaseStudy/` — Real-world case studies (e.g., SMS Agent design).
+- `framework/` — **Canonical source of truth.** Core framework definitions for SAS and MAS, enhancement options, and prevention checklist. All other docs must be consistent with these files.
+- `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
+- `references/` — Original source articles (reference material, rarely modified).
+- `case-studies/` — Real-world case studies (e.g., SMS Agent design).
 - `HESamples/` — Sample implementations.
 - `tmp/` — Working documents and drafts.
 - `.agent/workflows/` — Agent workflow definitions.
@@ -55,7 +55,7 @@ Transitions a defined HE feature from concept to live infrastructure. Designs th
 
 ### `/revise-comments` — Consistency Check
 
-Compares each `comments/` document against canonical `HESkill/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
+Compares each `research/` document against canonical `framework/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
 
 ## Task Execution & Cognitive Memory
 
@@ -73,7 +73,7 @@ To prevent strategic drift across context window resets, agents rely on **A**nch
 ## Conventions
 
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content.
-- **Consistency rule:** `HESkill/` is the single source of truth. Never contradict it in `comments/` or other directories.
-- **Gap evaluation:** Use `HESkill/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
+- **Consistency rule:** `framework/` is the single source of truth. Never contradict it in `research/` or other directories.
+- **Gap evaluation:** Use `framework/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
 - **SAS vs MAS:** Single Agent Systems vs Multi-Agent Systems. MAS extends SAS with inter-agent communication, file locking, collective verification, bounded autonomy, and diverse collaboration.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages.

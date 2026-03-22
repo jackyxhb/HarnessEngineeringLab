@@ -4,14 +4,14 @@ description: Mount a defined Harness Engineering feature as live infrastructure 
 
 # /mount — Feature Mounting Workflow
 
-Run this workflow to transition a defined Harness Engineering feature from a theoretical concept (in `HESkill/`) to live, active infrastructure within the repository workspace.
+Run this workflow to transition a defined Harness Engineering feature from a theoretical concept (in `framework/`) to live, active infrastructure within the repository workspace.
 
 A feature is considered "mounted" when it has physical artifacts (files, directories), recall hooks in canonical agent entry points (`CLAUDE.md`), and a maintenance workflow to sustain it over time.
 
 ## Phase 1: Feature Comprehension & Design
 
 1. **Identify the Feature:** Prompt the user for the feature ID (e.g., `P1-8` Context Anchoring) or name to mount.
-2. **Review Canonical Definitions:** Read the feature's definition in `harnessing-agents/SKILL.md` and the `HESkill/HE Gap Evaluation Framework.md`. Pay close attention to its "Improvement Policies," "Actions," and "Tools".
+2. **Review Canonical Definitions:** Read the feature's definition in `harnessing-agents/SKILL.md` and the `framework/HE Gap Evaluation Framework.md`. Pay close attention to its "Improvement Policies," "Actions," and "Tools".
 3. **Design the Live Infrastructure:** Determine the physical requirements for the feature:
    - What new files or directories need to exist? (e.g., `ANCHORS.md`)
    - What data format/schema does the feature require?

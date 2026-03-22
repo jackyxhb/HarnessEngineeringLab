@@ -2,7 +2,7 @@
 
 How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 
-> Canonical reference: `HESkill/Core Features for SAS.md` → `HESkill/Core Features for MAS.md`
+> Canonical reference: `framework/Core Features for SAS.md` → `framework/Core Features for MAS.md`
 
 ## Pillar 1: Context Engineering (Inform)
 
@@ -50,5 +50,5 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 
 ---
 
-*See also: `comments/MAS Critical Enhancements.md` for detailed upgrade requirements.*
-*See also: `HESkill/HE Gap Evaluation Framework.md` Perspective D for SAS→MAS readiness assessment.*
+*See also: `research/MAS Critical Enhancements.md` for detailed upgrade requirements.*
+*See also: `framework/HE Gap Evaluation Framework.md` Perspective D for SAS→MAS readiness assessment.*
