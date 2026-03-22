@@ -45,9 +45,19 @@ Requires: feature name, target pillar, actions/tools description, prevention poi
 
 Systematically audits the entire workspace for entropy: broken content, inconsistent terminology, duplication, orphan concepts, and concept chain gaps. Produces a findings report, applies approved fixes, and commits.
 
+### `/mount` — Mount a Framework Feature
+
+Transitions a defined HE feature from concept to live infrastructure. Designs the physical files, injects recall hooks into `CLAUDE.md`, seeds historical data, and creates a dedicated maintenance workflow.
+
 ### `/revise-comments` — Consistency Check
 
 Compares each `comments/` document against canonical `HESkill/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
+
+## Context Anchoring
+
+To prevent strategic drift across context window resets, agents rely on **A**nchors (P1-8).
+- **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
+- **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 
 ## Conventions
 

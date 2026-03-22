@@ -25,6 +25,7 @@ All harness engineering concepts are organized under a unified framework:
 
 ```
 HarnessEngineeringLab/
+├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
 ├── origins/                 ← Source articles and reference material
 ├── HESkill/                 ← Core framework definitions & operational guides
 ├── comments/                ← Analysis, principles, and commentary
@@ -66,6 +67,7 @@ Supporting analysis and commentary documents covering:
 - **Ralph Loops** — Force agents to complete long-horizon tasks across context windows
 - **Rippable Middleware** — Composable layers that can be removed as models improve
 - **Context Compaction** — Prevent "context rot" by intelligently managing the context window
+- **Context Anchoring** — Persistent memory records ensuring agents recall long-term goals and rationale across context resets
 - **Reward Engineering** — Design reward signals that align agent output with real-world value
 - **Boring Technologies** — Mainstream, well-documented tools that agents model accurately
 
