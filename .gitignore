@@ -3,3 +3,5 @@ node_modules/
 tmp/
 .claude/
 *.log
+.claude/settings.local.json
+.claude/*.log

@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "mcp__multi-ai-collab__grok_think_deep"
+      "ls(//Users/macbook1/**)",
+      "cat(//Users/macbook1/**)",
+      "find(//Users/macbook1/**)",
+      "mcp__multi-ai-collab__grok_think_deep",
+      "Read(//Users/macbook1/**)"
     ]
   }
 }
