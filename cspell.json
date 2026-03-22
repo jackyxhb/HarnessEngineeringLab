@@ -29,7 +29,8 @@
     "Summarise",
     "optimise",
     "Sandboxing",
-    "worktree"
+    "worktree",
+    "emphasise"
   ],
   "ignorePaths": [
     "node_modules",

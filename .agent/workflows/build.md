@@ -1,4 +1,4 @@
-# /create-skill
+# /build
 
 Rebuild the harnessing-agents skill with all related documents in this project:
 
