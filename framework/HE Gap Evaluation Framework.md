@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 24 core features is analyzed below with:
+Each of the 25 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -611,7 +611,7 @@ Every feature either **saves tokens** (Context Compaction, Tool Offloading, Prog
 | Automated Linters (prevent dead ends) | Inter-Agent Communication (MAS) |
 | Planning & State Files (prevent rework) | Scheduled Cleanups |
 | Context Anchoring (prevent strategic drift) | |
-| Branch Cognitive Memory | Sequential execution | Sub-task branches | Parallel agents with structured merge gates |
+| Branch Cognitive Memory (prevent chunk processing) | |
 
 **Gap test:** Is the net token balance positive? Are token spenders delivering proportional value?
 
@@ -645,6 +645,7 @@ Score each feature on MAS-readiness:
 | Context Compaction | Single window | Per-agent windows | Distributed memory management |
 | AI Auditors | Single reviewer | Cooperative review | Competition + coopetition |
 | Context Anchoring | Single-session memory | Persistent anchor files | Shared anchor files for collective alignment |
+| Branch Cognitive Memory | Sequential execution | Sub-task branches | Parallel agents with structured merge gates |
 | Escalation | Alert human | Retry with different agent | Tiered multi-agent escalation |
 
 **Gap test:** If your organization plans MAS adoption, any feature stuck in "SAS-Only" is a blocker.
@@ -668,7 +669,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 24 features, score across all 6 dimensions (0-5). This produces a 24×6 matrix.
+For each of the 25 features, score across all 6 dimensions (0-5). This produces a 25×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 

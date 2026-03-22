@@ -40,13 +40,13 @@ Original source articles that form the foundation of this research, including Op
 
 ### `framework/`
 
-The canonical framework definitions and operational guides (24 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides (25 core features across 3 pillars + 1 foundation):
 
 - **Core Features for SAS.md** — Framework applied to Single Agent Systems
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
 - **SAS to MAS Feature Mapping.md** — Feature-by-feature upgrade path from SAS to MAS
 - **HE Prevention Checklist.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
-- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (1–23)
+- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (1–25)
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 - **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
 
@@ -59,6 +59,12 @@ Supporting analysis and commentary documents covering:
 - **Multi-Agent** — MAS integration, critical enhancements, degradation factors
 - **Practical Guidance** — Landing pathway, assessment sheet, build guide, maturity indicators
 - **Tooling & Context** — Tools for agents, theory vs practice comparisons
+
+### `case-studies/`
+
+Real-world implementations of Harness Engineering demonstrating the framework in action:
+
+- **CSAgent** — An autonomous Customer Support Agent case study detailing routing, decision-making, and structural memory.
 
 ## Key Concepts
 

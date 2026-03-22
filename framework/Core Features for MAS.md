@@ -26,6 +26,7 @@ Based on the latest architectural principles for multi-agent workflows, here is 
 * **Shared Task Lists & Blackboards:** Evolving from single-agent plan files into centralized knowledge spaces where teammates can view statuses, autonomously claim unassigned work, and incrementally build upon each other's partial solutions.
 * **Distributed Memory Management:** The harness intelligently separates *short-term memory* (immediate session history) from *long-term memory* (centralized vector databases). This allows agents to selectively synchronize knowledge and maintain shared context without suffering from "context rot".
 * **Repository as Truth:** Encoding all project rules directly into the codebase to establish a ground truth for all agents.
+* **Tool Offloading:** Stripping noisy tool outputs to keep only the head and tail tokens in context, while storing the full results. In a MAS, offloaded tool results can be saved to shared blackboards for other agents to read without polluting their context.
 * **Progressive Skills:** Loading specific tools into an agent's context only when needed for their specific role.
 * **Observability / Dashboards:** Serving real-time system and CI/CD statuses into the agents' dynamic context.
 * **Web Search & MCP Integration:** Providing external tools to access real-time data beyond the model's training cutoff.

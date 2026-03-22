@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 24 core features into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 25 core features into concrete **Actions** and **Tools**.
 
 ## Pillar 1: Context Engineering (Inform & Synchronize)
 
@@ -156,10 +156,14 @@ When implementing or upgrading a harness, use these options to translate the 24 
 * **Tool:** Sandboxes pre-installed with language runtimes, test runners, CLI tools, and browsers.
 * **Tool:** Visual split-pane terminals (e.g., `tmux` or `iTerm2`) to monitor multiple sandbox environments simultaneously.
 
-### 24. Rippable Middleware, Ralph Loops, & Harness Versioning
+### 24. Ralph Loops
 
-* **Action:** Structure the harness modularly so obsolete logic can be safely removed ("ripped out") as underlying AI models get smarter natively.
 * **Action:** Intercept premature model exits to force long-horizon task completion.
 * **Tool:** Ralph Loops (intercepts an exit attempt and reinjects the prompt into a fresh context window).
 * **Tool:** Composable Middleware (e.g., loop detection middleware, reasoning sandwiches).
+
+### 25. Rippable Middleware & Harness Versioning
+
+* **Action:** Structure the harness modularly so obsolete logic can be safely removed ("ripped out") as underlying AI models get smarter natively.
 * **Tool:** A/B Testing Infrastructure for harness versioning.
+

@@ -60,9 +60,9 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
 - **Date:** 2026-03-16
 
-### A6: 24-Feature Canonical Count
+### A6: 25-Feature Canonical Count
 
-- **What:** Fixed the canonical feature count of the framework at exactly 24 core features: Foundation (8), Pillar 1 (9), Pillar 2 (4), Pillar 3 (3).
+- **What:** Fixed the canonical feature count of the framework at exactly 25 core features: Foundation (8), Pillar 1 (9), Pillar 2 (4), Pillar 3 (4).
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
 - **Background:** Stabilized after resolving numbering inconsistencies during the first workspace reconciliation run.
