@@ -37,9 +37,9 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Workflows
 
-### `/he-newfeature` — Add a Feature to the Framework
+### `/polish` — Feature Polishing & Addition Workflow
 
-Requires: feature name, target pillar, actions/tools description, prevention points. Updates the `~/.gemini/antigravity/skills/harnessing-agents/` skill files first, then propagates to local `HESkill/` and `comments/` docs. Verifies aspect counts and sequential numbering across all files.
+Run this workflow when you encounter a new architectural requirement, a powerful organizational concept, or a "weak" existing feature that needs to be escalated or enriched. It handles both the conceptual design (polishing) and the mechanical execution of adding or updating features across the canonical definitions and `harnessing-agents` skill files.
 
 ### `/reconcile` — Workspace Entropy Audit
 
