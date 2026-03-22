@@ -389,7 +389,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Actions:**
 1. If new features or prevention points were discovered during execution, update:
    - `~/.gemini/antigravity/skills/harnessing-agents/SKILL.md`
-2. Follow the `/he-newfeature` workflow if adding new features.
+2. Follow the `/polish` workflow if adding new features.
 
 **Output:** Updated skill files (if applicable).
 

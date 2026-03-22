@@ -49,7 +49,7 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Date:** 2026-03-22
 
 ### A5: Workflow-Driven Consistency
-- **What:** Adopted `.agent/workflows/` scripts (like `/he-newfeature`, `/reconcile`) to enforce documentation updates mechanically.
+- **What:** Adopted `.agent/workflows/` scripts (like `/polish`, `/reconcile`) to enforce documentation updates mechanically.
 - **Why:** AI-generated artifacts drift over time absent mechanical maintenance (Entropy Management). Workflows guarantee sequential feature numbering and system counts stay accurate.
 - **Target:** `.agent/workflows/` and all agent activities.
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
