@@ -26,10 +26,10 @@ All harness engineering concepts are organized under a unified framework:
 ```
 HarnessEngineeringLab/
 ├── origins/                 ← Source articles and reference material
-├── HESkill/                 ← Core framework definitions (SAS & MAS)
+├── HESkill/                 ← Core framework definitions & operational guides
 ├── comments/                ← Analysis, principles, and commentary
-├── CaseStudy/               ← Real-world case studies
-├── HESamples/               ← Sample implementations
+├── CaseStudy/               ← Real-world case studies (CSAgent)
+├── HESamples/               ← Sample implementations (placeholder)
 └── tmp/                     ← Working documents and drafts
 ```
 
@@ -39,11 +39,15 @@ Original source articles that form the foundation of this research, including Op
 
 ### `HESkill/`
 
-The canonical framework definitions:
+The canonical framework definitions and operational guides:
 
 - **Core Features for SAS.md** — Framework applied to Single Agent Systems
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
 - **HE Prevention Checklist.md** — Critical risks and failure modes to prevent
+- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature
+- **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
+- **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
+- **create-skill.md** — Guide for creating new harness engineering skills
 
 ### `comments/`
 
@@ -53,7 +57,7 @@ Supporting analysis and commentary documents covering:
 - **Architecture & Principles** — Robust agent principles, function areas, mature features
 - **Multi-Agent** — MAS integration, critical enhancements, degradation factors
 - **Practical Guidance** — Landing pathway, assessment sheet, build guide, maturity indicators
-- **Context** — Theory vs practice comparisons
+- **Tooling & Context** — Tools for agents, theory vs practice comparisons
 
 ## Key Concepts
 
