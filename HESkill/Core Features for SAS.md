@@ -20,6 +20,7 @@
 * **Automated Linters:** Deterministic rules and pre-commit hooks that automatically flag and reject non-compliant code.
 * **Dependency Enforcement:** Structural tests that mechanically restrict which architectural layers the agent can import from.
 * **AI Auditors:** Secondary LLM-based agents specifically tasked with reviewing the primary agent's output for architectural compliance.
+* **Bounded Autonomy:** Defining explicit scope boundaries and access controls for how far an agent can go without human escalation, preventing unconstrained autonomous drift.
 
 ## Pillar 3: Entropy Management (Maintain)
 

@@ -12,18 +12,18 @@ All content is organized under this canonical structure. When editing or creatin
 
 | Layer | Role | SAS Verb | MAS Verb |
 |---|---|---|---|
-| **Foundation: Infrastructure** | Execution engine & orchestration | Verify & Correct | Execute, Orchestrate & Verify |
+| **Foundation: Infrastructure** | Execution engine & orchestration | Execute | Execute, Orchestrate & Verify |
 | **Pillar 1: Context Engineering** | Memory, knowledge, real-time data | Inform | Inform & Synchronize |
 | **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain | Constrain & Protect |
 | **Pillar 3: Entropy Management** | Long-term codebase health | Maintain | Maintain & Reconcile |
 
 **Foundation** features: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning
 
-**Pillar 1** features: Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files
+**Pillar 1** features (8): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring
 
-**Pillar 2** features: Automated Linters, Dependency Enforcement, AI Auditors
+**Pillar 2** features (4): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy
 
-**Pillar 3** features: Scheduled Cleanups, Documentation Sync, Pattern Auditing
+**Pillar 3** features (4): Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop
 
 ## Directory Layout
 
@@ -40,6 +40,10 @@ All content is organized under this canonical structure. When editing or creatin
 ### `/he-newfeature` — Add a Feature to the Framework
 
 Requires: feature name, target pillar, actions/tools description, prevention points. Updates the `~/.gemini/antigravity/skills/harnessing-agents/` skill files first, then propagates to local `HESkill/` and `comments/` docs. Verifies aspect counts and sequential numbering across all files.
+
+### `/reconcile` — Workspace Entropy Audit
+
+Systematically audits the entire workspace for entropy: broken content, inconsistent terminology, duplication, orphan concepts, and concept chain gaps. Produces a findings report, applies approved fixes, and commits.
 
 ### `/revise-comments` — Consistency Check
 
