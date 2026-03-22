@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 22 core features is analyzed below with:
+Each of the 23 core features is analyzed below with:
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
 - **Dependency Map** — what this feature enables or requires
@@ -347,6 +347,28 @@ Each of the 22 core features is analyzed below with:
 
 ---
 
+#### P1-8. Context Anchoring
+
+**Gap Signals:**
+- Agent forgets original objectives mid-task as context fills with intermediate outputs
+- Actions diverge from strategic goals without any persistent record of why decisions were made
+- Agent re-explores questions that were already resolved in earlier sessions
+- After context window resets, agent has no way to recall long-term strategy
+- No structured decision log exists in the project
+
+**Improvement Policies:**
+| Tier | Action | Dimension Addressed |
+|---|---|---|
+| 1 | Create memory anchor files (e.g., `ANCHORS.md`, `decisions.log`) for recording critical decisions | Maturity |
+| 1 | Write structured records at each major decision point: what, why, target, background | Effectiveness |
+| 2 | Build recall hooks that auto-inject anchor summaries at session start or after context resets | Effectiveness, Scalability |
+| 2 | Implement shared anchor files accessible to all agents in MAS setups | Scalability |
+| 3 | Add anchor quality metrics (staleness detection, relevance scoring) | Human Role |
+
+**Dependencies:** Complements Planning & State Files (P1-7) — plans track *what to do next*, anchors track *why we're doing it*. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (F4) — reinjected contexts need anchors for strategic continuity.
+
+---
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
@@ -519,6 +541,7 @@ Every feature either **saves tokens** (Context Compaction, Tool Offloading, Prog
 | Progressive Skills | Collective Verification (MAS) |
 | Automated Linters (prevent dead ends) | Inter-Agent Communication (MAS) |
 | Planning & State Files (prevent rework) | Scheduled Cleanups |
+| Context Anchoring (prevent strategic drift) | |
 
 **Gap test:** Is the net token balance positive? Are token spenders delivering proportional value?
 
@@ -551,6 +574,7 @@ Score each feature on MAS-readiness:
 | Orchestration | Sequential tasks | Supervisor pattern | Dynamic topology switching |
 | Context Compaction | Single window | Per-agent windows | Distributed memory management |
 | AI Auditors | Single reviewer | Cooperative review | Competition + coopetition |
+| Context Anchoring | Single-session memory | Persistent anchor files | Shared anchor files for collective alignment |
 | Escalation | Alert human | Retry with different agent | Tiered multi-agent escalation |
 
 **Gap test:** If your organization plans MAS adoption, any feature stuck in "SAS-Only" is a blocker.
@@ -574,7 +598,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 22 features, score across all 6 dimensions (0-5). This produces a 22×6 matrix.
+For each of the 23 features, score across all 6 dimensions (0-5). This produces a 23×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 
@@ -624,6 +648,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Context window doesn't degrade on tasks >30 minutes
 - [ ] Agent can access real-time CI/CD status and external data
 - [ ] Tools are loaded on-demand, not all-at-once
+- [ ] Critical decisions are recorded to persistent memory files (what, why, target, background)
 
 **Pillar 2 — Is the agent mechanically prevented from bad output?**
 - [ ] Pre-commit hooks reject style and type violations

@@ -29,6 +29,7 @@ Based on the latest architectural principles for multi-agent workflows, here is 
 * **Progressive Skills:** Loading specific tools into an agent's context only when needed for their specific role.
 * **Observability / Dashboards:** Serving real-time system and CI/CD statuses into the agents' dynamic context.
 * **Web Search & MCP Integration:** Providing external tools to access real-time data beyond the model's training cutoff.
+* **Context Anchoring (Shared Anchor Files):** Writing critical decision points to persistent memory files (what, why, target, background) that all agents can access. In MAS, anchor files serve as shared strategic alignment records, ensuring all agents operate from the same long-term goals even across independent context windows.
 
 ---
 

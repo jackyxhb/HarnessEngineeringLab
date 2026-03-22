@@ -11,6 +11,7 @@
 * **Observability / Dashboards:** Serving as "Dynamic Context," giving the agent real-time access to logs, metrics, traces, and CI/CD pipeline statuses.
 * **Web Search & MCP Integration:** Utilizing external search and Model Context Protocol (MCP) tools to access up-to-date information beyond the model's training cutoff.
 * **Planning & State Files:** Using the filesystem to store plan files and injecting reminders into the context so the agent can decompose goals and stay on track.
+* **Context Anchoring:** Syncing critical decision points (what, why, target, background) to persistent memory files so the agent can recall long-term goals and strategy, even across context window resets.
 
 ## Pillar 2: Architectural Constraints (Constrain)
 

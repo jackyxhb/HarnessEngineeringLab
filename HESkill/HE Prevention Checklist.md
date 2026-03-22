@@ -10,6 +10,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 
 * **Prevent Context Rot:** You must prevent the agent's context window from filling up with noisy logs, massive tool outputs, and long conversation histories. This is avoided by utilizing context compaction, tool call offloading, and progressive skills.
 * **Prevent Human-Only Documentation:** You must prevent project rules, APIs, and architectural decisions from living only in human heads, Slack threads, or private Google Docs. If information is not in the repository, the agent is blind to it.
+* **Prevent Attention Drift & Strategic Amnesia:** You must prevent agents from losing sight of original objectives and long-term strategy as intermediate context noise accumulates. Prevent this by syncing critical decision points (what, why, target, background) to persistent memory files that agents recall at session start and after context resets.
 * **Prevent Inconsistent Shared Context:** In a MAS, you must prevent agents from operating on conflicting or outdated information. Without shared context management, agents will give inconsistent answers and frustrate users.
 
 ## Foundation: Prevent Coordination and Execution Failures (Verify & Correct)

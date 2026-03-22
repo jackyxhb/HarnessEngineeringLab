@@ -43,6 +43,13 @@
 *   **Tool:** Centralized knowledge spaces (Blackboards).
 *   **Tool:** The filesystem (for storing shared plan files).
 
+### **8. Context Anchoring**
+
+*   **Action:** At key decision points, write concise structured records to persistent memory files capturing: **what** (action taken), **why** (rationale), **target** (what it affects), and **background** (relevant context).
+*   **Action:** Ensure agents recall anchor records at session start or after context resets to re-establish long-term goals and strategy.
+*   **Tool:** Structured anchor files (e.g., `ANCHORS.md`, `decisions.log`, or per-task decision records).
+*   **Tool:** Recall hooks that auto-inject anchor summaries into fresh context windows.
+
 ---
 
 ## **Pillar 2: Architectural Constraints (Constrain & Protect)**
