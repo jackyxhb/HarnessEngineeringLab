@@ -47,4 +47,3 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 * Allowing the agent to game its own success criteria (e.g., passing tests by weakening assertions)
 * Deploying reward signals that conflict with each other across agents, causing adversarial drift
 * Failing to audit whether reward-aligned outputs actually correlate with real-world value
-

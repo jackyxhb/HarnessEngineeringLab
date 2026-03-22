@@ -33,6 +33,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
 Each of the 24 core features is analyzed below with:
+
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
 - **Dependency Map** — what this feature enables or requires
@@ -44,12 +45,14 @@ Each of the 24 core features is analyzed below with:
 #### F1. Bash Sandboxes
 
 **Gap Signals:**
+
 - Agents execute code on the developer's local machine
 - No isolation between agent sessions
 - Agent cannot install packages or run arbitrary commands
 - Failures in one agent's execution corrupt another's environment
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Provision isolated containers or VMs per agent session | Risk, Maturity |
@@ -64,12 +67,14 @@ Each of the 24 core features is analyzed below with:
 #### F2. Filesystem & Git Workspace
 
 **Gap Signals:**
+
 - Agents lose state between sessions
 - No version control of agent-generated changes
 - Multiple agents overwrite each other's files (MAS)
 - No rollback mechanism when agent produces bad output
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Ensure every agent session has a Git-tracked workspace | Maturity |
@@ -85,12 +90,14 @@ Each of the 24 core features is analyzed below with:
 #### F3. Self-Verification
 
 **Gap Signals:**
+
 - Agent submits code without running tests
 - Agent cannot read its own error logs
 - No feedback loop between code generation and validation
 - Human must manually verify every agent output
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Wire test suite execution into the agent's task completion flow | Maturity, Effectiveness |
@@ -106,12 +113,14 @@ Each of the 24 core features is analyzed below with:
 #### F4. Ralph Loops
 
 **Gap Signals:**
+
 - Agent stops mid-task and declares "done" prematurely
 - Long-horizon tasks consistently produce incomplete output
 - Context window exhaustion causes agent to lose track of the goal
 - No mechanism to reinject the original prompt into a fresh context
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Implement exit interception hooks that detect premature completion | Maturity |
@@ -127,12 +136,14 @@ Each of the 24 core features is analyzed below with:
 #### F5. Orchestration Logic
 
 **Gap Signals:**
+
 - Only one agent can work at a time
 - No task routing — all tasks go to the same agent regardless of specialization
 - Subagent spawning is manual or impossible
 - Task handoffs lose context
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Implement basic supervisor pattern (central orchestrator → workers) | Maturity |
@@ -148,12 +159,14 @@ Each of the 24 core features is analyzed below with:
 #### F6. Rippable Middleware
 
 **Gap Signals:**
+
 - Harness logic is monolithic and tightly coupled
 - Removing one component breaks the entire pipeline
 - Middleware built for older models is still running despite model improvements
 - No ability to A/B test harness configurations
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Refactor harness into composable, independently removable layers | Maturity |
@@ -168,12 +181,14 @@ Each of the 24 core features is analyzed below with:
 #### F7. Escalation Policies
 
 **Gap Signals:**
+
 - Agent loops indefinitely on unsolvable problems
 - No notification when agent is stuck
 - Human discovers failures hours or days later
 - No defined threshold for "stuck" vs. "still working"
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Define escalation triggers (N consecutive test failures, time limits, loop detection) | Maturity, Risk |
@@ -188,12 +203,14 @@ Each of the 24 core features is analyzed below with:
 #### F8. Harness Versioning
 
 **Gap Signals:**
+
 - No way to compare different harness configurations
 - Changes to the harness are untested before deployment
 - Cannot reproduce results from a previous harness version
 - No data on which configurations produce better agent output
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Version-control all harness configuration (prompts, tools, middleware) | Maturity |
@@ -210,12 +227,14 @@ Each of the 24 core features is analyzed below with:
 #### P1-1. Repository as Truth
 
 **Gap Signals:**
+
 - Project rules live in Slack, Google Docs, or human memory
 - Agent hallucinates because it lacks access to architectural decisions
 - Onboarding a new agent requires extensive human briefing
 - `CLAUDE.md` or `AGENTS.md` is absent or stale
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Create and maintain `CLAUDE.md` / `AGENTS.md` with project conventions | Maturity |
@@ -231,12 +250,14 @@ Each of the 24 core features is analyzed below with:
 #### P1-2. Context Compaction
 
 **Gap Signals:**
+
 - Agent performance degrades noticeably on long tasks
 - Context window fills with conversation history and noise
 - Agent "forgets" early instructions by the end of a session
 - No summarization or offloading of old context
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Implement conversation history summarization at regular intervals | Maturity, Effectiveness |
@@ -251,11 +272,13 @@ Each of the 24 core features is analyzed below with:
 #### P1-3. Tool Offloading
 
 **Gap Signals:**
+
 - Large tool outputs (logs, API responses) consume most of the context window
 - Agent loses reasoning quality after a few tool calls
 - Full tool outputs are kept in context when only the summary matters
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Strip tool outputs to head/tail tokens; store full results on filesystem | Maturity |
@@ -270,11 +293,13 @@ Each of the 24 core features is analyzed below with:
 #### P1-4. Progressive Skills
 
 **Gap Signals:**
+
 - Agent's system prompt is enormous with all tools loaded at startup
 - Adding a new tool degrades performance on unrelated tasks
 - Agent uses wrong tools because too many are available simultaneously
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Organize tools into role-based skill modules | Maturity |
@@ -289,12 +314,14 @@ Each of the 24 core features is analyzed below with:
 #### P1-5. Observability / Dashboards
 
 **Gap Signals:**
+
 - No visibility into agent success/failure rates
 - Cannot diagnose why an agent produced bad output
 - Agent cannot access its own CI/CD pipeline status
 - Human engineers fly blind on agent behavior patterns
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Expose CI/CD status, test results, and error logs to agent context | Maturity |
@@ -310,11 +337,13 @@ Each of the 24 core features is analyzed below with:
 #### P1-6. Web Search & MCP Integration
 
 **Gap Signals:**
+
 - Agent produces outdated answers for rapidly evolving domains
 - No access to external APIs, documentation, or real-time data
 - Agent cannot look up library versions or API changes
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Integrate web search tool into agent's available tools | Maturity |
@@ -329,12 +358,14 @@ Each of the 24 core features is analyzed below with:
 #### P1-7. Planning & State Files
 
 **Gap Signals:**
+
 - Agent approaches complex tasks without decomposing them
 - No persistent plan that survives context window resets
 - Agent repeats work it already completed in a previous step
 - No shared task board for MAS coordination
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Store task plans as files on the filesystem with step-by-step breakdown | Maturity |
@@ -350,6 +381,7 @@ Each of the 24 core features is analyzed below with:
 #### P1-8. Context Anchoring
 
 **Gap Signals:**
+
 - Agent forgets original objectives mid-task as context fills with intermediate outputs
 - Actions diverge from strategic goals without any persistent record of why decisions were made
 - Agent re-explores questions that were already resolved in earlier sessions
@@ -357,6 +389,7 @@ Each of the 24 core features is analyzed below with:
 - No structured decision log exists in the project
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Create memory anchor files (e.g., `ANCHORS.md`, `decisions.log`) for recording critical decisions | Maturity |
@@ -374,12 +407,14 @@ Each of the 24 core features is analyzed below with:
 #### P1-9. Branch-Based Cognitive Memory
 
 **Gap Signals:**
+
 - Agent processes multi-step complex objectives holistically in a monolithic branch
 - No checkpointed cognitive history for distinct sub-tasks
 - Sub-tasks are executed sequentially rather than concurrently when they could be parallelized
 - Commit messages are sparse and lack structured evidentiary value
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Require agents to spawn new branches for sub-tasks and merge back cleanly | Maturity, Risk |
@@ -394,12 +429,14 @@ Each of the 24 core features is analyzed below with:
 #### P2-1. Automated Linters
 
 **Gap Signals:**
+
 - Agent commits code with formatting violations
 - No pre-commit hooks in the repository
 - Style guide exists but is not mechanically enforced
 - Agent wastes tokens exploring code patterns that will be rejected
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Add pre-commit hooks for formatting, linting, and type checking | Maturity |
@@ -414,12 +451,14 @@ Each of the 24 core features is analyzed below with:
 #### P2-2. Dependency Enforcement
 
 **Gap Signals:**
+
 - Agent imports from forbidden architectural layers
 - No structural boundaries between modules
 - Dependency violations are only caught in manual code review
 - Circular dependencies accumulate over time
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Define and document layer boundaries in architecture specs | Maturity |
@@ -434,12 +473,14 @@ Each of the 24 core features is analyzed below with:
 #### P2-3. AI Auditors / Diverse Collaboration
 
 **Gap Signals:**
+
 - Only one agent reviews its own work (no second opinion)
 - Agent anchors on first solution without exploring alternatives
 - No adversarial testing of agent output
 - Code review is entirely human-dependent
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Deploy a secondary LLM agent to review primary agent's PRs | Maturity |
@@ -457,12 +498,14 @@ Each of the 24 core features is analyzed below with:
 #### P3-1. Scheduled Cleanups
 
 **Gap Signals:**
+
 - Dead code accumulates without detection
 - Known issues persist because no one is assigned to fix them
 - Constraint violations slip past initial checks and remain in the codebase
 - No scheduled automation for repository hygiene
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Schedule weekly cleanup sweeps (dead code, unused imports, stale branches) | Maturity |
@@ -477,12 +520,14 @@ Each of the 24 core features is analyzed below with:
 #### P3-2. Documentation Sync
 
 **Gap Signals:**
+
 - README describes features that no longer exist
 - API docs don't match actual endpoints
 - Agent-generated code has no corresponding documentation updates
 - Documentation drift is discovered by users, not by automation
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Add CI checks that flag documentation files older than associated code changes | Maturity |
@@ -497,12 +542,14 @@ Each of the 24 core features is analyzed below with:
 #### P3-3. Pattern Auditing
 
 **Gap Signals:**
+
 - Circular dependencies form and persist
 - Coding patterns diverge across modules (inconsistent approaches to the same problem)
 - Agent copies patterns from outdated parts of the codebase
 - No automated detection of architectural drift
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Run dependency analysis tools to detect cycles and dead code | Maturity |
@@ -517,12 +564,14 @@ Each of the 24 core features is analyzed below with:
 #### P3-4. Consolidation Loop
 
 **Gap Signals:**
+
 - System counts in `CLAUDE.md` are wrong
 - No changelog is maintained
 - Architectural Decision Records (ADRs) are never created
 - Config files drift from actual system state
 
 **Improvement Policies:**
+
 | Tier | Action | Dimension Addressed |
 |---|---|---|
 | 1 | Automate system count updates in core docs after each feature merge | Maturity |
@@ -639,6 +688,7 @@ Priority Score = (5 - Composite Score) × Impact Weight × Cascade Length
 ```
 
 Where:
+
 - **Composite Score** = weighted average across 6 dimensions
 - **Impact Weight** = how many other features depend on this one (from dependency maps)
 - **Cascade Length** = how many downstream failures result from this gap (from Perspective C)
@@ -658,6 +708,7 @@ Where:
 For teams that want to start immediately without full scoring, use this rapid assessment:
 
 **Foundation — Can the agent execute safely?**
+
 - [ ] Agent runs in an isolated sandbox (not on developer's machine)
 - [ ] Agent's work is Git-tracked and rollback-able
 - [ ] Agent runs tests and reads its own error logs before completing
@@ -665,6 +716,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Stuck agents escalate to humans automatically
 
 **Pillar 1 — Does the agent know what it needs to know?**
+
 - [ ] All project rules are in the repo, not in human heads
 - [ ] Context window doesn't degrade on tasks >30 minutes
 - [ ] Agent can access real-time CI/CD status and external data
@@ -673,11 +725,13 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Complex objectives are decomposed into concurrent branches with structured commit memory
 
 **Pillar 2 — Is the agent mechanically prevented from bad output?**
+
 - [ ] Pre-commit hooks reject style and type violations
 - [ ] Import boundaries are enforced by CI, not just convention
 - [ ] A second agent or process reviews the first agent's output
 
 **Pillar 3 — Does the system clean up after itself?**
+
 - [ ] Automated sweeps run on a schedule (not just when humans remember)
 - [ ] Documentation is validated against code, not just written once
 - [ ] Dead code and circular dependencies are detected automatically

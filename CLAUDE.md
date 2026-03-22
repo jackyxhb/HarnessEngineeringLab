@@ -60,11 +60,13 @@ Compares each `comments/` document against canonical `HESkill/` definitions. Fix
 ## Task Execution & Cognitive Memory
 
 To preserve tracking history and prevent monolithic execution failures, agents must exercise **P1-9 Branch-Based Cognitive Memory**.
+
 - **Crucial Hook:** When given a complex feature, refactor, or multi-step objective, **do not** execute it in a single unbroken stream on `main`. You must use the `/cognitive-branch` workflow to partition the work, check out isolated sub-task tracking branches, commit incremental progress to build cognitive memory, and recursively merge back.
 
 ## Context Anchoring
 
 To prevent strategic drift across context window resets, agents rely on **A**nchors (P1-8).
+
 - **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 

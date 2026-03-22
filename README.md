@@ -54,8 +54,8 @@ The canonical framework definitions and operational guides (24 core features acr
 
 Supporting analysis and commentary documents covering:
 
-- **Concepts & Philosophy** — Key concepts, key points, introduction, big picture
-- **Architecture & Principles** — Robust agent principles, function areas, mature features
+- **Concepts & Philosophy** — `HE Philosophy.md` (core methodology and shift-left execution)
+- **Architecture & Principles** — `HE Architectural Principles.md` (strict boundaries), Robust agent principles
 - **Multi-Agent** — MAS integration, critical enhancements, degradation factors
 - **Practical Guidance** — Landing pathway, assessment sheet, build guide, maturity indicators
 - **Tooling & Context** — Tools for agents, theory vs practice comparisons

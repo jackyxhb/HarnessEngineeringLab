@@ -14,12 +14,14 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** Target project path or repository URL
 **Actions:**
+
 1. Read the project's top-level directory structure.
 2. Identify the project type: pure text/docs, scripted operations, simple app, complex system, or enterprise platform.
 3. Identify the agent scale: single agent (SAS), small team (2–5 agents), or enterprise/swarm (MAS).
 4. Record findings in a new file: `HE-SCOPE.md` in the target project root.
 
 **Output:** `HE-SCOPE.md` containing:
+
 - Project type classification
 - Agent scale classification
 - Technology stack summary
@@ -34,11 +36,13 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
+
 1. Run through the **Quick-Start Evaluation Checklist** (from `HE Gap Evaluation Framework.md` Part 5).
 2. For each checkbox, mark it as ✅ (present) or ❌ (absent) with a one-line justification.
 3. Identify the project's current **Maturity Level** (Basic / Team / Production) based on the `Harness Landing Pathway`.
 
 **Output:** Append to `HE-SCOPE.md`:
+
 - Quick-Start checklist results (17 items)
 - Current maturity level
 - Target maturity level (user to confirm)
@@ -56,6 +60,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
+
 1. Check for **Bash Sandboxes** (F1): Is there Docker/container config? Does the agent run locally?
 2. Check for **Filesystem & Git** (F2): Is Git initialized? Are there branching strategies? File locking?
 3. Check for **Self-Verification** (F3): Is there a test suite? Can tests be run from CI? Are error logs piped back?
@@ -66,6 +71,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 8. Check for **Harness Versioning** (F8): Is the harness config version-controlled? A/B testing?
 
 **Output:** `HE-CLUES-Foundation.md` with per-feature findings:
+
 - Current state (what exists)
 - Gap signals observed
 - Severity: Critical / Important / Enhancement
@@ -79,6 +85,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
+
 1. Check for **Repository as Truth** (P1-1): Does `CLAUDE.md` / `AGENTS.md` / `.cursorrules` exist? Are architectural decisions documented in-repo?
 2. Check for **Context Compaction** (P1-2): Any summarization of conversation history? Token budgets?
 3. Check for **Tool Offloading** (P1-3): Are tool outputs stripped? Full results stored to disk?
@@ -100,6 +107,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
+
 1. Check for **Automated Linters** (P2-1): Pre-commit hooks? Linting config? Formatting enforcement?
 2. Check for **Dependency Enforcement** (P2-2): Structural tests? Import restrictions? ArchUnit or equivalent?
 3. Check for **AI Auditors / Diverse Collaboration** (P2-3): Secondary LLM review? Debate channels?
@@ -116,6 +124,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
+
 1. Check for **Scheduled Cleanups** (P3-1): Automated sweeps? Dead code detection? Conflict resolution?
 2. Check for **Documentation Sync** (P3-2): Docs validated against code? Staleness detection?
 3. Check for **Pattern Auditing** (P3-3): Circular dependency detection? Pattern registry?
@@ -132,6 +141,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-CLUES-Foundation.md`, `HE-CLUES-P1-Context.md`, `HE-CLUES-P2-Constraints.md`, `HE-CLUES-P3-Entropy.md`
 **Actions:**
+
 1. Merge all 4 clue files into a single `HE-CLUES.md`.
 2. Sort all found gaps by severity (Critical → Important → Enhancement).
 3. Cross-reference gaps against the **Prevention Checklist** (`HE Prevention Checklist.md`) — note any prevention failures.
@@ -152,6 +162,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-CLUES.md` (Foundation section only), `HE Gap Evaluation Framework.md` Part 2 (Foundation section)
 **Actions:**
+
 1. For each Foundation feature (F1–F8), score across all 6 dimensions (0–5):
    - Implementation Maturity
    - Operational Effectiveness
@@ -206,6 +217,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `HE Gap Evaluation Framework.md` Parts 3–4
 **Actions:**
+
 1. Apply **Perspective A: Feedback Loop Chain** — identify broken links.
 2. Apply **Perspective B: Token Economics** — map token savers vs. spenders.
 3. Apply **Perspective C: Failure Cascade Map** — trace cascade chains for low-scored features.
@@ -229,6 +241,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-PRIORITIES.md`, `HE Enhancement Options.md`
 **Actions:**
+
 1. For each Tier 1 gap, look up the corresponding feature's **Actions** and **Tools** in `HE Enhancement Options.md`.
 2. For each Tier 2 gap, do the same.
 3. For Tier 3 gaps, list but mark as "defer."
@@ -248,6 +261,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-RECOMMENDATIONS.md`, `HE-SCOPE.md`
 **Actions:**
+
 1. Group recommendations into **implementation batches** ordered by:
    - Dependencies (foundation first, then pillars)
    - Tier (Tier 1 → Tier 2 → Tier 3)
@@ -278,6 +292,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-IMPLEMENTATION-PLAN.md` (Light batch), target project filesystem
 **Actions:**
+
 1. Create or update meta-documentation files (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`).
 2. Encode project conventions, architectural decisions, and style guides.
 3. Cross-link design documents.
@@ -294,6 +309,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-IMPLEMENTATION-PLAN.md` (Medium batch), target project filesystem
 **Actions:**
+
 1. Add pre-commit hooks (`.pre-commit-config.yaml` or equivalent).
 2. Add linting configuration files.
 3. Create test scaffolding or CI pipeline configuration.
@@ -311,6 +327,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-IMPLEMENTATION-PLAN.md` (Heavy batch), target project filesystem
 **Actions:**
+
 1. Refactor project structure for modularity (if needed).
 2. Add CI/CD pipeline configuration.
 3. Implement orchestration logic or middleware layers.
@@ -335,6 +352,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** Updated target project filesystem, original checklist from Task 0.2
 **Actions:**
+
 1. Re-run the Quick-Start Evaluation Checklist against the updated project.
 2. Compare ❌ → ✅ conversions against the original.
 3. Note any items that remain ❌ and why.
@@ -350,6 +368,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-PRIORITIES.md` (features that were modified), updated project filesystem
 **Actions:**
+
 1. For each feature where changes were applied, re-score across the 6 dimensions.
 2. Calculate delta (improvement) per feature and per dimension.
 
@@ -364,6 +383,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-VERIFICATION-CHECKLIST.md`, `HE-VERIFICATION-SCORES.md`, `HE-CLUES.md`, `HE-IMPLEMENTATION-PLAN.md`
 **Actions:**
+
 1. Summarise what was done:
    - Total features addressed
    - Files created/modified
@@ -387,6 +407,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** `HE-ASSESSMENT-REPORT.md`, any new patterns discovered
 **Actions:**
+
 1. If new features or prevention points were discovered during execution, update:
    - `~/.gemini/antigravity/skills/harnessing-agents/SKILL.md`
 2. Follow the `/polish` workflow if adding new features.
@@ -399,6 +420,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Input:** Any updates from Task 6.1
 **Actions:**
+
 1. Propagate changes to `HESkill/` canonical documents.
 2. Run `/revise-comments` workflow to ensure `comments/` consistency.
 

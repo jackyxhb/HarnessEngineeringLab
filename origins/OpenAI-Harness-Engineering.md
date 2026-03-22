@@ -241,3 +241,8 @@ Acknowledgements
 ----------------
 
 Special thanks to Victor Zhu and Zach Brock who contributed to the post, as well as to the entire team that built this new product.
+
+Related Articles
+----------------
+
+* [Exploring Gen AI: Harness Engineering (Martin Fowler)](https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html)
