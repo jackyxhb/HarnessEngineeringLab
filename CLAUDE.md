@@ -41,6 +41,10 @@ All content is organized under this canonical structure. When editing or creatin
 
 Run this workflow when you encounter a new architectural requirement, a powerful organizational concept, or a "weak" existing feature that needs to be escalated or enriched. It handles both the conceptual design (polishing) and the mechanical execution of adding or updating features across the canonical definitions and `harnessing-agents` skill files.
 
+### `/cognitive-branch` — Branch-Based Task Execution
+
+Enforces P1-9 by breaking down complex parent tasks into isolated git sub-task tracking branches. Builds cognitive memory through explicit "approval of evidence" commit messages before recursive merging.
+
 ### `/reconcile` — Workspace Entropy Audit
 
 Systematically audits the entire workspace for entropy: broken content, inconsistent terminology, duplication, orphan concepts, and concept chain gaps. Produces a findings report, applies approved fixes, and commits.
@@ -52,6 +56,11 @@ Transitions a defined HE feature from concept to live infrastructure. Designs th
 ### `/revise-comments` — Consistency Check
 
 Compares each `comments/` document against canonical `HESkill/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
+
+## Task Execution & Cognitive Memory
+
+To preserve tracking history and prevent monolithic execution failures, agents must exercise **P1-9 Branch-Based Cognitive Memory**.
+- **Crucial Hook:** When given a complex feature, refactor, or multi-step objective, **do not** execute it in a single unbroken stream on `main`. You must use the `/cognitive-branch` workflow to partition the work, check out isolated sub-task tracking branches, commit incremental progress to build cognitive memory, and recursively merge back.
 
 ## Context Anchoring
 

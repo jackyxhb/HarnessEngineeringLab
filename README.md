@@ -40,7 +40,7 @@ Original source articles that form the foundation of this research, including Op
 
 ### `HESkill/`
 
-The canonical framework definitions and operational guides (23 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides (24 core features across 3 pillars + 1 foundation):
 
 - **Core Features for SAS.md** — Framework applied to Single Agent Systems
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
@@ -68,6 +68,7 @@ Supporting analysis and commentary documents covering:
 - **Rippable Middleware** — Composable layers that can be removed as models improve
 - **Context Compaction** — Prevent "context rot" by intelligently managing the context window
 - **Context Anchoring** — Persistent memory records ensuring agents recall long-term goals and rationale across context resets
+- **Branch-Based Cognitive Memory** — Utilizing git branches for sub-task parallelization and treating succinct commits as deliberate reasoning memory trees
 - **Reward Engineering** — Design reward signals that align agent output with real-world value
 - **Boring Technologies** — Mainstream, well-documented tools that agents model accurately
 
