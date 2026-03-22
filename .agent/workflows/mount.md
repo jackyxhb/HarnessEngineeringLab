@@ -22,7 +22,7 @@ A feature is considered "mounted" when it has physical artifacts (files, directo
 
 1. **Create the Primary Assets:** Create the necessary root files, directories, or templates as defined in the plan.
 2. **Seed the Infrastructure (If applicable):** Populate the new feature with initial data extracted from historical commits, existing code, or previous architectural decisions so the feature is immediately useful.
-3. **Inject Recall Hooks (`CLAUDE.md`):** Modify `CLAUDE.md` to explicitly instruct agents on *when* and *how* to use this new feature. Hook placement is critical: put it where agents reading `CLAUDE.md` cannot miss it.
+3. **Inject Recall Hooks (`CLAUDE.md`):** Modify `CLAUDE.md` to explicitly instruct agents on _when_ and _how_ to use this new feature. Hook placement is critical: put it where agents reading `CLAUDE.md` cannot miss it.
 4. **Create the Maintenance Workflow:** Create a dedicated `.agent/workflows/[feature].md` script. This script must define how future agents add to, review, and prune the feature's data to prevent entropy.
    - Example: The `/anchor` workflow for Context Anchoring.
 5. **Update `README.md`:** Add the new primary assets or workflows to the Repository Structure and Key Concepts sections of the README.

@@ -8,13 +8,13 @@ How to Construct an Agent Project for a Specific Industry? Example domain: Job s
 
 Before writing any code, map the **business domain** clearly:
 
-| Domain Object | What It Represents |
-|---|---|
-| **Job Seeker Profile** | Skills, experience, education, preferences, target roles |
-| **Job Description** | Role requirements, company info, keywords, qualifications |
-| **CV/Resume** | The candidate's base document (master version) |
-| **Cover Letter** | Personalised letter per application |
-| **Match Score** | How well a profile fits a job description |
+| Domain Object            | What It Represents                                         |
+| ------------------------ | ---------------------------------------------------------- |
+| **Job Seeker Profile**   | Skills, experience, education, preferences, target roles   |
+| **Job Description**      | Role requirements, company info, keywords, qualifications  |
+| **CV/Resume**            | The candidate's base document (master version)             |
+| **Cover Letter**         | Personalised letter per application                        |
+| **Match Score**          | How well a profile fits a job description                  |
 | **Tailored Application** | The output: CV + cover letter customised for a specific JD |
 
 ---
@@ -75,14 +75,14 @@ project/
 
 ### 3c. Define Taste Invariants (Quality Gates)
 
-| Rule | Enforcement |
-|---|---|
-| CV must not exceed 2 pages | Lint check on output |
-| No fabricated skills or experience | Validation against master CV |
-| Cover letter must reference specific company details | Output review check |
-| Keywords from JD must appear naturally in CV | Keyword coverage score |
-| Tone must be professional and authentic | Style guide + self-review |
-| No generic/template phrases ("I am passionate about...") | Banned phrases list |
+| Rule                                                     | Enforcement                  |
+| -------------------------------------------------------- | ---------------------------- |
+| CV must not exceed 2 pages                               | Lint check on output         |
+| No fabricated skills or experience                       | Validation against master CV |
+| Cover letter must reference specific company details     | Output review check          |
+| Keywords from JD must appear naturally in CV             | Keyword coverage score       |
+| Tone must be professional and authentic                  | Style guide + self-review    |
+| No generic/template phrases ("I am passionate about...") | Banned phrases list          |
 
 ### 3d. Build Feedback Loops
 
@@ -94,15 +94,15 @@ project/
 
 ## Phase 4: Implementation Steps
 
-| Step | What to Build | Why |
-|---|---|---|
-| 1 | **JD Parser** — extract structured data from job postings | Everything downstream depends on structured input |
-| 2 | **Profile Schema** — structured representation of the seeker | The agent needs a typed, validated source of truth |
-| 3 | **Matching Engine** — score JD vs profile | Prioritise which jobs to apply for |
-| 4 | **CV Tailoring Skill** — rewrite CV sections per JD | Core value proposition |
-| 5 | **Cover Letter Skill** — generate personalised letters | Second deliverable |
-| 6 | **Self-Review Agent** — validate output quality | Catches hallucinations and quality issues |
-| 7 | **Application Tracker** — log all applications and outcomes | Closes the feedback loop |
+| Step | What to Build                                                | Why                                                |
+| ---- | ------------------------------------------------------------ | -------------------------------------------------- |
+| 1    | **JD Parser** — extract structured data from job postings    | Everything downstream depends on structured input  |
+| 2    | **Profile Schema** — structured representation of the seeker | The agent needs a typed, validated source of truth |
+| 3    | **Matching Engine** — score JD vs profile                    | Prioritise which jobs to apply for                 |
+| 4    | **CV Tailoring Skill** — rewrite CV sections per JD          | Core value proposition                             |
+| 5    | **Cover Letter Skill** — generate personalised letters       | Second deliverable                                 |
+| 6    | **Self-Review Agent** — validate output quality              | Catches hallucinations and quality issues          |
+| 7    | **Application Tracker** — log all applications and outcomes  | Closes the feedback loop                           |
 
 ---
 

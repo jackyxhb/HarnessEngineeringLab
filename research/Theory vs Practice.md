@@ -26,4 +26,4 @@ In real projects, teams must forcefully abandon traditional human knowledge-shar
 
 Real-world harnesses are designed to be "rippable" and multi-provider. Because underlying AI models improve rapidly, a complex harness built today might break tomorrow. Teams build harnesses that can easily swap between models (like Claude, GPT, or Gemini) so they aren't locked into a single ecosystem.
 
-Ultimately, the difference is that **general harness engineering** is about giving an AI the *ability* to work, while a **real-world harness** is a highly tuned production factory where the AI acts as an autonomous contributor and the human acts as the system architect and reviewer.
+Ultimately, the difference is that **general harness engineering** is about giving an AI the _ability_ to work, while a **real-world harness** is a highly tuned production factory where the AI acts as an autonomous contributor and the human acts as the system architect and reviewer.

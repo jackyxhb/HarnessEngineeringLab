@@ -9,6 +9,7 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 
 ```markdown
 ### A{N}: {Title}
+
 - **What:** The action or decision taken.
 - **Why:** The strategic rationale.
 - **Target:** The system, architecture, or workflow it affects.
@@ -71,7 +72,7 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 ### A7: Reward Engineering as Cross-Cutting
 
 - **What:** Classified "Reward Engineering" not as a standalone Pillar or Feature, but as a cross-cutting concern paired directly with the Prevention Checklist.
-- **Why:** Reward manipulation and anti-hacking are systemic risks that emerge across *all* pillars, not single capabilities.
+- **Why:** Reward manipulation and anti-hacking are systemic risks that emerge across _all_ pillars, not single capabilities.
 - **Target:** `HE Prevention Checklist.md` and related GAP Evaluation documentation.
 - **Background:** Clarified during a structural reconciliation to avoid polluting the core feature list with meta-concerns.
 - **Date:** 2026-03-22

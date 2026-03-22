@@ -10,12 +10,12 @@ This is a **knowledge base and research repository** for Harness Engineering —
 
 All content is organized under this canonical structure. When editing or creating documents, always align to it:
 
-| Layer | Role | SAS Verb | MAS Verb |
-|---|---|---|---|
-| **Foundation: Infrastructure** | Execution engine & orchestration | Execute | Execute, Orchestrate & Verify |
-| **Pillar 1: Context Engineering** | Memory, knowledge, real-time data | Inform | Inform & Synchronize |
-| **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain | Constrain & Protect |
-| **Pillar 3: Entropy Management** | Long-term codebase health | Maintain | Maintain & Reconcile |
+| Layer                                   | Role                                 | SAS Verb  | MAS Verb                      |
+| --------------------------------------- | ------------------------------------ | --------- | ----------------------------- |
+| **Foundation: Infrastructure**          | Execution engine & orchestration     | Execute   | Execute, Orchestrate & Verify |
+| **Pillar 1: Context Engineering**       | Memory, knowledge, real-time data    | Inform    | Inform & Synchronize          |
+| **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain | Constrain & Protect           |
+| **Pillar 3: Entropy Management**        | Long-term codebase health            | Maintain  | Maintain & Reconcile          |
 
 **Foundation** features: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning
 

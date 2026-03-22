@@ -11,7 +11,9 @@ Run this workflow whenever defining a new strategic architectural decision or wh
 Identify which action the user is requesting: **Add**, **Review**, or **Prune**.
 
 ### Sub-workflow: Add
+
 Use when creating a new strategic record.
+
 1. Determine the exact subject of the decision.
 2. Formulate the record using the mandatory template: Wait, read `ANCHORS.md` to find the highest existing anchor ID `A{N}` and increment it for the new entry.
 3. Draft the anchor containing exactly 5 fields:
@@ -24,14 +26,18 @@ Use when creating a new strategic record.
 5. If approved, append it to the Active Anchors section of `ANCHORS.md`.
 
 ### Sub-workflow: Review
+
 Use when auditing anchors against actual project state.
+
 1. Read `ANCHORS.md`.
 2. Check if any anchor contradicts current project documentation or current strategy.
 3. Check for overlapping boundaries between anchors.
 4. Recommend modifications or suggest moving stale anchors to the "prune" list.
 
 ### Sub-workflow: Prune
+
 Use when retiring an anchor that is superseded by a newer decision.
+
 1. Identify the targeted anchor ID (e.g., A2).
 2. Move it from the "Active Anchors" section of `ANCHORS.md` to a new "Archived Anchors" section at the bottom of the document.
 3. In its new location, append a `- **Superseded By:** A{X}` line to link it to the current strategic path (if applicable).

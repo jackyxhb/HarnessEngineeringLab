@@ -2,7 +2,7 @@
 
 A knowledge base and research repository for **Harness Engineering** — the AI-first development methodology where humans design environments and agents write the code.
 
-> *"The discipline shows up in the scaffolding, not the code."*
+> _"The discipline shows up in the scaffolding, not the code."_
 
 ## What is Harness Engineering?
 
@@ -14,12 +14,12 @@ The core philosophy: **Humans steer, agents execute.** Engineers stop writing co
 
 All harness engineering concepts are organized under a unified framework:
 
-| Layer | Role | Key Question |
-|---|---|---|
-| **Foundation: Infrastructure** (Execute) | Execution engine and orchestration | *Where does the agent run safely?* |
-| **Pillar 1: Context Engineering** (Inform) | Memory, knowledge, and real-time data | *What does the agent know?* |
-| **Pillar 2: Architectural Constraints** (Constrain) | Mechanical enforcement of boundaries | *What can the agent do?* |
-| **Pillar 3: Entropy Management** (Maintain) | Long-term codebase health | *How does the system stay healthy?* |
+| Layer                                               | Role                                  | Key Question                        |
+| --------------------------------------------------- | ------------------------------------- | ----------------------------------- |
+| **Foundation: Infrastructure** (Execute)            | Execution engine and orchestration    | _Where does the agent run safely?_  |
+| **Pillar 1: Context Engineering** (Inform)          | Memory, knowledge, and real-time data | _What does the agent know?_         |
+| **Pillar 2: Architectural Constraints** (Constrain) | Mechanical enforcement of boundaries  | _What can the agent do?_            |
+| **Pillar 3: Entropy Management** (Maintain)         | Long-term codebase health             | _How does the system stay healthy?_ |
 
 ## Repository Structure
 
@@ -90,11 +90,11 @@ The framework scales from single to multi-agent systems. Key MAS additions inclu
 
 ## Maturity Levels
 
-| Level | Scope | Setup Time |
-|---|---|---|
-| **Basic** | Single developer | 1–2 hours |
-| **Team** | 3–10 developers | 1–2 days |
-| **Production** | Engineering organisation | 1–2 weeks |
+| Level          | Scope                    | Setup Time |
+| -------------- | ------------------------ | ---------- |
+| **Basic**      | Single developer         | 1–2 hours  |
+| **Team**       | 3–10 developers          | 1–2 days   |
+| **Production** | Engineering organisation | 1–2 weeks  |
 
 ## License
 

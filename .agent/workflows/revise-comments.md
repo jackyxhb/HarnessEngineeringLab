@@ -33,12 +33,12 @@ This workflow processes each document in the `research/` folder one by one, comp
    a. Read the document fully.
 
    b. Compare it against the canonical framework. Look for these specific conflict types:
-      - **Wrong structure**: Using a different number of sections/pillars than 3-Pillar + 1-Foundation (e.g., 5 areas, 6 sections)
-      - **Wrong placement**: Features placed in the wrong pillar/foundation (e.g., Observability outside Pillar 1, Escalation outside Foundation, Sandboxes as a separate pillar)
-      - **Wrong naming**: Section headings using different names or verbs than the canonical ones
-      - **Mixed categories**: A single section combining items from different pillars
-      - **Missing Foundation**: Not recognising Foundation as a separate area from the Pillars
-      - **Standalone Observability**: Having Observability as its own section instead of under Pillar 1
+   - **Wrong structure**: Using a different number of sections/pillars than 3-Pillar + 1-Foundation (e.g., 5 areas, 6 sections)
+   - **Wrong placement**: Features placed in the wrong pillar/foundation (e.g., Observability outside Pillar 1, Escalation outside Foundation, Sandboxes as a separate pillar)
+   - **Wrong naming**: Section headings using different names or verbs than the canonical ones
+   - **Mixed categories**: A single section combining items from different pillars
+   - **Missing Foundation**: Not recognising Foundation as a separate area from the Pillars
+   - **Standalone Observability**: Having Observability as its own section instead of under Pillar 1
 
    c. If the document is a **framework/structure document** (defines or categorises harness features into areas), fix the conflicts by restructuring to match 3-Pillar + 1-Foundation.
 

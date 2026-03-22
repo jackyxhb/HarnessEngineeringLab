@@ -4,7 +4,7 @@ How to Create a Robust Agent — General Principles, distilled from OpenAI's Har
 
 ## 1. Design the Environment, Not Just the Agent
 
-> *"The discipline shows up in the scaffolding, not the code."*
+> _"The discipline shows up in the scaffolding, not the code."_
 
 The agent is only as good as the environment it operates in. Invest in:
 
@@ -44,7 +44,7 @@ Don't rely on the agent's "memory" or "judgment" for rules that must always hold
 
 ## 5. Design for the Feedback Loop, Not the Happy Path
 
-- **When something fails, ask**: *"What capability is missing?"* — not *"try harder"*
+- **When something fails, ask**: _"What capability is missing?"_ — not _"try harder"_
 - **Escalation is correct behaviour**, not failure — exhaust agent-available signals first
 - **Corrections are cheap, waiting is expensive** — optimise for throughput, not perfection per step
 

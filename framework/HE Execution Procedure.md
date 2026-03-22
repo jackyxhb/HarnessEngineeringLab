@@ -56,7 +56,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 > **Goal:** Systematically inspect the target project for harness gaps across all 4 function areas. Each sub-task covers one function area.
 
-### Task 1.1: Foundation Gaps — Infrastructure & Execution
+### Task 1.1: Foundation Gaps — Infrastructure & Execution (Execute)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -81,7 +81,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 1.2: Pillar 1 Gaps — Context Engineering
+### Task 1.2: Pillar 1 Gaps — Context Engineering (Inform)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -103,7 +103,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 1.3: Pillar 2 Gaps — Architectural Constraints
+### Task 1.3: Pillar 2 Gaps — Architectural Constraints (Constrain)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -120,7 +120,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 1.4: Pillar 3 Gaps — Entropy Management
+### Task 1.4: Pillar 3 Gaps — Entropy Management (Maintain)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -463,17 +463,17 @@ Phase 6 ─── 6.1 → 6.2
 
 All tasks are designed to stay well within a 128K-token context window. Maximum context consumption per task:
 
-| Task | Max Source Files | Max Lines Read | Est. Tokens |
-|------|-----------------|----------------|-------------|
-| 0.1  | 1 project       | ~200           | ~2,000      |
-| 0.2  | 2 reference docs| ~100           | ~3,000      |
-| 1.x  | 1 reference doc + project | ~150 | ~4,000     |
-| 1.5  | 4 clue files    | ~200           | ~3,000      |
-| 2.x  | 1 score input + ref doc | ~200   | ~4,000      |
-| 2.5  | 4 score files + ref | ~300       | ~4,000      |
-| 3.x  | 2 input files   | ~200           | ~4,000      |
-| 4.x  | 3–5 target files| ~150           | ~3,000      |
-| 5.x  | 2–4 summary files| ~200          | ~3,000      |
+| Task | Max Source Files          | Max Lines Read | Est. Tokens |
+| ---- | ------------------------- | -------------- | ----------- |
+| 0.1  | 1 project                 | ~200           | ~2,000      |
+| 0.2  | 2 reference docs          | ~100           | ~3,000      |
+| 1.x  | 1 reference doc + project | ~150           | ~4,000      |
+| 1.5  | 4 clue files              | ~200           | ~3,000      |
+| 2.x  | 1 score input + ref doc   | ~200           | ~4,000      |
+| 2.5  | 4 score files + ref       | ~300           | ~4,000      |
+| 3.x  | 2 input files             | ~200           | ~4,000      |
+| 4.x  | 3–5 target files          | ~150           | ~3,000      |
+| 5.x  | 2–4 summary files         | ~200           | ~3,000      |
 
 ---
 
@@ -492,13 +492,13 @@ This procedure supports all 4 dimensions of Harness Engineering methodology:
 
 Each task in this procedure includes safeguards against agent hallucination:
 
-| Safeguard | How It's Applied |
-|-----------|-----------------|
-| **Small task scope** | Each task touches ≤5 files and produces exactly 1 output artifact |
-| **Explicit inputs** | Every task declares exactly what files it needs to read |
-| **Concrete outputs** | Every task declares the exact filename and content structure it must produce |
-| **Reference grounding** | Gap signals come from `HE Gap Evaluation Framework.md`, not invented |
-| **Verification criteria** | Phase 5 independently verifies Phase 4 outputs |
-| **User checkpoints** | Phase 3 requires explicit user confirmation before execution |
-| **Parallel decomposition** | Phase 1 and Phase 2 tasks can run independently, reducing per-agent load |
-| **Token budgets** | Each task has an estimated token budget to prevent context exhaustion |
+| Safeguard                  | How It's Applied                                                             |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| **Small task scope**       | Each task touches ≤5 files and produces exactly 1 output artifact            |
+| **Explicit inputs**        | Every task declares exactly what files it needs to read                      |
+| **Concrete outputs**       | Every task declares the exact filename and content structure it must produce |
+| **Reference grounding**    | Gap signals come from `HE Gap Evaluation Framework.md`, not invented         |
+| **Verification criteria**  | Phase 5 independently verifies Phase 4 outputs                               |
+| **User checkpoints**       | Phase 3 requires explicit user confirmation before execution                 |
+| **Parallel decomposition** | Phase 1 and Phase 2 tasks can run independently, reducing per-agent load     |
+| **Token budgets**          | Each task has an estimated token budget to prevent context exhaustion        |

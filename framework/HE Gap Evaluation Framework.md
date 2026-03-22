@@ -8,25 +8,25 @@ A comprehensive, multi-dimensional approach to evaluating Harness Engineering ga
 
 Every core feature is evaluated through **six lenses**. Each lens reveals a different type of gap that a single-dimension maturity model would miss.
 
-| Dimension | Question It Answers | Why It Matters |
-|---|---|---|
-| **Implementation Maturity** | How fully built is this feature? | Unbuilt features can't deliver value |
-| **Operational Effectiveness** | Does the feature actually work in practice? | A feature can exist but underperform |
-| **Risk Exposure** | What breaks if this feature is absent or weak? | Reveals hidden blast radius |
-| **Cost-Efficiency** | Is the investment proportional to the value? | Prevents over-engineering and token waste |
-| **Scalability (SAS→MAS)** | Will this feature survive the transition to multi-agent? | Avoids rework when scaling |
-| **Human Role Evolution** | Does this feature shift humans from writing code to designing systems? | Measures progress toward the HE vision |
+| Dimension                     | Question It Answers                                                    | Why It Matters                            |
+| ----------------------------- | ---------------------------------------------------------------------- | ----------------------------------------- |
+| **Implementation Maturity**   | How fully built is this feature?                                       | Unbuilt features can't deliver value      |
+| **Operational Effectiveness** | Does the feature actually work in practice?                            | A feature can exist but underperform      |
+| **Risk Exposure**             | What breaks if this feature is absent or weak?                         | Reveals hidden blast radius               |
+| **Cost-Efficiency**           | Is the investment proportional to the value?                           | Prevents over-engineering and token waste |
+| **Scalability (SAS→MAS)**     | Will this feature survive the transition to multi-agent?               | Avoids rework when scaling                |
+| **Human Role Evolution**      | Does this feature shift humans from writing code to designing systems? | Measures progress toward the HE vision    |
 
 ### Scoring Scale (per dimension)
 
-| Score | Label | Meaning |
-|---|---|---|
-| 0 | Absent | Feature does not exist |
-| 1 | Ad-hoc | Informal, inconsistent, human-dependent |
-| 2 | Basic | Partially implemented, works for simple cases |
-| 3 | Functional | Reliable for standard workflows |
-| 4 | Optimized | Measurably effective, monitored, iterated upon |
-| 5 | Leading | Autonomous, self-improving, sets industry standard |
+| Score | Label      | Meaning                                            |
+| ----- | ---------- | -------------------------------------------------- |
+| 0     | Absent     | Feature does not exist                             |
+| 1     | Ad-hoc     | Informal, inconsistent, human-dependent            |
+| 2     | Basic      | Partially implemented, works for simple cases      |
+| 3     | Functional | Reliable for standard workflows                    |
+| 4     | Optimized  | Measurably effective, monitored, iterated upon     |
+| 5     | Leading    | Autonomous, self-improving, sets industry standard |
 
 ---
 
@@ -53,12 +53,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Provision isolated containers or VMs per agent session | Risk, Maturity |
-| 1 | Pre-install language runtimes, test runners, and CLI tools in sandbox images | Effectiveness |
-| 2 | Enable visual monitoring of sandbox state (tmux, split-pane terminals) | Human Role |
-| 3 | Auto-scale sandbox pools based on concurrent agent demand | Scalability, Cost |
+| Tier | Action                                                                       | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------------- | ------------------- |
+| 1    | Provision isolated containers or VMs per agent session                       | Risk, Maturity      |
+| 1    | Pre-install language runtimes, test runners, and CLI tools in sandbox images | Effectiveness       |
+| 2    | Enable visual monitoring of sandbox state (tmux, split-pane terminals)       | Human Role          |
+| 3    | Auto-scale sandbox pools based on concurrent agent demand                    | Scalability, Cost   |
 
 **Dependencies:** Required by Self-Verification (F3), Orchestration Logic (F5). Blocking if absent.
 
@@ -75,13 +75,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Ensure every agent session has a Git-tracked workspace | Maturity |
-| 1 | Implement per-agent branching strategy (worktrees or feature branches) | Risk |
-| 2 | Add file locking and task-claiming for MAS shared workspaces | Scalability |
-| 2 | Build rollback automation (auto-revert on test failure) | Effectiveness |
-| 3 | Implement conflict resolution agents for concurrent edits | Scalability |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Ensure every agent session has a Git-tracked workspace                 | Maturity            |
+| 1    | Implement per-agent branching strategy (worktrees or feature branches) | Risk                |
+| 2    | Add file locking and task-claiming for MAS shared workspaces           | Scalability         |
+| 2    | Build rollback automation (auto-revert on test failure)                | Effectiveness       |
+| 3    | Implement conflict resolution agents for concurrent edits              | Scalability         |
 
 **Dependencies:** Foundation for all other features. Planning & State Files (P1-7) and Scheduled Cleanups (P3-1) depend on this.
 
@@ -98,13 +98,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Wire test suite execution into the agent's task completion flow | Maturity, Effectiveness |
-| 1 | Pipe error logs back into agent context for autonomous fix attempts | Effectiveness |
-| 2 | Add pre-completion checklists that gate task finalization | Risk |
-| 2 | Upgrade to collective verification (consensus voting) for MAS | Scalability |
-| 3 | Implement verification metrics (pass rate, fix iterations) for observability | Human Role |
+| Tier | Action                                                                       | Dimension Addressed     |
+| ---- | ---------------------------------------------------------------------------- | ----------------------- |
+| 1    | Wire test suite execution into the agent's task completion flow              | Maturity, Effectiveness |
+| 1    | Pipe error logs back into agent context for autonomous fix attempts          | Effectiveness           |
+| 2    | Add pre-completion checklists that gate task finalization                    | Risk                    |
+| 2    | Upgrade to collective verification (consensus voting) for MAS                | Scalability             |
+| 3    | Implement verification metrics (pass rate, fix iterations) for observability | Human Role              |
 
 **Dependencies:** Requires Bash Sandboxes (F1). Enables Escalation Policies (F7) — escalation triggers when self-verification fails repeatedly.
 
@@ -121,13 +121,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Implement exit interception hooks that detect premature completion | Maturity |
-| 1 | Build prompt reinjection with state summary into fresh context windows | Effectiveness |
-| 2 | Add loop budgets (max reinjections) to prevent infinite retries | Cost, Risk |
-| 2 | Track loop metrics (reinjection count, completion rate) | Effectiveness |
-| 3 | Combine with Planning & State Files for cross-window goal persistence | Scalability |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Implement exit interception hooks that detect premature completion     | Maturity            |
+| 1    | Build prompt reinjection with state summary into fresh context windows | Effectiveness       |
+| 2    | Add loop budgets (max reinjections) to prevent infinite retries        | Cost, Risk          |
+| 2    | Track loop metrics (reinjection count, completion rate)                | Effectiveness       |
+| 3    | Combine with Planning & State Files for cross-window goal persistence  | Scalability         |
 
 **Dependencies:** Requires Planning & State Files (P1-7) for state persistence across reinjections. Interacts with Escalation Policies (F7) for max-retry limits.
 
@@ -144,13 +144,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Implement basic supervisor pattern (central orchestrator → workers) | Maturity |
-| 2 | Add topology selection based on task type (parallel vs. sequential) | Effectiveness, Cost |
-| 2 | Build context-preserving handoff protocols between agents | Effectiveness |
-| 3 | Support dynamic topology switching (supervisor ↔ peer-to-peer ↔ swarm) | Scalability |
-| 3 | Implement overhead monitoring to detect coordination degradation | Cost |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Implement basic supervisor pattern (central orchestrator → workers)    | Maturity            |
+| 2    | Add topology selection based on task type (parallel vs. sequential)    | Effectiveness, Cost |
+| 2    | Build context-preserving handoff protocols between agents              | Effectiveness       |
+| 3    | Support dynamic topology switching (supervisor ↔ peer-to-peer ↔ swarm) | Scalability         |
+| 3    | Implement overhead monitoring to detect coordination degradation       | Cost                |
 
 **Dependencies:** Requires Inter-Agent Communication (F-MAS) for MAS topologies. Enables all multi-agent workflows.
 
@@ -167,12 +167,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Refactor harness into composable, independently removable layers | Maturity |
-| 2 | Add feature flags to toggle middleware components on/off | Effectiveness |
-| 2 | Regularly audit middleware relevance against current model capabilities | Cost |
-| 3 | Build A/B testing infrastructure to compare harness variants | Human Role, Effectiveness |
+| Tier | Action                                                                  | Dimension Addressed       |
+| ---- | ----------------------------------------------------------------------- | ------------------------- |
+| 1    | Refactor harness into composable, independently removable layers        | Maturity                  |
+| 2    | Add feature flags to toggle middleware components on/off                | Effectiveness             |
+| 2    | Regularly audit middleware relevance against current model capabilities | Cost                      |
+| 3    | Build A/B testing infrastructure to compare harness variants            | Human Role, Effectiveness |
 
 **Dependencies:** Enables Harness Versioning (F8). Philosophical foundation — over-engineering prevention.
 
@@ -189,12 +189,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Define escalation triggers (N consecutive test failures, time limits, loop detection) | Maturity, Risk |
-| 1 | Route stuck tasks to human via notification (Slack, email, dashboard) | Effectiveness |
-| 2 | Implement tiered escalation (retry → different agent → human) | Scalability |
-| 3 | Add escalation analytics to identify systemic failure patterns | Human Role |
+| Tier | Action                                                                                | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------------------- | ------------------- |
+| 1    | Define escalation triggers (N consecutive test failures, time limits, loop detection) | Maturity, Risk      |
+| 1    | Route stuck tasks to human via notification (Slack, email, dashboard)                 | Effectiveness       |
+| 2    | Implement tiered escalation (retry → different agent → human)                         | Scalability         |
+| 3    | Add escalation analytics to identify systemic failure patterns                        | Human Role          |
 
 **Dependencies:** Requires Self-Verification (F3) to detect failure. Requires Observability (P1-5) for monitoring.
 
@@ -211,12 +211,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Version-control all harness configuration (prompts, tools, middleware) | Maturity |
-| 2 | Track agent performance metrics per harness version | Effectiveness |
-| 3 | Build A/B testing pipeline to statistically compare harness variants | Human Role |
-| 3 | Implement automated harness optimization (genetic/evolutionary search) | Scalability |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Version-control all harness configuration (prompts, tools, middleware) | Maturity            |
+| 2    | Track agent performance metrics per harness version                    | Effectiveness       |
+| 3    | Build A/B testing pipeline to statistically compare harness variants   | Human Role          |
+| 3    | Implement automated harness optimization (genetic/evolutionary search) | Scalability         |
 
 **Dependencies:** Requires Observability (P1-5) for performance data. Requires Rippable Middleware (F6) for component-level versioning.
 
@@ -235,13 +235,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Create and maintain `CLAUDE.md` / `AGENTS.md` with project conventions | Maturity |
-| 1 | Migrate all architectural decisions from external tools into the repo | Risk, Effectiveness |
-| 2 | Add linter validation that context files are present and non-empty | Risk |
-| 2 | Cross-link design docs to code modules for agent discoverability | Effectiveness |
-| 3 | Automate staleness detection — alert when docs diverge from code | Scalability |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Create and maintain `CLAUDE.md` / `AGENTS.md` with project conventions | Maturity            |
+| 1    | Migrate all architectural decisions from external tools into the repo  | Risk, Effectiveness |
+| 2    | Add linter validation that context files are present and non-empty     | Risk                |
+| 2    | Cross-link design docs to code modules for agent discoverability       | Effectiveness       |
+| 3    | Automate staleness detection — alert when docs diverge from code       | Scalability         |
 
 **Dependencies:** Foundation for all Pillar 1 features. Documentation Sync (P3-2) maintains this over time.
 
@@ -258,12 +258,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Implement conversation history summarization at regular intervals | Maturity, Effectiveness |
-| 2 | Separate short-term (session) from long-term (vector DB) memory | Scalability |
-| 2 | Set token budgets per context section (tools, history, instructions) | Cost |
-| 3 | Build adaptive compaction that adjusts aggressiveness based on task complexity | Effectiveness |
+| Tier | Action                                                                         | Dimension Addressed     |
+| ---- | ------------------------------------------------------------------------------ | ----------------------- |
+| 1    | Implement conversation history summarization at regular intervals              | Maturity, Effectiveness |
+| 2    | Separate short-term (session) from long-term (vector DB) memory                | Scalability             |
+| 2    | Set token budgets per context section (tools, history, instructions)           | Cost                    |
+| 3    | Build adaptive compaction that adjusts aggressiveness based on task complexity | Effectiveness           |
 
 **Dependencies:** Interacts with Tool Offloading (P1-3). Critical for Ralph Loops (F4) — reinjected prompts need compacted state.
 
@@ -279,12 +279,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Strip tool outputs to head/tail tokens; store full results on filesystem | Maturity |
-| 2 | Make full tool outputs retrievable on-demand by the agent | Effectiveness |
-| 2 | Set per-tool token limits with configurable thresholds | Cost |
-| 3 | Build intelligent summarization (LLM-based) for complex tool outputs | Effectiveness |
+| Tier | Action                                                                   | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------ | ------------------- |
+| 1    | Strip tool outputs to head/tail tokens; store full results on filesystem | Maturity            |
+| 2    | Make full tool outputs retrievable on-demand by the agent                | Effectiveness       |
+| 2    | Set per-tool token limits with configurable thresholds                   | Cost                |
+| 3    | Build intelligent summarization (LLM-based) for complex tool outputs     | Effectiveness       |
 
 **Dependencies:** Requires Filesystem (F2) for storage. Feeds into Context Compaction (P1-2).
 
@@ -300,12 +300,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Organize tools into role-based skill modules | Maturity |
-| 1 | Load only task-relevant skills at assignment time | Effectiveness |
-| 2 | Implement skill routing — agent or orchestrator selects skills based on task type | Scalability |
-| 3 | Build skill performance tracking (which skills improve task success rates) | Human Role |
+| Tier | Action                                                                            | Dimension Addressed |
+| ---- | --------------------------------------------------------------------------------- | ------------------- |
+| 1    | Organize tools into role-based skill modules                                      | Maturity            |
+| 1    | Load only task-relevant skills at assignment time                                 | Effectiveness       |
+| 2    | Implement skill routing — agent or orchestrator selects skills based on task type | Scalability         |
+| 3    | Build skill performance tracking (which skills improve task success rates)        | Human Role          |
 
 **Dependencies:** Enables efficient Orchestration Logic (F5) — orchestrators select skill profiles per subagent.
 
@@ -322,13 +322,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Expose CI/CD status, test results, and error logs to agent context | Maturity |
-| 1 | Build basic dashboard showing agent task outcomes | Human Role |
-| 2 | Add traces (per-step reasoning, tool calls, decisions) for debugging | Effectiveness, Risk |
-| 2 | Implement agent performance metrics (completion rate, fix iterations, token usage) | Cost |
-| 3 | Build anomaly detection on agent behavior patterns | Scalability, Risk |
+| Tier | Action                                                                             | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------------------- | ------------------- |
+| 1    | Expose CI/CD status, test results, and error logs to agent context                 | Maturity            |
+| 1    | Build basic dashboard showing agent task outcomes                                  | Human Role          |
+| 2    | Add traces (per-step reasoning, tool calls, decisions) for debugging               | Effectiveness, Risk |
+| 2    | Implement agent performance metrics (completion rate, fix iterations, token usage) | Cost                |
+| 3    | Build anomaly detection on agent behavior patterns                                 | Scalability, Risk   |
 
 **Dependencies:** Required by Escalation Policies (F7), Harness Versioning (F8). Enables data-driven harness improvement.
 
@@ -344,12 +344,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Integrate web search tool into agent's available tools | Maturity |
-| 2 | Connect MCP servers for domain-specific external context | Effectiveness |
-| 2 | Add caching layer to reduce redundant external lookups | Cost |
-| 3 | Build relevance filtering — agent decides when external search adds value | Effectiveness |
+| Tier | Action                                                                    | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------- | ------------------- |
+| 1    | Integrate web search tool into agent's available tools                    | Maturity            |
+| 2    | Connect MCP servers for domain-specific external context                  | Effectiveness       |
+| 2    | Add caching layer to reduce redundant external lookups                    | Cost                |
+| 3    | Build relevance filtering — agent decides when external search adds value | Effectiveness       |
 
 **Dependencies:** Largely independent. Interacts with Tool Offloading (P1-3) — search results can be noisy.
 
@@ -366,13 +366,13 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Store task plans as files on the filesystem with step-by-step breakdown | Maturity |
-| 1 | Inject plan reminders into agent context at each step | Effectiveness |
-| 2 | Evolve to shared task lists with status tracking (claimed, in-progress, done) | Scalability |
-| 2 | Add blackboard architecture for MAS partial solution sharing | Scalability |
-| 3 | Implement plan quality scoring and adaptive replanning | Effectiveness |
+| Tier | Action                                                                        | Dimension Addressed |
+| ---- | ----------------------------------------------------------------------------- | ------------------- |
+| 1    | Store task plans as files on the filesystem with step-by-step breakdown       | Maturity            |
+| 1    | Inject plan reminders into agent context at each step                         | Effectiveness       |
+| 2    | Evolve to shared task lists with status tracking (claimed, in-progress, done) | Scalability         |
+| 2    | Add blackboard architecture for MAS partial solution sharing                  | Scalability         |
+| 3    | Implement plan quality scoring and adaptive replanning                        | Effectiveness       |
 
 **Dependencies:** Requires Filesystem (F2). Critical for Ralph Loops (F4). Evolves into MAS shared blackboards.
 
@@ -390,15 +390,15 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Create memory anchor files (e.g., `ANCHORS.md`, `decisions.log`) for recording critical decisions | Maturity |
-| 1 | Write structured records at each major decision point: what, why, target, background | Effectiveness |
-| 2 | Build recall hooks that auto-inject anchor summaries at session start or after context resets | Effectiveness, Scalability |
-| 2 | Implement shared anchor files accessible to all agents in MAS setups | Scalability |
-| 3 | Add anchor quality metrics (staleness detection, relevance scoring) | Human Role |
+| Tier | Action                                                                                            | Dimension Addressed        |
+| ---- | ------------------------------------------------------------------------------------------------- | -------------------------- |
+| 1    | Create memory anchor files (e.g., `ANCHORS.md`, `decisions.log`) for recording critical decisions | Maturity                   |
+| 1    | Write structured records at each major decision point: what, why, target, background              | Effectiveness              |
+| 2    | Build recall hooks that auto-inject anchor summaries at session start or after context resets     | Effectiveness, Scalability |
+| 2    | Implement shared anchor files accessible to all agents in MAS setups                              | Scalability                |
+| 3    | Add anchor quality metrics (staleness detection, relevance scoring)                               | Human Role                 |
 
-**Dependencies:** Complements Planning & State Files (P1-7) — plans track *what to do next*, anchors track *why we're doing it*. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (F4) — reinjected contexts need anchors for strategic continuity.
+**Dependencies:** Complements Planning & State Files (P1-7) — plans track _what to do next_, anchors track _why we're doing it_. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (F4) — reinjected contexts need anchors for strategic continuity.
 
 ---
 
@@ -415,12 +415,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Require agents to spawn new branches for sub-tasks and merge back cleanly | Maturity, Risk |
-| 1 | Enforce detailed, accurate commit messages during segment checkpoints | Effectiveness |
-| 2 | Introduce branch and sub-task coordination logic within orchestration | Scalability, Cost |
-| 3 | Use commit history natively as a form of contextual RAG memory | Effectiveness |
+| Tier | Action                                                                    | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------- | ------------------- |
+| 1    | Require agents to spawn new branches for sub-tasks and merge back cleanly | Maturity, Risk      |
+| 1    | Enforce detailed, accurate commit messages during segment checkpoints     | Effectiveness       |
+| 2    | Introduce branch and sub-task coordination logic within orchestration     | Scalability, Cost   |
+| 3    | Use commit history natively as a form of contextual RAG memory            | Effectiveness       |
 
 **Dependencies:** Relies on Filesystem & Git Workspace (F2). Operates alongside Orchestration Logic (F5) for MAS mapping.
 
@@ -437,12 +437,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Add pre-commit hooks for formatting, linting, and type checking | Maturity |
-| 1 | Ensure linter error messages include remediation instructions (they're prompts) | Effectiveness |
-| 2 | Add custom rules for project-specific conventions beyond standard linters | Effectiveness |
-| 3 | Track linter violation frequency to identify recurring agent weaknesses | Human Role |
+| Tier | Action                                                                          | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------------- | ------------------- |
+| 1    | Add pre-commit hooks for formatting, linting, and type checking                 | Maturity            |
+| 1    | Ensure linter error messages include remediation instructions (they're prompts) | Effectiveness       |
+| 2    | Add custom rules for project-specific conventions beyond standard linters       | Effectiveness       |
+| 3    | Track linter violation frequency to identify recurring agent weaknesses         | Human Role          |
 
 **Dependencies:** Low dependency — can be implemented independently. Feeds data to Pattern Auditing (P3-3).
 
@@ -459,12 +459,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Define and document layer boundaries in architecture specs | Maturity |
-| 2 | Implement structural tests (e.g., ArchUnit) that fail CI on violations | Effectiveness, Risk |
-| 2 | Add import restrictions to linter configuration | Effectiveness |
-| 3 | Auto-generate dependency graphs and flag anomalies | Scalability |
+| Tier | Action                                                                 | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------- | ------------------- |
+| 1    | Define and document layer boundaries in architecture specs             | Maturity            |
+| 2    | Implement structural tests (e.g., ArchUnit) that fail CI on violations | Effectiveness, Risk |
+| 2    | Add import restrictions to linter configuration                        | Effectiveness       |
+| 3    | Auto-generate dependency graphs and flag anomalies                     | Scalability         |
 
 **Dependencies:** Requires Repository as Truth (P1-1) for boundary definitions. Feeds Pattern Auditing (P3-3).
 
@@ -481,15 +481,37 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Deploy a secondary LLM agent to review primary agent's PRs | Maturity |
-| 2 | Implement cooperative review (assembly line — draft → review → approve) | Effectiveness |
-| 2 | Add competitive channels (adversarial debate between agents on design choices) | Effectiveness, Risk |
-| 3 | Implement coopetition (agents negotiate and compromise on solutions) | Scalability |
-| 3 | Track auditor agreement rates to calibrate auditor thresholds | Human Role |
+| Tier | Action                                                                         | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------------ | ------------------- |
+| 1    | Deploy a secondary LLM agent to review primary agent's PRs                     | Maturity            |
+| 2    | Implement cooperative review (assembly line — draft → review → approve)        | Effectiveness       |
+| 2    | Add competitive channels (adversarial debate between agents on design choices) | Effectiveness, Risk |
+| 3    | Implement coopetition (agents negotiate and compromise on solutions)           | Scalability         |
+| 3    | Track auditor agreement rates to calibrate auditor thresholds                  | Human Role          |
 
 **Dependencies:** Requires Orchestration Logic (F5) for multi-agent coordination. Enhances Self-Verification (F3).
+
+---
+
+#### P2-4. Bounded Autonomy & Access Control
+
+**Gap Signals:**
+
+- Agent executes high-risk actions without human confirmation
+- Access controls are missing for sensitive environments or APIs
+- No risk-based staging or gradual elevation of privileges
+- Potential for cascaded or widespread damage is high if an agent goes rogue
+
+**Improvement Policies:**
+
+| Tier | Action                                                                       | Dimension Addressed |
+| ---- | ---------------------------------------------------------------------------- | ------------------- |
+| 1    | Require human-in-the-loop approval for critical or irreversible actions      | Maturity, Risk      |
+| 1    | Implement strict API sandboxing with least-privilege credentials             | Risk                |
+| 2    | Enforce risk-based progressive disclosure of autonomy to the agent           | Effectiveness       |
+| 3    | Use intelligent anomaly detection to dynamically throttle agent capabilities | Scalability         |
+
+**Dependencies:** Operates alongside Escalation Policies (F7). Extends overall Architectural Constraints.
 
 ---
 
@@ -506,12 +528,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Schedule weekly cleanup sweeps (dead code, unused imports, stale branches) | Maturity |
-| 2 | Add event-triggered cleanups (post-merge, post-release) | Effectiveness |
-| 2 | Implement conflict reconciliation agents for concurrent MAS edits | Scalability |
-| 3 | Build entropy metrics dashboard (tech debt score over time) | Human Role |
+| Tier | Action                                                                     | Dimension Addressed |
+| ---- | -------------------------------------------------------------------------- | ------------------- |
+| 1    | Schedule weekly cleanup sweeps (dead code, unused imports, stale branches) | Maturity            |
+| 2    | Add event-triggered cleanups (post-merge, post-release)                    | Effectiveness       |
+| 2    | Implement conflict reconciliation agents for concurrent MAS edits          | Scalability         |
+| 3    | Build entropy metrics dashboard (tech debt score over time)                | Human Role          |
 
 **Dependencies:** Requires Bash Sandboxes (F1) for execution. Interacts with Pattern Auditing (P3-3).
 
@@ -528,12 +550,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Add CI checks that flag documentation files older than associated code changes | Maturity |
-| 2 | Deploy documentation consistency agents that compare docs to code | Effectiveness |
-| 2 | Require doc updates as part of agent task completion criteria | Risk |
-| 3 | Implement auto-generated documentation from code with human review | Scalability |
+| Tier | Action                                                                         | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------------ | ------------------- |
+| 1    | Add CI checks that flag documentation files older than associated code changes | Maturity            |
+| 2    | Deploy documentation consistency agents that compare docs to code              | Effectiveness       |
+| 2    | Require doc updates as part of agent task completion criteria                  | Risk                |
+| 3    | Implement auto-generated documentation from code with human review             | Scalability         |
 
 **Dependencies:** Maintains Repository as Truth (P1-1). Feeds into Consolidation Loop (P3-4).
 
@@ -550,12 +572,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Run dependency analysis tools to detect cycles and dead code | Maturity |
-| 2 | Define canonical patterns and detect deviations automatically | Effectiveness |
-| 2 | Build a "pattern registry" the agent references before implementing | Risk |
-| 3 | Deploy pattern enforcement agents that submit fix PRs autonomously | Scalability |
+| Tier | Action                                                              | Dimension Addressed |
+| ---- | ------------------------------------------------------------------- | ------------------- |
+| 1    | Run dependency analysis tools to detect cycles and dead code        | Maturity            |
+| 2    | Define canonical patterns and detect deviations automatically       | Effectiveness       |
+| 2    | Build a "pattern registry" the agent references before implementing | Risk                |
+| 3    | Deploy pattern enforcement agents that submit fix PRs autonomously  | Scalability         |
 
 **Dependencies:** Requires Dependency Enforcement (P2-2) for boundary definitions. Informed by Automated Linters (P2-1).
 
@@ -572,12 +594,12 @@ Each of the 25 core features is analyzed below with:
 
 **Improvement Policies:**
 
-| Tier | Action | Dimension Addressed |
-|---|---|---|
-| 1 | Automate system count updates in core docs after each feature merge | Maturity |
-| 2 | Build changelog accumulation pipeline triggered by commits/PRs | Effectiveness |
-| 2 | Auto-prompt for ADR creation when new architectural patterns are detected | Risk |
-| 3 | Implement config drift detection and auto-correction | Scalability |
+| Tier | Action                                                                    | Dimension Addressed |
+| ---- | ------------------------------------------------------------------------- | ------------------- |
+| 1    | Automate system count updates in core docs after each feature merge       | Maturity            |
+| 2    | Build changelog accumulation pipeline triggered by commits/PRs            | Effectiveness       |
+| 2    | Auto-prompt for ADR creation when new architectural patterns are detected | Risk                |
+| 3    | Implement config drift detection and auto-correction                      | Scalability         |
 
 **Dependencies:** Requires Documentation Sync (P3-2). Maintains Repository as Truth (P1-1). Ensures long-term harness coherence.
 
@@ -603,15 +625,15 @@ Observability reveals patterns → Humans improve the harness
 
 Every feature either **saves tokens** (Context Compaction, Tool Offloading, Progressive Skills, Automated Linters) or **costs tokens** (AI Auditors, Web Search, Collective Verification). Map each feature's token impact:
 
-| Token Savers | Token Spenders |
-|---|---|
-| Context Compaction | AI Auditors / Diverse Collaboration |
-| Tool Offloading | Web Search & MCP |
-| Progressive Skills | Collective Verification (MAS) |
-| Automated Linters (prevent dead ends) | Inter-Agent Communication (MAS) |
-| Planning & State Files (prevent rework) | Scheduled Cleanups |
-| Context Anchoring (prevent strategic drift) | |
-| Branch Cognitive Memory (prevent chunk processing) | |
+| Token Savers                                       | Token Spenders                      |
+| -------------------------------------------------- | ----------------------------------- |
+| Context Compaction                                 | AI Auditors / Diverse Collaboration |
+| Tool Offloading                                    | Web Search & MCP                    |
+| Progressive Skills                                 | Collective Verification (MAS)       |
+| Automated Linters (prevent dead ends)              | Inter-Agent Communication (MAS)     |
+| Planning & State Files (prevent rework)            | Scheduled Cleanups                  |
+| Context Anchoring (prevent strategic drift)        |                                     |
+| Branch Cognitive Memory (prevent chunk processing) |                                     |
 
 **Gap test:** Is the net token balance positive? Are token spenders delivering proportional value?
 
@@ -637,16 +659,16 @@ No Self-Verification → Agent ships broken code
 
 Score each feature on MAS-readiness:
 
-| Feature | SAS-Only | MAS-Ready | MAS-Optimized |
-|---|---|---|---|
-| Filesystem & Git | Single workspace | Git worktrees | File locking + task claiming |
-| Self-Verification | Run tests locally | Gate on shared state | Consensus voting |
-| Orchestration | Sequential tasks | Supervisor pattern | Dynamic topology switching |
-| Context Compaction | Single window | Per-agent windows | Distributed memory management |
-| AI Auditors | Single reviewer | Cooperative review | Competition + coopetition |
-| Context Anchoring | Single-session memory | Persistent anchor files | Shared anchor files for collective alignment |
-| Branch Cognitive Memory | Sequential execution | Sub-task branches | Parallel agents with structured merge gates |
-| Escalation | Alert human | Retry with different agent | Tiered multi-agent escalation |
+| Feature                 | SAS-Only              | MAS-Ready                  | MAS-Optimized                                |
+| ----------------------- | --------------------- | -------------------------- | -------------------------------------------- |
+| Filesystem & Git        | Single workspace      | Git worktrees              | File locking + task claiming                 |
+| Self-Verification       | Run tests locally     | Gate on shared state       | Consensus voting                             |
+| Orchestration           | Sequential tasks      | Supervisor pattern         | Dynamic topology switching                   |
+| Context Compaction      | Single window         | Per-agent windows          | Distributed memory management                |
+| AI Auditors             | Single reviewer       | Cooperative review         | Competition + coopetition                    |
+| Context Anchoring       | Single-session memory | Persistent anchor files    | Shared anchor files for collective alignment |
+| Branch Cognitive Memory | Sequential execution  | Sub-task branches          | Parallel agents with structured merge gates  |
+| Escalation              | Alert human           | Retry with different agent | Tiered multi-agent escalation                |
 
 **Gap test:** If your organization plans MAS adoption, any feature stuck in "SAS-Only" is a blocker.
 
@@ -654,11 +676,11 @@ Score each feature on MAS-readiness:
 
 Map where each feature places the human:
 
-| Stage | Human Role | Features That Enable It |
-|---|---|---|
-| **Code Writer** | Writes code, reviews manually | (No harness features needed) |
-| **Harness Builder** | Builds scaffolding, reviews agent PRs | Repository as Truth, Linters, Self-Verification |
-| **System Architect** | Designs environments, spot-checks | Orchestration, AI Auditors, Observability |
+| Stage                  | Human Role                               | Features That Enable It                                  |
+| ---------------------- | ---------------------------------------- | -------------------------------------------------------- |
+| **Code Writer**        | Writes code, reviews manually            | (No harness features needed)                             |
+| **Harness Builder**    | Builds scaffolding, reviews agent PRs    | Repository as Truth, Linters, Self-Verification          |
+| **System Architect**   | Designs environments, spot-checks        | Orchestration, AI Auditors, Observability                |
 | **Strategic Overseer** | Sets goals, harness evolves autonomously | Harness Versioning, Consolidation Loop, Pattern Auditing |
 
 **Gap test:** At which stage is the team stuck? The features enabling the next stage are the improvement priority.
@@ -675,12 +697,12 @@ For each of the 25 features, score across all 6 dimensions (0-5). This produces 
 
 Default equal weighting (16.7% each). Adjust based on context:
 
-| Context | Increase Weight | Decrease Weight |
-|---|---|---|
-| Security-sensitive domain | Risk Exposure | Cost-Efficiency |
-| Startup / resource-constrained | Cost-Efficiency | Scalability |
-| Preparing for MAS | Scalability | Human Role |
-| Compliance-heavy industry | Risk Exposure, Effectiveness | Cost-Efficiency |
+| Context                        | Increase Weight              | Decrease Weight |
+| ------------------------------ | ---------------------------- | --------------- |
+| Security-sensitive domain      | Risk Exposure                | Cost-Efficiency |
+| Startup / resource-constrained | Cost-Efficiency              | Scalability     |
+| Preparing for MAS              | Scalability                  | Human Role      |
+| Compliance-heavy industry      | Risk Exposure, Effectiveness | Cost-Efficiency |
 
 ### Step 3: Calculate Priority Score
 
@@ -696,11 +718,11 @@ Where:
 
 ### Step 4: Tier the Results
 
-| Tier | Priority Score | Action Timeline |
-|---|---|---|
-| **Tier 1: Critical** | Top 20% | Immediate (this sprint) |
-| **Tier 2: Important** | Middle 40% | Mid-term (this quarter) |
-| **Tier 3: Enhance** | Bottom 40% | Long-term (this half) |
+| Tier                  | Priority Score | Action Timeline         |
+| --------------------- | -------------- | ----------------------- |
+| **Tier 1: Critical**  | Top 20%        | Immediate (this sprint) |
+| **Tier 2: Important** | Middle 40%     | Mid-term (this quarter) |
+| **Tier 3: Enhance**   | Bottom 40%     | Long-term (this half)   |
 
 ---
 
@@ -730,6 +752,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Pre-commit hooks reject style and type violations
 - [ ] Import boundaries are enforced by CI, not just convention
 - [ ] A second agent or process reviews the first agent's output
+- [ ] Agent actions are bounded by explicit limits (e.g., human-in-the-loop for high-risk actions)
 
 **Pillar 3 — Does the system clean up after itself?**
 

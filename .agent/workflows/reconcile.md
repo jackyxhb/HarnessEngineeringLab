@@ -21,7 +21,7 @@ Scan for all of the following categories:
 4. **Broken content** — corrupted text, numbering bugs, typos, formatting errors
 5. **Inconsistent terminology** — pillar verb tags, feature names, feature counts must match canonical sources:
    - Foundation = `(Execute)` (canonical: `Core Features for SAS.md`)
-   - Pillar 1 = `Context Engineering (Inform)` 
+   - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
    - Canonical feature count = **25** (8 Foundation + 9 P1 + 4 P2 + 4 P3)
@@ -53,11 +53,11 @@ Scan for all of the following categories:
 
 When checking terminology, the following are the **single source of truth** labels:
 
-| Component | Canonical Label | Source File |
-|---|---|---|
-| Foundation | Foundational Infrastructure (Execute) | `Core Features for SAS.md` |
-| Pillar 1 | Context Engineering (Inform) | `Core Features for SAS.md` |
-| Pillar 2 | Architectural Constraints (Constrain) | `Core Features for SAS.md` |
-| Pillar 3 | Entropy Management (Maintain) | `Core Features for SAS.md` |
-| Feature count | 24 core features | `HE Enhancement Options.md` |
-| Cross-cutting | Reward Engineering & Anti-Hacking | `HE Prevention Checklist.md` |
+| Component     | Canonical Label                       | Source File                  |
+| ------------- | ------------------------------------- | ---------------------------- |
+| Foundation    | Foundational Infrastructure (Execute) | `Core Features for SAS.md`   |
+| Pillar 1      | Context Engineering (Inform)          | `Core Features for SAS.md`   |
+| Pillar 2      | Architectural Constraints (Constrain) | `Core Features for SAS.md`   |
+| Pillar 3      | Entropy Management (Maintain)         | `Core Features for SAS.md`   |
+| Feature count | 24 core features                      | `HE Enhancement Options.md`  |
+| Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |
