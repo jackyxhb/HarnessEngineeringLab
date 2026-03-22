@@ -30,7 +30,10 @@
     "optimise",
     "Sandboxing",
     "worktree",
-    "emphasise"
+    "emphasise",
+    "frontmatter",
+    "parallelizable",
+    "backlinks"
   ],
   "ignorePaths": [
     "node_modules",
