@@ -22,6 +22,8 @@ An agent only knows what is in its context window, making the delivery of the ri
 
 * **Static and Dynamic Context:** The harness must inject static context (like `AGENTS.md`, `CLAUDE.md`, and architecture specs) as well as dynamic context (like CI/CD pipeline status and directory structures) into the agent's environment.
 * **The Repository as the Single Source of Truth:** Anything the agent cannot access in-context effectively does not exist. Human-only knowledge hidden in Slack threads or external wikis will cause the agent to fail.
+* **Context Anchoring:** Persisting strategic insights and directives in workspace anchors to align parallel and sequential agent interactions.
+* **Branch-Based Cognitive Memory:** Orchestrating task execution across independent tracking branches, enabling parallel sub-task processing while leveraging commit sequences as persistent reasoning memory.
 * **Battling "Context Rot":** As an agent works, its context window fills up, which degrades performance. Harnesses must implement **compaction** (intelligently summarizing and offloading older context), **tool call offloading** (storing noisy tool outputs in the filesystem rather than context), and **progressive disclosure** of skills to keep the context window clean.
 * **Observability / Dashboards:** Integration of telemetry so agents can access real-time logs, metrics, traces, and CI/CD pipeline statuses as dynamic context.
 

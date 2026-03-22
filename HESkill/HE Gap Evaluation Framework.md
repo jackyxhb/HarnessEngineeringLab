@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 23 core features is analyzed below with:
+Each of the 24 core features is analyzed below with:
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
 - **Dependency Map** — what this feature enables or requires
@@ -369,6 +369,26 @@ Each of the 23 core features is analyzed below with:
 
 ---
 
+---
+
+#### P1-9. Branch-Based Cognitive Memory
+
+**Gap Signals:**
+- Agent processes multi-step complex objectives holistically in a monolithic branch
+- No checkpointed cognitive history for distinct sub-tasks
+- Sub-tasks are executed sequentially rather than concurrently when they could be parallelized
+- Commit messages are sparse and lack structured evidentiary value
+
+**Improvement Policies:**
+| Tier | Action | Dimension Addressed |
+|---|---|---|
+| 1 | Require agents to spawn new branches for sub-tasks and merge back cleanly | Maturity, Risk |
+| 1 | Enforce detailed, accurate commit messages during segment checkpoints | Effectiveness |
+| 2 | Introduce branch and sub-task coordination logic within orchestration | Scalability, Cost |
+| 3 | Use commit history natively as a form of contextual RAG memory | Effectiveness |
+
+**Dependencies:** Relies on Filesystem & Git Workspace (F2). Operates alongside Orchestration Logic (F5) for MAS mapping.
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
@@ -542,6 +562,7 @@ Every feature either **saves tokens** (Context Compaction, Tool Offloading, Prog
 | Automated Linters (prevent dead ends) | Inter-Agent Communication (MAS) |
 | Planning & State Files (prevent rework) | Scheduled Cleanups |
 | Context Anchoring (prevent strategic drift) | |
+| Branch Cognitive Memory | Sequential execution | Sub-task branches | Parallel agents with structured merge gates |
 
 **Gap test:** Is the net token balance positive? Are token spenders delivering proportional value?
 
@@ -598,7 +619,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 23 features, score across all 6 dimensions (0-5). This produces a 23×6 matrix.
+For each of the 24 features, score across all 6 dimensions (0-5). This produces a 24×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 
@@ -649,6 +670,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Agent can access real-time CI/CD status and external data
 - [ ] Tools are loaded on-demand, not all-at-once
 - [ ] Critical decisions are recorded to persistent memory files (what, why, target, background)
+- [ ] Complex objectives are decomposed into concurrent branches with structured commit memory
 
 **Pillar 2 — Is the agent mechanically prevented from bad output?**
 - [ ] Pre-commit hooks reject style and type violations

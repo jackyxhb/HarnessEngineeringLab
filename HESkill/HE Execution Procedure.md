@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 23 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 24 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 
@@ -87,6 +87,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 6. Check for **Web Search & MCP** (P1-6): External data access? MCP servers configured?
 7. Check for **Planning & State Files** (P1-7): Plan files? Task decomposition? Shared blackboards?
 8. Check for **Context Anchoring** (P1-8): Persistent decision records (what, why, target, background)? Recall hooks at session start?
+9. Check for **Branch-Based Cognitive Memory** (P1-9): Concurrent task branches? Structured commit boundaries acting as memory?
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
