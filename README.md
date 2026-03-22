@@ -39,15 +39,15 @@ Original source articles that form the foundation of this research, including Op
 
 ### `HESkill/`
 
-The canonical framework definitions and operational guides:
+The canonical framework definitions and operational guides (23 core features across 3 pillars + 1 foundation):
 
 - **Core Features for SAS.md** — Framework applied to Single Agent Systems
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
-- **HE Prevention Checklist.md** — Critical risks and failure modes to prevent
-- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature
+- **SAS to MAS Feature Mapping.md** — Feature-by-feature upgrade path from SAS to MAS
+- **HE Prevention Checklist.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
+- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (1–23)
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 - **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
-- **create-skill.md** — Guide for creating new harness engineering skills
 
 ### `comments/`
 
@@ -66,6 +66,7 @@ Supporting analysis and commentary documents covering:
 - **Ralph Loops** — Force agents to complete long-horizon tasks across context windows
 - **Rippable Middleware** — Composable layers that can be removed as models improve
 - **Context Compaction** — Prevent "context rot" by intelligently managing the context window
+- **Reward Engineering** — Design reward signals that align agent output with real-world value
 - **Boring Technologies** — Mainstream, well-documented tools that agents model accurately
 
 ## SAS vs MAS

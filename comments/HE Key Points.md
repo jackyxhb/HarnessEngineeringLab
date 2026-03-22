@@ -26,6 +26,8 @@ Harness Engineering (HE) is an AI-first methodology focused on creating safe, co
 
 ## 5. Reward Engineering and Anti-Hacking
 
+*Integrated into the canonical framework as a cross-cutting concern. See `HESkill/HE Prevention Checklist.md` § Reward Engineering & Anti-Hacking.*
+
 - **Reward Shaping:** Providing incremental goals to guide agents toward beneficial outcomes.
 - **Preventing Reward Hacking:** Actively anticipating and designing penalties for "lazy or malicious" ways an AI might game its objectives (e.g., achieving a goal in a literal but destructive way).
 

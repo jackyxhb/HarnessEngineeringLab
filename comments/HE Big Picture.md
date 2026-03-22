@@ -1,6 +1,6 @@
 # Big picture for Harness Engineering
 
-## Foundational Infrastructure (Verify & Correct)
+## Foundational Infrastructure (Execute)
 
 Before an agent can do anything, it needs a place to exist and operate. This is your underlying infrastructure layer.
 

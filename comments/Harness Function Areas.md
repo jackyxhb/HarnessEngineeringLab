@@ -1,6 +1,6 @@
 # Core Function Areas of AI Agent Harness
 
-## Foundational Infrastructure (Verify & Correct)
+## Foundational Infrastructure (Execute)
 
 *This is the execution engine sitting underneath all pillars.* Before the agent can take any action, it needs a place to exist and operate. The harness provides the safe environment and the orchestration to make all other pillars possible.
 
@@ -10,7 +10,7 @@
 * **Rippable Middleware & Harness Versioning:** Composable middleware tracks the agent's file edits to prevent "doom loops". The harness can be versioned and A/B tested for optimal configurations.
 * **Escalation Policies:** If the agent fails its self-verification too many times, the harness routes the task to a human.
 
-## Pillar 1: Context & Memory (Inform)
+## Pillar 1: Context Engineering (Inform)
 
 *This happens first.* Before the agent can take any action, it must understand the environment, the goal, and the codebase.
 

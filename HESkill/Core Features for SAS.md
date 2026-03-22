@@ -2,7 +2,7 @@
 
 ## Pillar 1: Context Engineering (Inform)
 
-*The largest pillar. This encompasses everything related to managing what the model sees, its memory, its durable storage, and its real-time knowledge.*
+*The largest pillar. This encompasses everything related to managing what the model sees, its memory, its durable storage, its real-time knowledge, and its strategic continuity.*
 
 * **Repository as Truth:** Encoding all project rules and static context directly into the codebase, eliminating reliance on human-only knowledge.
 * **Context Compaction:** Intelligently summarizing and offloading older context to prevent the agent's context window from filling up ("context rot").

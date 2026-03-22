@@ -1,6 +1,6 @@
 # AI Agent Harness Assessment Sheet
 
-## Foundational Infrastructure (Verify & Correct)
+## Foundational Infrastructure (Execute)
 
 *Evaluates the safety of the agent's execution environment and its ability to correct its own mistakes.*
 
@@ -13,7 +13,7 @@
 * **Rippable Middleware:** Are there composable middleware layers (like loop detection) that can be updated or removed as AI models improve?
 * **Harness Versioning:** Can the harness be version-controlled and A/B tested to discover optimal configurations?
 
-## Pillar 1: Context Engineering & Memory Management (Inform)
+## Pillar 1: Context Engineering (Inform)
 
 *Evaluates if the agent has the right information at the right time without overloading its context window.*
 

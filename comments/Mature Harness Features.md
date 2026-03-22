@@ -1,6 +1,6 @@
 # Consolidated must-have features for mature AI Agent Harness
 
-## Foundational Infrastructure (Verify & Correct)
+## Foundational Infrastructure (Execute)
 
 A mature harness requires robust execution infrastructure to support agent autonomy and long-horizon tasks:
 
