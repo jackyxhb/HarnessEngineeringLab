@@ -1,6 +1,8 @@
 # /build
 
-Rebuild the `harnessing-agents` skill from canonical framework documents in this workspace. The skill must enable any agent to assess and improve harness maturity on a target project to the highest degree — efficiently, reliably, and at any scale.
+**Role Directive:** Assume you are a seasoned professional AI Agent skill-creating expert. Your objective is to engineer the `harnessing-agents` skill from the canonical framework documents in this workspace.
+
+The skill must enable any agent to mechanically assess and improve harness maturity on a target project to the highest degree — efficiently, reliably, and with the most optimized token consumption possible.
 
 ---
 
@@ -15,6 +17,9 @@ These principles are non-negotiable constraints on every build decision:
 5. **Encode judgment once, enforce forever** — Review comment → doc → lint rule → CI check.
 6. **Escalation is correct behavior** — An agent stopping to ask is success, not failure.
 7. **Fix the environment, not the code** — When an agent fails, add a mechanical guardrail so it self-corrects.
+8. **ReAct Loops prevent hallucination** — Agents must think explicitly (via `<scratchpad>`) before invoking tools or writing templates.
+9. **Prune the Action Space** — Never give agents broad tool freedom; strictly define the exact minimum tools needed for the phase.
+10. **Progressive Context/Trajectory Reduction** — Load heavy data only when triggered, and flush context (summarize & drop raw files) after finishing a phase to avoid context rot.
 
 ---
 
@@ -230,9 +235,9 @@ Independent tasks — execute in parallel when possible:
 - **2c. Quick checklist** — Extract `quick-checklist.md` as 15-item yes/no fast scan with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
 - **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 25 features.
-- **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Never bury output formats in procedural prose.
-- **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. Reference templates instead of inlining formats.
-- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts for 4 parallel agents + consolidation agent.
+- **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
+- **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
+- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `list_dir`, `grep_search`, and `view_file` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
 
 **Gate:** Every reference file ≤ 200 lines. Every template ≤ 150 lines. No file duplicates content from another.
 
@@ -260,6 +265,26 @@ Run all verification criteria — build fails if any check fails:
 | Cross-reference completeness | All file pairs checked | Zero dangling refs |
 | Feature coverage | Count unique feature IDs across all files | 25 features covered |
 | Framework alignment | Diff skill content against `framework/` | Zero contradictions |
+
+### Phase 5 — Critical Deployment Process (Places)
+
+Once the skill successfully passes all verification gates, you must formally deploy it across the agent network.
+
+**The deployment pipeline:**
+1. **Source of Truth Sync:** Natively write or transfer all compiled folders (`references/`, `templates/`) and `SKILL.md` directly into the workspace at `/Users/macbook1/work/HE/HELab/.agent/skills/harnessing-agents/`.
+2. **Global Sync:** Ensure the global pointer natively symlinks to the workspace:
+
+   ```bash
+   ln -sfn /Users/macbook1/work/HE/HELab/.agent/skills/harnessing-agents ~/.agents/skills/harnessing-agents
+   ```
+
+3. **Engine Sync:** Ensure Antigravity specifically recognizes this mapping:
+
+   ```bash
+   ln -sfn ~/.agents/skills/harnessing-agents ~/.gemini/antigravity/skills/harnessing-agents
+   ```
+
+**Gate:** The deployment is successful only if a directory read on `~/.gemini/antigravity/skills/harnessing-agents` resolves valid files.
 
 ### Before/After Metrics
 
