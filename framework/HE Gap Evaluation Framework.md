@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 27 core features is analyzed below with:
+Each of the 28 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -219,6 +219,27 @@ Each of the 27 core features is analyzed below with:
 | 3    | Implement automated harness optimization (genetic/evolutionary search) | Scalability         |
 
 **Dependencies:** Requires Observability (P1-5) for performance data. Requires Rippable Middleware (P0-6) for component-level versioning.
+
+---
+
+#### P0-9. Smart Command Wrappers
+
+**Gap Signals:**
+
+- Agents execute raw, multi-step CLI commands (git, npm, shell) manually
+- No standardization of common workflows (CCPR, Reconcile)
+- High variation in commit message quality and release note detail
+- Coordination overhead from agents mis-ordering system commands
+
+**Improvement Policies:**
+
+| Tier | Action                                                                           | Dimension Addressed |
+| ---- | -------------------------------------------------------------------------------- | ------------------- |
+| 1    | Install baseline wrapper workflows (ccp, ccpr, reconcile) in the repository      | Maturity, Risk      |
+| 2    | Integrate agent reasoning into wrappers (auto-generating comments/release notes) | Effectiveness       |
+| 3    | Build automated workflow validation (ensuring wrappers are used over raw CLI)    | Scalability         |
+
+**Dependencies:** Requires Filesystem & Git Workspace (P0-2). Enables Consistent Entropy Management (P3).
 
 ---
 
@@ -738,7 +759,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 27 features, score across all 6 dimensions (0-5). This produces a 27×6 matrix.
+For each of the 28 features, score across all 6 dimensions (0-5). This produces a 28×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 
@@ -783,6 +804,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Agent's work is Git-tracked and rollback-able
 - [ ] Agent runs tests and reads its own error logs before completing
 - [ ] Long tasks survive context window resets (Ralph Loops)
+- [ ] Common tasks are executed via intelligent wrappers (ccp, ccpr, reconcile)
 - [ ] Stuck agents escalate to humans automatically
 
 **Pillar 1 — Does the agent know what it needs to know?**

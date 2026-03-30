@@ -16,6 +16,7 @@ _In a MAS, the engine doesn't just execute code; it must orchestrate dynamic com
 - **P0-1. Bash Sandboxes:** Secure, on-demand execution environments equipped with runtimes and test runners.
 - **P0-4. Ralph Loops:** Execution hooks that intercept premature exits and reinject prompts to force task completion.
 - **P0-6. Rippable Middleware & Harness Versioning:** Composable capabilities and A/B testing infrastructure that can be updated as the underlying models evolve.
+- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.
 
 ---
 

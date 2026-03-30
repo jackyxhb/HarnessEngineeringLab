@@ -57,3 +57,10 @@ The Foundational Infrastructure provides the secure execution engine and orchest
 * **Remediation:**
   * [Tier 1] Version-control complete harness configuration natively.
   * [Tier 2] Build A/B testing pipelines tracking agent performance per config.
+
+## P0-9. Smart Command Wrappers
+* **Guideline:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.
+* **Expectations:** Standardized wrappers installed as discoverable workflows or foundation scripts. These automate complex operations like generating release notes or running pre-flight checks.
+* **Remediation:**
+  * [Tier 1] Install recommended wrappers (`ccp`, `ccpr`, `reconcile`) as project workflows in `.agent/workflows/`.
+  * [Tier 2] Implement enforcement hooks to ensure agents use wrappers rather than raw commands for common operations.
