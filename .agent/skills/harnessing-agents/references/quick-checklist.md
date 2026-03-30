@@ -3,14 +3,14 @@
 For teams that want a rapid gap scan without full dimension scoring. Check existing coverage. Each unchecked box maps to a Tier 1 improvement policy for that feature.
 
 ### Foundation — Can the agent execute safely?
-- [ ] `F1` Bash Sandboxes: Agent runs in an isolated sandbox (not on developer's machine)
-- [ ] `F2` Filesystem & Git: Agent's work is Git-tracked and rollback-able
-- [ ] `F3` Self-Verification: Agent runs tests and reads its own error logs before completing
-- [ ] `F4` Ralph Loops: Long tasks survive context window resets
-- [ ] `F5` Orchestration: Agent can spawn sub-agents to hand off work seamlessly
-- [ ] `F6` Rippable Middleware: Extraneous logic can be disabled cleanly
-- [ ] `F7` Escalation: Stuck agents escalate to humans automatically
-- [ ] `F8` Harness Versioning: Agent configurations, prompts, and tools are tracked in source control
+- [ ] `P0-1` Bash Sandboxes: Agent runs in an isolated sandbox (not on developer's machine)
+- [ ] `P0-2` Filesystem & Git: Agent's work is Git-tracked and rollback-able
+- [ ] `P0-3` Self-Verification: Agent runs tests and reads its own error logs before completing
+- [ ] `P0-4` Ralph Loops: Long tasks survive context window resets
+- [ ] `P0-5` Orchestration: Agent can spawn sub-agents to hand off work seamlessly
+- [ ] `P0-6` Rippable Middleware: Extraneous logic can be disabled cleanly
+- [ ] `P0-7` Escalation: Stuck agents escalate to humans automatically
+- [ ] `P0-8` Harness Versioning: Agent configurations, prompts, and tools are tracked in source control
 
 ### Pillar 1 (Inform) — Does the agent know what it needs to know?
 - [ ] `P1-1` Repository as Truth: All project rules are in the repo, not in human heads
@@ -22,12 +22,14 @@ For teams that want a rapid gap scan without full dimension scoring. Check exist
 - [ ] `P1-7` Planning & State: Master task tracking occurs continuously
 - [ ] `P1-8` Context Anchoring: Critical decisions are recorded to persistent memory files
 - [ ] `P1-9` Branch-Based Memory: Objectives are decomposed into concurrent branches with commit memory
+- [ ] `P1-10` Requirements Ledger: All user stories and requirements are recorded in a unified ledger before planning
 
 ### Pillar 2 (Constrain) — Is the agent mechanically prevented from bad output?
 - [ ] `P2-1` Automated Linters: Pre-commit hooks reject style and type violations mechanically
 - [ ] `P2-2` Dependency Enforcement: Import boundaries are enforced by explicit CI verification checks
 - [ ] `P2-3` AI Auditors: Secondary agent or process reviews the first agent's output natively
 - [ ] `P2-4` Bounded Autonomy: Agent actions are bounded by explicit limits (e.g., human-in-the-loop)
+- [ ] `P2-5` Upstream Intake Gate: Requirements are validated in the ledger before planning proceeds
 
 ### Pillar 3 (Maintain) — Does the system clean up after itself?
 - [ ] `P3-1` Scheduled Cleanups: Automated sweeps run on a schedule to fight entropy

@@ -12,7 +12,7 @@ These 5 ready-to-use prompts are optimized for delegating Harness Engineering ga
 **Prompt:**
 
 ```markdown
-Perform a gap analysis on the project's Foundation features (Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration, Rippable Middleware, Escalation, Harness Versioning). 
+Perform a gap analysis on the project's Foundation features (P0-1 Bash Sandboxes, P0-2 Filesystem & Git, P0-3 Self-Verification, P0-4 Ralph Loops, P0-5 Orchestration, P0-6 Rippable Middleware, P0-7 Escalation, P0-8 Harness Versioning). 
 Action Space limit: Explicitly restrict your checks to `.github/workflows/`, `AGENTS.md`, and CI test scripts using only `list_dir` and `view_file`.
 
 <scratchpad>
@@ -23,7 +23,7 @@ Format your final response strictly using the HE-CLUES template format:
 
 # HE-CLUES
 **Area:** Foundation
-**Feature:** [e.g., F1 Bash Sandboxes]
+**Feature:** [e.g., P0-1 Bash Sandboxes]
 **Current State:** [What exists now based on files checked]
 **Missing Capability:** [What is missing]
 **Remediation Level:** [Light | Medium | Heavy]
@@ -36,7 +36,7 @@ Format your final response strictly using the HE-CLUES template format:
 **Prompt:**
 
 ```markdown
-Perform a gap analysis on Pillar 1: Context Engineering (Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability, Web Search/MCP, Planning & State Files, Context Anchoring, Branch-Based Memory).
+Perform a gap analysis on Pillar 1: Context Engineering (P1-1 Repository as Truth, P1-2 Context Compaction, P1-3 Tool Offloading, P1-4 Progressive Skills, P1-5 Observability, P1-6 Web Search/MCP, P1-7 Planning & State Files, P1-8 Context Anchoring, P1-9 Branch-Based Memory, P1-10 Requirements Ledger).
 Action Space limit: Explicitly limit your scans to `.cursorrules`, `.windsurfrules`, `.agents/` workflows, and `AGENTS.md` using only `grep_search` and `view_file`.
 
 <scratchpad>
@@ -60,7 +60,7 @@ Format your response strictly using the HE-CLUES template format:
 **Prompt:**
 
 ```markdown
-Perform a gap analysis on Pillar 2: Architectural Constraints (Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy).
+Perform a gap analysis on Pillar 2: Architectural Constraints (P2-1 Automated Linters, P2-2 Dependency Enforcement, P2-3 AI Auditors, P2-4 Bounded Autonomy, P2-5 Upstream Intake Gate).
 Action Space limit: You must use `list_dir` and `view_file` exclusively to search for `.husky/`, linting scripts in `package.json`, pre-commit hooks, and explicit CI layout verifications in `.github/workflows/`.
 
 <scratchpad>

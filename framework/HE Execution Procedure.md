@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 25 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 27 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 
@@ -61,14 +61,14 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
 
-1. Check for **Bash Sandboxes** (F1): Is there Docker/container config? Does the agent run locally?
-2. Check for **Filesystem & Git** (F2): Is Git initialized? Are there branching strategies? File locking?
-3. Check for **Self-Verification** (F3): Is there a test suite? Can tests be run from CI? Are error logs piped back?
-4. Check for **Ralph Loops** (F4): Any exit interception hooks? State persistence across context windows?
-5. Check for **Orchestration Logic** (F5): Subagent spawning? Task routing? Multi-agent topologies?
-6. Check for **Rippable Middleware** (F6): Is the harness modular? Feature flags?
-7. Check for **Escalation Policies** (F7): Audit trails? Stuck-agent detection? Human notification?
-8. Check for **Harness Versioning** (F8): Is the harness config version-controlled? A/B testing?
+1. Check for **Bash Sandboxes** (P0-1): Is there Docker/container config? Does the agent run locally?
+2. Check for **Filesystem & Git** (P0-2): Is Git initialized? Are there branching strategies? File locking?
+3. Check for **Self-Verification** (P0-3): Is there a test suite? Can tests be run from CI? Are error logs piped back?
+4. Check for **Ralph Loops** (P0-4): Any exit interception hooks? State persistence across context windows?
+5. Check for **Orchestration Logic** (P0-5): Subagent spawning? Task routing? Multi-agent topologies?
+6. Check for **Rippable Middleware** (P0-6): Is the harness modular? Feature flags?
+7. Check for **Escalation Policies** (P0-7): Audit trails? Stuck-agent detection? Human notification?
+8. Check for **Harness Versioning** (P0-8): Is the harness config version-controlled? A/B testing?
 
 **Output:** `HE-CLUES-Foundation.md` with per-feature findings:
 
@@ -95,6 +95,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 7. Check for **Planning & State Files** (P1-7): Plan files? Task decomposition? Shared blackboards?
 8. Check for **Context Anchoring** (P1-8): Persistent decision records (what, why, target, background)? Recall hooks at session start?
 9. Check for **Branch-Based Cognitive Memory** (P1-9): Concurrent task branches? Structured commit boundaries acting as memory?
+10. Check for **Requirements Ledger** (P1-10): A unified requirements file (e.g., `REQUIREMENTS.md`)? Are user stories and scenarios recorded before planning?
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
@@ -111,7 +112,8 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 1. Check for **Automated Linters** (P2-1): Pre-commit hooks? Linting config? Formatting enforcement?
 2. Check for **Dependency Enforcement** (P2-2): Structural tests? Import restrictions? ArchUnit or equivalent?
 3. Check for **AI Auditors / Diverse Collaboration** (P2-3): Secondary LLM review? Debate channels?
-4. (MAS only) Check for **Bounded Autonomy & Access Control** (P2-4): Guardrails? Permission systems?
+4. Check for **Bounded Autonomy & Access Control** (P2-4): Guardrails? Permission systems?
+5. Check for **Upstream Intake Gate** (P2-5): Validation that requirements are recorded in the ledger before planning proceeds? Mid-task sync-back mechanism?
 
 **Output:** `HE-CLUES-P2-Constraints.md` with per-feature findings.
 
@@ -158,12 +160,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 > **Goal:** Score each identified gap using the 6-dimension evaluation framework. This is split into sub-tasks by function area to stay within context limits.
 
-### Task 2.1: Score Foundation Features (F1–F8)
+### Task 2.1: Score Foundation Features (P0-1 to P0-8)
 
 **Input:** `HE-CLUES.md` (Foundation section only), `HE Gap Evaluation Framework.md` Part 2 (Foundation section)
 **Actions:**
 
-1. For each Foundation feature (F1–F8), score across all 6 dimensions (0–5):
+1. For each Foundation feature (P0-1 to P0-8), score across all 6 dimensions (0–5):
    - Implementation Maturity
    - Operational Effectiveness
    - Risk Exposure
@@ -175,7 +177,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-SCORES-Foundation.md` — an 8×6 scoring matrix with justifications.
 
-**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` F1–F8 sections (~200 lines).
+**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-8 sections (~200 lines).
 **Estimated tokens:** ~4,000
 
 ---
@@ -481,7 +483,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 25 features → Actions/Tools tree.
+1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 27 features → Actions/Tools tree.
 2. **Agent Scale:** Task 0.1 classifies the scale. MAS-specific checks are flagged in Phase 1 tasks. Phase 2 uses the SAS→MAS readiness perspective.
 3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.

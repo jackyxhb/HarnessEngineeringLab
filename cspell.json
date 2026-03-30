@@ -33,7 +33,15 @@
     "emphasise",
     "frontmatter",
     "parallelizable",
-    "backlinks"
+    "backlinks",
+    "ccpr",
+    "checkpointed",
+    "exfiltration",
+    "modularly",
+    "reinjected",
+    "reinjections",
+    "Unbuilt",
+    "windsurfrules"
   ],
   "ignorePaths": [
     "node_modules",

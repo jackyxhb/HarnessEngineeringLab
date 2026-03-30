@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 25 core features is analyzed below with:
+Each of the 27 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -42,7 +42,7 @@ Each of the 25 core features is analyzed below with:
 
 ### Foundational Infrastructure (Execute)
 
-#### F1. Bash Sandboxes
+#### P0-1. Bash Sandboxes
 
 **Gap Signals:**
 
@@ -60,11 +60,11 @@ Each of the 25 core features is analyzed below with:
 | 2    | Enable visual monitoring of sandbox state (tmux, split-pane terminals)       | Human Role          |
 | 3    | Auto-scale sandbox pools based on concurrent agent demand                    | Scalability, Cost   |
 
-**Dependencies:** Required by Self-Verification (F3), Orchestration Logic (F5). Blocking if absent.
+**Dependencies:** Required by Self-Verification (P0-3), Orchestration Logic (P0-5). Blocking if absent.
 
 ---
 
-#### F2. Filesystem & Git Workspace
+#### P0-2. Filesystem & Git Workspace
 
 **Gap Signals:**
 
@@ -87,7 +87,7 @@ Each of the 25 core features is analyzed below with:
 
 ---
 
-#### F3. Self-Verification
+#### P0-3. Self-Verification
 
 **Gap Signals:**
 
@@ -106,11 +106,11 @@ Each of the 25 core features is analyzed below with:
 | 2    | Upgrade to collective verification (consensus voting) for MAS                | Scalability             |
 | 3    | Implement verification metrics (pass rate, fix iterations) for observability | Human Role              |
 
-**Dependencies:** Requires Bash Sandboxes (F1). Enables Escalation Policies (F7) — escalation triggers when self-verification fails repeatedly.
+**Dependencies:** Requires Bash Sandboxes (P0-1). Enables Escalation Policies (P0-7) — escalation triggers when self-verification fails repeatedly.
 
 ---
 
-#### F4. Ralph Loops
+#### P0-4. Ralph Loops
 
 **Gap Signals:**
 
@@ -129,11 +129,11 @@ Each of the 25 core features is analyzed below with:
 | 2    | Track loop metrics (reinjection count, completion rate)                | Effectiveness       |
 | 3    | Combine with Planning & State Files for cross-window goal persistence  | Scalability         |
 
-**Dependencies:** Requires Planning & State Files (P1-7) for state persistence across reinjections. Interacts with Escalation Policies (F7) for max-retry limits.
+**Dependencies:** Requires Planning & State Files (P1-7) for state persistence across reinjections. Interacts with Escalation Policies (P0-7) for max-retry limits.
 
 ---
 
-#### F5. Orchestration Logic
+#### P0-5. Orchestration Logic
 
 **Gap Signals:**
 
@@ -152,11 +152,11 @@ Each of the 25 core features is analyzed below with:
 | 3    | Support dynamic topology switching (supervisor ↔ peer-to-peer ↔ swarm) | Scalability         |
 | 3    | Implement overhead monitoring to detect coordination degradation       | Cost                |
 
-**Dependencies:** Requires Inter-Agent Communication (F-MAS) for MAS topologies. Enables all multi-agent workflows.
+**Dependencies:** Requires Inter-Agent Communication (P0-8) for MAS topologies. Enables all multi-agent workflows.
 
 ---
 
-#### F6. Rippable Middleware
+#### P0-6. Rippable Middleware
 
 **Gap Signals:**
 
@@ -174,11 +174,11 @@ Each of the 25 core features is analyzed below with:
 | 2    | Regularly audit middleware relevance against current model capabilities | Cost                      |
 | 3    | Build A/B testing infrastructure to compare harness variants            | Human Role, Effectiveness |
 
-**Dependencies:** Enables Harness Versioning (F8). Philosophical foundation — over-engineering prevention.
+**Dependencies:** Enables Harness Versioning (P0-8). Philosophical foundation — over-engineering prevention.
 
 ---
 
-#### F7. Escalation Policies
+#### P0-7. Escalation Policies
 
 **Gap Signals:**
 
@@ -196,11 +196,11 @@ Each of the 25 core features is analyzed below with:
 | 2    | Implement tiered escalation (retry → different agent → human)                         | Scalability         |
 | 3    | Add escalation analytics to identify systemic failure patterns                        | Human Role          |
 
-**Dependencies:** Requires Self-Verification (F3) to detect failure. Requires Observability (P1-5) for monitoring.
+**Dependencies:** Requires Self-Verification (P0-3) to detect failure. Requires Observability (P1-5) for monitoring.
 
 ---
 
-#### F8. Harness Versioning
+#### P0-8. Harness Versioning
 
 **Gap Signals:**
 
@@ -218,7 +218,7 @@ Each of the 25 core features is analyzed below with:
 | 3    | Build A/B testing pipeline to statistically compare harness variants   | Human Role          |
 | 3    | Implement automated harness optimization (genetic/evolutionary search) | Scalability         |
 
-**Dependencies:** Requires Observability (P1-5) for performance data. Requires Rippable Middleware (F6) for component-level versioning.
+**Dependencies:** Requires Observability (P1-5) for performance data. Requires Rippable Middleware (P0-6) for component-level versioning.
 
 ---
 
@@ -265,7 +265,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Set token budgets per context section (tools, history, instructions)           | Cost                    |
 | 3    | Build adaptive compaction that adjusts aggressiveness based on task complexity | Effectiveness           |
 
-**Dependencies:** Interacts with Tool Offloading (P1-3). Critical for Ralph Loops (F4) — reinjected prompts need compacted state.
+**Dependencies:** Interacts with Tool Offloading (P1-3). Critical for Ralph Loops (P0-4) — reinjected prompts need compacted state.
 
 ---
 
@@ -286,7 +286,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Set per-tool token limits with configurable thresholds                   | Cost                |
 | 3    | Build intelligent summarization (LLM-based) for complex tool outputs     | Effectiveness       |
 
-**Dependencies:** Requires Filesystem (F2) for storage. Feeds into Context Compaction (P1-2).
+**Dependencies:** Requires Filesystem (P0-2) for storage. Feeds into Context Compaction (P1-2).
 
 ---
 
@@ -307,7 +307,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Implement skill routing — agent or orchestrator selects skills based on task type | Scalability         |
 | 3    | Build skill performance tracking (which skills improve task success rates)        | Human Role          |
 
-**Dependencies:** Enables efficient Orchestration Logic (F5) — orchestrators select skill profiles per subagent.
+**Dependencies:** Enables efficient Orchestration Logic (P0-5) — orchestrators select skill profiles per subagent.
 
 ---
 
@@ -330,7 +330,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Implement agent performance metrics (completion rate, fix iterations, token usage) | Cost                |
 | 3    | Build anomaly detection on agent behavior patterns                                 | Scalability, Risk   |
 
-**Dependencies:** Required by Escalation Policies (F7), Harness Versioning (F8). Enables data-driven harness improvement.
+**Dependencies:** Required by Escalation Policies (P0-7), Harness Versioning (P0-8). Enables data-driven harness improvement.
 
 ---
 
@@ -374,7 +374,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Add blackboard architecture for MAS partial solution sharing                  | Scalability         |
 | 3    | Implement plan quality scoring and adaptive replanning                        | Effectiveness       |
 
-**Dependencies:** Requires Filesystem (F2). Critical for Ralph Loops (F4). Evolves into MAS shared blackboards.
+**Dependencies:** Requires Filesystem (P0-2). Critical for Ralph Loops (P0-4). Evolves into MAS shared blackboards.
 
 ---
 
@@ -398,7 +398,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Implement shared anchor files accessible to all agents in MAS setups                              | Scalability                |
 | 3    | Add anchor quality metrics (staleness detection, relevance scoring)                               | Human Role                 |
 
-**Dependencies:** Complements Planning & State Files (P1-7) — plans track _what to do next_, anchors track _why we're doing it_. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (F4) — reinjected contexts need anchors for strategic continuity.
+**Dependencies:** Complements Planning & State Files (P1-7) — plans track _what to do next_, anchors track _why we're doing it_. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (P0-4) — reinjected contexts need anchors for strategic continuity.
 
 ---
 
@@ -422,7 +422,31 @@ Each of the 25 core features is analyzed below with:
 | 2    | Introduce branch and sub-task coordination logic within orchestration     | Scalability, Cost   |
 | 3    | Use commit history natively as a form of contextual RAG memory            | Effectiveness       |
 
-**Dependencies:** Relies on Filesystem & Git Workspace (F2). Operates alongside Orchestration Logic (F5) for MAS mapping.
+**Dependencies:** Relies on Filesystem & Git Workspace (P0-2). Operates alongside Orchestration Logic (P0-5) for MAS mapping.
+
+---
+
+#### P1-10. Requirements Ledger
+
+**Gap Signals:**
+
+- Agents start coding immediately from chat input without recording requirements
+- Requirements exist only in conversation history or human memory, not in structured files
+- Multiple conflicting interpretations of the same feature exist across agents or sessions
+- No canonical source of truth for user stories, acceptance criteria, or functional scenarios
+- Planning proceeds without any reference to a documented backlog
+
+**Improvement Policies:**
+
+| Tier | Action                                                                            | Dimension Addressed        |
+| ---- | --------------------------------------------------------------------------------- | -------------------------- |
+| 1    | Create a canonical `REQUIREMENTS.md` with structured entries in the project root  | Maturity                   |
+| 1    | Record every user story, requirement, and scenario before planning                | Risk, Effectiveness        |
+| 2    | Add pre-planning validation hooks that check the ledger before plan/execute       | Effectiveness, Scalability |
+| 2    | Implement shared ledger with file locking for MAS environments                    | Scalability                |
+| 3    | Build automated requirement deduplication and conflict detection                  | Scalability, Human Role    |
+
+**Dependencies:** Feeds Planning & State Files (P1-7) — plans should reference ledger entries. Feeds Context Anchoring (P1-8) — anchors can reference requirement IDs. Enables Upstream Intake Gate (P2-5).
 
 ### Pillar 2: Architectural Constraints (Constrain)
 
@@ -489,7 +513,7 @@ Each of the 25 core features is analyzed below with:
 | 3    | Implement coopetition (agents negotiate and compromise on solutions)           | Scalability         |
 | 3    | Track auditor agreement rates to calibrate auditor thresholds                  | Human Role          |
 
-**Dependencies:** Requires Orchestration Logic (F5) for multi-agent coordination. Enhances Self-Verification (F3).
+**Dependencies:** Requires Orchestration Logic (P0-5) for multi-agent coordination. Enhances Self-Verification (P0-3).
 
 ---
 
@@ -511,7 +535,30 @@ Each of the 25 core features is analyzed below with:
 | 2    | Enforce risk-based progressive disclosure of autonomy to the agent           | Effectiveness       |
 | 3    | Use intelligent anomaly detection to dynamically throttle agent capabilities | Scalability         |
 
-**Dependencies:** Operates alongside Escalation Policies (F7). Extends overall Architectural Constraints.
+**Dependencies:** Operates alongside Escalation Policies (P0-7). Extends overall Architectural Constraints.
+
+---
+
+#### P2-5. Upstream Intake Gate
+
+**Gap Signals:**
+
+- Agents jump directly from user conversation to implementation without recording requirements
+- Requirements are implicitly assumed rather than explicitly recorded in the ledger
+- No validation step exists between requirement intake and plan creation
+- Planning workflows proceed without checking that a corresponding ledger entry exists
+- Mid-task requirement discoveries are not synced back to the ledger
+
+**Improvement Policies:**
+
+| Tier | Action                                                                                        | Dimension Addressed        |
+| ---- | --------------------------------------------------------------------------------------------- | -------------------------- |
+| 1    | Add a mandatory ledger-check step to all planning workflows and meta-docs                     | Maturity, Risk             |
+| 1    | Require agents to pause and sync implicit requirements to the ledger when discovered mid-task | Effectiveness              |
+| 2    | Implement pre-commit hooks or workflow gates that reject plans without ledger entries         | Effectiveness, Scalability |
+| 3    | Build distributed intake validation for MAS -- all agents check the shared ledger             | Scalability                |
+
+**Dependencies:** Requires Requirements Ledger (P1-10) as the target store. Complements Bounded Autonomy (P2-4). Interacts with Planning & State Files (P1-7).
 
 ---
 
@@ -535,7 +582,7 @@ Each of the 25 core features is analyzed below with:
 | 2    | Implement conflict reconciliation agents for concurrent MAS edits          | Scalability         |
 | 3    | Build entropy metrics dashboard (tech debt score over time)                | Human Role          |
 
-**Dependencies:** Requires Bash Sandboxes (F1) for execution. Interacts with Pattern Auditing (P3-3).
+**Dependencies:** Requires Bash Sandboxes (P0-1) for execution. Interacts with Pattern Auditing (P3-3).
 
 ---
 
@@ -613,7 +660,7 @@ Beyond per-feature analysis, these cross-cutting perspectives reveal systemic ga
 
 A harness is only as strong as its weakest feedback loop. Trace the chain:
 
-```
+```text
 Agent writes code → Self-Verification catches errors → Linters enforce style →
 Auditors review architecture → Cleanups fix what slipped through →
 Observability reveals patterns → Humans improve the harness
@@ -641,13 +688,13 @@ Every feature either **saves tokens** (Context Compaction, Tool Offloading, Prog
 
 Some features, when absent, trigger chain failures across the system:
 
-```
+```text
 No Repository as Truth → Agent hallucinates architecture
   → Linters can't catch semantic violations → AI Auditors give wrong feedback
     → Entropy accumulates faster → Cleanups can't keep up
 ```
 
-```
+```text
 No Self-Verification → Agent ships broken code
   → Escalation overloads humans → Humans lose trust
     → Manual review replaces automation → Human role regresses
@@ -691,7 +738,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 25 features, score across all 6 dimensions (0-5). This produces a 25×6 matrix.
+For each of the 27 features, score across all 6 dimensions (0-5). This produces a 27×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 
@@ -706,7 +753,7 @@ Default equal weighting (16.7% each). Adjust based on context:
 
 ### Step 3: Calculate Priority Score
 
-```
+```text
 Priority Score = (5 - Composite Score) × Impact Weight × Cascade Length
 ```
 
@@ -746,6 +793,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Tools are loaded on-demand, not all-at-once
 - [ ] Critical decisions are recorded to persistent memory files (what, why, target, background)
 - [ ] Complex objectives are decomposed into concurrent branches with structured commit memory
+- [ ] All user stories and requirements are recorded in a unified ledger before planning
 
 **Pillar 2 — Is the agent mechanically prevented from bad output?**
 
@@ -753,6 +801,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Import boundaries are enforced by CI, not just convention
 - [ ] A second agent or process reviews the first agent's output
 - [ ] Agent actions are bounded by explicit limits (e.g., human-in-the-loop for high-risk actions)
+- [ ] Requirements are validated in the ledger before planning proceeds
 
 **Pillar 3 — Does the system clean up after itself?**
 

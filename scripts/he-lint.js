@@ -66,35 +66,31 @@ function scanFile(filePath) {
     const countRegex = /\b((?:1[0-9]|[2-9][0-9]+))\s+(?:core\s+)?features\b/gi;
     let match;
     while ((match = countRegex.exec(line)) !== null) {
-      if (match[1] !== "25") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 25.`);
+      if (match[1] !== "27") {
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 27.`);
       }
     }
 
     // 2. Generic ID Validation
-    // Validates that extracted IDs fit logical constraints (F1-F8, P1-1 to P1-9, P2-1 to P2-4, P3-1 to P3-4)
-    const idRegex = /\b([FP]\d+(?:-\d+)?)\b/g;
+    // Validates that extracted IDs fit logical constraints (P0-1 to P0-8, P1-1 to P1-10, P2-1 to P2-5, P3-1 to P3-4)
+    const idRegex = /\b(P\d+(?:-\d+)?)\b/g;
     let idMatch;
     while ((idMatch = idRegex.exec(line)) !== null) {
       const id = idMatch[1];
       let invalid = false;
-      if (id.startsWith('F')) {
-        const num = parseInt(id.replace('F', ''), 10);
-        if (num < 1 || num > 8) invalid = true;
-      } else if (id.startsWith('P')) {
-        const parts = id.split('-');
-        if (parts.length === 2) {
-          const pillar = parseInt(parts[0].replace('P', ''), 10);
-          const num = parseInt(parts[1], 10);
-          if (pillar === 1 && (num < 1 || num > 9)) invalid = true;
-          if (pillar === 2 && (num < 1 || num > 4)) invalid = true;
-          if (pillar === 3 && (num < 1 || num > 4)) invalid = true;
-          if (pillar < 1 || pillar > 3) invalid = true;
-        } else {
-          // just P1, P2, P3 is valid
-          const pillar = parseInt(id.replace('P', ''), 10);
-          if (pillar < 1 || pillar > 3) invalid = true;
-        }
+      const parts = id.split('-');
+      if (parts.length === 2) {
+        const pillar = parseInt(parts[0].replace('P', ''), 10);
+        const num = parseInt(parts[1], 10);
+        if (pillar === 0 && (num < 1 || num > 8)) invalid = true;
+        if (pillar === 1 && (num < 1 || num > 10)) invalid = true;
+        if (pillar === 2 && (num < 1 || num > 5)) invalid = true;
+        if (pillar === 3 && (num < 1 || num > 4)) invalid = true;
+        if (pillar < 0 || pillar > 3) invalid = true;
+      } else {
+        // just P0, P1, P2, P3 is valid
+        const pillar = parseInt(id.replace('P', ''), 10);
+        if (pillar < 0 || pillar > 3) invalid = true;
       }
       
       if (invalid) {

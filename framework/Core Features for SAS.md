@@ -13,6 +13,7 @@ _The largest pillar. This encompasses everything related to managing what the mo
 - **Planning & State Files:** Using the filesystem to store plan files and injecting reminders into the context so the agent can decompose goals and stay on track.
 - **Context Anchoring:** Syncing critical decision points (what, why, target, background) to persistent memory files so the agent can recall long-term goals and strategy, even across context window resets.
 - **Branch-Based Cognitive Memory:** Splitting complex objectives into subtasks across concurrent branches, using merges and structured commit messages as functional memory checkpoints.
+- **Requirements Ledger:** Capturing all incoming user stories, requirements, and functional scenario narratives into a single unified ledger document before any planning or execution begins.
 
 ## Pillar 2: Architectural Constraints (Constrain)
 
@@ -22,6 +23,7 @@ _This pillar mechanically enforces what good code looks like so the agent doesn'
 - **Dependency Enforcement:** Structural tests that mechanically restrict which architectural layers the agent can import from.
 - **AI Auditors:** Secondary LLM-based agents specifically tasked with reviewing the primary agent's output for architectural compliance.
 - **Bounded Autonomy:** Defining explicit scope boundaries and access controls for how far an agent can go without human escalation, preventing unconstrained autonomous drift.
+- **Upstream Intake Gate:** Mechanically enforcing that all requirement-like artifacts (user stories, functional scenarios, feature requests) are captured in the Requirements Ledger before planning and execution proceed.
 
 ## Pillar 3: Entropy Management (Maintain)
 

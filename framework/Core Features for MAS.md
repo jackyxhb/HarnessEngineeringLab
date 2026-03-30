@@ -32,6 +32,7 @@ _In a MAS, context is no longer just about feeding one model; it is about mainta
 - **Web Search & MCP Integration:** Providing external tools to access real-time data beyond the model's training cutoff.
 - **Context Anchoring (Shared Anchor Files):** Writing critical decision points to persistent memory files (what, why, target, background) that all agents can access. In MAS, anchor files serve as shared strategic alignment records, ensuring all agents operate from the same long-term goals even across independent context windows.
 - **Branch-Based Cognitive Memory:** Decomposing complex tasks into independent sub-task branches for parallel parallel agents, relying on merge gates and detailed commit histories for transparent structural memory.
+- **Shared Requirements Ledger:** Extending the single-agent Requirements Ledger into a multi-agent synchronized source of truth. All agents read from and write to the same ledger, with file locking to prevent conflicting entries and ensure no agent works on phantom requirements.
 
 ---
 
@@ -43,6 +44,7 @@ _With multiple agents interacting, the attack surface expands massively. This pi
 - **Diverse Collaboration Channels (formerly AI Auditors):** Moving beyond simple cooperative review to include _Competition_ (where agents debate competing hypotheses to find the root cause) and _Coopetition_ (where agents compromise). Designing agents to actively challenge each other prevents anchoring bias and yields faster convergence on the truth.
 - **Automated Linters:** Pre-commit hooks that automatically reject non-compliant code before it enters the shared repository.
 - **Dependency Enforcement:** Structural boundaries that restrict which architectural layers any given agent is allowed to modify.
+- **Distributed Upstream Intake Gate:** A swarm-wide constraint ensuring all agents check the shared Requirements Ledger before claiming work, preventing multiple agents from independently interpreting and building conflicting features.
 
 ---
 

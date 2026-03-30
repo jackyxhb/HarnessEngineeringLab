@@ -8,14 +8,16 @@ When a Foundation or Pillar feature breaks, calculate how many explicitly depend
 
 | Feature ID | Feature Name | Downstream Dependencies (Affected Systems) | Impact Weight |
 | - | - | - | - |
-| `F1` | Bash Sandboxes | `F3` (Self-Verification), `P1-3` (Tool Offloading), `P1-6` (MCP) | 3 |
-| `F2` | Filesystem & Git Workspace | `P1-8` (Anchoring), `P1-9` (Branches), `P3-2` (Docs), `P3-4` (Sync) | 4 |
-| `F3` | Self-Verification | `P2-1` (Linters), `P2-2` (Dependencies) | 2 |
-| `F5` | Orchestration Logic | `P2-3` (Auditors), `F6` (Middleware) | 2 |
+| `P0-1` | Bash Sandboxes | `P0-3` (Self-Verification), `P1-3` (Tool Offloading), `P1-6` (MCP) | 3 |
+| `P0-2` | Filesystem & Git Workspace | `P1-8` (Anchoring), `P1-9` (Branches), `P1-10` (Requirements Ledger), `P3-2` (Docs), `P3-4` (Sync) | 5 |
+| `P0-3` | Self-Verification | `P2-1` (Linters), `P2-2` (Dependencies) | 2 |
+| `P0-5` | Orchestration Logic | `P2-3` (Auditors), `P0-6` (Middleware) | 2 |
 | `P1-1` | Repository as Truth | `P2-2` (Dependencies), `P2-3` (Auditors), `P1-8` (Anchoring) | 3 |
-| `P1-7` | Planning & State Files | `F4` (Ralph Loops), `P1-4` (Progressive Skills) | 2 |
+| `P1-7` | Planning & State Files | `P0-4` (Ralph Loops), `P1-4` (Progressive Skills) | 2 |
+| `P1-10` | Requirements Ledger | `P2-5` (Upstream Intake Gate), `P1-7` (Planning & State Files) | 2 |
 | `P2-1` | Automated Linters | `P3-3` (Pattern Auditing) | 1 |
-| `P2-4` | Bounded Autonomy | `F7` (Escalation) | 1 |
+| `P2-4` | Bounded Autonomy | `P0-7` (Escalation) | 1 |
+| `P2-5` | Upstream Intake Gate | *(none — leaf constraint)* | 1 |
 
 *(Note: If a feature is not listed in the table above, assume Impact Weight = 1 baseline)*
 

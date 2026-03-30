@@ -40,7 +40,7 @@ Original source articles that form the foundation of this research, including Op
 
 ### `framework/`
 
-The canonical framework definitions and operational guides (25 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides (27 core features across 3 pillars + 1 foundation):
 
 - **Core Features for SAS.md** — Framework applied to Single Agent Systems
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems

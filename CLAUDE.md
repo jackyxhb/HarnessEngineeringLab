@@ -19,9 +19,9 @@ All content is organized under this canonical structure. When editing or creatin
 
 **Foundation** features: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning
 
-**Pillar 1** features (9): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory
+**Pillar 1** features (10): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
 
-**Pillar 2** features (4): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy
+**Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate
 
 **Pillar 3** features (4): Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop
 

@@ -60,6 +60,13 @@ These features form the cognitive and structural environment on top of the found
 * **Remediation:**
   * [Tier 1] Require agents to spawn branches for multi-prompt sub-tasks.
 
+### P1-10. Requirements Ledger
+* **Guideline:** Capturing all incoming user stories, requirements, and functional scenario narratives into a single unified ledger document before any planning or execution begins.
+* **Expectations:** Record every requirement in a canonical `REQUIREMENTS.md` before starting work. Each entry captures ID, title, narrative, acceptance criteria, status, and source. Do not scatter requirements across files or sessions.
+* **Remediation:**
+  * [Tier 1] Create a `REQUIREMENTS.md` with structured entries in the project root.
+  * [Tier 2] Add pre-planning validation hooks that check the ledger before plan/execute.
+
 ## Pillar 2: Architectural Constraints (Constrain)
 
 ### P2-1. Automated Linters
@@ -85,6 +92,13 @@ These features form the cognitive and structural environment on top of the found
 * **Expectations:** High-risk functions trigger manual human escalation loops.
 * **Remediation:**
   * [Tier 1] Apply least-privilege principles universally.
+
+### P2-5. Upstream Intake Gate
+* **Guideline:** Mechanically enforcing that all requirement-like artifacts (user stories, functional scenarios, feature requests) are captured in the Requirements Ledger before planning and execution proceed.
+* **Expectations:** Before creating any implementation plan, verify the requirement is recorded in the ledger. If an implicit requirement is discovered mid-task, pause and sync to the ledger. Do not skip this step for "small" requirements.
+* **Remediation:**
+  * [Tier 1] Add a mandatory ledger-check step to all planning workflows and meta-docs.
+  * [Tier 2] Implement workflow gates that reject plans without matching ledger entries.
 
 ## Pillar 3: Entropy Management (Maintain)
 

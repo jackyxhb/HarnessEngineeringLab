@@ -12,6 +12,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 - **Prevent Human-Only Documentation:** You must prevent project rules, APIs, and architectural decisions from living only in human heads, Slack threads, or private Google Docs. If information is not in the repository, the agent is blind to it.
 - **Prevent Attention Drift & Strategic Amnesia:** You must prevent agents from losing sight of original objectives and long-term strategy as intermediate context noise accumulates. Prevent this by syncing critical decision points (what, why, target, background) to persistent memory files that agents recall at session start and after context resets.
 - **Prevent Inconsistent Shared Context:** In a MAS, you must prevent agents from operating on conflicting or outdated information. Without shared context management, agents will give inconsistent answers and frustrate users.
+- **Prevent Unrecorded Requirements:** You must prevent agents from operating on requirements that exist only in chat history, user conversations, or human memory. Prevent this by mandating a Requirements Ledger where all user stories, functional scenarios, and requirements are formally recorded before any planning or execution begins.
 
 ## Foundation: Prevent Coordination and Execution Failures (Execute)
 
@@ -27,6 +28,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 - **Prevent Malicious Emergent Behaviors:** In autonomous swarms, you must prevent agents from executing "bot muggings," planting logic bombs, or deploying cryptographic evasion to hide from human oversight. This requires strict access controls and continuous monitoring.
 - **Prevent Opaque Decision-Making:** You must prevent decentralized unaccountability, where it is impossible to know _which_ agent made a harmful decision. Prevent this by enforcing strict audit trails that log every tool call, state transition, and inter-agent influence.
 - **Prevent Anthropomorphization and Over-Reliance:** You must prevent users from placing undue trust in agents by treating them as human entities, which obscures the system's actual technical limits and vulnerabilities.
+- **Prevent Unregistered Work:** You must prevent agents from starting planning or execution on requirements that have not been formally captured in the Requirements Ledger. Prevent this by implementing an Upstream Intake Gate that validates ledger entries exist before workflows proceed.
 
 ## Pillar 3: Prevent Lifecycle and Architectural Decay (Maintain)
 
