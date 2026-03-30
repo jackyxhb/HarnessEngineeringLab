@@ -66,8 +66,8 @@ function scanFile(filePath) {
     const countRegex = /\b((?:1[0-9]|[2-9][0-9]+))\s+(?:core\s+)?features\b/gi;
     let match;
     while ((match = countRegex.exec(line)) !== null) {
-      if (match[1] !== "27") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 27.`);
+      if (match[1] !== "28") {
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 28.`);
       }
     }
 
@@ -82,7 +82,7 @@ function scanFile(filePath) {
       if (parts.length === 2) {
         const pillar = parseInt(parts[0].replace('P', ''), 10);
         const num = parseInt(parts[1], 10);
-        if (pillar === 0 && (num < 1 || num > 8)) invalid = true;
+        if (pillar === 0 && (num < 1 || num > 9)) invalid = true;
         if (pillar === 1 && (num < 1 || num > 10)) invalid = true;
         if (pillar === 2 && (num < 1 || num > 5)) invalid = true;
         if (pillar === 3 && (num < 1 || num > 4)) invalid = true;

@@ -46,3 +46,4 @@ _It is the execution engine and orchestration layer that the harness is built up
 - **P0-6. Rippable Middleware:** Composable middleware layers that add specific capabilities but can be easily removed as underlying AI models improve.
 - **P0-7. Escalation Policies:** Automated triggers and routing systems for when an agent gets stuck and requires human intervention.
 - **P0-8. Harness Versioning:** The ability to version control the harness and run A/B tests to discover the most productive configurations.
+- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.

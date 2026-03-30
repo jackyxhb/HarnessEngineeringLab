@@ -12,6 +12,7 @@ When a Foundation or Pillar feature breaks, calculate how many explicitly depend
 | `P0-2` | Filesystem & Git Workspace | `P1-8` (Anchoring), `P1-9` (Branches), `P1-10` (Requirements Ledger), `P3-2` (Docs), `P3-4` (Sync) | 5 |
 | `P0-3` | Self-Verification | `P2-1` (Linters), `P2-2` (Dependencies) | 2 |
 | `P0-5` | Orchestration Logic | `P2-3` (Auditors), `P0-6` (Middleware) | 2 |
+| `P0-9` | Smart Command Wrappers | `P0-3` (Self-Verification), `P1-9` (Branches) | 2 |
 | `P1-1` | Repository as Truth | `P2-2` (Dependencies), `P2-3` (Auditors), `P1-8` (Anchoring) | 3 |
 | `P1-7` | Planning & State Files | `P0-4` (Ralph Loops), `P1-4` (Progressive Skills) | 2 |
 | `P1-10` | Requirements Ledger | `P2-5` (Upstream Intake Gate), `P1-7` (Planning & State Files) | 2 |

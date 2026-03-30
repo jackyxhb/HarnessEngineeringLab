@@ -22,7 +22,7 @@ allowed-tools:
 
 This skill synthesizes Harness Engineering into a structured framework:
 1. **4 Scoping Dimensions:** The high-level pillars of the harness.
-2. **27 Core Features:** Specific, testable capabilities within each dimension.
+2. **28 Core Features:** Specific, testable capabilities within each dimension.
 3. **Evaluation Framework (0-5):** Multi-dimensional gap assessment and maturity scoring.
 4. **Automated Remediations:** Executable runbooks to automatically close gaps using integrated filesystem tools (`list_dir`, `grep_search`, `write_to_file`).
 
@@ -44,7 +44,7 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 
 | Goal | Start Here | Estimated Time |
 | --- | --- | --- |
-| **Quick gap scan:** Rapidly assess maturity against the 27 core features | `references/quick-checklist.md` | 5 min |
+| **Quick gap scan:** Rapidly assess maturity against the 28 core features | `references/quick-checklist.md` | 5 min |
 | **Full audit:** Run the complete Inspect → Plan → Execute lifecycle | `references/workflow.md` | 30-60 min |
 | **Score gaps:** Evaluate individual features across 6 dimensions (0-5) | `references/gap-scoring.md` | 15 min |
 | **Feature deep dive:** Look up the definition and policies of a specific feature | `references/features-foundation.md` or `references/features-pillars.md` | 2 min |

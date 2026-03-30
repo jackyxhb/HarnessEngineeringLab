@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 27 core features into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 28 core features into concrete **Actions** and **Tools**.
 
 ## Pillar 1: Context Engineering (Inform)
 
@@ -180,3 +180,11 @@ When implementing or upgrading a harness, use these options to translate the 27 
 - **Action:** Provide a messaging bus for agents to communicate without relying solely on a central supervisor.
 - **Tool:** Direct peer-to-peer messaging functions (`message`).
 - **Tool:** Swarm broadcasting (`broadcast`) and idle notifications.
+- **Tool:** Inter-agent messaging middleware.
+
+### P0-9. Smart Command Wrappers
+
+- **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning and repository intent.
+- **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
+- **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
+- **Tool:** Workflow installation scripts that provide localized command definitions.

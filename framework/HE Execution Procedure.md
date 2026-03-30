@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 27 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 28 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 
@@ -69,6 +69,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 6. Check for **Rippable Middleware** (P0-6): Is the harness modular? Feature flags?
 7. Check for **Escalation Policies** (P0-7): Audit trails? Stuck-agent detection? Human notification?
 8. Check for **Harness Versioning** (P0-8): Is the harness config version-controlled? A/B testing?
+9. Check for **Smart Command Wrappers** (P0-9): Recommended CLI workflows (ccp, ccpr, reconcile) installed?
 
 **Output:** `HE-CLUES-Foundation.md` with per-feature findings:
 
@@ -160,12 +161,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 > **Goal:** Score each identified gap using the 6-dimension evaluation framework. This is split into sub-tasks by function area to stay within context limits.
 
-### Task 2.1: Score Foundation Features (P0-1 to P0-8)
+### Task 2.1: Score Foundation Features (P0-1 to P0-9)
 
 **Input:** `HE-CLUES.md` (Foundation section only), `HE Gap Evaluation Framework.md` Part 2 (Foundation section)
 **Actions:**
 
-1. For each Foundation feature (P0-1 to P0-8), score across all 6 dimensions (0–5):
+1. For each Foundation feature (P0-1 to P0-9), score across all 6 dimensions (0–5):
    - Implementation Maturity
    - Operational Effectiveness
    - Risk Exposure
@@ -175,32 +176,32 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 2. Note gap signals that match the framework's documented signals.
 3. Calculate composite score per feature.
 
-**Output:** `HE-SCORES-Foundation.md` — an 8×6 scoring matrix with justifications.
+**Output:** `HE-SCORES-Foundation.md` — a 9×6 scoring matrix with justifications.
 
-**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-8 sections (~200 lines).
+**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-9 sections (~220 lines).
+**Estimated tokens:** ~4,500
+
+---
+
+### Task 2.2: Score Pillar 1 Features (P1-1 to P1-10)
+
+**Input:** `HE-CLUES.md` (P1 section), `HE Gap Evaluation Framework.md` Part 2 (P1 section)
+**Actions:** Same as Task 2.1 but for Pillar 1 features.
+**Output:** `HE-SCORES-P1.md` — a 10×6 scoring matrix.
+
+**Context needed:** `HE-CLUES.md` P1 section + `HE Gap Evaluation Framework.md` P1-1 to P1-10 (~220 lines).
 **Estimated tokens:** ~4,000
 
 ---
 
-### Task 2.2: Score Pillar 1 Features (P1-1 to P1-9)
-
-**Input:** `HE-CLUES.md` (P1 section), `HE Gap Evaluation Framework.md` Part 2 (P1 section)
-**Actions:** Same as Task 2.1 but for Pillar 1 features.
-**Output:** `HE-SCORES-P1.md` — a 9×6 scoring matrix.
-
-**Context needed:** `HE-CLUES.md` P1 section + `HE Gap Evaluation Framework.md` P1-1 to P1-9 (~200 lines).
-**Estimated tokens:** ~3,500
-
----
-
-### Task 2.3: Score Pillar 2 Features (P2-1 to P2-3/P2-4)
+### Task 2.3: Score Pillar 2 Features (P2-1 to P2-5)
 
 **Input:** `HE-CLUES.md` (P2 section), `HE Gap Evaluation Framework.md` Part 2 (P2 section)
 **Actions:** Same as Task 2.1 but for Pillar 2 features.
-**Output:** `HE-SCORES-P2.md` — a 3–4×6 scoring matrix.
+**Output:** `HE-SCORES-P2.md` — a 5×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P2 section + `HE Gap Evaluation Framework.md` P2-1 to P2-3 (~60 lines).
-**Estimated tokens:** ~2,500
+**Context needed:** `HE-CLUES.md` P2 section + `HE Gap Evaluation Framework.md` P2-1 to P2-5 (~100 lines).
+**Estimated tokens:** ~3,000
 
 ---
 
@@ -483,7 +484,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 27 features → Actions/Tools tree.
+1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 28 features → Actions/Tools tree.
 2. **Agent Scale:** Task 0.1 classifies the scale. MAS-specific checks are flagged in Phase 1 tasks. Phase 2 uses the SAS→MAS readiness perspective.
 3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.
