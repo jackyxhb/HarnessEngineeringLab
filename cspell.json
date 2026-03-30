@@ -41,7 +41,10 @@
     "reinjected",
     "reinjections",
     "Unbuilt",
-    "windsurfrules"
+    "windsurfrules",
+    "oneline",
+    "HarnessEngineering",
+    "ccp"
   ],
   "ignorePaths": [
     "node_modules",

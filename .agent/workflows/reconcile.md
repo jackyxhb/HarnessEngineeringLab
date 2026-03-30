@@ -25,7 +25,7 @@ Scan for all of the following categories:
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
-   - Canonical feature count = **25** (8 Foundation + 9 P1 + 4 P2 + 4 P3)
+   - Canonical feature count = **27** (8 Foundation + 10 P1 + 5 P2 + 4 P3)
 6. **Content duplication** — multiple files saying the same thing in different words
 7. **Missing cross-references** — documents that reference concepts without linking to the canonical source
 8. **Orphan concepts** — ideas introduced in one file but not connected to the framework
@@ -60,5 +60,5 @@ When checking terminology, the following are the **single source of truth** labe
 | Pillar 1      | Context Engineering (Inform)          | `Core Features for SAS.md`   |
 | Pillar 2      | Architectural Constraints (Constrain) | `Core Features for SAS.md`   |
 | Pillar 3      | Entropy Management (Maintain)         | `Core Features for SAS.md`   |
-| Feature count | 25 core features                      | `HE Enhancement Options.md`  |
+| Feature count | 27 core features                      | `HE Enhancement Options.md`  |
 | Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |
