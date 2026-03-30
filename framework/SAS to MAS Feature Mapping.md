@@ -47,11 +47,10 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 | P0-3 | Self-Verification      | Collective Verification             | Consensus-seeking protocols; multi-agent vote before commit         |
 | P0-4 | Ralph Loops            | Ralph Loops                         | Per-agent exit interception; reinjection across context resets      |
 | P0-5 | Orchestration Logic    | Multi-Agent Orchestration           | Adds topology selection (Supervisor, P2P, Hierarchical, Blackboard) |
-| P0-6 | Rippable Middleware    | Rippable Middleware & Versioning    | No structural change; A/B testing across the swarm                  |
+| P0-6 | Rippable Middleware    | Rippable Middleware & Versioning    | **Absorbs P0-8** (Harness Versioning); A/B testing across the swarm |
 | P0-7 | Escalation Policies    | Audit Trails & Accountability       | **Adds audit logs** for decentralized liability                     |
-| P0-8 | Harness Versioning     | Harness Versioning                  | Version control extended to swarm-level configurations              |
+| P0-8 | Harness Versioning     | Inter-Agent Communication (Mailbox) | **Reassigned in MAS**: messaging bus, broadcast, idle notifications |
 | P0-9 | Smart Command Wrappers | Smart Command Wrappers              | Standardized ccp/reconcile workflows shared across all agents       |
-| —    | —                      | Inter-Agent Communication (Mailbox) | **New in MAS**: messaging bus, broadcast, idle notifications        |
 
 ---
 

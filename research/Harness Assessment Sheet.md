@@ -12,6 +12,7 @@ _Evaluates the safety of the agent's execution environment and its ability to co
 - **Escalation Policies:** Are there automated triggers and routing for when an agent gets stuck and requires human intervention?
 - **Rippable Middleware:** Are there composable middleware layers (like loop detection) that can be updated or removed as AI models improve?
 - **Harness Versioning:** Can the harness be version-controlled and A/B tested to discover optimal configurations?
+- **Smart Command Wrappers (P0-9):** Are common multi-step CLI workflows (e.g., `ccp`, `ccpr`, `reconcile`) standardized via intelligent wrappers that integrate agent reasoning and repository intent?
 
 ## Pillar 1: Context Engineering (Inform)
 
@@ -26,6 +27,7 @@ _Evaluates if the agent has the right information at the right time without over
 - **Planning & State Files (P1-7):** Does the agent decompose complex tasks into plan files with step-by-step breakdowns and injected reminders?
 - **Context Anchoring (P1-8):** Are critical decisions recorded to persistent memory files (what, why, target, background) and recalled at session start?
 - **Branch-Based Cognitive Memory (P1-9):** Are complex objectives decomposed into concurrent sub-task branches with structured commit messages acting as memory checkpoints?
+- **Requirements Ledger (P1-10):** Are all user stories, requirements, and functional scenarios captured in a unified ledger document before planning or execution begins?
 
 ## Pillar 2: Architectural Constraints (Constrain)
 
@@ -34,6 +36,8 @@ _Evaluates how well the harness mechanically restricts the agent's solution spac
 - **Automated Linters & Tests:** Are there deterministic linters, structural tests, and pre-commit hooks in place to automatically flag violations?
 - **Dependency Layering:** Does the harness mechanically enforce dependency rules (e.g., restricting which layers can import from others) via CI validation?
 - **LLM-Based Auditors:** Are there secondary agents specifically tasked with reviewing the primary agent's output for architectural compliance?
+- **Bounded Autonomy (P2-4):** Are there explicit scope boundaries and access controls defining how far an agent can go without human escalation?
+- **Upstream Intake Gate (P2-5):** Is there a mandatory validation step ensuring requirements are recorded in the Requirements Ledger before planning and execution proceed?
 
 ## Pillar 3: Entropy Management (Maintain)
 

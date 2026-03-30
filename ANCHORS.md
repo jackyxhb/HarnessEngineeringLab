@@ -61,13 +61,13 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
 - **Date:** 2026-03-16
 
-### A6: 27-Feature Canonical Count
+### A6: 28-Feature Canonical Count
 
 - **What:** Fixed the canonical feature count of the framework at exactly 28 core features: Foundation (9), Pillar 1 (10), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-9, P1-10, P2-5).
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
-- **Background:** Expanded from 25 to 27 after adding P1-10 (Requirements Ledger) and P2-5 (Upstream Intake Gate). ID scheme changed from sequential/F-prefix to pillar-prefixed `P<area>-<sub>`.
-- **Date:** 2026-03-30
+- **Background:** Expanded from 25 to 28 after adding P1-10 (Requirements Ledger), P2-5 (Upstream Intake Gate), and P0-9 (Smart Command Wrappers). ID scheme changed from sequential/F-prefix to pillar-prefixed `P<area>-<sub>`.
+- **Date:** 2026-03-31
 
 ### A7: Reward Engineering as Cross-Cutting
 

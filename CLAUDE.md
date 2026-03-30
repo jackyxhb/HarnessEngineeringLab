@@ -56,6 +56,22 @@ Transitions a defined HE feature from concept to live infrastructure. Designs th
 
 Compares each `research/` document against canonical `framework/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
 
+### `/anchor` — Anchor Management
+
+Add, review, or prune context anchor records in `ANCHORS.md` to maintain strategic continuity across sessions.
+
+### `/build` — Project Build
+
+Orchestrates multi-phase project builds with structured planning and execution.
+
+### `/ccp` — Claude Commit & Push
+
+Intelligent commit workflow: stages changes, generates descriptive commit messages, and pushes to remote.
+
+### `/ccpr` — Claude Commit, Push & Release
+
+Extended commit workflow: commits, pushes, creates a pull request, and after merge creates a GitHub release with version tag and release notes.
+
 ## Task Execution & Cognitive Memory
 
 To preserve tracking history and prevent monolithic execution failures, agents must exercise **P1-9 Branch-Based Cognitive Memory**.

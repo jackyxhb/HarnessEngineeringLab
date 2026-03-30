@@ -46,7 +46,7 @@ The canonical framework definitions and operational guides (28 core features acr
 - **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
 - **SAS to MAS Feature Mapping.md** — Feature-by-feature upgrade path from SAS to MAS
 - **HE Prevention Checklist.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
-- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (1–27)
+- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 - **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
 
