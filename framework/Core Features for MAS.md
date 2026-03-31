@@ -1,6 +1,6 @@
 # Core Features of MAS
 
-Core features of Harness Engineering for MAS - Multi-Agent Systems.When upgrading from a single-agent harness to a Multi-Agent System (MAS), the framework must be significantly adapted to handle the complexities of decentralized collaboration. In a MAS, challenges like quadratic coordination overhead, cascading hallucinations across agents, and emergent behaviors require the harness to act less like a simple track and more like a highly orchestrated, secure factory floor.
+Core features of Harness Engineering for MAS - Multi-Agent Systems. When upgrading from a single-agent harness to a Multi-Agent System (MAS), the framework must be significantly adapted to handle the complexities of decentralized collaboration. In a MAS, challenges like quadratic coordination overhead, cascading hallucinations across agents, and emergent behaviors require the harness to act less like a simple track and more like a highly orchestrated, secure factory floor.
 
 Based on the latest architectural principles for multi-agent workflows, here is the re-organized **3-Pillar and 1-Foundation Framework tailored for the MAS version**, expanding and upgrading the core features:
 

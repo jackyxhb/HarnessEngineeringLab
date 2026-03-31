@@ -423,8 +423,6 @@ Each of the 28 core features is analyzed below with:
 
 ---
 
----
-
 #### P1-9. Branch-Based Cognitive Memory
 
 **Gap Signals:**

@@ -4,7 +4,7 @@ What must be prevented in AI Agent Harness and Multi-Agent System (MAS) to ensur
 
 To ensure an AI Agent Harness and Multi-Agent System (MAS) operates securely, efficiently, and accurately, several critical risks and failure modes must be explicitly prevented through system design.
 
-Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `ANCHORS.md`):
+Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `Core Features for SAS.md` | `ANCHORS.md`):
 
 ## Pillar 1: Prevent Context and Memory Degradation (Inform)
 
@@ -43,7 +43,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 
 ## Cross-Cutting: Reward Engineering & Anti-Hacking
 
-_Agent reward structures can be gamed. Preventing reward-hacking is essential for reliable autonomous execution. (See also: HE Key Points §5)_
+_Agent reward structures can be gamed. Preventing reward-hacking is essential for reliable autonomous execution. (See also: `references/OpenAI-Harness-Engineering.md`)_
 
 - Creating a human-in-the-loop process that creates delay without adding genuine insight
 - Optimizing for vanity metrics (e.g., lines of code, PRs merged) rather than actual quality outcomes

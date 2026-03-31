@@ -1,5 +1,7 @@
 # Tools for Agentic Software Engineering
 
+> _Canonical framework: `framework/Core Features for SAS.md` | Enhancement options: `framework/HE Enhancement Options.md`_
+
 ## Execution Engines and Orchestration Frameworks (The MAS Backbone)
 
 These frameworks provide the foundational infrastructure for spawning, routing, and managing multi-agent teams or structured Single-Agent System (SAS) workflows.

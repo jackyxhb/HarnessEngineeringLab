@@ -29,7 +29,7 @@ HarnessEngineeringLab/
 ├── references/              ← Source articles and reference material
 ├── framework/               ← Core framework definitions & operational guides
 ├── research/                ← Analysis, principles, and commentary
-├── case-studies/            ← Real-world case studies (CSAgent)
+├── builder/                 ← Build logs for the harnessing-agents skill
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
 ```
@@ -60,11 +60,9 @@ Supporting analysis and commentary documents covering:
 - **Practical Guidance** — Landing pathway, assessment sheet, build guide, maturity indicators
 - **Tooling & Context** — Tools for agents, theory vs practice comparisons
 
-### `case-studies/`
+### `builder/`
 
-Real-world implementations of Harness Engineering demonstrating the framework in action:
-
-- **CSAgent** — An autonomous Customer Support Agent case study detailing routing, decision-making, and structural memory.
+Build logs documenting the creation and optimization of the `harnessing-agents` skill, including the optimization plan and results summary.
 
 ## Key Concepts
 

@@ -1,5 +1,7 @@
 # AI Agent Harness Assessment Sheet
 
+> _Canonical framework: `framework/Core Features for SAS.md` | Gap evaluation: `framework/HE Gap Evaluation Framework.md`_
+
 ## Foundational Infrastructure (Execute)
 
 _Evaluates the safety of the agent's execution environment and its ability to correct its own mistakes._
@@ -60,3 +62,5 @@ You can measure the overall progress of your harness project by determining whic
   - _Criteria:_ Includes Level 1, plus an `AGENTS.md` for team conventions, CI-enforced architectural constraints, shared prompt templates, and agent-specific code review checklists.
 - **Level 3: Production Harness (Enterprise/Org)**
   - _Criteria:_ Includes Level 2, plus custom middleware (like loop detection), observability integration, scheduled entropy management agents, A/B testing for the harness, and escalation policies for stuck agents.
+
+> _See also: `framework/HE Gap Evaluation Framework.md` Part 5 for a comprehensive quick-start evaluation checklist._

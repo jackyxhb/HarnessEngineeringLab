@@ -30,7 +30,7 @@ All content is organized under this canonical structure. When editing or creatin
 - `framework/` — **Canonical source of truth.** Core framework definitions for SAS and MAS, enhancement options, and prevention checklist. All other docs must be consistent with these files.
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
-- `case-studies/` — Real-world case studies (e.g., SMS Agent design).
+- `builder/` — Build logs for the `harnessing-agents` skill optimization.
 - `tmp/` — Working documents and drafts.
 - `.agent/workflows/` — Agent workflow definitions.
 

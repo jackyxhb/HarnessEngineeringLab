@@ -1,5 +1,7 @@
 # Agent Project Build Guide
 
+> _Canonical framework: `framework/Core Features for SAS.md` | Enhancement options: `framework/HE Enhancement Options.md`_
+
 How to Construct an Agent Project for a Specific Industry? Example domain: Job seekers find matched job descriptions, then tailor their CV/Cover Letter for applications.
 
 ---
@@ -23,7 +25,7 @@ Before writing any code, map the **business domain** clearly:
 
 The core agent workflow follows a **pipeline**:
 
-```
+```text
 1. INGEST     → Parse job descriptions (from URLs, PDFs, pasted text)
 2. ANALYSE    → Extract key requirements, skills, keywords, culture signals
 3. MATCH      → Score the JD against the seeker's profile
@@ -39,7 +41,7 @@ The core agent workflow follows a **pipeline**:
 
 ### 3a. Repository Structure
 
-```
+```text
 project/
 ├── AGENTS.md              ← Entry point: how agents work here
 ├── meta/
