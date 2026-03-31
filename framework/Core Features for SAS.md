@@ -1,5 +1,19 @@
 # Core Features for SAS - Single Agent Systems
 
+## Foundational Infrastructure (Execute)
+
+_It is the execution engine and orchestration layer that the harness is built upon._
+
+- **P0-1. Bash Sandboxes:** Secure, on-demand execution environments equipped with language runtimes, test runners, and a general-purpose bash tool.
+- **P0-2. Filesystem & Git Workspace:** The core primitive for durable storage, version control, and a shared collaboration surface for multiple agents.
+- **P0-3. Self-Verification:** Feedback loops allowing agents to write code, run tests, inspect logs, and autonomously fix their errors before completion.
+- **P0-4. Ralph Loops:** Execution hooks that intercept an agent's exit attempt and reinject the prompt alongside previous state to force the completion of long-horizon tasks.
+- **P0-5. Orchestration Logic:** The routing layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel.
+- **P0-6. Rippable Middleware:** Composable middleware layers that add specific capabilities but can be easily removed as underlying AI models improve.
+- **P0-7. Escalation Policies:** Automated triggers and routing systems for when an agent gets stuck and requires human intervention.
+- **P0-8. Harness Versioning:** The ability to version control the harness and run A/B tests to discover the most productive configurations.
+- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.
+
 ## Pillar 1: Context Engineering (Inform)
 
 _The largest pillar. This encompasses everything related to managing what the model sees, its memory, its durable storage, its real-time knowledge, and its strategic continuity._
@@ -33,17 +47,3 @@ _Also known as "Garbage Collection," this pillar manages the health of the codeb
 - **P3-2. Documentation Sync:** Agents that actively verify and update project documentation so it matches the current, living state of the code.
 - **P3-3. Pattern Auditing:** Agents that track and resolve circular dependencies, dead code, or deviations from established coding patterns.
 - **P3-4. Consolidation Loop:** Agents that auto-update core system counts, track issue history, maintain changelogs, and prompt for ADRs to keep central knowledge synchronized with the codebase.
-
-## Foundational Infrastructure (Execute)
-
-_It is the execution engine and orchestration layer that the harness is built upon._
-
-- **P0-1. Bash Sandboxes:** Secure, on-demand execution environments equipped with language runtimes, test runners, and a general-purpose bash tool.
-- **P0-2. Filesystem & Git Workspace:** The core primitive for durable storage, version control, and a shared collaboration surface for multiple agents.
-- **P0-3. Self-Verification:** Feedback loops allowing agents to write code, run tests, inspect logs, and autonomously fix their errors before completion.
-- **P0-4. Ralph Loops:** Execution hooks that intercept an agent's exit attempt and reinject the prompt alongside previous state to force the completion of long-horizon tasks.
-- **P0-5. Orchestration Logic:** The routing layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel.
-- **P0-6. Rippable Middleware:** Composable middleware layers that add specific capabilities but can be easily removed as underlying AI models improve.
-- **P0-7. Escalation Policies:** Automated triggers and routing systems for when an agent gets stuck and requires human intervention.
-- **P0-8. Harness Versioning:** The ability to version control the harness and run A/B tests to discover the most productive configurations.
-- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.

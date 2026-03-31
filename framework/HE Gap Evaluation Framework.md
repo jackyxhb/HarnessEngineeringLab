@@ -152,7 +152,7 @@ Each of the 28 core features is analyzed below with:
 | 3    | Support dynamic topology switching (supervisor ↔ peer-to-peer ↔ swarm) | Scalability         |
 | 3    | Implement overhead monitoring to detect coordination degradation       | Cost                |
 
-**Dependencies:** Requires Inter-Agent Communication (P0-8) for MAS topologies. Enables all multi-agent workflows.
+**Dependencies:** Requires Inter-Agent Communication (P0-MAS) for MAS topologies. Enables all multi-agent workflows.
 
 ---
 

@@ -44,7 +44,10 @@
     "windsurfrules",
     "oneline",
     "HarnessEngineering",
-    "ccp"
+    "ccp",
+    "pytest",
+    "macbook",
+    "Inspirate"
   ],
   "ignorePaths": [
     "node_modules",

@@ -9,7 +9,7 @@ A step-by-step procedure for auditing an AI agent harness. Each phase is self-co
 
 ## Phase 1: Gap Analysis (Clue Collection)
 
-Systematically inspect the project for harness gaps using automated tooling (e.g. `list_dir`, `grep_search`).
+Systematically inspect the project for harness gaps using automated tooling (e.g. `Glob`, `Grep`, `Read`).
 
 1. Scan for Foundation gaps.
 2. Scan for Pillar 1 (Context) gaps.
@@ -69,3 +69,13 @@ Apply the remediation batches sequentially.
 
 **Output:** `HE-ASSESSMENT-REPORT.md`
 > **Use template:** `templates/assessment-report.md`
+
+## Phase 6: Skill & Knowledge Sync (Optional)
+
+If new features, prevention points, or patterns were discovered during the audit, propagate learnings back.
+
+1. Update the harnessing-agents skill files (`.agent/skills/harnessing-agents/`) if new patterns warrant reference updates.
+2. Follow the `/polish` workflow if adding new features to the canonical framework.
+3. Propagate changes to `framework/` canonical documents and run `/revise-comments` to ensure `research/` consistency.
+
+**Output:** Updated skill and/or framework files (if applicable).

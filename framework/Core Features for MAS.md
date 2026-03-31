@@ -8,15 +8,16 @@ Based on the latest architectural principles for multi-agent workflows, here is 
 
 _In a MAS, the engine doesn't just execute code; it must orchestrate dynamic communication, prevent collisions between autonomous workers, and trace accountability across the swarm._
 
-- **P0-5. Multi-Agent Orchestration Logic:** Shifts from simple task routing to dynamically managing topologies (such as Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm patterns) based on the task type to prevent quadratic coordination overhead, which can degrade sequential reasoning performance by up to 70%.
-- **P0-8. Inter-Agent Communication (The Mailbox):** A dedicated messaging bus that allows agents to communicate directly via peer-to-peer (P2P) messaging, broadcast to the swarm, and send idle notifications.
+- **P0-1. Bash Sandboxes:** Secure, on-demand execution environments equipped with runtimes and test runners. In MAS, each agent gets an isolated sandbox.
 - **P0-2. Filesystem, Git & File Locking:** The shared workspace must now implement strict file locking and task-claiming mechanisms to prevent race conditions when multiple teammates attempt to edit the same file or claim the same task simultaneously.
-- **P0-3. Collective Verification (formerly Self-Verification):** Because one agent's error can cause cascading hallucinations downstream, verification expands into consensus-seeking protocols, requiring multiple agents to vote or debate before committing partial solutions to the shared state.
-- **P0-7. Audit Trails & Accountability (formerly Escalation Policies):** Because decision-making is distributed and can lead to unpredictable emergent behaviors, the harness must maintain strict logs of exactly which agent initiated an action, what data it accessed, and how it influenced peers, resolving the dilemma of decentralized liability.
-- **P0-1. Bash Sandboxes:** Secure, on-demand execution environments equipped with runtimes and test runners.
-- **P0-4. Ralph Loops:** Execution hooks that intercept premature exits and reinject prompts to force task completion.
-- **P0-6. Rippable Middleware & Harness Versioning:** Composable capabilities and A/B testing infrastructure that can be updated as the underlying models evolve.
-- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent.
+- **P0-3. Collective Verification (extends Self-Verification):** Because one agent's error can cause cascading hallucinations downstream, verification expands into consensus-seeking protocols, requiring multiple agents to vote or debate before committing partial solutions to the shared state.
+- **P0-4. Ralph Loops:** Execution hooks that intercept premature exits and reinject prompts to force task completion. Per-agent exit interception with reinjection across context resets.
+- **P0-5. Multi-Agent Orchestration Logic:** Shifts from simple task routing to dynamically managing topologies (such as Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm patterns) based on the task type to prevent quadratic coordination overhead, which can degrade sequential reasoning performance by up to 70%.
+- **P0-6. Rippable Middleware:** Composable middleware layers that can be safely removed as underlying AI models improve. Per-agent middleware stacks with independent enable/disable controls.
+- **P0-7. Escalation Policies + Audit Trails:** Because decision-making is distributed and can lead to unpredictable emergent behaviors, the harness must maintain strict logs of exactly which agent initiated an action, what data it accessed, and how it influenced peers, resolving the dilemma of decentralized liability.
+- **P0-8. Harness Versioning:** A/B testing infrastructure for comparing harness configurations across the swarm, tracking per-agent performance metrics per version.
+- **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent. Shared across all agents.
+- **P0-MAS. Inter-Agent Communication (The Mailbox):** A dedicated messaging bus that allows agents to communicate directly via peer-to-peer (P2P) messaging, broadcast to the swarm, and send idle notifications. _(MAS-only addition)_
 
 ---
 

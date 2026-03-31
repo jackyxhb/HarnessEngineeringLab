@@ -88,7 +88,7 @@ Change heading from "4 Assessment Dimensions" to "4 Scoping Dimensions" (line 1)
 Ready-to-use subagent dispatch prompts for the 4 parallel inspection agents + consolidation agent. Each prompt includes: role, scan scope, gap signals to look for, output format reference.
 
 ### 3b. Create `references/dependencies.md` (~40 lines)
-Consolidated dependency table extracted from all 25 features' "Dependencies" lines:
+Consolidated dependency table extracted from all 28 features' "Dependencies" lines:
 
 ```text
 | Feature | Depends On | Depended On By |

@@ -24,7 +24,7 @@ This skill synthesizes Harness Engineering into a structured framework:
 1. **4 Scoping Dimensions:** The high-level pillars of the harness.
 2. **28 Core Features:** Specific, testable capabilities within each dimension.
 3. **Evaluation Framework (0-5):** Multi-dimensional gap assessment and maturity scoring.
-4. **Automated Remediations:** Executable runbooks to automatically close gaps using integrated filesystem tools (`list_dir`, `grep_search`, `write_to_file`).
+4. **Automated Remediations:** Executable runbooks to automatically close gaps using integrated filesystem tools (`Glob`, `Grep`, `Read`, `Write`, `Edit`).
 
 ## Context & Action Space Optimization
 
@@ -50,13 +50,15 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 | **Feature deep dive:** Look up the definition and policies of a specific feature | `references/features-foundation.md` or `references/features-pillars.md` | 2 min |
 | **Scope an audit:** Understand the evaluation and Scoping dimensions | `references/dimensions.md` | 5 min |
 | **Run Subagents:** Ready-to-use prompts for delegating gap audits | `references/agent-prompts.md` | 2 min |
+| **Cross-cutting analysis:** Apply systemic perspectives (feedback loops, token economics, cascades, MAS readiness, human role) | `references/cross-cutting.md` | 10 min |
+| **Prevention check:** Cross-reference active prevention failures during gap analysis | `references/prevention-checklist.md` | 5 min |
 | **Cascade Analysis:** Map feature dependencies and upstream failures | `references/dependencies.md` | 5 min |
 
 ## Emphasize Automated Tooling
 
 When auditing or remediating harness gaps, rely strictly on **mechanical enforcement** rather than manual observation.
 
-- **Do Not rely on general conversational output:** Agents must use specific filesystem tools (`list_dir`, `grep_search`, `view_file`) to explicitly scan targets such as `.cursorrules`, `.windsurfrules`, `.github/workflows/`, `.husky/`, `.agents/`, and `AGENTS.md`.
+- **Do Not rely on general conversational output:** Agents must use specific filesystem tools (`Glob`, `Grep`, `Read`) to explicitly scan targets such as `CLAUDE.md`, `.cursorrules`, `.github/workflows/`, `.husky/`, `.agent/`, and `AGENTS.md`.
 - **Do Not assume architecture:** Always parse configuration targets natively.
 - **Do Not stray from templates:** When gathering data, constructing plans, or reporting findings, you must rigidly adhere to output formats located in the `templates/` directory.
 

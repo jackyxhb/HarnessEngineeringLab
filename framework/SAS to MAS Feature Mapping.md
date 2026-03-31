@@ -4,6 +4,21 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 
 > Canonical reference: `framework/Core Features for SAS.md` → `framework/Core Features for MAS.md`
 
+## P0 — Foundational Infrastructure (Execute)
+
+| ID     | SAS Feature            | MAS Upgrade                         | Key Change                                                          |
+| ------ | ---------------------- | ----------------------------------- | ------------------------------------------------------------------- |
+| P0-1   | Bash Sandboxes         | Bash Sandboxes                      | Per-agent isolated environments                                     |
+| P0-2   | Filesystem & Git       | Filesystem, Git & File Locking      | **Adds file locking** to prevent race conditions                    |
+| P0-3   | Self-Verification      | Collective Verification             | Consensus-seeking protocols; multi-agent vote before commit         |
+| P0-4   | Ralph Loops            | Ralph Loops                         | Per-agent exit interception; reinjection across context resets      |
+| P0-5   | Orchestration Logic    | Multi-Agent Orchestration           | Adds topology selection (Supervisor, P2P, Hierarchical, Blackboard) |
+| P0-6   | Rippable Middleware    | Rippable Middleware                 | No structural change; per-agent middleware stacks                   |
+| P0-7   | Escalation Policies    | Escalation Policies + Audit Trails  | **Adds audit logs** for decentralized liability                     |
+| P0-8   | Harness Versioning     | Harness Versioning                  | A/B testing across the swarm; per-agent config tracking             |
+| P0-9   | Smart Command Wrappers | Smart Command Wrappers              | Standardized ccp/reconcile workflows shared across all agents       |
+| P0-MAS | _(new in MAS)_         | Inter-Agent Communication (Mailbox) | **MAS-only addition**: messaging bus, broadcast, idle notifications |
+
 ## Pillar 1: Context Engineering (Inform)
 
 | ID   | SAS Feature                   | MAS Upgrade                    | Key Change                                                                      |
@@ -37,20 +52,6 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 | P3-2 | Documentation Sync | Documentation Sync     | Must handle docs touched by multiple agents           |
 | P3-3 | Pattern Auditing   | Pattern Auditing       | Cross-agent pattern divergence detection              |
 | P3-4 | Consolidation Loop | Consolidation Pipeline | Scales to multi-team changelog aggregation            |
-
-## P0 — Foundational Infrastructure (Execute)
-
-| ID   | SAS Feature            | MAS Upgrade                         | Key Change                                                          |
-| ---- | ---------------------- | ----------------------------------- | ------------------------------------------------------------------- |
-| P0-1 | Bash Sandboxes         | Bash Sandboxes                      | Per-agent isolated environments                                     |
-| P0-2 | Filesystem & Git       | Filesystem, Git & File Locking      | **Adds file locking** to prevent race conditions                    |
-| P0-3 | Self-Verification      | Collective Verification             | Consensus-seeking protocols; multi-agent vote before commit         |
-| P0-4 | Ralph Loops            | Ralph Loops                         | Per-agent exit interception; reinjection across context resets      |
-| P0-5 | Orchestration Logic    | Multi-Agent Orchestration           | Adds topology selection (Supervisor, P2P, Hierarchical, Blackboard) |
-| P0-6 | Rippable Middleware    | Rippable Middleware & Versioning    | **Absorbs P0-8** (Harness Versioning); A/B testing across the swarm |
-| P0-7 | Escalation Policies    | Audit Trails & Accountability       | **Adds audit logs** for decentralized liability                     |
-| P0-8 | Harness Versioning     | Inter-Agent Communication (Mailbox) | **Reassigned in MAS**: messaging bus, broadcast, idle notifications |
-| P0-9 | Smart Command Wrappers | Smart Command Wrappers              | Standardized ccp/reconcile workflows shared across all agents       |
 
 ---
 

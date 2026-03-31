@@ -31,8 +31,8 @@ Once the draft is approved, rigorously apply it across the canonical definitions
 
 Selectively update the relevant sections of:
 
-- `~/.gemini/antigravity/skills/harnessing-agents/` skill files.
-- `/Users/macbook1/work/HE/HarnessEngineeringLab/framework/` docs.
+- `.agent/skills/harnessing-agents/` skill files.
+- `framework/` canonical docs.
   Verify the framework remains sequentially numbered and consistent overall.
 
 ### Path B: Adding a New Feature
@@ -41,16 +41,17 @@ Follow these exact steps to ensure absolutely no file gets missed and the canoni
 
 #### Step 1: Update Core `harnessing-agents` Skill Files
 
-Modify the authoritative skill files in `~/.gemini/antigravity/skills/harnessing-agents/`:
+Modify the authoritative skill files in `.agent/skills/harnessing-agents/`:
 
-- **`SKILL.md`**: Increment the total feature count. Add the new feature to the appropriate Pillar's feature list with a one-line definition. If SAS→MAS implications exist, add a readiness note.
-- **`enhancement-options.md`**: Increment the total feature count in the header. Insert the new feature's Actions and Tools under the correct Pillar. Renumber all subsequent features.
-- **`assessment-checklist.md`**: Increment total feature count and the relevant Pillar's aspect count. Insert a new assessment point. Add a row to the Scoring Summary table and update the `Score: ___ / N` denominator and maturity tier boundaries.
-- **`prevention-checklist.md`**: Add a new prevention bullet under the relevant Pillar describing what failure modes this feature prevents.
+- **`SKILL.md`**: Increment the total feature count. Add the new feature to the routing table if it introduces a new reference file.
+- **`references/features-foundation.md`** or **`references/features-pillars.md`**: Add the new feature's guideline, expectations, and tiered remediation actions under the correct area.
+- **`references/quick-checklist.md`**: Add a new checkbox item under the relevant area.
+- **`references/prevention-checklist.md`**: Add a new prevention row under the relevant Pillar describing what failure modes this feature prevents.
+- **`references/dependencies.md`**: Add the feature's downstream dependencies and impact weight.
 
 #### Step 2: Feedback to HarnessEngineeringLab Canonical Docs
 
-Propagate the feature additions to all canonical docs in `/Users/macbook1/work/HE/HarnessEngineeringLab/framework/`:
+Propagate the feature additions to all canonical docs in `framework/`:
 
 - **Core Feature Lists**: Update `Core Features for SAS.md` & `Core Features for MAS.md` with a summary bullet.
 - **Enhancement Options & Prevention**: Insert the new Actions/Tools in `HE Enhancement Options.md`. Add a prevention bullet in `HE Prevention Checklist.md` (if it exists).
@@ -68,7 +69,7 @@ Propagate the feature additions to all canonical docs in `/Users/macbook1/work/H
 
 - Run checks to ensure the feature count is identical across all skill files and canonical docs.
 - Ensure numbering is completely sequential with no gaps or duplicates.
-- Ensure the Scoring Summary table in `assessment-checklist.md` has the correct number of rows.
+- Ensure `references/quick-checklist.md` has one checkbox per canonical feature (currently 28).
 
 #### Step 4: Summarize Changes
 

@@ -47,7 +47,7 @@ harnessing-agents/
 │   ├── workflow.md                 # 3-step audit: Inspect → Plan → Execute
 │   ├── agent-prompts.md            # Ready-to-use dispatch prompts (parallel agents)
 │   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
-│   ├── quick-checklist.md          # 15-item yes/no fast gap scan
+│   ├── quick-checklist.md          # 28-item yes/no fast gap scan
 │   ├── dimensions.md               # 4 scoping dimensions + decision matrix
 │   ├── features-foundation.md      # Foundation features F1–F8 (gap signals, policies)
 │   ├── features-pillars.md         # Pillar features P1-1 to P3-4 (gap signals, policies)
@@ -103,11 +103,11 @@ All skill content must align to this canonical structure from `framework/`:
 | **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-4: Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy |
 | **P3: Entropy Management** | Long-term codebase health | P3-1 to P3-4: Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop |
 
-**25 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
+**28 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
 
 ### Feature Specification Format
 
-Each of the 25 features must include:
+Each of the 28 features must include:
 
 - **Feature ID** and name
 - **Gap signals** — observable indicators that this feature is missing or weak
@@ -131,7 +131,7 @@ Every audit and every build must be scoped across all four dimensions:
 
 | Dimension | Options | Effect on Build |
 | --- | --- | --- |
-| **Feature Tree** | Which of 25 features: Present-Effective, Present-Weak, Absent-Do, Absent-Don't | Determines content coverage |
+| **Feature Tree** | Which of 28 features: Present-Effective, Present-Weak, Absent-Do, Absent-Don't | Determines content coverage |
 | **Agent Scale** | SAS · Small Group (2–5) · Enterprise · Scaled-Swarm | Determines MAS depth |
 | **Project Complexity** | Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise | Determines tier ceiling |
 | **Remediation Level** | Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture) | Determines action intensity |
@@ -232,12 +232,12 @@ Independent tasks — execute in parallel when possible:
 
 - **2a. Feature files** — Build `features-foundation.md` (F1–F8) and `features-pillars.md` (P1-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companion.
 - **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
-- **2c. Quick checklist** — Extract `quick-checklist.md` as 15-item yes/no fast scan with pointers to full scoring.
+- **2c. Quick checklist** — Extract `quick-checklist.md` as 28-item yes/no fast scan (one per feature) with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
-- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 25 features.
+- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 28 features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
 - **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
-- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `list_dir`, `grep_search`, and `view_file` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
+- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
 
 **Gate:** Every reference file ≤ 200 lines. Every template ≤ 150 lines. No file duplicates content from another.
 
@@ -263,7 +263,7 @@ Run all verification criteria — build fails if any check fails:
 | Stale references | `grep` for deleted/renamed filenames | Zero hits |
 | Terminology consistency | `grep` for known conflict terms | Each term has exactly one meaning |
 | Cross-reference completeness | All file pairs checked | Zero dangling refs |
-| Feature coverage | Count unique feature IDs across all files | 25 features covered |
+| Feature coverage | Count unique feature IDs across all files | 28 features covered |
 | Framework alignment | Diff skill content against `framework/` | Zero contradictions |
 
 ### Phase 5 — Critical Deployment Process (Places)
@@ -278,13 +278,13 @@ Once the skill successfully passes all verification gates, you must formally dep
    ln -sfn /Users/macbook1/work/HE/HELab/.agent/skills/harnessing-agents ~/.agents/skills/harnessing-agents
    ```
 
-3. **Engine Sync:** Ensure Antigravity specifically recognizes this mapping:
+3. **Verify Deployment:** Confirm the skill is accessible from the project:
 
    ```bash
-   ln -sfn ~/.agents/skills/harnessing-agents ~/.gemini/antigravity/skills/harnessing-agents
+   ls .agent/skills/harnessing-agents/SKILL.md
    ```
 
-**Gate:** The deployment is successful only if a directory read on `~/.gemini/antigravity/skills/harnessing-agents` resolves valid files.
+**Gate:** The deployment is successful only if a directory read on `.agent/skills/harnessing-agents` resolves valid files.
 
 ### Before/After Metrics
 

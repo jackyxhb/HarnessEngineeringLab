@@ -43,7 +43,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** Append to `HE-SCOPE.md`:
 
-- Quick-Start checklist results (17 items)
+- Quick-Start checklist results (22 items)
 - Current maturity level
 - Target maturity level (user to confirm)
 
@@ -412,7 +412,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Actions:**
 
 1. If new features or prevention points were discovered during execution, update:
-   - `~/.gemini/antigravity/skills/harnessing-agents/SKILL.md`
+   - `.agent/skills/harnessing-agents/SKILL.md`
 2. Follow the `/polish` workflow if adding new features.
 
 **Output:** Updated skill files (if applicable).

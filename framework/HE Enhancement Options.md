@@ -2,6 +2,78 @@
 
 When implementing or upgrading a harness, use these options to translate the 28 core features into concrete **Actions** and **Tools**.
 
+## P0 — Foundational Infrastructure (Execute)
+
+### P0-1. Bash Sandboxes
+
+- **Action:** Do not run agent code locally; provision safe, scalable, and isolated execution environments.
+- **Tool:** General-purpose bash execution tools.
+- **Tool:** Sandboxes pre-installed with language runtimes, test runners, CLI tools, and browsers.
+- **Tool:** Visual split-pane terminals (e.g., `tmux` or `iTerm2`) to monitor multiple sandbox environments simultaneously.
+
+### P0-2. Filesystem, Git & File Locking
+
+- **Action:** Use the filesystem as the core collaboration surface and durable storage.
+- **Action:** Implement explicit file locking and task-claiming mechanisms to prevent race conditions when multiple agents try to edit the same file.
+- **Tool:** Git (for versioning, tracking work, and rolling back errors).
+
+### P0-3. Collective Verification (Self-Verification)
+
+- **Action:** Ground solutions in tests before agents complete a task to prevent cascading hallucinations across the network.
+- **Tool:** Test execution suites and pre-completion checklists.
+- **Tool:** Consensus-seeking protocols or voting mechanisms.
+- **Tool:** Task completion hooks (e.g., `TaskCompleted` exiting with code 2 to prevent completion on failure).
+
+### P0-4. Ralph Loops
+
+- **Action:** Intercept premature model exits to force long-horizon task completion.
+- **Tool:** Ralph Loops (intercepts an exit attempt and reinjects the prompt into a fresh context window).
+- **Tool:** Composable Middleware (e.g., loop detection middleware, reasoning sandwiches).
+
+### P0-5. Multi-Agent Orchestration Logic
+
+- **Action:** Define how agents are spawned, how tasks are handed off, and how workflows are parallelized.
+- **Action:** Avoid multi-agent setups for simple sequential tasks to prevent quadratic coordination overhead.
+- **Tool:** Orchestration Topologies (Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm).
+- **Tool:** Frameworks like LangGraph (conditional routing), CrewAI (role-based), AutoGen (actor model), or OpenAI Swarm.
+
+### P0-6. Rippable Middleware
+
+- **Action:** Structure the harness modularly so obsolete logic can be safely removed ("ripped out") as underlying AI models get smarter natively.
+- **Action:** Use feature flags to toggle middleware components on/off; regularly audit relevance against current model capabilities.
+- **Tool:** Composable middleware layers with independent enable/disable controls.
+
+### P0-7. Escalation Policies
+
+- **Action:** Maintain visibility to trace accountability, debug failures, and handle agents that get permanently stuck.
+- **Action:** Define escalation triggers (N consecutive failures, time limits, loop detection) and route stuck tasks to humans.
+- **Tool:** Strict audit logs recording which agent initiated an action, what data was accessed, and who it influenced.
+- **Tool:** Automated escalation triggers for human intervention.
+- **Tool:** Tiered escalation chains (retry → different agent → human).
+
+### P0-8. Harness Versioning
+
+- **Action:** Version-control all harness configuration (prompts, tools, middleware) to enable reproducibility and comparison.
+- **Action:** Track agent performance metrics per harness version to identify optimal configurations.
+- **Tool:** VCS-tracked harness configuration files.
+- **Tool:** A/B Testing Infrastructure for comparing harness variants.
+
+### P0-9. Smart Command Wrappers
+
+- **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning and repository intent.
+- **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
+- **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
+- **Tool:** Workflow installation scripts that provide localized command definitions.
+
+### P0-MAS. Inter-Agent Communication (The Mailbox) _(MAS Extension)_
+
+- **Action:** Provide a messaging bus for agents to communicate without relying solely on a central supervisor.
+- **Tool:** Direct peer-to-peer messaging functions (`message`).
+- **Tool:** Swarm broadcasting (`broadcast`) and idle notifications.
+- **Tool:** Inter-agent messaging middleware.
+
+---
+
 ## Pillar 1: Context Engineering (Inform)
 
 ### P1-1. Repository as Truth
@@ -126,65 +198,3 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Action:** Auto-update core documentation (e.g., CLAUDE.md system counts), accumulate changelogs, update config files (e.g., HarnessConfig.json), and track issue history as features land and bugs are fixed.
 - **Action:** Prompt for Architectural Decision Record (ADR) creation when new architectural patterns are introduced.
 - **Tool:** Automated consolidation pipelines and background documentation agents.
-
----
-
-## P0 — Foundational Infrastructure (Execute)
-
-### P0-1. Bash Sandboxes
-
-- **Action:** Do not run agent code locally; provision safe, scalable, and isolated execution environments.
-- **Tool:** General-purpose bash execution tools.
-- **Tool:** Sandboxes pre-installed with language runtimes, test runners, CLI tools, and browsers.
-- **Tool:** Visual split-pane terminals (e.g., `tmux` or `iTerm2`) to monitor multiple sandbox environments simultaneously.
-
-### P0-2. Filesystem, Git & File Locking
-
-- **Action:** Use the filesystem as the core collaboration surface and durable storage.
-- **Action:** Implement explicit file locking and task-claiming mechanisms to prevent race conditions when multiple agents try to edit the same file.
-- **Tool:** Git (for versioning, tracking work, and rolling back errors).
-
-### P0-3. Collective Verification (Self-Verification)
-
-- **Action:** Ground solutions in tests before agents complete a task to prevent cascading hallucinations across the network.
-- **Tool:** Test execution suites and pre-completion checklists.
-- **Tool:** Consensus-seeking protocols or voting mechanisms.
-- **Tool:** Task completion hooks (e.g., `TaskCompleted` exiting with code 2 to prevent completion on failure).
-
-### P0-4. Ralph Loops
-
-- **Action:** Intercept premature model exits to force long-horizon task completion.
-- **Tool:** Ralph Loops (intercepts an exit attempt and reinjects the prompt into a fresh context window).
-- **Tool:** Composable Middleware (e.g., loop detection middleware, reasoning sandwiches).
-
-### P0-5. Multi-Agent Orchestration Logic
-
-- **Action:** Define how agents are spawned, how tasks are handed off, and how workflows are parallelized.
-- **Action:** Avoid multi-agent setups for simple sequential tasks to prevent quadratic coordination overhead.
-- **Tool:** Orchestration Topologies (Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm).
-- **Tool:** Frameworks like LangGraph (conditional routing), CrewAI (role-based), AutoGen (actor model), or OpenAI Swarm.
-
-### P0-6. Rippable Middleware & Harness Versioning
-
-- **Action:** Structure the harness modularly so obsolete logic can be safely removed ("ripped out") as underlying AI models get smarter natively.
-- **Tool:** A/B Testing Infrastructure for harness versioning.
-
-### P0-7. Audit Trails & Accountability (Escalation Policies)
-
-- **Action:** Maintain visibility to trace accountability, debug failures, and handle agents that get permanently stuck.
-- **Tool:** Strict audit logs recording which agent initiated an action, what data was accessed, and who it influenced.
-- **Tool:** Automated escalation triggers for human intervention.
-
-### P0-8. Inter-Agent Communication (The Mailbox)
-
-- **Action:** Provide a messaging bus for agents to communicate without relying solely on a central supervisor.
-- **Tool:** Direct peer-to-peer messaging functions (`message`).
-- **Tool:** Swarm broadcasting (`broadcast`) and idle notifications.
-- **Tool:** Inter-agent messaging middleware.
-
-### P0-9. Smart Command Wrappers
-
-- **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning and repository intent.
-- **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
-- **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
-- **Tool:** Workflow installation scripts that provide localized command definitions.
