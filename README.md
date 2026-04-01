@@ -67,7 +67,7 @@ Build logs documenting the creation and optimization of the `harnessing-agents` 
 ## Key Concepts
 
 - **Repository as Truth** — All project knowledge lives in the codebase, not in human heads
-- **Self-Verification Loops** — Agents run tests, read logs, and fix their own mistakes
+- **Self-Verification** — Agents run tests, read logs, and fix their own mistakes
 - **Ralph Loops** — Force agents to complete long-horizon tasks across context windows
 - **Rippable Middleware** — Composable layers that can be removed as models improve
 - **Context Compaction** — Prevent "context rot" by intelligently managing the context window

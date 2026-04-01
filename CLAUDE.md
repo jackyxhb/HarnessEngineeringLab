@@ -17,9 +17,9 @@ All content is organized under this canonical structure. When editing or creatin
 | **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain | Constrain & Protect           |
 | **Pillar 3: Entropy Management**        | Long-term codebase health            | Maintain  | Maintain & Reconcile          |
 
-**Foundation** features (9): Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning, Smart Command Wrappers
+**Foundation** features (9): Bash Sandboxes, Filesystem & Git Workspace, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning, Smart Command Wrappers
 
-**Pillar 1** features (10): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
+**Pillar 1** features (10): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
 
 **Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate
 

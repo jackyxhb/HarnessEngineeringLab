@@ -21,18 +21,18 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 
 ## Pillar 1: Context Engineering (Inform)
 
-| ID   | SAS Feature                   | MAS Upgrade                    | Key Change                                                                      |
-| ---- | ----------------------------- | ------------------------------ | ------------------------------------------------------------------------------- |
-| P1-1 | Repository as Truth           | Shared Repository as Truth     | Becomes a multi-agent shared ledger                                             |
-| P1-2 | Context Compaction            | Distributed Context Compaction | Each agent compacts independently; shared summaries sync via filesystem         |
-| P1-3 | Tool Offloading               | Tool Offloading                | No structural change; per-agent offloading                                      |
-| P1-4 | Progressive Skills            | Progressive Skills             | Loaded per-agent role; specialist skills per topology                           |
-| P1-5 | Observability / Dashboards    | Distributed Observability      | Must track per-agent metrics + cross-agent correlations                         |
-| P1-6 | Web Search & MCP Integration  | Shared Web Search & MCP        | Cached external lookups shared across agents; MCP servers serve the swarm       |
-| P1-7 | Planning & State Files        | Shared Task Lists & Blackboards| Centralized knowledge spaces where agents view statuses and claim work          |
-| P1-8 | Context Anchoring             | Distributed Context Anchoring  | Each agent anchors independently; shared anchor files sync strategic continuity |
-| P1-9 | Branch-Based Cognitive Memory | MAS Parallel Branches          | Parallel agents execute sub-task branches concurrently                          |
-| P1-10| Requirements Ledger           | Shared Requirements Ledger     | Multi-agent synchronized ledger with locking to prevent conflicting entries     |
+| ID    | SAS Feature                   | MAS Upgrade                             | Key Change                                                                      |
+| ----- | ----------------------------- | --------------------------------------- | ------------------------------------------------------------------------------- |
+| P1-1  | Repository as Truth           | Shared Repository as Truth              | Becomes a multi-agent shared ledger                                             |
+| P1-2  | Context Compaction            | Distributed Memory Management           | Each agent compacts independently; shared summaries sync via filesystem         |
+| P1-3  | Tool Offloading               | Tool Offloading                         | No structural change; per-agent offloading                                      |
+| P1-4  | Progressive Skills            | Progressive Skills                      | Loaded per-agent role; specialist skills per topology                           |
+| P1-5  | Observability / Dashboards    | Distributed Observability               | Must track per-agent metrics + cross-agent correlations                         |
+| P1-6  | Web Search & MCP Integration  | Shared Web Search & MCP                 | Cached external lookups shared across agents; MCP servers serve the swarm       |
+| P1-7  | Planning & State Files        | Shared Task Lists & Blackboards         | Centralized knowledge spaces where agents view statuses and claim work          |
+| P1-8  | Context Anchoring             | Context Anchoring (Shared Anchor Files) | Each agent anchors independently; shared anchor files sync strategic continuity |
+| P1-9  | Branch-Based Cognitive Memory | MAS Parallel Branches                   | Parallel agents execute sub-task branches concurrently                          |
+| P1-10 | Requirements Ledger           | Shared Requirements Ledger              | Multi-agent synchronized ledger with locking to prevent conflicting entries     |
 
 ## Pillar 2: Architectural Constraints (Constrain)
 
@@ -42,16 +42,16 @@ How each SAS core feature upgrades when transitioning to a Multi-Agent System.
 | P2-2 | Dependency Enforcement | Dependency Enforcement            | No structural change                                    |
 | P2-3 | AI Auditors            | Diverse Collaboration Channels    | Expands to Competition, Coopetition, Adversarial Debate |
 | P2-4 | Bounded Autonomy       | Bounded Autonomy & Access Control | Inter-agent security boundaries added                   |
-| P2-5 | Upstream Intake Gate   | Distributed Intake Gate           | All agents validate ledger before claiming work         |
+| P2-5 | Upstream Intake Gate   | Distributed Upstream Intake Gate  | All agents validate ledger before claiming work         |
 
 ## Pillar 3: Entropy Management (Maintain)
 
-| ID   | SAS Feature        | MAS Upgrade            | Key Change                                            |
-| ---- | ------------------ | ---------------------- | ----------------------------------------------------- |
-| P3-1 | Scheduled Cleanups | Scheduled Cleanups     | Reconciles overlapping changes from concurrent agents |
-| P3-2 | Documentation Sync | Documentation Sync     | Must handle docs touched by multiple agents           |
-| P3-3 | Pattern Auditing   | Pattern Auditing       | Cross-agent pattern divergence detection              |
-| P3-4 | Consolidation Loop | Consolidation Pipeline | Scales to multi-team changelog aggregation            |
+| ID   | SAS Feature        | MAS Upgrade                          | Key Change                                            |
+| ---- | ------------------ | ------------------------------------ | ----------------------------------------------------- |
+| P3-1 | Scheduled Cleanups | Scheduled Cleanups                   | Reconciles overlapping changes from concurrent agents |
+| P3-2 | Documentation Sync | Documentation Sync                   | Must handle docs touched by multiple agents           |
+| P3-3 | Pattern Auditing   | Pattern Auditing                     | Cross-agent pattern divergence detection              |
+| P3-4 | Consolidation Loop | Documentation Consolidation Pipeline | Scales to multi-team changelog aggregation            |
 
 ---
 

@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 28 core features into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 28 core features (plus the MAS-only P0-MAS extension) into concrete **Actions** and **Tools**.
 
 ## P0 — Foundational Infrastructure (Execute)
 

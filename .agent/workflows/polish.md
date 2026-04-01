@@ -1,5 +1,5 @@
 ---
-description: Inspirate new or weak Harness Engineering features, expand their definitions, and integrate the insights
+description: Inspire new or weak Harness Engineering features, expand their definitions, and integrate the insights
 ---
 
 # /polish — Feature Polishing & Addition Workflow
@@ -9,7 +9,7 @@ Run this workflow when you encounter a new architectural requirement, a powerful
 ## Phase 1: Inspiration & Mapping
 
 1. **Identify the Gap/Insight:** What new behavior or rule is the user proposing?
-2. **Determine Target:** Decide whether to enrich an _existing_ feature (e.g., modifying F2) or create a _new_ core feature (e.g., adding P1-9). Let the user decide if ambiguous.
+2. **Determine Target:** Decide whether to enrich an _existing_ feature (e.g., modifying P0-2) or create a _new_ core feature (e.g., adding P1-9). Let the user decide if ambiguous.
    - _Constraint Rules:_ The framework aims to be bounded. Prefer enriching existing features unless the new concept is distinctly different and occupies a higher architectural level.
 
 ## Phase 2: Execution (Drafting)
@@ -44,7 +44,7 @@ Follow these exact steps to ensure absolutely no file gets missed and the canoni
 Modify the authoritative skill files in `.agent/skills/harnessing-agents/`:
 
 - **`SKILL.md`**: Increment the total feature count. Add the new feature to the routing table if it introduces a new reference file.
-- **`references/features-foundation.md`** or **`references/features-pillars.md`**: Add the new feature's guideline, expectations, and tiered remediation actions under the correct area.
+- **`references/features-foundation.md`**, **`references/features-pillar1.md`**, or **`references/features-pillar2-3.md`**: Add the new feature's guideline, expectations, and tiered remediation actions under the correct area.
 - **`references/quick-checklist.md`**: Add a new checkbox item under the relevant area.
 - **`references/prevention-checklist.md`**: Add a new prevention row under the relevant Pillar describing what failure modes this feature prevents.
 - **`references/dependencies.md`**: Add the feature's downstream dependencies and impact weight.

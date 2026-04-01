@@ -11,7 +11,7 @@ Periodically run this workflow to keep the HarnessEngineeringLab project at a lo
 
 ## Phase 1: Read & Inventory
 
-1. List all files in `framework/`, `research/`, `case-studies/`, and `references/` directories
+1. List all files in `framework/`, `research/`, and `references/` directories
 2. Read every document to build a mental model of the content
 3. Cross-check `README.md` against actual file structure — flag any drift
 

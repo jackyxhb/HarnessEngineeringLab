@@ -467,6 +467,8 @@ Each of the 28 core features is analyzed below with:
 
 **Dependencies:** Feeds Planning & State Files (P1-7) — plans should reference ledger entries. Feeds Context Anchoring (P1-8) — anchors can reference requirement IDs. Enables Upstream Intake Gate (P2-5).
 
+---
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
