@@ -1,6 +1,6 @@
 ---
 name: harnessing-agents
-version: "2.0.0"
+version: "3.0.0"
 description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity.
 user-invocable: true
 allowed-tools:
@@ -32,13 +32,6 @@ Every feature in this skill is assessed through a unified chain:
 
 Each feature reference includes all three steps plus **Remediation Tiers** (Tier 1 = immediate, Tier 2 = optimization).
 
-## Skill Structure
-
-1. **4 Scoping Dimensions:** The high-level pillars of the harness.
-2. **29 Core Features:** Specific, testable capabilities within each dimension, each with a 3-step assessment chain.
-3. **Evaluation Framework (0-5):** Multi-dimensional gap assessment and maturity scoring.
-4. **Automated Remediations:** Executable runbooks to close gaps using integrated filesystem tools (`Glob`, `Grep`, `Read`, `Write`, `Edit`).
-
 ## Context & Action Space Optimization
 
 To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
@@ -60,12 +53,10 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 | **Quick gap scan:** Rapidly assess maturity against the 29 core features | `references/quick-checklist.md` | 5 min |
 | **Full audit:** Run the complete Inspect → Plan → Execute lifecycle | `references/workflow.md` | 30-60 min |
 | **Feature deep dive:** Look up the 3-step chain (What to Do / Don't Do / Options) for any feature | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
-| **Score gaps:** Evaluate individual features across 6 dimensions (0-5) | `references/gap-scoring.md` | 15 min |
-| **Scope an audit:** Understand the evaluation and Scoping dimensions | `references/dimensions.md` | 5 min |
-| **Run Subagents:** Ready-to-use prompts for delegating gap audits | `references/agent-prompts.md` | 2 min |
-| **Cross-cutting analysis:** Apply systemic perspectives (feedback loops, token economics, cascades, MAS readiness, human role) | `references/cross-cutting.md` | 10 min |
-| **Prevention check:** Cross-reference active prevention failures during gap analysis | `references/prevention-checklist.md` | 5 min |
-| **Cascade Analysis:** Map feature dependencies and upstream failures | `references/dependencies.md` | 5 min |
+| **Score & analyze gaps:** 6 evaluation dimensions, priority formula, and 5 cross-cutting perspectives | `references/gap-scoring.md` | 15 min |
+| **Scope an audit:** Calibrate against 4 scoping dimensions before starting | `references/dimensions.md` | 5 min |
+| **Run Subagents:** Ready-to-use prompts for delegating gap audits to parallel agents | `references/agent-prompts.md` | 2 min |
+| **Cascade analysis:** Map feature dependencies and upstream failure chains | `references/dependencies.md` | 5 min |
 
 ## Emphasize Automated Tooling
 

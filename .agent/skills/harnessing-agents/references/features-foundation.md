@@ -1,8 +1,5 @@
 # Feature Chain: P0 — Foundation (Execute)
-
-Each feature follows the assessment chain: **What to Do** (definition) → **Don't Do** (prevention) → **Options** (actions & tools). Use this chain to assess a target project and recommend concrete improvements.
-
----
+Assessment chain: **What to Do** → **Don't Do** → **Options**. See also: `features-pillar1.md` (P1) · `features-pillar2-3.md` (P2–P3).
 
 ## P0-1. Bash Sandboxes
 
@@ -11,7 +8,6 @@ Secure, on-demand execution environments equipped with language runtimes, test r
 
 ### Don't Do
 _(No direct prevention entry — P0-1 is foundational infrastructure. Its absence degrades P0-3 Verification, P1-3 Tool Offloading, and P1-6 MCP Integration.)_
-
 ### Options
 - **Action:** Provision safe, scalable, and isolated execution environments — do not run agent code locally.
 - **Tool:** General-purpose bash execution tools.
@@ -153,7 +149,6 @@ Version-controlling all harness configuration (prompts, tools, middleware) to en
 
 ### Don't Do
 _(No direct prevention entry — P0-8 is a maturity amplifier. Its absence means you cannot track what configuration works best or reproduce agent behavior.)_
-
 ### Options
 - **Action:** Version-control all harness configuration (prompts, tools, middleware) to enable reproducibility.
 - **Action:** Track agent performance metrics per harness version to identify optimal configurations.
