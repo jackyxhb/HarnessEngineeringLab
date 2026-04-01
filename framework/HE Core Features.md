@@ -1,6 +1,6 @@
 # HE Core Features
 
-The canonical 29 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
+The canonical 30 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
 
 ## Foundational Infrastructure (Execute)
 
@@ -33,6 +33,7 @@ _The largest pillar. Encompasses everything related to managing what the model s
 - **P1-8. Context Anchoring:** Syncing critical decision points (what, why, target, background) to persistent memory files so agents recall long-term goals and strategy even across context window resets. Anchor files serve as shared strategic alignment records across all agents.
 - **P1-9. Branch-Based Cognitive Memory:** Splitting complex objectives into subtasks across concurrent branches, using merges and structured commit messages as functional memory checkpoints. Parallel agents execute sub-task branches concurrently.
 - **P1-10. Requirements Ledger:** Capturing all incoming user stories, requirements, and functional scenario narratives into a single unified ledger document before any planning or execution begins. All agents read from and write to the same ledger, with file locking to prevent conflicting entries.
+- **P1-11. Socratic Questioning:** Applying structured Socratic questioning to extract complete, unambiguous information before execution begins. When confronting unclear inputs — statements, requirements, tasks, or problems — the agent pauses and systematically interrogates using six question categories (Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, Questions about the Question) until all ambiguities are resolved. The goal is cooperative discovery to reach complete clarity before committing to a plan. In MAS, specialized interrogator agents probe different dimensions in parallel before merging a consensus clarifications document.
 
 ---
 

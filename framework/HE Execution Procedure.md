@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 29 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 30 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 
@@ -43,7 +43,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** Append to `HE-SCOPE.md`:
 
-- Quick-Start checklist results (22 items)
+- Quick-Start checklist results (23 items)
 - Current maturity level
 - Target maturity level (user to confirm)
 
@@ -98,6 +98,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 8. Check for **Context Anchoring** (P1-8): Persistent decision records (what, why, target, background)? Recall hooks at session start?
 9. Check for **Branch-Based Cognitive Memory** (P1-9): Concurrent task branches? Structured commit boundaries acting as memory?
 10. Check for **Requirements Ledger** (P1-10): A unified requirements file (e.g., `REQUIREMENTS.md`)? Are user stories and scenarios recorded before planning?
+11. Check for **Socratic Questioning** (P1-11): Is there a documented pre-execution ambiguity interrogation pass? Are clarifications recorded in the ledger or anchors before planning?
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
@@ -487,7 +488,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 29 features → Actions/Tools tree.
+1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 30 features → Actions/Tools tree.
 2. **Agent Scale:** Task 0.1 classifies the scale. Multi-agent scaling checks are integrated into Phase 1 tasks. Phase 2 includes a scaling readiness perspective.
 3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.

@@ -189,3 +189,26 @@ Capturing all incoming user stories, requirements, and functional scenario narra
 ### Remediation Tiers
 - [Tier 1] Create a `REQUIREMENTS.md` with structured entries in the project root.
 - [Tier 2] Add pre-planning validation hooks that check the ledger before plan/execute.
+
+---
+
+## P1-11. Socratic Questioning
+
+### What to Do
+Applying structured Socratic questioning to extract complete, unambiguous information before execution begins. When confronting unclear statements, requirements, tasks, or problems, the agent must pause and systematically interrogate the input using six question categories — Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, and Questions about the Question — until all ambiguities are resolved. The goal is cooperative discovery — not debate — to reach complete clarity before committing to a plan or execution path. In MAS, Socratic rounds can be distributed across specialized interrogator agents that probe different dimensions in parallel before merging a consensus clarifications document.
+
+### Don't Do
+**Prevent Execution on Ambiguous Inputs:** You must prevent agents from beginning planning or execution while critical ambiguities remain unresolved. Agents that accept unclear inputs and "make assumptions" silently accumulate hidden errors that compound catastrophically downstream.
+
+**Prevent Silent Assumption Stacking:** You must prevent agents from filling in unstated details with silent assumptions rather than surfacing them for resolution. Each unchallenged assumption is a hidden risk that can invalidate entire execution chains.
+
+### Options
+- **Action:** When encountering an unclear input, pause execution and apply a structured Socratic interrogation pass before proceeding.
+- **Action:** Probe the input using all six question categories systematically: Clarification ("What do you mean by…?"), Probing Assumptions ("What are you assuming here?"), Probing Reason & Evidence ("What evidence supports this?"), Questioning Viewpoints ("What would someone who disagrees say?"), Probing Implications ("If this is true, what else must be true?"), and Questions about the Question ("Why is this question important?").
+- **Action:** Record extracted clarifications as structured entries in the Requirements Ledger (P1-10) or as Context Anchors (P1-8) before proceeding.
+- **Tool:** Structured interrogation templates covering the 6 Socratic question types, injected into agent context at task intake.
+- **Tool:** Ambiguity scoring heuristics — rate input clarity before and after the Socratic round; do not proceed if score remains below threshold.
+
+### Remediation Tiers
+- [Tier 1] Define a mandatory pre-execution ambiguity check: before any planning step, explicitly list all assumptions and surface them as questions.
+- [Tier 2] Implement a Socratic interrogation template with all 6 question categories, added to intake meta-docs and planning workflows.

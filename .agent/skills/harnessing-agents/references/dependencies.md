@@ -16,6 +16,7 @@ When a Foundation or Pillar feature breaks, calculate how many explicitly depend
 | `P1-1` | Repository as Truth | `P2-2` (Dependencies), `P2-3` (AI Auditors & Collaboration Channels), `P1-8` (Anchoring) | 3 |
 | `P1-7` | Planning, Task Lists & Blackboards | `P0-4` (Ralph Loops), `P1-4` (Progressive Skills) | 2 |
 | `P1-10` | Requirements Ledger | `P2-5` (Upstream Intake Gate), `P1-7` (Planning, Task Lists & Blackboards) | 2 |
+| `P1-11` | Socratic Questioning | `P1-10` (Requirements Ledger), `P1-8` (Context Anchoring), `P1-7` (Planning, Task Lists & Blackboards) | 3 |
 | `P2-1` | Automated Linters | `P3-3` (Pattern Auditing) | 1 |
 | `P2-4` | Bounded Autonomy & Access Control | `P0-7` (Escalation) | 1 |
 | `P2-5` | Upstream Intake Gate | *(none — leaf constraint)* | 1 |

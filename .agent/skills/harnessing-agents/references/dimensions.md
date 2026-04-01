@@ -4,7 +4,7 @@
 
 These four dimensions define the scope and complexity of the entire harness audit:
 
-1. **Feature Tree:** Systematically walking the 4 core areas → 29 features → Actions/Tools tree.
+1. **Feature Tree:** Systematically walking the 4 core areas → 30 features → Actions/Tools tree.
 2. **Agent Scale:** Determining if the system is a single agent (SAS), small team (2–5 agents), or enterprise swarm (MAS). MAS-specific checks and SAS→MAS Readiness perspectives apply heavily depending on this scope.
 3. **Project Complexity:** Categorizing the target project as pure text/docs, scripted ops, simple app, complex system, or enterprise platform to adapt the depth of the audit.
 4. **Remediation Level:** Classifying execution strategies as Light (meta-docs), Medium (features), or Heavy (architecture) when formulating the implementation plan.

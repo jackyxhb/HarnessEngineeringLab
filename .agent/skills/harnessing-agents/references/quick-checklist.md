@@ -25,6 +25,7 @@ For teams that want a rapid gap scan without full dimension scoring. Check exist
 - [ ] `P1-8` Context Anchoring: Critical decisions are recorded to persistent memory files
 - [ ] `P1-9` Branch-Based Memory: Objectives are decomposed into concurrent branches with commit memory
 - [ ] `P1-10` Requirements Ledger: All user stories and requirements are recorded in a unified ledger before planning
+- [ ] `P1-11` Socratic Questioning: All unclear inputs are interrogated via structured Socratic questioning before planning or execution begins
 
 ### Pillar 2 (Constrain) — Is the agent mechanically prevented from bad output?
 - [ ] `P2-1` Automated Linters: Pre-commit hooks reject style and type violations mechanically

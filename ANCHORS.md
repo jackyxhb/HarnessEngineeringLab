@@ -61,13 +61,13 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
 - **Date:** 2026-03-16
 
-### A6: 29-Feature Canonical Count
+### A6: 30-Feature Canonical Count
 
-- **What:** Fixed the canonical feature count of the framework at exactly 29 core features: Foundation (10), Pillar 1 (10), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-10, P1-10, P2-5). The former P0-MAS is now P0-10.
+- **What:** Fixed the canonical feature count of the framework at exactly 30 core features: Foundation (10), Pillar 1 (11), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-10, P1-11, P2-5). P1-11 (Socratic Questioning) was added to enforce structured ambiguity resolution before execution.
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
-- **Background:** Expanded from 28 to 29 after integrating P0-MAS (Inter-Agent Communication) as a first-class feature P0-10 during the SAS/MAS unification.
-- **Date:** 2026-04-01
+- **Background:** Expanded from 29 to 30 after integrating P1-11 (Socratic Questioning) as a first-class Pillar 1 feature to enforce pre-execution ambiguity extraction via the six Socratic question categories.
+- **Date:** 2026-04-02
 
 ### A7: Reward Engineering as Cross-Cutting
 

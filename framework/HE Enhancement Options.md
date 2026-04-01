@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 29 core features into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 30 core features into concrete **Actions** and **Tools**.
 
 ## P0 — Foundational Infrastructure (Execute)
 
@@ -136,6 +136,14 @@ When implementing or upgrading a harness, use these options to translate the 29 
 - **Action:** Each entry should capture: ID, title, narrative/scenario, acceptance criteria, status (recorded/planned/executed), and source (who/when).
 - **Tool:** Canonical requirements file (e.g., `REQUIREMENTS.md`, `BACKLOG.md`) in the project root.
 - **Tool:** Pre-planning validation hooks that check the ledger before plan/execute workflows proceed.
+
+### P1-11. Socratic Questioning
+
+- **Action:** When encountering an unclear or ambiguous input, pause execution and apply a structured Socratic interrogation pass before proceeding.
+- **Action:** Probe the input using all six question categories: Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, and Questions about the Question.
+- **Action:** Record extracted clarifications as structured entries in the Requirements Ledger (P1-10) or as Context Anchors (P1-8) before proceeding to planning.
+- **Tool:** Structured interrogation templates covering the 6 Socratic question types, injected into agent context at task intake.
+- **Tool:** Ambiguity scoring heuristics — rate input clarity before and after the Socratic round; do not proceed if clarity score remains below threshold.
 
 ---
 

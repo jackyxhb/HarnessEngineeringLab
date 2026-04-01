@@ -36,7 +36,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 29 core features is analyzed below with:
+Each of the 30 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -537,6 +537,33 @@ Each of the 29 core features is analyzed below with:
 
 ---
 
+#### P1-11. Socratic Questioning
+
+**Gap Signals:**
+
+- Agent starts coding immediately from unclear or ambiguous input without surfacing assumptions
+- Requirements contain multiple valid interpretations and only one is silently chosen by the agent
+- Post-execution rework reveals "I assumed you meant…" situations
+- Agent output diverges significantly from user intent with no documented clarification pass
+- No record of resolved ambiguities, extracted clarifications, or interrogation questions in the project
+- Hidden assumptions compound across planning steps, multiplying downstream errors
+
+**Improvement Policies:**
+
+```json
+[
+  { "tier": 1, "action": "Define a mandatory pre-execution ambiguity check: list all assumptions explicitly and surface them as questions before planning", "dimensions": ["Maturity", "Risk"] },
+  { "tier": 1, "action": "Apply the 6 Socratic question categories (Clarification, Assumptions, Evidence, Viewpoints, Implications, Meta-questions) to all ambiguous inputs", "dimensions": ["Effectiveness"] },
+  { "tier": 2, "action": "Inject Socratic interrogation templates into agent intake meta-docs (e.g., CLAUDE.md, AGENTS.md) so all agents apply them automatically", "dimensions": ["Effectiveness", "Scalability"] },
+  { "tier": 2, "action": "Record resolved clarifications as ledger entries (P1-10) or anchor records (P1-8) before planning proceeds", "dimensions": ["Maturity", "Risk"] },
+  { "tier": 3, "action": "In MAS, distribute question categories to specialized interrogator agents operating in parallel to minimize latency", "dimensions": ["Scalability", "Cost"] }
+]
+```
+
+**Dependencies:** Feeds Requirements Ledger (P1-10) — extracted clarifications become formal ledger entries. Feeds Context Anchoring (P1-8) — resolved ambiguities are recorded as decision anchors. Complements Upstream Intake Gate (P2-5) — the Socratic round is the intake qualification step. Enhances Planning, Task Lists & Blackboards (P1-7) — clearer inputs produce better plans and fewer mid-execution pivots.
+
+---
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
@@ -860,7 +887,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 29 features, score across all 6 dimensions (0-5). This produces a 29×6 matrix.
+For each of the 30 features, score across all 6 dimensions (0-5). This produces a 30×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 
@@ -921,6 +948,7 @@ For teams that want to start immediately without full scoring, use this rapid as
 - [ ] Critical decisions are recorded to persistent memory files (what, why, target, background)
 - [ ] Complex objectives are decomposed into concurrent branches with structured commit memory
 - [ ] All user stories and requirements are recorded in a unified ledger before planning
+- [ ] All unclear inputs are interrogated via Socratic questioning (Clarification, Assumptions, Evidence, Viewpoints, Implications, Meta-questions) before execution begins
 
 **Pillar 2 — Is the agent mechanically prevented from bad output?**
 

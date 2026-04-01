@@ -29,7 +29,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `framework/` — **Canonical source of truth.** Core framework definitions (29 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
+- `framework/` — **Canonical source of truth.** Core framework definitions (30 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
 - `builder/` — Build logs for the `harnessing-agents` skill optimization.
@@ -92,5 +92,5 @@ To prevent strategic drift across context window resets, agents rely on **Anchor
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content.
 - **Consistency rule:** `framework/` is the single source of truth. Never contradict it in `research/` or other directories.
 - **Gap evaluation:** Use `framework/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
-- **Unified features:** All 29 features are defined once in `HE Core Features.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents.
+- **Unified features:** All 30 features are defined once in `HE Core Features.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages.
