@@ -1,8 +1,8 @@
 # HE Prevention Checklist
 
-What must be prevented in AI Agent Harness and Multi-Agent System (MAS) to ensure secure, efficient, and accurate operation.
+What must be prevented in AI Agent Harness Engineering to ensure secure, efficient, and accurate operation.
 
-Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `Core Features for SAS.md` | `ANCHORS.md`):
+Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `HE Core Features.md` | `ANCHORS.md`):
 
 ## Foundation: Prevent Coordination and Execution Failures (Execute)
 

@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 28 core features (plus the MAS-only P0-MAS extension) into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 29 core features into concrete **Actions** and **Tools**.
 
 ## P0 — Foundational Infrastructure (Execute)
 
@@ -17,7 +17,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Action:** Implement explicit file locking and task-claiming mechanisms to prevent race conditions when multiple agents try to edit the same file.
 - **Tool:** Git (for versioning, tracking work, and rolling back errors).
 
-### P0-3. Collective Verification (Self-Verification)
+### P0-3. Verification (Self & Collective)
 
 - **Action:** Ground solutions in tests before agents complete a task to prevent cascading hallucinations across the network.
 - **Tool:** Test execution suites and pre-completion checklists.
@@ -30,7 +30,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Tool:** Ralph Loops (intercepts an exit attempt and reinjects the prompt into a fresh context window).
 - **Tool:** Composable Middleware (e.g., loop detection middleware, reasoning sandwiches).
 
-### P0-5. Multi-Agent Orchestration Logic
+### P0-5. Orchestration Logic
 
 - **Action:** Define how agents are spawned, how tasks are handed off, and how workflows are parallelized.
 - **Action:** Avoid multi-agent setups for simple sequential tasks to prevent quadratic coordination overhead.
@@ -65,7 +65,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
 - **Tool:** Workflow installation scripts that provide localized command definitions.
 
-### P0-MAS. Inter-Agent Communication (The Mailbox) _(MAS Extension)_
+### P0-10. Inter-Agent Communication (The Mailbox)
 
 - **Action:** Provide a messaging bus for agents to communicate without relying solely on a central supervisor.
 - **Tool:** Direct peer-to-peer messaging functions (`message`).
@@ -82,7 +82,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Action:** Cross-link design documents to ensure the model isn't blind to human knowledge.
 - **Tool:** Localized memory files like `AGENTS.md`, `CLAUDE.md`, or `.cursorrules`.
 
-### P1-2. Distributed Memory Management (Context Compaction)
+### P1-2. Context Compaction & Memory Management
 
 - **Action:** Actively manage "context rot" by intelligently summarizing and separating short-term memory (session history) from long-term memory.
 - **Tool:** Vector Databases to index past interactions and retrieved documents for long-term memory retrieval.
@@ -110,7 +110,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Tool:** Web Search tools.
 - **Tool:** Model Context Protocol (MCP) servers (e.g., Context7).
 
-### P1-7. Shared Task Lists & Blackboards (Planning)
+### P1-7. Planning, Task Lists & Blackboards
 
 - **Action:** Maintain a shared task list where agents can autonomously view statuses, claim unassigned work, and build upon partial solutions.
 - **Action:** Store plan files and inject reminders so agents can decompose goals and stay on track.
@@ -152,7 +152,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Action:** Mechanically restrict which architectural layers an agent can import from or modify.
 - **Tool:** Structural testing frameworks (e.g., ArchUnit).
 
-### P2-3. Diverse Collaboration Channels (AI Auditors)
+### P2-3. AI Auditors & Collaboration Channels
 
 - **Action:** Deploy secondary LLM-based agents to review the primary agent's output for compliance and security.
 - **Action:** Structure interactions to actively prevent anchoring bias.
@@ -193,7 +193,7 @@ When implementing or upgrading a harness, use these options to translate the 28 
 - **Action:** Run system sweeps to ensure long-term codebase health as AI generates high volumes of code.
 - **Tool:** Pattern enforcement and dependency auditing agents configured to hunt down dead code and circular dependencies.
 
-### P3-4. Documentation Consolidation Pipeline (Consolidation Loop)
+### P3-4. Consolidation Loop
 
 - **Action:** Auto-update core documentation (e.g., CLAUDE.md system counts), accumulate changelogs, update config files (e.g., HarnessConfig.json), and track issue history as features land and bugs are fixed.
 - **Action:** Prompt for Architectural Decision Record (ADR) creation when new architectural patterns are introduced.

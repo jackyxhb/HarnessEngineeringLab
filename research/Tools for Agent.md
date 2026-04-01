@@ -1,12 +1,12 @@
 # Tools for Agentic Software Engineering
 
-> _Canonical framework: `framework/Core Features for SAS.md` | Enhancement options: `framework/HE Enhancement Options.md`_
+> _Canonical framework: `framework/HE Core Features.md` | Enhancement options: `framework/HE Enhancement Options.md`_
 
 ## Execution Engines and Orchestration Frameworks (The MAS Backbone)
 
 These frameworks provide the foundational infrastructure for spawning, routing, and managing multi-agent teams or structured Single-Agent System (SAS) workflows.
 
-- **Claude Code Agent Teams:** A terminal-based framework that spins up autonomous teammates communicating peer-to-peer. It utilizes a shared task list, an inter-agent mailbox (P0-MAS), and split-pane terminal displays (via `tmux` or `iTerm2`) to manage independent context windows and avoid file conflicts.
+- **Claude Code Agent Teams:** A terminal-based framework that spins up autonomous teammates communicating peer-to-peer. It utilizes a shared task list, an inter-agent mailbox (P0-10), and split-pane terminal displays (via `tmux` or `iTerm2`) to manage independent context windows and avoid file conflicts.
 - **Microsoft Agent Framework (and Magentic-One):** A generalist MAS that acts as the successor to AutoGen and Semantic Kernel. It features graph-based workflows, type-safe routing, session-based state management, and a central Orchestrator agent that delegates tasks while tracking progress and handling error recovery.
 - **OpenAI Swarm:** An educational, lightweight orchestration framework designed for ergonomic control. It runs statelessly on the client, managing agent execution through simple routines and agent-to-agent "handoffs".
 - **IBM Bee Agent Framework:** An open-source, modular framework that supports scalable multi-agent workflows. Its key harness feature is the ability to serialize agent states, allowing the system to pause and resume complex, long-running tasks without data loss.

@@ -1,6 +1,6 @@
 # Critical enhancements when multi-agent system
 
-> _Canonical framework: `framework/Core Features for MAS.md` | SAS base: `framework/Core Features for SAS.md`_
+> _Canonical framework: `framework/HE Core Features.md`_
 
 When transitioning from single-agent setups to Multi-Agent Systems (MAS), the harness framework requires significant upgrades. While highly effective for managing a single model, deploying a "swarm" or network of agents introduces complex challenges such as quadratic coordination overhead, race conditions, cascading hallucinations, and decentralized liability.
 
@@ -9,7 +9,7 @@ Here are the critical considerations that need improvement in the framework to p
 ## 1. Foundational Infrastructure: Upgrading the Engine
 
 - **Concurrency Control and File Locking (P0-2):** In the current framework, the _Filesystem & Git Workspace_ acts as a shared ledger. However, when multiple agents work in parallel, they can easily overwrite each other's code, leading to file conflicts. The harness must introduce explicit **file locking** and task-claiming mechanisms to prevent race conditions when teammates try to execute the same task simultaneously.
-- **Inter-Agent Communication Protocols (P0-MAS — The Mailbox):** Beyond reading and writing to a shared filesystem, multi-agent systems require a dedicated messaging bus. The harness needs a "Mailbox" system that supports distinct communication strategies, such as direct peer-to-peer (P2P) messaging, broadcasting, and idle notifications.
+- **Inter-Agent Communication Protocols (P0-10 — The Mailbox):** Beyond reading and writing to a shared filesystem, multi-agent systems require a dedicated messaging bus. The harness needs a "Mailbox" system that supports distinct communication strategies, such as direct peer-to-peer (P2P) messaging, broadcasting, and idle notifications.
 - **Dynamic Topology & Overhead Optimization (P0-5):** The _Orchestration Logic_ must become much smarter about _when_ to use multiple agents. Research shows that while MAS improves parallel tasks, multi-agent coordination actually **degrades performance by 39% to 70% on sequential reasoning tasks** because communication overhead fragments continuous thought. The harness needs routing logic that dynamically assesses task topology (parallel vs. sequential) and tool density to prevent quadratic communication overhead.
 - **Collective Verification (P0-3 — upgrading Self-Verification):** In MAS, an error made by one agent can lead to "cascading hallucinations" where downstream agents build upon corrupted data. The harness needs mechanisms like consensus-seeking protocols, where multiple agents must vote or agree on a partial solution before it is committed to the shared _State File_ or _Blackboard_.
 - **Decentralized Accountability & Audit Trails (P0-7 — upgrading Escalation Policies):** When an autonomous swarm produces an output or exhibits unexpected "emergent behaviors", it becomes incredibly difficult to trace how the decision was made. The harness must maintain strict **Audit Trails** that log exactly which agent initiated an action, what data they accessed, and how they influenced peer agents. This is critical for regulatory compliance and resolving the ethical dilemma of "who is liable" when a multi-agent system fails.

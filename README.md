@@ -40,13 +40,11 @@ Original source articles that form the foundation of this research, including Op
 
 ### `framework/`
 
-The canonical framework definitions and operational guides (28 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides (29 core features across 3 pillars + 1 foundation):
 
-- **Core Features for SAS.md** — Framework applied to Single Agent Systems
-- **Core Features for MAS.md** — Framework adapted for Multi-Agent Systems
-- **SAS to MAS Feature Mapping.md** — Feature-by-feature upgrade path from SAS to MAS
+- **HE Core Features.md** — The 29 canonical features of Harness Engineering
 - **HE Prevention Checklist.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
-- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
+- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4, plus P0-10)
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 - **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
 
@@ -76,15 +74,15 @@ Build logs documenting the creation and optimization of the `harnessing-agents` 
 - **Reward Engineering** — Design reward signals that align agent output with real-world value
 - **Boring Technologies** — Mainstream, well-documented tools that agents model accurately
 
-## SAS vs MAS
+## Scaling: Single to Multi-Agent
 
-The framework scales from single to multi-agent systems. Key MAS additions include:
+The framework scales naturally from a single agent to multi-agent systems. All 29 features are defined once and describe their multi-agent behavior inline. Key multi-agent capabilities include:
 
-- **Inter-Agent Communication** — Messaging bus for P2P, broadcast, and idle notifications
-- **File Locking** — Prevent race conditions when multiple agents share a workspace
-- **Collective Verification** — Consensus protocols to prevent cascading hallucinations
-- **Bounded Autonomy** — Access controls to contain compromised agents
-- **Diverse Collaboration** — Competition and coopetition beyond simple cooperation
+- **Inter-Agent Communication (P0-10)** — Messaging bus for P2P, broadcast, and idle notifications
+- **File Locking (P0-2)** — Prevents race conditions when multiple agents share a workspace
+- **Collective Verification (P0-3)** — Consensus protocols to prevent cascading hallucinations
+- **Bounded Autonomy & Access Control (P2-4)** — Contains compromised agents
+- **AI Auditors & Collaboration Channels (P2-3)** — Competition and coopetition beyond simple cooperation
 
 ## Maturity Levels
 

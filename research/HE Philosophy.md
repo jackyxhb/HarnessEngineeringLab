@@ -1,6 +1,6 @@
 # Harness Engineering (HE) Core Philosophy
 
-> _Canonical framework: `framework/Core Features for SAS.md` | MAS extension: `framework/Core Features for MAS.md`_
+> _Canonical framework: `framework/HE Core Features.md`_
 
 Harness Engineering is an AI-first development methodology where humans design environments and agents write the code. It represents an extreme application of "shift-left" where software discipline moves completely from the code level into the repository's scaffolding.
 

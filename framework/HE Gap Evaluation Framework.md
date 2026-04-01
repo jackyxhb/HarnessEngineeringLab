@@ -32,7 +32,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 28 core features is analyzed below with:
+Each of the 29 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -152,7 +152,7 @@ Each of the 28 core features is analyzed below with:
 | 3    | Support dynamic topology switching (supervisor ↔ peer-to-peer ↔ swarm) | Scalability         |
 | 3    | Implement overhead monitoring to detect coordination degradation       | Cost                |
 
-**Dependencies:** Requires Inter-Agent Communication (P0-MAS) for MAS topologies. Enables all multi-agent workflows.
+**Dependencies:** Requires Inter-Agent Communication (P0-10) for MAS topologies. Enables all multi-agent workflows.
 
 ---
 
@@ -243,7 +243,7 @@ Each of the 28 core features is analyzed below with:
 
 ---
 
-#### P0-MAS. Inter-Agent Communication (The Mailbox)
+#### P0-10. Inter-Agent Communication (The Mailbox)
 
 **Gap Signals:**
 
@@ -263,7 +263,7 @@ Each of the 28 core features is analyzed below with:
 | 2    | Implement message acknowledgment and delivery guarantees                          | Risk                |
 | 3    | Build adaptive routing that selects communication strategy based on topology      | Scalability, Cost   |
 
-**Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Shared Task Lists & Blackboards (P1-7) for task claiming. MAS-only feature — not applicable to SAS.
+**Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Shared Task Lists & Blackboards (P1-7) for task claiming.
 
 ---
 
@@ -783,7 +783,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 28 features, score across all 6 dimensions (0-5). This produces a 28×6 matrix.
+For each of the 29 features, score across all 6 dimensions (0-5). This produces a 29×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 

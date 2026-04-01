@@ -104,11 +104,11 @@ All skill content must align to this canonical structure from `framework/`:
 | **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-5: Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate |
 | **P3: Entropy Management** | Long-term codebase health | P3-1 to P3-4: Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop |
 
-**28 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
+**29 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
 
 ### Feature Specification Format
 
-Each of the 28 features must include:
+Each of the 29 features must include:
 
 - **Feature ID** and name
 - **Gap signals** — observable indicators that this feature is missing or weak
@@ -132,7 +132,7 @@ Every audit and every build must be scoped across all four dimensions:
 
 | Dimension | Options | Effect on Build |
 | --- | --- | --- |
-| **Feature Tree** | Which of 28 features: Present-Effective, Present-Weak, Absent-Do, Absent-Don't | Determines content coverage |
+| **Feature Tree** | Which of 29 features: Present-Effective, Present-Weak, Absent-Do, Absent-Don't | Determines content coverage |
 | **Agent Scale** | SAS · Small Group (2–5) · Enterprise · Scaled-Swarm | Determines MAS depth |
 | **Project Complexity** | Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise | Determines tier ceiling |
 | **Remediation Level** | Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture) | Determines action intensity |
@@ -235,7 +235,7 @@ Independent tasks — execute in parallel when possible:
 - **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
 - **2c. Quick checklist** — Extract `quick-checklist.md` as 28-item yes/no fast scan (one per feature) with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
-- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 28 features.
+- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 29 features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
 - **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
 - **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
@@ -264,7 +264,7 @@ Run all verification criteria — build fails if any check fails:
 | Stale references | `grep` for deleted/renamed filenames | Zero hits |
 | Terminology consistency | `grep` for known conflict terms | Each term has exactly one meaning |
 | Cross-reference completeness | All file pairs checked | Zero dangling refs |
-| Feature coverage | Count unique feature IDs across all files | 28 features covered |
+| Feature coverage | Count unique feature IDs across all files | 29 features covered |
 | Framework alignment | Diff skill content against `framework/` | Zero contradictions |
 
 ### Phase 5 — Critical Deployment Process (Places)
@@ -369,9 +369,8 @@ Use `dependencies.md` to determine implementation order:
 ## Source of Truth
 
 - `framework/` in this workspace is the **canonical source**. Never contradict it.
-- Read `framework/Core Features for SAS.md` and `framework/Core Features for MAS.md` as primary inputs.
+- Read `framework/HE Core Features.md` as the primary input.
 - Read `framework/HE Gap Evaluation Framework.md` for scoring methodology.
 - Read `framework/HE Enhancement Options.md` for improvement policies.
-- Read `framework/SAS to MAS Feature Mapping.md` for scale evolution.
 - Read `framework/HE Prevention Checklist.md` for failure prevention signals.
 - Cross-validate all built content against these sources before finalizing.

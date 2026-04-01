@@ -9,8 +9,7 @@ This workflow processes each document in the `research/` folder one by one, comp
 ## Prerequisites
 
 1. Read the framework source-of-truth documents:
-   - `framework/Core Features for SAS.md` — the canonical **3-Pillar + 1-Foundation** framework for Single Agent Systems
-   - `framework/Core Features for MAS.md` — the canonical framework for Multi-Agent Systems
+   - `framework/HE Core Features.md` — the canonical **3-Pillar + 1-Foundation** framework
 
 2. Internalise the canonical structure before processing any comments:
    - **Foundation:** Foundational Infrastructure (SAS: "Verify & Correct" / MAS: "Execute, Orchestrate & Verify")
