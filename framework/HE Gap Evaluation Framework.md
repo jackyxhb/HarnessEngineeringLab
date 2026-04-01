@@ -60,11 +60,11 @@ Each of the 29 core features is analyzed below with:
 | 2    | Enable visual monitoring of sandbox state (tmux, split-pane terminals)       | Human Role          |
 | 3    | Auto-scale sandbox pools based on concurrent agent demand                    | Scalability, Cost   |
 
-**Dependencies:** Required by Self-Verification (P0-3), Orchestration Logic (P0-5). Blocking if absent.
+**Dependencies:** Required by Verification (P0-3), Orchestration Logic (P0-5). Blocking if absent.
 
 ---
 
-#### P0-2. Filesystem & Git Workspace
+#### P0-2. Filesystem, Git & File Locking
 
 **Gap Signals:**
 
@@ -83,11 +83,11 @@ Each of the 29 core features is analyzed below with:
 | 2    | Build rollback automation (auto-revert on test failure)                | Effectiveness       |
 | 3    | Implement conflict resolution agents for concurrent edits              | Scalability         |
 
-**Dependencies:** Foundation for all other features. Planning & State Files (P1-7) and Scheduled Cleanups (P3-1) depend on this.
+**Dependencies:** Foundation for all other features. Planning, Task Lists & Blackboards (P1-7) and Scheduled Cleanups (P3-1) depend on this.
 
 ---
 
-#### P0-3. Self-Verification
+#### P0-3. Verification (Self & Collective)
 
 **Gap Signals:**
 
@@ -106,7 +106,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Upgrade to collective verification (consensus voting) for MAS                | Scalability             |
 | 3    | Implement verification metrics (pass rate, fix iterations) for observability | Human Role              |
 
-**Dependencies:** Requires Bash Sandboxes (P0-1). Enables Escalation Policies (P0-7) — escalation triggers when self-verification fails repeatedly.
+**Dependencies:** Requires Bash Sandboxes (P0-1). Enables Escalation Policies & Audit Trails (P0-7) — escalation triggers when self-verification fails repeatedly.
 
 ---
 
@@ -129,7 +129,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Track loop metrics (reinjection count, completion rate)                | Effectiveness       |
 | 3    | Combine with Planning & State Files for cross-window goal persistence  | Scalability         |
 
-**Dependencies:** Requires Planning & State Files (P1-7) for state persistence across reinjections. Interacts with Escalation Policies (P0-7) for max-retry limits.
+**Dependencies:** Requires Planning, Task Lists & Blackboards (P1-7) for state persistence across reinjections. Interacts with Escalation Policies & Audit Trails (P0-7) for max-retry limits.
 
 ---
 
@@ -178,7 +178,7 @@ Each of the 29 core features is analyzed below with:
 
 ---
 
-#### P0-7. Escalation Policies
+#### P0-7. Escalation Policies & Audit Trails
 
 **Gap Signals:**
 
@@ -196,7 +196,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement tiered escalation (retry → different agent → human)                         | Scalability         |
 | 3    | Add escalation analytics to identify systemic failure patterns                        | Human Role          |
 
-**Dependencies:** Requires Self-Verification (P0-3) to detect failure. Requires Observability (P1-5) for monitoring.
+**Dependencies:** Requires Verification (P0-3) to detect failure. Requires Observability (P1-5) for monitoring.
 
 ---
 
@@ -239,7 +239,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Integrate agent reasoning into wrappers (auto-generating comments/release notes) | Effectiveness       |
 | 3    | Build automated workflow validation (ensuring wrappers are used over raw CLI)    | Scalability         |
 
-**Dependencies:** Requires Filesystem & Git Workspace (P0-2). Enables Consistent Entropy Management (P3).
+**Dependencies:** Requires Filesystem, Git & File Locking (P0-2). Enables Consistent Entropy Management (P3).
 
 ---
 
@@ -263,7 +263,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement message acknowledgment and delivery guarantees                          | Risk                |
 | 3    | Build adaptive routing that selects communication strategy based on topology      | Scalability, Cost   |
 
-**Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Shared Task Lists & Blackboards (P1-7) for task claiming.
+**Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Planning, Task Lists & Blackboards (P1-7) for task claiming.
 
 ---
 
@@ -292,7 +292,7 @@ Each of the 29 core features is analyzed below with:
 
 ---
 
-#### P1-2. Context Compaction
+#### P1-2. Context Compaction & Memory Management
 
 **Gap Signals:**
 
@@ -375,7 +375,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement agent performance metrics (completion rate, fix iterations, token usage) | Cost                |
 | 3    | Build anomaly detection on agent behavior patterns                                 | Scalability, Risk   |
 
-**Dependencies:** Required by Escalation Policies (P0-7), Harness Versioning (P0-8). Enables data-driven harness improvement.
+**Dependencies:** Required by Escalation Policies & Audit Trails (P0-7), Harness Versioning (P0-8). Enables data-driven harness improvement.
 
 ---
 
@@ -400,7 +400,7 @@ Each of the 29 core features is analyzed below with:
 
 ---
 
-#### P1-7. Planning & State Files
+#### P1-7. Planning, Task Lists & Blackboards
 
 **Gap Signals:**
 
@@ -443,7 +443,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement shared anchor files accessible to all agents in MAS setups                              | Scalability                |
 | 3    | Add anchor quality metrics (staleness detection, relevance scoring)                               | Human Role                 |
 
-**Dependencies:** Complements Planning & State Files (P1-7) — plans track _what to do next_, anchors track _why we're doing it_. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (P0-4) — reinjected contexts need anchors for strategic continuity.
+**Dependencies:** Complements Planning, Task Lists & Blackboards (P1-7) — plans track _what to do next_, anchors track _why we're doing it_. Enhanced by Context Compaction (P1-2) — anchor summaries survive compaction. Critical for Ralph Loops (P0-4) — reinjected contexts need anchors for strategic continuity.
 
 ---
 
@@ -465,7 +465,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Introduce branch and sub-task coordination logic within orchestration     | Scalability, Cost   |
 | 3    | Use commit history natively as a form of contextual RAG memory            | Effectiveness       |
 
-**Dependencies:** Relies on Filesystem & Git Workspace (P0-2). Operates alongside Orchestration Logic (P0-5) for MAS mapping.
+**Dependencies:** Relies on Filesystem, Git & File Locking (P0-2). Operates alongside Orchestration Logic (P0-5) for MAS mapping.
 
 ---
 
@@ -489,7 +489,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement shared ledger with file locking for MAS environments                    | Scalability                |
 | 3    | Build automated requirement deduplication and conflict detection                  | Scalability, Human Role    |
 
-**Dependencies:** Feeds Planning & State Files (P1-7) — plans should reference ledger entries. Feeds Context Anchoring (P1-8) — anchors can reference requirement IDs. Enables Upstream Intake Gate (P2-5).
+**Dependencies:** Feeds Planning, Task Lists & Blackboards (P1-7) — plans should reference ledger entries. Feeds Context Anchoring (P1-8) — anchors can reference requirement IDs. Enables Upstream Intake Gate (P2-5).
 
 ---
 
@@ -539,7 +539,7 @@ Each of the 29 core features is analyzed below with:
 
 ---
 
-#### P2-3. AI Auditors / Diverse Collaboration
+#### P2-3. AI Auditors & Collaboration Channels
 
 **Gap Signals:**
 
@@ -558,7 +558,7 @@ Each of the 29 core features is analyzed below with:
 | 3    | Implement coopetition (agents negotiate and compromise on solutions)           | Scalability         |
 | 3    | Track auditor agreement rates to calibrate auditor thresholds                  | Human Role          |
 
-**Dependencies:** Requires Orchestration Logic (P0-5) for multi-agent coordination. Enhances Self-Verification (P0-3).
+**Dependencies:** Requires Orchestration Logic (P0-5) for multi-agent coordination. Enhances Verification (P0-3).
 
 ---
 
@@ -580,7 +580,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Enforce risk-based progressive disclosure of autonomy to the agent           | Effectiveness       |
 | 3    | Use intelligent anomaly detection to dynamically throttle agent capabilities | Scalability         |
 
-**Dependencies:** Operates alongside Escalation Policies (P0-7). Extends overall Architectural Constraints.
+**Dependencies:** Operates alongside Escalation Policies & Audit Trails (P0-7). Extends overall Architectural Constraints.
 
 ---
 
@@ -603,7 +603,7 @@ Each of the 29 core features is analyzed below with:
 | 2    | Implement pre-commit hooks or workflow gates that reject plans without ledger entries         | Effectiveness, Scalability |
 | 3    | Build distributed intake validation for MAS -- all agents check the shared ledger             | Scalability                |
 
-**Dependencies:** Requires Requirements Ledger (P1-10) as the target store. Complements Bounded Autonomy (P2-4). Interacts with Planning & State Files (P1-7).
+**Dependencies:** Requires Requirements Ledger (P1-10) as the target store. Complements Bounded Autonomy (P2-4). Interacts with Planning, Task Lists & Blackboards (P1-7).
 
 ---
 

@@ -35,9 +35,9 @@ function buildDynamicRegistries() {
   }
 
   // 3. Extract Feature IDs and Names from Core Features
-  const coreSasPath = path.join(repoRoot, 'framework', 'HE Core Features.md');
-  if (fs.existsSync(coreSasPath)) {
-    const lines = fs.readFileSync(coreSasPath, 'utf-8').split('\n');
+  const coreFeaturesPath = path.join(repoRoot, 'framework', 'HE Core Features.md');
+  if (fs.existsSync(coreFeaturesPath)) {
+    const lines = fs.readFileSync(coreFeaturesPath, 'utf-8').split('\n');
     // F1, P1-1 logic needs to be inferred or structured, since the markdown uses bullets, 
     // we'll assign generic bounds logic rather than strict extraction, 
     // but we can extract bold terms: * **Feature Name:**

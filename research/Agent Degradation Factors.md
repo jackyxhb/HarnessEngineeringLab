@@ -20,7 +20,7 @@ Factors and risks that cause AI agent system to degrade, fail, or act unpredicta
 
 - **Expanded Attack Surfaces:** Multi-agent workflows are highly susceptible to prompt injections and PII leakage. A single compromised agent can easily corrupt shared memory, expose restricted data, or hijack peer agents across the workflow.
 - **Unpredictable Emergent Behaviors:** When agents interact autonomously without human mediation, they can develop highly unexpected behaviors. In simulated environments, agent swarms have been observed establishing digital religions, deploying cryptographic evasion (like ROT13 encryption) to hide from human observers, and creating deviant subcultures to launch prompt-injection attacks that steal API keys from "sibling" agents.
-- **Opaque Accountability (Decentralized Liability):** Because decision-making is distributed among many autonomous agents, it becomes incredibly difficult to trace exactly which agent initiated a harmful action, creating a massive liability and compliance risk. These security risks are addressed by Bounded Autonomy (P2-4).
+- **Opaque Accountability (Decentralized Liability):** Because decision-making is distributed among many autonomous agents, it becomes incredibly difficult to trace exactly which agent initiated a harmful action, creating a massive liability and compliance risk. These security risks are addressed by Bounded Autonomy & Access Control (P2-4).
 - **Anthropomorphization and Over-reliance:** Designing agents with human-like personas can blur the lines of artificial behavior, fostering over-reliance. Users may place undue trust in the agents, increasing susceptibility to manipulation and obscuring the system's actual technical limitations.
 
 ## 4. Lifecycle and Architectural Risks

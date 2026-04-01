@@ -25,7 +25,7 @@ Encoding all project rules, architectural decisions, and style guides directly i
 
 ---
 
-## P1-2. Distributed Memory Management (Context Compaction)
+## P1-2. Context Compaction & Memory Management
 
 ### What to Do
 Intelligently summarizing and offloading older context to prevent the agent's context window from filling up ("context rot"). In MAS, separate short-term memory (session history) from long-term memory (centralized vector databases) so agents can selectively synchronize knowledge.
@@ -114,7 +114,7 @@ _(No direct prevention entry — P1-6 is a context enhancement. Its absence limi
 
 ---
 
-## P1-7. Shared Task Lists & Blackboards (Planning & State Files)
+## P1-7. Planning, Task Lists & Blackboards
 
 ### What to Do
 Using the filesystem to store plan files and injecting reminders so agents can decompose goals and stay on track. In MAS, evolves into centralized knowledge spaces where teammates view statuses, claim unassigned work, and build upon each other's partial solutions.

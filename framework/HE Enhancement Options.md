@@ -43,7 +43,7 @@ When implementing or upgrading a harness, use these options to translate the 29 
 - **Action:** Use feature flags to toggle middleware components on/off; regularly audit relevance against current model capabilities.
 - **Tool:** Composable middleware layers with independent enable/disable controls.
 
-### P0-7. Escalation Policies
+### P0-7. Escalation Policies & Audit Trails
 
 - **Action:** Maintain visibility to trace accountability, debug failures, and handle agents that get permanently stuck.
 - **Action:** Define escalation triggers (N consecutive failures, time limits, loop detection) and route stuck tasks to humans.

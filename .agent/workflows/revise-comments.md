@@ -12,14 +12,14 @@ This workflow processes each document in the `research/` folder one by one, comp
    - `framework/HE Core Features.md` — the canonical **3-Pillar + 1-Foundation** framework
 
 2. Internalise the canonical structure before processing any comments:
-   - **Foundation:** Foundational Infrastructure (SAS: "Verify & Correct" / MAS: "Execute, Orchestrate & Verify")
-     - Contains: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning
-   - **Pillar 1:** Context Engineering (SAS: "Inform" / MAS: "Inform & Synchronize")
-     - Contains: Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability/Dashboards, Web Search & MCP, Planning & State Files
-   - **Pillar 2:** Architectural Constraints (SAS: "Constrain" / MAS: "Constrain & Protect")
-     - Contains: Automated Linters, Dependency Enforcement, AI Auditors
-   - **Pillar 3:** Entropy Management (SAS: "Maintain" / MAS: "Maintain & Reconcile")
-     - Contains: Scheduled Cleanups, Documentation Sync, Pattern Auditing
+   - **Foundation:** Infrastructure — Execute
+     - Contains (10): Bash Sandboxes, Filesystem Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox)
+   - **Pillar 1:** Context Engineering — Inform
+     - Contains (10): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
+   - **Pillar 2:** Architectural Constraints — Constrain
+     - Contains (5): Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate
+   - **Pillar 3:** Entropy Management — Maintain
+     - Contains (4): Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop
 
 ## Workflow Steps
 

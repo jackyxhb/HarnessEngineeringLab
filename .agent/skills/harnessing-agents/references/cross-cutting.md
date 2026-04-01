@@ -28,8 +28,8 @@ Map each feature as a token saver or spender:
 | - | - |
 | Context Compaction (P1-2) | AI Auditors (P2-3) |
 | Tool Offloading (P1-3) | Web Search & MCP (P1-6) |
-| Progressive Skills (P1-4) | Collective Verification (MAS) |
-| Automated Linters (P2-1) | Inter-Agent Communication (MAS) |
+| Progressive Skills (P1-4) | Verification (P0-3) |
+| Automated Linters (P2-1) | Inter-Agent Communication (P0-10) |
 | Planning & State Files (P1-7) | Scheduled Cleanups (P3-1) |
 | Context Anchoring (P1-8) | |
 | Branch Cognitive Memory (P1-9) | |

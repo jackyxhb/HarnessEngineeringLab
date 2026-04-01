@@ -10,7 +10,7 @@ Each feature follows the assessment chain: **What to Do** (definition) → **Don
 Secure, on-demand execution environments equipped with language runtimes, test runners, and isolation. In MAS, each agent gets an isolated sandbox. Never run agent code directly on a developer's local machine.
 
 ### Don't Do
-_(No direct prevention entry — P0-1 is foundational infrastructure. Its absence degrades P0-3 Self-Verification, P1-3 Tool Offloading, and P1-6 MCP Integration.)_
+_(No direct prevention entry — P0-1 is foundational infrastructure. Its absence degrades P0-3 Verification, P1-3 Tool Offloading, and P1-6 MCP Integration.)_
 
 ### Options
 - **Action:** Provision safe, scalable, and isolated execution environments — do not run agent code locally.
@@ -43,7 +43,7 @@ The core primitive for durable storage, version control, and a shared collaborat
 
 ---
 
-## P0-3. Collective Verification (Self-Verification)
+## P0-3. Verification (Self & Collective)
 
 ### What to Do
 Feedback loops allowing agents to write code, run tests, inspect logs, and autonomously fix errors before completion. In MAS, verification expands into consensus-seeking protocols, requiring multiple agents to vote or debate before committing partial solutions to the shared state.
@@ -82,7 +82,7 @@ Execution hooks that intercept an agent's exit attempt and reinject the prompt a
 
 ---
 
-## P0-5. Multi-Agent Orchestration Logic
+## P0-5. Orchestration Logic
 
 ### What to Do
 The routing layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel. In MAS, shifts from simple task routing to dynamically managing topologies (Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm) based on task type.
@@ -125,7 +125,7 @@ Composable middleware layers that add specific capabilities but can be easily re
 
 ---
 
-## P0-7. Escalation Policies + Audit Trails
+## P0-7. Escalation Policies & Audit Trails
 
 ### What to Do
 Automated triggers and routing systems for when an agent gets stuck and requires human intervention. In MAS, maintain strict logs of exactly which agent initiated an action, what data it accessed, and how it influenced peers, resolving the dilemma of decentralized liability.

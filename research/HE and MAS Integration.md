@@ -6,7 +6,7 @@
 
 Single agents typically hit a performance ceiling when managing more than 10 to 15 tools or when their context windows become overwhelmed, making multi-agent systems necessary for complex, real-world tasks. However, multi-agent systems introduce severe challenges like quadratic coordination overhead, error propagation across agent chains, and state conflicts. Harness engineering provides the infrastructure to solve these exact systemic challenges.
 
-Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `HE Core Features.md` | `ANCHORS.md`):
+Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `framework/HE Core Features.md` | `ANCHORS.md`):
 
 ## Foundational Infrastructure (Execute)
 
@@ -22,7 +22,7 @@ A production harness does not just manage one isolated agent; it manages complex
 
 Multi-agent systems significantly expand the risk of "context rot" across multiple agents. The harness mitigates this through context engineering:
 
-- **Context Compaction & Tool Offloading:** The harness intelligently summarizes older context and strips noisy tool outputs so that agents communicating in a network do not suffer from "context rot".
+- **Context Compaction & Memory Management (P1-2) and Tool Offloading (P1-3):** The harness intelligently summarizes older context and strips noisy tool outputs so that agents communicating in a network do not suffer from "context rot".
 
 ## Pillar 2: Architectural Constraints (Constrain)
 
@@ -30,7 +30,7 @@ Harnesses enforce strict architectural boundaries to prevent agents from explori
 
 Multi-agent systems also vastly expand the attack surface; one hallucinating or compromised agent can corrupt the shared state or derail downstream peer decisions. The harness enforces:
 
-- **Bounded Autonomy (P2-4):** The harness enforces risk-based boundaries (such as requiring human approval for certain actions) and implements real-time guardrails to block malicious queries before they can propagate across the multi-agent workflow.
+- **Bounded Autonomy & Access Control (P2-4):** The harness enforces risk-based boundaries (such as requiring human approval for certain actions) and implements real-time guardrails to block malicious queries before they can propagate across the multi-agent workflow.
 
 ## Pillar 3: Entropy Management (Maintain)
 

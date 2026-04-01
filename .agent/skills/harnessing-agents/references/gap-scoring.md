@@ -4,7 +4,7 @@ The 6 Evaluation Dimensions below score individual features. They are distinct f
 
 ## Evaluation Dimensions (0-5 Rubric)
 
-For each feature (P0-1 to P0-9, P1-1 to P1-10, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the following dimensions:
+For each feature (P0-1 to P0-10, P1-1 to P1-10, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the following dimensions:
 
 | Dimension | Question It Answers |
 | - | - |

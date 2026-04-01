@@ -49,7 +49,7 @@ _(No direct prevention entry — P2-2 is a mechanical enforcement tool. Its abse
 
 ---
 
-### P2-3. Diverse Collaboration Channels (AI Auditors)
+### P2-3. AI Auditors & Collaboration Channels
 
 #### What to Do
 
@@ -191,7 +191,7 @@ Agents that track and resolve circular dependencies, dead code, or deviations fr
 
 ---
 
-### P3-4. Documentation Consolidation Pipeline (Consolidation Loop)
+### P3-4. Consolidation Loop
 
 #### What to Do
 
