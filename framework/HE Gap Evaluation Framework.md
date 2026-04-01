@@ -243,6 +243,30 @@ Each of the 28 core features is analyzed below with:
 
 ---
 
+#### P0-MAS. Inter-Agent Communication (The Mailbox)
+
+**Gap Signals:**
+
+- Agents coordinate only through shared files, with no structured messaging
+- No mechanism for direct peer-to-peer communication between agents
+- Broadcasting important state changes requires manual orchestrator intervention
+- Idle agents have no way to signal availability to the swarm
+- Task handoffs lose context because there is no message protocol
+
+**Improvement Policies:**
+
+| Tier | Action                                                                            | Dimension Addressed |
+| ---- | --------------------------------------------------------------------------------- | ------------------- |
+| 1    | Implement a shared message queue or mailbox file that agents poll for directives  | Maturity            |
+| 1    | Define message schema (sender, receiver, type, payload, timestamp)                | Effectiveness       |
+| 2    | Add peer-to-peer (P2P), broadcast, and idle notification communication strategies | Scalability         |
+| 2    | Implement message acknowledgment and delivery guarantees                          | Risk                |
+| 3    | Build adaptive routing that selects communication strategy based on topology      | Scalability, Cost   |
+
+**Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Shared Task Lists & Blackboards (P1-7) for task claiming. MAS-only feature — not applicable to SAS.
+
+---
+
 ### Pillar 1: Context Engineering (Inform)
 
 #### P1-1. Repository as Truth

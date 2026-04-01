@@ -12,7 +12,7 @@ Here is how harness engineering directly enables and manages multi-agent working
 
 A foundational feature of a harness is providing secure execution sandboxes and durable filesystem/Git workspaces. In a multi-agent system, **the filesystem acts as the core primitive for context management and a shared ledger where multiple agents can collaborate**. This infrastructure makes advanced multi-agent structures possible, such as the "Blackboard" architecture, where a shared knowledge space allows diverse specialist agents to incrementally read, write, and refine partial solutions without stepping on each other's toes.
 
-A production harness does not just manage one isolated agent; it manages complex workflows. **The harness provides the orchestration layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel**. Through the harness, engineers configure the exact multi-agent communication structure needed for the task:
+A production harness does not just manage one isolated agent; it manages complex workflows. **The harness provides the orchestration layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel**. Through the harness, engineers configure the exact multi-agent communication structure needed for the task, powered by Inter-Agent Communication (P0-MAS):
 
 - **Supervisor (Centralized):** The harness designates a central orchestrator agent to plan, route tasks to worker agents, and merge results. Frameworks like OpenAI's Swarm use the harness to facilitate these seamless "handoffs" between a lead agent and specialized teammates.
 - **Hierarchical:** The harness stacks multiple supervisor layers, breaking down complex workflows so mid-level supervisors can manage their own teams of workers.
@@ -30,7 +30,7 @@ Harnesses enforce strict architectural boundaries to prevent agents from explori
 
 Multi-agent systems also vastly expand the attack surface; one hallucinating or compromised agent can corrupt the shared state or derail downstream peer decisions. The harness enforces:
 
-- **Bounded Autonomy:** The harness enforces risk-based boundaries (such as requiring human approval for certain actions) and implements real-time guardrails to block malicious queries before they can propagate across the multi-agent workflow.
+- **Bounded Autonomy (P2-4):** The harness enforces risk-based boundaries (such as requiring human approval for certain actions) and implements real-time guardrails to block malicious queries before they can propagate across the multi-agent workflow.
 
 ## Pillar 3: Entropy Management (Maintain)
 

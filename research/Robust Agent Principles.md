@@ -72,7 +72,7 @@ When upstream is opaque, **reimplement the needed subset** rather than wrapping 
 
 ---
 
-## 8. Build for Autonomy Incrementally
+## 8. Build for Autonomy Incrementally (P2-4)
 
 The autonomy ladder:
 
@@ -95,7 +95,7 @@ Agents replicate patterns they see — including bad ones. Combat entropy with:
 
 ---
 
-## 10. Encode Human Judgment So It Compounds
+## 10. Encode Human Judgment So It Compounds (P1-8)
 
 Human taste enters the system through:
 
