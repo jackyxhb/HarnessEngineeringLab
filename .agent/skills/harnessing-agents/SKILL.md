@@ -1,6 +1,6 @@
 ---
 name: harnessing-agents
-version: "1.1.0"
+version: "2.0.0"
 description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity.
 user-invocable: true
 allowed-tools:
@@ -20,18 +20,31 @@ allowed-tools:
 
 **Core principle:** When an agent fails, fix the environment — not the code. Add a mechanical guardrail (test, linter, structural constraint) so the agent self-corrects.
 
-This skill synthesizes Harness Engineering into a structured framework:
+## 3-Step Assessment Chain
+
+Every feature in this skill is assessed through a unified chain:
+
+| Step | Question | Reference Source |
+| --- | --- | --- |
+| **What to Do** | What should this feature look like when implemented? | `references/features-foundation.md`, `references/features-pillar1.md`, `references/features-pillar2-3.md` — per-feature definitions (SAS + MAS) |
+| **Don't Do** | What failure mode does this feature prevent? | Same files — per-feature "Don't Do" section, sourced from `framework/HE Prevention Checklist.md` |
+| **Options** | What concrete actions and tools can implement it? | Same files — per-feature "Options" section, sourced from `framework/HE Enhancement Options.md` |
+
+Each feature reference includes all three steps plus **Remediation Tiers** (Tier 1 = immediate, Tier 2 = optimization).
+
+## Skill Structure
+
 1. **4 Scoping Dimensions:** The high-level pillars of the harness.
-2. **28 Core Features:** Specific, testable capabilities within each dimension.
+2. **28 Core Features (+ P0-MAS):** Specific, testable capabilities within each dimension, each with a 3-step assessment chain.
 3. **Evaluation Framework (0-5):** Multi-dimensional gap assessment and maturity scoring.
-4. **Automated Remediations:** Executable runbooks to automatically close gaps using integrated filesystem tools (`Glob`, `Grep`, `Read`, `Write`, `Edit`).
+4. **Automated Remediations:** Executable runbooks to close gaps using integrated filesystem tools (`Glob`, `Grep`, `Read`, `Write`, `Edit`).
 
 ## Context & Action Space Optimization
 
 To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
 - **Progressive Context Loading:** Do not pre-read all reference files. Only load templates or dense framework files exactly when required by the workflow phase.
-- **Trajectory Reduction:** After completing any major phase (e.g. Inspect), you must summarize the findings into the requested template, and then consciously "flush" the raw file contents from your active working memory before proceeding to the next phase to avoid context rot.
-- **ReAct Formatting:** When analyzing gaps, wrap your logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
+- **Trajectory Reduction:** After completing any major phase (e.g. Inspect), summarize findings into the requested template, then flush raw file contents from active working memory before proceeding.
+- **ReAct Formatting:** When analyzing gaps, wrap logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
 
 ## When to Use
 
@@ -46,8 +59,8 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 | --- | --- | --- |
 | **Quick gap scan:** Rapidly assess maturity against the 28 core features | `references/quick-checklist.md` | 5 min |
 | **Full audit:** Run the complete Inspect → Plan → Execute lifecycle | `references/workflow.md` | 30-60 min |
+| **Feature deep dive:** Look up the 3-step chain (What to Do / Don't Do / Options) for any feature | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
 | **Score gaps:** Evaluate individual features across 6 dimensions (0-5) | `references/gap-scoring.md` | 15 min |
-| **Feature deep dive:** Look up the definition and policies of a specific feature | `references/features-foundation.md` or `references/features-pillars.md` | 2 min |
 | **Scope an audit:** Understand the evaluation and Scoping dimensions | `references/dimensions.md` | 5 min |
 | **Run Subagents:** Ready-to-use prompts for delegating gap audits | `references/agent-prompts.md` | 2 min |
 | **Cross-cutting analysis:** Apply systemic perspectives (feedback loops, token economics, cascades, MAS readiness, human role) | `references/cross-cutting.md` | 10 min |
@@ -60,11 +73,11 @@ When auditing or remediating harness gaps, rely strictly on **mechanical enforce
 
 - **Do Not rely on general conversational output:** Agents must use specific filesystem tools (`Glob`, `Grep`, `Read`) to explicitly scan targets such as `CLAUDE.md`, `.cursorrules`, `.github/workflows/`, `.husky/`, `.agent/`, and `AGENTS.md`.
 - **Do Not assume architecture:** Always parse configuration targets natively.
-- **Do Not stray from templates:** When gathering data, constructing plans, or reporting findings, you must rigidly adhere to output formats located in the `templates/` directory.
+- **Do Not stray from templates:** When gathering data, constructing plans, or reporting findings, rigidly adhere to output formats in the `templates/` directory.
 
 ## Core Templates
 
-- `templates/he-clues.md`: Clue collection format (gap analysis)
+- `templates/he-clues.md`: Clue collection format (gap analysis with 3-step chain references)
 - `templates/implementation-plan.md`: Tiered remediation plan format
 - `templates/change-summary.md`: Per-agent change summary
 - `templates/assessment-report.md`: Before/after milestone report
