@@ -10,12 +10,14 @@ This is a **knowledge base and research repository** for Harness Engineering —
 
 All content is organized under this canonical structure. When editing or creating documents, always align to it:
 
-| Layer                                   | Role                                 | Verb      |
-| --------------------------------------- | ------------------------------------ | --------- |
-| **Foundation: Infrastructure**          | Execution engine & orchestration     | Execute   |
-| **Pillar 1: Context Engineering**       | Memory, knowledge, real-time data    | Inform    |
-| **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain |
-| **Pillar 3: Entropy Management**        | Long-term codebase health            | Maintain  |
+```json
+[
+  { "layer": "Foundation: Infrastructure", "role": "Execution engine & orchestration", "verb": "Execute" },
+  { "layer": "Pillar 1: Context Engineering", "role": "Memory, knowledge, real-time data", "verb": "Inform" },
+  { "layer": "Pillar 2: Architectural Constraints", "role": "Mechanical enforcement of boundaries", "verb": "Constrain" },
+  { "layer": "Pillar 3: Entropy Management", "role": "Long-term codebase health", "verb": "Maintain" }
+]
+```
 
 **Foundation** features (10): Bash Sandboxes, Filesystem, Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox)
 

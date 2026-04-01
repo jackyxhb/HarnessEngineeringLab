@@ -29,12 +29,14 @@ These principles are non-negotiable constraints on every build decision:
 
 Every output file must obey strict line budgets to keep per-action-path cost low:
 
-| File Type | Max Lines | Rationale |
-| --- | --- | --- |
-| SKILL.md (entry point) | 200 | Agent reads this first on every invocation |
-| Reference files (`references/`) | 200 | Agent reads 1–2 per action path |
-| Template files (`templates/`) | 150 | Copy-paste targets must be compact |
-| Per-action-path total | 270 | SKILL.md + 1 reference = agent's full read budget |
+```json
+[
+  { "file_type": "SKILL.md (entry point)", "max_lines": 200, "rationale": "Agent reads this first on every invocation" },
+  { "file_type": "Reference files (`references/`)", "max_lines": 200, "rationale": "Agent reads 1–2 per action path" },
+  { "file_type": "Template files (`templates/`)", "max_lines": 150, "rationale": "Copy-paste targets must be compact" },
+  { "file_type": "Per-action-path total", "max_lines": 270, "rationale": "SKILL.md + 1 reference = agent's full read budget" }
+]
+```
 
 **Hard rule:** If any file exceeds its budget, split by concern before proceeding.
 
@@ -97,12 +99,30 @@ Bump `version` on every build. Use semantic versioning: patch for fixes, minor f
 
 All skill content must align to this canonical structure from `framework/`:
 
-| Layer | Role | Features |
-| --- | --- | --- |
-| **Foundation** | Execution engine & orchestration | P0-1–P0-10: Bash Sandboxes, Filesystem Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox) |
-| **P1: Context Engineering** | Memory, knowledge, real-time data | P1-1 to P1-10: Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger |
-| **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-5: Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate |
-| **P3: Entropy Management** | Long-term codebase health | P3-1 to P3-4: Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop |
+```json
+[
+  {
+    "layer": "Foundation",
+    "role": "Execution engine & orchestration",
+    "features": ["P0-1–P0-10: Bash Sandboxes", "Filesystem Git & File Locking", "Verification (Self & Collective)", "Ralph Loops", "Orchestration Logic", "Rippable Middleware", "Escalation Policies & Audit Trails", "Harness Versioning", "Smart Command Wrappers", "Inter-Agent Communication (The Mailbox)"]
+  },
+  {
+    "layer": "P1: Context Engineering",
+    "role": "Memory, knowledge, real-time data",
+    "features": ["P1-1 to P1-10: Repository as Truth", "Context Compaction & Memory Management", "Tool Offloading", "Progressive Skills", "Observability / Dashboards", "Web Search & MCP Integration", "Planning Task Lists & Blackboards", "Context Anchoring", "Branch-Based Cognitive Memory", "Requirements Ledger"]
+  },
+  {
+    "layer": "P2: Architectural Constraints",
+    "role": "Mechanical enforcement of boundaries",
+    "features": ["P2-1 to P2-5: Automated Linters", "Dependency Enforcement", "AI Auditors & Collaboration Channels", "Bounded Autonomy & Access Control", "Upstream Intake Gate"]
+  },
+  {
+    "layer": "P3: Entropy Management",
+    "role": "Long-term codebase health",
+    "features": ["P3-1 to P3-4: Scheduled Cleanups", "Documentation Sync", "Pattern Auditing", "Consolidation Loop"]
+  }
+]
+```
 
 **29 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
 
@@ -126,12 +146,14 @@ Multi-agent behavior is described inline within each of the 29 features — no s
 
 Every audit and every build must be scoped across all four dimensions:
 
-| Dimension | Options | Effect on Build |
-| --- | --- | --- |
-| **Feature Tree** | Which of 29 features: Present-Effective, Present-Weak, Absent-Do, Absent-Don't | Determines content coverage |
-| **Agent Scale** | SAS · Small Group (2–5) · Enterprise · Scaled-Swarm | Determines MAS depth |
-| **Project Complexity** | Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise | Determines tier ceiling |
-| **Remediation Level** | Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture) | Determines action intensity |
+```json
+[
+  { "dimension": "Feature Tree", "options": ["Which of 29 features: Present-Effective", "Present-Weak", "Absent-Do", "Absent-Don't"], "effect": "Determines content coverage" },
+  { "dimension": "Agent Scale", "options": "SAS · Small Group (2–5) · Enterprise · Scaled-Swarm", "effect": "Determines MAS depth" },
+  { "dimension": "Project Complexity", "options": "Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise", "effect": "Determines tier ceiling" },
+  { "dimension": "Remediation Level", "options": "Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture)", "effect": "Determines action intensity" }
+]
+```
 
 **"Don't" decisions must be documented** — explicitly exclude features with recorded reasoning, not silent omission.
 
@@ -141,13 +163,15 @@ Every audit and every build must be scoped across all four dimensions:
 
 SKILL.md must contain a fast-path routing table as the agent's first decision after reading:
 
-| Goal | Start Here | Time |
-| --- | --- | --- |
-| Quick gap check | `references/quick-checklist.md` | 5 min |
-| Full audit (Inspect → Plan → Execute) | `references/workflow.md` | 30–60 min |
-| Score and prioritize specific gaps | `references/gap-scoring.md` | 15 min |
-| Look up a feature's signals + policies | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
-| Scope an audit before starting | `references/dimensions.md` | 5 min |
+```json
+[
+  { "goal": "Quick gap check", "start_here": "`references/quick-checklist.md`", "time": "5 min" },
+  { "goal": "Full audit (Inspect → Plan → Execute)", "start_here": "`references/workflow.md`", "time": "30–60 min" },
+  { "goal": "Score and prioritize specific gaps", "start_here": "`references/gap-scoring.md`", "time": "15 min" },
+  { "goal": "Look up a feature's signals + policies", "start_here": ["`references/features-foundation.md`", "`references/features-pillar1.md`", "`references/features-pillar2-3.md`"], "time": "2 min" },
+  { "goal": "Scope an audit before starting", "start_here": "`references/dimensions.md`", "time": "5 min" }
+]
+```
 
 This table prevents the agent from reading everything before acting. Each row is a complete action path.
 
@@ -180,13 +204,15 @@ Priority = (5 - CompositeScore) × ImpactWeight × CascadeLength
 
 After scoring, validate through these lenses:
 
-| Perspective | Checks |
-| --- | --- |
-| **A. Feedback Loop Chain** | Unbroken links: code → verification → audit → humans → harness improvement |
-| **B. Token Economics** | Balance of "token savers" vs "token spenders" across features |
-| **C. Failure Cascade Map** | Longest chains = highest priority; no single points of failure |
-| **D. SAS→MAS Readiness** | Each feature has a documented evolution path |
-| **E. Human Role Progression** | Code Writer → Harness Builder → Architect → Overseer |
+```json
+[
+  { "perspective": "A. Feedback Loop Chain", "checks": "Unbroken links: code → verification → audit → humans → harness improvement" },
+  { "perspective": "B. Token Economics", "checks": "Balance of \"token savers\" vs \"token spenders\" across features" },
+  { "perspective": "C. Failure Cascade Map", "checks": "Longest chains = highest priority; no single points of failure" },
+  { "perspective": "D. SAS→MAS Readiness", "checks": "Each feature has a documented evolution path" },
+  { "perspective": "E. Human Role Progression", "checks": "Code Writer → Harness Builder → Architect → Overseer" }
+]
+```
 
 ---
 
@@ -196,12 +222,14 @@ After scoring, validate through these lenses:
 
 For inspection and execution phases, dispatch agents with non-overlapping scopes:
 
-| Agent | Scope | Features |
-| --- | --- | --- |
-| Foundation Agent | Infrastructure layer | P0-1–P0-10 |
-| Context Agent | P1: Context Engineering | P1-1 to P1-10 |
-| Constraint Agent | P2: Architectural Constraints | P2-1 to P2-5 |
-| Entropy Agent | P3: Entropy Management | P3-1 to P3-4 |
+```json
+[
+  { "agent": "Foundation Agent", "scope": "Infrastructure layer", "features": "P0-1–P0-10" },
+  { "agent": "Context Agent", "scope": "P1: Context Engineering", "features": "P1-1 to P1-10" },
+  { "agent": "Constraint Agent", "scope": "P2: Architectural Constraints", "features": "P2-1 to P2-5" },
+  { "agent": "Entropy Agent", "scope": "P3: Entropy Management", "features": "P3-1 to P3-4" }
+]
+```
 
 **Consolidation agent** merges all findings, deduplicates, resolves conflicts, and produces the unified output document.
 
@@ -251,17 +279,19 @@ Independent tasks — execute in parallel when possible:
 
 Run all verification criteria — build fails if any check fails:
 
-| Check | Method | Pass Criteria |
-| --- | --- | --- |
-| Line budgets | `wc -l` every file | SKILL.md ≤ 200, references ≤ 200, templates ≤ 150 |
-| Per-action-path budget | SKILL.md + heaviest reference | ≤ 270 lines total |
-| Decision tree validity | Each row's file exists | Zero broken routes |
-| Template self-containment | Copy each template in isolation | Clear placeholders, no external dependencies |
-| Stale references | `grep` for deleted/renamed filenames | Zero hits |
-| Terminology consistency | `grep` for known conflict terms | Each term has exactly one meaning |
-| Cross-reference completeness | All file pairs checked | Zero dangling refs |
-| Feature coverage | Count unique feature IDs across all files | 29 features covered |
-| Framework alignment | Diff skill content against `framework/` | Zero contradictions |
+```json
+[
+  { "check": "Line budgets", "method": "`wc -l` every file", "pass_criteria": ["SKILL.md ≤ 200", "references ≤ 200", "templates ≤ 150"] },
+  { "check": "Per-action-path budget", "method": "SKILL.md + heaviest reference", "pass_criteria": "≤ 270 lines total" },
+  { "check": "Decision tree validity", "method": "Each row's file exists", "pass_criteria": "Zero broken routes" },
+  { "check": "Template self-containment", "method": "Copy each template in isolation", "pass_criteria": ["Clear placeholders", "no external dependencies"] },
+  { "check": "Stale references", "method": "`grep` for deleted/renamed filenames", "pass_criteria": "Zero hits" },
+  { "check": "Terminology consistency", "method": "`grep` for known conflict terms", "pass_criteria": "Each term has exactly one meaning" },
+  { "check": "Cross-reference completeness", "method": "All file pairs checked", "pass_criteria": "Zero dangling refs" },
+  { "check": "Feature coverage", "method": "Count unique feature IDs across all files", "pass_criteria": "29 features covered" },
+  { "check": "Framework alignment", "method": "Diff skill content against `framework/`", "pass_criteria": "Zero contradictions" }
+]
+```
 
 ### Phase 5 — Critical Deployment Process (Places)
 
@@ -299,14 +329,16 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 
 ## Naming & Terminology Conventions
 
-| Term | Meaning | Used In |
-| --- | --- | --- |
-| **Scoping Dimensions** (4) | Scope the overall audit | `dimensions.md` |
-| **Evaluation Dimensions** (6) | Score individual features | `gap-scoring.md` |
-| **Feature ID** | `P0-1`–`P0-10`, `P1-1`–`P3-4` | All feature references |
-| **CLUE-[N]** | Audit finding with bidirectional backlinks | `HE-CLUES.md`, templates |
-| **HE-*** prefix | Harness Engineering generic doc | File naming |
-| **MAS-*** prefix | Multi-Agent specific doc | File naming |
+```json
+[
+  { "term": "Scoping Dimensions (4)", "meaning": "Scope the overall audit", "used_in": "`dimensions.md`" },
+  { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features", "used_in": "`gap-scoring.md`" },
+  { "term": "Feature ID", "meaning": ["`P0-1`–`P0-10`", "`P1-1`–`P3-4`"], "used_in": "All feature references" },
+  { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`HE-CLUES.md`", "templates"] },
+  { "term": "HE-* prefix", "meaning": "Harness Engineering generic doc", "used_in": "File naming" },
+  { "term": "MAS-* prefix", "meaning": "Multi-Agent specific doc", "used_in": "File naming" }
+]
+```
 
 **File naming in workspace:** Title Case, max 5 words, `HE` or `MAS` prefix per CLAUDE.md conventions.
 
@@ -316,11 +348,13 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 
 The built skill must support all three maturity targets:
 
-| Level | Scope | Time | Key Features |
-| --- | --- | --- | --- |
-| **Basic** | Single developer | 1–2 hours | CLAUDE.md, pre-commit hooks, test suite, clean structure |
-| **Team** | 3–10 developers | 1–2 days | AGENTS.md, CI-enforced constraints, docs-as-code |
-| **Production** | Engineering org | 1–2 weeks | Custom middleware, entropy agents, observability, A/B testing |
+```json
+[
+  { "level": "Basic", "scope": "Single developer", "time": "1–2 hours", "key_features": ["CLAUDE.md", "pre-commit hooks", "test suite", "clean structure"] },
+  { "level": "Team", "scope": "3–10 developers", "time": "1–2 days", "key_features": ["AGENTS.md", "CI-enforced constraints", "docs-as-code"] },
+  { "level": "Production", "scope": "Engineering org", "time": "1–2 weeks", "key_features": ["Custom middleware", "entropy agents", "observability", "A/B testing"] }
+]
+```
 
 ---
 
@@ -341,13 +375,15 @@ The built skill must support all three maturity targets:
 
 When content grows beyond budgets during future iterations:
 
-| Signal | Action |
-| --- | --- |
-| File exceeds line budget | Split by concern (e.g., foundation vs pillars) |
-| Output format buried in prose | Extract to `templates/` as copy-paste file |
-| Naming conflict between docs | Rename immediately; disambiguate in both files |
-| Duplicate content across files | Consolidate to one source, replace others with pointers |
-| Feature added to framework | Add to appropriate features file, update dependencies, update checklist |
+```json
+[
+  { "signal": "File exceeds line budget", "action": "Split by concern (e.g., foundation vs pillars)" },
+  { "signal": "Output format buried in prose", "action": "Extract to `templates/` as copy-paste file" },
+  { "signal": "Naming conflict between docs", "action": "Rename immediately; disambiguate in both files" },
+  { "signal": "Duplicate content across files", "action": "Consolidate to one source, replace others with pointers" },
+  { "signal": "Feature added to framework", "action": "Add to appropriate features file, update dependencies, update checklist" }
+]
+```
 
 ---
 

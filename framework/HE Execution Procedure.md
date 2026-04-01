@@ -467,17 +467,19 @@ Phase 6 ─── 6.1 → 6.2
 
 All tasks are designed to stay well within a 128K-token context window. Maximum context consumption per task:
 
-| Task | Max Source Files          | Max Lines Read | Est. Tokens |
-| ---- | ------------------------- | -------------- | ----------- |
-| 0.1  | 1 project                 | ~200           | ~2,000      |
-| 0.2  | 2 reference docs          | ~100           | ~3,000      |
-| 1.x  | 1 reference doc + project | ~150           | ~4,000      |
-| 1.5  | 4 clue files              | ~200           | ~3,000      |
-| 2.x  | 1 score input + ref doc   | ~200           | ~4,000      |
-| 2.5  | 4 score files + ref       | ~300           | ~4,000      |
-| 3.x  | 2 input files             | ~200           | ~4,000      |
-| 4.x  | 3–5 target files          | ~150           | ~3,000      |
-| 5.x  | 2–4 summary files         | ~200           | ~3,000      |
+```json
+[
+  { "task": "0.1", "max_source_files": "1 project", "max_lines_read": "~200", "est_tokens": "~2,000" },
+  { "task": "0.2", "max_source_files": "2 reference docs", "max_lines_read": "~100", "est_tokens": "~3,000" },
+  { "task": "1.x", "max_source_files": "1 reference doc + project", "max_lines_read": "~150", "est_tokens": "~4,000" },
+  { "task": "1.5", "max_source_files": "4 clue files", "max_lines_read": "~200", "est_tokens": "~3,000" },
+  { "task": "2.x", "max_source_files": "1 score input + ref doc", "max_lines_read": "~200", "est_tokens": "~4,000" },
+  { "task": "2.5", "max_source_files": "4 score files + ref", "max_lines_read": "~300", "est_tokens": "~4,000" },
+  { "task": "3.x", "max_source_files": "2 input files", "max_lines_read": "~200", "est_tokens": "~4,000" },
+  { "task": "4.x", "max_source_files": "3–5 target files", "max_lines_read": "~150", "est_tokens": "~3,000" },
+  { "task": "5.x", "max_source_files": "2–4 summary files", "max_lines_read": "~200", "est_tokens": "~3,000" }
+]
+```
 
 ---
 
@@ -496,13 +498,15 @@ This procedure supports all 4 dimensions of Harness Engineering methodology:
 
 Each task in this procedure includes safeguards against agent hallucination:
 
-| Safeguard                  | How It's Applied                                                             |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| **Small task scope**       | Each task touches ≤5 files and produces exactly 1 output artifact            |
-| **Explicit inputs**        | Every task declares exactly what files it needs to read                      |
-| **Concrete outputs**       | Every task declares the exact filename and content structure it must produce |
-| **Reference grounding**    | Gap signals come from `HE Gap Evaluation Framework.md`, not invented         |
-| **Verification criteria**  | Phase 5 independently verifies Phase 4 outputs                               |
-| **User checkpoints**       | Phase 3 requires explicit user confirmation before execution                 |
-| **Parallel decomposition** | Phase 1 and Phase 2 tasks can run independently, reducing per-agent load     |
-| **Token budgets**          | Each task has an estimated token budget to prevent context exhaustion        |
+```json
+[
+  { "safeguard": "Small task scope", "how_applied": "Each task touches ≤5 files and produces exactly 1 output artifact" },
+  { "safeguard": "Explicit inputs", "how_applied": "Every task declares exactly what files it needs to read" },
+  { "safeguard": "Concrete outputs", "how_applied": "Every task declares the exact filename and content structure it must produce" },
+  { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `HE Gap Evaluation Framework.md`, not invented" },
+  { "safeguard": "Verification criteria", "how_applied": "Phase 5 independently verifies Phase 4 outputs" },
+  { "safeguard": "User checkpoints", "how_applied": "Phase 3 requires explicit user confirmation before execution" },
+  { "safeguard": "Parallel decomposition", "how_applied": "Phase 1 and Phase 2 tasks can run independently, reducing per-agent load" },
+  { "safeguard": "Token budgets", "how_applied": "Each task has an estimated token budget to prevent context exhaustion" }
+]
+```

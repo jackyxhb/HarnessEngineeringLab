@@ -14,12 +14,14 @@ The core philosophy: **Humans steer, agents execute.** Engineers stop writing co
 
 All harness engineering concepts are organized under a unified framework:
 
-| Layer                                               | Role                                  | Key Question                        |
-| --------------------------------------------------- | ------------------------------------- | ----------------------------------- |
-| **Foundation: Infrastructure** (Execute)            | Execution engine and orchestration    | _Where does the agent run safely?_  |
-| **Pillar 1: Context Engineering** (Inform)          | Memory, knowledge, and real-time data | _What does the agent know?_         |
-| **Pillar 2: Architectural Constraints** (Constrain) | Mechanical enforcement of boundaries  | _What can the agent do?_            |
-| **Pillar 3: Entropy Management** (Maintain)         | Long-term codebase health             | _How does the system stay healthy?_ |
+```json
+[
+  { "layer": "Foundation: Infrastructure (Execute)", "role": "Execution engine and orchestration", "key_question": "Where does the agent run safely?" },
+  { "layer": "Pillar 1: Context Engineering (Inform)", "role": "Memory, knowledge, and real-time data", "key_question": "What does the agent know?" },
+  { "layer": "Pillar 2: Architectural Constraints (Constrain)", "role": "Mechanical enforcement of boundaries", "key_question": "What can the agent do?" },
+  { "layer": "Pillar 3: Entropy Management (Maintain)", "role": "Long-term codebase health", "key_question": "How does the system stay healthy?" }
+]
+```
 
 ## Repository Structure
 
@@ -86,11 +88,13 @@ The framework scales naturally from a single agent to multi-agent systems. All 2
 
 ## Maturity Levels
 
-| Level          | Scope                    | Setup Time |
-| -------------- | ------------------------ | ---------- |
-| **Basic**      | Single developer         | 1–2 hours  |
-| **Team**       | 3–10 developers          | 1–2 days   |
-| **Production** | Engineering organization | 1–2 weeks  |
+```json
+[
+  { "level": "Basic", "scope": "Single developer", "setup_time": "1–2 hours" },
+  { "level": "Team", "scope": "3–10 developers", "setup_time": "1–2 days" },
+  { "level": "Production", "scope": "Engineering organization", "setup_time": "1–2 weeks" }
+]
+```
 
 ## License
 
