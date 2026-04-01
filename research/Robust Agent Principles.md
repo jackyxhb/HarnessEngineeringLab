@@ -47,8 +47,8 @@ Don't rely on the agent's "memory" or "judgment" for rules that must always hold
 ## 5. Design for the Feedback Loop, Not the Happy Path
 
 - **When something fails, ask**: _"What capability is missing?"_ — not _"try harder"_
-- **Escalation is correct behaviour**, not failure — exhaust agent-available signals first
-- **Corrections are cheap, waiting is expensive** — optimise for throughput, not perfection per step
+- **Escalation is correct behavior**, not failure — exhaust agent-available signals first
+- **Corrections are cheap, waiting is expensive** — optimize for throughput, not perfection per step
 
 ---
 

@@ -15,9 +15,9 @@ Before writing any code, map the **business domain** clearly:
 | **Job Seeker Profile**   | Skills, experience, education, preferences, target roles   |
 | **Job Description**      | Role requirements, company info, keywords, qualifications  |
 | **CV/Resume**            | The candidate's base document (master version)             |
-| **Cover Letter**         | Personalised letter per application                        |
+| **Cover Letter**         | Personalized letter per application                        |
 | **Match Score**          | How well a profile fits a job description                  |
-| **Tailored Application** | The output: CV + cover letter customised for a specific JD |
+| **Tailored Application** | The output: CV + cover letter customized for a specific JD |
 
 ---
 
@@ -102,7 +102,7 @@ project/
 | 2    | **Profile Schema** — structured representation of the seeker | The agent needs a typed, validated source of truth |
 | 3    | **Matching Engine** — score JD vs profile                    | Prioritise which jobs to apply for                 |
 | 4    | **CV Tailoring Skill** — rewrite CV sections per JD          | Core value proposition                             |
-| 5    | **Cover Letter Skill** — generate personalised letters       | Second deliverable                                 |
+| 5    | **Cover Letter Skill** — generate personalized letters       | Second deliverable                                 |
 | 6    | **Self-Review Agent** — validate output quality              | Catches hallucinations and quality issues          |
 | 7    | **Application Tracker** — log all applications and outcomes  | Closes the feedback loop                           |
 

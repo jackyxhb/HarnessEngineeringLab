@@ -1,5 +1,7 @@
 # Project Plan: `harnessing-agents` Skill Optimization (v1.1.0)
 
+> **Archival Note:** This document describes the v1.1.0 optimization. File names and feature IDs reflect the v1.1.0 structure and may differ from the current v2.0.0 architecture.
+
 ## Mission Context
 
 The `harnessing-agents` skill is a critical tool for performing autonomous audits of AI Agent Harnesses. Prior to this optimization (v1.0.0), the skill suffered from significant "context overhead."
@@ -29,7 +31,7 @@ The `harnessing-agents` skill is a critical tool for performing autonomous audit
 
 ### 2a. The Feature Split
 - **Modularized:** `features.md` (236 lines) →
-  - `references/features-foundation.md` (F1–F8)
+  - `references/features-foundation.md` (P0-1–P0-8)
   - `references/features-pillars.md` (P1–P3)
 - **Benefit:** Allows the agent to load only the relevant layer of the framework (Infrastructure vs. Pillars).
 

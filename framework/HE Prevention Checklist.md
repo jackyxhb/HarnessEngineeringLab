@@ -2,8 +2,6 @@
 
 What must be prevented in AI Agent Harness and Multi-Agent System (MAS) to ensure secure, efficient, and accurate operation.
 
-To ensure an AI Agent Harness and Multi-Agent System (MAS) operates securely, efficiently, and accurately, several critical risks and failure modes must be explicitly prevented through system design.
-
 Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `Core Features for SAS.md` | `ANCHORS.md`):
 
 ## Foundation: Prevent Coordination and Execution Failures (Execute)
@@ -45,8 +43,8 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 
 _Agent reward structures can be gamed. Preventing reward-hacking is essential for reliable autonomous execution. (See also: `references/OpenAI-Harness-Engineering.md`)_
 
-- **`P0-7, P2-4`** Creating a human-in-the-loop process that creates delay without adding genuine insight
-- **`P1-5`** Optimizing for vanity metrics (e.g., lines of code, PRs merged) rather than actual quality outcomes
-- **`P0-3, P2-3`** Allowing the agent to game its own success criteria (e.g., passing tests by weakening assertions)
-- **`P0-5`** Deploying reward signals that conflict with each other across agents, causing adversarial drift
-- **`P1-5`** Failing to audit whether reward-aligned outputs actually correlate with real-world value
+- **`P0-7, P2-4` Prevent Performative Oversight:** You must prevent human-in-the-loop processes that create delay without adding genuine insight.
+- **`P1-5` Prevent Vanity Metric Optimization:** You must prevent agents from optimizing for vanity metrics (e.g., lines of code, PRs merged) rather than actual quality outcomes.
+- **`P0-3, P2-3` Prevent Success Criteria Gaming:** You must prevent agents from gaming their own success criteria (e.g., passing tests by weakening assertions).
+- **`P0-5` Prevent Conflicting Reward Signals:** You must prevent reward signals that conflict with each other across agents, causing adversarial drift.
+- **`P1-5` Prevent Unaudited Reward Correlation:** You must prevent reward-aligned outputs from going unaudited for correlation with real-world value.

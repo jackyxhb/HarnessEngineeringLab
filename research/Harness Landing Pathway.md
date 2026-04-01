@@ -16,7 +16,7 @@ At this stage, the pathway involves setting up:
 
 ## Step 2: The Team Harness (Small Team Level)
 
-Once the basic harness is working, the next step (taking about 1-2 days) scales the harness for 3-10 developers sharing a codebase, focusing on consistent agent behaviour across the team.
+Once the basic harness is working, the next step (taking about 1-2 days) scales the harness for 3-10 developers sharing a codebase, focusing on consistent agent behavior across the team.
 The pathway here involves adding:
 
 - An `AGENTS.md` file that encodes team-wide conventions.
@@ -24,7 +24,7 @@ The pathway here involves adding:
 - "Documentation-as-code" that is validated by linters, ensuring the agent always has access to the most up-to-date specs.
 - Shared prompt templates for common tasks and specific code review checklists tailored for agent-generated Pull Requests.
 
-## Step 3: The Production Harness (Engineering Organisation Level)
+## Step 3: The Production Harness (Engineering Organization Level)
 
 The final stage transforms the harness into an enterprise-grade system that allows dozens of concurrent agents to operate as autonomous contributors. Setting this up typically takes 1-2 weeks.
 The pathway to production involves integrating:

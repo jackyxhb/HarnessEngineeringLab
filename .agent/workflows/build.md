@@ -49,8 +49,9 @@ harnessing-agents/
 │   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
 │   ├── quick-checklist.md          # 28-item yes/no fast gap scan
 │   ├── dimensions.md               # 4 scoping dimensions + decision matrix
-│   ├── features-foundation.md      # Foundation features F1–F8 (gap signals, policies)
-│   ├── features-pillars.md         # Pillar features P1-1 to P3-4 (gap signals, policies)
+│   ├── features-foundation.md      # Foundation features P0-1–P0-9 (gap signals, policies)
+│   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-10 (gap signals, policies)
+│   ├── features-pillar2-3.md       # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
 │   └── dependencies.md             # Bidirectional feature dependency map
 └── templates/                      # Copy-paste output standardization
     ├── he-clues.md                 # Audit finding capture format
@@ -98,9 +99,9 @@ All skill content must align to this canonical structure from `framework/`:
 
 | Layer | Role | Features |
 | --- | --- | --- |
-| **Foundation** | Execution engine & orchestration | F1–F8: Bash Sandboxes, Filesystem & Git, Self-Verification, Ralph Loops, Orchestration, Rippable Middleware, Escalation Policies, Harness Versioning |
-| **P1: Context Engineering** | Memory, knowledge, real-time data | P1-1 to P1-9: Repo as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability, Web Search & MCP, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory |
-| **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-4: Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy |
+| **Foundation** | Execution engine & orchestration | P0-1–P0-9: Bash Sandboxes, Filesystem & Git Workspace, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning, Smart Command Wrappers |
+| **P1: Context Engineering** | Memory, knowledge, real-time data | P1-1 to P1-10: Repo as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger |
+| **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-5: Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate |
 | **P3: Entropy Management** | Long-term codebase health | P3-1 to P3-4: Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop |
 
 **28 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
@@ -149,7 +150,7 @@ SKILL.md must contain a fast-path routing table as the agent's first decision af
 | Quick gap check | `references/quick-checklist.md` | 5 min |
 | Full audit (Inspect → Plan → Execute) | `references/workflow.md` | 30–60 min |
 | Score and prioritize specific gaps | `references/gap-scoring.md` | 15 min |
-| Look up a feature's signals + policies | `references/features-foundation.md` or `references/features-pillars.md` | 2 min |
+| Look up a feature's signals + policies | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
 | Scope an audit before starting | `references/dimensions.md` | 5 min |
 
 This table prevents the agent from reading everything before acting. Each row is a complete action path.
@@ -201,9 +202,9 @@ For inspection and execution phases, dispatch agents with non-overlapping scopes
 
 | Agent | Scope | Features |
 | --- | --- | --- |
-| Foundation Agent | Infrastructure layer | F1–F8 |
-| Context Agent | P1: Context Engineering | P1-1 to P1-9 |
-| Constraint Agent | P2: Architectural Constraints | P2-1 to P2-4 |
+| Foundation Agent | Infrastructure layer | P0-1–P0-9 |
+| Context Agent | P1: Context Engineering | P1-1 to P1-10 |
+| Constraint Agent | P2: Architectural Constraints | P2-1 to P2-5 |
 | Entropy Agent | P3: Entropy Management | P3-1 to P3-4 |
 
 **Consolidation agent** merges all findings, deduplicates, resolves conflicts, and produces the unified output document.
@@ -230,7 +231,7 @@ Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
 
 Independent tasks — execute in parallel when possible:
 
-- **2a. Feature files** — Build `features-foundation.md` (F1–F8) and `features-pillars.md` (P1-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companion.
+- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-9) and `features-pillar1.md` (P1-1 to P1-10) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
 - **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
 - **2c. Quick checklist** — Extract `quick-checklist.md` as 28-item yes/no fast scan (one per feature) with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
@@ -306,7 +307,7 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 | --- | --- | --- |
 | **Scoping Dimensions** (4) | Scope the overall audit | `dimensions.md` |
 | **Evaluation Dimensions** (6) | Score individual features | `gap-scoring.md` |
-| **Feature ID** | `F1`–`F8`, `P1-1`–`P3-4` | All feature references |
+| **Feature ID** | `P0-1`–`P0-9`, `P1-1`–`P3-4` | All feature references |
 | **CLUE-[N]** | Audit finding with bidirectional backlinks | `HE-CLUES.md`, templates |
 | **HE-*** prefix | Harness Engineering generic doc | File naming |
 | **MAS-*** prefix | Multi-Agent specific doc | File naming |
@@ -334,7 +335,7 @@ The built skill must support all three maturity targets:
 3. **Backlinks** — Every template entry links back to originating feature spec or clue ID.
 4. **Minimal prose** — Tables and checklists over paragraphs. Prose only for disambiguation.
 5. **Verification checklist at bottom** — Every template includes its own pass/fail checks:
-   - `□ Implements policy from features-foundation.md or features-pillars.md`
+   - `□ Implements policy from features-foundation.md, features-pillar1.md, or features-pillar2-3.md`
    - `□ Tier assignment matches implementation-plan.md`
    - `□ No new gaps introduced (vs. quick-checklist.md)`
 

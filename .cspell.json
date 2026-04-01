@@ -60,10 +60,8 @@
     "sandboxing",
     "Sandboxing",
     "reinjecting",
-    "prioritise",
-    "Prioritise",
-    "personalised",
-    "Personalised"
+    "parallelizable",
+    "macbook"
   ],
   "ignorePaths": [
     "node_modules/**",

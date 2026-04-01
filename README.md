@@ -92,7 +92,7 @@ The framework scales from single to multi-agent systems. Key MAS additions inclu
 | -------------- | ------------------------ | ---------- |
 | **Basic**      | Single developer         | 1–2 hours  |
 | **Team**       | 3–10 developers          | 1–2 days   |
-| **Production** | Engineering organisation | 1–2 weeks  |
+| **Production** | Engineering organization | 1–2 weeks  |
 
 ## License
 

@@ -216,7 +216,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 2.5: Cross-Cutting Analysis & Prioritisation
+### Task 2.5: Cross-Cutting Analysis & Prioritization
 
 **Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `HE Gap Evaluation Framework.md` Parts 3–4
 **Actions:**
@@ -229,7 +229,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 6. Calculate **Priority Score** per feature: `(5 - Composite) × Impact Weight × Cascade Length`.
 7. Tier the results: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
 
-**Output:** `HE-PRIORITIES.md` — prioritised gap list with tier assignments and cross-cutting analysis summary.
+**Output:** `HE-PRIORITIES.md` — prioritized gap list with tier assignments and cross-cutting analysis summary.
 
 **Context needed:** 4 score files + `HE Gap Evaluation Framework.md` Parts 3–4 (~120 lines).
 **Estimated tokens:** ~4,000
@@ -238,7 +238,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ## Phase 3: Recommendation & Planning
 
-> **Goal:** Translate prioritised gaps into a concrete implementation plan with user-confirmed selections.
+> **Goal:** Translate prioritized gaps into a concrete implementation plan with user-confirmed selections.
 
 ### Task 3.1: Generate Recommendations
 
@@ -387,7 +387,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** `HE-VERIFICATION-CHECKLIST.md`, `HE-VERIFICATION-SCORES.md`, `HE-CLUES.md`, `HE-IMPLEMENTATION-PLAN.md`
 **Actions:**
 
-1. Summarise what was done:
+1. Summarize what was done:
    - Total features addressed
    - Files created/modified
    - Maturity level change
