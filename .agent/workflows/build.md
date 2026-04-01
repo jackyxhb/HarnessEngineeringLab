@@ -47,9 +47,9 @@ harnessing-agents/
 │   ├── workflow.md                 # 3-step audit: Inspect → Plan → Execute
 │   ├── agent-prompts.md            # Ready-to-use dispatch prompts (parallel agents)
 │   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
-│   ├── quick-checklist.md          # 28-item yes/no fast gap scan
+│   ├── quick-checklist.md          # 29-item yes/no fast gap scan
 │   ├── dimensions.md               # 4 scoping dimensions + decision matrix
-│   ├── features-foundation.md      # Foundation features P0-1–P0-9 (gap signals, policies)
+│   ├── features-foundation.md      # Foundation features P0-1–P0-10 (gap signals, policies)
 │   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-10 (gap signals, policies)
 │   ├── features-pillar2-3.md       # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
 │   └── dependencies.md             # Bidirectional feature dependency map
@@ -99,9 +99,9 @@ All skill content must align to this canonical structure from `framework/`:
 
 | Layer | Role | Features |
 | --- | --- | --- |
-| **Foundation** | Execution engine & orchestration | P0-1–P0-9: Bash Sandboxes, Filesystem & Git Workspace, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning, Smart Command Wrappers |
-| **P1: Context Engineering** | Memory, knowledge, real-time data | P1-1 to P1-10: Repo as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger |
-| **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-5: Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate |
+| **Foundation** | Execution engine & orchestration | P0-1–P0-10: Bash Sandboxes, Filesystem Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox) |
+| **P1: Context Engineering** | Memory, knowledge, real-time data | P1-1 to P1-10: Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger |
+| **P2: Architectural Constraints** | Mechanical enforcement of boundaries | P2-1 to P2-5: Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate |
 | **P3: Entropy Management** | Long-term codebase health | P3-1 to P3-4: Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop |
 
 **29 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
@@ -118,11 +118,7 @@ Each of the 29 features must include:
 
 ### MAS Extensions
 
-When building MAS-related content, each Foundation/Pillar gains additional features:
-- Foundation: Inter-Agent Mailbox, File Locking, Collective Verification, Audit Trails
-- P1: Shared Blackboards, Distributed Memory
-- P2: Diverse Collaboration
-- P3: Conflict Resolution
+Multi-agent behavior is described inline within each of the 29 features — no separate extensions exist.
 
 ---
 
@@ -202,7 +198,7 @@ For inspection and execution phases, dispatch agents with non-overlapping scopes
 
 | Agent | Scope | Features |
 | --- | --- | --- |
-| Foundation Agent | Infrastructure layer | P0-1–P0-9 |
+| Foundation Agent | Infrastructure layer | P0-1–P0-10 |
 | Context Agent | P1: Context Engineering | P1-1 to P1-10 |
 | Constraint Agent | P2: Architectural Constraints | P2-1 to P2-5 |
 | Entropy Agent | P3: Entropy Management | P3-1 to P3-4 |
@@ -231,9 +227,9 @@ Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
 
 Independent tasks — execute in parallel when possible:
 
-- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-9) and `features-pillar1.md` (P1-1 to P1-10) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
+- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-10) and `features-pillar1.md` (P1-1 to P1-10) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
 - **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
-- **2c. Quick checklist** — Extract `quick-checklist.md` as 28-item yes/no fast scan (one per feature) with pointers to full scoring.
+- **2c. Quick checklist** — Extract `quick-checklist.md` as 29-item yes/no fast scan (one per feature) with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
 - **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 29 features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
@@ -307,7 +303,7 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 | --- | --- | --- |
 | **Scoping Dimensions** (4) | Scope the overall audit | `dimensions.md` |
 | **Evaluation Dimensions** (6) | Score individual features | `gap-scoring.md` |
-| **Feature ID** | `P0-1`–`P0-9`, `P1-1`–`P3-4` | All feature references |
+| **Feature ID** | `P0-1`–`P0-10`, `P1-1`–`P3-4` | All feature references |
 | **CLUE-[N]** | Audit finding with bidirectional backlinks | `HE-CLUES.md`, templates |
 | **HE-*** prefix | Harness Engineering generic doc | File naming |
 | **MAS-*** prefix | Multi-Agent specific doc | File naming |

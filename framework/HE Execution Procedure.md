@@ -62,14 +62,15 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Actions:**
 
 1. Check for **Bash Sandboxes** (P0-1): Is there Docker/container config? Does the agent run locally?
-2. Check for **Filesystem & Git** (P0-2): Is Git initialized? Are there branching strategies? File locking?
-3. Check for **Self-Verification** (P0-3): Is there a test suite? Can tests be run from CI? Are error logs piped back?
+2. Check for **Filesystem, Git & File Locking** (P0-2): Is Git initialized? Are there branching strategies? File locking?
+3. Check for **Verification (Self & Collective)** (P0-3): Is there a test suite? Can tests be run from CI? Are error logs piped back?
 4. Check for **Ralph Loops** (P0-4): Any exit interception hooks? State persistence across context windows?
 5. Check for **Orchestration Logic** (P0-5): Subagent spawning? Task routing? Multi-agent topologies?
 6. Check for **Rippable Middleware** (P0-6): Is the harness modular? Feature flags?
-7. Check for **Escalation Policies** (P0-7): Audit trails? Stuck-agent detection? Human notification?
+7. Check for **Escalation Policies & Audit Trails** (P0-7): Audit trails? Stuck-agent detection? Human notification?
 8. Check for **Harness Versioning** (P0-8): Is the harness config version-controlled? A/B testing?
 9. Check for **Smart Command Wrappers** (P0-9): Recommended CLI workflows (ccp, ccpr, reconcile) installed?
+10. Check for **Inter-Agent Communication** (P0-10): Messaging bus? P2P messaging? Broadcast/idle notifications?
 
 **Output:** `HE-CLUES-Foundation.md` with per-feature findings:
 
@@ -88,12 +89,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Actions:**
 
 1. Check for **Repository as Truth** (P1-1): Does `CLAUDE.md` / `AGENTS.md` / `.cursorrules` exist? Are architectural decisions documented in-repo?
-2. Check for **Context Compaction** (P1-2): Any summarization of conversation history? Token budgets?
+2. Check for **Context Compaction & Memory Management** (P1-2): Any summarization of conversation history? Token budgets?
 3. Check for **Tool Offloading** (P1-3): Are tool outputs stripped? Full results stored to disk?
 4. Check for **Progressive Skills** (P1-4): Are tools loaded on-demand or all at startup?
 5. Check for **Observability / Dashboards** (P1-5): Can the agent see CI/CD status? Logs? Metrics?
 6. Check for **Web Search & MCP** (P1-6): External data access? MCP servers configured?
-7. Check for **Planning & State Files** (P1-7): Plan files? Task decomposition? Shared blackboards?
+7. Check for **Planning, Task Lists & Blackboards** (P1-7): Plan files? Task decomposition? Shared blackboards?
 8. Check for **Context Anchoring** (P1-8): Persistent decision records (what, why, target, background)? Recall hooks at session start?
 9. Check for **Branch-Based Cognitive Memory** (P1-9): Concurrent task branches? Structured commit boundaries acting as memory?
 10. Check for **Requirements Ledger** (P1-10): A unified requirements file (e.g., `REQUIREMENTS.md`)? Are user stories and scenarios recorded before planning?
@@ -112,7 +113,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 1. Check for **Automated Linters** (P2-1): Pre-commit hooks? Linting config? Formatting enforcement?
 2. Check for **Dependency Enforcement** (P2-2): Structural tests? Import restrictions? ArchUnit or equivalent?
-3. Check for **AI Auditors / Diverse Collaboration** (P2-3): Secondary LLM review? Debate channels?
+3. Check for **AI Auditors & Collaboration Channels** (P2-3): Secondary LLM review? Debate channels?
 4. Check for **Bounded Autonomy & Access Control** (P2-4): Guardrails? Permission systems?
 5. Check for **Upstream Intake Gate** (P2-5): Validation that requirements are recorded in the ledger before planning proceeds? Mid-task sync-back mechanism?
 
@@ -161,12 +162,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 > **Goal:** Score each identified gap using the 6-dimension evaluation framework. This is split into sub-tasks by function area to stay within context limits.
 
-### Task 2.1: Score Foundation Features (P0-1 to P0-9)
+### Task 2.1: Score Foundation Features (P0-1 to P0-10)
 
 **Input:** `HE-CLUES.md` (Foundation section only), `HE Gap Evaluation Framework.md` Part 2 (Foundation section)
 **Actions:**
 
-1. For each Foundation feature (P0-1 to P0-9), score across all 6 dimensions (0–5):
+1. For each Foundation feature (P0-1 to P0-10), score across all 6 dimensions (0–5):
    - Implementation Maturity
    - Operational Effectiveness
    - Risk Exposure
@@ -176,9 +177,9 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 2. Note gap signals that match the framework's documented signals.
 3. Calculate composite score per feature.
 
-**Output:** `HE-SCORES-Foundation.md` — a 9×6 scoring matrix with justifications.
+**Output:** `HE-SCORES-Foundation.md` — a 10×6 scoring matrix with justifications.
 
-**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-9 sections (~220 lines).
+**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-10 sections (~220 lines).
 **Estimated tokens:** ~4,500
 
 ---
@@ -224,7 +225,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 1. Apply **Perspective A: Feedback Loop Chain** — identify broken links.
 2. Apply **Perspective B: Token Economics** — map token savers vs. spenders.
 3. Apply **Perspective C: Failure Cascade Map** — trace cascade chains for low-scored features.
-4. (If MAS) Apply **Perspective D: SAS→MAS Readiness** — identify blockers.
+4. Apply **Perspective D: Scaling Readiness** — identify blockers.
 5. Apply **Perspective E: Human Role Progression** — determine current stage.
 6. Calculate **Priority Score** per feature: `(5 - Composite) × Impact Weight × Cascade Length`.
 7. Tier the results: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
@@ -485,7 +486,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
 1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 29 features → Actions/Tools tree.
-2. **Agent Scale:** Task 0.1 classifies the scale. MAS-specific checks are flagged in Phase 1 tasks. Phase 2 uses the SAS→MAS readiness perspective.
+2. **Agent Scale:** Task 0.1 classifies the scale. Multi-agent scaling checks are integrated into Phase 1 tasks. Phase 2 includes a scaling readiness perspective.
 3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.
 

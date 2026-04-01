@@ -14,7 +14,7 @@
 ## 2. Before vs. After Quick Checklist
 
 ### Foundation
-- `[ ]` → `[x]` P0-3 Self-Verification — [brief note on what was added]
+- `[ ]` → `[x]` P0-3 Verification (Self & Collective) — [brief note on what was added]
 - `[ ]` → `[x]` P0-9 Smart Command Wrappers — [brief note]
 - `[x]` → `[x]` P0-2 Filesystem & Git — [already present, no change]
 

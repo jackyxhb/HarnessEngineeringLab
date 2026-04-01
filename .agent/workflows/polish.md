@@ -69,7 +69,7 @@ Propagate the feature additions to all canonical docs in `framework/`:
 
 - Run checks to ensure the feature count is identical across all skill files and canonical docs.
 - Ensure numbering is completely sequential with no gaps or duplicates.
-- Ensure `references/quick-checklist.md` has one checkbox per canonical feature (currently 28).
+- Ensure `references/quick-checklist.md` has one checkbox per canonical feature (currently 29).
 
 #### Step 4: Summarize Changes
 
