@@ -1,18 +1,18 @@
 # AI Agent Harness Engineering and Multi-Agent Systems (MAS)
 
-> _Canonical framework: `framework/Core Features for SAS.md` | MAS: `framework/Core Features for MAS.md`_
+> _Canonical framework: `framework/HE Core Features.md`_
 
 **AI Agent Harness Engineering and Multi-Agent Systems (MAS) are deeply interconnected: if the multi-agent mechanism is the workforce, the harness is the factory floor that orchestrates, constrains, and supports them.**
 
 Single agents typically hit a performance ceiling when managing more than 10 to 15 tools or when their context windows become overwhelmed, making multi-agent systems necessary for complex, real-world tasks. However, multi-agent systems introduce severe challenges like quadratic coordination overhead, error propagation across agent chains, and state conflicts. Harness engineering provides the infrastructure to solve these exact systemic challenges.
 
-Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `Core Features for SAS.md` | `Core Features for MAS.md` | `ANCHORS.md`):
+Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `HE Core Features.md` | `ANCHORS.md`):
 
 ## Foundational Infrastructure (Execute)
 
 A foundational feature of a harness is providing secure execution sandboxes and durable filesystem/Git workspaces. In a multi-agent system, **the filesystem acts as the core primitive for context management and a shared ledger where multiple agents can collaborate**. This infrastructure makes advanced multi-agent structures possible, such as the "Blackboard" architecture, where a shared knowledge space allows diverse specialist agents to incrementally read, write, and refine partial solutions without stepping on each other's toes.
 
-A production harness does not just manage one isolated agent; it manages complex workflows. **The harness provides the orchestration layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel**. Through the harness, engineers configure the exact multi-agent communication structure needed for the task, powered by Inter-Agent Communication (P0-MAS):
+A production harness does not just manage one isolated agent; it manages complex workflows. **The harness provides the orchestration layer responsible for spawning subagents, handling task handoffs, and managing multi-agent teams working in parallel**. Through the harness, engineers configure the exact multi-agent communication structure needed for the task, powered by Inter-Agent Communication (P0-10):
 
 - **Supervisor (Centralized):** The harness designates a central orchestrator agent to plan, route tasks to worker agents, and merge results. Frameworks like OpenAI's Swarm use the harness to facilitate these seamless "handoffs" between a lead agent and specialized teammates.
 - **Hierarchical:** The harness stacks multiple supervisor layers, breaking down complex workflows so mid-level supervisors can manage their own teams of workers.

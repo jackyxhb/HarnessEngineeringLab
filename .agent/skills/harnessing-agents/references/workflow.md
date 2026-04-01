@@ -17,7 +17,7 @@ For each feature (P0-1 through P3-4):
 3. **Options** — Which actions and tools should be recommended?
 
 Scan order:
-1. Foundation gaps (P0-1 to P0-9, P0-MAS) — read `references/features-foundation.md`
+1. Foundation gaps (P0-1 to P0-10) — read `references/features-foundation.md`
 2. Pillar 1 (Context) gaps (P1-1 to P1-10) — read `references/features-pillar1.md`
 3. Pillar 2 (Constraints) gaps (P2-1 to P2-5) — read `references/features-pillar2-3.md`
 4. Pillar 3 (Entropy) gaps (P3-1 to P3-4) — read `references/features-pillar2-3.md`

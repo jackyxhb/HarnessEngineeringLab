@@ -35,7 +35,7 @@ Each feature reference includes all three steps plus **Remediation Tiers** (Tier
 ## Skill Structure
 
 1. **4 Scoping Dimensions:** The high-level pillars of the harness.
-2. **28 Core Features (+ P0-MAS):** Specific, testable capabilities within each dimension, each with a 3-step assessment chain.
+2. **29 Core Features:** Specific, testable capabilities within each dimension, each with a 3-step assessment chain.
 3. **Evaluation Framework (0-5):** Multi-dimensional gap assessment and maturity scoring.
 4. **Automated Remediations:** Executable runbooks to close gaps using integrated filesystem tools (`Glob`, `Grep`, `Read`, `Write`, `Edit`).
 
@@ -57,7 +57,7 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 
 | Goal | Start Here | Estimated Time |
 | --- | --- | --- |
-| **Quick gap scan:** Rapidly assess maturity against the 28 core features | `references/quick-checklist.md` | 5 min |
+| **Quick gap scan:** Rapidly assess maturity against the 29 core features | `references/quick-checklist.md` | 5 min |
 | **Full audit:** Run the complete Inspect → Plan → Execute lifecycle | `references/workflow.md` | 30-60 min |
 | **Feature deep dive:** Look up the 3-step chain (What to Do / Don't Do / Options) for any feature | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
 | **Score gaps:** Evaluate individual features across 6 dimensions (0-5) | `references/gap-scoring.md` | 15 min |

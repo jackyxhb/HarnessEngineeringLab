@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 28 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 29 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 
@@ -17,7 +17,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 1. Read the project's top-level directory structure.
 2. Identify the project type: pure text/docs, scripted operations, simple app, complex system, or enterprise platform.
-3. Identify the agent scale: single agent (SAS), small team (2–5 agents), or enterprise/swarm (MAS).
+3. Identify the agent scale: single agent, small team (2–5 agents), or enterprise/swarm.
 4. Record findings in a new file: `HE-SCOPE.md` in the target project root.
 
 **Output:** `HE-SCOPE.md` containing:
@@ -77,7 +77,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Gap signals observed
 - Severity: Critical / Important / Enhancement
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `Core Features for SAS.md` Foundation section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Foundation section.
 **Estimated tokens:** ~4,000
 
 ---
@@ -100,7 +100,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `Core Features for SAS.md` Pillar 1 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 1 section.
 **Estimated tokens:** ~3,500
 
 ---
@@ -118,7 +118,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P2-Constraints.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `Core Features for SAS.md` Pillar 2 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 2 section.
 **Estimated tokens:** ~2,500
 
 ---
@@ -135,7 +135,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P3-Entropy.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `Core Features for SAS.md` Pillar 3 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 3 section.
 **Estimated tokens:** ~2,500
 
 ---
@@ -484,7 +484,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 28 features → Actions/Tools tree.
+1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 29 features → Actions/Tools tree.
 2. **Agent Scale:** Task 0.1 classifies the scale. MAS-specific checks are flagged in Phase 1 tasks. Phase 2 uses the SAS→MAS readiness perspective.
 3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.

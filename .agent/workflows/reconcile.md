@@ -21,11 +21,11 @@ Scan for all of the following categories:
 
 4. **Broken content** — corrupted text, numbering bugs, typos, formatting errors
 5. **Inconsistent terminology** — pillar verb tags, feature names, feature counts must match canonical sources:
-   - Foundation = `(Execute)` (canonical: `Core Features for SAS.md`)
+   - Foundation = `(Execute)` (canonical: `HE Core Features.md`)
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
-   - Canonical feature count = **28** (9 Foundation + 10 P1 + 5 P2 + 4 P3)
+   - Canonical feature count = **29** (10 Foundation + 10 P1 + 5 P2 + 4 P3)
 6. **Content duplication** — multiple files saying the same thing in different words
 7. **Missing cross-references** — documents that reference concepts without linking to the canonical source
 8. **Orphan concepts** — ideas introduced in one file but not connected to the framework
@@ -56,9 +56,9 @@ When checking terminology, the following are the **single source of truth** labe
 
 | Component     | Canonical Label                       | Source File                  |
 | ------------- | ------------------------------------- | ---------------------------- |
-| Foundation    | Foundational Infrastructure (Execute) | `Core Features for SAS.md`   |
-| Pillar 1      | Context Engineering (Inform)          | `Core Features for SAS.md`   |
-| Pillar 2      | Architectural Constraints (Constrain) | `Core Features for SAS.md`   |
-| Pillar 3      | Entropy Management (Maintain)         | `Core Features for SAS.md`   |
-| Feature count | 28 core features                      | `HE Enhancement Options.md`  |
+| Foundation    | Foundational Infrastructure (Execute) | `HE Core Features.md`        |
+| Pillar 1      | Context Engineering (Inform)          | `HE Core Features.md`        |
+| Pillar 2      | Architectural Constraints (Constrain) | `HE Core Features.md`        |
+| Pillar 3      | Entropy Management (Maintain)         | `HE Core Features.md`        |
+| Feature count | 29 core features                      | `HE Enhancement Options.md`  |
 | Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |

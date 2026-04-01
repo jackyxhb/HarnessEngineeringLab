@@ -53,7 +53,7 @@ Modify the authoritative skill files in `.agent/skills/harnessing-agents/`:
 
 Propagate the feature additions to all canonical docs in `framework/`:
 
-- **Core Feature Lists**: Update `Core Features for SAS.md` & `Core Features for MAS.md` with a summary bullet.
+- **Core Feature List**: Update `HE Core Features.md` with a summary bullet.
 - **Enhancement Options & Prevention**: Insert the new Actions/Tools in `HE Enhancement Options.md`. Add a prevention bullet in `HE Prevention Checklist.md` (if it exists).
 - **HE Gap Evaluation Framework**:
   - Part 2 (Feature Gap Analysis): Insert Gap Signals, Improvement Policies, and Dependencies map.

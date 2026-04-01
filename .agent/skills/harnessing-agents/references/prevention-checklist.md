@@ -11,8 +11,8 @@ Cross-reference this checklist during gap analysis (Phase 1) to identify which p
 | 1 | State and File Conflicts | **P0-2** | P1-7 |
 | 2 | Cascading Hallucinations (Error Propagation) | **P0-3** | P2-3 |
 | 3 | Premature Exits | **P0-4** | P1-9 |
-| 4 | Quadratic Coordination Overhead | **P0-5** | P0-MAS |
-| 5 | Supervisor Bottlenecks | **P0-5** | P0-MAS |
+| 4 | Quadratic Coordination Overhead | **P0-5** | P0-10 |
+| 5 | Supervisor Bottlenecks | **P0-5** | P0-10 |
 | 6 | Manual, Error-Prone CLI Execution | **P0-9** | — |
 
 ## Pillar 1: Context & Memory Degradation (Inform)

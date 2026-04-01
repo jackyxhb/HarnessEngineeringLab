@@ -1,6 +1,6 @@
 # AI Agent Harness Assessment Sheet
 
-> _Canonical framework: `framework/Core Features for SAS.md` | Gap evaluation: `framework/HE Gap Evaluation Framework.md`_
+> _Canonical framework: `framework/HE Core Features.md` | Gap evaluation: `framework/HE Gap Evaluation Framework.md`_
 
 ## Foundational Infrastructure (Execute)
 

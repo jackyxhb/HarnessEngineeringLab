@@ -10,24 +10,24 @@ This is a **knowledge base and research repository** for Harness Engineering —
 
 All content is organized under this canonical structure. When editing or creating documents, always align to it:
 
-| Layer                                   | Role                                 | SAS Verb  | MAS Verb                      |
-| --------------------------------------- | ------------------------------------ | --------- | ----------------------------- |
-| **Foundation: Infrastructure**          | Execution engine & orchestration     | Execute   | Execute, Orchestrate & Verify |
-| **Pillar 1: Context Engineering**       | Memory, knowledge, real-time data    | Inform    | Inform & Synchronize          |
-| **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain | Constrain & Protect           |
-| **Pillar 3: Entropy Management**        | Long-term codebase health            | Maintain  | Maintain & Reconcile          |
+| Layer                                   | Role                                 | Verb      |
+| --------------------------------------- | ------------------------------------ | --------- |
+| **Foundation: Infrastructure**          | Execution engine & orchestration     | Execute   |
+| **Pillar 1: Context Engineering**       | Memory, knowledge, real-time data    | Inform    |
+| **Pillar 2: Architectural Constraints** | Mechanical enforcement of boundaries | Constrain |
+| **Pillar 3: Entropy Management**        | Long-term codebase health            | Maintain  |
 
-**Foundation** features (9): Bash Sandboxes, Filesystem & Git Workspace, Self-Verification, Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies, Harness Versioning, Smart Command Wrappers
+**Foundation** features (10): Bash Sandboxes, Filesystem Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox)
 
-**Pillar 1** features (10): Repository as Truth, Context Compaction, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning & State Files, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
+**Pillar 1** features (10): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
 
-**Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors, Bounded Autonomy, Upstream Intake Gate
+**Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate
 
 **Pillar 3** features (4): Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop
 
 ## Directory Layout
 
-- `framework/` — **Canonical source of truth.** Core framework definitions for SAS and MAS, enhancement options, and prevention checklist. All other docs must be consistent with these files.
+- `framework/` — **Canonical source of truth.** Core framework definitions (29 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
 - `builder/` — Build logs for the `harnessing-agents` skill optimization.
@@ -90,5 +90,5 @@ To prevent strategic drift across context window resets, agents rely on **Anchor
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content.
 - **Consistency rule:** `framework/` is the single source of truth. Never contradict it in `research/` or other directories.
 - **Gap evaluation:** Use `framework/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
-- **SAS vs MAS:** Single Agent Systems vs Multi-Agent Systems. MAS extends SAS with inter-agent communication, file locking, collective verification, bounded autonomy, and diverse collaboration.
+- **Unified features:** All 29 features are defined once in `HE Core Features.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages.

@@ -186,10 +186,10 @@ Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp
 
 ---
 
-## P0-MAS. Inter-Agent Communication (The Mailbox) _(MAS Extension)_
+## P0-10. Inter-Agent Communication (The Mailbox)
 
 ### What to Do
-A dedicated messaging bus that allows agents to communicate directly via peer-to-peer (P2P) messaging, broadcast to the swarm, and send idle notifications. MAS-only addition.
+A dedicated messaging bus that allows agents to communicate directly via peer-to-peer (P2P) messaging, broadcast to the swarm, and send idle notifications.
 
 ### Don't Do
 _(Covered by P0-5: Prevent Quadratic Coordination Overhead and Prevent Supervisor Bottlenecks. The Mailbox itself must not become a noisy broadcast channel that floods agent context windows.)_

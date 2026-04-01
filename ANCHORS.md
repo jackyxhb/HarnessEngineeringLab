@@ -45,13 +45,13 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Enforced mechanically by the `/revise-comments` workflow.
 - **Date:** 2026-03-16
 
-### A4: Scalable SAS-to-MAS Path
+### A4: Unified Feature Definitions
 
-- **What:** Designed all features initially as Single Agent Systems (SAS) constructs, explicitly documenting their corresponding upgrade paths to Multi-Agent Systems (MAS).
-- **Why:** Prevents multi-agent overhead (quadratic coordination) for simple tasks, while ensuring the harness can cleanly scale to decentralized autonomy without rework.
-- **Target:** `Core Features for SAS.md`, `Core Features for MAS.md`, `SAS to MAS Feature Mapping.md`.
-- **Background:** A core requirement identified in early HE Gap implementations.
-- **Date:** 2026-03-22
+- **What:** Merged all SAS and MAS core feature definitions into a single unified document (`HE Core Features.md`), eliminating the separate SAS/MAS split and the mapping file.
+- **Why:** SAS and MAS share 95%+ of their structure. Maintaining separate documents created unnecessary duplication and reference complexity. A unified document describes single-agent behavior as the baseline and multi-agent behavior inline.
+- **Target:** `HE Core Features.md` (replaces `Core Features for SAS.md`, `Core Features for MAS.md`, and `SAS to MAS Feature Mapping.md`).
+- **Background:** Originally designed as separate SAS/MAS paths (see original A4). Consolidated after recognizing the overhead of maintaining parallel documents outweighed the benefit of separate definitions.
+- **Date:** 2026-04-01
 
 ### A5: Workflow-Driven Consistency
 
@@ -61,13 +61,13 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
 - **Date:** 2026-03-16
 
-### A6: 28-Feature Canonical Count
+### A6: 29-Feature Canonical Count
 
-- **What:** Fixed the canonical feature count of the framework at exactly 28 core features: Foundation (9), Pillar 1 (10), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-9, P1-10, P2-5).
+- **What:** Fixed the canonical feature count of the framework at exactly 29 core features: Foundation (10), Pillar 1 (10), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-10, P1-10, P2-5). The former P0-MAS is now P0-10.
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
-- **Background:** Expanded from 25 to 28 after adding P1-10 (Requirements Ledger), P2-5 (Upstream Intake Gate), and P0-9 (Smart Command Wrappers). ID scheme changed from sequential/F-prefix to pillar-prefixed `P<area>-<sub>`.
-- **Date:** 2026-03-31
+- **Background:** Expanded from 28 to 29 after integrating P0-MAS (Inter-Agent Communication) as a first-class feature P0-10 during the SAS/MAS unification.
+- **Date:** 2026-04-01
 
 ### A7: Reward Engineering as Cross-Cutting
 

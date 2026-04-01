@@ -2,7 +2,7 @@
 
 How to Create a Robust Agent — General Principles, distilled from OpenAI's Harness Engineering experience and broader agent design patterns.
 
-> _Canonical framework: `framework/Core Features for SAS.md` | Enhancement options: `framework/HE Enhancement Options.md`_
+> _Canonical framework: `framework/HE Core Features.md` | Enhancement options: `framework/HE Enhancement Options.md`_
 
 ## 1. Design the Environment, Not Just the Agent
 
