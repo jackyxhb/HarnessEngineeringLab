@@ -85,12 +85,17 @@ To preserve tracking history and prevent monolithic execution failures, agents m
 To prevent strategic drift across context window resets, agents rely on **Anchors** (P1-8).
 
 - **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
+- **For Multi-Step Tasks:** Read `PLANS.md` to check for active plans before starting. Append a new plan entry for any task requiring more than 3 sequential steps.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 
 ## Available Tools & Commands
 
 All available tools and scripts. Undeclared tools do not exist for agents — if a tool is useful but not listed, add it here rather than using it undocumented.
 
+- `npm run smoke` — Fast HE consistency check (he-lint.js only). Run before any commit to verify feature IDs and pillar labels. Target runtime < 2s.
+- `npm run check` — Full quality gate: markdownlint + cspell + he-lint.js. Equivalent to what CI runs. Use before pushing.
+- `npm run ci` — Alias for `npm run check`. Use in automated contexts.
+- `npm run audit` — Structural integrity audit: verifies all required harness files exist, workflows are registered, tmp/ is clean, and anchor count is healthy. Exit 0 = PASS.
 - `node scripts/he-lint.js` — Canonical HE consistency checker. Runs on `git commit` (pre-commit hook) and in CI on every push/PR. Run manually before committing docs changes.
 - `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
 - `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.
@@ -110,6 +115,9 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **Never write directly to `references/` files.** Consequence: original source articles become contaminated; `references/` is read-only reference material. If a reference needs updating, flag it in `ANCHORS.md`.
 - **Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 30 features are unified in `HE Core Features.md` (per A4).
 - **Never introduce a new workflow or script without adding it to `## Available Tools & Commands`.** Consequence: the tool is invisible to agents and effectively non-existent as a harness resource.
+- **Never mark a `PLANS.md` entry status as `done` without moving it to the Completed Plans section.** Consequence: task history is lost; future agents cannot examine resolved blocking issues, constraints applied, or decisions made during the task — rebuilding that context costs a full conversation replay.
+- **Never add a file to `docs/` without registering its observable signals in `docs/OBSERVABILITY.md`.** Consequence: the new file becomes invisible to the harness audit signal table, enabling silent structural regressions that escape both pre-commit and the weekly GC scan.
+- **Never push to `main` when `npm run audit` exits with FAIL.** Consequence: a structurally degraded harness enters the main branch; missing critical files are invisible to agents until the next weekly GC remediation cycle completes.
 
 ## Conventions
 

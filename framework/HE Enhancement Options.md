@@ -62,6 +62,8 @@ When implementing or upgrading a harness, use these options to translate the 30 
 
 - **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning and repository intent.
 - **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
+- **Action:** Stratify commands by execution cost: fast gate (e.g., `npm run smoke`) for pre-commit frequency; full quality gate (e.g., `npm run check` / `npm run ci`) for pre-push; structural audit (e.g., `npm run audit`) for on-demand harness health checks. Agents must use the cheapest gate appropriate to their context.
+- **Action:** Keep command names stable across harness versions; change implementations behind wrappers so agent muscle-memory and CI references never break.
 - **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
 - **Tool:** Workflow installation scripts that provide localized command definitions.
 
@@ -105,8 +107,10 @@ When implementing or upgrading a harness, use these options to translate the 30 
 ### P1-5. Observability / Dashboards
 
 - **Action:** Serve real-time system states as dynamic context so agents can observe their own work.
+- **Action:** Track harness structural integrity as a dedicated signal category: verify required file existence, workflow registry completeness, and pre-commit hook liveness. These signals must remain green before any agent run is trusted.
 - **Tool:** Logs, metrics, traces, screenshots, and live CI/CD pipeline statuses.
 - **Tool:** Agent Performance Monitoring Dashboards for human oversight.
+- **Tool:** `docs/OBSERVABILITY.md` — minimum observable field spec defining all signal sources, targets, alert thresholds, and recovery procedures. All new harness files must register their signals here.
 
 ### P1-6. Web Search & MCP Integration
 
@@ -118,8 +122,11 @@ When implementing or upgrading a harness, use these options to translate the 30 
 
 - **Action:** Maintain a shared task list where agents can autonomously view statuses, claim unassigned work, and build upon partial solutions.
 - **Action:** Store plan files and inject reminders so agents can decompose goals and stay on track.
+- **Action:** Use a structured plan entry format for every multi-step task: **goal** (success definition), **scope** (in/out boundaries), **status**, **checkboxed steps**, **constraints** (hard rules that must not be violated), **checkpoints** (commit-worthy states), and **blocking issues**.
+- **Action:** Front-load enough durable context in every plan entry that an agent can resume the task from the plan file alone after a context reset, without replaying conversation history.
+- **Action:** Archive completed plan entries inline rather than deleting them, preserving a traceable record of resolved constraints, blocking issues, and decisions applied during the task for future agents.
 - **Tool:** Centralized knowledge spaces (Blackboards).
-- **Tool:** The filesystem (for storing shared plan files).
+- **Tool:** The filesystem (for storing shared plan files, e.g., `PLANS.md` in the project root).
 
 ### P1-8. Context Anchoring
 
@@ -166,6 +173,7 @@ When implementing or upgrading a harness, use these options to translate the 30 
 
 - **Action:** Mechanically restrict which architectural layers an agent can import from or modify.
 - **Action:** For **documentation-first repositories**, apply the same concept to document layers: canonical docs (`framework/`) are the source of truth; derived docs (`research/`) must not contradict or redefine canonical content. Enforce this with structural lint checks that validate terminology, pillar labels, and feature counts against canonical definitions.
+- **Action:** Enforce strict **content-flow directionality**: content flows `references/ → framework/ → research/` only. Derived documents (`research/`) may never define new canonical concepts — concepts must originate in `framework/` first and propagate downward. An agent that defines a new concept in `research/` before `framework/` creates a silent fork that persists until the next `/revise-comments` run.
 - **Tool:** Structural testing frameworks (e.g., ArchUnit).
 - **Tool:** Structural lint checks validating document-layer consistency (e.g., pillar label integrity, canonical term validation, feature count enforcement).
 
@@ -201,6 +209,7 @@ When implementing or upgrading a harness, use these options to translate the 30 
 - **Action:** Implement GC as a **CI cron trigger** (e.g., weekly schedule) — a manually-invoked workflow does not qualify as scheduled cleanup. Output discrete reports or issues per GC category rather than a single large manual audit.
 - **Tool:** Dedicated background cleanup agents running on specific daily/weekly schedules or via event-based triggers.
 - **Tool:** Scheduled CI workflow (e.g., GitHub Actions `he-weekly-gc.yml`) with a cron trigger and automated issue creation on violations.
+- **Tool:** `scripts/harness/audit.sh` — local on-demand structural integrity audit for pre-deployment or post-change use outside the weekly CI schedule. Produces per-check `[OK]` / `[WARNING]` / `[FAIL]` output with a final PASS/FAIL verdict.
 
 ### P3-2. Documentation Sync
 

@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
-    "lint": "lint-staged"
+    "lint": "lint-staged",
+    "smoke": "node scripts/he-lint.js",
+    "check": "markdownlint \"**/*.md\" --ignore node_modules && cspell \"**/*.md\" --no-progress && node scripts/he-lint.js",
+    "ci": "npm run check",
+    "audit": "bash scripts/harness/audit.sh"
   },
   "repository": {
     "type": "git",
