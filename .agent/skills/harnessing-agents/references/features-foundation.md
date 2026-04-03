@@ -194,3 +194,7 @@ _(Covered by P0-5: Prevent Quadratic Coordination Overhead and Prevent Superviso
 - **Tool:** Direct peer-to-peer messaging functions (`message`).
 - **Tool:** Swarm broadcasting (`broadcast`) and idle notifications.
 - **Tool:** Inter-agent messaging middleware.
+
+### Remediation Tiers
+- [Tier 1] Implement P2P messaging and broadcast channels between agents.
+- [Tier 2] Add idle notifications and message deduplication to prevent context flooding.

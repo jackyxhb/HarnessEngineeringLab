@@ -7,7 +7,7 @@ Each feature follows the assessment chain: **What to Do** (definition) → **Don
 ## P1-1. Repository as Truth
 
 ### What to Do
-Encoding all project rules, architectural decisions, and style guides directly into the codebase, eliminating reliance on human-only knowledge. In MAS, establishes a ground truth for all agents.
+Encoding all project rules and static context directly into the codebase. Requires three components: (1) a **Failure Ledger** where every rule traces to a concrete incident; (2) a **Forbidden Operations** section with each violation's consequence stated inline; (3) a **Tool Declaration** listing all tools — undeclared tools do not exist to agents. In MAS, establishes ground truth for all agents.
 
 ### Don't Do
 **Prevent Human-Only Documentation:** You must prevent project rules, APIs, and architectural decisions from living only in human heads, Slack threads, or private Google Docs. If information is not in the repository, the agent is blind to it.
@@ -195,20 +195,19 @@ Capturing all incoming user stories, requirements, and functional scenario narra
 ## P1-11. Socratic Questioning
 
 ### What to Do
-Applying structured Socratic questioning to extract complete, unambiguous information before execution begins. When confronting unclear statements, requirements, tasks, or problems, the agent must pause and systematically interrogate the input using six question categories — Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, and Questions about the Question — until all ambiguities are resolved. The goal is cooperative discovery — not debate — to reach complete clarity before committing to a plan or execution path. In MAS, Socratic rounds can be distributed across specialized interrogator agents that probe different dimensions in parallel before merging a consensus clarifications document.
+Pausing before execution to interrogate unclear inputs using six categories: Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, and Questions about the Question. Goal: cooperative discovery to reach complete clarity before committing to a plan. In MAS, interrogator agents probe dimensions in parallel and merge a consensus clarifications document.
 
 ### Don't Do
-**Prevent Execution on Ambiguous Inputs:** You must prevent agents from beginning planning or execution while critical ambiguities remain unresolved. Agents that accept unclear inputs and "make assumptions" silently accumulate hidden errors that compound catastrophically downstream.
+**Prevent Execution on Ambiguous Inputs:** Agents that accept unclear inputs and make silent assumptions accumulate hidden errors that compound downstream. Ambiguities must be resolved before planning begins.
 
-**Prevent Silent Assumption Stacking:** You must prevent agents from filling in unstated details with silent assumptions rather than surfacing them for resolution. Each unchallenged assumption is a hidden risk that can invalidate entire execution chains.
+**Prevent Silent Assumption Stacking:** Each unchallenged assumption is a hidden risk that can invalidate entire execution chains. Surface all ambiguities; do not fill gaps silently.
 
 ### Options
-- **Action:** When encountering an unclear input, pause execution and apply a structured Socratic interrogation pass before proceeding.
-- **Action:** Probe the input using all six question categories systematically: Clarification ("What do you mean by…?"), Probing Assumptions ("What are you assuming here?"), Probing Reason & Evidence ("What evidence supports this?"), Questioning Viewpoints ("What would someone who disagrees say?"), Probing Implications ("If this is true, what else must be true?"), and Questions about the Question ("Why is this question important?").
-- **Action:** Record extracted clarifications as structured entries in the Requirements Ledger (P1-10) or as Context Anchors (P1-8) before proceeding.
-- **Tool:** Structured interrogation templates covering the 6 Socratic question types, injected into agent context at task intake.
-- **Tool:** Ambiguity scoring heuristics — rate input clarity before and after the Socratic round; do not proceed if score remains below threshold.
+- **Action:** On unclear inputs, pause and apply a Socratic interrogation pass (all 6 categories) before proceeding.
+- **Action:** Record clarifications in the Requirements Ledger (P1-10) or as Context Anchors (P1-8) before planning.
+- **Tool:** Socratic interrogation template (6 question types) injected into agent context at task intake.
+- **Tool:** Ambiguity scoring heuristics — do not proceed if clarity score is below threshold.
 
 ### Remediation Tiers
-- [Tier 1] Define a mandatory pre-execution ambiguity check: before any planning step, explicitly list all assumptions and surface them as questions.
-- [Tier 2] Implement a Socratic interrogation template with all 6 question categories, added to intake meta-docs and planning workflows.
+- [Tier 1] Add a mandatory pre-execution ambiguity check: list all assumptions as questions before planning.
+- [Tier 2] Implement a full Socratic interrogation template (6 categories) in intake meta-docs and planning workflows.
