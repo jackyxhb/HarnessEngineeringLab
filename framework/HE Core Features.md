@@ -23,7 +23,7 @@ _The execution engine and orchestration layer that the harness is built upon. It
 
 _The largest pillar. Encompasses everything related to managing what the model sees: its memory, durable storage, real-time knowledge, and strategic continuity. In multi-agent setups, context extends to maintaining a coherent shared reality across a network of agents._
 
-- **P1-1. Repository as Truth:** Encoding all project rules and static context directly into the codebase, eliminating reliance on human-only knowledge. Establishes ground truth for all agents.
+- **P1-1. Repository as Truth:** Encoding all project rules and static context directly into the codebase, eliminating reliance on human-only knowledge. Establishes ground truth for all agents. Requires three explicit components: (1) a **Failure Ledger** where every rule traces to a concrete incident — not generic advice; (2) a **Forbidden Operations** section listing what agents must never do, with the consequence of each violation stated inline; and (3) a **Tool Declaration** listing all available tools and scripts — undeclared tools do not exist to agents.
 - **P1-2. Context Compaction & Memory Management:** Intelligently summarizing and offloading older context to prevent "context rot." Separates short-term memory (session history) from long-term memory (centralized stores), allowing agents to selectively synchronize knowledge.
 - **P1-3. Tool Offloading:** Stripping noisy tool outputs to keep only the head and tail tokens in context, while storing the full results. Offloaded results can be saved to shared surfaces for other agents to read without polluting their context.
 - **P1-4. Progressive Skills:** Loading specific tool logic into context only when needed via progressive disclosure, matched to each agent's assigned role.
@@ -41,8 +41,8 @@ _The largest pillar. Encompasses everything related to managing what the model s
 
 _Mechanically enforces what good code looks like so agents don't waste tokens exploring dead ends. With multiple agents, the attack surface expands — this pillar also enforces security, permissions, and constructive adversarial friction._
 
-- **P2-1. Automated Linters:** Deterministic rules and pre-commit hooks that automatically flag and reject non-compliant code.
-- **P2-2. Dependency Enforcement:** Structural tests that mechanically restrict which architectural layers agents can import from.
+- **P2-1. Automated Linters:** Deterministic rules and pre-commit hooks that automatically flag and reject non-compliant code. Enforcement must be **CI-wired** — pre-commit hooks alone can be bypassed and are insufficient as the sole gate. Every linter error must include a **teaching message**: a `↳ Fix:` line pointing to the canonical source and exact remediation, so agents can self-correct on first re-attempt without human intervention.
+- **P2-2. Dependency Enforcement:** Structural tests that mechanically restrict which architectural layers agents can import from. In documentation-first repositories, applies equally to **document layer hierarchies**: canonical docs (`framework/`) are the source of truth; derived docs (`research/`) must not contradict them — enforced by structural lint checks validating pillar labels, terminology, and feature counts against canonical definitions.
 - **P2-3. AI Auditors & Collaboration Channels:** Secondary LLM-based agents reviewing output for architectural compliance. Includes Cooperation (assembly line review), Competition (agents debate competing hypotheses), and Coopetition (agents compromise) — actively preventing anchoring bias.
 - **P2-4. Bounded Autonomy & Access Control:** Defining explicit scope boundaries and access controls for how far an agent can go without human escalation. Enforces real-time guardrails ensuring a compromised agent cannot expose restricted data or hijack peers.
 - **P2-5. Upstream Intake Gate:** Mechanically enforcing that all requirement-like artifacts are captured in the Requirements Ledger before planning and execution proceed. All agents validate the ledger before claiming work.
@@ -53,7 +53,7 @@ _Mechanically enforces what good code looks like so agents don't waste tokens ex
 
 _Also known as "Garbage Collection." Manages the health of the codebase over time as AI generates code. With concurrent agents, debt accumulates faster and maintenance must include conflict resolution._
 
-- **P3-1. Scheduled Cleanups:** Dedicated cleanup agents running on schedules to catch code that slipped past earlier checks and reconcile overlapping or conflicting changes from concurrent agents.
+- **P3-1. Scheduled Cleanups:** Dedicated cleanup agents running on schedules to catch code that slipped past earlier checks and reconcile overlapping or conflicting changes from concurrent agents. The implementation mechanism is a **CI cron trigger** (e.g., weekly) — a manually-invoked workflow does not qualify as scheduled cleanup. Output is a discrete report or issue per GC category, not a single large manual audit.
 - **P3-2. Documentation Sync:** Agents that actively verify and update project documentation so it matches the current, living state of the code.
 - **P3-3. Pattern Auditing:** Agents that track and resolve circular dependencies, dead code, or deviations from established coding patterns — including cross-agent pattern divergence.
 - **P3-4. Consolidation Loop:** Agents that auto-update core system counts, track issue history, maintain changelogs, and prompt for ADRs to keep central knowledge synchronized with the codebase.

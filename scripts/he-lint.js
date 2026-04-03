@@ -47,9 +47,12 @@ function buildDynamicRegistries() {
 
 let hasErrors = false;
 
-function reportError(filePath, lineNum, message) {
+function reportError(filePath, lineNum, message, fix) {
   hasErrors = true;
   console.error(`\x1b[31m[HE-LINT]\x1b[0m ${path.basename(filePath)}:${lineNum > 0 ? lineNum : 'ALL'} -> ${message}`);
+  if (fix) {
+    console.error(`  \x1b[33m\u21b3 Fix:\x1b[0m ${fix}`);
+  }
 }
 
 function scanFile(filePath) {
@@ -67,7 +70,7 @@ function scanFile(filePath) {
     let match;
     while ((match = countRegex.exec(line)) !== null) {
       if (match[1] !== "30") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 30.`);
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 30.`, 'Update to "30 core features" (10 Foundation + 11 P1 + 5 P2 + 4 P3). See: framework/HE Core Features.md');
       }
     }
 
@@ -94,12 +97,25 @@ function scanFile(filePath) {
       }
       
       if (invalid) {
-        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`);
+        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-10, P1-1..P1-11, P2-1..P2-5, P3-1..P3-4. See: framework/HE Core Features.md');
       }
     }
+
+    // 3. Pillar Label Integrity Check
+    // Section headings that label a Pillar must use the canonical verb annotation.
+    const pillarLabelChecks = [
+      { regex: /^#+\s+(?:Pillar\s+1[:\s]+)?Context\s+Engineering\s*$/, canonical: 'Context Engineering (Inform)' },
+      { regex: /^#+\s+(?:Pillar\s+2[:\s]+)?Architectural\s+Constraints\s*$/, canonical: 'Architectural Constraints (Constrain)' },
+      { regex: /^#+\s+(?:Pillar\s+3[:\s]+)?Entropy\s+Management\s*$/, canonical: 'Entropy Management (Maintain)' },
+    ];
+    pillarLabelChecks.forEach(({ regex, canonical }) => {
+      if (regex.test(line)) {
+        reportError(filePath, lineNum, `Pillar Label: Heading uses unlabelled pillar name.`, `Use canonical label "${canonical}". See: framework/HE Core Features.md`);
+      }
+    });
   });
 
-  // 3. Generic Orphan Concept Check
+  // 4. Generic Orphan Concept Check
   // Check against our dynamically extracted anchors Map.
   anchorsMap.forEach((sourceDoc, concept) => {
     // Escape concept for regex
@@ -113,7 +129,7 @@ function scanFile(filePath) {
     if (conceptRegex.test(content) && !content.includes(sourceDoc)) {
       // Exclude generic terms that might overlap (like "Context Compaction" vs "Context")
       if (concept.split(' ').length > 1) { 
-        reportError(filePath, 0, `Orphan Concept Gap: Mentions dynamic concept "${concept}" but fails to link back to canonical source: ${sourceDoc}`);
+        reportError(filePath, 0, `Orphan Concept Gap: Mentions dynamic concept "${concept}" but fails to link back to canonical source: ${sourceDoc}`, `Add a markdown reference link to "${sourceDoc}" in this file, or remove the concept mention.`);
       }
     }
   });
@@ -138,8 +154,9 @@ function run() {
   console.log('Running Generic HE Validations...');
   buildDynamicRegistries();
 
-  const args = process.argv.slice(2);
-  if (args.length > 0) {
+  const args = process.argv.slice(2).filter(a => a !== '--all');
+  const allMode = process.argv.includes('--all');
+  if (args.length > 0 && !allMode) {
     // Run only on provided files (lint-staged)
     args.forEach(file => {
       if (file.endsWith('.md')) scanFile(path.resolve(file));

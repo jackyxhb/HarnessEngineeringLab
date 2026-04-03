@@ -1,0 +1,56 @@
+name: HE Weekly GC
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 09:00 UTC
+  workflow_dispatch:       # Allow manual trigger
+
+jobs:
+  gc-lint:
+    name: Weekly Entropy Scan
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run HE Lint GC scan
+        id: lint
+        run: |
+          node scripts/he-lint.js 2>&1 | tee lint-output.txt
+          exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Open GitHub issue on violations
+        if: steps.lint.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BODY=$(cat lint-output.txt)
+          DATE=$(date -u +"%Y-%m-%d")
+          gh issue create \
+            --title "Weekly HE GC: ${DATE} — lint violations found" \
+            --body "## Weekly Entropy Report — ${DATE}
+
+The scheduled HE lint scan detected violations that require attention.
+
+\`\`\`
+${BODY}
+\`\`\`
+
+**Next steps:**
+1. Run \`node scripts/he-lint.js\` locally to reproduce
+2. Fix each violation (the \`↳ Fix:\` line in each error tells you what to do)
+3. Commit with \`docs: fix HE lint violations\`
+
+See \`framework/HE Core Features.md\` for canonical definitions."

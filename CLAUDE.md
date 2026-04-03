@@ -21,7 +21,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 **Foundation** features (10): Bash Sandboxes, Filesystem, Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox)
 
-**Pillar 1** features (10): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning, Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
+**Pillar 1** features (11): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning, Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger, Socratic Questioning
 
 **Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate
 
@@ -87,10 +87,35 @@ To prevent strategic drift across context window resets, agents rely on **Anchor
 - **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 
+## Available Tools & Commands
+
+All available tools and scripts. Undeclared tools do not exist for agents — if a tool is useful but not listed, add it here rather than using it undocumented.
+
+- `node scripts/he-lint.js` — Canonical HE consistency checker. Runs on `git commit` (pre-commit hook) and in CI on every push/PR. Run manually before committing docs changes.
+- `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
+- `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.
+- `/cognitive-branch` — Complex task execution with branch memory (P1-9). Use for any multi-step objective.
+- `/ccp` — Intelligent commit wrapper: stages, generates message, and pushes.
+- `/ccpr` — Commit + push + PR + release wrapper.
+- `/anchor` — Add, review, or prune context anchor records in `ANCHORS.md`.
+- `/revise-comments` — Consistency check between `research/` and `framework/`. Run after editing canonical framework docs.
+
+## DO NOT
+
+Explicit forbidden operations. Each entry states the action and the consequence of performing it.
+
+- **Never edit `framework/` files to resolve a `research/` inconsistency by matching the wrong definition.** Consequence: bad content enters canonical truth. Action: update `research/` to match `framework/`, or run `/revise-comments`.
+- **Never add a rule to this file without a concrete incident, failure, or constraint that justifies it.** Consequence: generic rules are ignored by agents trained to find mechanically-enforced constraints; the next `/reconcile` run will flag and remove them.
+- **Never bypass pre-commit hooks with `git commit --no-verify`.** Consequence: `he-lint` violations enter the repository and CI will reject the push.
+- **Never write directly to `references/` files.** Consequence: original source articles become contaminated; `references/` is read-only reference material. If a reference needs updating, flag it in `ANCHORS.md`.
+- **Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 30 features are unified in `HE Core Features.md` (per A4).
+- **Never introduce a new workflow or script without adding it to `## Available Tools & Commands`.** Consequence: the tool is invisible to agents and effectively non-existent as a harness resource.
+
 ## Conventions
 
-- **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content.
-- **Consistency rule:** `framework/` is the single source of truth. Never contradict it in `research/` or other directories.
+- **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content. Violation causes naming entropy that breaks cross-link validation and file-search heuristics.
+- **Consistency rule:** `framework/` is the single source of truth. Never edit `research/` to define a new framework concept — write it in `framework/` first, then align `research/` to it. Violating this creates silent forks where agents read contradictory definitions depending on which file they loaded first.
 - **Gap evaluation:** Use `framework/HE Gap Evaluation Framework.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
-- **Unified features:** All 30 features are defined once in `HE Core Features.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents.
-- **Commit style:** `feat:` and `docs:` prefixes with descriptive messages.
+- **Unified features:** All 30 features are defined once in `HE Core Features.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents. Creating split files causes definitions to diverge; `he-lint.js` will catch the count mismatch.
+- **Commit style:** `feat:` and `docs:` prefixes with descriptive messages. Generic messages like "update docs" block downstream automation from extracting semantic change history.
+- **Rule entries:** Every rule added to `CLAUDE.md` must state the consequence of violation. Generic advice (e.g., "follow best practices") will be removed on the next `/reconcile` run.

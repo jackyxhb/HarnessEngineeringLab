@@ -80,7 +80,11 @@ When implementing or upgrading a harness, use these options to translate the 30 
 
 - **Action:** Encode all project rules, architectural decisions, and style guides directly into the codebase at agent startup.
 - **Action:** Cross-link design documents to ensure the model isn't blind to human knowledge.
+- **Action:** Maintain a **Failure Ledger** — every rule in `AGENTS.md`/`CLAUDE.md` must trace to a concrete incident, failure, or constraint. Generic advice without an incident should be removed on next audit.
+- **Action:** Include a **Forbidden Operations** section explicitly listing what agents must never do, with the consequence of each violation stated inline.
+- **Action:** Maintain a **Tool Declaration** section listing every available tool and script — undeclared tools do not exist to agents; if a useful tool is absent from this list, agents will not use it.
 - **Tool:** Localized memory files like `AGENTS.md`, `CLAUDE.md`, or `.cursorrules`.
+- **Tool:** Structured failure-ledger entry format (e.g., `rule / context / fix` triples).
 
 ### P1-2. Context Compaction & Memory Management
 
@@ -152,13 +156,18 @@ When implementing or upgrading a harness, use these options to translate the 30 
 ### P2-1. Automated Linters
 
 - **Action:** Mechanically enforce what good code looks like to save tokens and prevent the agent from exploring dead ends.
+- **Action:** Wire all linters into the **CI pipeline** — pre-commit hooks can be bypassed and are insufficient as the sole enforcement gate. CI failure is the authoritative signal.
+- **Action:** Every linter error message must include a **teaching message**: a `↳ Fix:` line pointing to the canonical source and exact remediation step, so agents can self-correct on first re-attempt without human intervention.
 - **Tool:** Custom deterministic linters.
 - **Tool:** Pre-commit hooks that automatically flag and reject non-compliant code before it enters the repository.
+- **Tool:** CI workflow (e.g., GitHub Actions `he-lint.yml`) running the full linter scan on every push and pull request.
 
 ### P2-2. Dependency Enforcement
 
 - **Action:** Mechanically restrict which architectural layers an agent can import from or modify.
+- **Action:** For **documentation-first repositories**, apply the same concept to document layers: canonical docs (`framework/`) are the source of truth; derived docs (`research/`) must not contradict or redefine canonical content. Enforce this with structural lint checks that validate terminology, pillar labels, and feature counts against canonical definitions.
 - **Tool:** Structural testing frameworks (e.g., ArchUnit).
+- **Tool:** Structural lint checks validating document-layer consistency (e.g., pillar label integrity, canonical term validation, feature count enforcement).
 
 ### P2-3. AI Auditors & Collaboration Channels
 
@@ -189,7 +198,9 @@ When implementing or upgrading a harness, use these options to translate the 30 
 ### P3-1. Scheduled Cleanups
 
 - **Action:** Catch constraint violations and reconcile overlapping or conflicting code changes made by concurrent agent teams.
+- **Action:** Implement GC as a **CI cron trigger** (e.g., weekly schedule) — a manually-invoked workflow does not qualify as scheduled cleanup. Output discrete reports or issues per GC category rather than a single large manual audit.
 - **Tool:** Dedicated background cleanup agents running on specific daily/weekly schedules or via event-based triggers.
+- **Tool:** Scheduled CI workflow (e.g., GitHub Actions `he-weekly-gc.yml`) with a cron trigger and automated issue creation on violations.
 
 ### P3-2. Documentation Sync
 
