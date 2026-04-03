@@ -47,7 +47,13 @@
     "ccp",
     "pytest",
     "macbook",
-    "Inspirate"
+    "Inspirate",
+    "Thoughtworks",
+    "Lopopolo",
+    "Wiggum",
+    "llms",
+    "nixpacks",
+    "automerged"
   ],
   "ignorePaths": [
     "node_modules",

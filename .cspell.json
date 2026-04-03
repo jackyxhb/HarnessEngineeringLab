@@ -61,7 +61,13 @@
     "Sandboxing",
     "reinjecting",
     "parallelizable",
-    "macbook"
+    "macbook",
+    "Thoughtworks",
+    "Lopopolo",
+    "Wiggum",
+    "llms",
+    "nixpacks",
+    "automerged"
   ],
   "ignorePaths": [
     "node_modules/**",

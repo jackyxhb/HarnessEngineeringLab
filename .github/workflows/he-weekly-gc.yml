@@ -26,31 +26,47 @@ jobs:
 
       - name: Run HE Lint GC scan
         id: lint
-        run: |
-          node scripts/he-lint.js 2>&1 | tee lint-output.txt
-          exit ${PIPESTATUS[0]}
+        run: node scripts/he-lint.js 2>&1 | tee lint-output.txt; exit ${PIPESTATUS[0]}
         continue-on-error: true
 
-      - name: Open GitHub issue on violations
+      - name: Build issue body
+        if: steps.lint.outcome == 'failure'
+        run: |
+          node -e "
+          const fs = require('fs');
+          const lint = fs.readFileSync('lint-output.txt', 'utf8');
+          const date = new Date().toISOString().split('T')[0];
+          const body = [
+            '## Weekly Entropy Report \u2014 ' + date,
+            '',
+            'The scheduled HE lint scan detected violations that require attention.',
+            '',
+            '\`\`\`',
+            lint.trim(),
+            '\`\`\`',
+            '',
+            '**Next steps:**',
+            '1. Run \`node scripts/he-lint.js\` locally to reproduce',
+            '2. Fix each violation (the \`\u21b3 Fix:\` line in each error tells you what to do)',
+            '3. Commit with \`docs: fix HE lint violations\`',
+            '',
+            'See \`framework/HE Core Features.md\` for canonical definitions.'
+          ].join('\\n');
+          fs.writeFileSync('issue-body.txt', body);
+          "
+
+      - name: Open or update GitHub issue on violations
         if: steps.lint.outcome == 'failure'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BODY=$(cat lint-output.txt)
           DATE=$(date -u +"%Y-%m-%d")
-          gh issue create \
-            --title "Weekly HE GC: ${DATE} — lint violations found" \
-            --body "## Weekly Entropy Report — ${DATE}
-
-The scheduled HE lint scan detected violations that require attention.
-
-\`\`\`
-${BODY}
-\`\`\`
-
-**Next steps:**
-1. Run \`node scripts/he-lint.js\` locally to reproduce
-2. Fix each violation (the \`↳ Fix:\` line in each error tells you what to do)
-3. Commit with \`docs: fix HE lint violations\`
-
-See \`framework/HE Core Features.md\` for canonical definitions."
+          EXISTING=$(gh issue list --state open --search "Weekly HE GC" --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file issue-body.txt
+            echo "Appended comment to existing issue #${EXISTING}"
+          else
+            gh issue create \
+              --title "Weekly HE GC: ${DATE} -- lint violations found" \
+              --body-file issue-body.txt
+          fi
