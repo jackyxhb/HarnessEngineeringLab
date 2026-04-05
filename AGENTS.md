@@ -121,6 +121,9 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **Never add a file to `docs/` without registering its observable signals in `docs/OBSERVABILITY.md`.** Consequence: the new file becomes invisible to the harness audit signal table, enabling silent structural regressions that escape both pre-commit and the weekly GC scan.
 - **Never push to `main` when `npm run audit` exits with FAIL.** Consequence: a structurally degraded harness enters the main branch; missing critical files are invisible to agents until the next weekly GC remediation cycle completes.
 - **Never store project-wide rules exclusively in an IDE-specific file or proprietary memory system.** Consequence: agents running in other IDEs cannot discover the rules, fragmenting the harness. All global rules must live in `AGENTS.md`; IDE-specific files are shims only (per A8).
+- **Never deploy advisory or warning-level CI checks; all checks must be binary pass/fail.** Consequence: agents ignore warnings — only hard failures drive behavior change. Advisory warnings accumulate silently until they cascade into hard-to-diagnose failures.
+- **Never attribute an agent failure to the agent without first diagnosing the harness (1. Is the constraint in AGENTS.md? → 2. Is there a CI gate? → 3. Does the error message include remediation?).** Consequence: skipping harness diagnosis means the root cause (missing rule, missing gate, unclear error message) persists and the same failure recurs in every future agent run.
+- **Never choose bleeding-edge or poorly-documented technology stacks for agent-authored code without explicit justification.** Consequence: agents generate more hallucinations and incorrect patterns with novel frameworks lacking training-data representation, increasing correction overhead and token waste.
 
 ## Conventions
 

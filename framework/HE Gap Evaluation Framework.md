@@ -257,6 +257,7 @@ Each of the 31 core features is analyzed below with:
 [
   { "tier": 1, "action": "Install baseline wrapper workflows (ccp, ccpr, reconcile) in the repository", "dimensions": ["Maturity", "Risk"] },
   { "tier": 2, "action": "Integrate agent reasoning into wrappers (auto-generating comments/release notes)", "dimensions": ["Effectiveness"] },
+  { "tier": 2, "action": "Stratify commands by cost tier: smoke (< 2s, pre-commit) → check (< 30s, pre-push) → audit (< 60s, on-demand) → LLM review (expensive, last resort). Agents must use the cheapest tier appropriate to context", "dimensions": ["Cost", "Effectiveness"] },
   { "tier": 3, "action": "Build automated workflow validation (ensuring wrappers are used over raw CLI)", "dimensions": ["Scalability"] }
 ]
 ```
@@ -335,6 +336,8 @@ Each of the 31 core features is analyzed below with:
   { "tier": 1, "action": "Migrate all architectural decisions from external tools into the repo", "dimensions": ["Risk", "Effectiveness"] },
   { "tier": 2, "action": "Add linter validation that context files are present and non-empty", "dimensions": ["Risk"] },
   { "tier": 2, "action": "Cross-link design docs to code modules for agent discoverability", "dimensions": ["Effectiveness"] },
+  { "tier": 2, "action": "Score codebase Agent Legibility (see Perspective F) and address low-scoring criteria: replace bleeding-edge stacks, clarify boundaries, reduce metaprogramming", "dimensions": ["Effectiveness", "Cost"] },
+  { "tier": 2, "action": "Implement expertise extraction: every human correction of an agent mistake must produce a new harness artifact (AGENTS.md rule, linter rule, or template), not just a code fix", "dimensions": ["Human Role", "Effectiveness"] },
   { "tier": 3, "action": "Automate staleness detection — alert when docs diverge from code", "dimensions": ["Scalability"] }
 ]
 ```
@@ -905,6 +908,25 @@ Map where each feature places the human:
 ```
 
 **Gap test:** At which stage is the team stuck? The features enabling the next stage are the improvement priority.
+
+### Perspective F: Agent Legibility Score
+
+Rate how well the codebase is optimized for AI agent consumption rather than just human readability. This perspective targets P1-1 (Repository as Truth) but affects all features — agents working in a legible codebase produce fewer hallucinations across every pillar.
+
+```json
+[
+  { "criterion": "Tech Stack Stability", "question": "Does the stack use stable, well-documented frameworks with broad training-data representation?", "low": "Bleeding-edge or niche frameworks", "high": "Established frameworks with extensive documentation and community examples" },
+  { "criterion": "Boundary Clarity", "question": "Are module boundaries explicit and consistently enforced?", "low": "Implicit boundaries, shared global state, deep inheritance", "high": "Clear interfaces, dependency injection, enforced layers" },
+  { "criterion": "Metaprogramming Density", "question": "How much implicit/magic behavior exists?", "low": "Heavy metaprogramming, decorators, monkey-patching", "high": "Explicit, predictable code paths agents can trace" },
+  { "criterion": "Worktree Isolation", "question": "Can the project be launched and tested per worktree without shared state?", "low": "Shared databases, singletons, global config files", "high": "Each worktree boots independently with local state" },
+  { "criterion": "Naming Consistency", "question": "Are naming conventions consistent and predictable across the codebase?", "low": "Mixed conventions, abbreviations, domain-specific jargon", "high": "Uniform patterns agents can pattern-match reliably" },
+  { "criterion": "Documentation Format", "question": "Is documentation machine-parseable (consistent headings, structured lists, semantic IDs)?", "low": "Narrative prose, inconsistent formatting, PDFs", "high": "Markdown with consistent headings, grep-friendly structure" }
+]
+```
+
+**Scoring:** Rate each criterion 0-5 using the standard scale. Average score < 3 indicates the codebase is a significant source of agent hallucinations. Prioritize Tier 1 improvements to Repository as Truth (P1-1).
+
+**Gap test:** If agents repeatedly produce correct logic in the wrong style, location, or framework idiom, the legibility score is likely low.
 
 ---
 
