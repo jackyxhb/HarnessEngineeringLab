@@ -36,7 +36,7 @@
   "lint-staged": {
     "*.md": [
       "markdownlint",
-      "cspell",
+      "cspell --config cspell.json",
       "node scripts/he-lint.js"
     ]
   }

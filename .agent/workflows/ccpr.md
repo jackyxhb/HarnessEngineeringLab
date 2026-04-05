@@ -2,7 +2,7 @@
 description: Comment, Commit, Push, Release — runs /ccp then creates and pushes a release tag and GitHub Release
 ---
 
-# /ccpr — Comment, Commit, Push, Release
+# /ccpr — Comment, Commit, Push, Github Release
 
 Run this workflow to finalize work, tag a release, and create a GitHub Release. This extends `/ccp` with release steps.
 
