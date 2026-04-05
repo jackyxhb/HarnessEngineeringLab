@@ -13,7 +13,7 @@ These are the minimum fields that must remain observable at all times. A harness
 | `he_lint_violations` | `0` | `node scripts/he-lint.js` | Every commit + weekly | `> 0` |
 | `markdownlint_violations` | `0` | `npx markdownlint` | Every commit + weekly | `> 0` |
 | `spellcheck_violations` | `0` | `npx cspell` | Every commit + weekly | `> 0` |
-| `feature_count` | `30` | `he-lint.js` number-bias check | Every commit | `≠ 30` |
+| `feature_count` | `31` | `he-lint.js` number-bias check | Every commit | `≠ 31` |
 | `anchor_count` | `≥ 5` | `ANCHORS.md` heading count | Weekly | `< 5` |
 | `stale_tmp_files` | `0` | `audit.sh` find check | Weekly | `> 0` |
 | `harness_structural_integrity` | `PASS` | `scripts/harness/audit.sh` | Weekly | `FAIL` |
@@ -27,7 +27,8 @@ The following files must always exist. A missing file is a harness failure (`FAI
 
 | File | Practice | Purpose |
 | --- | --- | --- |
-| `CLAUDE.md` | P2 — Compact Docs | Agent interface contract |
+| `CLAUDE.md` | P2 — Compact Docs | Claude Code shim → AGENTS.md |
+| `AGENTS.md` | P0-11 — Portable Agent Surface | IDE-agnostic canonical rule surface |
 | `ANCHORS.md` | P1-8 — Context Anchoring | Persistent strategic decisions |
 | `PLANS.md` | P1-7 — Planning | Active task state |
 | `docs/ARCHITECTURE.md` | P2-1 — Automated Linters | Module boundary spec |

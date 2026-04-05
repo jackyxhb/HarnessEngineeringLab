@@ -13,6 +13,7 @@ For teams that want a rapid gap scan without full dimension scoring. Check exist
 - [ ] `P0-8` Harness Versioning: Agent configurations, prompts, and tools are tracked in source control
 - [ ] `P0-9` Smart Command Wrappers: Common tasks are executed via intelligent wrappers (ccp, ccpr, reconcile)
 - [ ] `P0-10` Inter-Agent Communication: Agents communicate via a dedicated messaging bus (P2P, broadcast, idle notifications)
+- [ ] `P0-11` Portable Agent Surface: All rules live in IDE-agnostic `AGENTS.md`; IDE files are thin shims
 
 ### Pillar 1 (Inform) — Does the agent know what it needs to know?
 - [ ] `P1-1` Repository as Truth: All project rules are in the repo, not in human heads

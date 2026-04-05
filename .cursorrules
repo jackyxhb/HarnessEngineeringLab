@@ -1,0 +1,11 @@
+# Cursor Rules
+
+All project rules live in [AGENTS.md](AGENTS.md). Read it before taking any action.
+
+This file exists as a Cursor discovery shim per **P0-11 Portable Agent Surface**.
+
+## Cursor-Specific Notes
+
+- Cursor automatically loads `.cursorrules` at session start. No additional configuration needed.
+- Do not add project-wide rules to this file. Add them to `AGENTS.md` instead.
+- When `AGENTS.md` changes, this shim does not need updating unless Cursor-specific overrides are required.

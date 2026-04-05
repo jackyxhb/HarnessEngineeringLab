@@ -12,6 +12,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 - **`P0-5` Prevent Quadratic Coordination Overhead:** You must prevent the exponential growth of communication paths between agents. Over-communicating can degrade performance by 39% to 70% on sequential reasoning tasks. Prevent this by using appropriate routing topologies and limiting team sizes.
 - **`P0-5` Prevent Supervisor Bottlenecks:** In hierarchical or supervisor patterns, you must prevent the central coordinating agent from becoming a single point of failure that stalls the entire workflow when request volumes spike.
 - **`P0-9` Prevent Manual, Error-Prone CLI Execution:** You must prevent agents from manually executing raw, multi-step system commands (git, npm, shell) without standardization. Prevent this by mandating Smart Command Wrappers (ccp, ccpr, reconcile) that ensure deterministic execution order and metadata generation.
+- **`P0-11` Prevent IDE-Locked Rules:** You must prevent global project rules from living exclusively in one IDE's proprietary format (e.g., Claude Code memory files, Cursor-only `.cursorrules`, VS Code-only `copilot-instructions.md`). Rules stored this way are invisible to agents running in other environments, fragmenting the harness across IDEs. Prevent this by mandating a single `AGENTS.md` as the canonical rule surface, with IDE-specific files serving as thin shims.
 
 ## Pillar 1: Prevent Context and Memory Degradation (Inform)
 

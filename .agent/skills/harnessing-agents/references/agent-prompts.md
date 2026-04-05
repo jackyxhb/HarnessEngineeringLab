@@ -12,7 +12,7 @@ These 5 ready-to-use prompts are optimized for delegating Harness Engineering ga
 **Prompt:**
 
 ```markdown
-Perform a gap analysis on the project's Foundation features (P0-1 through P0-10).
+Perform a gap analysis on the project's Foundation features (P0-1 through P0-11).
 
 **Reference:** Read `references/features-foundation.md` for the 3-step chain per feature:
 - **What to Do:** The feature definition — what must exist
@@ -22,7 +22,7 @@ Perform a gap analysis on the project's Foundation features (P0-1 through P0-10)
 Action Space limit: Restrict your checks to `.github/workflows/`, `.agent/workflows/`, `CLAUDE.md`, `AGENTS.md`, and CI test scripts using only `Glob`, `Grep`, and `Read`.
 
 <scratchpad>
-For each feature (P0-1 through P0-10):
+For each feature (P0-1 through P0-11):
 1. Check "What to Do" — does the target project implement this?
 2. Check "Don't Do" — is the prevention failure currently active?
 3. Check "Options" — which actions/tools should be recommended?

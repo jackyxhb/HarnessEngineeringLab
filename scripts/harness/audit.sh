@@ -43,6 +43,7 @@ check_file() {
 }
 
 check_file "CLAUDE.md"                              "Agent interface contract"
+check_file "AGENTS.md"                              "IDE-agnostic canonical rules"
 check_file "ANCHORS.md"                             "Context anchor log"
 check_file "PLANS.md"                               "Active task state"
 check_file "docs/ARCHITECTURE.md"                   "Module boundary spec"

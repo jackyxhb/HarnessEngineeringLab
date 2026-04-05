@@ -9,7 +9,7 @@ The practical pathway to landing a harness in a real project generally follows t
 The first step takes only 1-2 hours to set up and focuses on preventing the most common mistakes an AI agent will make on an individual project.
 At this stage, the pathway involves setting up:
 
-- A `CLAUDE.md` or `.cursorrules` file to establish basic project conventions.
+- An `AGENTS.md` file to establish basic project conventions (with IDE shims like `CLAUDE.md`, `.cursorrules`, or `.windsurfrules` for discovery).
 - Basic pre-commit hooks for linting and formatting code.
 - A test suite that the agent can execute itself to self-verify its work.
 - A clear, consistently named directory structure so the agent can navigate the repository easily.

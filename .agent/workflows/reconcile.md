@@ -60,5 +60,5 @@ When checking terminology, the following are the **single source of truth** labe
 | Pillar 1      | Context Engineering (Inform)          | `HE Core Features.md`        |
 | Pillar 2      | Architectural Constraints (Constrain) | `HE Core Features.md`        |
 | Pillar 3      | Entropy Management (Maintain)         | `HE Core Features.md`        |
-| Feature count | 30 core features                      | `HE Enhancement Options.md`  |
+| Feature count | 31 core features                      | `HE Enhancement Options.md`  |
 | Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |

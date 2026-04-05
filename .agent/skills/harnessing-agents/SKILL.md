@@ -50,7 +50,7 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 
 | Goal | Start Here | Estimated Time |
 | --- | --- | --- |
-| **Quick gap scan:** Rapidly assess maturity against the 30 core features | `references/quick-checklist.md` | 5 min |
+| **Quick gap scan:** Rapidly assess maturity against the 31 core features | `references/quick-checklist.md` | 5 min |
 | **Full audit:** Run the complete Inspect → Plan → Execute lifecycle | `references/workflow.md` | 30-60 min |
 | **Feature deep dive:** Look up the 3-step chain (What to Do / Don't Do / Options) for any feature | `references/features-foundation.md`, `references/features-pillar1.md`, or `references/features-pillar2-3.md` | 2 min |
 | **Score & analyze gaps:** 6 evaluation dimensions, priority formula, and 5 cross-cutting perspectives | `references/gap-scoring.md` | 15 min |

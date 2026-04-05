@@ -1,6 +1,6 @@
 # HE Core Features
 
-The canonical 30 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
+The canonical 31 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
 
 ## Foundational Infrastructure (Execute)
 
@@ -16,6 +16,7 @@ _The execution engine and orchestration layer that the harness is built upon. It
 - **P0-8. Harness Versioning:** The ability to version control the harness and run A/B tests to discover the most productive configurations, including per-agent performance tracking.
 - **P0-9. Smart Command Wrappers:** Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp`, `ccpr`, `reconcile`) that integrate agent reasoning and repository intent. Shared across all agents. Commands must be stratified by execution cost: a fast gate (e.g., `smoke`) for pre-commit frequency, a full quality gate (e.g., `check`/`ci`) for pre-push, and a structural integrity audit (e.g., `audit`) for on-demand harness health. Command names must remain stable across harness versions; implementations evolve behind the wrapper.
 - **P0-10. Inter-Agent Communication (The Mailbox):** A dedicated messaging bus that allows agents to communicate via peer-to-peer (P2P) messaging, broadcast to the swarm, and send idle notifications.
+- **P0-11. Portable Agent Surface:** Requiring all global agent instructions to live in a single IDE-agnostic file (`AGENTS.md`) checked into the repository root. IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) must be thin shims that reference the canonical source, containing only IDE-specific overrides. Prevents IDE lock-in where meta-rules written for one agentic IDE are invisible to agents running in other environments. Memory systems or proprietary config formats must never be the sole store for project-wide rules.
 
 ---
 

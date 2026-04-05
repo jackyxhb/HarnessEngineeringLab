@@ -57,7 +57,7 @@ _Evaluates the system's ability to maintain codebase health over time as AI gene
 You can measure the overall progress of your harness project by determining which level it currently satisfies:
 
 - **Level 1: Basic Harness (Single Developer)**
-  - _Criteria:_ Has a `.cursorrules` or `CLAUDE.md` file, basic pre-commit hooks, a runnable test suite for self-verification, and a clean directory structure.
+  - _Criteria:_ Has an `AGENTS.md` file (with IDE shims like `CLAUDE.md` or `.cursorrules`), basic pre-commit hooks, a runnable test suite for self-verification, and a clean directory structure.
 - **Level 2: Team Harness (Small Team)**
   - _Criteria:_ Includes Level 1, plus an `AGENTS.md` for team conventions, CI-enforced architectural constraints, shared prompt templates, and agent-specific code review checklists.
 - **Level 3: Production Harness (Enterprise/Org)**

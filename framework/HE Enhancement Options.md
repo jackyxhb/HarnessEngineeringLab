@@ -1,6 +1,6 @@
 # Harness Engineering Enhancement Options
 
-When implementing or upgrading a harness, use these options to translate the 30 core features into concrete **Actions** and **Tools**.
+When implementing or upgrading a harness, use these options to translate the 31 core features into concrete **Actions** and **Tools**.
 
 ## P0 — Foundational Infrastructure (Execute)
 
@@ -74,6 +74,14 @@ When implementing or upgrading a harness, use these options to translate the 30 
 - **Tool:** Swarm broadcasting (`broadcast`) and idle notifications.
 - **Tool:** Inter-agent messaging middleware.
 
+### P0-11. Portable Agent Surface
+
+- **Action:** Maintain a single `AGENTS.md` at the repository root containing all IDE-agnostic harness rules (purpose, layout, workflows, tools, forbidden operations, conventions).
+- **Action:** Reduce IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) to thin shims that reference `AGENTS.md` and contain only IDE-specific overrides.
+- **Action:** Never store project-wide rules exclusively in an IDE's proprietary memory system (e.g., Claude Code memory files, Cursor-only `.cursorrules`) — if it isn't in `AGENTS.md`, it isn't portable.
+- **Tool:** Template `AGENTS.md` with standard sections (Purpose, Organizing Framework, Directory Layout, Workflows, Tools & Commands, DO NOT, Conventions).
+- **Tool:** CI check verifying `AGENTS.md` exists and each IDE shim file contains a canonical reference pointer to it.
+
 ---
 
 ## Pillar 1: Context Engineering (Inform)
@@ -85,7 +93,7 @@ When implementing or upgrading a harness, use these options to translate the 30 
 - **Action:** Maintain a **Failure Ledger** — every rule in `AGENTS.md`/`CLAUDE.md` must trace to a concrete incident, failure, or constraint. Generic advice without an incident should be removed on next audit.
 - **Action:** Include a **Forbidden Operations** section explicitly listing what agents must never do, with the consequence of each violation stated inline.
 - **Action:** Maintain a **Tool Declaration** section listing every available tool and script — undeclared tools do not exist to agents; if a useful tool is absent from this list, agents will not use it.
-- **Tool:** Localized memory files like `AGENTS.md`, `CLAUDE.md`, or `.cursorrules`.
+- **Tool:** IDE-agnostic `AGENTS.md` as canonical rule surface, with IDE shims (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) for discovery.
 - **Tool:** Structured failure-ledger entry format (e.g., `rule / context / fix` triples).
 
 ### P1-2. Context Compaction & Memory Management

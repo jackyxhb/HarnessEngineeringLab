@@ -15,7 +15,11 @@ Module boundaries, content flow, and dependency rules for the HarnessEngineering
 | `scripts/` | Operational tooling (linting, auditing) | Humans only |
 | `builder/` | Build execution logs | Agents (append-only after creation) |
 | `tmp/` | Ephemeral drafts | Agents (max 30-day lifetime) |
-| `CLAUDE.md` | Agent interface contract (AGENTS.md equivalent) | Humans only |
+| `CLAUDE.md` | Claude Code shim → `AGENTS.md` | Humans only |
+| `AGENTS.md` | IDE-agnostic agent rules (canonical rule surface) | Humans only |
+| `.cursorrules` | Cursor shim → `AGENTS.md` | Humans only |
+| `.github/copilot-instructions.md` | GitHub Copilot shim → `AGENTS.md` | Humans only |
+| `.windsurfrules` | Windsurf shim → `AGENTS.md` | Humans only |
 | `ANCHORS.md` | Persistent strategic decision log | Humans + agents (append via `/anchor`) |
 | `PLANS.md` | Active task state | Agents (append active plan; archive on completion) |
 
@@ -85,7 +89,7 @@ Max 5 words, Title Case with spaces. Prefix `HE` for general content, `MAS` for 
 
 ### Feature Count
 
-Exactly **30 core features**: 10 Foundation + 11 P1 + 5 P2 + 4 P3. Validated by `he-lint.js` number-bias check.
+Exactly **31 core features**: 11 Foundation + 11 P1 + 5 P2 + 4 P3. Validated by `he-lint.js` number-bias check.
 
 ### Pillar Labels
 

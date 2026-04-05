@@ -36,7 +36,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 30 core features is analyzed below with:
+Each of the 31 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -288,6 +288,31 @@ Each of the 30 core features is analyzed below with:
 ```
 
 **Dependencies:** Required by Multi-Agent Orchestration Logic (P0-5) for topology management. Interacts with Planning, Task Lists & Blackboards (P1-7) for task claiming.
+
+---
+
+#### P0-11. Portable Agent Surface
+
+**Gap Signals:**
+
+- `AGENTS.md` does not exist at the repository root
+- `CLAUDE.md` or `.cursorrules` contains project-wide rules not replicated in an IDE-agnostic file
+- IDE-specific files contain substantive harness rules instead of pointers to a canonical source
+- Project rules are stored in an IDE's proprietary memory system (e.g., Claude Code memory files) invisible to other IDEs
+- Switching IDEs requires manually re-creating the agent instruction surface
+
+**Improvement Policies:**
+
+```json
+[
+  { "tier": 1, "action": "Create AGENTS.md at repo root with all IDE-agnostic harness rules", "dimensions": ["Maturity", "Risk"] },
+  { "tier": 1, "action": "Refactor IDE-specific files to thin shims referencing AGENTS.md", "dimensions": ["Effectiveness"] },
+  { "tier": 2, "action": "Add CI lint check verifying AGENTS.md exists and shim files contain canonical reference pointer", "dimensions": ["Risk", "Scalability"] },
+  { "tier": 3, "action": "Auto-generate IDE shim files from AGENTS.md template during CI", "dimensions": ["Scalability", "Cost"] }
+]
+```
+
+**Dependencies:** Requires Repository as Truth (P1-1) for content. Enables Rippable Middleware (P0-6) philosophy — IDE integration layers are independently swappable.
 
 ---
 
@@ -887,7 +912,7 @@ Map where each feature places the human:
 
 ### Step 1: Score Each Feature
 
-For each of the 30 features, score across all 6 dimensions (0-5). This produces a 30×6 matrix.
+For each of the 31 features, score across all 6 dimensions (0-5). This produces a 31×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 

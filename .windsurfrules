@@ -1,0 +1,11 @@
+# Windsurf Rules
+
+All project rules live in [AGENTS.md](AGENTS.md). Read it before taking any action.
+
+This file exists as a Windsurf discovery shim per **P0-11 Portable Agent Surface**.
+
+## Windsurf-Specific Notes
+
+- Windsurf automatically loads `.windsurfrules` at session start. No additional configuration needed.
+- Do not add project-wide rules to this file. Add them to `AGENTS.md` instead.
+- When `AGENTS.md` changes, this shim does not need updating unless Windsurf-specific overrides are required.

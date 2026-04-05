@@ -61,13 +61,13 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Background:** Resolves previously observed numbering bugs and terminology inconsistencies.
 - **Date:** 2026-03-16
 
-### A6: 30-Feature Canonical Count
+### A6: 31-Feature Canonical Count
 
-- **What:** Fixed the canonical feature count of the framework at exactly 30 core features: Foundation (10), Pillar 1 (11), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-10, P1-11, P2-5). P1-11 (Socratic Questioning) was added to enforce structured ambiguity resolution before execution.
+- **What:** Fixed the canonical feature count of the framework at exactly 31 core features: Foundation (11), Pillar 1 (11), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-11, P1-11, P2-5). P1-11 (Socratic Questioning) was added to enforce structured ambiguity resolution before execution. P0-11 (Portable Agent Surface) was added to prevent IDE lock-in of agent instructions.
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
-- **Background:** Expanded from 29 to 30 after integrating P1-11 (Socratic Questioning) as a first-class Pillar 1 feature to enforce pre-execution ambiguity extraction via the six Socratic question categories.
-- **Date:** 2026-04-02
+- **Background:** Expanded from 29 to 30 after integrating P1-11 (Socratic Questioning). Expanded from 30 to 31 after integrating P0-11 (Portable Agent Surface) to enforce IDE-agnostic rule surfaces.
+- **Date:** 2026-04-05
 
 ### A7: Reward Engineering as Cross-Cutting
 
@@ -76,3 +76,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `HE Prevention Checklist.md` and related GAP Evaluation documentation.
 - **Background:** Clarified during a structural reconciliation to avoid polluting the core feature list with meta-concerns.
 - **Date:** 2026-03-22
+
+### A8: Portable Agent Surface (IDE-Agnostic Rules)
+
+- **What:** Added P0-11 requiring all global agent instructions to live in an IDE-agnostic `AGENTS.md` file, with IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) serving as thin shims.
+- **Why:** Prevents IDE lock-in where rules written for one agentic IDE (e.g., Claude Code memory files, Cursor-only `.cursorrules`) are invisible to agents running in other environments. All mainstream agentic IDEs — Claude Code, VS Code / GitHub Copilot, Cursor, Windsurf — must be able to discover the project’s rules.
+- **Target:** Foundation layer, root-level meta-docs (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`).
+- **Background:** Observed that `CLAUDE.md` contained all project rules in a Claude Code-specific format. Switching to VS Code or Cursor meant agents had no access to these rules. The pattern: one canonical file + thin IDE shims.
+- **Date:** 2026-04-05

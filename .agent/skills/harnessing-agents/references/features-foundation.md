@@ -198,3 +198,21 @@ _(Covered by P0-5: Prevent Quadratic Coordination Overhead and Prevent Superviso
 ### Remediation Tiers
 - [Tier 1] Implement P2P messaging and broadcast channels between agents.
 - [Tier 2] Add idle notifications and message deduplication to prevent context flooding.
+
+## P0-11. Portable Agent Surface
+
+### What to Do
+Require all global agent instructions to live in a single IDE-agnostic file (`AGENTS.md`) checked into the repository root. IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) must be thin shims that reference the canonical source.
+
+### Don't Do
+Never store project-wide rules exclusively in one IDE's proprietary format or memory system. Rules that live only in `CLAUDE.md` are invisible to Cursor agents; rules only in `.cursorrules` are invisible to VS Code agents. Memory files (e.g., Claude Code `/memories/`) must never be the sole store for project rules.
+
+### Options
+- **Action:** Maintain a single `AGENTS.md` with all IDE-agnostic harness rules.
+- **Action:** Reduce IDE-specific files to thin shims referencing `AGENTS.md`.
+- **Tool:** CI check verifying `AGENTS.md` exists and shim files contain a reference pointer.
+
+### Remediation Tiers
+- [Tier 1] Create `AGENTS.md` at repo root; extract rules from IDE-specific files.
+- [Tier 2] Add CI lint verifying shim files reference `AGENTS.md`.
+- [Tier 3] Auto-generate IDE shim files from `AGENTS.md` template during CI.

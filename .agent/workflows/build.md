@@ -51,7 +51,7 @@ harnessing-agents/
 │   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
 │   ├── quick-checklist.md          # 29-item yes/no fast gap scan
 │   ├── dimensions.md               # 4 scoping dimensions + decision matrix
-│   ├── features-foundation.md      # Foundation features P0-1–P0-10 (gap signals, policies)
+│   ├── features-foundation.md      # Foundation features P0-1–P0-11 (gap signals, policies)
 │   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-10 (gap signals, policies)
 │   ├── features-pillar2-3.md       # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
 │   └── dependencies.md             # Bidirectional feature dependency map
@@ -104,7 +104,7 @@ All skill content must align to this canonical structure from `framework/`:
   {
     "layer": "Foundation",
     "role": "Execution engine & orchestration",
-    "features": ["P0-1–P0-10: Bash Sandboxes", "Filesystem Git & File Locking", "Verification (Self & Collective)", "Ralph Loops", "Orchestration Logic", "Rippable Middleware", "Escalation Policies & Audit Trails", "Harness Versioning", "Smart Command Wrappers", "Inter-Agent Communication (The Mailbox)"]
+    "features": ["P0-1–P0-11: Bash Sandboxes", "Filesystem Git & File Locking", "Verification (Self & Collective)", "Ralph Loops", "Orchestration Logic", "Rippable Middleware", "Escalation Policies & Audit Trails", "Harness Versioning", "Smart Command Wrappers", "Inter-Agent Communication (The Mailbox)", "Portable Agent Surface"]
   },
   {
     "layer": "P1: Context Engineering",
@@ -124,11 +124,11 @@ All skill content must align to this canonical structure from `framework/`:
 ]
 ```
 
-**30 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
+**31 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
 
 ### Feature Specification Format
 
-Each of the 30 features must include:
+Each of the 31 features must include:
 
 - **Feature ID** and name
 - **Gap signals** — observable indicators that this feature is missing or weak
@@ -138,7 +138,7 @@ Each of the 30 features must include:
 
 ### MAS Extensions
 
-Multi-agent behavior is described inline within each of the 30 features — no separate extensions exist.
+Multi-agent behavior is described inline within each of the 31 features — no separate extensions exist.
 
 ---
 
@@ -148,7 +148,7 @@ Every audit and every build must be scoped across all four dimensions:
 
 ```json
 [
-  { "dimension": "Feature Tree", "options": ["Which of 30 features: Present-Effective", "Present-Weak", "Absent-Do", "Absent-Don't"], "effect": "Determines content coverage" },
+  { "dimension": "Feature Tree", "options": ["Which of 31 features: Present-Effective", "Present-Weak", "Absent-Do", "Absent-Don't"], "effect": "Determines content coverage" },
   { "dimension": "Agent Scale", "options": "SAS · Small Group (2–5) · Enterprise · Scaled-Swarm", "effect": "Determines MAS depth" },
   { "dimension": "Project Complexity", "options": "Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise", "effect": "Determines tier ceiling" },
   { "dimension": "Remediation Level", "options": "Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture)", "effect": "Determines action intensity" }
@@ -224,7 +224,7 @@ For inspection and execution phases, dispatch agents with non-overlapping scopes
 
 ```json
 [
-  { "agent": "Foundation Agent", "scope": "Infrastructure layer", "features": "P0-1–P0-10" },
+  { "agent": "Foundation Agent", "scope": "Infrastructure layer", "features": "P0-1–P0-11" },
   { "agent": "Context Agent", "scope": "P1: Context Engineering", "features": "P1-1 to P1-11" },
   { "agent": "Constraint Agent", "scope": "P2: Architectural Constraints", "features": "P2-1 to P2-5" },
   { "agent": "Entropy Agent", "scope": "P3: Entropy Management", "features": "P3-1 to P3-4" }
@@ -255,11 +255,11 @@ Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
 
 Independent tasks — execute in parallel when possible:
 
-- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-10) and `features-pillar1.md` (P1-1 to P1-10) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
+- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-11) and `features-pillar1.md` (P1-1 to P1-11) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
 - **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
 - **2c. Quick checklist** — Extract `quick-checklist.md` as 29-item yes/no fast scan (one per feature) with pointers to full scoring.
 - **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
-- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 30 features.
+- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 31 core features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
 - **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
 - **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
@@ -288,7 +288,7 @@ Run all verification criteria — build fails if any check fails:
   { "check": "Stale references", "method": "`grep` for deleted/renamed filenames", "pass_criteria": "Zero hits" },
   { "check": "Terminology consistency", "method": "`grep` for known conflict terms", "pass_criteria": "Each term has exactly one meaning" },
   { "check": "Cross-reference completeness", "method": "All file pairs checked", "pass_criteria": "Zero dangling refs" },
-  { "check": "Feature coverage", "method": "Count unique feature IDs across all files", "pass_criteria": "30 features covered" },
+  { "check": "Feature coverage", "method": "Count unique feature IDs across all files", "pass_criteria": "31 features covered" },
   { "check": "Framework alignment", "method": "Diff skill content against `framework/`", "pass_criteria": "Zero contradictions" }
 ]
 ```
@@ -333,7 +333,7 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 [
   { "term": "Scoping Dimensions (4)", "meaning": "Scope the overall audit", "used_in": "`dimensions.md`" },
   { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features", "used_in": "`gap-scoring.md`" },
-  { "term": "Feature ID", "meaning": ["`P0-1`–`P0-10`", "`P1-1`–`P3-4`"], "used_in": "All feature references" },
+  { "term": "Feature ID", "meaning": ["`P0-1`–`P0-11`", "`P1-1`–`P3-4`"], "used_in": "All feature references" },
   { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`HE-CLUES.md`", "templates"] },
   { "term": "HE-* prefix", "meaning": "Harness Engineering generic doc", "used_in": "File naming" },
   { "term": "MAS-* prefix", "meaning": "Multi-Agent specific doc", "used_in": "File naming" }
