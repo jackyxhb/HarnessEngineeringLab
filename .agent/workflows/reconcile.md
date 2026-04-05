@@ -54,11 +54,13 @@ Scan for all of the following categories:
 
 When checking terminology, the following are the **single source of truth** labels:
 
-| Component     | Canonical Label                       | Source File                   |
-| ------------- | ------------------------------------- | ----------------------------- |
-| Foundation    | Foundational Infrastructure (Execute) | `HE Design Decisions.md`      |
-| Pillar 1      | Context Engineering (Inform)          | `HE Design Decisions.md`      |
-| Pillar 2      | Architectural Constraints (Constrain) | `HE Design Decisions.md`      |
-| Pillar 3      | Entropy Management (Maintain)         | `HE Design Decisions.md`      |
-| Feature count | 31 core features                      | `HE Actions Tools.md`         |
-| Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Negative Actions.md`      |
+```json
+[
+  { "component": "Foundation",    "canonical": "Foundational Infrastructure (Execute)", "source": "HE Design Decisions.md" },
+  { "component": "Pillar 1",     "canonical": "Context Engineering (Inform)",          "source": "HE Design Decisions.md" },
+  { "component": "Pillar 2",     "canonical": "Architectural Constraints (Constrain)", "source": "HE Design Decisions.md" },
+  { "component": "Pillar 3",     "canonical": "Entropy Management (Maintain)",         "source": "HE Design Decisions.md" },
+  { "component": "Feature count", "canonical": "31 core features",                     "source": "HE Actions Tools.md" },
+  { "component": "Cross-cutting", "canonical": "Reward Engineering & Anti-Hacking",    "source": "HE Negative Actions.md" }
+]
+```

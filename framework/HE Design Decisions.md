@@ -6,39 +6,41 @@ Each feature traces through the Principle-to-Practice Chain (see `HE Principle P
 
 ## Principle-to-Practice Chain Index
 
-| Feature | L1 Principle | L2 Targeted Enhancement |
-| ------- | ----------- | ---------------------- |
-| P0-1 Bash Sandboxes | EP-1: Isolation prevents contamination | Zero cross-contamination between agent environments |
-| P0-2 Filesystem, Git & File Locking | EP-2: State must outlive the session | All agent state durable, versioned, conflict-free |
-| P0-3 Verification (Self & Collective) | EP-3: Verify before declaring completion | Agents autonomously detect and correct errors |
-| P0-4 Ralph Loops | EP-4: Committed tasks must be completed | 100% task completion despite context exhaustion |
-| P0-5 Orchestration Logic | EP-5: Coordination cost must stay bounded | Coordination overhead sublinear to team size |
-| P0-6 Rippable Middleware | EP-6: Scaffolding is temporary by design | Any harness layer removable without breakage |
-| P0-7 Escalation & Audit Trails | EP-7: Every action must be traceable | Every action attributable; stuck agents escalated |
-| P0-8 Harness Versioning | EP-8: You cannot improve what you do not measure | Configs reproducible and comparable with data |
-| P0-9 Smart Command Wrappers | EP-9: Standard operations reduce variance | Zero variance in common CLI execution |
-| P0-10 Inter-Agent Communication | EP-5: Coordination cost must stay bounded | Coordination without supervisor bottleneck |
-| P0-11 Portable Agent Surface | EP-10: Portability over proprietary convenience | Instructions discoverable from any IDE |
-| P1-1 Repository as Truth | EP-11: If it's not in the repo, it doesn't exist | Agent context accuracy without human briefing |
-| P1-2 Context Compaction | EP-12: Finite attention demands active management | Sustained reasoning quality across long tasks |
-| P1-3 Tool Offloading | EP-12: Finite attention demands active management | Tool outputs never dominate the context window |
-| P1-4 Progressive Skills | EP-12: Finite attention demands active management | Only task-relevant capabilities in context |
-| P1-5 Observability / Dashboards | EP-8: You cannot improve what you do not measure | Real-time visibility into system behavior |
-| P1-6 Web Search & MCP | EP-13: Current signals outperform stale snapshots | Answers reflect current state of the world |
-| P1-7 Planning & Blackboards | EP-2: State must outlive the session | Complex tasks survive context resets |
-| P1-8 Context Anchoring | EP-2: State must outlive the session | Strategic decisions persist across resets |
-| P1-9 Branch-Based Cognitive Memory | EP-2: State must outlive the session | Complex objectives decompose with checkpoints |
-| P1-10 Requirements Ledger | EP-11: If it's not in the repo, it doesn't exist | All requirements recorded before planning |
-| P1-11 Socratic Questioning | EP-14: Clarity before commitment | Zero ambiguous inputs reaching execution |
-| P2-1 Automated Linters | EP-15: Mechanical enforcement over advisory | Zero violations reaching main branch |
-| P2-2 Dependency Enforcement | EP-15: Mechanical enforcement over advisory | Boundaries mechanically enforced |
-| P2-3 AI Auditors | EP-16: No author is their own best reviewer | Every output independently reviewed |
-| P2-4 Bounded Autonomy | EP-17: Capabilities proportional to risk | Capabilities proportional to task risk |
-| P2-5 Upstream Intake Gate | EP-14: Clarity before commitment | No execution on unrecorded requirements |
-| P3-1 Scheduled Cleanups | EP-18: Entropy requires scheduled countering | Entropy never exceeds one GC cycle |
-| P3-2 Documentation Sync | EP-19: Documentation must live with the code | Docs always match current code state |
-| P3-3 Pattern Auditing | EP-18: Entropy requires scheduled countering | Patterns converge; no circular deps |
-| P3-4 Consolidation Loop | EP-19: Documentation must live with the code | System docs auto-synced with codebase |
+```json
+[
+  { "feature": "P0-1 Bash Sandboxes",                  "L1": "EP-1: Isolation prevents contamination",           "L2": "Zero cross-contamination between agent environments" },
+  { "feature": "P0-2 Filesystem, Git & File Locking",   "L1": "EP-2: State must outlive the session",             "L2": "All agent state durable, versioned, conflict-free" },
+  { "feature": "P0-3 Verification (Self & Collective)",  "L1": "EP-3: Verify before declaring completion",         "L2": "Agents autonomously detect and correct errors" },
+  { "feature": "P0-4 Ralph Loops",                      "L1": "EP-4: Committed tasks must be completed",           "L2": "100% task completion despite context exhaustion" },
+  { "feature": "P0-5 Orchestration Logic",              "L1": "EP-5: Coordination cost must stay bounded",         "L2": "Coordination overhead sublinear to team size" },
+  { "feature": "P0-6 Rippable Middleware",               "L1": "EP-6: Scaffolding is temporary by design",         "L2": "Any harness layer removable without breakage" },
+  { "feature": "P0-7 Escalation & Audit Trails",        "L1": "EP-7: Every action must be traceable",             "L2": "Every action attributable; stuck agents escalated" },
+  { "feature": "P0-8 Harness Versioning",               "L1": "EP-8: You cannot improve what you do not measure", "L2": "Configs reproducible and comparable with data" },
+  { "feature": "P0-9 Smart Command Wrappers",           "L1": "EP-9: Standard operations reduce variance",        "L2": "Zero variance in common CLI execution" },
+  { "feature": "P0-10 Inter-Agent Communication",       "L1": "EP-5: Coordination cost must stay bounded",         "L2": "Coordination without supervisor bottleneck" },
+  { "feature": "P0-11 Portable Agent Surface",          "L1": "EP-10: Portability over proprietary convenience",   "L2": "Instructions discoverable from any IDE" },
+  { "feature": "P1-1 Repository as Truth",              "L1": "EP-11: If it's not in the repo, it doesn't exist", "L2": "Agent context accuracy without human briefing" },
+  { "feature": "P1-2 Context Compaction",               "L1": "EP-12: Finite attention demands active management", "L2": "Sustained reasoning quality across long tasks" },
+  { "feature": "P1-3 Tool Offloading",                  "L1": "EP-12: Finite attention demands active management", "L2": "Tool outputs never dominate the context window" },
+  { "feature": "P1-4 Progressive Skills",               "L1": "EP-12: Finite attention demands active management", "L2": "Only task-relevant capabilities in context" },
+  { "feature": "P1-5 Observability / Dashboards",       "L1": "EP-8: You cannot improve what you do not measure", "L2": "Real-time visibility into system behavior" },
+  { "feature": "P1-6 Web Search & MCP",                 "L1": "EP-13: Current signals outperform stale snapshots", "L2": "Answers reflect current state of the world" },
+  { "feature": "P1-7 Planning & Blackboards",           "L1": "EP-2: State must outlive the session",             "L2": "Complex tasks survive context resets" },
+  { "feature": "P1-8 Context Anchoring",                "L1": "EP-2: State must outlive the session",             "L2": "Strategic decisions persist across resets" },
+  { "feature": "P1-9 Branch-Based Cognitive Memory",    "L1": "EP-2: State must outlive the session",             "L2": "Complex objectives decompose with checkpoints" },
+  { "feature": "P1-10 Requirements Ledger",             "L1": "EP-11: If it's not in the repo, it doesn't exist", "L2": "All requirements recorded before planning" },
+  { "feature": "P1-11 Socratic Questioning",            "L1": "EP-14: Clarity before commitment",                 "L2": "Zero ambiguous inputs reaching execution" },
+  { "feature": "P2-1 Automated Linters",                "L1": "EP-15: Mechanical enforcement over advisory",      "L2": "Zero violations reaching main branch" },
+  { "feature": "P2-2 Dependency Enforcement",           "L1": "EP-15: Mechanical enforcement over advisory",      "L2": "Boundaries mechanically enforced" },
+  { "feature": "P2-3 AI Auditors",                      "L1": "EP-16: No author is their own best reviewer",      "L2": "Every output independently reviewed" },
+  { "feature": "P2-4 Bounded Autonomy",                 "L1": "EP-17: Capabilities proportional to risk",         "L2": "Capabilities proportional to task risk" },
+  { "feature": "P2-5 Upstream Intake Gate",             "L1": "EP-14: Clarity before commitment",                 "L2": "No execution on unrecorded requirements" },
+  { "feature": "P3-1 Scheduled Cleanups",               "L1": "EP-18: Entropy requires scheduled countering",     "L2": "Entropy never exceeds one GC cycle" },
+  { "feature": "P3-2 Documentation Sync",               "L1": "EP-19: Documentation must live with the code",     "L2": "Docs always match current code state" },
+  { "feature": "P3-3 Pattern Auditing",                 "L1": "EP-18: Entropy requires scheduled countering",     "L2": "Patterns converge; no circular deps" },
+  { "feature": "P3-4 Consolidation Loop",               "L1": "EP-19: Documentation must live with the code",     "L2": "System docs auto-synced with codebase" }
+]
+```
 
 ## Foundational Infrastructure (Execute)
 
