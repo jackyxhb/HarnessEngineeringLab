@@ -2,7 +2,44 @@
 
 What must be prevented in AI Agent Harness Engineering to ensure secure, efficient, and accurate operation.
 
-Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `HE Core Features.md` | `ANCHORS.md`):
+Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `HE Core Features.md` | `ANCHORS.md`).
+
+Each prevention item maps to a broken link in the Principle-to-Practice Chain (see `HE Principle Map.md`). The table below classifies what chain level fails when the prevention is absent.
+
+## Chain Failure Index
+
+| Prevention Item | Broken Principle (L1) | Failure Level |
+| --------------- | -------------------- | ------------- |
+| P0-2 State & File Conflicts | EP-2 Persistence | L4 omission — locking actions not taken |
+| P0-3 Cascading Hallucinations | EP-3 Verify before completion | L4 omission — no verification protocol |
+| P0-4 Premature Exits | EP-4 Tasks must be completed | L1 violation — principle directly broken |
+| P0-5 Quadratic Overhead | EP-5 Bounded coordination | L3 failure — wrong topology choice |
+| P0-5 Supervisor Bottlenecks | EP-5 Bounded coordination | L3 failure — wrong orchestration pattern |
+| P0-9 Manual CLI Execution | EP-9 Standard operations | L4 omission — wrappers not used |
+| P0-11 IDE-Locked Rules | EP-10 Portability | L1 violation — principle directly broken |
+| P1-1 Human-Only Docs | EP-11 Repo as truth | L1 violation — knowledge outside repo |
+| P1-1 Human-Only Format | EP-11 Repo as truth | L3 failure — wrong documentation format |
+| P1-2,3 Context Rot | EP-12 Finite attention | L4 omission — compaction not active |
+| P1-7,8 Attention Drift | EP-2 Persistence | L4 omission — no anchoring actions |
+| P1-1,7 Inconsistent Context | EP-11 Repo as truth | L3 failure — no single shared source |
+| P1-10 Unrecorded Requirements | EP-14 Clarity before commitment | L4 omission — ledger not maintained |
+| P1-11 Ambiguous Inputs | EP-14 Clarity before commitment | L1 violation — principle directly broken |
+| P2-1 Unenforced Rules | EP-15 Mechanical enforcement | L4 omission — no sensor for guide |
+| P2-4 Prompt Injections | EP-17 Capabilities ∝ risk | L4 omission — guardrails not deployed |
+| P2-4 Emergent Behaviors | EP-17 Capabilities ∝ risk | L3 failure — access controls insufficient |
+| P0-7 Opaque Decisions | EP-7 Traceability | L4 omission — audit trails not wired |
+| P2-4 Anthropomorphization | EP-17 Capabilities ∝ risk | L2 drift — outcome not tracked |
+| P2-5 Unregistered Work | EP-14 Clarity before commitment | L4 omission — intake gate missing |
+| P0-6 Over-Engineering | EP-6 Scaffolding temporary | L1 violation — principle directly broken |
+| P3-1,3 Codebase Entropy | EP-18 Entropy countering | L4 omission — GC not scheduled |
+| P0-5 Runaway Costs | EP-5 Bounded coordination | L2 drift — cost/benefit not measured |
+| P2-3 Evaluation Overfitting | EP-16 Not own reviewer | L3 failure — static benchmarks only |
+| P3-2,4 Doc Disconnects | EP-19 Docs with code | L4 omission — sync not automated |
+| Reward: Performative Oversight | EP-7 Traceability | L2 drift — oversight adds delay not insight |
+| Reward: Vanity Metrics | EP-8 Measure for improvement | L2 drift — wrong metrics tracked |
+| Reward: Success Gaming | EP-16 Review | L3 failure — weak assertion design |
+| Reward: Conflicting Signals | EP-5 Bounded coordination | L3 failure — reward misalignment |
+| Reward: Unaudited Correlation | EP-8 Measure for improvement | L4 omission — no value correlation audit |
 
 ## Foundation: Prevent Coordination and Execution Failures (Execute)
 

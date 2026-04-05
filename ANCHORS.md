@@ -84,3 +84,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** Foundation layer, root-level meta-docs (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`).
 - **Background:** Observed that `CLAUDE.md` contained all project rules in a Claude Code-specific format. Switching to VS Code or Cursor meant agents had no access to these rules. The pattern: one canonical file + thin IDE shims.
 - **Date:** 2026-04-05
+
+### A9: Principle-to-Practice Chain Restructuring
+
+- **What:** Restructured the entire HE framework through the 5-level Principle-to-Practice Chain (L1 Principle → L2 Targeted Enhancement → L3 Design Decisions → L4 Actions/Tools → L5 Measurable Outcome). Defined 19 Engineering Principles (EP-1 through EP-19), each timeless and first-principles-derived. Created `framework/HE Principle Map.md` as the canonical L1→L5 chain map for all 31 features. Updated all framework documents (Core Features chain index, Enhancement Options chain headers, Prevention Checklist chain failure index, AGENTS.md DO NOT principle backlinks, Gap Evaluation chain-level dimension mappings).
+- **Why:** The framework was "hollow at L1 and L5" — strong middle layers (L3 Design Decisions, L4 Actions/Tools from Core Features and Enhancement Options) but no anchoring principles (L1) or measurable outcomes (L5) for any of the 31 features. Prevention items and DO NOT rules floated without principle grounding. The chain restructuring fills L1 and L5, making every feature traceable from principle to measurement.
+- **Target:** `framework/HE Principle Map.md` (new), `framework/HE Core Features.md`, `framework/HE Enhancement Options.md`, `framework/HE Prevention Checklist.md`, `framework/HE Gap Evaluation Framework.md`, `AGENTS.md`. `HE Chain.md` stays as meta-document describing the chain model.
+- **Background:** Gap analysis (see `tmp/Chain Restructuring Analysis.md`) revealed 0/31 features had explicit L1 or L5. The 19 principles were refined from 23 drafts via merge/split following chain rigor. Key merges: Persistence (EP-2), Clarity before commitment (EP-14), Entropy countering (EP-18), Living documentation (EP-19). Git-as-memory demoted from principle to L3 design pattern under EP-2 Persistence.
+- **Date:** 2026-04-06

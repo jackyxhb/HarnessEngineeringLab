@@ -2,20 +2,22 @@
 
 A comprehensive, multi-dimensional approach to evaluating Harness Engineering gaps and deriving improvement policies for each core feature. This framework replaces simple binary checklists with a systematic method for identifying where a harness is weak, why it matters, and what to do about it.
 
+Each evaluation dimension maps to a level in the Principle-to-Practice Chain (see `HE Principle Map.md`), ensuring gap analysis is grounded in engineering principles rather than arbitrary checklists.
+
 ---
 
 ## Part 1: Evaluation Dimensions
 
-Every core feature is evaluated through **six lenses**. Each lens reveals a different type of gap that a single-dimension maturity model would miss.
+Every core feature is evaluated through **six lenses**. Each lens reveals a different type of gap that a single-dimension maturity model would miss. The chain level mapping shows which part of the L1→L5 chain each dimension inspects.
 
 ```json
 [
-  { "dimension": "Implementation Maturity", "question": "How fully built is this feature?", "why_it_matters": "Unbuilt features can't deliver value" },
-  { "dimension": "Operational Effectiveness", "question": "Does the feature actually work in practice?", "why_it_matters": "A feature can exist but underperform" },
-  { "dimension": "Risk Exposure", "question": "What breaks if this feature is absent or weak?", "why_it_matters": "Reveals hidden blast radius" },
-  { "dimension": "Cost-Efficiency", "question": "Is the investment proportional to the value?", "why_it_matters": "Prevents over-engineering and token waste" },
-  { "dimension": "Scalability (SAS→MAS)", "question": "Will this feature survive the transition to multi-agent?", "why_it_matters": "Avoids rework when scaling" },
-  { "dimension": "Human Role Evolution", "question": "Does this feature shift humans from writing code to designing systems?", "why_it_matters": "Measures progress toward the HE vision" }
+  { "dimension": "Implementation Maturity", "chain_level": "L4 (Actions & Tools)", "question": "How fully built is this feature?", "why_it_matters": "Unbuilt features can't deliver value" },
+  { "dimension": "Operational Effectiveness", "chain_level": "L5 (Measurable Outcomes)", "question": "Does the feature actually work in practice?", "why_it_matters": "A feature can exist but underperform" },
+  { "dimension": "Risk Exposure", "chain_level": "L2 inverse (Targeted Enhancement at risk)", "question": "What breaks if this feature is absent or weak?", "why_it_matters": "Reveals hidden blast radius" },
+  { "dimension": "Cost-Efficiency", "chain_level": "L4 (Action proportionality)", "question": "Is the investment proportional to the value?", "why_it_matters": "Prevents over-engineering and token waste" },
+  { "dimension": "Scalability (SAS→MAS)", "chain_level": "L3 (Design Decisions)", "question": "Will this feature survive the transition to multi-agent?", "why_it_matters": "Avoids rework when scaling" },
+  { "dimension": "Human Role Evolution", "chain_level": "L2 (Enhancement trajectory)", "question": "Does this feature shift humans from writing code to designing systems?", "why_it_matters": "Measures progress toward the HE vision" }
 ]
 ```
 

@@ -58,7 +58,12 @@
     "metaprogramming",
     "launchable",
     "inspectable",
-    "feedforward"
+    "feedforward",
+    "sublinear",
+    "toggleable",
+    "MTTR",
+    "Negativa",
+    "Poka"
   ],
   "ignorePaths": [
     "node_modules",

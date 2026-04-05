@@ -25,7 +25,47 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 
 ## Active Plans
 
-_No active plans. Create an entry here before starting any multi-step task._
+### Plan: Principle-to-Practice Chain Restructuring
+
+- **Goal:** Restructure the entire HE framework so every feature, prevention item, DO NOT rule, and enhancement option is organized through the 5-level Principle-to-Practice Chain defined in `HE Chain.md`. Success = every chain level (L1–L5) is explicitly populated for all 31 features, and all supporting documents (Prevention Checklist, Enhancement Options, Gap Evaluation, DO NOT rules) trace back to their chain position.
+- **Scope:**
+  - IN: `framework/HE Core Features.md`, `framework/HE Enhancement Options.md`, `framework/HE Prevention Checklist.md`, `framework/HE Gap Evaluation Framework.md`, `framework/HE Chain.md`, `AGENTS.md` (DO NOT + Conventions sections), `ANCHORS.md`
+  - OUT: `references/` (read-only), `research/` (will need consistency alignment AFTER framework changes, via `/revise-comments`), `framework/HE Execution Procedure.md` (wraps L4 execution — update references only)
+- **Status:** `awaiting-review`
+- **Steps:**
+  - [x] Phase 0: Deep Research — Read all framework documents and map current chain coverage
+  - [x] Phase 0: Gap Analysis — Produce `tmp/Chain Restructuring Analysis.md` with per-feature chain gaps
+  - [x] Phase 0: Extract implicit principles (L1) — Draft 23 Engineering Principles from implicit content
+  - [x] Phase 1A: Define L1 (Engineering Principles) — Finalized 19 principles (EP-1 through EP-19); validated timeless, general, first-principles-derived; mapped to governed features
+  - [x] Phase 1B: Define L2 (Targeted Enhancements) — Written for all 31 features in `HE Principle Map.md`
+  - [x] Phase 1C: Define L5 (Concrete Enhancements) — Written for all 31 features in `HE Principle Map.md`
+  - [x] Phase 2A: Create `HE Principle Map.md` — New canonical document with full L1→L5 chains for all 31 features organized by pillar (HE Chain.md stays meta per user direction)
+  - [x] Phase 2B: Update `HE Core Features.md` — Added Principle-to-Practice Chain Index table mapping all 31 features to L1 principles and L2 outcomes
+  - [x] Phase 2C: Update `HE Enhancement Options.md` — Added chain reference blockquotes (EP-N → L2 outcome) to all 31 feature sections + updated intro
+  - [x] Phase 2D: Update `HE Prevention Checklist.md` — Added Chain Failure Index table classifying all prevention items by broken principle and failure level
+  - [x] Phase 2E: Update `AGENTS.md` DO NOT rules — Added EP-N principle backlinks to all 13 DO NOT rules + updated section intro
+  - [x] Phase 2F: Update `HE Gap Evaluation Framework.md` — Added chain_level mapping to all 6 evaluation dimensions + updated intro
+  - [x] Phase 3: Cross-Cutting Alignment — Integrated into `HE Principle Map.md` cross-cutting sections: Prevention as chain-break alarm, DO NOT as L4 constraints with L1 backlinks, Reward Engineering as cross-chain anti-gaming, Token Economics as chain cost profile, SAS→MAS readiness
+  - [x] Phase 4: Validation — `npm run check` passes clean (markdownlint + cspell + he-lint)
+  - [ ] Phase 5: Consistency Cascade — Run `/revise-comments` to align `research/` documents with updated `framework/` definitions
+  - [x] Phase 6: Anchor — Write new ANCHORS.md entry (A9) recording the Chain Restructuring decision
+- **Constraints:**
+  - The 31-feature count (A6) must remain exactly 31 — no features added or removed
+  - The 3-Pillar + 1-Foundation taxonomy (A1) is preserved — chain restructuring adds depth, not width
+  - `framework/` remains the single source of truth (A3) — no principle definitions in `research/`
+  - Unified feature definitions (A4) — no SAS/MAS splits introduced
+  - All changes must pass `he-lint.js` pre-commit and CI checks
+  - Each phase should be executable in a single agent context window
+- **Checkpoints:**
+  - CP1: Phase 0 complete (analysis + principle draft) → commit `tmp/Chain Restructuring Analysis.md`
+  - CP2: Phase 1 complete (L1 + L2 + L5 defined for all 31 features) → commit updated Chain.md
+  - CP3: Phase 2 complete (all framework docs updated) → commit batch
+  - CP4: Phase 4 complete (validation green) → commit verification
+  - CP5: Phase 5 complete (research/ aligned) → commit consistency
+- **Blocking Issues:** All resolved.
+  - ~~**Principle granularity:**~~ RESOLVED — Apply chain rigor: merge/split principles according to the chain. Refined from 23 draft to 19 final principles (EP-1 through EP-19). Each is timeless, first-principles-derived, and distinctly different. Merged: EP-2+EP-14→EP-2 (Persistence); EP-16+EP-20→EP-14 (Clarity before commitment); EP-21+EP-23→EP-18 (Entropy); EP-22+EP-3.4→EP-19 (Living documentation). Removed EP-15 (git-as-memory demoted to L3 design pattern under EP-2).
+  - ~~**L5 measurability:**~~ RESOLVED — L5 framed as "what implementors should measure" not what this docs repo measures internally.
+  - ~~**Chain.md role:**~~ RESOLVED — `HE Chain.md` stays as meta-document describing the chain model. New `HE Principle Map.md` created as the canonical principle-to-practice map for all 31 features.
 
 ---
 

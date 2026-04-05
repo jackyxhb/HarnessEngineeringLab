@@ -2,6 +2,44 @@
 
 The canonical 31 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
 
+Each feature traces through the Principle-to-Practice Chain (see `HE Chain.md`). Full L1→L5 chains for every feature live in `HE Principle Map.md`. The index below provides the principle anchor (L1) and targeted outcome (L2) per feature.
+
+## Principle-to-Practice Chain Index
+
+| Feature | L1 Principle | L2 Targeted Enhancement |
+| ------- | ----------- | ---------------------- |
+| P0-1 Bash Sandboxes | EP-1: Isolation prevents contamination | Zero cross-contamination between agent environments |
+| P0-2 Filesystem, Git & File Locking | EP-2: State must outlive the session | All agent state durable, versioned, conflict-free |
+| P0-3 Verification (Self & Collective) | EP-3: Verify before declaring completion | Agents autonomously detect and correct errors |
+| P0-4 Ralph Loops | EP-4: Committed tasks must be completed | 100% task completion despite context exhaustion |
+| P0-5 Orchestration Logic | EP-5: Coordination cost must stay bounded | Coordination overhead sublinear to team size |
+| P0-6 Rippable Middleware | EP-6: Scaffolding is temporary by design | Any harness layer removable without breakage |
+| P0-7 Escalation & Audit Trails | EP-7: Every action must be traceable | Every action attributable; stuck agents escalated |
+| P0-8 Harness Versioning | EP-8: You cannot improve what you do not measure | Configs reproducible and comparable with data |
+| P0-9 Smart Command Wrappers | EP-9: Standard operations reduce variance | Zero variance in common CLI execution |
+| P0-10 Inter-Agent Communication | EP-5: Coordination cost must stay bounded | Coordination without supervisor bottleneck |
+| P0-11 Portable Agent Surface | EP-10: Portability over proprietary convenience | Instructions discoverable from any IDE |
+| P1-1 Repository as Truth | EP-11: If it's not in the repo, it doesn't exist | Agent context accuracy without human briefing |
+| P1-2 Context Compaction | EP-12: Finite attention demands active management | Sustained reasoning quality across long tasks |
+| P1-3 Tool Offloading | EP-12: Finite attention demands active management | Tool outputs never dominate the context window |
+| P1-4 Progressive Skills | EP-12: Finite attention demands active management | Only task-relevant capabilities in context |
+| P1-5 Observability / Dashboards | EP-8: You cannot improve what you do not measure | Real-time visibility into system behavior |
+| P1-6 Web Search & MCP | EP-13: Current signals outperform stale snapshots | Answers reflect current state of the world |
+| P1-7 Planning & Blackboards | EP-2: State must outlive the session | Complex tasks survive context resets |
+| P1-8 Context Anchoring | EP-2: State must outlive the session | Strategic decisions persist across resets |
+| P1-9 Branch-Based Cognitive Memory | EP-2: State must outlive the session | Complex objectives decompose with checkpoints |
+| P1-10 Requirements Ledger | EP-11: If it's not in the repo, it doesn't exist | All requirements recorded before planning |
+| P1-11 Socratic Questioning | EP-14: Clarity before commitment | Zero ambiguous inputs reaching execution |
+| P2-1 Automated Linters | EP-15: Mechanical enforcement over advisory | Zero violations reaching main branch |
+| P2-2 Dependency Enforcement | EP-15: Mechanical enforcement over advisory | Boundaries mechanically enforced |
+| P2-3 AI Auditors | EP-16: No author is their own best reviewer | Every output independently reviewed |
+| P2-4 Bounded Autonomy | EP-17: Capabilities proportional to risk | Capabilities proportional to task risk |
+| P2-5 Upstream Intake Gate | EP-14: Clarity before commitment | No execution on unrecorded requirements |
+| P3-1 Scheduled Cleanups | EP-18: Entropy requires scheduled countering | Entropy never exceeds one GC cycle |
+| P3-2 Documentation Sync | EP-19: Documentation must live with the code | Docs always match current code state |
+| P3-3 Pattern Auditing | EP-18: Entropy requires scheduled countering | Patterns converge; no circular deps |
+| P3-4 Consolidation Loop | EP-19: Documentation must live with the code | System docs auto-synced with codebase |
+
 ## Foundational Infrastructure (Execute)
 
 _The execution engine and orchestration layer that the harness is built upon. It runs code, orchestrates agents, prevents collisions, and traces accountability._
