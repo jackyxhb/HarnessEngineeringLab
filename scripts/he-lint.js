@@ -69,8 +69,8 @@ function scanFile(filePath) {
     const countRegex = /\b((?:1[0-9]|[2-9][0-9]+))\s+(?:core\s+)?features\b/gi;
     let match;
     while ((match = countRegex.exec(line)) !== null) {
-      if (match[1] !== "31") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 31.`, 'Update to "31 core features" (11 Foundation + 11 P1 + 5 P2 + 4 P3). See: framework/HE Design Decisions.md');
+      if (match[1] !== "32") {
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 32.`, 'Update to "32 core features" (11 Foundation + 12 P1 + 5 P2 + 4 P3). See: framework/HE Design Decisions.md');
       }
     }
 
@@ -86,7 +86,7 @@ function scanFile(filePath) {
         const pillar = parseInt(parts[0].replace('P', ''), 10);
         const num = parseInt(parts[1], 10);
         if (pillar === 0 && (num < 1 || num > 11)) invalid = true;
-        if (pillar === 1 && (num < 1 || num > 11)) invalid = true;
+        if (pillar === 1 && (num < 1 || num > 12)) invalid = true;
         if (pillar === 2 && (num < 1 || num > 5)) invalid = true;
         if (pillar === 3 && (num < 1 || num > 4)) invalid = true;
         if (pillar < 0 || pillar > 3) invalid = true;
@@ -97,7 +97,7 @@ function scanFile(filePath) {
       }
       
       if (invalid) {
-        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-11, P2-1..P2-5, P3-1..P3-4. See: framework/HE Design Decisions.md');
+        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-12, P2-1..P2-5, P3-1..P3-4. See: framework/HE Design Decisions.md');
       }
     }
 

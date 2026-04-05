@@ -38,7 +38,7 @@ Every core feature is evaluated through **six lenses**. Each lens reveals a diff
 
 ## Part 2: Feature-by-Feature Gap Analysis and Improvement Policies
 
-Each of the 31 core features is analyzed below with:
+Each of the 32 core features is analyzed below with:
 
 - **Gap Signals** — observable symptoms that indicate a gap exists
 - **Improvement Policies** — concrete actions organized by priority tier
@@ -594,6 +594,34 @@ Each of the 31 core features is analyzed below with:
 
 ---
 
+#### P1-12. Skill Engineering
+
+**Gap Signals:**
+
+- Agent skill files exceed 200 lines, forcing agents to read far more context than needed for any single action path
+- No routing hub or decision tree — agents must scan the entire skill reference to find the relevant section
+- Skills ship as monolithic documents combining unrelated procedures, templates, and references
+- Terminology varies across skill files (e.g., "skill" vs. "capability" vs. "module") with no canonical glossary
+- Repeated boilerplate across skill files that could be extracted into reusable templates
+- Agents waste tokens reading skill context irrelevant to the current task because no modular structure exists
+
+**Improvement Policies:**
+
+```json
+[
+  { "tier": 1, "action": "Enforce a mandatory-read budget: every skill file's always-loaded preamble must stay under 200 lines", "dimensions": ["Effectiveness", "Cost"] },
+  { "tier": 1, "action": "Split monolithic skill references into modular sub-files organized by action path", "dimensions": ["Effectiveness", "Maturity"] },
+  { "tier": 2, "action": "Add a routing-hub pattern (decision-tree or dispatcher) that directs agents to the correct sub-file based on task type", "dimensions": ["Effectiveness", "Scalability"] },
+  { "tier": 2, "action": "Standardize terminology across all skill files — publish a canonical vocabulary and enforce it via linter", "dimensions": ["Maturity", "Risk"] },
+  { "tier": 2, "action": "Extract repeated patterns into template libraries that skill files import rather than duplicate", "dimensions": ["Cost", "Scalability"] },
+  { "tier": 3, "action": "Pre-build subagent dispatch prompts per skill so orchestrators can delegate without re-reading the full skill reference", "dimensions": ["Scalability", "Cost"] }
+]
+```
+
+**Dependencies:** Builds on Progressive Skills (P1-4) — modular skills are what progressive disclosure delivers. Feeds Context Compaction & Memory Management (P1-2) — smaller mandatory-read budgets reduce context pressure. Complements Tool Offloading (P1-3) — well-engineered skills make tool selection more precise. Enhances Planning, Task Lists & Blackboards (P1-7) — agents with modular skills produce better-scoped plans.
+
+---
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
@@ -936,7 +964,7 @@ Rate how well the codebase is optimized for AI agent consumption rather than jus
 
 ### Step 1: Score Each Feature
 
-For each of the 31 features, score across all 6 dimensions (0-5). This produces a 31×6 matrix.
+For each of the 32 features, score across all 6 dimensions (0-5). This produces a 32×6 matrix.
 
 ### Step 2: Weight Dimensions by Strategic Priority
 

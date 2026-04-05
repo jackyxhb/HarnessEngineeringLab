@@ -24,6 +24,7 @@ Each prevention item maps to a broken link in the Principle-to-Practice Chain (s
   { "prevention_item": "P1-1,7 Inconsistent Context",      "broken_principle": "EP-11 Repo as truth",            "failure_level": "L3 failure — no single shared source" },
   { "prevention_item": "P1-10 Unrecorded Requirements",    "broken_principle": "EP-14 Clarity before commitment", "failure_level": "L4 omission — ledger not maintained" },
   { "prevention_item": "P1-11 Ambiguous Inputs",           "broken_principle": "EP-14 Clarity before commitment", "failure_level": "L1 violation — principle directly broken" },
+  { "prevention_item": "P1-12 Monolithic Skills",            "broken_principle": "EP-12 Finite attention",           "failure_level": "L4 omission — skill not modularized" },
   { "prevention_item": "P2-1 Unenforced Rules",            "broken_principle": "EP-15 Mechanical enforcement",   "failure_level": "L4 omission — no sensor for guide" },
   { "prevention_item": "P2-4 Prompt Injections",           "broken_principle": "EP-17 Capabilities ∝ risk",      "failure_level": "L4 omission — guardrails not deployed" },
   { "prevention_item": "P2-4 Emergent Behaviors",          "broken_principle": "EP-17 Capabilities ∝ risk",      "failure_level": "L3 failure — access controls insufficient" },
@@ -62,6 +63,7 @@ Each prevention item maps to a broken link in the Principle-to-Practice Chain (s
 - **`P1-1, P1-7` Prevent Inconsistent Shared Context:** In a MAS, you must prevent agents from operating on conflicting or outdated information. Without shared context management, agents will give inconsistent answers and frustrate users.
 - **`P1-10` Prevent Unrecorded Requirements:** You must prevent agents from operating on requirements that exist only in chat history, user conversations, or human memory. Prevent this by mandating a Requirements Ledger where all user stories, functional scenarios, and requirements are formally recorded before any planning or execution begins.
 - **`P1-11` Prevent Execution on Ambiguous Inputs:** You must prevent agents from proceeding with planning or execution while the input contains unresolved ambiguities, hidden assumptions, or unclear requirements. Apply Socratic questioning — systematically probing for Clarification, Assumptions, Evidence, Viewpoints, Implications, and Meta-questions — before any execution begins. Record all resolved clarifications in the Requirements Ledger or Context Anchors before proceeding.
+- **`P1-12` Prevent Monolithic, Unstructured Skills:** You must prevent agent skills from shipping as monolithic reference files that exceed mandatory-read budgets or lack routing logic. Monolithic skills force agents to read hundreds of lines before finding the correct action path, causing context waste and degraded reasoning. Prevent this by enforcing modular skill architecture: split references below 200 lines, add decision-tree routing hubs, standardize terminology, and extract reusable templates.
 
 ## Pillar 2: Prevent Security, Ethics, and Emergent Risks (Constrain)
 

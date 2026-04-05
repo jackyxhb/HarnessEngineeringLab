@@ -89,7 +89,7 @@ Max 5 words, Title Case with spaces. Prefix `HE` for general content, `MAS` for 
 
 ### Feature Count
 
-Exactly **31 core features**: 11 Foundation + 11 P1 + 5 P2 + 4 P3. Validated by `he-lint.js` number-bias check.
+Exactly **32 core features**: 11 Foundation + 12 P1 + 5 P2 + 4 P3. Validated by `he-lint.js` number-bias check.
 
 ### Pillar Labels
 

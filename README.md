@@ -42,10 +42,10 @@ Original source articles that form the foundation of this research, including Op
 
 ### `framework/`
 
-The canonical framework definitions and operational guides (31 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides (32 core features across 3 pillars + 1 foundation):
 
-- **HE Design Decisions.md** — The 31 canonical features of Harness Engineering
-- **HE Principle Map.md** — Complete L1→L5 chains for all 31 features and 19 Engineering Principles
+- **HE Design Decisions.md** — The 32 canonical features of Harness Engineering
+- **HE Principle Map.md** — Complete L1→L5 chains for all 32 features and 19 Engineering Principles
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
 - **HE Actions Tools.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
 - **HE Negative Actions.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
@@ -80,7 +80,7 @@ Build logs documenting the creation and optimization of the `harnessing-agents` 
 
 ## Scaling: Single to Multi-Agent
 
-The framework scales naturally from a single agent to multi-agent systems. All 31 features are defined once and describe their multi-agent behavior inline. Key multi-agent capabilities include:
+The framework scales naturally from a single agent to multi-agent systems. All 32 features are defined once and describe their multi-agent behavior inline. Key multi-agent capabilities include:
 
 - **Inter-Agent Communication (P0-10)** — Messaging bus for P2P, broadcast, and idle notifications
 - **File Locking (P0-2)** — Prevents race conditions when multiple agents share a workspace

@@ -23,7 +23,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 **Foundation** features (11): Bash Sandboxes, Filesystem, Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox), Portable Agent Surface
 
-**Pillar 1** features (11): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning, Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger, Socratic Questioning
+**Pillar 1** features (12): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning, Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger, Socratic Questioning, Skill Engineering
 
 **Pillar 2** features (5): Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate
 
@@ -31,7 +31,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `framework/` — **Canonical source of truth.** Core framework definitions (31 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
+- `framework/` — **Canonical source of truth.** Core framework definitions (32 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
 - `builder/` — Build logs for the `harnessing-agents` skill optimization.
@@ -115,7 +115,7 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **`EP-11` Never add a rule to this file without a concrete incident, failure, or constraint that justifies it.** Consequence: generic rules are ignored by agents trained to find mechanically-enforced constraints; the next `/reconcile` run will flag and remove them.
 - **`EP-15` Never bypass pre-commit hooks with `git commit --no-verify`.** Consequence: `he-lint` violations enter the repository and CI will reject the push.
 - **`EP-11` Never write directly to `references/` files.** Consequence: original source articles become contaminated; `references/` is read-only reference material. If a reference needs updating, flag it in `ANCHORS.md`.
-- **`EP-11` Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 31 features are unified in `HE Design Decisions.md` (per A4).
+- **`EP-11` Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 32 features are unified in `HE Design Decisions.md` (per A4).
 - **`EP-11` Never introduce a new workflow or script without adding it to `## Available Tools & Commands`.** Consequence: the tool is invisible to agents and effectively non-existent as a harness resource.
 - **`EP-2` Never mark a `PLANS.md` entry status as `done` without moving it to the Completed Plans section.** Consequence: task history is lost; future agents cannot examine resolved blocking issues, constraints applied, or decisions made during the task — rebuilding that context costs a full conversation replay.
 - **`EP-8` Never add a file to `docs/` without registering its observable signals in `docs/OBSERVABILITY.md`.** Consequence: the new file becomes invisible to the harness audit signal table, enabling silent structural regressions that escape both pre-commit and the weekly GC scan.
@@ -130,7 +130,7 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content. Violation causes naming entropy that breaks cross-link validation and file-search heuristics.
 - **Consistency rule:** `framework/` is the single source of truth. Never edit `research/` to define a new framework concept — write it in `framework/` first, then align `research/` to it. Violating this creates silent forks where agents read contradictory definitions depending on which file they loaded first.
 - **Gap evaluation:** Use `framework/HE Inverse Outcomes.md` for multi-dimensional assessment of harness implementations. It provides per-feature gap signals, improvement policies, dependency maps, and cross-cutting evaluation perspectives.
-- **Unified features:** All 31 features are defined once in `HE Design Decisions.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents. Creating split files causes definitions to diverge; `he-lint.js` will catch the count mismatch.
+- **Unified features:** All 32 features are defined once in `HE Design Decisions.md`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents. Creating split files causes definitions to diverge; `he-lint.js` will catch the count mismatch.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages. Generic messages like "update docs" block downstream automation from extracting semantic change history.
 - **Rule entries:** Every rule added to `AGENTS.md` must state the consequence of violation. Generic advice (e.g., "follow best practices") will be removed on the next `/reconcile` run.
 - **IDE shim pattern (P0-11):** `AGENTS.md` is the canonical rule surface. IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) must be thin shims that reference `AGENTS.md` and contain only IDE-specific overrides. When rules change, update `AGENTS.md` first, then verify shims remain consistent.

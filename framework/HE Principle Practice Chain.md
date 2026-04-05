@@ -42,6 +42,14 @@ The Principle-to-Practice Chain is the canonical translation structure for Harne
 - **L4:** Swap bearings (specific part numbers), recalibrate motor controller, add thermal insulation spec
 - **L5:** Efficiency verified on dyno → ships with 15 % better battery life
 
+### AI Skill Engineering
+
+- **L1:** Finite attention demands active management (EP-12)
+- **L2:** Agent skills are modular, context-efficient, and tunable
+- **L3:** Mandatory-read budget per skill file (<200 lines); routing-hub pattern for action-path dispatch
+- **L4:** Split monolithic skill refs → modular files · Add decision-tree routing hub · Standardize terminology · Extract reusable templates · Pre-build subagent dispatch prompts
+- **L5:** Mandatory read per action path reduced 40–60 % · All skill reference files < 200 lines · Routing hub resolves to correct sub-file in one hop
+
 ## Key Takeaway
 
 One principle → one or multiple actions → concrete, measurable enhancement. The standard flow in engineering.

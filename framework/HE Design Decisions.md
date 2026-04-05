@@ -1,6 +1,6 @@
 # HE Design Decisions
 
-The canonical 31 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
+The canonical 32 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
 
 Each feature traces through the Principle-to-Practice Chain (see `HE Principle Practice Chain.md`). Full L1→L5 chains for every feature live in `HE Principle Map.md`. The index below provides the principle anchor (L1) and targeted outcome (L2) per feature.
 
@@ -30,6 +30,7 @@ Each feature traces through the Principle-to-Practice Chain (see `HE Principle P
   { "feature": "P1-9 Branch-Based Cognitive Memory",    "L1": "EP-2: State must outlive the session",             "L2": "Complex objectives decompose with checkpoints" },
   { "feature": "P1-10 Requirements Ledger",             "L1": "EP-11: If it's not in the repo, it doesn't exist", "L2": "All requirements recorded before planning" },
   { "feature": "P1-11 Socratic Questioning",            "L1": "EP-14: Clarity before commitment",                 "L2": "Zero ambiguous inputs reaching execution" },
+  { "feature": "P1-12 Skill Engineering",               "L1": "EP-12: Finite attention demands active management", "L2": "Agent skills are modular, context-efficient, and tunable" },
   { "feature": "P2-1 Automated Linters",                "L1": "EP-15: Mechanical enforcement over advisory",      "L2": "Zero violations reaching main branch" },
   { "feature": "P2-2 Dependency Enforcement",           "L1": "EP-15: Mechanical enforcement over advisory",      "L2": "Boundaries mechanically enforced" },
   { "feature": "P2-3 AI Auditors",                      "L1": "EP-16: No author is their own best reviewer",      "L2": "Every output independently reviewed" },
@@ -75,6 +76,7 @@ _The largest pillar. Encompasses everything related to managing what the model s
 - **P1-9. Branch-Based Cognitive Memory:** Splitting complex objectives into subtasks across concurrent branches, using merges and structured commit messages as functional memory checkpoints. Parallel agents execute sub-task branches concurrently.
 - **P1-10. Requirements Ledger:** Capturing all incoming user stories, requirements, and functional scenario narratives into a single unified ledger document before any planning or execution begins. All agents read from and write to the same ledger, with file locking to prevent conflicting entries.
 - **P1-11. Socratic Questioning:** Applying structured Socratic questioning to extract complete, unambiguous information before execution begins. When confronting unclear inputs — statements, requirements, tasks, or problems — the agent pauses and systematically interrogates using six question categories (Clarification, Probing Assumptions, Probing Reason & Evidence, Questioning Viewpoints, Probing Implications, Questions about the Question) until all ambiguities are resolved. The goal is cooperative discovery to reach complete clarity before committing to a plan. In MAS, specialized interrogator agents probe different dimensions in parallel before merging a consensus clarifications document.
+- **P1-12. Skill Engineering:** The discipline of designing, building, installing, and tuning agent skills as modular context packages optimized for progressive loading. Skills must stay below a mandatory-read budget (e.g., <200 lines per reference file) and use a routing-hub pattern so agents reach the correct capability path without scanning the full skill surface. Proven practices include: monolith→module splits to isolate layers (foundation vs. pillars), decision-tree orchestrators that route to specific references, context-budget reduction to minimize mandatory pre-read, terminology standardization across skill files, template extraction for reusable output formats, and pre-built subagent dispatch prompts. Skill quality directly determines agent effectiveness — a poorly structured skill wastes tokens and produces degraded outputs regardless of model capability.
 
 ---
 

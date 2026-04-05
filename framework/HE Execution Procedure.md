@@ -1,6 +1,6 @@
 # HE Execution Procedure
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 31 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 32 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 >
@@ -491,7 +491,7 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 (Principles) systematically walk the full 4 areas → 31 features → Actions/Tools tree.
+1. **Feature Tree:** Tasks 1.1–1.5 (Principles) systematically walk the full 4 areas → 32 features → Actions/Tools tree.
 2. **Agent Scale:** Task 0.1 (Scope) classifies the scale. Multi-agent scaling checks are integrated into Phase 1 (Principles) tasks. Phase 2 (Enhancements) includes a scaling readiness perspective.
 3. **Project Complexity:** Task 0.1 (Scope) classifies complexity. Phase 4 (Actions) remediation levels (Light/Medium/Heavy) adapt to project complexity.
 4. **Remediation Level:** Phase 3 (Design Decisions) explicitly classifies each change and Phase 4 (Actions) templates are organized by remediation weight.

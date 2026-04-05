@@ -25,7 +25,7 @@ Scan for all of the following categories:
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
-   - Canonical feature count = **31** (11 Foundation + 11 P1 + 5 P2 + 4 P3)
+   - Canonical feature count = **32** (11 Foundation + 12 P1 + 5 P2 + 4 P3)
 6. **Content duplication** — multiple files saying the same thing in different words
 7. **Missing cross-references** — documents that reference concepts without linking to the canonical source
 8. **Orphan concepts** — ideas introduced in one file but not connected to the framework
@@ -60,7 +60,7 @@ When checking terminology, the following are the **single source of truth** labe
   { "component": "Pillar 1",     "canonical": "Context Engineering (Inform)",          "source": "HE Design Decisions.md" },
   { "component": "Pillar 2",     "canonical": "Architectural Constraints (Constrain)", "source": "HE Design Decisions.md" },
   { "component": "Pillar 3",     "canonical": "Entropy Management (Maintain)",         "source": "HE Design Decisions.md" },
-  { "component": "Feature count", "canonical": "31 core features",                     "source": "HE Actions Tools.md" },
+  { "component": "Feature count", "canonical": "32 core features",                     "source": "HE Actions Tools.md" },
   { "component": "Cross-cutting", "canonical": "Reward Engineering & Anti-Hacking",    "source": "HE Negative Actions.md" }
 ]
 ```

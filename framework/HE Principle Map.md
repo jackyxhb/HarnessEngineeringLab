@@ -383,6 +383,20 @@ Each feature maps to exactly one primary principle above. Some principles exert 
 
 ---
 
+#### P1-12. Skill Engineering
+
+```json
+{
+  "L1_principle": "EP-12: Finite attention demands active management",
+  "L2_targeted_enhancement": "Agent skills are modular, context-efficient, and tunable",
+  "L3_design_decisions": "Mandatory-read budget per skill file (<200 lines); routing-hub pattern in skill orchestrator; monolith→module splits isolating framework layers; decision-tree routing; template extraction; subagent dispatch prompts; terminology standardization",
+  "L4_actions_tools": "Split monolithic skill refs → modular files · Add decision-tree routing hub · Enforce <200 line budget · Extract reusable output templates · Pre-build subagent dispatch prompts · Standardize terminology across skill files · See HE Actions Tools.md P1-12",
+  "L5_measurement": "Mandatory read per action path reduced 40-60% · All skill reference files <200 lines · Time-to-first-action measurably improved"
+}
+```
+
+---
+
 ### Pillar 2: Architectural Constraints (Constrain)
 
 #### P2-1. Automated Linters
@@ -515,7 +529,7 @@ Each feature maps to exactly one primary principle above. Some principles exert 
 
 ## Cross-Cutting Chain Perspectives
 
-Some framework elements span multiple chain levels or operate across all 31 features. Their chain position is "lateral" rather than "vertical."
+Some framework elements span multiple chain levels or operate across all 32 features. Their chain position is "lateral" rather than "vertical."
 
 ### Prevention Checklist — Broken Chain Detector
 

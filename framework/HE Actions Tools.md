@@ -1,6 +1,6 @@
 # HE Actions Tools
 
-When implementing or upgrading a harness, use these options to translate the 31 core features into concrete **Actions** and **Tools**. Each feature section includes a chain reference (L1 Principle → L2 Targeted Enhancement). Full L1→L5 chains live in `HE Principle Map.md`.
+When implementing or upgrading a harness, use these options to translate the 32 core features into concrete **Actions** and **Tools**. Each feature section includes a chain reference (L1 Principle → L2 Targeted Enhancement). Full L1→L5 chains live in `HE Principle Map.md`.
 
 ## P0 — Foundational Infrastructure (Execute)
 
@@ -214,6 +214,20 @@ When implementing or upgrading a harness, use these options to translate the 31 
 - **Action:** Record extracted clarifications as structured entries in the Requirements Ledger (P1-10) or as Context Anchors (P1-8) before proceeding to planning.
 - **Tool:** Structured interrogation templates covering the 6 Socratic question types, injected into agent context at task intake.
 - **Tool:** Ambiguity scoring heuristics — rate input clarity before and after the Socratic round; do not proceed if clarity score remains below threshold.
+
+### P1-12. Skill Engineering
+
+> **Chain:** EP-12 — Finite attention demands active management → Agent skills are modular, context-efficient, and tunable
+
+- **Action:** Split monolithic skill reference files into modular components (e.g., foundation vs. pillars) to keep each file below a mandatory-read budget (<200 lines).
+- **Action:** Transform the skill orchestrator (e.g., `SKILL.md`) into a routing hub with a decision tree that directs agents to the correct reference file without scanning the full skill surface.
+- **Action:** Reduce mandatory context load per action path by extracting utilities, checklists, and templates into dedicated files agents load only when needed.
+- **Action:** Standardize terminology across all skill files to prevent logic errors in subagent dispatches (e.g., distinguish "Scoping Dimensions" from "Evaluation Dimensions").
+- **Action:** Extract reusable output templates (e.g., assessment reports, implementation plans, change summaries) into a dedicated `templates/` directory.
+- **Action:** Pre-build subagent dispatch prompts containing pre-configured orchestration instructions for parallel agent workflows.
+- **Tool:** File-length linters enforcing the <200 line budget per skill reference file.
+- **Tool:** Decision-tree routing patterns in skill orchestrators.
+- **Tool:** Template libraries for standardized skill outputs.
 
 ---
 
