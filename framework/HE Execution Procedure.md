@@ -3,12 +3,14 @@
 A comprehensive, step-by-step procedure for executing Harness Engineering across all 31 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
+>
+> **Chain Flow:** The phases follow the Principle-to-Practice Chain (L1→L5): Scope (pre-chain) → Principles (L1) → Enhancements (L2) → Design Decisions (L3) → Actions (L4) → Results (L5) → Principle Feedback (L1 ↩).
 
 ---
 
-## Phase 0: Pre-Flight — Scope & Target Assessment
+## Phase 0: Scope — Target Assessment
 
-> **Goal:** Understand the target project and determine which parts of this procedure apply.
+> **Goal (Pre-chain):** Understand the target project and determine which parts of this procedure apply.
 
 ### Task 0.1: Identify Target Project & Scale
 
@@ -37,7 +39,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
 
-1. Run through the **Quick-Start Evaluation Checklist** (from `HE Gap Evaluation Framework.md` Part 5).
+1. Run through the **Quick-Start Evaluation Checklist** (from `HE Inverse Outcomes.md` Part 5).
 2. For each checkbox, mark it as ✅ (present) or ❌ (absent) with a one-line justification.
 3. Identify the project's current **Maturity Level** (Basic / Team / Production) based on the `Harness Landing Pathway`.
 
@@ -47,16 +49,16 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Current maturity level
 - Target maturity level (user to confirm)
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Gap Evaluation Framework.md` Part 5, `Harness Landing Pathway`.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Inverse Outcomes.md` Part 5, `Harness Landing Pathway`.
 **Estimated tokens:** ~3,000
 
 ---
 
-## Phase 1: Gap Analysis — Clue Collection
+## Phase 1: Principles — Gap Discovery
 
-> **Goal:** Systematically inspect the target project for harness gaps across all 4 function areas. Each sub-task covers one function area.
+> **Goal (L1 — Engineering Principles):** Discover which engineering principles are unmet across all 4 function areas. Each sub-task inspects one function area for principle gaps.
 
-### Task 1.1: Foundation Gaps — Infrastructure & Execution (Execute)
+### Task 1.1: Foundation Principles — Infrastructure & Execution (Execute)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -79,12 +81,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Gap signals observed
 - Severity: Critical / Important / Enhancement
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Foundation section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Foundation section.
 **Estimated tokens:** ~4,000
 
 ---
 
-### Task 1.2: Pillar 1 Gaps — Context Engineering (Inform)
+### Task 1.2: Pillar 1 Principles — Context Engineering (Inform)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -103,12 +105,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 1 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 1 section.
 **Estimated tokens:** ~3,500
 
 ---
 
-### Task 1.3: Pillar 2 Gaps — Architectural Constraints (Constrain)
+### Task 1.3: Pillar 2 Principles — Architectural Constraints (Constrain)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -121,12 +123,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P2-Constraints.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 2 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 2 section.
 **Estimated tokens:** ~2,500
 
 ---
 
-### Task 1.4: Pillar 3 Gaps — Entropy Management (Maintain)
+### Task 1.4: Pillar 3 Principles — Entropy Management (Maintain)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
@@ -138,35 +140,35 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P3-Entropy.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Core Features.md` Pillar 3 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 3 section.
 **Estimated tokens:** ~2,500
 
 ---
 
-### Task 1.5: Consolidate Clues into Master Report
+### Task 1.5: Consolidate Principle Gaps into Master Report
 
 **Input:** `HE-CLUES-Foundation.md`, `HE-CLUES-P1-Context.md`, `HE-CLUES-P2-Constraints.md`, `HE-CLUES-P3-Entropy.md`
 **Actions:**
 
-1. Merge all 4 clue files into a single `HE-CLUES.md`.
+1. Merge all 4 principle-gap files into a single `HE-CLUES.md`.
 2. Sort all found gaps by severity (Critical → Important → Enhancement).
-3. Cross-reference gaps against the **Prevention Checklist** (`HE Prevention Checklist.md`) — note any prevention failures.
+3. Cross-reference gaps against the **Prevention Checklist** (`HE Negative Actions.md`) — note any prevention failures.
 4. Summarize: total gaps found, gaps per function area, distribution by severity.
 
 **Output:** `HE-CLUES.md` — the master gap report.
 
-**Context needed:** The 4 clue files + `HE Prevention Checklist.md` (37 lines).
+**Context needed:** The 4 clue files + `HE Negative Actions.md` (37 lines).
 **Estimated tokens:** ~3,000
 
 ---
 
-## Phase 2: Gap Scoring — Multi-Dimensional Evaluation
+## Phase 2: Enhancements — Gap Scoring
 
-> **Goal:** Score each identified gap using the 6-dimension evaluation framework. This is split into sub-tasks by function area to stay within context limits.
+> **Goal (L2 — Targeted Enhancements):** Score each identified gap to quantify the desired enhancement using the 6-dimension evaluation framework. This is split into sub-tasks by function area to stay within context limits.
 
 ### Task 2.1: Score Foundation Features (P0-1 to P0-11)
 
-**Input:** `HE-CLUES.md` (Foundation section only), `HE Gap Evaluation Framework.md` Part 2 (Foundation section)
+**Input:** `HE-CLUES.md` (Foundation section only), `HE Inverse Outcomes.md` Part 2 (Foundation section)
 **Actions:**
 
 1. For each Foundation feature (P0-1 to P0-11), score across all 6 dimensions (0–5):
@@ -181,47 +183,47 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-SCORES-Foundation.md` — a 11×6 scoring matrix with justifications.
 
-**Context needed:** `HE-CLUES.md` Foundation section + `HE Gap Evaluation Framework.md` P0-1 to P0-11 sections (~240 lines).
+**Context needed:** `HE-CLUES.md` Foundation section + `HE Inverse Outcomes.md` P0-1 to P0-11 sections (~240 lines).
 **Estimated tokens:** ~4,500
 
 ---
 
 ### Task 2.2: Score Pillar 1 Features (P1-1 to P1-10)
 
-**Input:** `HE-CLUES.md` (P1 section), `HE Gap Evaluation Framework.md` Part 2 (P1 section)
+**Input:** `HE-CLUES.md` (P1 section), `HE Inverse Outcomes.md` Part 2 (P1 section)
 **Actions:** Same as Task 2.1 but for Pillar 1 features.
 **Output:** `HE-SCORES-P1.md` — a 10×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P1 section + `HE Gap Evaluation Framework.md` P1-1 to P1-10 (~220 lines).
+**Context needed:** `HE-CLUES.md` P1 section + `HE Inverse Outcomes.md` P1-1 to P1-10 (~220 lines).
 **Estimated tokens:** ~4,000
 
 ---
 
 ### Task 2.3: Score Pillar 2 Features (P2-1 to P2-5)
 
-**Input:** `HE-CLUES.md` (P2 section), `HE Gap Evaluation Framework.md` Part 2 (P2 section)
+**Input:** `HE-CLUES.md` (P2 section), `HE Inverse Outcomes.md` Part 2 (P2 section)
 **Actions:** Same as Task 2.1 but for Pillar 2 features.
 **Output:** `HE-SCORES-P2.md` — a 5×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P2 section + `HE Gap Evaluation Framework.md` P2-1 to P2-5 (~100 lines).
+**Context needed:** `HE-CLUES.md` P2 section + `HE Inverse Outcomes.md` P2-1 to P2-5 (~100 lines).
 **Estimated tokens:** ~3,000
 
 ---
 
 ### Task 2.4: Score Pillar 3 Features (P3-1 to P3-4)
 
-**Input:** `HE-CLUES.md` (P3 section), `HE Gap Evaluation Framework.md` Part 2 (P3 section)
+**Input:** `HE-CLUES.md` (P3 section), `HE Inverse Outcomes.md` Part 2 (P3 section)
 **Actions:** Same as Task 2.1 but for Pillar 3 features.
 **Output:** `HE-SCORES-P3.md` — a 4×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P3 section + `HE Gap Evaluation Framework.md` P3-1 to P3-4 (~80 lines).
+**Context needed:** `HE-CLUES.md` P3 section + `HE Inverse Outcomes.md` P3-1 to P3-4 (~80 lines).
 **Estimated tokens:** ~2,500
 
 ---
 
 ### Task 2.5: Cross-Cutting Analysis & Prioritization
 
-**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `HE Gap Evaluation Framework.md` Parts 3–4
+**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `HE Inverse Outcomes.md` Parts 3–4
 **Actions:**
 
 1. Apply **Perspective A: Feedback Loop Chain** — identify broken links.
@@ -234,31 +236,31 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-PRIORITIES.md` — prioritized gap list with tier assignments and cross-cutting analysis summary.
 
-**Context needed:** 4 score files + `HE Gap Evaluation Framework.md` Parts 3–4 (~120 lines).
+**Context needed:** 4 score files + `HE Inverse Outcomes.md` Parts 3–4 (~120 lines).
 **Estimated tokens:** ~4,000
 
 ---
 
-## Phase 3: Recommendation & Planning
+## Phase 3: Design Decisions — Remediation Planning
 
-> **Goal:** Translate prioritized gaps into a concrete implementation plan with user-confirmed selections.
+> **Goal (L3 — Design Decisions):** Select design patterns and strategies to translate prioritized gaps into a concrete implementation plan with user-confirmed selections.
 
-### Task 3.1: Generate Recommendations
+### Task 3.1: Generate Design Decisions
 
-**Input:** `HE-PRIORITIES.md`, `HE Enhancement Options.md`
+**Input:** `HE-PRIORITIES.md`, `HE Actions Tools.md`
 **Actions:**
 
-1. For each Tier 1 gap, look up the corresponding feature's **Actions** and **Tools** in `HE Enhancement Options.md`.
+1. For each Tier 1 gap, look up the corresponding feature's **Actions** and **Tools** in `HE Actions Tools.md`.
 2. For each Tier 2 gap, do the same.
 3. For Tier 3 gaps, list but mark as "defer."
-4. Classify each recommendation by **remediation level**:
+4. Classify each design decision by **remediation level**:
    - **Light** — Revise/create meta docs (CLAUDE.md, AGENTS.md, .cursorrules)
    - **Medium** — Add new features (pre-commit hooks, test suites, scripts)
    - **Heavy** — Reform project architecture (ci/cd pipelines, orchestration layer, middleware)
 
-**Output:** `HE-RECOMMENDATIONS.md` — a structured list of recommended changes per feature, actions/tools needed, and remediation level.
+**Output:** `HE-RECOMMENDATIONS.md` — a structured list of design decisions per feature, actions/tools needed, and remediation level.
 
-**Context needed:** `HE-PRIORITIES.md` + `HE Enhancement Options.md` (142 lines).
+**Context needed:** `HE-PRIORITIES.md` + `HE Actions Tools.md` (142 lines).
 **Estimated tokens:** ~4,000
 
 ---
@@ -268,7 +270,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** `HE-RECOMMENDATIONS.md`, `HE-SCOPE.md`
 **Actions:**
 
-1. Group recommendations into **implementation batches** ordered by:
+1. Group design decisions into **implementation batches** ordered by:
    - Dependencies (foundation first, then pillars)
    - Tier (Tier 1 → Tier 2 → Tier 3)
    - Remediation level (Light → Medium → Heavy)
@@ -290,9 +292,9 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-## Phase 4: Execution — Implementing Harness Changes
+## Phase 4: Actions — Implementation
 
-> **Goal:** Execute the implementation plan. Each task below is a **template** — instantiate one per batch from the plan. Each task should modify at most 3–5 files to stay within context limits.
+> **Goal (L4 — Concrete Actions):** Execute actions, configurations, and operations from the implementation plan. Each task below is a **template** — instantiate one per batch from the plan. Each task should modify at most 3–5 files to stay within context limits.
 
 ### Task 4.L: Light Remediation — Meta-Doc Updates
 
@@ -350,9 +352,9 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-## Phase 5: Verification & Assessment
+## Phase 5: Results — Verification & Assessment
 
-> **Goal:** Verify all changes are effective and produce a final assessment report.
+> **Goal (L5 — Concrete Enhancement):** Measure observable results to verify all changes are effective and produce a final assessment report.
 
 ### Task 5.1: Re-Run Quick-Start Checklist
 
@@ -405,9 +407,9 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-## Phase 6: Skill & Knowledge Sync (Optional)
+## Phase 6: Principle Feedback — Knowledge Sync
 
-> **Goal:** Propagate learnings back to the harnessing-agents skill and project documentation.
+> **Goal (L1 ↩):** Feed proven patterns back into engineering principles — propagate learnings to the harnessing-agents skill and project documentation.
 
 ### Task 6.1: Update Harnessing-Agents Skill
 
@@ -437,28 +439,28 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 ## Appendix A: Task Dependency Graph
 
 ```text
-Phase 0 ─── 0.1 → 0.2
-                    │
-Phase 1 ─── 1.1 ─┐
-            1.2 ─┤
-            1.3 ─┤
-            1.4 ─┘→ 1.5
-                      │
-Phase 2 ─── 2.1 ─┐
-            2.2 ─┤
-            2.3 ─┤
-            2.4 ─┘→ 2.5
-                      │
-Phase 3 ─── 3.1 → 3.2 (USER REVIEW)
-                      │
-Phase 4 ─── 4.L ─┐
-            4.M ─┤  (parallel batches within each level,
-            4.H ─┘   sequential across levels)
-                      │
-Phase 5 ─── 5.1 ─┐
-            5.2 ─┘→ 5.3
-                      │
-Phase 6 ─── 6.1 → 6.2
+0 Scope ─────────── 0.1 → 0.2
+                          │
+1 Principles ────── 1.1 ─┐
+                    1.2 ─┤
+                    1.3 ─┤
+                    1.4 ─┘→ 1.5
+                              │
+2 Enhancements ──── 2.1 ─┐
+                    2.2 ─┤
+                    2.3 ─┤
+                    2.4 ─┘→ 2.5
+                              │
+3 Decisions ─────── 3.1 → 3.2 (USER REVIEW)
+                              │
+4 Actions ────────── 4.L ─┐
+                    4.M ─┤  (parallel batches within each level,
+                    4.H ─┘   sequential across levels)
+                              │
+5 Results ────────── 5.1 ─┐
+                    5.2 ─┘→ 5.3
+                              │
+6 Feedback ───────── 6.1 → 6.2
 ```
 
 **Key:** Tasks at the same indent level within a phase (e.g., 1.1–1.4, 2.1–2.4) can be executed **in parallel** by separate agents. Tasks connected by `→` must be **sequential**.
@@ -489,10 +491,10 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
 
 This procedure supports all 4 dimensions of Harness Engineering methodology:
 
-1. **Feature Tree:** Tasks 1.1–1.5 systematically walk the full 4 areas → 31 features → Actions/Tools tree.
-2. **Agent Scale:** Task 0.1 classifies the scale. Multi-agent scaling checks are integrated into Phase 1 tasks. Phase 2 includes a scaling readiness perspective.
-3. **Project Complexity:** Task 0.1 classifies complexity. Phase 4 remediation levels (Light/Medium/Heavy) adapt to project complexity.
-4. **Remediation Level:** Phase 3 explicitly classifies each change and Phase 4 templates are organized by remediation weight.
+1. **Feature Tree:** Tasks 1.1–1.5 (Principles) systematically walk the full 4 areas → 31 features → Actions/Tools tree.
+2. **Agent Scale:** Task 0.1 (Scope) classifies the scale. Multi-agent scaling checks are integrated into Phase 1 (Principles) tasks. Phase 2 (Enhancements) includes a scaling readiness perspective.
+3. **Project Complexity:** Task 0.1 (Scope) classifies complexity. Phase 4 (Actions) remediation levels (Light/Medium/Heavy) adapt to project complexity.
+4. **Remediation Level:** Phase 3 (Design Decisions) explicitly classifies each change and Phase 4 (Actions) templates are organized by remediation weight.
 
 ---
 
@@ -505,10 +507,10 @@ Each task in this procedure includes safeguards against agent hallucination:
   { "safeguard": "Small task scope", "how_applied": "Each task touches ≤5 files and produces exactly 1 output artifact" },
   { "safeguard": "Explicit inputs", "how_applied": "Every task declares exactly what files it needs to read" },
   { "safeguard": "Concrete outputs", "how_applied": "Every task declares the exact filename and content structure it must produce" },
-  { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `HE Gap Evaluation Framework.md`, not invented" },
-  { "safeguard": "Verification criteria", "how_applied": "Phase 5 independently verifies Phase 4 outputs" },
-  { "safeguard": "User checkpoints", "how_applied": "Phase 3 requires explicit user confirmation before execution" },
-  { "safeguard": "Parallel decomposition", "how_applied": "Phase 1 and Phase 2 tasks can run independently, reducing per-agent load" },
+  { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `HE Inverse Outcomes.md`, not invented" },
+  { "safeguard": "Verification criteria", "how_applied": "Phase 5 (Results) independently verifies Phase 4 (Actions) outputs" },
+  { "safeguard": "User checkpoints", "how_applied": "Phase 3 (Design Decisions) requires explicit user confirmation before execution" },
+  { "safeguard": "Parallel decomposition", "how_applied": "Phase 1 (Principles) and Phase 2 (Enhancements) tasks can run independently, reducing per-agent load" },
   { "safeguard": "Token budgets", "how_applied": "Each task has an estimated token budget to prevent context exhaustion" }
 ]
 ```

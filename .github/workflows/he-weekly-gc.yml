@@ -50,7 +50,7 @@ jobs:
             '2. Fix each violation (the \`\u21b3 Fix:\` line in each error tells you what to do)',
             '3. Commit with \`docs: fix HE lint violations\`',
             '',
-            'See \`framework/HE Core Features.md\` for canonical definitions.'
+            'See \`framework/HE Design Decisions.md\` for canonical definitions.'
           ].join('\\n');
           fs.writeFileSync('issue-body.txt', body);
           "

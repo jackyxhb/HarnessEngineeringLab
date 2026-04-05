@@ -53,9 +53,9 @@ check_file "scripts/harness/audit.sh"               "This audit script"
 check_file ".github/workflows/he-lint.yml"          "CI lint gate"
 check_file ".github/workflows/he-weekly-gc.yml"     "Weekly entropy scan"
 check_file ".husky/pre-commit"                      "Pre-commit hook"
-check_file "framework/HE Core Features.md"          "Canonical feature definitions"
-check_file "framework/HE Prevention Checklist.md"   "Prevention checklist"
-check_file "framework/HE Gap Evaluation Framework.md" "Gap evaluation framework"
+check_file "framework/HE Design Decisions.md"          "Canonical feature definitions"
+check_file "framework/HE Negative Actions.md"   "Prevention checklist"
+check_file "framework/HE Inverse Outcomes.md" "Gap evaluation framework"
 
 echo ""
 

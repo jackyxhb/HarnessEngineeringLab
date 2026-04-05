@@ -1,4 +1,4 @@
-# HE Core Features
+# HE Design Decisions
 
 The canonical 31 core features of Harness Engineering, organized under the 3-Pillar + 1-Foundation framework (see `ANCHORS.md`). These features apply universally — scaling naturally from a single agent to multi-agent systems without requiring separate definitions.
 

@@ -47,9 +47,9 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 
 ### A4: Unified Feature Definitions
 
-- **What:** Merged all SAS and MAS core feature definitions into a single unified document (`HE Core Features.md`), eliminating the separate SAS/MAS split and the mapping file.
+- **What:** Merged all SAS and MAS core feature definitions into a single unified document (`HE Design Decisions.md`), eliminating the separate SAS/MAS split and the mapping file.
 - **Why:** SAS and MAS share 95%+ of their structure. Maintaining separate documents created unnecessary duplication and reference complexity. A unified document describes single-agent behavior as the baseline and multi-agent behavior inline.
-- **Target:** `HE Core Features.md` (replaces `Core Features for SAS.md`, `Core Features for MAS.md`, and `SAS to MAS Feature Mapping.md`).
+- **Target:** `HE Design Decisions.md` (replaces `Core Features for SAS.md`, `Core Features for MAS.md`, and `SAS to MAS Feature Mapping.md`).
 - **Background:** Originally designed as separate SAS/MAS paths (see original A4). Consolidated after recognizing the overhead of maintaining parallel documents outweighed the benefit of separate definitions.
 - **Date:** 2026-04-01
 
@@ -73,7 +73,7 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 
 - **What:** Classified "Reward Engineering" not as a standalone Pillar or Feature, but as a cross-cutting concern paired directly with the Prevention Checklist.
 - **Why:** Reward manipulation and anti-hacking are systemic risks that emerge across _all_ pillars, not single capabilities.
-- **Target:** `HE Prevention Checklist.md` and related GAP Evaluation documentation.
+- **Target:** `HE Negative Actions.md` and related GAP Evaluation documentation.
 - **Background:** Clarified during a structural reconciliation to avoid polluting the core feature list with meta-concerns.
 - **Date:** 2026-03-22
 
@@ -89,6 +89,6 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 
 - **What:** Restructured the entire HE framework through the 5-level Principle-to-Practice Chain (L1 Principle → L2 Targeted Enhancement → L3 Design Decisions → L4 Actions/Tools → L5 Measurable Outcome). Defined 19 Engineering Principles (EP-1 through EP-19), each timeless and first-principles-derived. Created `framework/HE Principle Map.md` as the canonical L1→L5 chain map for all 31 features. Updated all framework documents (Core Features chain index, Enhancement Options chain headers, Prevention Checklist chain failure index, AGENTS.md DO NOT principle backlinks, Gap Evaluation chain-level dimension mappings).
 - **Why:** The framework was "hollow at L1 and L5" — strong middle layers (L3 Design Decisions, L4 Actions/Tools from Core Features and Enhancement Options) but no anchoring principles (L1) or measurable outcomes (L5) for any of the 31 features. Prevention items and DO NOT rules floated without principle grounding. The chain restructuring fills L1 and L5, making every feature traceable from principle to measurement.
-- **Target:** `framework/HE Principle Map.md` (new), `framework/HE Core Features.md`, `framework/HE Enhancement Options.md`, `framework/HE Prevention Checklist.md`, `framework/HE Gap Evaluation Framework.md`, `AGENTS.md`. `HE Chain.md` stays as meta-document describing the chain model.
+- **Target:** `framework/HE Principle Map.md` (new), `framework/HE Design Decisions.md`, `framework/HE Actions Tools.md`, `framework/HE Negative Actions.md`, `framework/HE Inverse Outcomes.md`, `AGENTS.md`. `HE Principle Practice Chain.md` stays as meta-document describing the chain model.
 - **Background:** Gap analysis (see `tmp/Chain Restructuring Analysis.md`) revealed 0/31 features had explicit L1 or L5. The 19 principles were refined from 23 drafts via merge/split following chain rigor. Key merges: Persistence (EP-2), Clarity before commitment (EP-14), Entropy countering (EP-18), Living documentation (EP-19). Git-as-memory demoted from principle to L3 design pattern under EP-2 Persistence.
 - **Date:** 2026-04-06

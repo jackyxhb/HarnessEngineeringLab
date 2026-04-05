@@ -21,7 +21,7 @@ Scan for all of the following categories:
 
 4. **Broken content** — corrupted text, numbering bugs, typos, formatting errors
 5. **Inconsistent terminology** — pillar verb tags, feature names, feature counts must match canonical sources:
-   - Foundation = `(Execute)` (canonical: `HE Core Features.md`)
+   - Foundation = `(Execute)` (canonical: `HE Design Decisions.md`)
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
@@ -54,11 +54,11 @@ Scan for all of the following categories:
 
 When checking terminology, the following are the **single source of truth** labels:
 
-| Component     | Canonical Label                       | Source File                  |
-| ------------- | ------------------------------------- | ---------------------------- |
-| Foundation    | Foundational Infrastructure (Execute) | `HE Core Features.md`        |
-| Pillar 1      | Context Engineering (Inform)          | `HE Core Features.md`        |
-| Pillar 2      | Architectural Constraints (Constrain) | `HE Core Features.md`        |
-| Pillar 3      | Entropy Management (Maintain)         | `HE Core Features.md`        |
-| Feature count | 31 core features                      | `HE Enhancement Options.md`  |
-| Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Prevention Checklist.md` |
+| Component     | Canonical Label                       | Source File                   |
+| ------------- | ------------------------------------- | ----------------------------- |
+| Foundation    | Foundational Infrastructure (Execute) | `HE Design Decisions.md`      |
+| Pillar 1      | Context Engineering (Inform)          | `HE Design Decisions.md`      |
+| Pillar 2      | Architectural Constraints (Constrain) | `HE Design Decisions.md`      |
+| Pillar 3      | Entropy Management (Maintain)         | `HE Design Decisions.md`      |
+| Feature count | 31 core features                      | `HE Actions Tools.md`         |
+| Cross-cutting | Reward Engineering & Anti-Hacking     | `HE Negative Actions.md`      |

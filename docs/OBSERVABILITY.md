@@ -39,7 +39,7 @@ The following files must always exist. A missing file is a harness failure (`FAI
 | `.github/workflows/he-lint.yml` | P2-1 — Automated Linters | CI gate |
 | `.github/workflows/he-weekly-gc.yml` | P3-1 — Scheduled Cleanups | Weekly entropy scan |
 | `.husky/pre-commit` | P2-1 — Automated Linters | Pre-commit gate |
-| `framework/HE Core Features.md` | P1-1 — Repository as Truth | Canonical feature definitions |
+| `framework/HE Design Decisions.md` | P1-1 — Repository as Truth | Canonical feature definitions |
 
 ---
 

@@ -53,9 +53,9 @@ Modify the authoritative skill files in `.agent/skills/harnessing-agents/`:
 
 Propagate the feature additions to all canonical docs in `framework/`:
 
-- **Core Feature List**: Update `HE Core Features.md` with a summary bullet.
-- **Enhancement Options & Prevention**: Insert the new Actions/Tools in `HE Enhancement Options.md`. Add a prevention bullet in `HE Prevention Checklist.md` (if it exists).
-- **HE Gap Evaluation Framework**:
+- **Core Feature List**: Update `HE Design Decisions.md` with a summary bullet.
+- **Enhancement Options & Prevention**: Insert the new Actions/Tools in `HE Actions Tools.md`. Add a prevention bullet in `HE Negative Actions.md` (if it exists).
+- **HE Inverse Outcomes**:
   - Part 2 (Feature Gap Analysis): Insert Gap Signals, Improvement Policies, and Dependencies map.
   - Part 3 (Cross-Cutting): Update Token Economics (if applicable) and SAS→MAS Readiness table.
   - Part 4 (Composite Scoring): Update the scoring matrix description.

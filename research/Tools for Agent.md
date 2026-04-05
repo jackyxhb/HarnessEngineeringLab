@@ -1,6 +1,6 @@
 # Tools for Agentic Software Engineering
 
-> _Canonical framework: `framework/HE Core Features.md` | Enhancement options: `framework/HE Enhancement Options.md`_
+> _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
 
 ## Execution Engines and Orchestration Frameworks (The MAS Backbone)
 

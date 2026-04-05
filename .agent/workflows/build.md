@@ -401,8 +401,8 @@ Use `dependencies.md` to determine implementation order:
 ## Source of Truth
 
 - `framework/` in this workspace is the **canonical source**. Never contradict it.
-- Read `framework/HE Core Features.md` as the primary input.
-- Read `framework/HE Gap Evaluation Framework.md` for scoring methodology.
-- Read `framework/HE Enhancement Options.md` for improvement policies.
-- Read `framework/HE Prevention Checklist.md` for failure prevention signals.
+- Read `framework/HE Design Decisions.md` as the primary input.
+- Read `framework/HE Inverse Outcomes.md` for scoring methodology.
+- Read `framework/HE Actions Tools.md` for improvement policies.
+- Read `framework/HE Negative Actions.md` for failure prevention signals.
 - Cross-validate all built content against these sources before finalizing.

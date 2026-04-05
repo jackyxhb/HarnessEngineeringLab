@@ -1,4 +1,4 @@
-# HE Enhancement Options
+# HE Actions Tools
 
 When implementing or upgrading a harness, use these options to translate the 31 core features into concrete **Actions** and **Tools**. Each feature section includes a chain reference (L1 Principle → L2 Targeted Enhancement). Full L1→L5 chains live in `HE Principle Map.md`.
 

@@ -1,10 +1,10 @@
 # Project Maturity Indicators
 
-> _Canonical framework: `framework/HE Core Features.md` | Landing pathway: `research/Harness Landing Pathway.md`_
+> _Canonical framework: `framework/HE Design Decisions.md` | Landing pathway: `research/Harness Landing Pathway.md`_
 
 Three alternative indicators to assess project maturity:
 
-## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework" in `HE Core Features.md` | `ANCHORS.md`)
+## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework" in `HE Design Decisions.md` | `ANCHORS.md`)
 
 You can divide the project's maturity based on how many of the core areas of harness engineering have been successfully implemented:
 

@@ -44,11 +44,11 @@ Original source articles that form the foundation of this research, including Op
 
 The canonical framework definitions and operational guides (31 core features across 3 pillars + 1 foundation):
 
-- **HE Core Features.md** — The 31 canonical features of Harness Engineering
-- **HE Prevention Checklist.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
-- **HE Enhancement Options.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
+- **HE Design Decisions.md** — The 31 canonical features of Harness Engineering
+- **HE Negative Actions.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
+- **HE Actions Tools.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
-- **HE Gap Evaluation Framework.md** — Gap analysis and evaluation framework for assessing HE maturity
+- **HE Inverse Outcomes.md** — Gap analysis and evaluation framework for assessing HE maturity
 
 ### `research/`
 

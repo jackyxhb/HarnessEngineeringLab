@@ -1,8 +1,8 @@
-# HE Prevention Checklist
+# HE Negative Actions
 
 What must be prevented in AI Agent Harness Engineering to ensure secure, efficient, and accurate operation.
 
-Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `HE Core Features.md` | `ANCHORS.md`).
+Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation framework of harness engineering (see `HE Design Decisions.md` | `ANCHORS.md`).
 
 Each prevention item maps to a broken link in the Principle-to-Practice Chain (see `HE Principle Map.md`). The table below classifies what chain level fails when the prevention is absent.
 

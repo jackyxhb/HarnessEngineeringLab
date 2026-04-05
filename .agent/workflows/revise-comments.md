@@ -9,7 +9,7 @@ This workflow processes each document in the `research/` folder one by one, comp
 ## Prerequisites
 
 1. Read the framework source-of-truth documents:
-   - `framework/HE Core Features.md` — the canonical **3-Pillar + 1-Foundation** framework
+   - `framework/HE Design Decisions.md` — the canonical **3-Pillar + 1-Foundation** framework
 
 2. Internalise the canonical structure before processing any comments:
    - **Foundation:** Infrastructure — Execute

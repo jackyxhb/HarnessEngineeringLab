@@ -23,19 +23,19 @@ function buildDynamicRegistries() {
   }
 
   // 2. Extract Cross-Cutting Concerns from Prevention Checklist
-  const preventionPath = path.join(repoRoot, 'framework', 'HE Prevention Checklist.md');
+  const preventionPath = path.join(repoRoot, 'framework', 'HE Negative Actions.md');
   if (fs.existsSync(preventionPath)) {
     const lines = fs.readFileSync(preventionPath, 'utf-8').split('\n');
     lines.forEach(line => {
       const match = line.match(/^##\s+(.*)$/);
       if (match && !line.includes('Checklist')) {
-        anchorsMap.set(match[1].trim(), 'HE Prevention Checklist.md');
+        anchorsMap.set(match[1].trim(), 'HE Negative Actions.md');
       }
     });
   }
 
   // 3. Extract Feature IDs and Names from Core Features
-  const coreFeaturesPath = path.join(repoRoot, 'framework', 'HE Core Features.md');
+  const coreFeaturesPath = path.join(repoRoot, 'framework', 'HE Design Decisions.md');
   if (fs.existsSync(coreFeaturesPath)) {
     const lines = fs.readFileSync(coreFeaturesPath, 'utf-8').split('\n');
     // F1, P1-1 logic needs to be inferred or structured, since the markdown uses bullets, 
@@ -70,7 +70,7 @@ function scanFile(filePath) {
     let match;
     while ((match = countRegex.exec(line)) !== null) {
       if (match[1] !== "31") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 31.`, 'Update to "31 core features" (11 Foundation + 11 P1 + 5 P2 + 4 P3). See: framework/HE Core Features.md');
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 31.`, 'Update to "31 core features" (11 Foundation + 11 P1 + 5 P2 + 4 P3). See: framework/HE Design Decisions.md');
       }
     }
 
@@ -97,7 +97,7 @@ function scanFile(filePath) {
       }
       
       if (invalid) {
-        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-11, P2-1..P2-5, P3-1..P3-4. See: framework/HE Core Features.md');
+        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-11, P2-1..P2-5, P3-1..P3-4. See: framework/HE Design Decisions.md');
       }
     }
 
@@ -110,7 +110,7 @@ function scanFile(filePath) {
     ];
     pillarLabelChecks.forEach(({ regex, canonical }) => {
       if (regex.test(line)) {
-        reportError(filePath, lineNum, `Pillar Label: Heading uses unlabelled pillar name.`, `Use canonical label "${canonical}". See: framework/HE Core Features.md`);
+        reportError(filePath, lineNum, `Pillar Label: Heading uses unlabelled pillar name.`, `Use canonical label "${canonical}". See: framework/HE Design Decisions.md`);
       }
     });
   });

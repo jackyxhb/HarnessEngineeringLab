@@ -1,4 +1,4 @@
-# HE Gap Evaluation Framework
+# HE Inverse Outcomes
 
 A comprehensive, multi-dimensional approach to evaluating Harness Engineering gaps and deriving improvement policies for each core feature. This framework replaces simple binary checklists with a systematic method for identifying where a harness is weak, why it matters, and what to do about it.
 

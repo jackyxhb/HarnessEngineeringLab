@@ -50,7 +50,7 @@ framework/         (canonical definitions)
 
 - No imports from `research/` or `references/`.
 - The single source of truth for all feature definitions, pillar structure, and feature counts.
-- He-lint.js validates all `.md` files against `framework/HE Core Features.md`.
+- He-lint.js validates all `.md` files against `framework/HE Design Decisions.md`.
 
 ### `research/`
 
@@ -71,7 +71,7 @@ framework/         (canonical definitions)
 
 ### `scripts/`
 
-- `he-lint.js` hardcodes paths to `framework/HE Core Features.md`, `framework/HE Prevention Checklist.md`, and `ANCHORS.md`. Changes to those file names must update `he-lint.js`.
+- `he-lint.js` hardcodes paths to `framework/HE Design Decisions.md`, `framework/HE Negative Actions.md`, and `ANCHORS.md`. Changes to those file names must update `he-lint.js`.
 - `scripts/harness/` provides thin wrappers that call npm scripts. Never duplicate logic — keep behavior in npm scripts and let shell wrappers be entrypoints only.
 
 ### `tmp/`

@@ -55,7 +55,7 @@ Sort your prioritized gaps into execution tiers:
 
 After scoring individual features, apply these 5 systemic perspectives to reveal gaps that span multiple features.
 
-> **Source:** `framework/HE Gap Evaluation Framework.md` Part 3
+> **Source:** `framework/HE Inverse Outcomes.md` Part 3
 
 ### A. Feedback Loop Chain
 

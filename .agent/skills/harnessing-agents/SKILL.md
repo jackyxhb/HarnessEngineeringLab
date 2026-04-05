@@ -27,8 +27,8 @@ Every feature in this skill is assessed through a unified chain:
 | Step | Question | Reference Source |
 | --- | --- | --- |
 | **What to Do** | What should this feature look like when implemented? | `references/features-foundation.md`, `references/features-pillar1.md`, `references/features-pillar2-3.md` — per-feature definitions (SAS + MAS) |
-| **Don't Do** | What failure mode does this feature prevent? | Same files — per-feature "Don't Do" section, sourced from `framework/HE Prevention Checklist.md` |
-| **Options** | What concrete actions and tools can implement it? | Same files — per-feature "Options" section, sourced from `framework/HE Enhancement Options.md` |
+| **Don't Do** | What failure mode does this feature prevent? | Same files — per-feature "Don't Do" section, sourced from `framework/HE Negative Actions.md` |
+| **Options** | What concrete actions and tools can implement it? | Same files — per-feature "Options" section, sourced from `framework/HE Actions Tools.md` |
 
 Each feature reference includes all three steps plus **Remediation Tiers** (Tier 1 = immediate, Tier 2 = optimization).
 

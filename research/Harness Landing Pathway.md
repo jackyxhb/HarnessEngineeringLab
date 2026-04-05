@@ -1,6 +1,6 @@
 # Harness Landing Pathway
 
-> _Canonical framework: `framework/HE Core Features.md` | Execution procedure: `framework/HE Execution Procedure.md`_
+> _Canonical framework: `framework/HE Design Decisions.md` | Execution procedure: `framework/HE Execution Procedure.md`_
 
 The practical pathway to landing a harness in a real project generally follows three maturity levels:
 

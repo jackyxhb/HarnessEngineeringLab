@@ -2,7 +2,7 @@
 
 Factors and risks that cause AI agent system to degrade, fail, or act unpredictably.
 
-> _Canonical framework: `framework/HE Core Features.md` | Prevention measures: `framework/HE Prevention Checklist.md`_
+> _Canonical framework: `framework/HE Design Decisions.md` | Prevention measures: `framework/HE Negative Actions.md`_
 
 ## 1. Context and Memory Degradation
 
