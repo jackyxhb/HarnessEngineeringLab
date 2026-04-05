@@ -1,4 +1,4 @@
-# Harness Engineering (HE) Core Philosophy
+# HE Philosophy
 
 > _Canonical framework: `framework/HE Design Decisions.md`_
 

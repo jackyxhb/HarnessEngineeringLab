@@ -45,20 +45,22 @@ Original source articles that form the foundation of this research, including Op
 The canonical framework definitions and operational guides (31 core features across 3 pillars + 1 foundation):
 
 - **HE Design Decisions.md** — The 31 canonical features of Harness Engineering
-- **HE Negative Actions.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
+- **HE Principle Map.md** — Complete L1→L5 chains for all 31 features and 19 Engineering Principles
+- **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
 - **HE Actions Tools.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
-- **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
+- **HE Negative Actions.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
 - **HE Inverse Outcomes.md** — Gap analysis and evaluation framework for assessing HE maturity
+- **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
 
 ### `research/`
 
 Supporting analysis and commentary documents covering:
 
 - **Concepts & Philosophy** — `HE Philosophy.md` (core methodology and shift-left execution)
-- **Architecture & Principles** — `HE Architectural Principles.md` (strict boundaries), Robust agent principles
-- **Multi-Agent** — MAS integration, critical enhancements, degradation factors
-- **Practical Guidance** — Landing pathway, assessment sheet, build guide, maturity indicators
-- **Tooling & Context** — Tools for agents, theory vs practice comparisons
+- **Architecture & Principles** — `HE Architectural Principles.md` (strict boundaries), `HE Robust Agent Principles.md` (10 design principles)
+- **Multi-Agent** — `HE and MAS Integration.md`, `MAS Critical Enhancements.md`, `HE Degradation Factors.md`
+- **Practical Guidance** — `HE Landing Pathway.md`, `HE Assessment Sheet.md`, `HE Project Build Guide.md`, `HE Maturity Indicators.md`
+- **Tooling & Context** — `HE Agent Tools Catalog.md`, `HE Theory vs Practice.md`
 
 ### `builder/`
 

@@ -1,4 +1,4 @@
-# AI Agent Harness Engineering and Multi-Agent Systems (MAS)
+# HE and MAS Integration
 
 > _Canonical framework: `framework/HE Design Decisions.md`_
 

@@ -25,7 +25,7 @@ Scan for all of the following categories:
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
-   - Canonical feature count = **30** (10 Foundation + 11 P1 + 5 P2 + 4 P3)
+   - Canonical feature count = **31** (11 Foundation + 11 P1 + 5 P2 + 4 P3)
 6. **Content duplication** — multiple files saying the same thing in different words
 7. **Missing cross-references** — documents that reference concepts without linking to the canonical source
 8. **Orphan concepts** — ideas introduced in one file but not connected to the framework

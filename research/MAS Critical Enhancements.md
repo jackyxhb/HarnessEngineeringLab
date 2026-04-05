@@ -1,4 +1,4 @@
-# Critical enhancements when multi-agent system
+# MAS Critical Enhancements
 
 > _Canonical framework: `framework/HE Design Decisions.md`_
 

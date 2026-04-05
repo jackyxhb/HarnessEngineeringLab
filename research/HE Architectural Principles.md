@@ -1,4 +1,4 @@
-# Harness Engineering Architectural Principles
+# HE Architectural Principles
 
 > _Canonical framework: `framework/HE Design Decisions.md` | Gap evaluation: `framework/HE Inverse Outcomes.md`_
 
