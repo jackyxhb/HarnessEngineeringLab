@@ -70,7 +70,11 @@
     "Wiggum",
     "llms",
     "nixpacks",
-    "automerged"
+    "automerged",
+    "metaprogramming",
+    "launchable",
+    "inspectable",
+    "feedforward"
   ],
   "ignorePaths": [
     "node_modules/**",

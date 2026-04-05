@@ -15,6 +15,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 
 - **Action:** Use the filesystem as the core collaboration surface and durable storage.
 - **Action:** Implement explicit file locking and task-claiming mechanisms to prevent race conditions when multiple agents try to edit the same file.
+- **Action:** Adopt a **throughput-first merge philosophy**: define a target PR lifecycle duration (e.g., < 4 hours for agent-generated PRs), auto-retry flaky CI, and treat post-merge corrections as cheaper than pre-merge delays. Track merge velocity as an observability signal.
 - **Tool:** Git (for versioning, tracking work, and rolling back errors).
 
 ### P0-3. Verification (Self & Collective)
@@ -34,6 +35,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 
 - **Action:** Define how agents are spawned, how tasks are handed off, and how workflows are parallelized.
 - **Action:** Avoid multi-agent setups for simple sequential tasks to prevent quadratic coordination overhead.
+- **Action:** Enforce **generator/evaluator role separation**: the agent that writes code must not be the sole reviewer. Define a minimum starting topology of 4–6 specialized roles (e.g., Orchestrator, Spec Writer, Builder, QA Reviewer, Tech Lead) with explicit handoff contracts specifying what each role produces and what it expects as input.
 - **Tool:** Orchestration Topologies (Supervisor, Hierarchical, Peer-to-Peer, Blackboard, or Swarm).
 - **Tool:** Frameworks like LangGraph (conditional routing), CrewAI (role-based), AutoGen (actor model), or OpenAI Swarm.
 
@@ -55,6 +57,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 
 - **Action:** Version-control all harness configuration (prompts, tools, middleware) to enable reproducibility and comparison.
 - **Action:** Track agent performance metrics per harness version to identify optimal configurations.
+- **Action:** Maintain a **reusable template library** of parameterized harness blueprints for common service archetypes (API service, event processor, CLI tool, library). New projects instantiate from a template rather than building a harness from scratch.
 - **Tool:** VCS-tracked harness configuration files.
 - **Tool:** A/B Testing Infrastructure for comparing harness variants.
 
@@ -79,6 +82,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 - **Action:** Maintain a single `AGENTS.md` at the repository root containing all IDE-agnostic harness rules (purpose, layout, workflows, tools, forbidden operations, conventions).
 - **Action:** Reduce IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) to thin shims that reference `AGENTS.md` and contain only IDE-specific overrides.
 - **Action:** Never store project-wide rules exclusively in an IDE's proprietary memory system (e.g., Claude Code memory files, Cursor-only `.cursorrules`) — if it isn't in `AGENTS.md`, it isn't portable.
+- **Action:** For cold-start bootstrapping, follow a **Bootstrap Recipe**: (1) create `AGENTS.md` at the repo root (~100 lines covering purpose, layout, tools, DO NOT, conventions); (2) add subfolder `AGENTS.md` files for progressive disclosure of sub-domains; (3) add the first custom linter rule; (4) add the first structural test; (5) define 4–6 initial agent roles with handoff contracts. This recipe gets a harness from zero to functional in a single session.
 - **Tool:** Template `AGENTS.md` with standard sections (Purpose, Organizing Framework, Directory Layout, Workflows, Tools & Commands, DO NOT, Conventions).
 - **Tool:** CI check verifying `AGENTS.md` exists and each IDE shim file contains a canonical reference pointer to it.
 
@@ -93,6 +97,8 @@ When implementing or upgrading a harness, use these options to translate the 31 
 - **Action:** Maintain a **Failure Ledger** — every rule in `AGENTS.md`/`CLAUDE.md` must trace to a concrete incident, failure, or constraint. Generic advice without an incident should be removed on next audit.
 - **Action:** Include a **Forbidden Operations** section explicitly listing what agents must never do, with the consequence of each violation stated inline.
 - **Action:** Maintain a **Tool Declaration** section listing every available tool and script — undeclared tools do not exist to agents; if a useful tool is absent from this list, agents will not use it.
+- **Action:** Optimize the codebase for **agent legibility**: prefer stable, well-documented frameworks with strong training-data representation; maintain clear module boundaries; minimize metaprogramming and "magic"; ensure the project is launchable per worktree. Rate legibility periodically using the Agent Legibility Score (see Gap Evaluation Framework).
+- **Action:** Implement **expertise extraction**: when a human corrects an agent mistake, the correction must be encoded as a new harness artifact (AGENTS.md rule, linter rule, or template) — not just applied as a code fix. Every human intervention is a harness-engineering opportunity.
 - **Tool:** IDE-agnostic `AGENTS.md` as canonical rule surface, with IDE shims (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) for discovery.
 - **Tool:** Structured failure-ledger entry format (e.g., `rule / context / fix` triples).
 
@@ -116,6 +122,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 
 - **Action:** Serve real-time system states as dynamic context so agents can observe their own work.
 - **Action:** Track harness structural integrity as a dedicated signal category: verify required file existence, workflow registry completeness, and pre-commit hook liveness. These signals must remain green before any agent run is trusted.
+- **Action:** Implement **task-ID artifact storage**: each agent task produces outputs keyed by a unique task identifier, forming an inspectable audit trail of artifacts (not just logs) that persist beyond the context window. Post-task review of the artifact folder drives harness improvements.
 - **Tool:** Logs, metrics, traces, screenshots, and live CI/CD pipeline statuses.
 - **Tool:** Agent Performance Monitoring Dashboards for human oversight.
 - **Tool:** `docs/OBSERVABILITY.md` — minimum observable field spec defining all signal sources, targets, alert thresholds, and recovery procedures. All new harness files must register their signals here.
@@ -173,6 +180,7 @@ When implementing or upgrading a harness, use these options to translate the 31 
 - **Action:** Mechanically enforce what good code looks like to save tokens and prevent the agent from exploring dead ends.
 - **Action:** Wire all linters into the **CI pipeline** — pre-commit hooks can be bypassed and are insufficient as the sole enforcement gate. CI failure is the authoritative signal.
 - **Action:** Every linter error message must include a **teaching message**: a `↳ Fix:` line pointing to the canonical source and exact remediation step, so agents can self-correct on first re-attempt without human intervention.
+- **Action:** Run periodic **Feedforward/Feedback Audits** — verify that every guide (AGENTS.md rule, template, prompt) has a corresponding sensor (lint rule, test, or manual check) and vice versa. A guide without a sensor is an unenforced wish; a sensor without a guide is a mystery constraint agents cannot reason about. Flag orphaned guides or sensors during `/reconcile`.
 - **Tool:** Custom deterministic linters.
 - **Tool:** Pre-commit hooks that automatically flag and reject non-compliant code before it enters the repository.
 - **Tool:** CI workflow (e.g., GitHub Actions `he-lint.yml`) running the full linter scan on every push and pull request.

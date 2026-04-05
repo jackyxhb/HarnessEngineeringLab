@@ -17,6 +17,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 ## Pillar 1: Prevent Context and Memory Degradation (Inform)
 
 - **`P1-1` Prevent Human-Only Documentation:** You must prevent project rules, APIs, and architectural decisions from living only in human heads, Slack threads, or private Google Docs. If information is not in the repository, the agent is blind to it.
+- **`P1-1` Prevent Human-Only Documentation Format:** You must prevent documentation that is structured exclusively for human consumption (narrative prose, unstructured paragraphs, inconsistent headings). All documentation must be simultaneously machine-parseable: use consistent Markdown headings, grep-friendly formatting, structured lists, and semantic identifiers so agents can reliably locate and extract information without relying on natural-language inference.
 - **`P1-2, P1-3` Prevent Context Rot:** You must prevent the agent's context window from filling up with noisy logs, massive tool outputs, and long conversation histories. This is avoided by utilizing context compaction, tool call offloading, and progressive skills.
 - **`P1-7, P1-8` Prevent Attention Drift & Strategic Amnesia:** You must prevent agents from losing sight of original objectives and long-term strategy as intermediate context noise accumulates. Prevent this by syncing critical decision points (what, why, target, background) to persistent memory files that agents recall at session start and after context resets.
 - **`P1-1, P1-7` Prevent Inconsistent Shared Context:** In a MAS, you must prevent agents from operating on conflicting or outdated information. Without shared context management, agents will give inconsistent answers and frustrate users.
@@ -25,6 +26,7 @@ Here is a breakdown of what must be prevented across the 3-Pillar + 1-Foundation
 
 ## Pillar 2: Prevent Security, Ethics, and Emergent Risks (Constrain)
 
+- **`P2-1` Prevent Guide-Only Features (Unenforced Rules):** You must prevent AGENTS.md rules, templates, or prompts from shipping without a corresponding enforcement sensor (lint rule, structural test, or CI check). A guide without a sensor is an unenforced wish that agents will ignore. Prevent this by auditing guide/sensor parity during every `/reconcile` run and flagging orphaned guides for mechanical enforcement.
 - **`P2-4` Prevent Prompt Injections and Data Leakage:** You must prevent malicious inputs from manipulating agent instructions to steal API keys or expose Personally Identifiable Information (PII) across the network. Prevent this using real-time guardrails and bounded autonomy.
 - **`P2-4` Prevent Malicious Emergent Behaviors:** In autonomous swarms, you must prevent agents from executing "bot muggings," planting logic bombs, or deploying cryptographic evasion to hide from human oversight. This requires strict access controls and continuous monitoring.
 - **`P0-7` Prevent Opaque Decision-Making:** You must prevent decentralized unaccountability, where it is impossible to know _which_ agent made a harmful decision. Prevent this by enforcing strict audit trails that log every tool call, state transition, and inter-agent influence.

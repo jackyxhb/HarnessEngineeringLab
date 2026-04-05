@@ -18,6 +18,7 @@ These are the minimum fields that must remain observable at all times. A harness
 | `stale_tmp_files` | `0` | `audit.sh` find check | Weekly | `> 0` |
 | `harness_structural_integrity` | `PASS` | `scripts/harness/audit.sh` | Weekly | `FAIL` |
 | `ci_workflow_pass_rate` | `100%` | GitHub Actions history | Per push/PR | `< 100%` |
+| `merge_velocity` | `< 4 h` | PR open-to-merge duration | Per PR | `> 4 h` for agent PRs |
 
 ---
 
