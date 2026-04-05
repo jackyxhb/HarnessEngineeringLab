@@ -40,10 +40,12 @@
 
 **Tier 2/3 Gaps (Not Fixed This Cycle):**
 
-| Feature | Tier | Reason Deferred |
-| - | - | - |
-| [Feature ID] [Name] | 2 | [Brief reason] |
-| [Feature ID] [Name] | 3 | [Brief reason] |
+```json
+[
+  { "feature": "[Feature ID] [Name]", "ep": "[EP-N]", "tier": 2, "reason_deferred": "[Brief reason]" },
+  { "feature": "[Feature ID] [Name]", "ep": "[EP-N]", "tier": 3, "reason_deferred": "[Brief reason]" }
+]
+```
 
 ---
 

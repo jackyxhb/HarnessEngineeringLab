@@ -1,27 +1,48 @@
 # Cascade Analysis
 
-Use this lookup table to determine a feature's **Impact Weight** (how many downstream systems rely on it) when calculating Priority Scores in `references/gap-scoring.md`.
+> **Source:** `framework/HE Design Decisions.md` (feature definitions), `framework/HE Principle Map.md` (EP-N mappings)
+
+Use this lookup to determine a feature's **Impact Weight** (how many downstream systems rely on it) when calculating Priority Scores in `references/gap-scoring.md`.
 
 ## Feature Inter-dependencies
 
 When a Foundation or Pillar feature breaks, calculate how many explicitly dependent features fail with it.
 
-| Feature ID | Feature Name | Downstream Dependencies (Affected Systems) | Impact Weight |
-| - | - | - | - |
-| `P0-1` | Bash Sandboxes | `P0-3` (Verification (Self & Collective)), `P1-3` (Tool Offloading), `P1-6` (MCP) | 3 |
-| `P0-2` | Filesystem & Git Workspace | `P1-8` (Anchoring), `P1-9` (Branches), `P1-10` (Requirements Ledger), `P3-2` (Docs), `P3-4` (Sync) | 5 |
-| `P0-3` | Verification (Self & Collective) | `P2-1` (Linters), `P2-2` (Dependencies) | 2 |
-| `P0-5` | Orchestration Logic | `P2-3` (AI Auditors & Collaboration Channels), `P0-6` (Middleware) | 2 |
-| `P0-9` | Smart Command Wrappers | `P0-3` (Verification (Self & Collective)), `P1-9` (Branches) | 2 |
-| `P1-1` | Repository as Truth | `P2-2` (Dependencies), `P2-3` (AI Auditors & Collaboration Channels), `P1-8` (Anchoring) | 3 |
-| `P1-7` | Planning, Task Lists & Blackboards | `P0-4` (Ralph Loops), `P1-4` (Progressive Skills) | 2 |
-| `P1-10` | Requirements Ledger | `P2-5` (Upstream Intake Gate), `P1-7` (Planning, Task Lists & Blackboards) | 2 |
-| `P1-11` | Socratic Questioning | `P1-10` (Requirements Ledger), `P1-8` (Context Anchoring), `P1-7` (Planning, Task Lists & Blackboards) | 3 |
-| `P1-12` | Skill Engineering | `P1-4` (Progressive Skills), `P1-2` (Context Compaction), `P1-3` (Tool Offloading), `P1-7` (Planning) | 4 |
-| `P2-1` | Automated Linters | `P3-3` (Pattern Auditing) | 1 |
-| `P2-4` | Bounded Autonomy & Access Control | `P0-7` (Escalation) | 1 |
-| `P2-5` | Upstream Intake Gate | *(none — leaf constraint)* | 1 |
+```json
+[
+  { "id": "P0-1",  "ep": "EP-1",  "name": "Bash Sandboxes",                    "downstream": ["P0-3", "P1-3", "P1-6"],                  "weight": 3 },
+  { "id": "P0-2",  "ep": "EP-2",  "name": "Filesystem, Git & File Locking",    "downstream": ["P1-8", "P1-9", "P1-10", "P3-2", "P3-4"], "weight": 5 },
+  { "id": "P0-3",  "ep": "EP-3",  "name": "Verification (Self & Collective)",  "downstream": ["P2-1", "P2-2"],                          "weight": 2 },
+  { "id": "P0-4",  "ep": "EP-4",  "name": "Ralph Loops",                       "downstream": ["P1-9"],                                  "weight": 1 },
+  { "id": "P0-5",  "ep": "EP-5",  "name": "Orchestration Logic",               "downstream": ["P2-3", "P0-6"],                          "weight": 2 },
+  { "id": "P0-6",  "ep": "EP-6",  "name": "Rippable Middleware",                "downstream": ["P0-4"],                                  "weight": 1 },
+  { "id": "P0-7",  "ep": "EP-7",  "name": "Escalation & Audit Trails",         "downstream": [],                                        "weight": 1 },
+  { "id": "P0-8",  "ep": "EP-8",  "name": "Harness Versioning",                "downstream": [],                                        "weight": 1 },
+  { "id": "P0-9",  "ep": "EP-9",  "name": "Smart Command Wrappers",            "downstream": ["P0-3", "P1-9"],                          "weight": 2 },
+  { "id": "P0-10", "ep": "EP-5",  "name": "Inter-Agent Communication",         "downstream": ["P2-3"],                                  "weight": 1 },
+  { "id": "P0-11", "ep": "EP-10", "name": "Portable Agent Surface",            "downstream": ["P1-1"],                                  "weight": 1 },
+  { "id": "P1-1",  "ep": "EP-11", "name": "Repository as Truth",               "downstream": ["P2-2", "P2-3", "P1-8"],                  "weight": 3 },
+  { "id": "P1-2",  "ep": "EP-12", "name": "Context Compaction",                "downstream": [],                                        "weight": 1 },
+  { "id": "P1-3",  "ep": "EP-12", "name": "Tool Offloading",                   "downstream": [],                                        "weight": 1 },
+  { "id": "P1-4",  "ep": "EP-12", "name": "Progressive Skills",                "downstream": [],                                        "weight": 1 },
+  { "id": "P1-5",  "ep": "EP-8",  "name": "Observability / Dashboards",        "downstream": ["P0-8"],                                  "weight": 1 },
+  { "id": "P1-6",  "ep": "EP-13", "name": "Web Search & MCP",                  "downstream": [],                                        "weight": 1 },
+  { "id": "P1-7",  "ep": "EP-2",  "name": "Planning & Blackboards",            "downstream": ["P0-4", "P1-4"],                          "weight": 2 },
+  { "id": "P1-8",  "ep": "EP-2",  "name": "Context Anchoring",                 "downstream": ["P1-7"],                                  "weight": 1 },
+  { "id": "P1-9",  "ep": "EP-2",  "name": "Branch-Based Cognitive Memory",     "downstream": [],                                        "weight": 1 },
+  { "id": "P1-10", "ep": "EP-11", "name": "Requirements Ledger",               "downstream": ["P2-5", "P1-7"],                          "weight": 2 },
+  { "id": "P1-11", "ep": "EP-14", "name": "Socratic Questioning",              "downstream": ["P1-10", "P1-8", "P1-7"],                 "weight": 3 },
+  { "id": "P1-12", "ep": "EP-12", "name": "Skill Engineering",                 "downstream": ["P1-4", "P1-2", "P1-3", "P1-7"],          "weight": 4 },
+  { "id": "P2-1",  "ep": "EP-15", "name": "Automated Linters",                 "downstream": ["P3-3"],                                  "weight": 1 },
+  { "id": "P2-2",  "ep": "EP-15", "name": "Dependency Enforcement",            "downstream": [],                                        "weight": 1 },
+  { "id": "P2-3",  "ep": "EP-16", "name": "AI Auditors",                       "downstream": [],                                        "weight": 1 },
+  { "id": "P2-4",  "ep": "EP-17", "name": "Bounded Autonomy",                  "downstream": ["P0-7"],                                  "weight": 1 },
+  { "id": "P2-5",  "ep": "EP-14", "name": "Upstream Intake Gate",              "downstream": [],                                        "weight": 1 },
+  { "id": "P3-1",  "ep": "EP-18", "name": "Scheduled Cleanups",                "downstream": [],                                        "weight": 1 },
+  { "id": "P3-2",  "ep": "EP-19", "name": "Documentation Sync",                "downstream": [],                                        "weight": 1 },
+  { "id": "P3-3",  "ep": "EP-18", "name": "Pattern Auditing",                  "downstream": [],                                        "weight": 1 },
+  { "id": "P3-4",  "ep": "EP-19", "name": "Consolidation Loop",                "downstream": [],                                        "weight": 1 }
+]
+```
 
-*(Note: If a feature is not listed in the table above, assume Impact Weight = 1 baseline)*
-
-When calculating the final priority score, simply multiply `(5 - Composite Score) × Impact Weight × Cascade Length`.
+When calculating the final priority score, multiply `(5 - Composite Score) × Impact Weight × Cascade Length`.

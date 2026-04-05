@@ -1,6 +1,6 @@
 # Subagent Dispatch Prompts
 
-These 5 ready-to-use prompts are optimized for delegating Harness Engineering gap analysis to parallel subagents. Each auditor uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) from the feature reference files.
+These 5 ready-to-use prompts are optimized for delegating Harness Engineering gap analysis to parallel subagents. Each auditor uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) from the feature reference files. Every feature header carries an `[EP-N]` Engineering Principle backlink — auditors must extract and report it.
 
 > **CRITICAL ACTION SPACE RULE FOR ALL AGENTS:** Subagents are explicitly restricted to `Glob`, `Grep`, and `Read`. You MUST use these structural read-checks before drawing conclusions.
 > **CRITICAL MULTI-SHOT LOOP:** All agents must frame their thinking using a `<scratchpad>` or `<thought>` tag *before* generating their final output templates to eliminate zero-shot hallucination.
@@ -23,9 +23,10 @@ Action Space limit: Restrict your checks to `.github/workflows/`, `.agent/workfl
 
 <scratchpad>
 For each feature (P0-1 through P0-11):
-1. Check "What to Do" — does the target project implement this?
-2. Check "Don't Do" — is the prevention failure currently active?
-3. Check "Options" — which actions/tools should be recommended?
+1. Read the feature header to extract its [EP-N] Engineering Principle backlink.
+2. Check "What to Do" — does the target project implement this?
+3. Check "Don't Do" — is the prevention failure currently active?
+4. Check "Options" — which actions/tools should be recommended?
 Map findings to files you actually read.
 </scratchpad>
 
@@ -34,6 +35,7 @@ Format your final response strictly using the HE-CLUES template format:
 # HE-CLUES
 **Area:** Foundation
 **Feature:** [e.g., P0-3 Collective Verification]
+**Governed By:** [EP-N — Engineering Principle name, from feature header]
 **Current State:** [What exists now based on files checked]
 **Prevention Active:** [Which "Don't Do" failure is happening, or "None"]
 **Recommended Options:** [Specific actions/tools from the "Options" section]
@@ -59,9 +61,10 @@ Action Space limit: Restrict scans to `CLAUDE.md`, `.cursorrules`, `.agent/` wor
 
 <scratchpad>
 For each feature (P1-1 through P1-12):
-1. Check "What to Do" — does the target project implement this?
-2. Check "Don't Do" — is the prevention failure currently active?
-3. Check "Options" — which actions/tools should be recommended?
+1. Read the feature header to extract its [EP-N] Engineering Principle backlink.
+2. Check "What to Do" — does the target project implement this?
+3. Check "Don't Do" — is the prevention failure currently active?
+4. Check "Options" — which actions/tools should be recommended?
 Map findings to files you actually read.
 </scratchpad>
 
@@ -70,6 +73,7 @@ Format your response strictly using the HE-CLUES template format:
 # HE-CLUES
 **Area:** Pillar 1 (Context)
 **Feature:** [e.g., P1-1 Repository as Truth]
+**Governed By:** [EP-N — Engineering Principle name, from feature header]
 **Current State:** [What exists now based on files checked]
 **Prevention Active:** [Which "Don't Do" failure is happening, or "None"]
 **Recommended Options:** [Specific actions/tools from the "Options" section]
@@ -95,9 +99,10 @@ Action Space limit: Use `Glob`, `Grep`, and `Read` to search `.husky/`, linting 
 
 <scratchpad>
 For each feature (P2-1 through P2-5):
-1. Check "What to Do" — does the target project implement this?
-2. Check "Don't Do" — is the prevention failure currently active?
-3. Check "Options" — which actions/tools should be recommended?
+1. Read the feature header to extract its [EP-N] Engineering Principle backlink.
+2. Check "What to Do" — does the target project implement this?
+3. Check "Don't Do" — is the prevention failure currently active?
+4. Check "Options" — which actions/tools should be recommended?
 Map findings to files you actually read.
 </scratchpad>
 
@@ -106,6 +111,7 @@ Format your response strictly using the HE-CLUES template format:
 # HE-CLUES
 **Area:** Pillar 2 (Constraints)
 **Feature:** [e.g., P2-1 Automated Linters]
+**Governed By:** [EP-N — Engineering Principle name, from feature header]
 **Current State:** [What exists now based on files checked]
 **Prevention Active:** [Which "Don't Do" failure is happening, or "None"]
 **Recommended Options:** [Specific actions/tools from the "Options" section]
@@ -129,9 +135,10 @@ Action Space limit: Use `Glob`, `Grep`, and `Read` to search `.github/workflows/
 
 <scratchpad>
 For each feature (P3-1 through P3-4):
-1. Check "What to Do" — does the target project implement this?
-2. Check "Don't Do" — is the prevention failure currently active?
-3. Check "Options" — which actions/tools should be recommended?
+1. Read the feature header to extract its [EP-N] Engineering Principle backlink.
+2. Check "What to Do" — does the target project implement this?
+3. Check "Don't Do" — is the prevention failure currently active?
+4. Check "Options" — which actions/tools should be recommended?
 Map findings to files you actually read.
 </scratchpad>
 
@@ -140,6 +147,7 @@ Format your response strictly using the HE-CLUES template format:
 # HE-CLUES
 **Area:** Pillar 3 (Entropy)
 **Feature:** [e.g., P3-1 Scheduled Cleanups]
+**Governed By:** [EP-N — Engineering Principle name, from feature header]
 **Current State:** [What exists now based on files checked]
 **Prevention Active:** [Which "Don't Do" failure is happening, or "None"]
 **Recommended Options:** [Specific actions/tools from the "Options" section]
@@ -155,9 +163,10 @@ Format your response strictly using the HE-CLUES template format:
 Review the compiled HE-CLUES output from the previous auditors. Using `references/gap-scoring.md` and `references/dependencies.md`, score each gap across the 6 dimensions to calculate Priority Scores.
 
 For each gap, verify:
-1. The "Prevention Active" field — prioritize features where prevention failures are currently active
-2. The "Recommended Options" field — ensure the implementation plan includes the specific actions/tools listed
-3. The cascade dependencies — features with more downstream dependents get higher impact weight
+1. The "Governed By" field — preserve the EP-N backlink through to the implementation plan
+2. The "Prevention Active" field — prioritize features where prevention failures are currently active
+3. The "Recommended Options" field — ensure the implementation plan includes the specific actions/tools listed
+4. The cascade dependencies — features with more downstream dependents get higher impact weight
 
 <scratchpad>
 Mathematically score each feature based on the 6 dimensions. Determine the critical path dependencies. Features with active prevention failures should be weighted higher. Reason about whether a Light or Heavy remediation is required for Tier 1 items.

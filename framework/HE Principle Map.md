@@ -1,6 +1,6 @@
 # HE Principle Map
 
-The canonical Principle-to-Practice Chain map for all 31 Harness Engineering core features. Each feature is anchored to an explicit Engineering Principle (L1) and threaded through the full 5-level chain defined in `HE Principle Practice Chain.md`.
+The canonical Principle-to-Practice Chain map for all 32 Harness Engineering core features. Each feature is anchored to an explicit Engineering Principle (L1) and threaded through the full 5-level chain defined in `HE Principle Practice Chain.md`.
 
 **Chain Levels:**
 
