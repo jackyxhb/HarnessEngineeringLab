@@ -41,7 +41,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 1. Run through the **Quick-Start Evaluation Checklist** (from `HE Inverse Outcomes.md` Part 5).
 2. For each checkbox, mark it as ✅ (present) or ❌ (absent) with a one-line justification.
-3. Identify the project's current **Maturity Level** (Basic / Team / Production) based on the `Harness Landing Pathway`.
+3. Identify the project's current **Maturity Level** (Basic / Team / Production) based on the `HE Landing Pathway`.
 
 **Output:** Append to `HE-SCOPE.md`:
 
@@ -49,7 +49,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Current maturity level
 - Target maturity level (user to confirm)
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Inverse Outcomes.md` Part 5, `Harness Landing Pathway`.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Inverse Outcomes.md` Part 5, `HE Landing Pathway`.
 **Estimated tokens:** ~3,000
 
 ---

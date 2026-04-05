@@ -1,4 +1,4 @@
-# Agent Project Build Guide
+# HE Project Build Guide
 
 > _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
 

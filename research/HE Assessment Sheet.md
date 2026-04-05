@@ -1,4 +1,4 @@
-# AI Agent Harness Assessment Sheet
+# HE Assessment Sheet
 
 > _Canonical framework: `framework/HE Design Decisions.md` | Gap evaluation: `framework/HE Inverse Outcomes.md`_
 

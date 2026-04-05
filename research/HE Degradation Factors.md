@@ -1,4 +1,4 @@
-# Agent Degradation Factors
+# HE Degradation Factors
 
 Factors and risks that cause AI agent system to degrade, fail, or act unpredictably.
 

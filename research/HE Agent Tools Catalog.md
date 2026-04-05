@@ -1,4 +1,4 @@
-# Tools for Agentic Software Engineering
+# HE Agent Tools Catalog
 
 > _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
 

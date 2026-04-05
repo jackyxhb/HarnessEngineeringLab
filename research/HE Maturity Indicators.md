@@ -1,6 +1,6 @@
-# Project Maturity Indicators
+# HE Maturity Indicators
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Landing pathway: `research/Harness Landing Pathway.md`_
+> _Canonical framework: `framework/HE Design Decisions.md` | Landing pathway: `research/HE Landing Pathway.md`_
 
 Three alternative indicators to assess project maturity:
 

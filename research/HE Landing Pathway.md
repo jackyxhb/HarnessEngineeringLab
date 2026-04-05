@@ -1,4 +1,4 @@
-# Harness Landing Pathway
+# HE Landing Pathway
 
 > _Canonical framework: `framework/HE Design Decisions.md` | Execution procedure: `framework/HE Execution Procedure.md`_
 
