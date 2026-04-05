@@ -1,8 +1,8 @@
 # Quick-Start Evaluation Checklist
 
-For teams that want a rapid gap scan without full dimension scoring. Check existing coverage. Each unchecked box maps to a Tier 1 improvement policy for that feature.
+For teams that want a rapid gap scan without full dimension scoring. Check existing coverage. Each unchecked box maps to a Tier 1 improvement policy for that feature. 32 features total.
 
-### Foundation — Can the agent execute safely?
+### Foundation — Can the agent execute safely? (EP-1 through EP-10)
 - [ ] `P0-1` Bash Sandboxes: Agent runs in an isolated sandbox (not on developer's machine)
 - [ ] `P0-2` Filesystem & Git: Agent's work is Git-tracked and rollback-able
 - [ ] `P0-3` Verification (Self & Collective): Agent runs tests and reads its own error logs before completing
@@ -15,7 +15,7 @@ For teams that want a rapid gap scan without full dimension scoring. Check exist
 - [ ] `P0-10` Inter-Agent Communication: Agents communicate via a dedicated messaging bus (P2P, broadcast, idle notifications)
 - [ ] `P0-11` Portable Agent Surface: All rules live in IDE-agnostic `AGENTS.md`; IDE files are thin shims
 
-### Pillar 1 (Inform) — Does the agent know what it needs to know?
+### Pillar 1 (Inform) — Does the agent know what it needs to know? (EP-11 through EP-14)
 - [ ] `P1-1` Repository as Truth: All project rules are in the repo, not in human heads
 - [ ] `P1-2` Context Compaction & Memory Management: Context window doesn't suddenly degrade on long tasks
 - [ ] `P1-3` Tool Offloading: Full tool output saves to disk, only passing token-efficient chunks
@@ -27,15 +27,16 @@ For teams that want a rapid gap scan without full dimension scoring. Check exist
 - [ ] `P1-9` Branch-Based Memory: Objectives are decomposed into concurrent branches with commit memory
 - [ ] `P1-10` Requirements Ledger: All user stories and requirements are recorded in a unified ledger before planning
 - [ ] `P1-11` Socratic Questioning: All unclear inputs are interrogated via structured Socratic questioning before planning or execution begins
+- [ ] `P1-12` Skill Engineering: Agent skills are modular (<200 lines), context-efficient, with routing-hub dispatch
 
-### Pillar 2 (Constrain) — Is the agent mechanically prevented from bad output?
+### Pillar 2 (Constrain) — Is the agent mechanically prevented from bad output? (EP-15 through EP-17)
 - [ ] `P2-1` Automated Linters: Pre-commit hooks reject style and type violations mechanically
 - [ ] `P2-2` Dependency Enforcement: Import boundaries are enforced by explicit CI verification checks
 - [ ] `P2-3` AI Auditors & Collaboration Channels: Secondary agent or process reviews the first agent's output natively
 - [ ] `P2-4` Bounded Autonomy & Access Control: Agent actions are bounded by explicit limits (e.g., human-in-the-loop)
 - [ ] `P2-5` Upstream Intake Gate: Requirements are validated in the ledger before planning proceeds
 
-### Pillar 3 (Maintain) — Does the system clean up after itself?
+### Pillar 3 (Maintain) — Does the system clean up after itself? (EP-18 through EP-19)
 - [ ] `P3-1` Scheduled Cleanups: Automated sweeps run on a schedule to fight entropy
 - [ ] `P3-2` Documentation Sync: Documentation is validated against code passively
 - [ ] `P3-3` Pattern Auditing: Dead code and circular dependencies are detected automatically

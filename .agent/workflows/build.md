@@ -4,22 +4,28 @@
 
 The skill must enable any agent to mechanically assess and improve harness maturity on a target project to the highest degree — efficiently, reliably, and with the most optimized token consumption possible.
 
+> **Chain Flow:** Build phases follow the Principle-to-Practice Chain (L1→L5): Source Extraction (L1–L3) → Skill Assembly (L4) → Verification (L5) → Deployment (L5 ship) → Feedback (L1 ↩). See `framework/HE Principle Practice Chain.md`.
+
 ---
 
-## Governing Principles
+## Engineering Principles (Governing Constraints)
 
-These principles are non-negotiable constraints on every build decision:
+Every build decision traces to one or more of the 19 canonical Engineering Principles defined in `framework/HE Principle Map.md`. The principles below are the subset most critical to skill construction:
 
-1. **Humans steer, agents execute** — Engineers design environments; agents write within them.
-2. **Repository-first** — Anything not in the repo does not exist to the agent.
-3. **Boring technologies** — Use mainstream tools agents model accurately.
-4. **Rippable middleware** — Remove complexity as models improve; never over-engineer.
-5. **Encode judgment once, enforce forever** — Review comment → doc → lint rule → CI check.
-6. **Escalation is correct behavior** — An agent stopping to ask is success, not failure.
-7. **Fix the environment, not the code** — When an agent fails, add a mechanical guardrail so it self-corrects.
-8. **ReAct Loops prevent hallucination** — Agents must think explicitly (via `<scratchpad>`) before invoking tools or writing templates.
-9. **Prune the Action Space** — Never give agents broad tool freedom; strictly define the exact minimum tools needed for the phase.
-10. **Progressive Context/Trajectory Reduction** — Load heavy data only when triggered, and flush context (summarize & drop raw files) after finishing a phase to avoid context rot.
+```json
+[
+  { "#": 1,  "constraint": "Fix the environment, not the code — When an agent fails, add a mechanical guardrail so it self-corrects", "principle": "EP-15: Mechanical enforcement over advisory guidance" },
+  { "#": 2,  "constraint": "Repository-first — Anything not in the repo does not exist to the agent",                                "principle": "EP-11: If it's not in the repo, it doesn't exist" },
+  { "#": 3,  "constraint": "Encode judgment once, enforce forever — Review comment → doc → lint rule → CI check",                     "principle": "EP-15: Mechanical enforcement over advisory guidance" },
+  { "#": 4,  "constraint": "Escalation is correct behavior — An agent stopping to ask is success, not failure",                       "principle": "EP-7: Every action must be traceable" },
+  { "#": 5,  "constraint": "Prune the Action Space — Strictly define the exact minimum tools needed for the phase",                   "principle": "EP-12: Finite attention demands active management" },
+  { "#": 6,  "constraint": "Progressive Context/Trajectory Reduction — Load heavy data only when triggered; flush after phase",        "principle": "EP-12: Finite attention demands active management" },
+  { "#": 7,  "constraint": "ReAct Loops prevent hallucination — Agents must think explicitly (via scratchpad) before invoking tools",  "principle": "EP-3: Verify before declaring completion" },
+  { "#": 8,  "constraint": "Rippable middleware — Remove complexity as models improve; never over-engineer",                           "principle": "EP-6: Scaffolding is temporary by design" },
+  { "#": 9,  "constraint": "Standard operations reduce variance — Use mainstream tools agents model accurately",                       "principle": "EP-9: Standard operations reduce variance" },
+  { "#": 10, "constraint": "Portability over convenience — Skill must work across all agentic IDEs",                                   "principle": "EP-10: Portability over proprietary convenience" }
+]
+```
 
 ---
 
@@ -49,10 +55,10 @@ harnessing-agents/
 │   ├── workflow.md                 # 3-step audit: Inspect → Plan → Execute
 │   ├── agent-prompts.md            # Ready-to-use dispatch prompts (parallel agents)
 │   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
-│   ├── quick-checklist.md          # 29-item yes/no fast gap scan
+│   ├── quick-checklist.md          # 32-item yes/no fast gap scan
 │   ├── dimensions.md               # 4 scoping dimensions + decision matrix
 │   ├── features-foundation.md      # Foundation features P0-1–P0-11 (gap signals, policies)
-│   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-10 (gap signals, policies)
+│   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-12 (gap signals, policies)
 │   ├── features-pillar2-3.md       # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
 │   └── dependencies.md             # Bidirectional feature dependency map
 └── templates/                      # Copy-paste output standardization
@@ -109,7 +115,7 @@ All skill content must align to this canonical structure from `framework/`:
   {
     "layer": "P1: Context Engineering",
     "role": "Memory, knowledge, real-time data",
-    "features": ["P1-1 to P1-11: Repository as Truth", "Context Compaction & Memory Management", "Tool Offloading", "Progressive Skills", "Observability / Dashboards", "Web Search & MCP Integration", "Planning Task Lists & Blackboards", "Context Anchoring", "Branch-Based Cognitive Memory", "Requirements Ledger", "Socratic Questioning"]
+    "features": ["P1-1 to P1-12: Repository as Truth", "Context Compaction & Memory Management", "Tool Offloading", "Progressive Skills", "Observability / Dashboards", "Web Search & MCP Integration", "Planning Task Lists & Blackboards", "Context Anchoring", "Branch-Based Cognitive Memory", "Requirements Ledger", "Socratic Questioning", "Skill Engineering"]
   },
   {
     "layer": "P2: Architectural Constraints",
@@ -124,13 +130,13 @@ All skill content must align to this canonical structure from `framework/`:
 ]
 ```
 
-**31 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
+**32 features total.** Every gap signal, improvement policy, and dependency must trace to a feature ID.
 
 ### Feature Specification Format
 
-Each of the 31 features must include:
+Each of the 32 features must include:
 
-- **Feature ID** and name
+- **Feature ID** and name (with chain anchor: EP-N principle backlink)
 - **Gap signals** — observable indicators that this feature is missing or weak
 - **Tiered improvement policies** — Tier 1 (achievable today) → Tier 2 (intermediate) → Tier 3 (vision)
 - **Dependencies** — bidirectional: "Depends On" + "Depended On By"
@@ -138,7 +144,7 @@ Each of the 31 features must include:
 
 ### MAS Extensions
 
-Multi-agent behavior is described inline within each of the 31 features — no separate extensions exist.
+Multi-agent behavior is described inline within each of the 32 features — no separate extensions exist.
 
 ---
 
@@ -148,7 +154,7 @@ Every audit and every build must be scoped across all four dimensions:
 
 ```json
 [
-  { "dimension": "Feature Tree", "options": ["Which of 31 features: Present-Effective", "Present-Weak", "Absent-Do", "Absent-Don't"], "effect": "Determines content coverage" },
+  { "dimension": "Feature Tree", "options": ["Which of 32 features: Present-Effective", "Present-Weak", "Absent-Do", "Absent-Don't"], "effect": "Determines content coverage" },
   { "dimension": "Agent Scale", "options": "SAS · Small Group (2–5) · Enterprise · Scaled-Swarm", "effect": "Determines MAS depth" },
   { "dimension": "Project Complexity", "options": "Pure text/meta · Script-heavy · Simple software · Complicated systems · Large-scale enterprise", "effect": "Determines tier ceiling" },
   { "dimension": "Remediation Level", "options": "Light (revise meta docs) · Medium (add new features) · Heavy (reform architecture)", "effect": "Determines action intensity" }
@@ -179,17 +185,26 @@ This table prevents the agent from reading everything before acting. Each row is
 
 ## Scoring & Prioritization Method
 
+> **Chain Position:** Scoring operates at L2 (Targeted Enhancements) — quantifying the gap between current state and desired enhancement. See `framework/HE Inverse Outcomes.md` for the canonical scoring framework with chain-level mappings.
+
 ### 6 Evaluation Dimensions (per feature)
 
-Each feature is scored 1–5 across:
-1. Presence — Does the mechanism exist?
-2. Completeness — Does it cover all relevant cases?
-3. Automation — Is it mechanical or manual?
-4. Integration — Is it wired into the workflow?
-5. Observability — Can you see it working/failing?
-6. Scalability — Will it survive 10× growth?
+Each feature is scored 0–5 across the following dimensions, each mapped to a chain level:
 
-**Composite Score** = weighted average (weights adjustable per domain).
+```json
+[
+  { "dimension": "Implementation Maturity",    "chain_level": "L4 (Actions & Tools)",              "question": "How fully built is this feature?" },
+  { "dimension": "Operational Effectiveness",   "chain_level": "L5 (Measurable Outcomes)",           "question": "Does the feature actually work in practice?" },
+  { "dimension": "Risk Exposure",               "chain_level": "L2 inverse (Enhancement at risk)",   "question": "What breaks if this feature is absent or weak?" },
+  { "dimension": "Cost-Efficiency",             "chain_level": "L4 (Action proportionality)",        "question": "Is the investment proportional to the value?" },
+  { "dimension": "Scalability (SAS→MAS)",       "chain_level": "L3 (Design Decisions)",              "question": "Will this feature survive the transition to multi-agent?" },
+  { "dimension": "Human Role Evolution",        "chain_level": "L2 (Enhancement trajectory)",        "question": "Does this feature shift humans from writing code to designing systems?" }
+]
+```
+
+**Scoring Scale (0–5):** 0=Absent, 1=Ad-hoc, 2=Basic, 3=Functional, 4=Optimized, 5=Leading.
+
+**Composite Score** = unweighted average of the 6 dimension scores.
 
 ### Priority Calculation
 
@@ -225,7 +240,7 @@ For inspection and execution phases, dispatch agents with non-overlapping scopes
 ```json
 [
   { "agent": "Foundation Agent", "scope": "Infrastructure layer", "features": "P0-1–P0-11" },
-  { "agent": "Context Agent", "scope": "P1: Context Engineering", "features": "P1-1 to P1-11" },
+  { "agent": "Context Agent", "scope": "P1: Context Engineering", "features": "P1-1 to P1-12" },
   { "agent": "Constraint Agent", "scope": "P2: Architectural Constraints", "features": "P2-1 to P2-5" },
   { "agent": "Entropy Agent", "scope": "P3: Entropy Management", "features": "P3-1 to P3-4" }
 ]
@@ -241,41 +256,58 @@ Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
 
 ---
 
-## Build Execution: 4 Phases
+## Build Execution: 5 Phases
 
-### Phase 1 — Structural Foundation (do first; other phases reference this)
+> **Chain Flow:** Phase 1 extracts L1–L3 source material. Phase 2 compiles into L4 executable artifacts. Phase 3 wires L3–L4 cross-references. Phase 4 verifies L5 measurable outcomes. Phase 5 ships (L5) and feeds back (L1 ↩).
 
-1. Read all canonical sources in `framework/` to establish ground truth
+### Phase 1 — Source Extraction (L1–L3: Principles → Design Decisions)
+
+> **Chain Position:** Reads L1 principles from `HE Principle Map.md`, L3 design patterns from `HE Design Decisions.md`, L4 actions from `HE Actions Tools.md`, and L5 gap signals from `HE Inverse Outcomes.md` to establish ground truth.
+
+1. Read all canonical sources in `framework/` to establish ground truth:
+   - `HE Principle Map.md` — L1 engineering principles and L1→L5 chains for all 32 features
+   - `HE Design Decisions.md` — L3 design patterns and feature definitions
+   - `HE Actions Tools.md` — L4 concrete actions and tools
+   - `HE Inverse Outcomes.md` — L5 gap signals and evaluation dimensions
+   - `HE Negative Actions.md` — L4 prevention constraints
+   - `HE Principle Practice Chain.md` — Chain model meta-document
 2. Build or update SKILL.md: frontmatter, decision tree, framework summary, principles, references list
 3. Verify SKILL.md ≤ 200 lines
 
 **Gate:** SKILL.md is complete and all other phases reference it correctly.
 
-### Phase 2 — Content Extraction & Splitting (parallelizable)
+### Phase 2 — Content Extraction & Splitting (L4: Concrete Actions — parallelizable)
+
+> **Chain Position:** Compiles L1–L3 source material into L4 executable skill artifacts. Each sub-task produces an independently usable reference or template file.
 
 Independent tasks — execute in parallel when possible:
 
-- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-11) and `features-pillar1.md` (P1-1 to P1-11) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions.
-- **2b. Scoring framework** — Build `gap-scoring.md` with 6 evaluation dimensions, priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
-- **2c. Quick checklist** — Extract `quick-checklist.md` as 29-item yes/no fast scan (one per feature) with pointers to full scoring.
-- **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance.
-- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 31 core features.
+- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-11) and `features-pillar1.md` (P1-1 to P1-12) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions. **P1-12 (Skill Engineering) must be included in `features-pillar1.md`.**
+- **2b. Scoring framework** — Build `gap-scoring.md` with the canonical 6 evaluation dimensions (chain-level mapped per `HE Inverse Outcomes.md`), priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
+- **2c. Quick checklist** — Extract `quick-checklist.md` as 32-item yes/no fast scan (one per feature) with pointers to full scoring.
+- **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance. Reference 32-feature tree.
+- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 32 core features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
-- **2g. Workflow** — Build `workflow.md` with 3-step audit (Inspect → Plan → Execute), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
-- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
+- **2g. Workflow** — Build `workflow.md` with chain-annotated phases (Phase 0–6 mapping to L1→L5→L1↩ per `HE Execution Procedure.md`), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
+- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts covering all 32 features. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
 
 **Gate:** Every reference file ≤ 200 lines. Every template ≤ 150 lines. No file duplicates content from another.
 
-### Phase 3 — Cross-Reference Wiring
+### Phase 3 — Cross-Reference Wiring (L3–L4: Design Decisions ↔ Actions)
+
+> **Chain Position:** Validates that L3 design patterns and L4 action references form a consistent, bidirectional web with zero dangling links.
 
 1. Verify all internal references point to existing files (zero dangling refs)
 2. Verify bidirectional: if A references B, B should reference A where appropriate
 3. Verify naming consistency — no terminology conflicts (e.g., "Assessment" vs "Scoping" vs "Evaluation" must each have exactly one meaning)
 4. Update SKILL.md references section to list all files
+5. Verify chain-level annotations: every workflow phase references its chain position, every evaluation dimension references its chain level
 
-**Gate:** `grep` for stale filenames returns zero hits. Terminology audit shows zero conflicts.
+**Gate:** `grep` for stale filenames returns zero hits. Terminology audit shows zero conflicts. Chain annotations are complete.
 
-### Phase 4 — Verification & Metrics
+### Phase 4 — Verification & Metrics (L5: Measurable Outcomes)
+
+> **Chain Position:** Produces L5 concrete measurements proving the skill meets all quality gates.
 
 Run all verification criteria — build fails if any check fails:
 
@@ -288,12 +320,14 @@ Run all verification criteria — build fails if any check fails:
   { "check": "Stale references", "method": "`grep` for deleted/renamed filenames", "pass_criteria": "Zero hits" },
   { "check": "Terminology consistency", "method": "`grep` for known conflict terms", "pass_criteria": "Each term has exactly one meaning" },
   { "check": "Cross-reference completeness", "method": "All file pairs checked", "pass_criteria": "Zero dangling refs" },
-  { "check": "Feature coverage", "method": "Count unique feature IDs across all files", "pass_criteria": "31 features covered" },
-  { "check": "Framework alignment", "method": "Diff skill content against `framework/`", "pass_criteria": "Zero contradictions" }
+  { "check": "Feature coverage", "method": "Count unique feature IDs across all files", "pass_criteria": "32 features covered" },
+  { "check": "Framework alignment", "method": "Diff skill content against `framework/`", "pass_criteria": "Zero contradictions" },
+  { "check": "Chain annotations", "method": "Every workflow phase and eval dimension has chain-level tag", "pass_criteria": "Zero untagged phases/dimensions" },
+  { "check": "EP backlinks", "method": "Governing constraints all link to EP-N", "pass_criteria": "Zero unlinked constraints" }
 ]
 ```
 
-### Phase 5 — Critical Deployment Process (Places)
+### Phase 5 — Critical Deployment Process (L5 ship → L1 ↩ feedback)
 
 Once the skill successfully passes all verification gates, you must formally deploy it across the agent network.
 
@@ -332,15 +366,19 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 ```json
 [
   { "term": "Scoping Dimensions (4)", "meaning": "Scope the overall audit", "used_in": "`dimensions.md`" },
-  { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features", "used_in": "`gap-scoring.md`" },
-  { "term": "Feature ID", "meaning": ["`P0-1`–`P0-11`", "`P1-1`–`P3-4`"], "used_in": "All feature references" },
+  { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features (chain-level mapped)", "used_in": "`gap-scoring.md`" },
+  { "term": "Feature ID", "meaning": ["`P0-1`–`P0-11`", "`P1-1`–`P1-12`", "`P2-1`–`P3-4`"], "used_in": "All feature references" },
+  { "term": "EP-N", "meaning": "Engineering Principle from `HE Principle Map.md`", "used_in": "Governing constraints, feature chain anchors" },
   { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`HE-CLUES.md`", "templates"] },
   { "term": "HE-* prefix", "meaning": "Harness Engineering generic doc", "used_in": "File naming" },
-  { "term": "MAS-* prefix", "meaning": "Multi-Agent specific doc", "used_in": "File naming" }
+  { "term": "MAS-* prefix", "meaning": "Multi-Agent specific doc", "used_in": "File naming" },
+  { "term": "Chain Level (L1–L5)", "meaning": "Principle-to-Practice Chain position", "used_in": "Phase annotations, evaluation dimension mappings" }
 ]
 ```
 
 **File naming in workspace:** Title Case, max 5 words, `HE` or `MAS` prefix per CLAUDE.md conventions.
+
+**Structured data format:** Use JSON inside fenced code blocks for all structured data (routing tables, dimension lists, constraint mappings). Do not use Markdown tables — JSON is more parseable by agents and avoids markdownlint column-style issues.
 
 ---
 

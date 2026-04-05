@@ -48,7 +48,7 @@ Format your final response strictly using the HE-CLUES template format:
 **Prompt:**
 
 ```markdown
-Perform a gap analysis on Pillar 1: Context Engineering (P1-1 through P1-11).
+Perform a gap analysis on Pillar 1: Context Engineering (P1-1 through P1-12).
 
 **Reference:** Read `references/features-pillar1.md` for the 3-step chain per feature:
 - **What to Do:** The feature definition
@@ -58,7 +58,7 @@ Perform a gap analysis on Pillar 1: Context Engineering (P1-1 through P1-11).
 Action Space limit: Restrict scans to `CLAUDE.md`, `.cursorrules`, `.agent/` workflows, `AGENTS.md`, `ANCHORS.md`, and `REQUIREMENTS.md` using only `Glob`, `Grep`, and `Read`.
 
 <scratchpad>
-For each feature (P1-1 through P1-11):
+For each feature (P1-1 through P1-12):
 1. Check "What to Do" — does the target project implement this?
 2. Check "Don't Do" — is the prevention failure currently active?
 3. Check "Options" — which actions/tools should be recommended?

@@ -211,3 +211,31 @@ Pausing before execution to interrogate unclear inputs using six categories: Cla
 ### Remediation Tiers
 - [Tier 1] Add a mandatory pre-execution ambiguity check: list all assumptions as questions before planning.
 - [Tier 2] Implement a full Socratic interrogation template (6 categories) in intake meta-docs and planning workflows.
+
+---
+
+## P1-12. Skill Engineering
+
+### What to Do
+The discipline of designing, building, installing, and tuning agent skills as modular context packages optimized for progressive loading. Skills must stay below a mandatory-read budget (e.g., <200 lines per reference file) and use a routing-hub pattern so agents reach the correct capability path without scanning the full skill surface. Proven practices include: monolith→module splits to isolate layers (foundation vs. pillars), decision-tree orchestrators that route to specific reference files, template extraction for reusable outputs, and pre-built subagent dispatch prompts for parallel orchestration. In MAS, well-engineered skills make orchestrator dispatches more precise and reduce per-agent context waste.
+
+### Don't Do
+**Prevent Monolithic, Unstructured Skills:** You must prevent agent skills from shipping as monolithic reference files that exceed mandatory-read budgets or lack routing logic. Monolithic skills force agents to read hundreds of lines before finding the correct action path, causing context waste and degraded reasoning. Prevent this by enforcing modular skill architecture: split references below 200 lines, add decision-tree routing hubs, standardize terminology, and extract reusable templates.
+
+### Options
+- **Action:** Split monolithic skill reference files into modular components (e.g., foundation vs. pillars) to keep each file below a mandatory-read budget (<200 lines).
+- **Action:** Transform the skill orchestrator (e.g., `SKILL.md`) into a routing hub with a decision tree that directs agents to the correct reference file without scanning the full skill surface.
+- **Action:** Reduce mandatory context load per action path by extracting utilities, checklists, and templates into dedicated files agents load only when needed.
+- **Action:** Standardize terminology across all skill files to prevent logic errors in subagent dispatches.
+- **Action:** Extract reusable output templates (e.g., assessment reports, implementation plans, change summaries) into a dedicated `templates/` directory.
+- **Action:** Pre-build subagent dispatch prompts containing pre-configured orchestration instructions for parallel agent workflows.
+- **Tool:** File-length linters enforcing the <200 line budget per skill reference file.
+- **Tool:** Decision-tree routing patterns in skill orchestrators.
+- **Tool:** Template libraries for standardized skill outputs.
+
+### Remediation Tiers
+- [Tier 1] Enforce a mandatory-read budget: every skill file's always-loaded preamble must stay under 200 lines.
+- [Tier 1] Split monolithic skill references into modular sub-files organized by action path.
+- [Tier 2] Add a routing-hub pattern (decision-tree or dispatcher) that directs agents to the correct sub-file based on task type.
+- [Tier 2] Standardize terminology across all skill files — publish a canonical vocabulary and enforce via linter.
+- [Tier 3] Pre-build subagent dispatch prompts per skill so orchestrators can delegate without re-reading the full skill reference.

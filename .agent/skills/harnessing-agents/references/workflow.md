@@ -1,24 +1,30 @@
 # Full Audit Workflow
 
-A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/features-foundation.md`, `references/features-pillar1.md`, and `references/features-pillar2-3.md`.
+A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Execution Procedure.md`.
 
-## Phase 0: Pre-Flight
+The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/features-foundation.md`, `references/features-pillar1.md`, and `references/features-pillar2-3.md`.
+
+## Phase 0: Pre-Flight (Pre-chain: Scope)
+
+> **Chain Position:** Pre-chain — establishes scope before principle analysis begins.
 
 1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `HE-SCOPE.md`.
 2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/quick-checklist.md`). Append results and current Harness Maturity Level to `HE-SCOPE.md`.
 
-## Phase 1: Gap Analysis (3-Step Chain Assessment)
+## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
+
+> **Chain Position:** L1 — discovers which engineering principles (EP-1 through EP-19) are unmet. See `framework/HE Principle Map.md` for the canonical principle-to-feature mapping.
 
 Systematically inspect the project for harness gaps using the 3-step chain per feature.
 
-For each feature (P0-1 through P3-4):
+For each feature (P0-1 through P3-4, 32 total):
 1. **What to Do** — Does the project implement this feature as defined?
 2. **Don't Do** — Is the prevention failure currently active in the project?
 3. **Options** — Which actions and tools should be recommended?
 
 Scan order:
 1. Foundation gaps (P0-1 to P0-11) — read `references/features-foundation.md`
-2. Pillar 1 (Context) gaps (P1-1 to P1-11) — read `references/features-pillar1.md`
+2. Pillar 1 (Context) gaps (P1-1 to P1-12) — read `references/features-pillar1.md`
 3. Pillar 2 (Constraints) gaps (P2-1 to P2-5) — read `references/features-pillar2-3.md`
 4. Pillar 3 (Entropy) gaps (P3-1 to P3-4) — read `references/features-pillar2-3.md`
 
@@ -29,7 +35,9 @@ Scan order:
 
 **Trajectory Reduction Checkpoint:** After generating `he-clues.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
 
-## Phase 2: Gap Scoring (Evaluation)
+## Phase 2: Gap Scoring — Evaluation (L2: Targeted Enhancements)
+
+> **Chain Position:** L2 — quantifies the gap between current state and desired enhancement using chain-level-mapped dimensions.
 
 Score the identified gaps using the multi-dimensional framework.
 
@@ -42,7 +50,9 @@ Score the identified gaps using the multi-dimensional framework.
 
 **Trajectory Reduction Checkpoint:** Flush raw reference files (`gap-scoring.md` and `dependencies.md`). Retain only the priority tier list.
 
-## Phase 3: Recommendation & Planning
+## Phase 3: Recommendation & Planning (L3: Design Decisions)
+
+> **Chain Position:** L3 — selects design patterns and strategies to close prioritized gaps.
 
 Translate prioritized gaps into a concrete implementation plan using the "Options" from each feature's 3-step chain.
 
@@ -58,7 +68,9 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 
 **STOP:** Present the plan for user review.
 
-## Phase 4: Execution
+## Phase 4: Execution (L4: Concrete Actions)
+
+> **Chain Position:** L4 — executes concrete actions, configs, and scripts from the implementation plan.
 
 Apply the remediation batches sequentially. Each action item should come directly from the "Options" section of the relevant feature.
 
@@ -69,7 +81,9 @@ Apply the remediation batches sequentially. Each action item should come directl
 **Output:** Modified codebase with per-agent modification summary.
 > **Use template:** `templates/change-summary.md`
 
-## Phase 5: Verification & Assessment
+## Phase 5: Verification & Assessment (L5: Measurable Outcomes)
+
+> **Chain Position:** L5 — measures observable results to verify all changes produce concrete enhancement.
 
 1. Re-run the Quick-Start checklist (`references/quick-checklist.md`). Compare unchecked → checked conversions.
 2. Re-check each feature's "Don't Do" — verify that previously active prevention failures are now resolved.
@@ -79,7 +93,9 @@ Apply the remediation batches sequentially. Each action item should come directl
 **Output:** `HE-ASSESSMENT-REPORT.md`
 > **Use template:** `templates/assessment-report.md`
 
-## Phase 6: Skill & Knowledge Sync (Optional)
+## Phase 6: Skill & Knowledge Sync — Optional (L1 ↩: Principle Feedback)
+
+> **Chain Position:** L1 ↩ — feeds proven patterns back into engineering principles and skill documentation.
 
 If new features, prevention points, or patterns were discovered during the audit, propagate learnings back.
 

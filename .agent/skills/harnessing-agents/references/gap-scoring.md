@@ -1,19 +1,19 @@
 # Gap Scoring Framework
 
-The 6 Evaluation Dimensions below score individual features. They are distinct from the 4 Scoping Dimensions (`references/dimensions.md`) used to scope the overall audit.
+The 6 Evaluation Dimensions below score individual features. They are distinct from the 4 Scoping Dimensions (`references/dimensions.md`) used to scope the overall audit. Each dimension maps to a level in the Principle-to-Practice Chain (see `framework/HE Principle Map.md`), ensuring gap analysis is grounded in engineering principles.
 
 ## Evaluation Dimensions (0-5 Rubric)
 
-For each feature (P0-1 to P0-11, P1-1 to P1-11, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the following dimensions:
+For each feature (P0-1 to P0-11, P1-1 to P1-12, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the following dimensions:
 
-| Dimension | Question It Answers |
-| - | - |
-| **Implementation Maturity** | How fully built is this feature? |
-| **Operational Effectiveness** | Does the feature actually work in practice? |
-| **Risk Exposure** | What breaks if this feature is absent or weak? |
-| **Cost-Efficiency** | Is the investment proportional to the value? |
-| **Scalability (SAS→MAS)** | Will this feature survive the transition to Multi-Agent Systems like AutoGen, CrewAI, or LangGraph? |
-| **Human Role Evolution** | Does this feature shift humans from writing code to designing systems? |
+| Dimension | Chain Level | Question It Answers |
+| - | - | - |
+| **Implementation Maturity** | L4 (Actions & Tools) | How fully built is this feature? |
+| **Operational Effectiveness** | L5 (Measurable Outcomes) | Does the feature actually work in practice? |
+| **Risk Exposure** | L2 inverse (Enhancement at risk) | What breaks if this feature is absent or weak? |
+| **Cost-Efficiency** | L4 (Action proportionality) | Is the investment proportional to the value? |
+| **Scalability (SAS→MAS)** | L3 (Design Decisions) | Will this feature survive the transition to Multi-Agent Systems? |
+| **Human Role Evolution** | L2 (Enhancement trajectory) | Does this feature shift humans from writing code to designing systems? |
 
 ### Concrete Scoring Rubric
 
