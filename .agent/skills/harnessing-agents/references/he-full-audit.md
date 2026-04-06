@@ -2,14 +2,16 @@
 
 A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Execution Procedure.md`.
 
+> **Output Directory:** All `HE-` output files MUST be written to `./.harness/` in the target project root. Create the directory if it does not exist. Never write HE- files to the project root.
+
 The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
 
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
 > **Chain Position:** Pre-chain — establishes scope before principle analysis begins.
 
-1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `HE-SCOPE.md`.
-2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/he-quick-start.md`). Append results and current Harness Maturity Level to `HE-SCOPE.md`.
+1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `.harness/HE-SCOPE.md`.
+2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/he-quick-start.md`). Append results and current Harness Maturity Level to `.harness/HE-SCOPE.md`.
 
 ## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
 
@@ -31,9 +33,9 @@ Scan order:
 *For each feature, record: current state, active prevention failures, recommended options, severity, and remediation level.*
 
 **Output:** Merge all findings into a master report.
-> **Use template:** `templates/HE-CLUES.md`
+> **Use template:** `templates/HE-CLUES.md` → **Output to:** `.harness/HE-CLUES.md`
 
-**Trajectory Reduction Checkpoint:** After generating `HE-CLUES.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
+**Trajectory Reduction Checkpoint:** After generating `.harness/HE-CLUES.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
 
 ## Phase 2: Gap Scoring — Evaluation (L2: Targeted Enhancements)
 
@@ -46,7 +48,7 @@ Score the identified gaps using the multi-dimensional framework.
 3. Calculate the Priority Score using the formula: `(5 - Composite Score) × Impact Weight × Cascade Length`.
 4. Tier the results: Tier 1 (Immediate), Tier 2 (Mid-term), Tier 3 (Long-term).
 
-**Output:** `HE-PRIORITIES.md` with tier assignments.
+**Output:** `.harness/HE-PRIORITIES.md` with tier assignments.
 
 **Trajectory Reduction Checkpoint:** Flush raw reference files (`he-scoring.md` and `he-cascade-analysis.md`). Retain only the priority tier list.
 
@@ -61,8 +63,8 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 3. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
 4. Group into execution batches ordered by dependencies, then tiers.
 
-**Output:** `HE-IMPLEMENTATION-PLAN.md`
-> **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md`
+**Output:** `.harness/HE-IMPLEMENTATION-PLAN.md`
+> **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md` → **Output to:** `.harness/HE-IMPLEMENTATION-PLAN.md`
 
 **Trajectory Reduction Checkpoint:** Flush all remediation policy references. Retain only the finalized implementation plan.
 
@@ -79,7 +81,7 @@ Apply the remediation batches sequentially. Each action item should come directl
 - **Heavy:** Perform structural project refactoring, build orchestration middleware, wire up explicit test pipelines.
 
 **Output:** Modified codebase with per-agent modification summary.
-> **Use template:** `templates/HE-CHANGE-SUMMARY.md`
+> **Use template:** `templates/HE-CHANGE-SUMMARY.md` → **Output to:** `.harness/HE-CHANGE-SUMMARY.md`
 
 ## Phase 5: Verification & Assessment (L5: Measurable Outcomes)
 
@@ -90,8 +92,8 @@ Apply the remediation batches sequentially. Each action item should come directl
 3. Re-score modified features across the 6 dimensions to capture delta improvement.
 4. Generate the final assessment comparing the initial state to the final milestone.
 
-**Output:** `HE-ASSESSMENT-REPORT.md`
-> **Use template:** `templates/HE-ASSESSMENT-REPORT.md`
+**Output:** `.harness/HE-ASSESSMENT-REPORT.md`
+> **Use template:** `templates/HE-ASSESSMENT-REPORT.md` → **Output to:** `.harness/HE-ASSESSMENT-REPORT.md`
 
 ## Phase 6: Skill & Knowledge Sync — Optional (L1 ↩: Principle Feedback)
 

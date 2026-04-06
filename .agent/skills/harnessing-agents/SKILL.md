@@ -71,6 +71,14 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 ]
 ```
 
+## Output Directory Convention
+
+All output artifacts produced by this skill (`HE-SCOPE.md`, `HE-CLUES.md`, `HE-PRIORITIES.md`, `HE-IMPLEMENTATION-PLAN.md`, `HE-CHANGE-SUMMARY.md`, `HE-ASSESSMENT-REPORT.md`) **MUST be written to `./.harness/`** in the target project root — never to the project root itself.
+
+- Create the `.harness/` directory if it does not exist.
+- All file references in plans, reports, and subagent outputs use the `.harness/` prefix (e.g., `.harness/HE-CLUES.md`).
+- This prevents HE audit artifacts from cluttering the target project's root directory.
+
 ## Emphasize Automated Tooling
 
 When auditing or remediating harness gaps, rely strictly on **mechanical enforcement** rather than manual observation.
@@ -81,7 +89,9 @@ When auditing or remediating harness gaps, rely strictly on **mechanical enforce
 
 ## Core Templates
 
-- `templates/HE-CLUES.md`: Clue collection format (gap analysis with 3-step chain references)
-- `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan format
-- `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary
-- `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report
+Templates define the format; output files are written to `.harness/` in the target project.
+
+- `templates/HE-CLUES.md`: Clue collection format → output: `.harness/HE-CLUES.md`
+- `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan → output: `.harness/HE-IMPLEMENTATION-PLAN.md`
+- `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary → output: `.harness/HE-CHANGE-SUMMARY.md`
+- `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report → output: `.harness/HE-ASSESSMENT-REPORT.md`

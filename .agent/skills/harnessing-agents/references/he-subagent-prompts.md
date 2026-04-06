@@ -174,5 +174,5 @@ Mathematically score each feature based on the 6 dimensions. Determine the criti
 
 Group the results into execution Tiers (Tier 1 Immediate, Tier 2 Mid-term, Tier 3 Long-term) based on scoring.
 
-Finally, output `HE-IMPLEMENTATION-PLAN.md` strictly following the format found in `templates/HE-IMPLEMENTATION-PLAN.md`. Each action item must reference the specific "Options" (actions/tools) from the feature chain. Do not invent new structures.
+Finally, output `.harness/HE-IMPLEMENTATION-PLAN.md` strictly following the format found in `templates/HE-IMPLEMENTATION-PLAN.md`. Each action item must reference the specific "Options" (actions/tools) from the feature chain. Do not invent new structures.
 ```
