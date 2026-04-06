@@ -2,7 +2,7 @@
 
 > **Source:** `framework/HE Design Decisions.md` (feature definitions), `framework/HE Principle Map.md` (EP-N mappings)
 
-Use this lookup to determine a feature's **Impact Weight** (how many downstream systems rely on it) when calculating Priority Scores in `references/gap-scoring.md`.
+Use this lookup to determine a feature's **Impact Weight** (how many downstream systems rely on it) when calculating Priority Scores in `references/he-scoring.md`.
 
 ## Feature Inter-dependencies
 

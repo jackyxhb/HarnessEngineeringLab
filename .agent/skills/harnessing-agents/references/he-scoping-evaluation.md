@@ -11,7 +11,7 @@ These four dimensions define the scope and complexity of the entire harness audi
 
 ## 6 Evaluation Dimensions
 
-These are the lenses used to score individual features inside `references/gap-scoring.md`. They are strictly for *gap analysis* (not scoping the audit). Each dimension maps to a level in the Principle-to-Practice Chain (see `framework/HE Principle Map.md`).
+These are the lenses used to score individual features inside `references/he-scoring.md`. They are strictly for *gap analysis* (not scoping the audit). Each dimension maps to a level in the Principle-to-Practice Chain (see `framework/HE Principle Map.md`).
 
 1. **Implementation Maturity** (→ L4 Actions & Tools): How fully built is this feature?
 2. **Operational Effectiveness** (→ L5 Measurable Outcomes): Does the feature actually work in practice?

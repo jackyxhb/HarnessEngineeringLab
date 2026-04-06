@@ -26,7 +26,7 @@ Every feature in this skill is assessed through a unified chain:
 
 | Step | Question | Reference Source |
 | --- | --- | --- |
-| **What to Do** | What should this feature look like when implemented? | `references/features-foundation.md`, `references/features-pillar1.md`, `references/features-pillar2-3.md` — per-feature definitions (SAS + MAS) |
+| **What to Do** | What should this feature look like when implemented? | `references/he-chain-foundation.md`, `references/he-chain-context.md`, `references/he-chain-constraints-entropy.md` — per-feature definitions (SAS + MAS) |
 | **Don't Do** | What failure mode does this feature prevent? | Same files — per-feature "Don't Do" section, sourced from `framework/HE Negative Actions.md` |
 | **Options** | What concrete actions and tools can implement it? | Same files — per-feature "Options" section, sourced from `framework/HE Actions Tools.md` |
 
@@ -61,13 +61,13 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 
 ```json
 [
-  { "goal": "Quick gap scan — assess maturity against 32 core features",       "start": "references/quick-checklist.md",       "time": "5 min" },
-  { "goal": "Full audit — Inspect → Plan → Execute lifecycle",                "start": "references/workflow.md",              "time": "30-60 min" },
-  { "goal": "Feature deep dive — 3-step chain (What / Don't / Options)",      "start": ["references/features-foundation.md", "references/features-pillar1.md", "references/features-pillar2-3.md"], "time": "2 min" },
-  { "goal": "Score & analyze gaps — 6 dimensions + priority formula",         "start": "references/gap-scoring.md",           "time": "15 min" },
-  { "goal": "Scope an audit — calibrate 4 scoping dimensions",               "start": "references/dimensions.md",            "time": "5 min" },
-  { "goal": "Run Subagents — dispatch parallel gap audits",                   "start": "references/agent-prompts.md",         "time": "2 min" },
-  { "goal": "Cascade analysis — feature dependencies & failure chains",       "start": "references/dependencies.md",          "time": "5 min" }
+  { "goal": "Quick gap scan — assess maturity against 32 core features",       "start": "references/he-quick-start.md",            "time": "5 min" },
+  { "goal": "Full audit — Inspect → Plan → Execute lifecycle",                "start": "references/he-full-audit.md",              "time": "30-60 min" },
+  { "goal": "Feature deep dive — 3-step chain (What / Don't / Options)",      "start": ["references/he-chain-foundation.md", "references/he-chain-context.md", "references/he-chain-constraints-entropy.md"], "time": "2 min" },
+  { "goal": "Score & analyze gaps — 6 dimensions + priority formula",         "start": "references/he-scoring.md",                 "time": "15 min" },
+  { "goal": "Scope an audit — calibrate 4 scoping dimensions",               "start": "references/he-scoping-evaluation.md",      "time": "5 min" },
+  { "goal": "Run Subagents — dispatch parallel gap audits",                   "start": "references/he-subagent-prompts.md",        "time": "2 min" },
+  { "goal": "Cascade analysis — feature dependencies & failure chains",       "start": "references/he-cascade-analysis.md",        "time": "5 min" }
 ]
 ```
 
@@ -81,7 +81,7 @@ When auditing or remediating harness gaps, rely strictly on **mechanical enforce
 
 ## Core Templates
 
-- `templates/he-clues.md`: Clue collection format (gap analysis with 3-step chain references)
-- `templates/implementation-plan.md`: Tiered remediation plan format
-- `templates/change-summary.md`: Per-agent change summary
-- `templates/assessment-report.md`: Before/after milestone report
+- `templates/HE-CLUES.md`: Clue collection format (gap analysis with 3-step chain references)
+- `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan format
+- `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary
+- `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report

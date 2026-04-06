@@ -1,6 +1,6 @@
 # HE-CLUES Template
 
-Repeat this block for each gap found. Use filesystem tools to verify — do not assume. Each entry maps to the **3-Step Assessment Chain** (What to Do → Don't Do → Options) from `references/features-foundation.md`, `references/features-pillar1.md`, and `references/features-pillar2-3.md`.
+Repeat this block for each gap found. Use filesystem tools to verify — do not assume. Each entry maps to the **3-Step Assessment Chain** (What to Do → Don't Do → Options) from `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
 
 ---
 

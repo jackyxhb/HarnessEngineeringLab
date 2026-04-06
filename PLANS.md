@@ -83,13 +83,13 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
   - [x] Socratic questioning (P1-11) — 6 clarifications confirmed by user
   - [x] Rewrite `build.md`: EP-N table, chain annotations on all 5 phases, canonical 6-dim scoring (0-5), 32-feature count, HE Principle Map.md as source
   - [x] Cascade to `SKILL.md`: version 3.1.0→4.0.0, Canonical Sources section, 32 features, EP-15 backlink
-  - [x] Cascade to `references/quick-checklist.md`: P1-12 item, EP range annotations, 32 features
-  - [x] Cascade to `references/dimensions.md`: chain-level mappings on all 6 dimensions, 32 features
-  - [x] Cascade to `references/gap-scoring.md`: Chain Level column, P1-12 range
-  - [x] Cascade to `references/workflow.md`: chain annotations on all 7 phases, 32 features, Principle Map ref
-  - [x] Cascade to `references/features-pillar1.md`: full P1-12 Skill Engineering feature entry
-  - [x] Cascade to `references/agent-prompts.md`: Context Agent scope P1-1→P1-12
-  - [x] Cascade to `references/dependencies.md`: P1-12 entry (Impact Weight 4)
+  - [x] Cascade to `references/he-quick-start.md`: P1-12 item, EP range annotations, 32 features
+  - [x] Cascade to `references/he-scoping-evaluation.md`: chain-level mappings on all 6 dimensions, 32 features
+  - [x] Cascade to `references/he-scoring.md`: Chain Level column, P1-12 range
+  - [x] Cascade to `references/he-full-audit.md`: chain annotations on all 7 phases, 32 features, Principle Map ref
+  - [x] Cascade to `references/he-chain-context.md`: full P1-12 Skill Engineering feature entry
+  - [x] Cascade to `references/he-subagent-prompts.md`: Context Agent scope P1-1→P1-12
+  - [x] Cascade to `references/he-cascade-analysis.md`: P1-12 entry (Impact Weight 4)
   - [x] Validation: `npm run check` passes clean
 - **Constraints:** Framework docs are read-only source of truth. Canonical scoring = 6 dimensions (0-5) from HE Inverse Outcomes.md. All 31→32 refs updated. EP-N replaces governing principles.
 - **Checkpoints:** CP1: build.md rewritten → CP2: SKILL.md versioned → CP3: all references cascaded → CP4: lint green

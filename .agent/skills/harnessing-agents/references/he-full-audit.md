@@ -2,14 +2,14 @@
 
 A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Execution Procedure.md`.
 
-The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/features-foundation.md`, `references/features-pillar1.md`, and `references/features-pillar2-3.md`.
+The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
 
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
 > **Chain Position:** Pre-chain — establishes scope before principle analysis begins.
 
 1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `HE-SCOPE.md`.
-2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/quick-checklist.md`). Append results and current Harness Maturity Level to `HE-SCOPE.md`.
+2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/he-quick-start.md`). Append results and current Harness Maturity Level to `HE-SCOPE.md`.
 
 ## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
 
@@ -23,17 +23,17 @@ For each feature (P0-1 through P3-4, 32 total):
 3. **Options** — Which actions and tools should be recommended?
 
 Scan order:
-1. Foundation gaps (P0-1 to P0-11) — read `references/features-foundation.md`
-2. Pillar 1 (Context) gaps (P1-1 to P1-12) — read `references/features-pillar1.md`
-3. Pillar 2 (Constraints) gaps (P2-1 to P2-5) — read `references/features-pillar2-3.md`
-4. Pillar 3 (Entropy) gaps (P3-1 to P3-4) — read `references/features-pillar2-3.md`
+1. Foundation gaps (P0-1 to P0-11) — read `references/he-chain-foundation.md`
+2. Pillar 1 (Context) gaps (P1-1 to P1-12) — read `references/he-chain-context.md`
+3. Pillar 2 (Constraints) gaps (P2-1 to P2-5) — read `references/he-chain-constraints-entropy.md`
+4. Pillar 3 (Entropy) gaps (P3-1 to P3-4) — read `references/he-chain-constraints-entropy.md`
 
 *For each feature, record: current state, active prevention failures, recommended options, severity, and remediation level.*
 
 **Output:** Merge all findings into a master report.
-> **Use template:** `templates/he-clues.md`
+> **Use template:** `templates/HE-CLUES.md`
 
-**Trajectory Reduction Checkpoint:** After generating `he-clues.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
+**Trajectory Reduction Checkpoint:** After generating `HE-CLUES.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
 
 ## Phase 2: Gap Scoring — Evaluation (L2: Targeted Enhancements)
 
@@ -41,14 +41,14 @@ Scan order:
 
 Score the identified gaps using the multi-dimensional framework.
 
-1. For each identified feature gap, score across the 6 dimensions (0-5) by referencing `references/gap-scoring.md`.
+1. For each identified feature gap, score across the 6 dimensions (0-5) by referencing `references/he-scoring.md`.
 2. **Prioritize active prevention failures** — features where the "Don't Do" anti-pattern is present get a scoring boost.
 3. Calculate the Priority Score using the formula: `(5 - Composite Score) × Impact Weight × Cascade Length`.
 4. Tier the results: Tier 1 (Immediate), Tier 2 (Mid-term), Tier 3 (Long-term).
 
 **Output:** `HE-PRIORITIES.md` with tier assignments.
 
-**Trajectory Reduction Checkpoint:** Flush raw reference files (`gap-scoring.md` and `dependencies.md`). Retain only the priority tier list.
+**Trajectory Reduction Checkpoint:** Flush raw reference files (`he-scoring.md` and `he-cascade-analysis.md`). Retain only the priority tier list.
 
 ## Phase 3: Recommendation & Planning (L3: Design Decisions)
 
@@ -56,13 +56,13 @@ Score the identified gaps using the multi-dimensional framework.
 
 Translate prioritized gaps into a concrete implementation plan using the "Options" from each feature's 3-step chain.
 
-1. Map each gap to its **Options** (specific actions and tools) from `references/features-foundation.md`, `references/features-pillar1.md`, and `references/features-pillar2-3.md`.
+1. Map each gap to its **Options** (specific actions and tools) from `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
 2. Map each gap to its **Remediation Tier** from the same files.
 3. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
 4. Group into execution batches ordered by dependencies, then tiers.
 
 **Output:** `HE-IMPLEMENTATION-PLAN.md`
-> **Use template:** `templates/implementation-plan.md`
+> **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md`
 
 **Trajectory Reduction Checkpoint:** Flush all remediation policy references. Retain only the finalized implementation plan.
 
@@ -79,19 +79,19 @@ Apply the remediation batches sequentially. Each action item should come directl
 - **Heavy:** Perform structural project refactoring, build orchestration middleware, wire up explicit test pipelines.
 
 **Output:** Modified codebase with per-agent modification summary.
-> **Use template:** `templates/change-summary.md`
+> **Use template:** `templates/HE-CHANGE-SUMMARY.md`
 
 ## Phase 5: Verification & Assessment (L5: Measurable Outcomes)
 
 > **Chain Position:** L5 — measures observable results to verify all changes produce concrete enhancement.
 
-1. Re-run the Quick-Start checklist (`references/quick-checklist.md`). Compare unchecked → checked conversions.
+1. Re-run the Quick-Start checklist (`references/he-quick-start.md`). Compare unchecked → checked conversions.
 2. Re-check each feature's "Don't Do" — verify that previously active prevention failures are now resolved.
 3. Re-score modified features across the 6 dimensions to capture delta improvement.
 4. Generate the final assessment comparing the initial state to the final milestone.
 
 **Output:** `HE-ASSESSMENT-REPORT.md`
-> **Use template:** `templates/assessment-report.md`
+> **Use template:** `templates/HE-ASSESSMENT-REPORT.md`
 
 ## Phase 6: Skill & Knowledge Sync — Optional (L1 ↩: Principle Feedback)
 

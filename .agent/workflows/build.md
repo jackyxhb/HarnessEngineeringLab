@@ -38,7 +38,7 @@ Every output file must obey strict line budgets to keep per-action-path cost low
 ```json
 [
   { "file_type": "SKILL.md (entry point)", "max_lines": 200, "rationale": "Agent reads this first on every invocation" },
-  { "file_type": "Reference files (`references/`)", "max_lines": 215, "rationale": "Agent reads 1–2 per action path. Budget raised from 200: features-pillar1.md carries 11 P1 features vs 10 at design time" },
+  { "file_type": "Reference files (`references/`)", "max_lines": 215, "rationale": "Agent reads 1–2 per action path. Budget raised from 200: he-chain-context.md carries 11 P1 features vs 10 at design time" },
   { "file_type": "Template files (`templates/`)", "max_lines": 150, "rationale": "Copy-paste targets must be compact" },
   { "file_type": "Per-action-path total", "max_lines": 270, "rationale": "SKILL.md + 1 reference = agent's full read budget" }
 ]
@@ -52,20 +52,20 @@ Every output file must obey strict line budgets to keep per-action-path cost low
 harnessing-agents/
 ├── SKILL.md                        # Entry point: framework + decision tree + principles
 ├── references/                     # Deep-dive procedural and specification docs
-│   ├── workflow.md                 # 3-step audit: Inspect → Plan → Execute
-│   ├── agent-prompts.md            # Ready-to-use dispatch prompts (parallel agents)
-│   ├── gap-scoring.md              # 6 evaluation dimensions + priority formula
-│   ├── quick-checklist.md          # 32-item yes/no fast gap scan
-│   ├── dimensions.md               # 4 scoping dimensions + decision matrix
-│   ├── features-foundation.md      # Foundation features P0-1–P0-11 (gap signals, policies)
-│   ├── features-pillar1.md         # Pillar 1 features P1-1 to P1-12 (gap signals, policies)
-│   ├── features-pillar2-3.md       # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
-│   └── dependencies.md             # Bidirectional feature dependency map
+│   ├── he-full-audit.md             # 3-step audit: Inspect → Plan → Execute
+│   ├── he-subagent-prompts.md       # Ready-to-use dispatch prompts (parallel agents)
+│   ├── he-scoring.md                # 6 evaluation dimensions + priority formula
+│   ├── he-quick-start.md            # 32-item yes/no fast gap scan
+│   ├── he-scoping-evaluation.md     # 4 scoping dimensions + decision matrix
+│   ├── he-chain-foundation.md       # Foundation features P0-1–P0-11 (gap signals, policies)
+│   ├── he-chain-context.md          # Pillar 1 features P1-1 to P1-12 (gap signals, policies)
+│   ├── he-chain-constraints-entropy.md # Pillar 2–3 features P2-1 to P3-4 (gap signals, policies)
+│   └── he-cascade-analysis.md       # Bidirectional feature dependency map
 └── templates/                      # Copy-paste output standardization
-    ├── he-clues.md                 # Audit finding capture format
-    ├── implementation-plan.md      # Prioritized action plan + gates
-    ├── change-summary.md           # Per-agent execution record + checklist
-    └── assessment-report.md        # Before/after scores + next cycle
+    ├── HE-CLUES.md                  # Audit finding capture format
+    ├── HE-IMPLEMENTATION-PLAN.md    # Prioritized action plan + gates
+    ├── HE-CHANGE-SUMMARY.md         # Per-agent execution record + checklist
+    └── HE-ASSESSMENT-REPORT.md      # Before/after scores + next cycle
 ```
 
 **Separation of concerns:**
@@ -171,11 +171,11 @@ SKILL.md must contain a fast-path routing table as the agent's first decision af
 
 ```json
 [
-  { "goal": "Quick gap check", "start_here": "`references/quick-checklist.md`", "time": "5 min" },
-  { "goal": "Full audit (Inspect → Plan → Execute)", "start_here": "`references/workflow.md`", "time": "30–60 min" },
-  { "goal": "Score and prioritize specific gaps", "start_here": "`references/gap-scoring.md`", "time": "15 min" },
-  { "goal": "Look up a feature's signals + policies", "start_here": ["`references/features-foundation.md`", "`references/features-pillar1.md`", "`references/features-pillar2-3.md`"], "time": "2 min" },
-  { "goal": "Scope an audit before starting", "start_here": "`references/dimensions.md`", "time": "5 min" }
+  { "goal": "Quick gap check", "start_here": "`references/he-quick-start.md`", "time": "5 min" },
+  { "goal": "Full audit (Inspect → Plan → Execute)", "start_here": "`references/he-full-audit.md`", "time": "30–60 min" },
+  { "goal": "Score and prioritize specific gaps", "start_here": "`references/he-scoring.md`", "time": "15 min" },
+  { "goal": "Look up a feature's signals + policies", "start_here": ["`references/he-chain-foundation.md`", "`references/he-chain-context.md`", "`references/he-chain-constraints-entropy.md`"], "time": "2 min" },
+  { "goal": "Scope an audit before starting", "start_here": "`references/he-scoping-evaluation.md`", "time": "5 min" }
 ]
 ```
 
@@ -212,7 +212,7 @@ Each feature is scored 0–5 across the following dimensions, each mapped to a c
 Priority = (5 - CompositeScore) × ImpactWeight × CascadeLength
 ```
 
-- **ImpactWeight** — How many downstream features depend on this one (from `dependencies.md`)
+- **ImpactWeight** — How many downstream features depend on this one (from `he-cascade-analysis.md`)
 - **CascadeLength** — Longest chain of features that break if this one fails
 
 ### 5 Cross-Cutting Verification Perspectives
@@ -248,7 +248,7 @@ For inspection and execution phases, dispatch agents with non-overlapping scopes
 
 **Consolidation agent** merges all findings, deduplicates, resolves conflicts, and produces the unified output document.
 
-Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
+Each dispatch prompt (stored in `references/he-subagent-prompts.md`) must include:
 - Role definition
 - Exact scan scope (feature IDs)
 - Gap signals to look for
@@ -282,14 +282,14 @@ Each dispatch prompt (stored in `references/agent-prompts.md`) must include:
 
 Independent tasks — execute in parallel when possible:
 
-- **2a. Feature files** — Build `features-foundation.md` (P0-1–P0-11) and `features-pillar1.md` (P1-1 to P1-12) and `features-pillar2-3.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions. **P1-12 (Skill Engineering) must be included in `features-pillar1.md`.**
-- **2b. Scoring framework** — Build `gap-scoring.md` with the canonical 6 evaluation dimensions (chain-level mapped per `HE Inverse Outcomes.md`), priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
-- **2c. Quick checklist** — Extract `quick-checklist.md` as 32-item yes/no fast scan (one per feature) with pointers to full scoring.
-- **2d. Scoping dimensions** — Build `dimensions.md` with 4 dimensions, decision matrix, scope calibration guidance. Reference 32-feature tree.
-- **2e. Dependency map** — Build `dependencies.md` as consolidated bidirectional table from all 32 core features.
+- **2a. Feature files** — Build `he-chain-foundation.md` (P0-1–P0-11) and `he-chain-context.md` (P1-1 to P1-12) and `he-chain-constraints-entropy.md` (P2-1 to P3-4) from framework sources. Each feature includes gap signals, tiered policies, dependencies, SAS→MAS evolution. Cross-reference header in each file pointing to its companions. **P1-12 (Skill Engineering) must be included in `he-chain-context.md`.**
+- **2b. Scoring framework** — Build `he-scoring.md` with the canonical 6 evaluation dimensions (chain-level mapped per `HE Inverse Outcomes.md`), priority formula, 5 cross-cutting perspectives. Disambiguate from scoping dimensions.
+- **2c. Quick checklist** — Extract `he-quick-start.md` as 32-item yes/no fast scan (one per feature) with pointers to full scoring.
+- **2d. Scoping dimensions** — Build `he-scoping-evaluation.md` with 4 dimensions, decision matrix, scope calibration guidance. Reference 32-feature tree.
+- **2e. Dependency map** — Build `he-cascade-analysis.md` as consolidated bidirectional table from all 32 core features.
 - **2f. Templates** — Extract all output formats into `templates/` as copy-paste ready files with clear placeholders. Enforce optimization by requiring agents to use `Remediation Level: [Light | Medium | Heavy]` natively instead of abstract logic in findings.
-- **2g. Workflow** — Build `workflow.md` with chain-annotated phases (Phase 0–6 mapping to L1→L5→L1↩ per `HE Execution Procedure.md`), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
-- **2h. Agent prompts** — Build `agent-prompts.md` with dispatch prompts covering all 32 features. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
+- **2g. Workflow** — Build `he-full-audit.md` with chain-annotated phases (Phase 0–6 mapping to L1→L5→L1↩ per `HE Execution Procedure.md`), agent coordination patterns, user confirmation gate. *Enforce Trajectory Reduction: Instruct agents to flush memory/raw file content after completing Inspect phase.*
+- **2h. Agent prompts** — Build `he-subagent-prompts.md` with dispatch prompts covering all 32 features. **Crucial Optimization:** Explicitly limit the Action Space by commanding subagents to *only* use `Glob`, `Grep`, and `Read` for structural read-checks. Second, enforce ReAct structuring: require agents to use `<scratchpad>` or `<thought>` tags to deliberate findings *before* generating their HE-CLUES output.
 
 **Gate:** Every reference file ≤ 200 lines. Every template ≤ 150 lines. No file duplicates content from another.
 
@@ -365,8 +365,8 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
 
 ```json
 [
-  { "term": "Scoping Dimensions (4)", "meaning": "Scope the overall audit", "used_in": "`dimensions.md`" },
-  { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features (chain-level mapped)", "used_in": "`gap-scoring.md`" },
+  { "term": "Scoping Dimensions (4)", "meaning": "Scope the overall audit", "used_in": "`he-scoping-evaluation.md`" },
+  { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features (chain-level mapped)", "used_in": "`he-scoring.md`" },
   { "term": "Feature ID", "meaning": ["`P0-1`–`P0-11`", "`P1-1`–`P1-12`", "`P2-1`–`P3-4`"], "used_in": "All feature references" },
   { "term": "EP-N", "meaning": "Engineering Principle from `HE Principle Map.md`", "used_in": "Governing constraints, feature chain anchors" },
   { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`HE-CLUES.md`", "templates"] },
@@ -403,9 +403,9 @@ The built skill must support all three maturity targets:
 3. **Backlinks** — Every template entry links back to originating feature spec or clue ID.
 4. **Minimal prose** — Tables and checklists over paragraphs. Prose only for disambiguation.
 5. **Verification checklist at bottom** — Every template includes its own pass/fail checks:
-   - `□ Implements policy from features-foundation.md, features-pillar1.md, or features-pillar2-3.md`
-   - `□ Tier assignment matches implementation-plan.md`
-   - `□ No new gaps introduced (vs. quick-checklist.md)`
+   - `□ Implements policy from he-chain-foundation.md, he-chain-context.md, or he-chain-constraints-entropy.md`
+   - `□ Tier assignment matches HE-IMPLEMENTATION-PLAN.md`
+   - `□ No new gaps introduced (vs. he-quick-start.md)`
 
 ---
 
@@ -427,7 +427,7 @@ When content grows beyond budgets during future iterations:
 
 ## Cascade Analysis Method
 
-Use `dependencies.md` to determine implementation order:
+Use `he-cascade-analysis.md` to determine implementation order:
 
 1. **Identify root features** — features with zero "Depends On" entries (implement first)
 2. **Rank by downstream count** — features with the most "Depended On By" entries have highest impact

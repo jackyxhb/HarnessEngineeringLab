@@ -1,6 +1,6 @@
 # Feature Chain: Pillars 2-3 — Constraints & Entropy
 
-Assessment chain: **What to Do** → **Don’t Do** → **Options**. Each section is annotated with its chain level (L2–L5) per `framework/HE Principle Practice Chain.md`. See also: `features-foundation.md` (P0) · `features-pillar1.md` (P1).
+Assessment chain: **What to Do** → **Don’t Do** → **Options**. Each section is annotated with its chain level (L2–L5) per `framework/HE Principle Practice Chain.md`. See also: `he-chain-foundation.md` (P0) · `he-chain-context.md` (P1).
 
 ## Pillar 2: Architectural Constraints (Constrain)
 

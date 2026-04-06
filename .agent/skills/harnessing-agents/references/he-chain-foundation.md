@@ -1,6 +1,6 @@
 # Feature Chain: P0 — Foundation (Execute)
 
-Assessment chain: **What to Do** → **Don't Do** → **Options**. Each section is annotated with its chain level (L2–L5) per `framework/HE Principle Practice Chain.md`. See also: `features-pillar1.md` (P1) · `features-pillar2-3.md` (P2–P3).
+Assessment chain: **What to Do** → **Don't Do** → **Options**. Each section is annotated with its chain level (L2–L5) per `framework/HE Principle Practice Chain.md`. See also: `he-chain-context.md` (P1) · `he-chain-constraints-entropy.md` (P2–P3).
 
 ## P0-1. Bash Sandboxes [EP-1]
 

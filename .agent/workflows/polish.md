@@ -44,10 +44,10 @@ Follow these exact steps to ensure absolutely no file gets missed and the canoni
 Modify the authoritative skill files in `.agent/skills/harnessing-agents/`:
 
 - **`SKILL.md`**: Increment the total feature count. Add the new feature to the routing table if it introduces a new reference file.
-- **`references/features-foundation.md`**, **`references/features-pillar1.md`**, or **`references/features-pillar2-3.md`**: Add the new feature's guideline, expectations, and tiered remediation actions under the correct area.
-- **`references/quick-checklist.md`**: Add a new checkbox item under the relevant area.
+- **`references/he-chain-foundation.md`**, **`references/he-chain-context.md`**, or **`references/he-chain-constraints-entropy.md`**: Add the new feature's guideline, expectations, and tiered remediation actions under the correct area.
+- **`references/he-quick-start.md`**: Add a new checkbox item under the relevant area.
 - **`references/prevention-checklist.md`**: Add a new prevention row under the relevant Pillar describing what failure modes this feature prevents.
-- **`references/dependencies.md`**: Add the feature's downstream dependencies and impact weight.
+- **`references/he-cascade-analysis.md`**: Add the feature's downstream dependencies and impact weight.
 
 #### Step 2: Feedback to HarnessEngineeringLab Canonical Docs
 
@@ -69,7 +69,7 @@ Propagate the feature additions to all canonical docs in `framework/`:
 
 - Run checks to ensure the feature count is identical across all skill files and canonical docs.
 - Ensure numbering is completely sequential with no gaps or duplicates.
-- Ensure `references/quick-checklist.md` has one checkbox per canonical feature (currently 29).
+- Ensure `references/he-quick-start.md` has one checkbox per canonical feature (currently 29).
 
 #### Step 4: Summarize Changes
 

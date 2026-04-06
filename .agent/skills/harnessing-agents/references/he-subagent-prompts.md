@@ -14,7 +14,7 @@ These 5 ready-to-use prompts are optimized for delegating Harness Engineering ga
 ```markdown
 Perform a gap analysis on the project's Foundation features (P0-1 through P0-11).
 
-**Reference:** Read `references/features-foundation.md` for the 3-step chain per feature:
+**Reference:** Read `references/he-chain-foundation.md` for the 3-step chain per feature:
 - **What to Do:** The feature definition — what must exist
 - **Don't Do:** The prevention failure — what anti-pattern to look for
 - **Options:** The actions and tools — what to recommend
@@ -52,7 +52,7 @@ Format your final response strictly using the HE-CLUES template format:
 ```markdown
 Perform a gap analysis on Pillar 1: Context Engineering (P1-1 through P1-12).
 
-**Reference:** Read `references/features-pillar1.md` for the 3-step chain per feature:
+**Reference:** Read `references/he-chain-context.md` for the 3-step chain per feature:
 - **What to Do:** The feature definition
 - **Don't Do:** The prevention failure to look for
 - **Options:** The actions and tools to recommend
@@ -90,7 +90,7 @@ Format your response strictly using the HE-CLUES template format:
 ```markdown
 Perform a gap analysis on Pillar 2: Architectural Constraints (P2-1 through P2-5).
 
-**Reference:** Read `references/features-pillar2-3.md` (Pillar 2 section) for the 3-step chain per feature:
+**Reference:** Read `references/he-chain-constraints-entropy.md` (Pillar 2 section) for the 3-step chain per feature:
 - **What to Do:** The feature definition
 - **Don't Do:** The prevention failure to look for
 - **Options:** The actions and tools to recommend
@@ -126,7 +126,7 @@ Format your response strictly using the HE-CLUES template format:
 ```markdown
 Perform a gap analysis on Pillar 3: Entropy Management (P3-1 through P3-4).
 
-**Reference:** Read `references/features-pillar2-3.md` (Pillar 3 section) for the 3-step chain per feature:
+**Reference:** Read `references/he-chain-constraints-entropy.md` (Pillar 3 section) for the 3-step chain per feature:
 - **What to Do:** The feature definition
 - **Don't Do:** The prevention failure to look for
 - **Options:** The actions and tools to recommend
@@ -160,7 +160,7 @@ Format your response strictly using the HE-CLUES template format:
 **Prompt:**
 
 ```markdown
-Review the compiled HE-CLUES output from the previous auditors. Using `references/gap-scoring.md` and `references/dependencies.md`, score each gap across the 6 dimensions to calculate Priority Scores.
+Review the compiled HE-CLUES output from the previous auditors. Using `references/he-scoring.md` and `references/he-cascade-analysis.md`, score each gap across the 6 dimensions to calculate Priority Scores.
 
 For each gap, verify:
 1. The "Governed By" field — preserve the EP-N backlink through to the implementation plan
@@ -174,5 +174,5 @@ Mathematically score each feature based on the 6 dimensions. Determine the criti
 
 Group the results into execution Tiers (Tier 1 Immediate, Tier 2 Mid-term, Tier 3 Long-term) based on scoring.
 
-Finally, output `HE-IMPLEMENTATION-PLAN.md` strictly following the format found in `templates/implementation-plan.md`. Each action item must reference the specific "Options" (actions/tools) from the feature chain. Do not invent new structures.
+Finally, output `HE-IMPLEMENTATION-PLAN.md` strictly following the format found in `templates/HE-IMPLEMENTATION-PLAN.md`. Each action item must reference the specific "Options" (actions/tools) from the feature chain. Do not invent new structures.
 ```
