@@ -1,14 +1,14 @@
 # HE and MAS Integration
 
-> _Canonical framework: `framework/HE Design Decisions.md`_
+> _Canonical framework: `framework/HE Index.md`_
 
 **AI Agent Harness Engineering and Multi-Agent Systems (MAS) are deeply interconnected: if the multi-agent mechanism is the workforce, the harness is the factory floor that orchestrates, constrains, and supports them.**
 
 Single agents typically hit a performance ceiling when managing more than 10 to 15 tools or when their context windows become overwhelmed, making multi-agent systems necessary for complex, real-world tasks. However, multi-agent systems introduce severe challenges like quadratic coordination overhead, error propagation across agent chains, and state conflicts. Harness engineering provides the infrastructure to solve these exact systemic challenges.
 
-Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `framework/HE Design Decisions.md` | `ANCHORS.md`):
+Here is how harness engineering directly enables and manages multi-agent working mechanisms, organized by the **3-Pillar + 1-Foundation Framework** (see `framework/HE Index.md` | `ANCHORS.md`):
 
-## Foundational Infrastructure (Execute)
+## Foundation: Infrastructure (Execute)
 
 A foundational feature of a harness is providing secure execution sandboxes and durable filesystem/Git workspaces. In a multi-agent system, **the filesystem acts as the core primitive for context management and a shared ledger where multiple agents can collaborate**. This infrastructure makes advanced multi-agent structures possible, such as the "Blackboard" architecture, where a shared knowledge space allows diverse specialist agents to incrementally read, write, and refine partial solutions without stepping on each other's toes.
 

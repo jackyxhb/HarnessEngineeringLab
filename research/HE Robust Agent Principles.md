@@ -2,7 +2,7 @@
 
 How to Create a Robust Agent — General Principles, distilled from OpenAI's Harness Engineering experience and broader agent design patterns.
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
+> _Canonical framework: `framework/HE Index.md` | Feature definitions: `framework/features/`_
 
 ## 1. Design the Environment, Not Just the Agent
 

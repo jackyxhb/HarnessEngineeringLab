@@ -1,6 +1,6 @@
 # HE Project Build Guide
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
+> _Canonical framework: `framework/HE Index.md` | Feature definitions: `framework/features/`_
 
 How to Construct an Agent Project for a Specific Industry? Example domain: Job seekers find matched job descriptions, then tailor their CV/Cover Letter for applications.
 

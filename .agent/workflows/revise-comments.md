@@ -9,16 +9,17 @@ This workflow processes each document in the `research/` folder one by one, comp
 ## Prerequisites
 
 1. Read the framework source-of-truth documents:
-   - `framework/HE Design Decisions.md` — the canonical **3-Pillar + 1-Foundation** framework
+   - `framework/HE Index.md` — the canonical index for the **3-Pillar + 1-Foundation** framework
+   - `framework/features/` — the 32 modular feature definitions
 
 2. Internalise the canonical structure before processing any comments:
-   - **Foundation:** Infrastructure — Execute
-     - Contains (10): Bash Sandboxes, Filesystem Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox)
-   - **Pillar 1:** Context Engineering — Inform
-     - Contains (10): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger
-   - **Pillar 2:** Architectural Constraints — Constrain
+   - **Foundation: Infrastructure** — Execute
+     - Contains (11): Bash Sandboxes, Filesystem, Git & File Locking, Verification (Self & Collective), Ralph Loops, Orchestration Logic, Rippable Middleware, Escalation Policies & Audit Trails, Harness Versioning, Smart Command Wrappers, Inter-Agent Communication (The Mailbox), Portable Agent Surface
+   - **Pillar 1: Context Engineering** — Inform
+     - Contains (12): Repository as Truth, Context Compaction & Memory Management, Tool Offloading, Progressive Skills, Observability / Dashboards, Web Search & MCP Integration, Planning, Task Lists & Blackboards, Context Anchoring, Branch-Based Cognitive Memory, Requirements Ledger, Socratic Questioning, Skill Engineering
+   - **Pillar 2: Architectural Constraints** — Constrain
      - Contains (5): Automated Linters, Dependency Enforcement, AI Auditors & Collaboration Channels, Bounded Autonomy & Access Control, Upstream Intake Gate
-   - **Pillar 3:** Entropy Management — Maintain
+   - **Pillar 3: Entropy Management** — Maintain
      - Contains (4): Scheduled Cleanups, Documentation Sync, Pattern Auditing, Consolidation Loop
 
 ## Workflow Steps

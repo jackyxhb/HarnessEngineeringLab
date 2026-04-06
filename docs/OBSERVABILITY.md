@@ -13,7 +13,7 @@ These are the minimum fields that must remain observable at all times. A harness
 | `he_lint_violations` | `0` | `node scripts/he-lint.js` | Every commit + weekly | `> 0` |
 | `markdownlint_violations` | `0` | `npx markdownlint` | Every commit + weekly | `> 0` |
 | `spellcheck_violations` | `0` | `npx cspell` | Every commit + weekly | `> 0` |
-| `feature_count` | `31` | `he-lint.js` number-bias check | Every commit | `≠ 31` |
+| `feature_count` | `32` | `he-lint.js` number-bias check | Every commit | `≠ 32` |
 | `anchor_count` | `≥ 5` | `ANCHORS.md` heading count | Weekly | `< 5` |
 | `stale_tmp_files` | `0` | `audit.sh` find check | Weekly | `> 0` |
 | `harness_structural_integrity` | `PASS` | `scripts/harness/audit.sh` | Weekly | `FAIL` |
@@ -39,7 +39,7 @@ The following files must always exist. A missing file is a harness failure (`FAI
 | `.github/workflows/he-lint.yml` | P2-1 — Automated Linters | CI gate |
 | `.github/workflows/he-weekly-gc.yml` | P3-1 — Scheduled Cleanups | Weekly entropy scan |
 | `.husky/pre-commit` | P2-1 — Automated Linters | Pre-commit gate |
-| `framework/HE Design Decisions.md` | P1-1 — Repository as Truth | Canonical feature definitions |
+| `framework/HE Index.md` | P1-1 — Repository as Truth | Canonical framework index |
 
 ---
 
@@ -102,7 +102,7 @@ Anchors in `ANCHORS.md` should be reviewed when:
 
 - A canonical framework definition changes
 - A new pillar or feature is added
-- A DO NOT rule is added to `CLAUDE.md`
+- A DO NOT rule is added to `AGENTS.md`
 
 Stale anchors (no review in >90 days, or referencing deleted content) should be pruned via `/anchor` workflow.
 

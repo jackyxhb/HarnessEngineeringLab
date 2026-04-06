@@ -1,6 +1,6 @@
 # HE Architectural Principles
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Gap evaluation: `framework/HE Inverse Outcomes.md`_
+> _Canonical framework: `framework/HE Index.md` | Gap evaluation: `framework/cross-cutting/HE Evaluation Dimensions.md`_
 
 A mature Harness Engineering (HE) environment relies on strict architectural boundaries across four key layers. Rather than trusting the agent's prompt to inherently produce good code, the environment structurally enforces it.
 

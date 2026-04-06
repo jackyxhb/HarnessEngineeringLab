@@ -1,6 +1,6 @@
 # HE Agent Tools Catalog
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Enhancement options: `framework/HE Actions Tools.md`_
+> _Canonical framework: `framework/HE Index.md` | Feature definitions: `framework/features/`_
 
 ## Execution Engines and Orchestration Frameworks (The MAS Backbone)
 

@@ -37,17 +37,11 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
   - [x] Phase 0: Gap Analysis — Produce `tmp/Chain Restructuring Analysis.md` with per-feature chain gaps
   - [x] Phase 0: Extract implicit principles (L1) — Draft 23 Engineering Principles from implicit content
   - [x] Phase 1A: Define L1 (Engineering Principles) — Finalized 19 principles (EP-1 through EP-19); validated timeless, general, first-principles-derived; mapped to governed features
-  - [x] Phase 1B: Define L2 (Targeted Enhancements) — Written for all 32 features in `HE Principle Map.md`
-  - [x] Phase 1C: Define L5 (Concrete Enhancements) — Written for all 32 features in `HE Principle Map.md`
-  - [x] Phase 2A: Create `HE Principle Map.md` — New canonical document with full L1→L5 chains for all 32 features organized by pillar (HE Principle Practice Chain.md stays meta per user direction)
-  - [x] Phase 2B: Update `HE Design Decisions.md` — Added Principle-to-Practice Chain Index table mapping all 32 features to L1 principles and L2 outcomes
-  - [x] Phase 2C: Update `HE Actions Tools.md` — Added chain reference blockquotes (EP-N → L2 outcome) to all 32 feature sections + updated intro
-  - [x] Phase 2D: Update `HE Negative Actions.md` — Added Chain Failure Index table classifying all prevention items by broken principle and failure level
-  - [x] Phase 2E: Update `AGENTS.md` DO NOT rules — Added EP-N principle backlinks to all 13 DO NOT rules + updated section intro
-  - [x] Phase 2F: Update `HE Inverse Outcomes.md` — Added chain_level mapping to all 6 evaluation dimensions + updated intro
-  - [x] Phase 3: Cross-Cutting Alignment — Integrated into `HE Principle Map.md` cross-cutting sections: Prevention as chain-break alarm, DO NOT as L4 constraints with L1 backlinks, Reward Engineering as cross-chain anti-gaming, Token Economics as chain cost profile, SAS→MAS readiness
+  - [x] Phase 2A: Create modular framework files — Defined 32 features and 19 principles in `framework/features/` and `framework/principles/`, indexed by `framework/HE Index.md`
+  - [x] Phase 2B: Update framework documents — Principles, features, and cross-cutting concerns updated and verified
+  - [x] Phase 3: Cross-Cutting Alignment — Integrated into `framework/cross-cutting/`: Prevention Checklist, Reward Engineering, Token Economics, SAS→MAS readiness
   - [x] Phase 4: Validation — `npm run check` passes clean (markdownlint + cspell + he-lint)
-  - [ ] Phase 5: Consistency Cascade — Run `/revise-comments` to align `research/` documents with updated `framework/` definitions
+  - [ ] Phase 5: Consistency Cascade — Run `/revise-comments` to align `research/` documents with updated `framework/` modular definitions
   - [x] Phase 6: Anchor — Write new ANCHORS.md entry (A9) recording the Chain Restructuring decision
 - **Constraints:**
   - The 32-feature count (A6) must remain exactly 32 — no features added or removed
@@ -66,6 +60,20 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
   - ~~**Principle granularity:**~~ RESOLVED — Apply chain rigor: merge/split principles according to the chain. Refined from 23 draft to 19 final principles (EP-1 through EP-19). Each is timeless, first-principles-derived, and distinctly different. Merged: EP-2+EP-14→EP-2 (Persistence); EP-16+EP-20→EP-14 (Clarity before commitment); EP-21+EP-23→EP-18 (Entropy); EP-22+EP-3.4→EP-19 (Living documentation). Removed EP-15 (git-as-memory demoted to L3 design pattern under EP-2).
   - ~~**L5 measurability:**~~ RESOLVED — L5 framed as "what implementors should measure" not what this docs repo measures internally.
   - ~~**Chain.md role:**~~ RESOLVED — `HE Principle Practice Chain.md` stays as meta-document describing the chain model. New `HE Principle Map.md` created as the canonical principle-to-practice map for all 32 features.
+
+### Plan: Workspace Entropy Reconciliation
+
+- **Goal:** Eliminate workspace entropy by standardizing terminology, aligning meta-documentation with the modular framework DAG, and remediating broken references.
+- **Scope:** Root meta-docs (`README.md`, `AGENTS.md`, `ANCHORS.md`, `PLANS.md`), `framework/`, `research/`, and `docs/`.
+- **Status:** `in-progress`
+- **Steps:**
+  - [x] Phase 1: Terminology Standardization — Align pillar/verb strings across all files
+  - [x] Phase 2: Meta-Doc Realignment — Update structure and feature counts in `README.md` and `AGENTS.md`
+  - [/] Phase 3: Reference Remediation — Redirect 18+ broken research links to `framework/HE Index.md` and modular files
+  - [ ] Phase 4: Consistency Loop — Run `/revise-comments` and final `npm run audit`
+- **Constraints:** `framework/` is canonical truth (A3). 32-feature count is check-sum (A6).
+- **Checkpoints:** CP1: Root docs updated → CP2: Research links remediated → CP3: Final audit pass.
+- **Blocking Issues:** None.
 
 ---
 

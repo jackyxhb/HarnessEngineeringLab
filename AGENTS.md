@@ -14,10 +14,10 @@ All content is organized under this canonical structure. When editing or creatin
 
 ```json
 [
-  { "layer": "Foundation: Infrastructure", "role": "Execution engine & orchestration", "verb": "Execute" },
-  { "layer": "Pillar 1: Context Engineering", "role": "Memory, knowledge, real-time data", "verb": "Inform" },
-  { "layer": "Pillar 2: Architectural Constraints", "role": "Mechanical enforcement of boundaries", "verb": "Constrain" },
-  { "layer": "Pillar 3: Entropy Management", "role": "Long-term codebase health", "verb": "Maintain" }
+  { "layer": "Foundation: Infrastructure (Execute)", "role": "Execution engine & orchestration", "verb": "Execute" },
+  { "layer": "Pillar 1: Context Engineering (Inform)", "role": "Memory, knowledge, real-time data", "verb": "Inform" },
+  { "layer": "Pillar 2: Architectural Constraints (Constrain)", "role": "Mechanical enforcement of boundaries", "verb": "Constrain" },
+  { "layer": "Pillar 3: Entropy Management (Maintain)", "role": "Long-term codebase health", "verb": "Maintain" }
 ]
 ```
 
@@ -31,11 +31,11 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `framework/` — **Canonical source of truth.** Core framework definitions (32 features), enhancement options, and prevention checklist. All other docs must be consistent with these files.
+- `framework/` — **Canonical source of truth.** Core framework definitions (32 features), 19 engineering principles, and enhancement options. All other docs must be consistent with these files.
 - `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
 - `references/` — Original source articles (reference material, rarely modified).
-- `tmp/` — Working documents and drafts.
 - `.agent/workflows/` — Agent workflow definitions.
+- `tmp/` — Working documents and drafts.
 
 ## Workflows
 

@@ -58,7 +58,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 > **Goal (L1 — Engineering Principles):** Discover which engineering principles are unmet across all 4 function areas. Each sub-task inspects one function area for principle gaps.
 
-### Task 1.1: Foundation Principles — Infrastructure & Execution (Execute)
+### Task 1.1: Foundation Principles — Infrastructure (Execute)
 
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**

@@ -1,6 +1,6 @@
 # HE Philosophy
 
-> _Canonical framework: `framework/HE Design Decisions.md`_
+> _Canonical framework: `framework/HE Index.md`_
 
 Harness Engineering is an AI-first development methodology where humans design environments and agents write the code. It represents an extreme application of "shift-left" where software discipline moves completely from the code level into the repository's scaffolding.
 

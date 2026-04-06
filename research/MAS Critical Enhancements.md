@@ -1,6 +1,6 @@
 # MAS Critical Enhancements
 
-> _Canonical framework: `framework/HE Design Decisions.md`_
+> _Canonical framework: `framework/HE Index.md`_
 
 When transitioning from single-agent setups to Multi-Agent Systems (MAS), certain harness requirements intensify significantly. While highly effective for managing a single model, deploying a "swarm" or network of agents introduces complex challenges such as quadratic coordination overhead, race conditions, cascading hallucinations, and decentralized liability.
 

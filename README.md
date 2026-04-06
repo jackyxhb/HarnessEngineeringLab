@@ -30,6 +30,9 @@ HarnessEngineeringLab/
 ├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
 ├── references/              ← Source articles and reference material
 ├── framework/               ← Core framework definitions & operational guides
+│   ├── features/            ← 32 core feature definitions (P0-1 to P3-4)
+│   ├── principles/          ← 19 engineering principles (EP-01 to EP-19)
+│   └── cross-cutting/       ← Systemic risks and evaluation frameworks
 ├── research/                ← Analysis, principles, and commentary
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
@@ -43,13 +46,12 @@ Original source articles that form the foundation of this research, including Op
 
 The canonical framework definitions and operational guides (32 core features across 3 pillars + 1 foundation):
 
-- **HE Design Decisions.md** — The 32 canonical features of Harness Engineering
-- **HE Principle Map.md** — Complete L1→L5 chains for all 32 features and 19 Engineering Principles
+- **HE Index.md** — The Directed Acyclic Graph (DAG) index for the entire framework
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
-- **HE Actions Tools.md** — Catalogue of enhancement opportunities per feature (P0-1 through P3-4)
-- **HE Negative Actions.md** — Critical risks and failure modes to prevent (+ Reward Engineering cross-cutting)
-- **HE Inverse Outcomes.md** — Gap analysis and evaluation framework for assessing HE maturity
 - **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
+- **features/** — 32 modular feature files (L1→L5 chains)
+- **principles/** — 19 modular engineering principle files (EP-01 to EP-19)
+- **cross-cutting/** — Reward Engineering, Token Economics, Prevention Checklist
 
 ### `research/`
 

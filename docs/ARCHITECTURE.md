@@ -49,7 +49,7 @@ framework/         (canonical definitions)
 
 - No imports from `research/` or `references/`.
 - The single source of truth for all feature definitions, pillar structure, and feature counts.
-- He-lint.js validates all `.md` files against `framework/HE Design Decisions.md`.
+- He-lint.js validates all `.md` files against `framework/HE Index.md` and `framework/features/`.
 
 ### `research/`
 
@@ -70,7 +70,7 @@ framework/         (canonical definitions)
 
 ### `scripts/`
 
-- `he-lint.js` hardcodes paths to `framework/HE Design Decisions.md`, `framework/HE Negative Actions.md`, and `ANCHORS.md`. Changes to those file names must update `he-lint.js`.
+- `he-lint.js` hardcodes paths to `framework/HE Index.md`, `framework/cross-cutting/HE Prevention Checklist.md`, and `ANCHORS.md`. Changes to those file names must update `he-lint.js`.
 - `scripts/harness/` provides thin wrappers that call npm scripts. Never duplicate logic — keep behavior in npm scripts and let shell wrappers be entrypoints only.
 
 ### `tmp/`
@@ -93,9 +93,10 @@ Exactly **32 core features**: 11 Foundation + 12 P1 + 5 P2 + 4 P3. Validated by 
 ### Pillar Labels
 
 All headings referencing a pillar must use the canonical verb form:
-- _Context Engineering (Inform)_
-- _Architectural Constraints (Constrain)_
-- _Entropy Management (Maintain)_
+- **Foundation: Infrastructure (Execute)**
+- **Pillar 1: Context Engineering (Inform)**
+- **Pillar 2: Architectural Constraints (Constrain)**
+- **Pillar 3: Entropy Management (Maintain)**
 
 ---
 
@@ -103,9 +104,9 @@ All headings referencing a pillar must use the canonical verb form:
 
 | Anti-Pattern | Consequence | Enforcement |
 | --- | --- | --- |
-| Editing `framework/` to match a `research/` claim | Bad content enters canonical truth | DO NOT rule in `CLAUDE.md` |
+| Editing `framework/` to match a `research/` claim | Bad content enters canonical truth | DO NOT rule in `AGENTS.md` |
 | Defining a new feature in `research/` | Silent fork — agents load contradictory definitions | `he-lint.js` ID validation |
-| Writing to `references/` | Source articles become contaminated | DO NOT rule in `CLAUDE.md` |
+| Writing to `references/` | Source articles become contaminated | DO NOT rule in `AGENTS.md` |
 | Circular dependency (research → framework → research) | Infinite reconcile loops | Content-flow rule above |
-| Registering a workflow without a `CLAUDE.md` entry | Tool is invisible to agents | DO NOT rule in `CLAUDE.md` |
+| Registering a workflow without a `AGENTS.md` entry | Tool is invisible to agents | DO NOT rule in `AGENTS.md` |
 | Leaving `tmp/` files > 30 days | Context pollution, stale data | `audit.sh` stale-file check |

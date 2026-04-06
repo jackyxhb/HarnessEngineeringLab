@@ -1,6 +1,6 @@
 # HE Assessment Sheet
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Gap evaluation: `framework/HE Inverse Outcomes.md`_
+> _Canonical framework: `framework/HE Index.md` | Gap evaluation: `framework/cross-cutting/HE Evaluation Dimensions.md`_
 
 ## Foundational Infrastructure (Execute)
 
@@ -67,4 +67,4 @@ You can measure the overall progress of your harness project by determining whic
 - **Level 3: Production Harness (Enterprise/Org)**
   - _Criteria:_ Includes Level 2, plus custom middleware (like loop detection), observability integration, scheduled entropy management agents, A/B testing for the harness, and escalation policies for stuck agents.
 
-> _See also: `framework/HE Inverse Outcomes.md` Part 5 for a comprehensive quick-start evaluation checklist._
+> _See also: `framework/cross-cutting/HE Evaluation Dimensions.md` for a comprehensive quick-start evaluation checklist._

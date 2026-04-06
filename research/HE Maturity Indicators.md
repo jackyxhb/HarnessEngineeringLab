@@ -1,17 +1,17 @@
 # HE Maturity Indicators
 
-> _Canonical framework: `framework/HE Design Decisions.md` | Landing pathway: `research/HE Landing Pathway.md`_
+> _Canonical framework: `framework/HE Index.md` | Landing pathway: `research/HE Landing Pathway.md`_
 
 Three alternative indicators to assess project maturity:
 
-## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework" in `HE Design Decisions.md` | `ANCHORS.md`)
+## 1. Functional Maturity (Based on the "3-Pillar + 1-Foundation Framework" in `framework/HE Index.md` | `ANCHORS.md`)
 
 You can divide the project's maturity based on how many of the core areas of harness engineering have been successfully implemented:
 
-- **Foundation - Foundational Infrastructure (Execute):** The harness provides the execution engine: secure bash sandboxes, filesystem & Git workspace, verification (self & collective), Ralph Loops for long-horizon tasks, orchestration logic, escalation policies & audit trails, rippable middleware, harness versioning, smart command wrappers (P0-9), inter-agent communication (P0-10), and portable agent surface (P0-11). This is the prerequisite layer that all pillars build upon.
-- **Level 1 - Context Engineering (Inform):** The harness successfully delivers the right information to the agent at the right time. This includes setting up static context (like `AGENTS.md` and architecture specs), dynamic context (like real-time CI/CD status via observability/dashboards), and ensuring the repository acts as the single source of truth.
-- **Level 2 - Architectural Constraints (Constrain):** The harness moves beyond simply giving the agent instructions and begins **mechanically enforcing boundaries**. This level is achieved when deterministic linters, structural tests, and LLM-based auditors are actively preventing the agent from exploring dead ends or violating dependency rules.
-- **Level 3 - Entropy Management (Maintain):** The highest functional level, where the system maintains its own health over time. This is achieved by deploying periodic cleanup agents that run on schedules to automatically fix documentation drift, resolve circular dependencies, and enforce coding patterns.
+- **Foundation: Infrastructure (Execute):** The harness provides the execution engine: secure bash sandboxes, filesystem & Git workspace, verification (self & collective), Ralph Loops for long-horizon tasks, orchestration logic, escalation policies & audit trails, rippable middleware, harness versioning, smart command wrappers (P0-9), inter-agent communication (P0-10), and portable agent surface (P0-11). This is the prerequisite layer that all pillars build upon.
+- **Pillar 1: Context Engineering (Inform):** The harness successfully delivers the right information to the agent at the right time. This includes setting up static context (like `AGENTS.md` and architecture specs), dynamic context (like real-time CI/CD status via observability/dashboards), and ensuring the repository acts as the single source of truth.
+- **Pillar 2: Architectural Constraints (Constrain):** The harness moves beyond simply giving the agent instructions and begins **mechanically enforcing boundaries**. This level is achieved when deterministic linters, structural tests, and LLM-based auditors are actively preventing the agent from exploring dead ends or violating dependency rules.
+- **Pillar 3: Entropy Management (Maintain):** The highest functional level, where the system maintains its own health over time. This is achieved by deploying periodic cleanup agents that run on schedules to automatically fix documentation drift, resolve circular dependencies, and enforce coding patterns.
 
 ## 2. Level of Automation (Based on Real-World Approaches)
 
