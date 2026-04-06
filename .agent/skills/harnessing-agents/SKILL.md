@@ -57,19 +57,32 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 - Establishing multi-agent systems (MAS) and managing coordination overhead.
 - Auditing existing AI infrastructure for gaps and vulnerabilities.
 
-## Quick Routing (Decision Tree)
+## How to Use (3 Modes)
 
-```json
-[
-  { "goal": "Quick gap scan — assess maturity against 32 core features",       "start": "references/he-quick-start.md",            "time": "5 min" },
-  { "goal": "Full audit — Inspect → Plan → Execute lifecycle",                "start": "references/he-full-audit.md",              "time": "30-60 min" },
-  { "goal": "Feature deep dive — 3-step chain (What / Don't / Options)",      "start": ["references/he-chain-foundation.md", "references/he-chain-context.md", "references/he-chain-constraints-entropy.md"], "time": "2 min" },
-  { "goal": "Score & analyze gaps — 6 dimensions + priority formula",         "start": "references/he-scoring.md",                 "time": "15 min" },
-  { "goal": "Scope an audit — calibrate 4 scoping dimensions",               "start": "references/he-scoping-evaluation.md",      "time": "5 min" },
-  { "goal": "Run Subagents — dispatch parallel gap audits",                   "start": "references/he-subagent-prompts.md",        "time": "2 min" },
-  { "goal": "Cascade analysis — feature dependencies & failure chains",       "start": "references/he-cascade-analysis.md",        "time": "5 min" }
-]
-```
+### Mode 1: Quick Scan — `"run a quick harness scan"`
+Runs the 32-item yes/no checklist against the target project. Produces a maturity level score.
+- **Time:** ~5 min
+- **Reference:** `references/he-quick-start.md`
+- **Output:** `.harness/HE-SCOPE.md`
+
+### Mode 2: Full Audit — `"run a full harness audit"`
+Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
+- **Time:** 30–60 min
+- **Reference:** `references/he-full-audit.md`
+- **Output:** `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
+
+### Mode 3: Feature Lookup — `"look up P0-9"` or `"explain Smart Command Wrappers"`
+Look up a specific feature's 3-step chain (What to Do → Don't Do → Options).
+- **Time:** ~2 min
+- **Reference:** `references/he-chain-foundation.md` (P0-1–P0-11), `references/he-chain-context.md` (P1-1–P1-12), `references/he-chain-constraints-entropy.md` (P2-1–P3-4)
+
+### Internal Tools (used within Full Audit, not user-invoked)
+
+These are used automatically during a full audit — users do not need to invoke them directly:
+- `references/he-scoring.md` — 6-dimension scoring + priority formula (Phase 2)
+- `references/he-scoping-evaluation.md` — 4 scoping dimensions (Phase 0)
+- `references/he-subagent-prompts.md` — parallel agent dispatch prompts (Phase 1)
+- `references/he-cascade-analysis.md` — feature dependency maps (Phase 2)
 
 ## Output Directory Convention
 
