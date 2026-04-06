@@ -169,19 +169,17 @@ Every audit and every build must be scoped across all four dimensions:
 
 ---
 
-## Decision Tree (SKILL.md Must Include)
+## Routing (SKILL.md Must Include)
 
-SKILL.md must contain a fast-path routing table as the agent's first decision after reading:
+SKILL.md must contain a keyword-based routing table as the agent's first decision after reading. Route by keyword in the user's input. If no keyword matches, **default to Mode 1 (Quick Scan)**.
 
-```json
-[
-  { "goal": "Quick gap check", "start_here": "`references/he-quick-start.md`", "time": "5 min" },
-  { "goal": "Full audit (Inspect → Plan → Execute)", "start_here": "`references/he-full-audit.md`", "time": "30–60 min" },
-  { "goal": "Score and prioritize specific gaps", "start_here": "`references/he-scoring.md`", "time": "15 min" },
-  { "goal": "Look up a feature's signals + policies", "start_here": ["`references/he-chain-foundation.md`", "`references/he-chain-context.md`", "`references/he-chain-constraints-entropy.md`"], "time": "2 min" },
-  { "goal": "Scope an audit before starting", "start_here": "`references/he-scoping-evaluation.md`", "time": "5 min" }
-]
-```
+| Keyword | Mode | Reference | Time |
+| --- | --- | --- | --- |
+| **`scan`** (DEFAULT) | Quick Scan — 32-item checklist → maturity score | `references/he-quick-start.md` | ~5 min |
+| **`full`** | Full Audit — 6-phase lifecycle | `references/he-full-audit.md` | 30–60 min |
+| **`feature`** | Feature Lookup — 3-step chain for a specific feature | `references/he-chain-*.md` | ~2 min |
+
+Internal tools (scoring, scoping, subagents, cascade) are used automatically within the Full Audit and are **not** user-invoked modes.
 
 This table prevents the agent from reading everything before acting. Each row is a complete action path.
 
