@@ -1,10 +1,10 @@
 ---
-description: Comment, Commit, Push — stage all changes, commit with a descriptive message, and push to remote
+description: Comment, Commit, Push — execution of git comment, commit, push commands to finish changes commit to repos.
 ---
 
 # /ccp — Comment, Commit, Push
 
-Run this workflow to finalize the current work: generate a commit message, commit all staged changes, and push to the remote repository.
+Run this workflow to finalize work: execute git comment (generating a message), stage changes, commit, and push to the remote repository.
 
 ## Steps
 

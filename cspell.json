@@ -64,7 +64,9 @@
     "toggleable",
     "MTTR",
     "Negativa",
-    "Poka"
+    "Poka",
+    "Justfile",
+    "sonoma"
   ],
   "ignorePaths": [
     "node_modules",
