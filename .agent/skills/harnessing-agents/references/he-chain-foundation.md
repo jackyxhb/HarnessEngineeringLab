@@ -173,7 +173,10 @@ Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp
 ### Options (L3–L4)
 - **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning.
 - **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order.
-- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/` (e.g., `ccp.md`, `ccpr.md`, `reconcile.md`).
+- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/`. Wrappers are markdown workflow definitions that agents interpret — never executable scripts (Python, Bash, etc.). The three standard wrappers are:
+  - **`ccp.md`** — **Comment, Commit, Push.** Reviews changes (`git diff`), stages all changes (`git add -A`), generates a conventional-commit message, commits (`git commit`), and pushes (`git push`).
+  - **`ccpr.md` `<tagID>`** — **Comment, Commit, Push, Release.** Runs `/ccp`, then creates and pushes a Git tag `<tagID>` and a GitHub Release with release notes.
+  - **`reconcile.md`** — **Reconciliation.** Audits all markdown documents, the latest edition of the codebase, and `README.md` for consistency — fixing broken content, inconsistent terminology, duplication, and orphan concepts.
 - **NEVER** create executable scripts (Python, Bash, etc.) for command wrappers. Wrappers are markdown workflow definitions that agents interpret — not code that agents execute.
 
 ### Remediation Tiers (L4–L5)

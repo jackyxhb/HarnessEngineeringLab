@@ -85,7 +85,10 @@ When implementing or upgrading a harness, use these options to translate the 32 
 - **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
 - **Action:** Stratify commands by execution cost: fast gate (e.g., `npm run smoke`) for pre-commit frequency; full quality gate (e.g., `npm run check` / `npm run ci`) for pre-push; structural audit (e.g., `npm run audit`) for on-demand harness health checks. Agents must use the cheapest gate appropriate to their context.
 - **Action:** Keep command names stable across harness versions; change implementations behind wrappers so agent muscle-memory and CI references never break.
-- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/` (e.g., `ccp.md`, `ccpr.md`, `reconcile.md`). Wrappers are markdown workflow definitions that agents interpret — never executable scripts (Python, Bash, etc.).
+- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/`. Wrappers are markdown workflow definitions that agents interpret — never executable scripts (Python, Bash, etc.). The three standard wrappers are:
+  - **`ccp.md`** — **Comment, Commit, Push.** Reviews changes (`git diff`), stages all changes (`git add -A`), generates a conventional-commit message, commits (`git commit`), and pushes (`git push`).
+  - **`ccpr.md` `<tagID>`** — **Comment, Commit, Push, Release.** Runs `/ccp`, then creates and pushes a Git tag `<tagID>` and a GitHub Release with release notes.
+  - **`reconcile.md`** — **Reconciliation.** Audits all markdown documents, the latest edition of the codebase, and `README.md` for consistency — fixing broken content, inconsistent terminology, duplication, and orphan concepts.
 
 ### P0-10. Inter-Agent Communication (The Mailbox)
 
