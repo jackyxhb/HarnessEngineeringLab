@@ -84,6 +84,17 @@ These are used automatically during a full audit — users do not need to invoke
 - `references/he-subagent-prompts.md` — parallel agent dispatch prompts (Phase 1)
 - `references/he-cascade-analysis.md` — feature dependency maps (Phase 2)
 
+### Default: Unrecognized Input
+
+If the user's input does not clearly match Mode 1, 2, or 3 above, **do NOT guess or hallucinate a behavior**. Instead, respond with:
+
+> I can help with harness engineering. Which mode would you like?
+> 1. **Quick Scan** — 32-item checklist (~5 min)
+> 2. **Full Audit** — complete Inspect → Plan → Execute lifecycle (~30-60 min)
+> 3. **Feature Lookup** — explain a specific feature (e.g., "look up P0-9")
+
+Wait for the user to choose before proceeding.
+
 ## Output Directory Convention
 
 All output artifacts produced by this skill (`HE-SCOPE.md`, `HE-CLUES.md`, `HE-PRIORITIES.md`, `HE-IMPLEMENTATION-PLAN.md`, `HE-CHANGE-SUMMARY.md`, `HE-ASSESSMENT-REPORT.md`) **MUST be written to `./.harness/`** in the target project root — never to the project root itself.
