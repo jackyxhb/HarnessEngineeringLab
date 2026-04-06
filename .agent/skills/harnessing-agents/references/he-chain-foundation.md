@@ -173,11 +173,11 @@ Elevating raw system commands into intelligent, multi-step workflows (e.g., `ccp
 ### Options (L3–L4)
 - **Action:** Elevate raw system commands into intelligent, multi-step workflows that integrate agent reasoning.
 - **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order.
-- **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
-- **Tool:** Workflow installation scripts that provide localized command definitions.
+- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/` (e.g., `ccp.md`, `ccpr.md`, `reconcile.md`).
+- **NEVER** create executable scripts (Python, Bash, etc.) for command wrappers. Wrappers are markdown workflow definitions that agents interpret — not code that agents execute.
 
 ### Remediation Tiers (L4–L5)
-- [Tier 1] Install recommended wrappers as project workflows in `.agent/workflows/`.
+- [Tier 1] Install recommended wrappers as `.md` workflow files in `.agent/workflows/`. Each file contains step-by-step instructions the agent follows, not executable code.
 - [Tier 2] Implement enforcement hooks to ensure agents use wrappers rather than raw commands.
 
 ---

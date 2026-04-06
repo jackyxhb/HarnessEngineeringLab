@@ -85,8 +85,7 @@ When implementing or upgrading a harness, use these options to translate the 32 
 - **Action:** Standardize common tasks (commit, push, release, reconcile) to ensure deterministic execution order and metadata generation.
 - **Action:** Stratify commands by execution cost: fast gate (e.g., `npm run smoke`) for pre-commit frequency; full quality gate (e.g., `npm run check` / `npm run ci`) for pre-push; structural audit (e.g., `npm run audit`) for on-demand harness health checks. Agents must use the cheapest gate appropriate to their context.
 - **Action:** Keep command names stable across harness versions; change implementations behind wrappers so agent muscle-memory and CI references never break.
-- **Tool:** Recommended wrapper workflows (e.g., `ccp`, `ccpr`, `reconcile`).
-- **Tool:** Workflow installation scripts that provide localized command definitions.
+- **Tool:** Recommended wrapper workflows as `.md` files in `.agent/workflows/` (e.g., `ccp.md`, `ccpr.md`, `reconcile.md`). Wrappers are markdown workflow definitions that agents interpret — never executable scripts (Python, Bash, etc.).
 
 ### P0-10. Inter-Agent Communication (The Mailbox)
 
