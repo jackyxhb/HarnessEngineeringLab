@@ -77,6 +77,10 @@ harnessing-agents/
 
 Each file must be independently valuable yet explicitly cross-referenced to its neighbors.
 
+### Output Directory Convention
+
+When the skill runs against a **target project**, all `HE-` output artifacts (e.g., `HE-CLUES.md`, `HE-IMPLEMENTATION-PLAN.md`, `HE-ASSESSMENT-REPORT.md`) **MUST be written to `.harness/`** in the target project root — never to the project root itself. All workflow and subagent prompts must enforce this convention.
+
 ### Frontmatter Standard
 
 SKILL.md must include YAML frontmatter:
@@ -369,7 +373,7 @@ Plus: total files, total lines, per-action-path max, verification pass/fail.
   { "term": "Evaluation Dimensions (6)", "meaning": "Score individual features (chain-level mapped)", "used_in": "`he-scoring.md`" },
   { "term": "Feature ID", "meaning": ["`P0-1`–`P0-11`", "`P1-1`–`P1-12`", "`P2-1`–`P3-4`"], "used_in": "All feature references" },
   { "term": "EP-N", "meaning": "Engineering Principle from `HE Principle Map.md`", "used_in": "Governing constraints, feature chain anchors" },
-  { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`HE-CLUES.md`", "templates"] },
+  { "term": "CLUE-[N]", "meaning": "Audit finding with bidirectional backlinks", "used_in": ["`.harness/HE-CLUES.md`", "templates"] },
   { "term": "HE-* prefix", "meaning": "Harness Engineering generic doc", "used_in": "File naming" },
   { "term": "MAS-* prefix", "meaning": "Multi-Agent specific doc", "used_in": "File naming" },
   { "term": "Chain Level (L1–L5)", "meaning": "Principle-to-Practice Chain position", "used_in": "Phase annotations, evaluation dimension mappings" }
@@ -404,7 +408,7 @@ The built skill must support all three maturity targets:
 4. **Minimal prose** — Tables and checklists over paragraphs. Prose only for disambiguation.
 5. **Verification checklist at bottom** — Every template includes its own pass/fail checks:
    - `□ Implements policy from he-chain-foundation.md, he-chain-context.md, or he-chain-constraints-entropy.md`
-   - `□ Tier assignment matches HE-IMPLEMENTATION-PLAN.md`
+   - `□ Tier assignment matches .harness/HE-IMPLEMENTATION-PLAN.md`
    - `□ No new gaps introduced (vs. he-quick-start.md)`
 
 ---
