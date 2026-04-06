@@ -13,7 +13,6 @@ Module boundaries, content flow, and dependency rules for the HarnessEngineering
 | `references/` | Immutable source articles | **Read-only.** Never modified after ingestion |
 | `.agent/workflows/` | Agent procedure definitions | Humans only |
 | `scripts/` | Operational tooling (linting, auditing) | Humans only |
-| `builder/` | Build execution logs | Agents (append-only after creation) |
 | `tmp/` | Ephemeral drafts | Agents (max 30-day lifetime) |
 | `CLAUDE.md` | Claude Code shim → `AGENTS.md` | Humans only |
 | `AGENTS.md` | IDE-agnostic agent rules (canonical rule surface) | Humans only |

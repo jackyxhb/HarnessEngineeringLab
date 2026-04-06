@@ -76,10 +76,12 @@
     "inspectable",
     "feedforward",
     "sublinear",
+    "sublinearly",
     "toggleable",
     "MTTR",
     "Negativa",
-    "Poka"
+    "Poka",
+    "pytest"
   ],
   "ignorePaths": [
     "node_modules/**",

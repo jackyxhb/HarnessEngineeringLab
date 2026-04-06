@@ -1,8 +1,8 @@
 # Gap Scoring Framework
 
-> **Source:** `framework/HE Inverse Outcomes.md` (evaluation dimensions, cross-cutting perspectives) and `framework/HE Principle Practice Chain.md` (chain-level mappings)
+> **Source:** `framework/cross-cutting/HE Evaluation Dimensions.md`, `framework/cross-cutting/HE Cross Cutting Perspectives.md`, and `framework/HE Principle Practice Chain.md` (chain-level mappings)
 
-The 6 Evaluation Dimensions below score individual features. They are distinct from the 4 Scoping Dimensions (`references/he-scoping-evaluation.md`) used to scope the overall audit. Each dimension maps to a level in the Principle-to-Practice Chain (see `framework/HE Principle Map.md`), ensuring gap analysis is grounded in engineering principles.
+The 6 Evaluation Dimensions below score individual features. They are distinct from the 4 Scoping Dimensions used to scope the overall audit. Each dimension maps to a level in the Principle-to-Practice Chain (see `framework/HE Index.md`), ensuring gap analysis is grounded in engineering principles.
 
 ## Evaluation Dimensions (0-5 Rubric)
 
@@ -40,7 +40,7 @@ Priority Score = (5 - Composite Score) × Impact Weight × Cascade Length
 ### Heuristics & Definitions
 
 - **Composite Score:** The unweighted average of the 6 dimension scores (scale of 0-5).
-- **Impact Weight:** How many other downstream features explicitly rely on this one. Look up the feature in `references/he-cascade-analysis.md` and count the downstream dependencies. (Zero downstream dependencies = Weight of 1. Otherwise, Weight = Dependency Count).
+- **Impact Weight:** How many other downstream features explicitly rely on this one. Look up the feature's `downstream` dependencies in `framework/HE Index.md` and count them. (Zero downstream dependencies = Weight of 1. Otherwise, Weight = Dependency Count).
 - **Cascade Length:** The severity of failure propagation when this feature breaks. Heuristic: Trace the feature's failure. Does it cause complete systemic failure (> 3 downstream systems collapse simultaneously)? If yes, Cascade Length = 3. Does it break a moderate component pipeline (2-3 elements fail)? Length = 2. Is it a localized, isolated failure? Length = 1.
 
 ## Output Tiers
@@ -61,7 +61,7 @@ Sort your prioritized gaps into execution tiers:
 
 After scoring individual features, apply these 5 systemic perspectives to reveal gaps that span multiple features.
 
-> **Source:** `framework/HE Inverse Outcomes.md` Part 3
+> **Source:** `framework/cross-cutting/HE Cross Cutting Perspectives.md`
 
 ### A. Feedback Loop Chain
 

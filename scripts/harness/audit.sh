@@ -53,16 +53,43 @@ check_file "scripts/harness/audit.sh"               "This audit script"
 check_file ".github/workflows/he-lint.yml"          "CI lint gate"
 check_file ".github/workflows/he-weekly-gc.yml"     "Weekly entropy scan"
 check_file ".husky/pre-commit"                      "Pre-commit hook"
-check_file "framework/HE Design Decisions.md"          "Canonical feature definitions"
-check_file "framework/HE Negative Actions.md"   "Prevention checklist"
-check_file "framework/HE Inverse Outcomes.md" "Gap evaluation framework"
+check_file "framework/HE Index.md"                    "DAG navigation index"
+check_file "framework/HE Principle Practice Chain.md"  "Chain model meta-document"
+
+# Validate DAG structure: 32 feature files, 19 principle files
+FEAT_DIR="$REPO_ROOT/framework/features"
+PRINC_DIR="$REPO_ROOT/framework/principles"
+
+if [[ -d "$FEAT_DIR" ]]; then
+  FEAT_COUNT=$(find "$FEAT_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
+  if [[ "$FEAT_COUNT" -eq 32 ]]; then
+    ok "Feature files: $FEAT_COUNT (expected 32)"
+    PASS=$((PASS + 1))
+  else
+    fail "Feature files: found $FEAT_COUNT, expected 32 in framework/features/"
+  fi
+else
+  fail "framework/features/ directory missing"
+fi
+
+if [[ -d "$PRINC_DIR" ]]; then
+  PRINC_COUNT=$(find "$PRINC_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
+  if [[ "$PRINC_COUNT" -eq 19 ]]; then
+    ok "Principle files: $PRINC_COUNT (expected 19)"
+    PASS=$((PASS + 1))
+  else
+    fail "Principle files: found $PRINC_COUNT, expected 19 in framework/principles/"
+  fi
+else
+  fail "framework/principles/ directory missing"
+fi
 
 echo ""
 
 # --- 2. Workflow Registry Consistency ---
 echo "--- 2. Workflow registry ---"
 
-WORKFLOWS=("anchor" "build" "ccp" "ccpr" "cognitive-branch" "mount" "polish" "reconcile" "revise-comments")
+WORKFLOWS=("anchor" "ccp" "ccpr" "cognitive-branch" "mount" "polish" "reconcile" "revise-comments")
 for wf in "${WORKFLOWS[@]}"; do
   if [[ -f ".agent/workflows/${wf}.md" ]]; then
     ok "Workflow: /${wf}"

@@ -66,7 +66,7 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **What:** Fixed the canonical feature count of the framework at exactly 32 core features: Foundation (11), Pillar 1 (12), Pillar 2 (5), Pillar 3 (4). Feature IDs follow the unified `P<area>-<sub>` pattern (e.g., P0-11, P1-12, P2-5). P1-12 (Skill Engineering) was added to enforce modular, context-efficient, and tunable agent skill architecture.
 - **Why:** Acts as a checksum for reconciliation workflows. Prevents orphaned concepts or duplicate features slipping into the framework unnoticed.
 - **Target:** All framework definitions and the `.agent/workflows/reconcile.md` script.
-- **Background:** Expanded from 29 to 30 after integrating P1-11 (Socratic Questioning). Expanded from 30 to 31 after integrating P0-11 (Portable Agent Surface) to enforce IDE-agnostic rule surfaces. Expanded from 31 to 32 after integrating P1-12 (Skill Engineering) — methods extracted from builder/Optimization.md proving monolith→module skill splits, routing-hub patterns, and mandatory-read budgets.
+- **Background:** Expanded from 29 to 30 after integrating P1-11 (Socratic Questioning). Expanded from 30 to 31 after integrating P0-11 (Portable Agent Surface) to enforce IDE-agnostic rule surfaces. Expanded from 31 to 32 after integrating P1-12 (Skill Engineering) — methods extracted from a now-retired build optimization log (formerly `builder/Optimization.md`) proving monolith→module skill splits, routing-hub patterns, and mandatory-read budgets.
 - **Date:** 2026-04-05
 
 ### A7: Reward Engineering as Cross-Cutting
@@ -91,4 +91,12 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Why:** The framework was "hollow at L1 and L5" — strong middle layers (L3 Design Decisions, L4 Actions/Tools from Core Features and Enhancement Options) but no anchoring principles (L1) or measurable outcomes (L5) for any of the 32 features. Prevention items and DO NOT rules floated without principle grounding. The chain restructuring fills L1 and L5, making every feature traceable from principle to measurement.
 - **Target:** `framework/HE Principle Map.md` (new), `framework/HE Design Decisions.md`, `framework/HE Actions Tools.md`, `framework/HE Negative Actions.md`, `framework/HE Inverse Outcomes.md`, `AGENTS.md`. `HE Principle Practice Chain.md` stays as meta-document describing the chain model.
 - **Background:** Gap analysis (see `tmp/Chain Restructuring Analysis.md`) revealed 0/32 features had explicit L1 or L5. The 19 principles were refined from 23 drafts via merge/split following chain rigor. Key merges: Persistence (EP-2), Clarity before commitment (EP-14), Entropy countering (EP-18), Living documentation (EP-19). Git-as-memory demoted from principle to L3 design pattern under EP-2 Persistence.
+- **Date:** 2026-04-06
+
+### A10: Retire build.md — Direct Skill Maintenance
+
+- **What:** Deleted `.agent/workflows/build.md` (the 449-line "skill compiler") and transitioned the `harnessing-agents` skill to direct file maintenance. Removed all references to `builder/` (non-existent directory) and `/build` workflow from AGENTS.md, README.md, ARCHITECTURE.md, and audit.sh.
+- **Why:** The skill is fully built (v4.0.0, 9 references, 4 templates). Re-running the compiler on every change introduced non-deterministic output, wasted ~45K tokens on source extraction, and added indirection to a simple edit. EP-6: scaffolding is temporary by design.
+- **Target:** `.agent/workflows/build.md` (deleted), AGENTS.md, README.md, ARCHITECTURE.md, audit.sh, SKILL.md (symlink documentation added).
+- **Background:** The build workflow served its purpose during initial skill construction — transforming 7 dense framework files (~170KB) into a structured, token-optimized skill tree. Once the skill stabilized, the compiler became overhead. The useful verification checks (line budgets, cross-references, feature coverage) were retired rather than extracted, since existing `npm run check` + `npm run audit` provide sufficient quality gates for direct editing.
 - **Date:** 2026-04-06

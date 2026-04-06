@@ -23,25 +23,50 @@ function buildDynamicRegistries() {
   }
 
   // 2. Extract Cross-Cutting Concerns from Prevention Checklist
-  const preventionPath = path.join(repoRoot, 'framework', 'HE Negative Actions.md');
+  const preventionPath = path.join(repoRoot, 'framework', 'cross-cutting', 'HE Prevention Checklist.md');
   if (fs.existsSync(preventionPath)) {
     const lines = fs.readFileSync(preventionPath, 'utf-8').split('\n');
     lines.forEach(line => {
       const match = line.match(/^##\s+(.*)$/);
       if (match && !line.includes('Checklist')) {
-        anchorsMap.set(match[1].trim(), 'HE Negative Actions.md');
+        anchorsMap.set(match[1].trim(), 'HE Prevention Checklist.md');
       }
     });
   }
+}
 
-  // 3. Extract Feature IDs and Names from Core Features
-  const coreFeaturesPath = path.join(repoRoot, 'framework', 'HE Design Decisions.md');
-  if (fs.existsSync(coreFeaturesPath)) {
-    const lines = fs.readFileSync(coreFeaturesPath, 'utf-8').split('\n');
-    // F1, P1-1 logic needs to be inferred or structured, since the markdown uses bullets, 
-    // we'll assign generic bounds logic rather than strict extraction, 
-    // but we can extract bold terms: * **Feature Name:**
-    // Actually, setting generic bounds is safer for IDs.
+// --- STRUCTURAL VALIDATION --- //
+const EXPECTED_FEATURE_FILES = 32;
+const EXPECTED_PRINCIPLE_FILES = 19;
+
+function validateDAGStructure() {
+  // Validate feature files exist (P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04)
+  const featuresDir = path.join(repoRoot, 'framework', 'features');
+  const principlesDir = path.join(repoRoot, 'framework', 'principles');
+
+  if (!fs.existsSync(featuresDir)) {
+    reportError(featuresDir, 0, 'DAG Structure: framework/features/ directory is missing.', 'Create framework/features/ and populate with P0-01.md through P3-04.md');
+    return;
+  }
+  if (!fs.existsSync(principlesDir)) {
+    reportError(principlesDir, 0, 'DAG Structure: framework/principles/ directory is missing.', 'Create framework/principles/ and populate with EP-01.md through EP-19.md');
+    return;
+  }
+
+  const featureFiles = fs.readdirSync(featuresDir).filter(f => f.endsWith('.md'));
+  const principleFiles = fs.readdirSync(principlesDir).filter(f => f.endsWith('.md'));
+
+  if (featureFiles.length !== EXPECTED_FEATURE_FILES) {
+    reportError(featuresDir, 0, `DAG Structure: Expected ${EXPECTED_FEATURE_FILES} feature files, found ${featureFiles.length}.`, `Ensure framework/features/ contains exactly ${EXPECTED_FEATURE_FILES} files (P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04).`);
+  }
+  if (principleFiles.length !== EXPECTED_PRINCIPLE_FILES) {
+    reportError(principlesDir, 0, `DAG Structure: Expected ${EXPECTED_PRINCIPLE_FILES} principle files, found ${principleFiles.length}.`, `Ensure framework/principles/ contains exactly ${EXPECTED_PRINCIPLE_FILES} files (EP-01..EP-19).`);
+  }
+
+  // Validate HE Index.md exists
+  const indexPath = path.join(repoRoot, 'framework', 'HE Index.md');
+  if (!fs.existsSync(indexPath)) {
+    reportError(indexPath, 0, 'DAG Structure: framework/HE Index.md is missing.', 'Create HE Index.md — the DAG navigation index.');
   }
 }
 
@@ -70,7 +95,7 @@ function scanFile(filePath) {
     let match;
     while ((match = countRegex.exec(line)) !== null) {
       if (match[1] !== "32") {
-        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 32.`, 'Update to "32 core features" (11 Foundation + 12 P1 + 5 P2 + 4 P3). See: framework/HE Design Decisions.md');
+        reportError(filePath, lineNum, `Number Bias: Detected "${match[0]}" instead of the canonical 32.`, 'Update to "32 core features" (11 Foundation + 12 P1 + 5 P2 + 4 P3). See: framework/HE Index.md');
       }
     }
 
@@ -97,7 +122,7 @@ function scanFile(filePath) {
       }
       
       if (invalid) {
-        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-12, P2-1..P2-5, P3-1..P3-4. See: framework/HE Design Decisions.md');
+        reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-12, P2-1..P2-5, P3-1..P3-4. See: framework/HE Index.md');
       }
     }
 
@@ -110,7 +135,7 @@ function scanFile(filePath) {
     ];
     pillarLabelChecks.forEach(({ regex, canonical }) => {
       if (regex.test(line)) {
-        reportError(filePath, lineNum, `Pillar Label: Heading uses unlabelled pillar name.`, `Use canonical label "${canonical}". See: framework/HE Design Decisions.md`);
+        reportError(filePath, lineNum, `Pillar Label: Heading uses unlabelled pillar name.`, `Use canonical label "${canonical}". See: framework/HE Index.md`);
       }
     });
   });
@@ -153,6 +178,9 @@ function walkDir(dir) {
 function run() {
   console.log('Running Generic HE Validations...');
   buildDynamicRegistries();
+
+  // Always validate DAG structure
+  validateDAGStructure();
 
   const args = process.argv.slice(2).filter(a => a !== '--all');
   const allMode = process.argv.includes('--all');

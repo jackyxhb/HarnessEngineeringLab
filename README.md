@@ -31,7 +31,6 @@ HarnessEngineeringLab/
 ├── references/              ← Source articles and reference material
 ├── framework/               ← Core framework definitions & operational guides
 ├── research/                ← Analysis, principles, and commentary
-├── builder/                 ← Build logs for the harnessing-agents skill
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
 ```
@@ -61,10 +60,6 @@ Supporting analysis and commentary documents covering:
 - **Multi-Agent** — `HE and MAS Integration.md`, `MAS Critical Enhancements.md`, `HE Degradation Factors.md`
 - **Practical Guidance** — `HE Landing Pathway.md`, `HE Assessment Sheet.md`, `HE Project Build Guide.md`, `HE Maturity Indicators.md`
 - **Tooling & Context** — `HE Agent Tools Catalog.md`, `HE Theory vs Practice.md`
-
-### `builder/`
-
-Build logs documenting the creation and optimization of the `harnessing-agents` skill, including the optimization plan and results summary.
 
 ## Key Concepts
 

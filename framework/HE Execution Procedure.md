@@ -39,7 +39,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 **Input:** `HE-SCOPE.md`, target project filesystem
 **Actions:**
 
-1. Run through the **Quick-Start Evaluation Checklist** (from `HE Inverse Outcomes.md` Part 5).
+1. Run through the **Quick Scan Checklist** (evaluating L2 targets from `HE Index.md`).
 2. For each checkbox, mark it as ✅ (present) or ❌ (absent) with a one-line justification.
 3. Identify the project's current **Maturity Level** (Basic / Team / Production) based on the `HE Landing Pathway`.
 
@@ -49,7 +49,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Current maturity level
 - Target maturity level (user to confirm)
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Inverse Outcomes.md` Part 5, `HE Landing Pathway`.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Index.md`, `HE Landing Pathway`.
 **Estimated tokens:** ~3,000
 
 ---
@@ -81,7 +81,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 - Gap signals observed
 - Severity: Critical / Important / Enhancement
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Foundation section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Index.md` & relevant `framework/features/P0-*.md`.
 **Estimated tokens:** ~4,000
 
 ---
@@ -105,7 +105,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 1 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Index.md` & relevant `framework/features/P1-*.md`.
 **Estimated tokens:** ~3,500
 
 ---
@@ -123,7 +123,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P2-Constraints.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 2 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Index.md` & relevant `framework/features/P2-*.md`.
 **Estimated tokens:** ~2,500
 
 ---
@@ -140,7 +140,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-CLUES-P3-Entropy.md` with per-feature findings.
 
-**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Design Decisions.md` Pillar 3 section.
+**Context needed:** `HE-SCOPE.md` + project filesystem + `HE Index.md` & relevant `framework/features/P3-*.md`.
 **Estimated tokens:** ~2,500
 
 ---
@@ -152,12 +152,12 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 1. Merge all 4 principle-gap files into a single `HE-CLUES.md`.
 2. Sort all found gaps by severity (Critical → Important → Enhancement).
-3. Cross-reference gaps against the **Prevention Checklist** (`HE Negative Actions.md`) — note any prevention failures.
+3. Cross-reference gaps against the **Prevention Checklist** (`framework/cross-cutting/HE Prevention Checklist.md`) — note any prevention failures.
 4. Summarize: total gaps found, gaps per function area, distribution by severity.
 
 **Output:** `HE-CLUES.md` — the master gap report.
 
-**Context needed:** The 4 clue files + `HE Negative Actions.md` (37 lines).
+**Context needed:** The 4 clue files + `framework/cross-cutting/HE Prevention Checklist.md`.
 **Estimated tokens:** ~3,000
 
 ---
@@ -168,7 +168,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ### Task 2.1: Score Foundation Features (P0-1 to P0-11)
 
-**Input:** `HE-CLUES.md` (Foundation section only), `HE Inverse Outcomes.md` Part 2 (Foundation section)
+**Input:** `HE-CLUES.md` (Foundation section only), relevant `framework/features/P0-*.md` (L5 sections)
 **Actions:**
 
 1. For each Foundation feature (P0-1 to P0-11), score across all 6 dimensions (0–5):
@@ -183,47 +183,47 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-SCORES-Foundation.md` — a 11×6 scoring matrix with justifications.
 
-**Context needed:** `HE-CLUES.md` Foundation section + `HE Inverse Outcomes.md` P0-1 to P0-11 sections (~240 lines).
+**Context needed:** `HE-CLUES.md` Foundation section + `framework/features/P0-*.md` L5 sections.
 **Estimated tokens:** ~4,500
 
 ---
 
 ### Task 2.2: Score Pillar 1 Features (P1-1 to P1-10)
 
-**Input:** `HE-CLUES.md` (P1 section), `HE Inverse Outcomes.md` Part 2 (P1 section)
+**Input:** `HE-CLUES.md` (P1 section), relevant `framework/features/P1-*.md` (L5 sections)
 **Actions:** Same as Task 2.1 but for Pillar 1 features.
 **Output:** `HE-SCORES-P1.md` — a 10×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P1 section + `HE Inverse Outcomes.md` P1-1 to P1-10 (~220 lines).
+**Context needed:** `HE-CLUES.md` P1 section + `framework/features/P1-*.md` L5 sections.
 **Estimated tokens:** ~4,000
 
 ---
 
 ### Task 2.3: Score Pillar 2 Features (P2-1 to P2-5)
 
-**Input:** `HE-CLUES.md` (P2 section), `HE Inverse Outcomes.md` Part 2 (P2 section)
+**Input:** `HE-CLUES.md` (P2 section), relevant `framework/features/P2-*.md` (L5 sections)
 **Actions:** Same as Task 2.1 but for Pillar 2 features.
 **Output:** `HE-SCORES-P2.md` — a 5×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P2 section + `HE Inverse Outcomes.md` P2-1 to P2-5 (~100 lines).
+**Context needed:** `HE-CLUES.md` P2 section + `framework/features/P2-*.md` L5 sections.
 **Estimated tokens:** ~3,000
 
 ---
 
 ### Task 2.4: Score Pillar 3 Features (P3-1 to P3-4)
 
-**Input:** `HE-CLUES.md` (P3 section), `HE Inverse Outcomes.md` Part 2 (P3 section)
+**Input:** `HE-CLUES.md` (P3 section), relevant `framework/features/P3-*.md` (L5 sections)
 **Actions:** Same as Task 2.1 but for Pillar 3 features.
 **Output:** `HE-SCORES-P3.md` — a 4×6 scoring matrix.
 
-**Context needed:** `HE-CLUES.md` P3 section + `HE Inverse Outcomes.md` P3-1 to P3-4 (~80 lines).
+**Context needed:** `HE-CLUES.md` P3 section + `framework/features/P3-*.md` L5 sections.
 **Estimated tokens:** ~2,500
 
 ---
 
 ### Task 2.5: Cross-Cutting Analysis & Prioritization
 
-**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `HE Inverse Outcomes.md` Parts 3–4
+**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `framework/cross-cutting/HE Cross Cutting Perspectives.md`
 **Actions:**
 
 1. Apply **Perspective A: Feedback Loop Chain** — identify broken links.
@@ -236,7 +236,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-PRIORITIES.md` — prioritized gap list with tier assignments and cross-cutting analysis summary.
 
-**Context needed:** 4 score files + `HE Inverse Outcomes.md` Parts 3–4 (~120 lines).
+**Context needed:** 4 score files + `framework/cross-cutting/HE Cross Cutting Perspectives.md`.
 **Estimated tokens:** ~4,000
 
 ---
@@ -247,10 +247,10 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ### Task 3.1: Generate Design Decisions
 
-**Input:** `HE-PRIORITIES.md`, `HE Actions Tools.md`
+**Input:** `HE-PRIORITIES.md`, relevant `framework/features/*.md`
 **Actions:**
 
-1. For each Tier 1 gap, look up the corresponding feature's **Actions** and **Tools** in `HE Actions Tools.md`.
+1. For each Tier 1 gap, look up the corresponding feature's **L4: Concrete Actions & Tools** in its feature file in `framework/features/`.
 2. For each Tier 2 gap, do the same.
 3. For Tier 3 gaps, list but mark as "defer."
 4. Classify each design decision by **remediation level**:
@@ -260,7 +260,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** `HE-RECOMMENDATIONS.md` — a structured list of design decisions per feature, actions/tools needed, and remediation level.
 
-**Context needed:** `HE-PRIORITIES.md` + `HE Actions Tools.md` (142 lines).
+**Context needed:** `HE-PRIORITIES.md` + relevant `framework/features/*.md`.
 **Estimated tokens:** ~4,000
 
 ---
@@ -507,7 +507,7 @@ Each task in this procedure includes safeguards against agent hallucination:
   { "safeguard": "Small task scope", "how_applied": "Each task touches ≤5 files and produces exactly 1 output artifact" },
   { "safeguard": "Explicit inputs", "how_applied": "Every task declares exactly what files it needs to read" },
   { "safeguard": "Concrete outputs", "how_applied": "Every task declares the exact filename and content structure it must produce" },
-  { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `HE Inverse Outcomes.md`, not invented" },
+  { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `framework/features/`, not invented" },
   { "safeguard": "Verification criteria", "how_applied": "Phase 5 (Results) independently verifies Phase 4 (Actions) outputs" },
   { "safeguard": "User checkpoints", "how_applied": "Phase 3 (Design Decisions) requires explicit user confirmation before execution" },
   { "safeguard": "Parallel decomposition", "how_applied": "Phase 1 (Principles) and Phase 2 (Enhancements) tasks can run independently, reducing per-agent load" },

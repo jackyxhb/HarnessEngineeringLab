@@ -4,7 +4,7 @@ A step-by-step procedure for auditing an AI agent harness. Each phase is self-co
 
 > **Output Directory:** All `HE-` output files MUST be written to `./.harness/` in the target project root. Create the directory if it does not exist. Never write HE- files to the project root.
 
-The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Options) defined per-feature in `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
+The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature in `framework/features/`.
 
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
@@ -15,20 +15,18 @@ The audit uses the **3-Step Assessment Chain** (What to Do → Don't Do → Opti
 
 ## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
 
-> **Chain Position:** L1 — discovers which engineering principles (EP-1 through EP-19) are unmet. See `framework/HE Principle Map.md` for the canonical principle-to-feature mapping.
+> **Chain Position:** L1 — discovers which engineering principles (EP-1 through EP-19) are unmet. See `framework/HE Index.md` for the canonical feature metadata.
 
-Systematically inspect the project for harness gaps using the 3-step chain per feature.
+Systematically inspect the project for harness gaps using the per-feature files in `framework/features/`.
 
-For each feature (P0-1 through P3-4, 32 total):
-1. **What to Do** — Does the project implement this feature as defined?
-2. **Don't Do** — Is the prevention failure currently active in the project?
-3. **Options** — Which actions and tools should be recommended?
+For each feature (P0-1 through P3-4, 32 total), navigate via `framework/HE Index.md`:
+1. **L3: Design Decisions** — Does the project implement this feature as defined?
+2. **L4: Prevention** — Is the prevention failure currently active in the project?
+3. **L4: Actions & Tools** — Which actions and tools should be recommended?
+4. **L5: Gap Signals** — What measurable signs indicate failure?
 
 Scan order:
-1. Foundation gaps (P0-1 to P0-11) — read `references/he-chain-foundation.md`
-2. Pillar 1 (Context) gaps (P1-1 to P1-12) — read `references/he-chain-context.md`
-3. Pillar 2 (Constraints) gaps (P2-1 to P2-5) — read `references/he-chain-constraints-entropy.md`
-4. Pillar 3 (Entropy) gaps (P3-1 to P3-4) — read `references/he-chain-constraints-entropy.md`
+Search `framework/HE Index.md` for features, then read the respective `framework/features/P*.md` files.
 
 *For each feature, record: current state, active prevention failures, recommended options, severity, and remediation level.*
 
@@ -50,7 +48,7 @@ Score the identified gaps using the multi-dimensional framework.
 
 **Output:** `.harness/HE-PRIORITIES.md` with tier assignments.
 
-**Trajectory Reduction Checkpoint:** Flush raw reference files (`he-scoring.md` and `he-cascade-analysis.md`). Retain only the priority tier list.
+**Trajectory Reduction Checkpoint:** Flush raw reference files (`he-scoring.md`). Retain only the priority tier list.
 
 ## Phase 3: Recommendation & Planning (L3: Design Decisions)
 
@@ -58,8 +56,8 @@ Score the identified gaps using the multi-dimensional framework.
 
 Translate prioritized gaps into a concrete implementation plan using the "Options" from each feature's 3-step chain.
 
-1. Map each gap to its **Options** (specific actions and tools) from `references/he-chain-foundation.md`, `references/he-chain-context.md`, and `references/he-chain-constraints-entropy.md`.
-2. Map each gap to its **Remediation Tier** from the same files.
+1. Map each gap to its **L4: Concrete Actions & Tools** from its respective `framework/features/P*.md` file.
+2. Map each gap to its **L5: Improvement Policies** tier from the same file.
 3. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
 4. Group into execution batches ordered by dependencies, then tiers.
 
@@ -74,7 +72,7 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 
 > **Chain Position:** L4 — executes concrete actions, configs, and scripts from the implementation plan.
 
-Apply the remediation batches sequentially. Each action item should come directly from the "Options" section of the relevant feature.
+Apply the remediation batches sequentially. Each action item should come directly from the "L4: Concrete Actions & Tools" section of the relevant feature.
 
 - **Light:** Update `AGENTS.md`, `.cursorrules`, `.agents` workflows.
 - **Medium:** Add pre-commit hooks, explicit structural linters, state tracking templates.
@@ -87,8 +85,8 @@ Apply the remediation batches sequentially. Each action item should come directl
 
 > **Chain Position:** L5 — measures observable results to verify all changes produce concrete enhancement.
 
-1. Re-run the Quick-Start checklist (`references/he-quick-start.md`). Compare unchecked → checked conversions.
-2. Re-check each feature's "Don't Do" — verify that previously active prevention failures are now resolved.
+1. Re-run the Quick Scan checklist (evaluating L2 targets from `framework/HE Index.md`). Compare unchecked → checked conversions.
+2. Re-check each feature's L4: Prevention — verify that previously active prevention failures are now resolved.
 3. Re-score modified features across the 6 dimensions to capture delta improvement.
 4. Generate the final assessment comparing the initial state to the final milestone.
 

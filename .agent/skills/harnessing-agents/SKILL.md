@@ -1,6 +1,6 @@
 ---
 name: harnessing-agents
-version: "4.0.0"
+version: "5.0.0"
 description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity.
 user-invocable: true
 allowed-tools:
@@ -20,35 +20,18 @@ allowed-tools:
 
 **Core principle (EP-15):** When an agent fails, fix the environment — not the code. Add a mechanical guardrail (test, linter, structural constraint) so the agent self-corrects.
 
-## 3-Step Assessment Chain
+## Framework Architecture — DAG Navigation
 
-Every feature in this skill is assessed through a unified chain:
+All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Navigate via the index:
 
-| Step | Question | Reference Source |
-| --- | --- | --- |
-| **What to Do** | What should this feature look like when implemented? | `references/he-chain-foundation.md`, `references/he-chain-context.md`, `references/he-chain-constraints-entropy.md` — per-feature definitions (SAS + MAS) |
-| **Don't Do** | What failure mode does this feature prevent? | Same files — per-feature "Don't Do" section, sourced from `framework/HE Negative Actions.md` |
-| **Options** | What concrete actions and tools can implement it? | Same files — per-feature "Options" section, sourced from `framework/HE Actions Tools.md` |
+1. **Entry point:** `framework/HE Index.md` — JSON-based index with L1+L2 inline metadata for all 32 features, 19 principles, and 6 cross-cutting concerns.
+2. **Feature files:** `framework/features/P{pillar}-{num}.md` — one file per feature, containing the full L1→L5 vertical chain slice (principle → enhancement → design → actions/prevention → measurement).
+3. **Principle files:** `framework/principles/EP-{num}.md` — one file per engineering principle, listing governed features.
+4. **Cross-cutting:** `framework/cross-cutting/` — concerns spanning multiple features (reward engineering, token economics, SAS→MAS readiness, prevention checklist, evaluation dimensions, perspectives).
+5. **Chain model:** `framework/HE Principle Practice Chain.md` — the L1→L5 methodology.
+6. **Execution procedure:** `framework/HE Execution Procedure.md` — step-by-step audit workflow.
 
-Each feature reference includes all three steps plus **Remediation Tiers** (Tier 1 = immediate, Tier 2 = optimization).
-
-## Canonical Sources
-
-All skill content derives from these framework documents:
-
-- `framework/HE Principle Map.md` — L1 Engineering Principles (EP-1 through EP-19) and L1→L5 chains for all 32 features
-- `framework/HE Design Decisions.md` — L3 design patterns and feature definitions
-- `framework/HE Actions Tools.md` — L4 concrete actions and tools
-- `framework/HE Negative Actions.md` — L4 prevention constraints
-- `framework/HE Inverse Outcomes.md` — L5 gap signals, 6 evaluation dimensions (chain-level mapped)
-- `framework/HE Principle Practice Chain.md` — Chain model meta-document
-
-## Context & Action Space Optimization
-
-To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
-- **Progressive Context Loading:** Do not pre-read all reference files. Only load templates or dense framework files exactly when required by the workflow phase.
-- **Trajectory Reduction:** After completing any major phase (e.g. Inspect), summarize findings into the requested template, then flush raw file contents from active working memory before proceeding.
-- **ReAct Formatting:** When analyzing gaps, wrap logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
+**Navigation protocol:** Read `HE Index.md` first → identify target feature IDs → read only the specific `features/P*.md` files needed. Never pre-read all feature files.
 
 ## When to Use
 
@@ -65,21 +48,23 @@ Route by keyword in the user's input. If no keyword matches, **default to Mode 1
 | --- | --- | --- | --- |
 | **`scan`** | Quick Scan | 32-item yes/no checklist → maturity score | ~5 min |
 | **`full`** | Full Audit | 6-phase lifecycle: Scope → Gaps → Score → Plan → Execute → Verify | 30–60 min |
-| **`feature`** | Feature Lookup | Look up a specific feature's 3-step chain | ~2 min |
+| **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain | ~2 min |
 
 ### Mode 1: Quick Scan — keyword: `scan` (DEFAULT)
 Runs the 32-item yes/no checklist against the target project. Produces a maturity level score.
 - **Reference:** `references/he-quick-start.md`
+- **Navigation:** Read `framework/HE Index.md` for the feature list with L1+L2 inline; check each feature's presence in the target project.
 - **Output:** `.harness/HE-SCOPE.md`
 
 ### Mode 2: Full Audit — keyword: `full`
 Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
 - **Reference:** `references/he-full-audit.md`
+- **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
 - **Output:** `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
 
 ### Mode 3: Feature Lookup — keyword: `feature`
-Look up a specific feature's 3-step chain (What to Do → Don't Do → Options). The user should also specify a feature ID (e.g., `P0-9`) or feature name.
-- **Reference:** `references/he-chain-foundation.md` (P0-1–P0-11), `references/he-chain-context.md` (P1-1–P1-12), `references/he-chain-constraints-entropy.md` (P2-1–P3-4)
+Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
+- **Navigation:** Read `framework/HE Index.md` → find feature ID → read `framework/features/{id}.md`.
 
 ### Internal Tools (used within Full Audit, not user-invoked)
 
@@ -88,6 +73,13 @@ These are used automatically during a full audit — users do not need to invoke
 - `references/he-scoping-evaluation.md` — 4 scoping dimensions (Phase 0)
 - `references/he-subagent-prompts.md` — parallel agent dispatch prompts (Phase 1)
 - `references/he-cascade-analysis.md` — feature dependency maps (Phase 2)
+
+## Context & Action Space Optimization
+
+To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
+- **Progressive Context Loading:** Do not pre-read all feature files. Read the index first, then load only the specific feature files needed for the current task.
+- **Trajectory Reduction:** After completing any major phase (e.g. Inspect), summarize findings into the requested template, then flush raw file contents from active working memory before proceeding.
+- **ReAct Formatting:** When analyzing gaps, wrap logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
 
 ## Output Directory Convention
 
@@ -113,3 +105,13 @@ Templates define the format; output files are written to `.harness/` in the targ
 - `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan → output: `.harness/HE-IMPLEMENTATION-PLAN.md`
 - `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary → output: `.harness/HE-CHANGE-SUMMARY.md`
 - `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report → output: `.harness/HE-ASSESSMENT-REPORT.md`
+
+## Deployment
+
+This skill is maintained directly in the HELab workspace. To make it available globally across all projects, ensure the global symlink is active:
+
+```bash
+ln -sfn /Users/macbook1/work/HE/HELab/.agent/skills/harnessing-agents ~/.agents/skills/harnessing-agents
+```
+
+Verify with: `ls -la ~/.agents/skills/harnessing-agents/SKILL.md`
