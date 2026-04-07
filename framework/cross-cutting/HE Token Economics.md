@@ -2,28 +2,31 @@
 
 > Cross-cutting concern for managing the cost-effectiveness of agent operations. Token usage must scale sublinearly with task complexity.
 
-## Core Principles
+## L3: Design Decisions (P1-1 Alignment)
 
-1. **Cost-aware orchestration** — choose topologies that minimize redundant token consumption
-2. **Context efficiency** — keep context windows lean through compaction, offloading, and progressive skills
-3. **Shift-left cost stratification** — run cheap checks first, expensive checks last
-4. **Bounded concurrency** — avoid agent swarms for tasks a single agent can handle
+Token economics are managed through a structured manifest of cost tiers. This allows agents to choose the most cost-effective operation for any given task priority.
 
-## Cost Tiers
+## Cost Tiers Manifest
 
-| Tier | Action Type | Example | Cost |
-| ------ | ------------ | --------- | ------ |
-| 1 | Pre-commit lint | `npm run smoke` | < 2s, ~0 tokens |
-| 2 | Full quality gate | `npm run check` | < 30s, ~0 tokens |
-| 3 | On-demand audit | `npm run audit` | < 60s, ~0 tokens |
-| 4 | LLM-based review | Agent-as-reviewer | High token cost |
+```json
+[
+  { "tier": 1, "action_type": "Pre-commit lint", "example": "npm run smoke", "latency": "< 2s",  "cost": "~0 tokens" },
+  { "tier": 2, "action_type": "Full quality gate", "example": "npm run check", "latency": "< 30s", "cost": "~0 tokens" },
+  { "tier": 3, "action_type": "On-demand audit",   "example": "npm run audit", "latency": "< 60s", "cost": "~0 tokens" },
+  { "tier": 4, "action_type": "LLM-based review",  "example": "Agent-as-reviewer", "latency": "Variable", "cost": "High token cost" }
+]
+```
 
-## Gap Signals
+## Gap Signals (Economic)
 
-- Token costs scale linearly or quadratically with team size
-- No visibility into per-task token consumption
-- Agent swarms deployed for simple, single-session tasks
-- No cost comparison between different harness configurations
+```json
+[
+  { "signal": "Linear scaling", "description": "Token costs scale linearly or quadratically with team/task size" },
+  { "signal": "Opaque consumption", "description": "No visibility into per-task token consumption" },
+  { "signal": "Swarm over-deployment", "description": "Agent swarms deployed for simple, single-session tasks" },
+  { "signal": "Blind configuration", "description": "No cost comparison between different harness configurations" }
+]
+```
 
 ## Related Features
 

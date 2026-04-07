@@ -2,16 +2,22 @@
 
 > Cross-cutting concern: the multi-dimensional evaluation framework for assessing harness maturity. Each feature and improvement policy is assessed across these dimensions.
 
-## Dimensions
+## L3: Design Decisions (P1-1 Alignment)
 
-| Dimension | Question | Scale |
-| ----------- | ---------- | ------- |
-| **Effectiveness** | Does the feature achieve its L2 targeted enhancement? | Gap signals eliminated |
-| **Maturity** | What tier of implementation is in place? | Tier 1 (basic) → Tier 3 (advanced) |
-| **Risk** | What failure modes does the feature prevent? | Prevention items addressed |
-| **Scalability** | Does the feature scale from SAS to MAS without redesign? | SAS-only → MAS-ready |
-| **Cost** | What is the token/compute/human cost of the feature? | Justified vs. wasteful |
-| **Human Role** | What is the human's optimal role with this feature? | Oversight, approval, monitoring, none |
+Dimensions are defined as a JSON manifest to allow for deterministic weighting and scoring during autonomous audits.
+
+## Dimensions Manifest
+
+```json
+[
+  { "dimension": "Effectiveness", "question": "Does the feature achieve its L2 targeted enhancement?", "scale": "Gap signals eliminated" },
+  { "dimension": "Maturity",      "question": "What tier of implementation is in place?",        "scale": "Tier 1 (basic) → Tier 3 (advanced)" },
+  { "dimension": "Risk",          "question": "What failure modes does the feature prevent?",    "scale": "Prevention items addressed" },
+  { "dimension": "Scalability",   "question": "Does the feature scale from SAS to MAS?",         "scale": "SAS-only → MAS-ready" },
+  { "dimension": "Cost",          "question": "What is the token/compute/human cost?",           "scale": "Justified vs. wasteful" },
+  { "dimension": "Human Role",    "question": "What is the human's optimal role?",              "scale": "Oversight, approval, monitoring, none" }
+]
+```
 
 ## Usage
 

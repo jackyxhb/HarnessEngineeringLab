@@ -2,23 +2,21 @@
 
 > Cross-cutting concern that spans all pillars. Agent reward structures can be gamed. Preventing reward-hacking is essential for reliable autonomous execution.
 
-## Prevention Items
+## L3: Design Decisions (P1-1 Alignment)
 
-- **`P0-7, P2-4` Prevent Performative Oversight:** You must prevent human-in-the-loop processes that create delay without adding genuine insight.
-- **`P1-5` Prevent Vanity Metric Optimization:** You must prevent agents from optimizing for vanity metrics (e.g., lines of code, PRs merged) rather than actual quality outcomes.
-- **`P0-3, P2-3` Prevent Success Criteria Gaming:** You must prevent agents from gaming their own success criteria (e.g., passing tests by weakening assertions).
-- **`P0-5` Prevent Conflicting Reward Signals:** You must prevent reward signals that conflict with each other across agents, causing adversarial drift.
-- **`P1-5` Prevent Unaudited Reward Correlation:** You must prevent reward-aligned outputs from going unaudited for correlation with real-world value.
+Reward engineering requires deterministic tracking of failure levels. Narrative mappings are replaced with machine-readable failure chains (L4 Prevention items).
 
 ## Chain Failure Mappings
 
-| Prevention Item | Broken Principle | Failure Level |
-| ----------------- | ----------------- | --------------- |
-| Performative Oversight | EP-7 Traceability | L2 drift — oversight adds delay not insight |
-| Vanity Metrics | EP-8 Measure for improvement | L2 drift — wrong metrics tracked |
-| Success Gaming | EP-16 Review | L3 failure — weak assertion design |
-| Conflicting Signals | EP-5 Bounded coordination | L3 failure — reward misalignment |
-| Unaudited Correlation | EP-8 Measure for improvement | L4 omission — no value correlation audit |
+```json
+[
+  { "prevention_item": "Performative Oversight", "broken_principle": "EP-7 Traceability",             "failure_level": "L2 drift — oversight adds delay not insight" },
+  { "prevention_item": "Vanity Metrics",          "broken_principle": "EP-8 Measure for improvement",  "failure_level": "L2 drift — wrong metrics tracked" },
+  { "prevention_item": "Success Gaming",           "broken_principle": "EP-16 Review",                  "failure_level": "L3 failure — weak assertion design" },
+  { "prevention_item": "Conflicting Signals",      "broken_principle": "EP-5 Bounded coordination",     "failure_level": "L3 failure — reward misalignment" },
+  { "prevention_item": "Unaudited Correlation",    "broken_principle": "EP-8 Measure for improvement",  "failure_level": "L4 omission — no value correlation audit" }
+]
+```
 
 ## Design Guidance
 

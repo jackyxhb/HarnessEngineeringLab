@@ -2,24 +2,28 @@
 
 > Cross-cutting concern for scaling from Single-Agent Systems (SAS) to Multi-Agent Systems (MAS). Every feature has both SAS and MAS dimensions.
 
-## Scaling Perspective
+## L3: Design Decisions (P1-1 Alignment)
 
-Each of the 32 features can be evaluated on a SAS→MAS readiness continuum:
+Scaling readiness is evaluated using a machine-readable matrix. This allows agents to automatically determine whether they can operate in parallel based on the project's current feature harness level.
 
-| Feature | SAS Implementation | MAS Extension |
-| --------- | ------------------- | --------------- |
-| P0-1 Bash Sandboxes | Single isolated sandbox | Per-agent sandbox pool |
-| P0-2 Filesystem & Git | Single branch | Per-agent worktrees, file locking |
-| P0-3 Verification | Self-verification | Collective verification, consensus |
-| P0-4 Ralph Loops | Single-agent reinjection | Cross-agent task handoff |
-| P0-5 Orchestration | N/A (single agent) | Topology selection, routing |
-| P0-10 Mailbox | N/A | Peer-to-peer, broadcast messaging |
-| P1-1 Repository as Truth | Single-agent context | Shared context, consistency |
-| P1-7 Planning | Personal task list | Shared blackboard, task claiming |
-| P1-8 Anchoring | Personal anchor file | Shared anchor files |
-| P2-3 AI Auditors | Self-review (limited) | Generator/evaluator separation |
-| P2-4 Access Control | Flat permissions | Role-based tiered permissions |
-| P3-1 Cleanups | Single-agent cleanup | Coordinated GC across agents |
+## Scaling Perspective Matrix
+
+```json
+[
+  { "feature": "P0-1 Bash Sandboxes",      "SAS_implementation": "Single isolated sandbox",      "MAS_extension": "Per-agent sandbox pool" },
+  { "feature": "P0-2 Filesystem & Git",    "SAS_implementation": "Single branch",                "MAS_extension": "Per-agent worktrees, file locking" },
+  { "feature": "P0-3 Verification",        "SAS_implementation": "Self-verification",            "MAS_extension": "Collective verification, consensus" },
+  { "feature": "P0-4 Ralph Loops",         "SAS_implementation": "Single-agent reinjection",     "MAS_extension": "Cross-agent task handoff" },
+  { "feature": "P0-5 Orchestration",      "SAS_implementation": "N/A (single agent)",           "MAS_extension": "Topology selection, routing" },
+  { "feature": "P0-10 Mailbox",            "SAS_implementation": "N/A",                          "MAS_extension": "Peer-to-peer, broadcast messaging" },
+  { "feature": "P1-1 Repository as Truth", "SAS_implementation": "Single-agent context",         "MAS_extension": "Shared context, consistency" },
+  { "feature": "P1-7 Planning",            "SAS_implementation": "Personal task list",          "MAS_extension": "Shared blackboard, task claiming" },
+  { "feature": "P1-8 Anchoring",           "SAS_implementation": "Personal anchor file",        "MAS_extension": "Shared anchor files" },
+  { "feature": "P2-3 AI Auditors",         "SAS_implementation": "Self-review (limited)",        "MAS_extension": "Generator/evaluator separation" },
+  { "feature": "P2-4 Access Control",      "SAS_implementation": "Flat permissions",             "MAS_extension": "Role-based tiered permissions" },
+  { "feature": "P3-1 Cleanups",            "SAS_implementation": "Single-agent cleanup",         "MAS_extension": "Coordinated GC across agents" }
+]
+```
 
 ## Readiness Assessment Questions
 
