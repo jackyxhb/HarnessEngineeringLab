@@ -48,7 +48,7 @@ The canonical framework definitions and operational guides (32 core features acr
 
 - **HE Index.md** — The Directed Acyclic Graph (DAG) index for the entire framework
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
-- **HE Execution Procedure.md** — Step-by-step procedure for applying harness engineering
+- **HE Harnessing Protocol.md** — Step-by-step procedure for applying harness engineering
 - **features/** — 32 modular feature files (L1→L5 chains)
 - **principles/** — 19 modular engineering principle files (EP-01 to EP-19)
 - **cross-cutting/** — Reward Engineering, Token Economics, Prevention Checklist

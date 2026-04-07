@@ -30,7 +30,7 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 - **Goal:** Restructure the entire HE framework so every feature, prevention item, DO NOT rule, and enhancement option is organized through the 5-level Principle-to-Practice Chain defined in `HE Principle Practice Chain.md`. Success = every chain level (L1–L5) is explicitly populated for all 32 features, and all supporting documents (Prevention Checklist, Enhancement Options, Gap Evaluation, DO NOT rules) trace back to their chain position.
 - **Scope:**
   - IN: `framework/HE Design Decisions.md`, `framework/HE Actions Tools.md`, `framework/HE Negative Actions.md`, `framework/HE Inverse Outcomes.md`, `framework/HE Principle Practice Chain.md`, `AGENTS.md` (DO NOT + Conventions sections), `ANCHORS.md`
-  - OUT: `references/` (read-only), `research/` (will need consistency alignment AFTER framework changes, via `/revise-comments`), `framework/HE Execution Procedure.md` (wraps L4 execution — update references only)
+  - OUT: `references/` (read-only), `research/` (will need consistency alignment AFTER framework changes, via `/revise-comments`), `framework/HE Harnessing Protocol.md` (wraps L4 execution — update references only)
 - **Status:** `awaiting-review`
 - **Steps:**
   - [x] Phase 0: Deep Research — Read all framework documents and map current chain coverage
@@ -81,7 +81,7 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 
 ### Plan: Build Workflow Reconciliation
 
-- **Goal:** Reconcile `.agent/workflows/build.md` and all `harnessing-agents` skill files with the latest framework edition — specifically `HE Execution Procedure.md`, `HE Principle Practice Chain.md`, and `HE Principle Map.md`. Align scoring systems, feature counts (31→32), chain-level annotations, and EP principle backlinks across all files.
+- **Goal:** Reconcile `.agent/workflows/build.md` and all `harnessing-agents` skill files with the latest framework edition — specifically `HE Harnessing Protocol.md`, `HE Principle Practice Chain.md`, and `HE Principle Map.md`. Align scoring systems, feature counts (31→32), chain-level annotations, and EP principle backlinks across all files.
 - **Scope:**
   - IN: `.agent/workflows/build.md`, `.agent/skills/harnessing-agents/` (SKILL.md, references/, templates/)
   - OUT: `framework/` (read-only source of truth), `research/`, `references/`

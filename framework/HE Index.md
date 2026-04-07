@@ -3,17 +3,23 @@
 The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. This file is the **single entry point** for navigating all 32 features, 19 engineering principles, and cross-cutting concerns.
 
 **Chain Model:** See [HE Principle Practice Chain.md](HE%20Principle%20Practice%20Chain.md) for the L1→L5 methodology.
-**Execution Procedure:** See [HE Execution Procedure.md](HE%20Execution%20Procedure.md) for the step-by-step audit workflow.
+**Harnessing Protocol:** See [HE Harnessing Protocol.md](HE%20Harnessing%20Protocol.md) for the step-by-step audit workflow.
 
 ---
 
 ## DAG Structure
 
+### Metadata Glossary
+
+- **`origin`**: The first-principle or discipline (Physics, Economics, Engineering) that source-codes the rule.
+- **`governs`**: The direct feature IDs (P0-1 through P3-4) that must mechanically enforce this principle.
+- **`downstream`**: Features that depend on this node; changes here ripple to these targets.
+
 ```json
 {
   "root": "Harness Engineering",
   "chain_model": "framework/HE Principle Practice Chain.md",
-  "execution_procedure": "framework/HE Execution Procedure.md",
+  "execution_procedure": "framework/HE Harnessing Protocol.md",
   "principles": [
     { "id": "EP-1",  "principle": "Isolation prevents contamination",           "origin": "Thermodynamics, clean-room engineering",                  "file": "framework/principles/EP-01.md", "governs": ["P0-1"] },
     { "id": "EP-2",  "principle": "State must outlive the session",             "origin": "Database durability (ACID), journaling filesystems",      "file": "framework/principles/EP-02.md", "governs": ["P0-2", "P1-7", "P1-8", "P1-9"] },

@@ -1,10 +1,18 @@
-# HE Execution Procedure
+# HE Harnessing Protocol
 
 A comprehensive, step-by-step procedure for executing Harness Engineering across all 32 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 >
 > **Chain Flow:** The phases follow the Principle-to-Practice Chain (L1→L5): Scope (pre-chain) → Principles (L1) → Enhancements (L2) → Design Decisions (L3) → Actions (L4) → Results (L5) → Principle Feedback (L1 ↩).
+
+## Procedure Schema & Safeguards
+
+Before executing any tasks, agents MUST load and anchor to the authoritative JSON schemas defined in the appendices:
+
+- **Task Dependencies:** See [Appendix A: Task Dependency Graph](#appendix-a-task-dependency-graph)
+- **Assessment Matrix:** See [Appendix C: Unified Assessment Matrix](#appendix-c-unified-assessment-matrix) (Data Schema)
+- **Hallucination Safeguards:** See [Appendix D: Anti-Hallucination Safeguards](#appendix-d-anti-hallucination-safeguards)
 
 ---
 
@@ -45,7 +53,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 **Output:** Append to `HE-SCOPE.md`:
 
-- Quick-Start checklist results (23 items)
+- Quick-Start checklist results (32 items)
 - Current maturity level
 - Target maturity level (user to confirm)
 
@@ -102,6 +110,7 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 9. Check for **Branch-Based Cognitive Memory** (P1-9): Concurrent task branches? Structured commit boundaries acting as memory?
 10. Check for **Requirements Ledger** (P1-10): A unified requirements file (e.g., `REQUIREMENTS.md`)? Are user stories and scenarios recorded before planning?
 11. Check for **Socratic Questioning** (P1-11): Is there a documented pre-execution ambiguity interrogation pass? Are clarifications recorded in the ledger or anchors before planning?
+12. Check for **Skill Engineering** (P1-12): Are agent skills modular, context-efficient, and tunable? Are there reusable pattern definitions and routing hubs?
 
 **Output:** `HE-CLUES-P1-Context.md` with per-feature findings (same format as Task 1.1).
 
@@ -188,11 +197,11 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-### Task 2.2: Score Pillar 1 Features (P1-1 to P1-10)
+### Task 2.2: Score Pillar 1 Features (P1-1 to P1-12)
 
 **Input:** `HE-CLUES.md` (P1 section), relevant `framework/features/P1-*.md` (L5 sections)
 **Actions:** Same as Task 2.1 but for Pillar 1 features.
-**Output:** `HE-SCORES-P1.md` — a 10×6 scoring matrix.
+**Output:** `HE-SCORES-P1.md` — a 12×6 scoring matrix.
 
 **Context needed:** `HE-CLUES.md` P1 section + `framework/features/P1-*.md` L5 sections.
 **Estimated tokens:** ~4,000
@@ -231,8 +240,9 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 3. Apply **Perspective C: Failure Cascade Map** — trace cascade chains for low-scored features.
 4. Apply **Perspective D: Scaling Readiness** — identify blockers.
 5. Apply **Perspective E: Human Role Progression** — determine current stage.
-6. Calculate **Priority Score** per feature: `(5 - Composite) × Impact Weight × Cascade Length`.
-7. Tier the results: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
+6. Calculate **Priority Score** for each gap using the **Appendix C Assessment Matrix** logic:
+   `Priority Score = (5 - Composite) × Impact Weight × Cascade Length`
+7. Tier the results based on the score distribution: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
 
 **Output:** `HE-PRIORITIES.md` — prioritized gap list with tier assignments and cross-cutting analysis summary.
 
@@ -407,30 +417,37 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ---
 
-## Phase 6: Principle Feedback — Knowledge Sync
+## Phase 6: Principle Feedback — Framework Contribution (Optional)
 
-> **Goal (L1 ↩):** Feed proven patterns back into engineering principles — propagate learnings to the harnessing-agents skill and project documentation.
+> **Goal (L1 ↩):** Feed proven patterns back into engineering principles — propagate learnings to the framework based on repository permissions.
 
-### Task 6.1: Update Harnessing-Agents Skill
+### Task 6.1: Generate or Apply Framework Feedback
 
 **Input:** `HE-ASSESSMENT-REPORT.md`, any new patterns discovered
 **Actions:**
 
-1. If new features or prevention points were discovered during execution, update:
-   - `.agent/skills/harnessing-agents/SKILL.md`
-2. Follow the `/polish` workflow if adding new features.
+- **Path A: Internal HELab Mode (Framework Developer)**
+  1. If running within the `HarnessEngineeringLab` repository and authorized:
+     - Update `.agent/skills/harnessing-agents/SKILL.md` with new features or prevention points.
+     - Follow the `/polish` workflow to propagate changes to canonical definitions.
+- **Path B: External Target Mode (Framework User)**
+  1. If running on a target project (standard audit context):
+     - Generate a `HE-FEEDBACK.md` report in the project's `.harness/` directory.
+     - Document proposed improvements to the 32-feature DAG, gap signals, or prevention checklists.
 
-**Output:** Updated skill files (if applicable).
+**Output:** Updated skill/docs (Internal) OR `HE-FEEDBACK.md` (External).
 
 ---
 
-### Task 6.2: Sync HarnessEngineeringLab Docs
+### Task 6.2: Sync Canonical Repository (HELab Developer Only)
 
-**Input:** Any updates from Task 6.1
+**Input:** Feedback results from Task 6.1
 **Actions:**
 
-1. Propagate changes to `framework/` canonical documents.
-2. Run `/revise-comments` workflow to ensure `research/` consistency.
+1. **Internal Context Only:**
+   - Review and integrate `HE-FEEDBACK.md` recommendations from external audits.
+   - Propagate changes to `framework/` canonical documents.
+   - Run `/revise-comments` workflow to ensure `research/` consistency across the workspace.
 
 **Output:** Updated HarnessEngineeringLab repository.
 
@@ -438,29 +455,31 @@ A comprehensive, step-by-step procedure for executing Harness Engineering across
 
 ## Appendix A: Task Dependency Graph
 
-```text
-0 Scope ─────────── 0.1 → 0.2
-                          │
-1 Principles ────── 1.1 ─┐
-                    1.2 ─┤
-                    1.3 ─┤
-                    1.4 ─┘→ 1.5
-                              │
-2 Enhancements ──── 2.1 ─┐
-                    2.2 ─┤
-                    2.3 ─┤
-                    2.4 ─┘→ 2.5
-                              │
-3 Decisions ─────── 3.1 → 3.2 (USER REVIEW)
-                              │
-4 Actions ────────── 4.L ─┐
-                    4.M ─┤  (parallel batches within each level,
-                    4.H ─┘   sequential across levels)
-                              │
-5 Results ────────── 5.1 ─┐
-                    5.2 ─┘→ 5.3
-                              │
-6 Feedback ───────── 6.1 → 6.2
+```json
+[
+  { "id": "0.1", "name": "Identify Target Project & Scale", "dependencies": [] },
+  { "id": "0.2", "name": "Quick-Start Checklist Scan", "dependencies": ["0.1"] },
+  { "id": "1.1", "name": "Foundation Principles Inspection", "dependencies": ["0.2"] },
+  { "id": "1.2", "name": "Pillar 1 Principles Inspection", "dependencies": ["0.2"] },
+  { "id": "1.3", "name": "Pillar 2 Principles Inspection", "dependencies": ["0.2"] },
+  { "id": "1.4", "name": "Pillar 3 Principles Inspection", "dependencies": ["0.2"] },
+  { "id": "1.5", "name": "Consolidate Principle Gaps", "dependencies": ["1.1", "1.2", "1.3", "1.4"] },
+  { "id": "2.1", "name": "Score Foundation Features", "dependencies": ["1.5"] },
+  { "id": "2.2", "name": "Score Pillar 1 Features", "dependencies": ["1.5"] },
+  { "id": "2.3", "name": "Score Pillar 2 Features", "dependencies": ["1.5"] },
+  { "id": "2.4", "name": "Score Pillar 3 Features", "dependencies": ["1.5"] },
+  { "id": "2.5", "name": "Cross-Cutting Analysis & Prioritization", "dependencies": ["2.1", "2.2", "2.3", "2.4"] },
+  { "id": "3.1", "name": "Generate Design Decisions", "dependencies": ["2.5"] },
+  { "id": "3.2", "name": "Build Implementation Plan (USER REVIEW)", "dependencies": ["3.1"] },
+  { "id": "4.L", "name": "Light Remediation (Meta-Docs)", "dependencies": ["3.2"] },
+  { "id": "4.M", "name": "Medium Remediation (Features)", "dependencies": ["3.2"] },
+  { "id": "4.H", "name": "Heavy Remediation (Architecture)", "dependencies": ["3.2"] },
+  { "id": "5.1", "name": "Re-Run Quick-Start Checklist", "dependencies": ["4.L", "4.M", "4.H"] },
+  { "id": "5.2", "name": "Re-Score Changed Features", "dependencies": ["4.L", "4.M", "4.H"] },
+  { "id": "5.3", "name": "Generate Final Assessment Report", "dependencies": ["5.1", "5.2"] },
+  { "id": "6.1", "name": "Generate or Apply Framework Feedback", "dependencies": ["5.3"] },
+  { "id": "6.2", "name": "Sync Canonical Repository", "dependencies": ["6.1"] }
+]
 ```
 
 **Key:** Tasks at the same indent level within a phase (e.g., 1.1–1.4, 2.1–2.4) can be executed **in parallel** by separate agents. Tasks connected by `→` must be **sequential**.
@@ -481,20 +500,79 @@ All tasks are designed to stay well within a 128K-token context window. Maximum 
   { "task": "2.5", "max_source_files": "4 score files + ref", "max_lines_read": "~300", "est_tokens": "~4,000" },
   { "task": "3.x", "max_source_files": "2 input files", "max_lines_read": "~200", "est_tokens": "~4,000" },
   { "task": "4.x", "max_source_files": "3–5 target files", "max_lines_read": "~150", "est_tokens": "~3,000" },
-  { "task": "5.x", "max_source_files": "2–4 summary files", "max_lines_read": "~200", "est_tokens": "~3,000" }
+  { "task": "5.x", "max_source_files": "2–4 summary files", "max_lines_read": "~200", "est_tokens": "~3,000" },
+  { "task": "6.x", "max_source_files": "1 assessment report", "max_lines_read": "~200", "est_tokens": "~3,000" }
 ]
 ```
 
 ---
 
-## Appendix C: Methodology Dimensions
+## Appendix C: Unified Assessment Matrix
 
-This procedure supports all 4 dimensions of Harness Engineering methodology:
+This matrix defines the measurables, sources of truth, and scoring methods used across the entire procedure. It serves as the authoritative data schema for the final assessment report.
 
-1. **Feature Tree:** Tasks 1.1–1.5 (Principles) systematically walk the full 4 areas → 32 features → Actions/Tools tree.
-2. **Agent Scale:** Task 0.1 (Scope) classifies the scale. Multi-agent scaling checks are integrated into Phase 1 (Principles) tasks. Phase 2 (Enhancements) includes a scaling readiness perspective.
-3. **Project Complexity:** Task 0.1 (Scope) classifies complexity. Phase 4 (Actions) remediation levels (Light/Medium/Heavy) adapt to project complexity.
-4. **Remediation Level:** Phase 3 (Design Decisions) explicitly classifies each change and Phase 4 (Actions) templates are organized by remediation weight.
+```json
+[
+  {
+    "phase": "0 Scope",
+    "measurable": "Target Maturity",
+    "source_of_truth": "HE Landing Pathway",
+    "evaluation_method": "Checkbox Scan",
+    "scoring_value": "Basic / Team / Prod",
+    "primary_output": "HE-SCOPE.md"
+  },
+  {
+    "phase": "1 Principles",
+    "measurable": "Principle Gaps (L1)",
+    "source_of_truth": "HE Index.md",
+    "evaluation_method": "Feature Inspection",
+    "scoring_value": "✅/❌ (Gap Signal)",
+    "primary_output": "HE-CLUES.md"
+  },
+  {
+    "phase": "2 Enhancements",
+    "measurable": "Dimension Scores (L5)",
+    "source_of_truth": "HE Eval Dimensions",
+    "evaluation_method": "6-Dimension Rating",
+    "scoring_value": "0–5 Maturity per Dim",
+    "primary_output": "HE-SCORES.md"
+  },
+  {
+    "phase": "2 Priorities",
+    "measurable": "Priority Ranking",
+    "source_of_truth": "Composite × Impact",
+    "evaluation_method": "Priority Formula",
+    "scoring_value": "Tier 1 / 2 / 3",
+    "primary_output": "HE-PRIORITIES.md"
+  },
+  {
+    "phase": "3 Decisions",
+    "measurable": "Remediation Level",
+    "source_of_truth": "L4 Actions/Tools",
+    "evaluation_method": "Type Classification",
+    "scoring_value": "Light / Medium / Heavy",
+    "primary_output": "HE-RECOMMENDATIONS"
+  },
+  {
+    "phase": "5 Results",
+    "measurable": "Efficiency Delta",
+    "source_of_truth": "L5 Metrics",
+    "evaluation_method": "Before/After Compare",
+    "scoring_value": "% Improvement",
+    "primary_output": "HE-VERIFICATION"
+  },
+  {
+    "phase": "6 Feedback",
+    "measurable": "Framework Rec",
+    "source_of_truth": "HE-ASSESSMENT-REPORT",
+    "evaluation_method": "Strategic Evaluation",
+    "scoring_value": "Feature / Bug / Prop",
+    "primary_output": "HE-FEEDBACK.md"
+  }
+]
+```
+
+> **Note:** The `Priority Score` is calculated as: `(5 - Composite) × Impact Weight × Cascade Length`. `Impact Weight` is derived from the feature's role in the 3 Pillars, and `Cascade Length` is the count of downstream dependencies in the DAG.
 
 ---
 
@@ -509,8 +587,10 @@ Each task in this procedure includes safeguards against agent hallucination:
   { "safeguard": "Concrete outputs", "how_applied": "Every task declares the exact filename and content structure it must produce" },
   { "safeguard": "Reference grounding", "how_applied": "Gap signals come from `framework/features/`, not invented" },
   { "safeguard": "Verification criteria", "how_applied": "Phase 5 (Results) independently verifies Phase 4 (Actions) outputs" },
-  { "safeguard": "User checkpoints", "how_applied": "Phase 3 (Design Decisions) requires explicit user confirmation before execution" },
+  { "safeguard": "User checkpoints", "how_applied": "Phase 3 requires explicit user approval of the `HE-IMPLEMENTATION-PLAN` before any execution occurs" },
   { "safeguard": "Parallel decomposition", "how_applied": "Phase 1 (Principles) and Phase 2 (Enhancements) tasks can run independently, reducing per-agent load" },
+  { "safeguard": "Deterministic Gates", "how_applied": "Mandatory `npm run smoke` and `check` on all framework-impacting metadata/metadata updates" },
+  { "safeguard": "Pillar Traceability", "how_applied": "Every remediation recommendation (L4) must trace back to a specific feature gap (P0–P3)" },
   { "safeguard": "Token budgets", "how_applied": "Each task has an estimated token budget to prevent context exhaustion" }
 ]
 ```

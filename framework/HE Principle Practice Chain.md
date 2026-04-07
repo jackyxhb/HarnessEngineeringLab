@@ -52,4 +52,4 @@ The Principle-to-Practice Chain is the canonical translation structure for Harne
 
 ## Key Takeaway
 
-One principle → one or multiple actions → concrete, measurable enhancement. The standard flow in engineering.
+One principle (**L1**) drives a measurable target (**L2**) through architectural decisions (**L3**) that manifest as concrete code/config (**L4**), resulting in a verifiable enhancement (**L5**). This chain eliminates "engineering by accident"—every line of code exists to satisfy a specific principle and achieve a measurable outcome.

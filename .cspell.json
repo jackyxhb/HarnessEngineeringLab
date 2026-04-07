@@ -43,6 +43,8 @@
     "P1-8",
     "P1-9",
     "P1-10",
+    "P1-11",
+    "P1-12",
     "P2-1",
     "P2-2",
     "P2-3",
@@ -81,7 +83,10 @@
     "MTTR",
     "Negativa",
     "Poka",
-    "pytest"
+    "pytest",
+    "Justfile",
+    "sonoma",
+    "measurables"
   ],
   "ignorePaths": [
     "node_modules/**",
