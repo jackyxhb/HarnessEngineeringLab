@@ -21,7 +21,7 @@ Scan for all of the following categories:
 
 4. **Broken content** — corrupted text, numbering bugs, typos, formatting errors
 5. **Inconsistent terminology** — pillar verb tags, feature names, feature counts must match canonical sources:
-   - Foundation = `(Execute)` (canonical: `HE Design Decisions.md`)
+   - Foundation = `Foundation: Infrastructure (Execute)` (canonical: `framework/HE Index.md`)
    - Pillar 1 = `Context Engineering (Inform)`
    - Pillar 2 = `Architectural Constraints (Constrain)`
    - Pillar 3 = `Entropy Management (Maintain)`
@@ -56,11 +56,11 @@ When checking terminology, the following are the **single source of truth** labe
 
 ```json
 [
-  { "component": "Foundation",    "canonical": "Foundational Infrastructure (Execute)", "source": "HE Design Decisions.md" },
-  { "component": "Pillar 1",     "canonical": "Context Engineering (Inform)",          "source": "HE Design Decisions.md" },
-  { "component": "Pillar 2",     "canonical": "Architectural Constraints (Constrain)", "source": "HE Design Decisions.md" },
-  { "component": "Pillar 3",     "canonical": "Entropy Management (Maintain)",         "source": "HE Design Decisions.md" },
-  { "component": "Feature count", "canonical": "32 core features",                     "source": "HE Actions Tools.md" },
-  { "component": "Cross-cutting", "canonical": "Reward Engineering & Anti-Hacking",    "source": "HE Negative Actions.md" }
+  { "component": "Foundation",    "canonical": "Foundation: Infrastructure (Execute)", "source": "framework/HE Index.md" },
+  { "component": "Pillar 1",      "canonical": "Context Engineering (Inform)",           "source": "framework/HE Index.md" },
+  { "component": "Pillar 2",      "canonical": "Architectural Constraints (Constrain)",  "source": "framework/HE Index.md" },
+  { "component": "Pillar 3",      "canonical": "Entropy Management (Maintain)",          "source": "framework/HE Index.md" },
+  { "component": "Feature count", "canonical": "32 core features",                      "source": "framework/HE Index.md" },
+  { "component": "Cross-cutting", "canonical": "Reward Engineering & Anti-Hacking",     "source": "framework/cross-cutting/HE Prevention Checklist.md" }
 ]
 ```

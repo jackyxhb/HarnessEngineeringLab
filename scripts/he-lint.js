@@ -40,12 +40,12 @@ const EXPECTED_FEATURE_FILES = 32;
 const EXPECTED_PRINCIPLE_FILES = 19;
 
 function validateDAGStructure() {
-  // Validate feature files exist (P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04)
+  // Validate feature files exist (filenames P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04)
   const featuresDir = path.join(repoRoot, 'framework', 'features');
   const principlesDir = path.join(repoRoot, 'framework', 'principles');
 
   if (!fs.existsSync(featuresDir)) {
-    reportError(featuresDir, 0, 'DAG Structure: framework/features/ directory is missing.', 'Create framework/features/ and populate with P0-01.md through P3-04.md');
+    reportError(featuresDir, 0, 'DAG Structure: framework/features/ directory is missing.', 'Create framework/features/ and populate with modular feature files (P0-01.md through P3-04.md).');
     return;
   }
   if (!fs.existsSync(principlesDir)) {
@@ -57,7 +57,7 @@ function validateDAGStructure() {
   const principleFiles = fs.readdirSync(principlesDir).filter(f => f.endsWith('.md'));
 
   if (featureFiles.length !== EXPECTED_FEATURE_FILES) {
-    reportError(featuresDir, 0, `DAG Structure: Expected ${EXPECTED_FEATURE_FILES} feature files, found ${featureFiles.length}.`, `Ensure framework/features/ contains exactly ${EXPECTED_FEATURE_FILES} files (P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04).`);
+    reportError(featuresDir, 0, `DAG Structure: Expected ${EXPECTED_FEATURE_FILES} feature files, found ${featureFiles.length}.`, `Ensure framework/features/ contains exactly ${EXPECTED_FEATURE_FILES} files (P0-01.md..P3-04.md).`);
   }
   if (principleFiles.length !== EXPECTED_PRINCIPLE_FILES) {
     reportError(principlesDir, 0, `DAG Structure: Expected ${EXPECTED_PRINCIPLE_FILES} principle files, found ${principleFiles.length}.`, `Ensure framework/principles/ contains exactly ${EXPECTED_PRINCIPLE_FILES} files (EP-01..EP-19).`);
@@ -101,7 +101,7 @@ function scanFile(filePath) {
 
     // 2. Generic ID Validation
     // Validates that extracted IDs fit logical constraints (P0-1 to P0-8, P1-1 to P1-10, P2-1 to P2-5, P3-1 to P3-4)
-    const idRegex = /\b(P\d+(?:-\d+)?)\b/g;
+    const idRegex = /\b(P\d+(?:-\d+)?|EP-\d+)\b/g;
     let idMatch;
     while ((idMatch = idRegex.exec(line)) !== null) {
       const id = idMatch[1];
@@ -120,6 +120,15 @@ function scanFile(filePath) {
         const pillar = parseInt(id.replace('P', ''), 10);
         if (pillar < 0 || pillar > 3) invalid = true;
       }
+
+      // New check: No leading zeros allowed in IDs (e.g. P0-01 is forbidden, use P0-1)
+      // We exclude cases where the ID is part of a filename (e.g. P0-01.md)
+      const isFilename = line.slice(idMatch.index + id.length).startsWith('.md') || 
+                         line.slice(idMatch.index + id.length).startsWith('.json');
+
+      if (id.includes('-0') && !isFilename) {
+        reportError(filePath, lineNum, `ID Format Violation: Leading zero detected in "${id}".`, `Remove leading zero per v3.3.1 standard (e.g., "${id.replace('-0', '-')}" instead of "${id}").`);
+      }
       
       if (invalid) {
         reportError(filePath, lineNum, `Invalid Feature ID constraint: "${id}" is out of bounds.`, 'Valid IDs are P0-1..P0-11, P1-1..P1-12, P2-1..P2-5, P3-1..P3-4. See: framework/HE Index.md');
@@ -129,6 +138,7 @@ function scanFile(filePath) {
     // 3. Pillar Label Integrity Check
     // Section headings that label a Pillar must use the canonical verb annotation.
     const pillarLabelChecks = [
+      { regex: /^#+\s+(?:Foundation[:\s]+)?Infrastructure\s*$/, canonical: 'Foundation: Infrastructure (Execute)' },
       { regex: /^#+\s+(?:Pillar\s+1[:\s]+)?Context\s+Engineering\s*$/, canonical: 'Context Engineering (Inform)' },
       { regex: /^#+\s+(?:Pillar\s+2[:\s]+)?Architectural\s+Constraints\s*$/, canonical: 'Architectural Constraints (Constrain)' },
       { regex: /^#+\s+(?:Pillar\s+3[:\s]+)?Entropy\s+Management\s*$/, canonical: 'Entropy Management (Maintain)' },
