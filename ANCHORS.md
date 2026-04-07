@@ -100,3 +100,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `.agent/workflows/build.md` (deleted), AGENTS.md, README.md, ARCHITECTURE.md, audit.sh, SKILL.md (symlink documentation added).
 - **Background:** The build workflow served its purpose during initial skill construction — transforming 7 dense framework files (~170KB) into a structured, token-optimized skill tree. Once the skill stabilized, the compiler became overhead. The useful verification checks (line budgets, cross-references, feature coverage) were retired rather than extracted, since existing `npm run check` + `npm run audit` provide sufficient quality gates for direct editing.
 - **Date:** 2026-04-06
+
+### A11: Machine-Readability First (P1-1) Alignment
+
+- **What:** Refactored the entire Harness Engineering framework (32 features and 6 cross-cutting docs) to adopt the **Machine-Readability First (P1-1)** standard. Replaced narrative Markdown tables for L5 Improvement Policies and systemic perspectives with structured JSON manifests.
+- **Why:** Narrative documentation is "dead data" to agents. By converting evaluation logic and improvement policies to strictly-typed JSON, we enable autonomous agents to parse, score, and self-heal the harness without human translation.
+- **Target:** All 32 feature files in `framework/features/` and all 6 cross-cutting docs in `framework/cross-cutting/`.
+- **Background:** Initiated to eliminate "narrative drift" (P1-1) where agent behavior diverges from documented policy because the policy is only human-readable. v3.3.1 release codifies this structural hardening.
+- **Date:** 2026-04-07
