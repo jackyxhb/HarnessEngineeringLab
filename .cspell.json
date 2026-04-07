@@ -86,7 +86,14 @@
     "pytest",
     "Justfile",
     "sonoma",
-    "measurables"
+    "measurables",
+    "SARIF",
+    "ents",
+    "Conv",
+    "Mags",
+    "dashboarding",
+    "Checkpointing",
+    "HITL"
   ],
   "ignorePaths": [
     "node_modules/**",
