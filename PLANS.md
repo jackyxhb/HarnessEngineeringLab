@@ -26,6 +26,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Active Plans
 
+### Plan: Feature Lookup Output Enforcement
+
+- **Goal:** Make Mode 3 feature lookups produce a deterministic output shape that includes current-state checks and explicit next valid actions, so agents do not stop after only printing the L1â†’L5 chain.
+- **Requirement IDs:** `HE-R001`, `HE-R004`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` for review tracking. Out of scope: changing the P2-3 framework definition itself or adding a repository code gate.
+- **Status:** `done`
+- **Steps:**
+  - [x] Replace the soft Mode 3 guidance with a required output structure that includes state check and next actions
+  - [x] Update public docs so the expected feature-lookup behavior is explicit
+  - [x] Run independent review, validate, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep Mode 3 lightweight, and avoid claiming mechanical enforcement that does not yet exist.
+- **Checkpoints:** Required Mode 3 sections added; docs updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ---
 
 ## Completed Plans

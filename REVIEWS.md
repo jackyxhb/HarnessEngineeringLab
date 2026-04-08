@@ -192,6 +192,37 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
           "status": "accepted"
         }
       ]
+    },
+    {
+      "id": "HE-REV-2026-04-09-008",
+      "date": "2026-04-09",
+      "status": "approved-with-findings",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R004", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "README.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the stronger Mode 3 output contract that requires Feature, Chain, Current State, and Next Valid Actions sections so feature lookup responses cannot stop at a chain-only answer.",
+      "findings": [
+        {
+          "severity": "info",
+          "path": ".agent/skills/harnessing-agents/SKILL.md",
+          "summary": "The output contract is enforced through skill instructions rather than a parser or repository gate, which is appropriate for the current live-linked skill surface.",
+          "status": "accepted"
+        },
+        {
+          "severity": "info",
+          "path": "README.md",
+          "summary": "The deterministic response shape is now documented publicly; future downstream validation can measure compliance in external Mode 3 runs.",
+          "status": "accepted"
+        }
+      ]
     }
   ]
 }

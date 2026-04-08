@@ -73,7 +73,7 @@ Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 
 
 #### Mode 3 Output Contract
 
-After presenting the feature chain, feature lookup must make any suggested next actions **state-aware**.
+Mode 3 responses must not stop after printing the feature chain. After presenting the chain, feature lookup must make any suggested next actions **state-aware** and must emit the required sections below.
 
 Before suggesting next actions:
 
@@ -90,6 +90,22 @@ Rules for suggested next actions:
 - If the target project **was** explicitly named, use that exact project name and no other.
 
 The purpose of Mode 3 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
+
+#### Required Mode 3 Response Shape
+
+Every Mode 3 response must contain these sections, in order:
+
+1. `Feature` — the canonical feature name and ID.
+2. `Chain` — the L1→L5 breakdown.
+3. `Current State` — a short statement of what the repository already has for this feature, grounded in the relevant requirement/review/plan state when the workspace is HELab.
+4. `Next Valid Actions` — 1 to 3 concrete next actions that are valid from the current state.
+
+Minimum requirements:
+
+- `Current State` must explicitly say whether the feature already appears implemented, mounted, hardened, or still missing in HELab.
+- `Next Valid Actions` must always be present. A chain-only response is incomplete.
+- If the feature is already implemented in HELab, at least one next action should shift outward toward delivery refinement, verification hardening, or application in a target project.
+- If the user only asked for lookup and no action is needed, `Next Valid Actions` may say that no new HELab work is currently required and then name the next externalization step.
 
 ### Internal Tools (used within Full Audit, not user-invoked)
 

@@ -64,6 +64,8 @@ For feature lookups, the canonical navigation entry point is `framework/HE Index
 
 Feature lookup suggestions should also be state-aware: they should check current HELab requirements, plans, and review history before proposing new local work, and they must not invent a target-project name the user did not provide.
 
+Mode 3 feature lookups are expected to return a complete response shape, not just the feature chain: `Feature`, `Chain`, `Current State`, and `Next Valid Actions`.
+
 - **SKILL.md** — Skill entry point and routing surface
 - **references/** — Audit and scoring references used by the skill
 - **templates/** — Output templates written into a target project's `.harness/` directory
