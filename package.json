@@ -1,10 +1,10 @@
 {
   "name": "harnessengineeringlab",
   "version": "1.0.0",
-  "description": "A knowledge base and research repository for **Harness Engineering** — the AI-first development methodology where humans design environments and agents write the code.",
+  "description": "A framework-first Harness Engineering repository that ships the harnessing-agents skill for target projects and self-hosts by running that same skill on itself.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run smoke",
     "prepare": "husky",
     "lint": "lint-staged",
     "smoke": "node scripts/he-lint.js",

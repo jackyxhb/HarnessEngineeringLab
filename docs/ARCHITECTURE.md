@@ -1,6 +1,6 @@
 # Architecture
 
-Module boundaries, content flow, and dependency rules for the HarnessEngineeringLab repository. Implements **Practice 3: Structure Codebase With Strict Boundaries And Flow**.
+Legacy support note for repository structure. This file is **not** part of the active project surface; `framework/` and root harness files remain canonical.
 
 ---
 
@@ -9,8 +9,7 @@ Module boundaries, content flow, and dependency rules for the HarnessEngineering
 | Module | Role | Write Authority |
 | --- | --- | --- |
 | `framework/` | Canonical source of truth — feature definitions, gap evaluation, prevention checklist | Humans only (via `/polish`, `/reconcile`, `/revise-comments` workflows) |
-| `research/` | Analysis, principles, commentary | Agents (must reference `framework/`) |
-| `references/` | Immutable source articles | **Read-only.** Never modified after ingestion |
+| `docs/` | Non-core support material; may be stale or removed without affecting the canonical framework | Explicit user request only |
 | `.agent/workflows/` | Agent procedure definitions | Humans only |
 | `scripts/` | Operational tooling (linting, auditing) | Humans only |
 | `tmp/` | Ephemeral drafts | Agents (max 30-day lifetime) |
@@ -27,19 +26,16 @@ Module boundaries, content flow, and dependency rules for the HarnessEngineering
 ## Content Flow
 
 ```text
-references/        (immutable source)
-    │
-    ▼
 framework/         (canonical definitions)
     │
-    ├──▶ research/ (analysis — must reference framework/ for canonical concepts)
+    ├──▶ .agent/workflows/ (procedures operating on the canonical framework)
     │
-    ├──▶ .agent/workflows/ (procedures — must reference CLAUDE.md commands)
+    ├──▶ scripts/ (tools validating the canonical framework surface)
     │
-    └──▶ scripts/ (tools — paths are coupled to framework/ file structure)
+    └──▶ docs/ (optional support material; non-authoritative)
 ```
 
-**Rule:** Content flows downward only. `research/` may never define a new canonical concept — it must originate in `framework/` first.
+**Rule:** Canonical truth originates in `framework/` only. Content under `docs/` is support material and must never override framework definitions.
 
 ---
 
@@ -47,26 +43,18 @@ framework/         (canonical definitions)
 
 ### `framework/`
 
-- No imports from `research/` or `references/`.
 - The single source of truth for all feature definitions, pillar structure, and feature counts.
-- He-lint.js validates all `.md` files against `framework/HE Index.md` and `framework/features/`.
+- He-lint.js validates the active framework surface against `framework/HE Index.md` and `framework/features/`.
 
-### `research/`
+### `docs/`
 
-- May read and reference `framework/` freely.
-- Must use canonical pillar names and feature IDs (enforced by `he-lint.js`).
-- Must not define new features or override canonical definitions.
-- Inconsistencies are fixed by `/revise-comments`, never by editing `framework/`.
-
-### `references/`
-
-- Immutable. No agent or workflow may write to this directory.
-- If a reference document needs an amendment, the decision is recorded in `ANCHORS.md`.
+- Support material only. It may summarize or assist framework work, but it is not authoritative.
+- No enforcement or design decision should depend on `docs/` unless the user explicitly asks to maintain it.
 
 ### `.agent/workflows/`
 
-- Must reference only commands listed in `CLAUDE.md ## Available Tools & Commands`.
-- Do not introduce new tools inside workflows without registering them in `CLAUDE.md` first.
+- Must reference only commands listed in `AGENTS.md ## Available Tools & Commands`.
+- Do not introduce new tools inside workflows without registering them in `AGENTS.md` first.
 
 ### `scripts/`
 
@@ -104,9 +92,7 @@ All headings referencing a pillar must use the canonical verb form:
 
 | Anti-Pattern | Consequence | Enforcement |
 | --- | --- | --- |
-| Editing `framework/` to match a `research/` claim | Bad content enters canonical truth | DO NOT rule in `AGENTS.md` |
-| Defining a new feature in `research/` | Silent fork — agents load contradictory definitions | `he-lint.js` ID validation |
-| Writing to `references/` | Source articles become contaminated | DO NOT rule in `AGENTS.md` |
-| Circular dependency (research → framework → research) | Infinite reconcile loops | Content-flow rule above |
+| Editing `framework/` to match support material | Bad content enters canonical truth | DO NOT rule in `AGENTS.md` |
+| Treating `docs/` as canonical project truth | Agents reason from stale support material instead of the framework | DO NOT rule in `AGENTS.md` |
 | Registering a workflow without a `AGENTS.md` entry | Tool is invisible to agents | DO NOT rule in `AGENTS.md` |
 | Leaving `tmp/` files > 30 days | Context pollution, stale data | `audit.sh` stale-file check |

@@ -4,7 +4,7 @@ description: Revise comments documents to be consistent with HESkill
 
 # Revise Comments for HESkill Consistency
 
-This workflow processes each document in the `research/` folder one by one, comparing it against the canonical framework documents, finding conflicts, and fixing them.
+This workflow processes support-material documents under `docs/` one by one, comparing them against the canonical framework documents, finding conflicts, and fixing them. Run it only when the user explicitly asks to maintain support material.
 
 ## Prerequisites
 
@@ -26,9 +26,9 @@ This workflow processes each document in the `research/` folder one by one, comp
 
 // turbo-all
 
-1. List all files in the `research/` folder.
+1. List all files in the target support-material folder under `docs/`.
 
-2. For EACH document in `research/`, process ONE AT A TIME in sequence:
+2. For EACH support-material document, process ONE AT A TIME in sequence:
 
    a. Read the document fully.
 
@@ -48,7 +48,7 @@ This workflow processes each document in the `research/` folder one by one, comp
 
    f. After fixing (or confirming no conflicts), move to the next document.
 
-3. After all conflict fixes are done, rename each file in `research/` with a short, straightforward, and concise name (max 5 words) that reveals the core content of the file. Rules:
+3. After all conflict fixes are done, rename each support-material file as needed with a short, straightforward, and concise name (max 5 words) that reveals the core content of the file. Rules:
    - Use Title Case with spaces (e.g., `HE Big Picture.md`)
    - Use `HE` prefix for general Harness Engineering docs
    - Use `MAS` prefix for multi-agent specific content

@@ -6,7 +6,7 @@ This file is the **IDE-agnostic canonical source** of all project rules for AI a
 
 ## Repository Purpose
 
-This is a **knowledge base and research repository** for Harness Engineering — the AI-first development methodology where humans design environments and agents write the code. There is no traditional build system, test suite, or application code. The deliverables are structured Markdown documents.
+This repository's active product surface is the **Harness Engineering framework** in `framework/` plus the released **`harnessing-agents` skill** in `.agent/skills/harnessing-agents/`. It is a framework-first repository for the AI-first development methodology where humans design environments and agents write the code. This repository has a dual role: target projects are harnessed by running the `harnessing-agents` skill in their own agentic environment, and this repository self-hosts by running that same skill on itself to set up and improve its own harness. There is no traditional build system or application code; the deliverables are the canonical framework documents under `framework/`, the released skill surface under `.agent/skills/harnessing-agents/`, and the harness files that protect both.
 
 ## Organizing Framework: 3-Pillar + 1-Foundation
 
@@ -31,10 +31,11 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `framework/` — **Canonical source of truth.** Core framework definitions (32 features), 19 engineering principles, and enhancement options. All other docs must be consistent with these files.
-- `research/` — Analysis, principles, and commentary documents. Must align with `framework/` (enforced by the `/revise-comments` workflow).
-- `references/` — Original source articles (reference material, rarely modified).
-- `.agent/workflows/` — Agent workflow definitions.
+- `framework/` — **Canonical knowledge source.** Core framework definitions (32 features), 19 engineering principles, and enhancement options that the skill loads and applies.
+- `.agent/skills/harnessing-agents/` — **Released product skill surface.** The skill that audits and improves target projects and that this repository also runs on itself.
+- `.agent/workflows/` — Active agent workflow definitions that operate on the canonical framework surface.
+- `scripts/` — Active harness tooling that validates and audits the canonical framework surface and released skill surface.
+- `docs/` — Non-core support material. It is not part of the active project surface and must not be treated as authoritative unless the user explicitly asks to work there.
 - `tmp/` — Working documents and drafts.
 
 ## Workflows
@@ -57,7 +58,7 @@ Transitions a defined HE feature from concept to live infrastructure. Designs th
 
 ### `/revise-comments` — Consistency Check
 
-Compares each `research/` document against canonical `framework/` definitions. Fixes structural conflicts (wrong pillars, naming, placement). Renames files using max-5-word Title Case names with `HE` or `MAS` prefix.
+Legacy workflow for reconciling support material against canonical `framework/` definitions. Use only when the user explicitly asks to maintain `docs/research/` or related support material.
 
 ### `/anchor` — Anchor Management
 
@@ -82,7 +83,7 @@ To preserve tracking history and prevent monolithic execution failures, agents m
 To prevent strategic drift across context window resets, agents rely on **Anchors** (P1-8).
 
 - **At Session Start:** Always read `ANCHORS.md` in the root directory to re-establish the project's strategic goals and major architectural decisions.
-- **For Multi-Step Tasks:** Read `PLANS.md` to check for active plans before starting. Append a new plan entry for any task requiring more than 3 sequential steps.
+- **For Multi-Step Tasks:** Read `REQUIREMENTS.md` and `PLANS.md` before starting. Append a new plan entry for any task requiring more than 3 sequential steps, and cite the relevant requirement IDs.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 
 ## Available Tools & Commands
@@ -92,28 +93,28 @@ All available tools and scripts. Undeclared tools do not exist for agents — if
 - `npm run smoke` — Fast HE consistency check (he-lint.js only). Run before any commit to verify feature IDs and pillar labels. Target runtime < 2s.
 - `npm run check` — Full quality gate: markdownlint + cspell + he-lint.js. Equivalent to what CI runs. Use before pushing.
 - `npm run ci` — Alias for `npm run check`. Use in automated contexts.
-- `npm run audit` — Structural integrity audit: verifies all required harness files exist, workflows are registered, tmp/ is clean, and anchor count is healthy. Exit 0 = PASS.
-- `node scripts/he-lint.js` — Canonical HE consistency checker. Runs on `git commit` (pre-commit hook) and in CI on every push/PR. Run manually before committing docs changes.
+- `npm run audit` — Structural integrity audit: verifies the active harness files exist, workflows are registered, tmp/ is clean, and anchor count is healthy. Exit 0 = PASS.
+- `node scripts/he-lint.js` — Canonical HE consistency checker for the active framework surface. Runs on `git commit` (pre-commit hook) and in CI on every push/PR.
 - `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
 - `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.
 - `/cognitive-branch` — Complex task execution with branch memory (P1-9). Use for any multi-step objective.
 - `/ccp` — Intelligent commit wrapper: stages, generates message, and pushes.
 - `/ccpr` — Commit + push + PR + release wrapper.
 - `/anchor` — Add, review, or prune context anchor records in `ANCHORS.md`.
-- `/revise-comments` — Consistency check between `research/` and `framework/`. Run after editing canonical framework docs.
+- `/revise-comments` — Legacy consistency check for support material. Run only when explicitly maintaining `docs/research/` against `framework/`.
 
 ## DO NOT
 
 Explicit forbidden operations. Each entry states the action and the consequence of performing it. Each rule traces to an Engineering Principle — see `framework/HE Index.md` and `framework/principles/` for full chains.
 
-- **`EP-11` Never edit `framework/` files to resolve a `research/` inconsistency by matching the wrong definition.** Consequence: bad content enters canonical truth. Action: update `research/` to match `framework/`, or run `/revise-comments`.
+- **`EP-11` Never edit `framework/` files to resolve a support-material inconsistency by matching the wrong definition.** Consequence: bad content enters canonical truth. Action: if support material must be kept, update it to match `framework/`; otherwise leave the support material non-authoritative.
+- **`EP-14`, `EP-2` Never start multi-step planning or execution without citing requirement IDs from `REQUIREMENTS.md` in `PLANS.md`.** Consequence: unregistered work bypasses the intake gate, breaks planning traceability, and weakens self-hosted enforcement of P1-10/P2-5.
 - **`EP-11` Never add a rule to this file without a concrete incident, failure, or constraint that justifies it.** Consequence: generic rules are ignored by agents trained to find mechanically-enforced constraints; the next `/reconcile` run will flag and remove them.
 - **`EP-15` Never bypass pre-commit hooks with `git commit --no-verify`.** Consequence: `he-lint` violations enter the repository and CI will reject the push.
-- **`EP-11` Never write directly to `references/` files.** Consequence: original source articles become contaminated; `references/` is read-only reference material. If a reference needs updating, flag it in `ANCHORS.md`.
+- **`EP-11` Never treat anything under `docs/` as canonical project truth.** Consequence: support material can override the framework in agent reasoning and create silent harness drift. Action: prefer `framework/` for all decisions; only edit or reference `docs/` when explicitly requested.
 - **`EP-11` Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 32 features are unified through `framework/HE Index.md` and single DAG node files (per A4).
 - **`EP-11` Never introduce a new workflow or script without adding it to `## Available Tools & Commands`.** Consequence: the tool is invisible to agents and effectively non-existent as a harness resource.
 - **`EP-2` Never mark a `PLANS.md` entry status as `done` without moving it to the Completed Plans section.** Consequence: task history is lost; future agents cannot examine resolved blocking issues, constraints applied, or decisions made during the task — rebuilding that context costs a full conversation replay.
-- **`EP-8` Never add a file to `docs/` without registering its observable signals in `docs/OBSERVABILITY.md`.** Consequence: the new file becomes invisible to the harness audit signal table, enabling silent structural regressions that escape both pre-commit and the weekly GC scan.
 - **`EP-15` Never push to `main` when `npm run audit` exits with FAIL.** Consequence: a structurally degraded harness enters the main branch; missing critical files are invisible to agents until the next weekly GC remediation cycle completes.
 - **`EP-10` Never store project-wide rules exclusively in an IDE-specific file or proprietary memory system.** Consequence: agents running in other IDEs cannot discover the rules, fragmenting the harness. All global rules must live in `AGENTS.md`; IDE-specific files are shims only (per A8).
 - **`EP-15` Never deploy advisory or warning-level CI checks; all checks must be binary pass/fail.** Consequence: agents ignore warnings — only hard failures drive behavior change. Advisory warnings accumulate silently until they cascade into hard-to-diagnose failures.
@@ -123,7 +124,8 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 ## Conventions
 
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content. Violation causes naming entropy that breaks cross-link validation and file-search heuristics.
-- **Consistency rule:** `framework/` is the single source of truth. Never edit `research/` to define a new framework concept — write it in `framework/` first, then align `research/` to it. Violating this creates silent forks where agents read contradictory definitions depending on which file they loaded first.
+- **Consistency rule:** `framework/` is the single source of truth for Harness Engineering definitions. The released skill in `.agent/skills/harnessing-agents/` must derive from and stay consistent with `framework/`. Never define or validate framework truth from `docs/`; support material may be stale or disposable.
+- **Dual-mode contract:** This repository both ships the `harnessing-agents` skill for target-project use and self-hosts by running that same skill on itself. If a document claims local enforcement, the claim must map to an actual repo gate; if it describes how the skill should act in a target project, frame it as skill behavior or target-project requirement.
 - **Gap evaluation:** Use `framework/HE Index.md` to navigate feature nodes for multi-dimensional assessment of harness implementations. The `framework/features/` directory provides per-feature gap signals, improvement policies, and dependency maps, while `framework/cross-cutting/` contains evaluation perspectives.
 - **Unified features:** All 32 features are defined once as single files in `framework/features/`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents. Creating split files causes definitions to diverge; `he-lint.js` will catch the count mismatch.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages. Generic messages like "update docs" block downstream automation from extracting semantic change history.

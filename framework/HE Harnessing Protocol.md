@@ -1,6 +1,6 @@
 # HE Harnessing Protocol
 
-A comprehensive, step-by-step procedure for executing Harness Engineering across all 32 core features. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
+A comprehensive, step-by-step procedure for executing Harness Engineering across all 32 core features. This protocol is the canonical procedure consumed by the released `harnessing-agents` skill when it audits and improves a target project, including when the target project is this repository itself in self-host mode. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 >
@@ -18,7 +18,7 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 ## Phase 0: Scope — Target Assessment
 
-> **Goal (Pre-chain):** Understand the target project and determine which parts of this procedure apply.
+> **Goal (Pre-chain):** Understand the target project and determine which parts of this procedure apply. In self-host mode, the target project is the HELab workspace itself; in external mode, it is the project where the `harnessing-agents` skill is being run.
 
 ### Task 0.1: Identify Target Project & Scale
 
@@ -429,12 +429,12 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
   1. If running within the `HarnessEngineeringLab` repository and authorized:
      - Update `.agent/skills/harnessing-agents/SKILL.md` with new features or prevention points.
      - Follow the `/polish` workflow to propagate changes to canonical definitions.
-- **Path B: External Target Mode (Framework User)**
-  1. If running on a target project (standard audit context):
+- **Path B: External Target Mode (Skill User)**
+  1. If running on a target project via the released `harnessing-agents` skill:
      - Generate a `HE-FEEDBACK.md` report in the project's `.harness/` directory.
      - Document proposed improvements to the 32-feature DAG, gap signals, or prevention checklists.
 
-**Output:** Updated skill/docs (Internal) OR `HE-FEEDBACK.md` (External).
+**Output:** Updated skill/docs (Internal HELab mode) OR `HE-FEEDBACK.md` (External skill-run target mode).
 
 ---
 
@@ -444,9 +444,7 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 **Actions:**
 
 1. **Internal Context Only:**
-   - Review and integrate `HE-FEEDBACK.md` recommendations from external audits.
-   - Propagate changes to `framework/` canonical documents.
-   - Run `/revise-comments` workflow to ensure `research/` consistency across the workspace.
+  Review and integrate `HE-FEEDBACK.md` recommendations from external audits, propagate changes to `framework/` canonical documents, and run `/revise-comments` only if the user explicitly wants support material under `docs/` reconciled against the updated framework.
 
 **Output:** Updated HarnessEngineeringLab repository.
 

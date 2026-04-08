@@ -11,8 +11,8 @@ Periodically run this workflow to keep the HarnessEngineeringLab project at a lo
 
 ## Phase 1: Read & Inventory
 
-1. List all files in `framework/`, `research/`, and `references/` directories
-2. Read every document to build a mental model of the content
+1. List all files in the active project surface: `framework/`, `.agent/workflows/`, `scripts/`, and root harness docs
+2. Read the active-surface documents to build a mental model of the canonical content and enforcement layer
 3. Cross-check `README.md` against actual file structure — flag any drift
 
 ## Phase 2: Analyse & Identify Issues
@@ -44,11 +44,12 @@ Scan for all of the following categories:
 15. Apply Medium fixes (cross-references, orphan integration, structural moves)
 16. Apply Heavy fixes (content consolidation, deduplication) only if approved
 17. Update `README.md` to reflect any structural changes
+18. Only inspect or modify `docs/` when the user explicitly asks to reconcile support material against the framework
 
 ## Phase 5: Sync & Commit
 
-18. Run final check: re-read changed files to verify no new issues introduced
-19. Use `ccp` to commit all reconciliation changes with descriptive message
+19. Run final check: re-read changed files to verify no new issues introduced
+20. Use `ccp` to commit all reconciliation changes with descriptive message
 
 ## Canonical Term Reference
 

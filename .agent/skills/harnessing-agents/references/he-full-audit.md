@@ -2,7 +2,7 @@
 
 A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Harnessing Protocol.md`.
 
-> **Output Directory:** All `HE-` output files MUST be written to `./.harness/` in the target project root. Create the directory if it does not exist. Never write HE- files to the project root.
+> **Output Directory:** All `HE-` output files MUST be written to `./.harness/` in the target project root. Create the directory if it does not exist. Never write HE- files to the project root. In HELab self-host mode, HELab itself is the target project, so these files still belong under the local `.harness/` directory.
 
 The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature in `framework/features/`.
 
@@ -101,6 +101,6 @@ If new features, prevention points, or patterns were discovered during the audit
 
 1. Update the harnessing-agents skill files (`.agent/skills/harnessing-agents/`) if new patterns warrant reference updates.
 2. Follow the `/polish` workflow if adding new features to the canonical framework.
-3. Propagate changes to `framework/` canonical documents and run `/revise-comments` to ensure `research/` consistency.
+3. Propagate changes to `framework/` canonical documents and run `/revise-comments` only if the user explicitly wants support material under `docs/` reconciled.
 
 **Output:** Updated skill and/or framework files (if applicable).

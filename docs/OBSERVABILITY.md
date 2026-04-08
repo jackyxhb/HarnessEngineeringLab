@@ -1,12 +1,12 @@
 # Observability
 
-Quality signals, observable fields, and audit definitions for the HarnessEngineeringLab repository. Implements **Practice 4: Build Observability In From Day 1**.
+Legacy support note for repository observability. This file is **not** part of the active project surface; the active harness is defined by `framework/`, root meta-files, workflows, and scripts.
 
 ---
 
 ## Observable Quality Signals
 
-These are the minimum fields that must remain observable at all times. A harness is only healthy when all signals are green.
+These are historical observability notes. Active enforcement is defined by the current CI workflows and harness scripts, not by this support document.
 
 | Signal | Target | Source | Frequency | Alert Threshold |
 | --- | --- | --- | --- | --- |
@@ -32,8 +32,6 @@ The following files must always exist. A missing file is a harness failure (`FAI
 | `AGENTS.md` | P0-11 — Portable Agent Surface | IDE-agnostic canonical rule surface |
 | `ANCHORS.md` | P1-8 — Context Anchoring | Persistent strategic decisions |
 | `PLANS.md` | P1-7 — Planning | Active task state |
-| `docs/ARCHITECTURE.md` | P2-1 — Automated Linters | Module boundary spec |
-| `docs/OBSERVABILITY.md` | P1-5 — Observability | This file |
 | `scripts/he-lint.js` | P2-1 — Automated Linters | HE consistency checker |
 | `scripts/harness/audit.sh` | P3-1 — Scheduled Cleanups | Structural audit |
 | `.github/workflows/he-lint.yml` | P2-1 — Automated Linters | CI gate |

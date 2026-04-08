@@ -39,10 +39,10 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 
 ### A3: framework/ as Canonical Source
 
-- **What:** Designated the `framework/` directory as the authoritative source of truth, over the `research/` directory.
-- **Why:** Prevents entropy and conflicting instructions. `research/` contains analysis that must strictly align with the canonical definitions in `framework/`.
+- **What:** Designated the `framework/` directory as the authoritative source of truth and the only active project surface. Content under `docs/` is support material only and must not override framework definitions by default.
+- **Why:** Prevents entropy and conflicting instructions. Support material may be useful, but it is non-authoritative unless the user explicitly asks to maintain it.
 - **Target:** Directory structure and all documentation files.
-- **Background:** Enforced mechanically by the `/revise-comments` workflow.
+- **Background:** Enforced mechanically by the active harness tooling and by restricting `/revise-comments` to optional support-material reconciliation.
 - **Date:** 2026-03-16
 
 ### A4: Unified Feature Definitions
@@ -108,3 +108,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** All 32 feature files in `framework/features/` and all 6 cross-cutting docs in `framework/cross-cutting/`.
 - **Background:** Initiated to eliminate "narrative drift" (P1-1) where agent behavior diverges from documented policy because the policy is only human-readable. v3.3.1 release codifies this structural hardening.
 - **Date:** 2026-04-07
+
+### A12: Dual-Mode Self-Hosted Contract
+
+- **What:** Declared the repository as dual-mode: it ships the released `harnessing-agents` skill for target-project use and self-hosts by running that same skill on itself to set up and improve its own harness.
+- **Why:** Prevents a recurring ambiguity where target-project delivery sounded like “framework docs only.” The framework defines the method, but the actual delivery mechanism to target projects is the skill surface under `.agent/skills/harnessing-agents/`.
+- **Target:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `PLANS.md`, `.agent/skills/harnessing-agents/`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and framework review criteria.
+- **Background:** Refined on 2026-04-09 after clarifying that target projects are harnessed by running the released skill in their own agentic environment, and this repository also uses that skill on itself.
+- **Date:** 2026-04-09

@@ -1,6 +1,6 @@
 # Harness Engineering Lab
 
-A knowledge base and research repository for **Harness Engineering** — the AI-first development methodology where humans design environments and agents write the code.
+A framework-first repository for **Harness Engineering** and the released **`harnessing-agents` skill** that applies it in real projects.
 
 > _"The discipline shows up in the scaffolding, not the code."_
 
@@ -28,23 +28,20 @@ All harness engineering concepts are organized under a unified framework:
 ```text
 HarnessEngineeringLab/
 ├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
-├── references/              ← Source articles and reference material
 ├── framework/               ← Core framework definitions & operational guides
 │   ├── features/            ← 32 core feature definitions (P0-1 to P3-4)
 │   ├── principles/          ← 19 engineering principles (EP-1 to EP-19)
 │   └── cross-cutting/       ← Systemic risks and evaluation frameworks
-├── research/                ← Analysis, principles, and commentary
+├── .agent/skills/
+│   └── harnessing-agents/   ← Released skill that audits and improves target projects
+├── docs/                    ← Non-core support material (not part of the active project surface)
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
 ```
 
-### `references/`
-
-Original source articles that form the foundation of this research, including OpenAI's harness engineering methodology and derived requirements.
-
 ### `framework/`
 
-The canonical framework definitions and operational guides (32 core features across 3 pillars + 1 foundation):
+The canonical framework definitions and operational guides. This is the single source of truth for the methodology that the released skill loads and applies:
 
 - **HE Index.md** — The Directed Acyclic Graph (DAG) index for the entire framework
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
@@ -53,15 +50,17 @@ The canonical framework definitions and operational guides (32 core features acr
 - **principles/** — 19 modular engineering principle files (EP-1 to EP-19)
 - **cross-cutting/** — Reward Engineering, Token Economics, Prevention Checklist
 
-### `research/`
+### `.agent/skills/harnessing-agents/`
 
-Supporting analysis and commentary documents covering:
+The released skill surface. Target projects are harnessed by installing or symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness.
 
-- **Concepts & Philosophy** — `HE Philosophy.md` (core methodology and shift-left execution)
-- **Architecture & Principles** — `HE Architectural Principles.md` (strict boundaries), `HE Robust Agent Principles.md` (10 design principles)
-- **Multi-Agent** — `HE and MAS Integration.md`, `MAS Critical Enhancements.md`, `HE Degradation Factors.md`
-- **Practical Guidance** — `HE Landing Pathway.md`, `HE Assessment Sheet.md`, `HE Project Build Guide.md`, `HE Maturity Indicators.md`
-- **Tooling & Context** — `HE Agent Tools Catalog.md`, `HE Theory vs Practice.md`
+- **SKILL.md** — Skill entry point and routing surface
+- **references/** — Audit and scoring references used by the skill
+- **templates/** — Output templates written into a target project's `.harness/` directory
+
+### `docs/`
+
+Support material only. Content under `docs/` is not part of the active project surface and should not be treated as authoritative over `framework/`.
 
 ## Key Concepts
 
@@ -97,4 +96,4 @@ The framework scales naturally from a single agent to multi-agent systems. All 3
 
 ## License
 
-This repository is a research and knowledge base. See individual source documents for attribution.
+This repository is a framework and harness repository. See individual source documents for attribution where applicable.

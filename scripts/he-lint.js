@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const repoRoot = process.cwd();
+const requirementIds = new Set();
 
 // --- DYNAMIC REGISTRIES --- //
 const anchorsMap = new Map(); // Concept -> Source File
@@ -70,6 +71,127 @@ function validateDAGStructure() {
   }
 }
 
+function extractJsonCodeBlock(content) {
+  const match = content.match(/```json\s*([\s\S]*?)```/i);
+  return match ? match[1].trim() : null;
+}
+
+function validateRequirementsLedger() {
+  const requirementsPath = path.join(repoRoot, 'REQUIREMENTS.md');
+  if (!fs.existsSync(requirementsPath)) {
+    reportError(requirementsPath, 0, 'Requirements Ledger: REQUIREMENTS.md is missing.', 'Create REQUIREMENTS.md with a machine-readable JSON ledger of active requirements.');
+    return;
+  }
+
+  const content = fs.readFileSync(requirementsPath, 'utf-8');
+  const jsonBlock = extractJsonCodeBlock(content);
+  if (!jsonBlock) {
+    reportError(requirementsPath, 0, 'Requirements Ledger: missing JSON code block.', 'Add a ```json block containing the canonical requirements ledger.');
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonBlock);
+  } catch (error) {
+    reportError(requirementsPath, 0, `Requirements Ledger: invalid JSON (${error.message}).`, 'Fix REQUIREMENTS.md so the ledger JSON parses cleanly.');
+    return;
+  }
+
+  const requirements = Array.isArray(parsed) ? parsed : parsed.requirements;
+  if (!Array.isArray(requirements) || requirements.length === 0) {
+    reportError(requirementsPath, 0, 'Requirements Ledger: no requirement entries found.', 'Define at least one requirement entry with id, title, narrative, acceptance_criteria, status, and source.');
+    return;
+  }
+
+  requirements.forEach((requirement, index) => {
+    const entryLine = index + 1;
+    if (!requirement || typeof requirement !== 'object') {
+      reportError(requirementsPath, entryLine, 'Requirements Ledger: entry is not an object.', 'Each requirement must be a JSON object.');
+      return;
+    }
+
+    const { id, title, narrative, acceptance_criteria: acceptanceCriteria, status, source } = requirement;
+    if (!id || typeof id !== 'string') {
+      reportError(requirementsPath, entryLine, 'Requirements Ledger: entry missing string id.', 'Add a unique string id such as "HE-R001".');
+      return;
+    }
+    if (requirementIds.has(id)) {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: duplicate id "${id}".`, 'Ensure each requirement id is unique.');
+    }
+    requirementIds.add(id);
+
+    if (!title || typeof title !== 'string') {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: requirement "${id}" missing title.`, 'Add a human-readable title.');
+    }
+    if (!narrative || typeof narrative !== 'string') {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: requirement "${id}" missing narrative.`, 'Add a narrative describing the requirement.');
+    }
+    if (!Array.isArray(acceptanceCriteria) || acceptanceCriteria.length === 0) {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: requirement "${id}" missing acceptance_criteria array.`, 'Add at least one acceptance criterion for the requirement.');
+    }
+    if (!status || typeof status !== 'string') {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: requirement "${id}" missing status.`, 'Add a string status such as "active".');
+    }
+    if (!source || typeof source !== 'string') {
+      reportError(requirementsPath, entryLine, `Requirements Ledger: requirement "${id}" missing source.`, 'Add a source string describing where the requirement came from.');
+    }
+  });
+}
+
+function validatePlanRequirementIds() {
+  const plansPath = path.join(repoRoot, 'PLANS.md');
+  if (!fs.existsSync(plansPath)) return;
+
+  const lines = fs.readFileSync(plansPath, 'utf-8').split('\n');
+  const activeHeaderIndex = lines.findIndex(line => line.trim() === '## Active Plans');
+  if (activeHeaderIndex === -1) return;
+
+  let activeSectionEnd = lines.length;
+  for (let index = activeHeaderIndex + 1; index < lines.length; index += 1) {
+    if (/^##\s+/.test(lines[index])) {
+      activeSectionEnd = index;
+      break;
+    }
+  }
+
+  const activeSection = lines.slice(activeHeaderIndex + 1, activeSectionEnd);
+  if (activeSection.some(line => line.includes('_No active plans._'))) return;
+
+  const plans = [];
+  let currentPlan = null;
+  activeSection.forEach((line, offset) => {
+    const lineNum = activeHeaderIndex + 2 + offset;
+    if (line.startsWith('### Plan:')) {
+      if (currentPlan) plans.push(currentPlan);
+      currentPlan = { title: line.replace('### Plan:', '').trim(), lineNum, lines: [] };
+      return;
+    }
+    if (currentPlan) currentPlan.lines.push({ text: line, lineNum });
+  });
+  if (currentPlan) plans.push(currentPlan);
+
+  plans.forEach(plan => {
+    const requirementLine = plan.lines.find(entry => entry.text.includes('**Requirement IDs:**'));
+    if (!requirementLine) {
+      reportError(plansPath, plan.lineNum, `Requirements Gate: active plan "${plan.title}" is missing a Requirement IDs field.`, 'Add a "- **Requirement IDs:** `...`" line referencing REQUIREMENTS.md entries.');
+      return;
+    }
+
+    const ids = Array.from(requirementLine.text.matchAll(/`([^`]+)`/g)).map(match => match[1]);
+    if (ids.length === 0) {
+      reportError(plansPath, requirementLine.lineNum, `Requirements Gate: active plan "${plan.title}" has no backticked requirement IDs.`, 'List one or more requirement IDs such as `HE-R003`.');
+      return;
+    }
+
+    ids.forEach(id => {
+      if (!requirementIds.has(id)) {
+        reportError(plansPath, requirementLine.lineNum, `Requirements Gate: active plan "${plan.title}" references unknown requirement ID "${id}".`, 'Add the requirement to REQUIREMENTS.md or fix the referenced ID.');
+      }
+    });
+  });
+}
+
 let hasErrors = false;
 
 function reportError(filePath, lineNum, message, fix) {
@@ -100,7 +222,7 @@ function scanFile(filePath) {
     }
 
     // 2. Generic ID Validation
-    // Validates that extracted IDs fit logical constraints (P0-1 to P0-8, P1-1 to P1-10, P2-1 to P2-5, P3-1 to P3-4)
+    // Validates that extracted IDs fit logical constraints (P0-1 to P0-11, P1-1 to P1-12, P2-1 to P2-5, P3-1 to P3-4)
     const idRegex = /\b(P\d+(?:-\d+)?|EP-\d+)\b/g;
     let idMatch;
     while ((idMatch = idRegex.exec(line)) !== null) {
@@ -191,6 +313,8 @@ function run() {
 
   // Always validate DAG structure
   validateDAGStructure();
+  validateRequirementsLedger();
+  validatePlanRequirementIds();
 
   const args = process.argv.slice(2).filter(a => a !== '--all');
   const allMode = process.argv.includes('--all');
@@ -200,12 +324,12 @@ function run() {
       if (file.endsWith('.md')) scanFile(path.resolve(file));
     });
   } else {
-    // Run globally (or provided defaults)
-    const DIRS_TO_SCAN = ['framework', 'research', 'references', 'case-studies'];
+    // Run globally on the active framework, skill, and harness surface only.
+    const DIRS_TO_SCAN = ['framework', '.agent/workflows', '.agent/skills/harnessing-agents'];
     DIRS_TO_SCAN.forEach(dir => {
       walkDir(path.join(repoRoot, dir));
     });
-    ['README.md', 'ANCHORS.md', 'CLAUDE.md'].forEach(file => scanFile(path.join(repoRoot, file)));
+    ['README.md', 'AGENTS.md', 'ANCHORS.md', 'CLAUDE.md', 'PLANS.md', 'REQUIREMENTS.md'].forEach(file => scanFile(path.join(repoRoot, file)));
   }
 
   if (hasErrors) {

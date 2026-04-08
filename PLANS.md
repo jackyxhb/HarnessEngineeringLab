@@ -12,6 +12,7 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 ### Plan: <Title>
 
 - **Goal:** What success looks like.
+- **Requirement IDs:** IDs from `REQUIREMENTS.md` that authorize the work.
 - **Scope:** Files/directories in play. What is explicitly OUT of scope.
 - **Status:** `in-progress` | `blocked` | `awaiting-review` | `done`
 - **Steps:**
@@ -30,6 +31,99 @@ _No active plans._
 ---
 
 ## Completed Plans
+
+### Plan: Framework-to-Skill Wording Alignment
+
+- **Goal:** Align the remaining protocol and released skill wording with the clarified contract that target projects are harnessed by running the `harnessing-agents` skill, including HELab self-host mode.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R004`
+- **Scope:** `framework/HE Harnessing Protocol.md`, `.agent/skills/harnessing-agents/`, `.agent/workflows/mount.md`, and `PLANS.md`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Tighten framework protocol wording so it explicitly describes skill-driven target-project and self-host execution
+  - [x] Align released skill references with the clarified contract and current support-material rules
+  - [x] Fix stale workflow references to `CLAUDE.md` and incomplete skill paths where `AGENTS.md` and `.agent/skills/harnessing-agents/` are canonical
+  - [x] Re-run quality checks and archive the plan
+- **Constraints:** Preserve the framework as the canonical knowledge source, keep the released skill surface concise, and avoid changing templates unless the contract actually requires it.
+- **Checkpoints:** Protocol aligned; skill references aligned; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Skill Boundary Contract Correction
+
+- **Goal:** Correct the repository contract so it reflects the actual product boundary: framework definitions plus the released `harnessing-agents` skill that target projects run and this repository self-hosts.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R004`
+- **Scope:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `ANCHORS.md`, `package.json`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, `PLANS.md`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Reframe root governance docs around framework-plus-skill delivery
+  - [x] Align the dual-mode contract with skill execution in target projects and self-hosted use here
+  - [x] Expand active harness validation to include the released skill surface
+  - [x] Re-run quality checks and archive the plan
+- **Constraints:** Preserve `framework/` as the canonical knowledge source, keep `docs/` non-authoritative, and avoid changing the skill behavior itself unless the contract requires it.
+- **Checkpoints:** Root contract corrected; skill surface added to validation; verification green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Dual-Mode Intake Enforcement
+
+- **Goal:** Repair canonical content defects, add a real self-hosted requirements intake gate, and align the repository contract with the explicit dual self-hosted plus target-project intent.
+- **Requirement IDs:** `HE-R002`, `HE-R003`, `HE-R004`
+- **Scope:** `REQUIREMENTS.md`, `AGENTS.md`, `ANCHORS.md`, `PLANS.md`, `package.json`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and affected framework feature files.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create a machine-readable root requirements ledger for the self-hosted repository contract
+  - [x] Enforce active-plan requirement IDs through the live he-lint gate
+  - [x] Update repository contract and anchors to the dual-mode self-hosted plus target-project model
+  - [x] Repair malformed canonical feature content and re-run validation
+- **Constraints:** Preserve the 32-feature framework structure, keep support material non-authoritative, and only claim local enforcement where the repo now has a real gate.
+- **Checkpoints:** Ledger created; he-lint gate active; dual-mode contract recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Framework Surface Consistency Sweep
+
+- **Goal:** Remove remaining active-surface references that still treat `docs/`, `research/`, or `references/` as canonical dependencies, then perform a framework-only critique.
+- **Scope:** `framework/`, `.agent/workflows/`, `PLANS.md`, and active root harness files. Out of scope: editing support material under `docs/` unless required for path integrity.
+- **Status:** `done`
+- **Steps:**
+  - [x] Inspect root shims and active-surface files for stale support-material coupling
+  - [x] Patch canonical framework/workflow files to align with the framework-only scope rule
+  - [x] Re-run mechanical validation on the active harness surface
+  - [x] Produce a fresh framework-only critique
+- **Constraints:** Preserve the framework's canonical structure and avoid promoting support material back into the active surface.
+- **Checkpoints:** Active-surface references cleaned; validation green; critique completed.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Framework-Only Surface Cleanup
+
+- **Goal:** Align the repository's active harness with the new scope rule that `framework/` is canonical and `docs/` is non-core support material.
+- **Scope:** `AGENTS.md`, `README.md`, `docs/ARCHITECTURE.md`, `docs/OBSERVABILITY.md`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, `package.json`, `PLANS.md`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Update root meta-docs to describe `framework/` as the only canonical product surface
+  - [x] Remove `docs/` from active harness enforcement where it is currently treated as required/core
+  - [x] Retune lint/audit behavior to focus on the active project surface instead of support material
+  - [x] Re-run quality checks and archive the plan
+- **Constraints:** Preserve the existing framework structure and feature counts; do not change canonical framework content unless required for path integrity.
+- **Checkpoints:** Meta-docs aligned; enforcement scripts aligned; verification green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Repository Critique Audit
+
+- **Goal:** Conduct a rigorous repository-wide critique to identify structural weaknesses, validation gaps, documentation drift, and improvement opportunities across the harness.
+- **Scope:** Root meta-docs, `docs/`, `framework/`, `research/`, `scripts/`, and package-level validation commands. Out of scope: changing canonical framework definitions unless a critique requires a concrete reference.
+- **Status:** `done`
+- **Steps:**
+  - [x] Run the existing mechanical checks (`npm run check`, `npm run audit`) and inspect failures or blind spots
+  - [x] Review root governance docs and harness scripts for contradictions, missing enforcement, or weak signals
+  - [x] Sample canonical `framework/` files and downstream `research/` files for drift and machine-readability issues
+  - [x] Produce prioritized findings with exact file citations and concrete remediation directions
+- **Constraints:** `framework/` remains canonical truth; do not “fix” issues during the review unless explicitly requested; findings must distinguish hard defects from tuning opportunities.
+- **Checkpoints:** Mechanical validation captured; documentation layers sampled; final findings ranked by severity.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
 
 ### Plan: Principle-to-Practice Chain Restructuring
 

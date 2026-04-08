@@ -11,7 +11,7 @@ Run this workflow when you encounter a new architectural requirement, a powerful
 ## Phase 1: Inspiration & Mapping
 
 1. **Identify the Gap/Insight:** What new behavior, rule, or failure mode is the user proposing? What existing project evidence motivates it?
-2. **Determine Target:** Decide whether to enrich an _existing_ feature (e.g., modifying `P1-08 Context Anchoring`) or create a _new_ core feature (e.g., adding `P1-13 …`). Let the user decide if ambiguous.
+2. **Determine Target:** Decide whether to enrich an _existing_ feature (e.g., modifying `P1-8 Context Anchoring`) or create a _new_ core feature slot (e.g., adding `P{pillar}-NEXT …`). Let the user decide if ambiguous.
    - **Constraint rule:** The framework is intentionally bounded (32 features). Prefer enriching an existing feature unless the new concept is distinctly different AND occupies an unoccupied architectural slot. Adding a feature increments the canonical count and triggers `he-lint.js` to enforce `EXPECTED_FEATURE_FILES`.
 3. **Identify the Governing Principle:** Which of the 19 engineering principles (`framework/principles/EP-*.md`) governs this behavior? If none fits, the insight may be a new principle, not a new feature — escalate before proceeding.
 
@@ -48,7 +48,7 @@ Scope is narrow because features are single-file:
    - `framework/cross-cutting/HE Cross Cutting Perspectives.md` — only if the enrichment changes how the feature appears in Human Role Optimization, SAS→MAS Readiness, Agent Legibility, or Entropy Trajectory analysis.
    - `framework/cross-cutting/HE Evaluation Dimensions.md` / `HE SAS MAS Readiness.md` / `HE Token Economics.md` — only if scoring semantics change.
 3. **Principle backlink:** If the governing `EP-N` changed, update both the old and new `framework/principles/EP-NN.md` `governed_features` lists and the `governs` array in `framework/HE Index.md`.
-4. **Research cascade:** Run `/revise-comments` to realign any `research/` docs that quoted the old definition. Never hand-edit `references/` (per EP-11 DO NOT).
+4. **Support-material cascade:** Run `/revise-comments` only when the user explicitly wants support material reconciled against the framework. Never let support material drive canonical framework changes.
 
 ### Path B: Adding a New Feature
 
@@ -56,7 +56,7 @@ Every step below is mandatory — `he-lint.js` enforces feature/principle counts
 
 #### Step 1: Create the canonical feature file
 
-- **`framework/features/P{pillar}-{num}.md`** — create the new file using the drafted L1→L5 content. Filename must match the ID (zero-padded, e.g. `P1-13.md`).
+- **`framework/features/P{pillar}-{num}.md`** — create the new file using the drafted L1→L5 content. Filename must match the ID (zero-padded where the repository uses it, e.g. `P1-12.md`).
 - Pillar-to-prefix map:
   - Foundation → `P0-*`
   - Pillar 1 (Context Engineering) → `P1-*`
@@ -94,9 +94,9 @@ Every step below is mandatory — `he-lint.js` enforces feature/principle counts
 - **`.agent/skills/harnessing-agents/references/he-scoring.md`** — no change (dimensions are canonical and stable).
 - **`.agent/skills/harnessing-agents/references/he-full-audit.md`** — no change (phases are feature-count-agnostic).
 
-#### Step 8: Reconcile research layer
+#### Step 8: Reconcile support material only if requested
 
-- Run `/revise-comments` to cascade the new definition into any `research/` document that enumerates features, counts, or pillar breakdowns. Never hand-edit `references/` source material.
+- Run `/revise-comments` only if the user explicitly wants support material under `docs/` updated to reflect the canonical framework. Support material is non-authoritative and may be skipped entirely.
 
 #### Step 9: Verify
 

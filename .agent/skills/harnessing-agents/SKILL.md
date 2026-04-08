@@ -18,6 +18,8 @@ allowed-tools:
 
 **Harness Engineering** is the discipline of designing the infrastructure, constraints, and feedback loops that surround an AI agent to make it productive, safe, and self-correcting. The framework spans 32 features across Foundation + 3 Pillars, organized through the Principle-to-Practice Chain (L1→L5).
 
+This released skill is the delivery mechanism for applying that framework in real projects. Target projects are harnessed by running this skill in their own agentic environment, and HELab self-hosts by running the same skill on itself.
+
 **Core principle (EP-15):** When an agent fails, fix the environment — not the code. Add a mechanical guardrail (test, linter, structural constraint) so the agent self-corrects.
 
 ## Framework Architecture — DAG Navigation
