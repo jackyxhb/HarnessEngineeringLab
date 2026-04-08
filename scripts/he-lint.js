@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const repoRoot = process.cwd();
 const requirementIds = new Set();
@@ -79,6 +80,54 @@ function extractJsonCodeBlock(content) {
 function extractSkillVersion(content) {
   const match = content.match(/^version:\s*"([^"]+)"\s*$/m);
   return match ? match[1] : null;
+}
+
+function getGitChangedFiles() {
+  const changed = new Set();
+
+  try {
+    const tracked = execSync('git diff --name-only HEAD', { cwd: repoRoot, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
+    tracked.split('\n').map(line => line.trim()).filter(Boolean).forEach(file => changed.add(file));
+  } catch {
+    // Ignore git diff failures and fall back to whatever can be observed.
+  }
+
+  try {
+    const untracked = execSync('git ls-files --others --exclude-standard', { cwd: repoRoot, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
+    untracked.split('\n').map(line => line.trim()).filter(Boolean).forEach(file => changed.add(file));
+  } catch {
+    // Ignore git ls-files failures and fall back to tracked changes only.
+  }
+
+  return Array.from(changed);
+}
+
+function validateReleaseNotesSurface() {
+  const releasesPath = path.join(repoRoot, 'RELEASES.md');
+  if (!fs.existsSync(releasesPath)) {
+    reportError(releasesPath, 0, 'Release Notes: RELEASES.md is missing.', 'Create RELEASES.md as the canonical HELab release-notes surface.');
+    return;
+  }
+
+  const content = fs.readFileSync(releasesPath, 'utf-8');
+  if (!/^##\s+Unreleased\s*$/m.test(content)) {
+    reportError(releasesPath, 0, 'Release Notes: RELEASES.md is missing an Unreleased section.', 'Add a `## Unreleased` section for pending downstream changes.');
+  }
+}
+
+function validateDownstreamImpactNotes(explicitFiles) {
+  const candidateFiles = explicitFiles.length > 0
+    ? explicitFiles.map(file => path.relative(repoRoot, path.resolve(file)).split(path.sep).join('/'))
+    : getGitChangedFiles();
+
+  const downstreamPrefixes = ['framework/', '.agent/skills/harnessing-agents/'];
+  const hasDownstreamChange = candidateFiles.some(file => downstreamPrefixes.some(prefix => file.startsWith(prefix)));
+  if (!hasDownstreamChange) return;
+
+  const releasesTouched = candidateFiles.includes('RELEASES.md');
+  if (!releasesTouched) {
+    reportError(path.join(repoRoot, 'RELEASES.md'), 0, 'Downstream Impact: framework/ or .agent/skills/harnessing-agents/ changed without updating RELEASES.md.', 'Update the `Unreleased` section in RELEASES.md with the downstream-facing impact of the change.');
+  }
 }
 
 function validateSkillVersionSync() {
@@ -361,9 +410,11 @@ function run() {
   validateRequirementsLedger();
   validatePlanRequirementIds();
   validateSkillVersionSync();
+  validateReleaseNotesSurface();
 
   const args = process.argv.slice(2).filter(a => a !== '--all');
   const allMode = process.argv.includes('--all');
+  validateDownstreamImpactNotes(args);
   if (args.length > 0 && !allMode) {
     // Run only on provided files (lint-staged)
     args.forEach(file => {
@@ -375,7 +426,7 @@ function run() {
     DIRS_TO_SCAN.forEach(dir => {
       walkDir(path.join(repoRoot, dir));
     });
-    ['README.md', 'AGENTS.md', 'ANCHORS.md', 'CLAUDE.md', 'PLANS.md', 'REQUIREMENTS.md'].forEach(file => scanFile(path.join(repoRoot, file)));
+    ['README.md', 'AGENTS.md', 'ANCHORS.md', 'CLAUDE.md', 'PLANS.md', 'REQUIREMENTS.md', 'RELEASES.md'].forEach(file => scanFile(path.join(repoRoot, file)));
   }
 
   if (hasErrors) {

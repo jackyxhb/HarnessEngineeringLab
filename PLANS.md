@@ -32,6 +32,22 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Release Semantics Hardening
+
+- **Goal:** Make the live-linked HELab release model operational by adding a release-notes surface, aligning `/ccpr` with the root version contract, and enforcing downstream-impact updates through the harness.
+- **Requirement IDs:** `HE-R002`, `HE-R004`, `HE-R005`, `HE-R006`
+- **Scope:** `.agent/workflows/ccpr.md`, `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `ANCHORS.md`, `PLANS.md`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and a new root release-notes file.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a root HELab release-notes surface for versioned downstream change tracking
+  - [x] Update `/ccpr` to use `package.json` as the canonical release version source
+  - [x] Add a lint rule requiring release-notes updates when live-linked downstream surfaces change
+  - [x] Re-run validation and archive the plan
+- **Constraints:** Preserve the live-linked skill model, avoid introducing a fake independent skill release boundary, and keep release semantics grounded in the root HELab version.
+- **Checkpoints:** Release-notes file exists; `/ccpr` aligned; downstream-impact gate active; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Live-Linked Skill Version Sync
 
 - **Goal:** Align the repository contract with the real live-linked consumption model and add a mechanical method that syncs the `harnessing-agents` skill version from HELab's root version.

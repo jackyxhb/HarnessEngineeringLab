@@ -64,6 +64,7 @@ HELab is the canonical version source for the current live-linked skill model.
 
 - **`package.json`** — Canonical HELab version.
 - **`.agent/skills/harnessing-agents/SKILL.md`** — Mirrored skill metadata version for downstream visibility.
+- **`RELEASES.md`** — Canonical HELab release notes for downstream-facing changes.
 - **`npm run sync:skill-version`** — Syncs the root version into the skill metadata.
 
 The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the shared `framework/` files it loads, that is also a downstream skill change.

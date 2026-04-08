@@ -11,7 +11,7 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       "applies_to": ["self-hosted", "target-project"],
       "narrative": "Canonical Harness Engineering truth lives in framework/. The live-linked harnessing-agents skill in .agent/skills/harnessing-agents/ derives from that framework and applies it to target projects and to this repository itself. Content under docs/ is support material only and must not override framework definitions unless the user explicitly asks to maintain it.",
       "acceptance_criteria": [
-        "Active harness tooling validates framework/, the released skill surface, and root harness files as the active product surface.",
+        "Active harness tooling validates framework/, the live-linked skill surface, and root harness files as the active product surface.",
         "The skill surface stays consistent with the framework definitions it loads.",
         "Support material under docs/ is treated as optional and non-authoritative by default.",
         "Anchors and workflow instructions do not route agents through docs/ as canonical truth."
@@ -25,7 +25,7 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       "applies_to": ["self-hosted", "target-project"],
       "narrative": "This repository both ships the harnessing-agents skill for target-project use and self-hosts by running that same skill on itself. The framework defines the method; the skill is the live-linked delivery mechanism that applies it in agentic environments.",
       "acceptance_criteria": [
-        "Root governance docs describe the repository as both a framework source and a released skill workspace.",
+        "Root governance docs describe the repository as both a framework source and a live-linked skill workspace.",
         "Local implementation claims are backed by mechanical checks or clearly framed as skill behavior in target projects.",
         "Target-project language refers to running the harnessing-agents skill, not merely reading the framework docs.",
         "Strategic anchors reflect the dual-mode contract."
@@ -53,7 +53,7 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       "narrative": "Canonical framework files and live-linked skill files must remain machine-readable and free of malformed bullets, orphan rows, and other parse-breaking corruption.",
       "acceptance_criteria": [
         "Malformed feature-file content is corrected when discovered.",
-        "Released skill docs and references remain readable and consistent with framework updates.",
+        "Live-linked skill docs and references remain readable and consistent with framework updates.",
         "Markdownlint, cspell, and he-lint continue to pass after canonical edits.",
         "No canonical feature file contains stray table rows or merged bullet text that changes meaning."
       ],
@@ -73,6 +73,20 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "User clarification about the live-linked skill model on 2026-04-09"
+    },
+    {
+      "id": "HE-R006",
+      "title": "Downstream change traceability",
+      "applies_to": ["self-hosted", "target-project"],
+      "narrative": "Because linked downstream projects consume the live-linked skill surface directly, changes to `framework/` or `.agent/skills/harnessing-agents/` must leave a durable release-notes trail in the HELab repository.",
+      "acceptance_criteria": [
+        "A canonical root release-notes file exists for HELab version history and unreleased downstream changes.",
+        "The repository fails validation when downstream-impact surfaces change without a corresponding `RELEASES.md` update.",
+        "Release workflows derive their release tag and notes from the root HELab version model rather than an independent skill release number.",
+        "Documentation tells maintainers to treat live-linked framework and skill edits as downstream-facing changes."
+      ],
+      "status": "active",
+      "source": "Follow-up hardening of the live-linked release model on 2026-04-09"
     }
   ]
 }

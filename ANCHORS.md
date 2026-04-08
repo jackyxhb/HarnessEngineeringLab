@@ -124,3 +124,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `package.json`, `.agent/skills/harnessing-agents/SKILL.md`, `scripts/sync-skill-version.js`, `scripts/he-lint.js`, and root governance docs.
 - **Background:** Added on 2026-04-09 after clarifying that the skill is part of HELab today and does not yet have an independent packaging or release action.
 - **Date:** 2026-04-09
+
+### A14: Root Release Notes for Live Link
+
+- **What:** Added `RELEASES.md` as the canonical HELab release-notes surface and required downstream-impact edits in `framework/` or `.agent/skills/harnessing-agents/` to update it.
+- **Why:** Linked downstream consumers effectively consume HELab HEAD for the framework and skill surfaces. Without a durable root release-notes trail, externally visible changes become difficult to trace or communicate.
+- **Target:** `RELEASES.md`, `/ccpr`, `scripts/he-lint.js`, and governance docs describing live-linked downstream impact.
+- **Background:** Added on 2026-04-09 after version syncing was hardened and the next gap became downstream change traceability.
+- **Date:** 2026-04-09
