@@ -45,6 +45,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: Feature Lookup Template Hardening
+
+- **Goal:** Make Mode 3 feature lookups follow a dedicated response template and explicitly reject field/value summary output, so the live-linked skill produces the intended state-aware answer shape in practice.
+- **Requirement IDs:** `HE-R001`, `HE-R004`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` for review tracking. Out of scope: adding a parser-based enforcement gate.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a dedicated Mode 3 feature-lookup template
+  - [x] Bind the skill contract to that template and ban field/value summary output
+  - [x] Run independent review, validate, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep Mode 3 lightweight, and avoid claiming parser-level enforcement that does not yet exist.
+- **Checkpoints:** Template exists; Mode 3 references it directly; docs updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Feature Lookup State Awareness
 
 - **Goal:** Make Mode 3 feature lookup suggestions state-aware so the skill does not propose duplicate HELab work, invent new requirement IDs unnecessarily, or guess a target project name that the user did not specify.

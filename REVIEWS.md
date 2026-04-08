@@ -223,6 +223,38 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
           "status": "accepted"
         }
       ]
+    },
+    {
+      "id": "HE-REV-2026-04-09-009",
+      "date": "2026-04-09",
+      "status": "approved-with-findings",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R004", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md",
+        "README.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the Mode 3 template hardening patch that adds a dedicated feature-lookup template, binds feature mode to that template, and rejects field/value summary output as the default final response shape.",
+      "findings": [
+        {
+          "severity": "info",
+          "path": ".agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md",
+          "summary": "The dedicated template materially improves compliance by prohibiting table-only answers and requiring Current State plus Next Valid Actions, even though enforcement remains instruction-based.",
+          "status": "accepted"
+        },
+        {
+          "severity": "info",
+          "path": ".agent/skills/harnessing-agents/SKILL.md",
+          "summary": "Mode 3 enforcement remains contract-based rather than parser-based, which is appropriate for the current live-linked skill surface and was kept in scope deliberately.",
+          "status": "accepted"
+        }
+      ]
     }
   ]
 }

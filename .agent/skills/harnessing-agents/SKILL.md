@@ -70,6 +70,7 @@ Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → 
 Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
 - **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Do not guess unpadded paths such as `framework/features/P2-3.md`.
 - **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
+- **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 3.
 
 #### Mode 3 Output Contract
 
@@ -93,7 +94,7 @@ The purpose of Mode 3 is not just to explain the feature. It must suggest the ne
 
 #### Required Mode 3 Response Shape
 
-Every Mode 3 response must contain these sections, in order:
+Every Mode 3 response must follow `templates/HE-FEATURE-LOOKUP.md` and contain these sections, in order:
 
 1. `Feature` — the canonical feature name and ID.
 2. `Chain` — the L1→L5 breakdown.
@@ -104,6 +105,7 @@ Minimum requirements:
 
 - `Current State` must explicitly say whether the feature already appears implemented, mounted, hardened, or still missing in HELab.
 - `Next Valid Actions` must always be present. A chain-only response is incomplete.
+- A field/value extraction table is not a valid final response shape unless the user explicitly asked for a table.
 - If the feature is already implemented in HELab, at least one next action should shift outward toward delivery refinement, verification hardening, or application in a target project.
 - If the user only asked for lookup and no action is needed, `Next Valid Actions` may say that no new HELab work is currently required and then name the next externalization step.
 

@@ -66,6 +66,8 @@ Feature lookup suggestions should also be state-aware: they should check current
 
 Mode 3 feature lookups are expected to return a complete response shape, not just the feature chain: `Feature`, `Chain`, `Current State`, and `Next Valid Actions`.
 
+The canonical Mode 3 output shape lives in `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`. A field/value extraction table is not considered a compliant final response unless the user explicitly asks for tabular output.
+
 - **SKILL.md** — Skill entry point and routing surface
 - **references/** — Audit and scoring references used by the skill
 - **templates/** — Output templates written into a target project's `.harness/` directory
