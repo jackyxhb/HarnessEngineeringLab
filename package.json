@@ -1,12 +1,14 @@
 {
   "name": "harnessengineeringlab",
   "version": "1.0.0",
-  "description": "A framework-first Harness Engineering repository that ships the harnessing-agents skill for target projects and self-hosts by running that same skill on itself.",
+  "description": "A framework-first Harness Engineering repository whose live-linked harnessing-agents skill is consumed by target projects and self-hosted in HELab.",
   "main": "index.js",
   "scripts": {
     "test": "npm run smoke",
     "prepare": "husky",
     "lint": "lint-staged",
+    "sync:skill-version": "node scripts/sync-skill-version.js",
+    "version": "npm run sync:skill-version && git add .agent/skills/harnessing-agents/SKILL.md",
     "smoke": "node scripts/he-lint.js",
     "check": "markdownlint \"**/*.md\" --ignore node_modules && cspell \"**/*.md\" --no-progress && node scripts/he-lint.js",
     "ci": "npm run check",

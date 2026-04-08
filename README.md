@@ -1,6 +1,6 @@
 # Harness Engineering Lab
 
-A framework-first repository for **Harness Engineering** and the released **`harnessing-agents` skill** that applies it in real projects.
+A framework-first repository for **Harness Engineering** and the live-linked **`harnessing-agents` skill** that applies it in real projects.
 
 > _"The discipline shows up in the scaffolding, not the code."_
 
@@ -33,7 +33,7 @@ HarnessEngineeringLab/
 │   ├── principles/          ← 19 engineering principles (EP-1 to EP-19)
 │   └── cross-cutting/       ← Systemic risks and evaluation frameworks
 ├── .agent/skills/
-│   └── harnessing-agents/   ← Released skill that audits and improves target projects
+│   └── harnessing-agents/   ← Live-linked skill that audits and improves target projects
 ├── docs/                    ← Non-core support material (not part of the active project surface)
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
@@ -41,7 +41,7 @@ HarnessEngineeringLab/
 
 ### `framework/`
 
-The canonical framework definitions and operational guides. This is the single source of truth for the methodology that the released skill loads and applies:
+The canonical framework definitions and operational guides. This is the single source of truth for the methodology that the live-linked skill loads and applies:
 
 - **HE Index.md** — The Directed Acyclic Graph (DAG) index for the entire framework
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
@@ -52,11 +52,21 @@ The canonical framework definitions and operational guides. This is the single s
 
 ### `.agent/skills/harnessing-agents/`
 
-The released skill surface. Target projects are harnessed by installing or symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness.
+The live-linked skill surface. Target projects are currently harnessed by symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness. Because the skill shares core files under `framework/`, changes in either place immediately affect linked downstream environments.
 
 - **SKILL.md** — Skill entry point and routing surface
 - **references/** — Audit and scoring references used by the skill
 - **templates/** — Output templates written into a target project's `.harness/` directory
+
+### Versioning
+
+HELab is the canonical version source for the current live-linked skill model.
+
+- **`package.json`** — Canonical HELab version.
+- **`.agent/skills/harnessing-agents/SKILL.md`** — Mirrored skill metadata version for downstream visibility.
+- **`npm run sync:skill-version`** — Syncs the root version into the skill metadata.
+
+The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the shared `framework/` files it loads, that is also a downstream skill change.
 
 ### `docs/`
 

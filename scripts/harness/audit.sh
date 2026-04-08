@@ -47,7 +47,7 @@ check_file "AGENTS.md"                              "IDE-agnostic canonical rule
 check_file "ANCHORS.md"                             "Context anchor log"
 check_file "REQUIREMENTS.md"                        "Requirements ledger"
 check_file "PLANS.md"                               "Active task state"
-check_file ".agent/skills/harnessing-agents/SKILL.md" "Released harnessing-agents skill"
+check_file ".agent/skills/harnessing-agents/SKILL.md" "Live-linked harnessing-agents skill"
 check_file "scripts/he-lint.js"                     "HE consistency checker"
 check_file "scripts/harness/audit.sh"               "This audit script"
 check_file ".github/workflows/he-lint.yml"          "CI lint gate"

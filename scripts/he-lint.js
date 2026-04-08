@@ -76,6 +76,51 @@ function extractJsonCodeBlock(content) {
   return match ? match[1].trim() : null;
 }
 
+function extractSkillVersion(content) {
+  const match = content.match(/^version:\s*"([^"]+)"\s*$/m);
+  return match ? match[1] : null;
+}
+
+function validateSkillVersionSync() {
+  const packageJsonPath = path.join(repoRoot, 'package.json');
+  const skillPath = path.join(repoRoot, '.agent', 'skills', 'harnessing-agents', 'SKILL.md');
+
+  if (!fs.existsSync(packageJsonPath)) {
+    reportError(packageJsonPath, 0, 'Version Sync: package.json is missing.', 'Restore package.json so the canonical HELab version can be read.');
+    return;
+  }
+
+  if (!fs.existsSync(skillPath)) {
+    reportError(skillPath, 0, 'Version Sync: .agent/skills/harnessing-agents/SKILL.md is missing.', 'Restore SKILL.md so downstream consumers have visible skill metadata.');
+    return;
+  }
+
+  let packageJson;
+  try {
+    packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+  } catch (error) {
+    reportError(packageJsonPath, 0, `Version Sync: package.json is invalid JSON (${error.message}).`, 'Fix package.json so the canonical HELab version can be parsed.');
+    return;
+  }
+
+  const rootVersion = packageJson.version;
+  if (!rootVersion || typeof rootVersion !== 'string') {
+    reportError(packageJsonPath, 0, 'Version Sync: package.json is missing a string version field.', 'Add a canonical root version string to package.json.');
+    return;
+  }
+
+  const skillContent = fs.readFileSync(skillPath, 'utf-8');
+  const skillVersion = extractSkillVersion(skillContent);
+  if (!skillVersion) {
+    reportError(skillPath, 0, 'Version Sync: SKILL.md frontmatter is missing a version field.', 'Add a version field and sync it from package.json.');
+    return;
+  }
+
+  if (skillVersion !== rootVersion) {
+    reportError(skillPath, 0, `Version Sync: SKILL.md version "${skillVersion}" does not match package.json version "${rootVersion}".`, 'Run `npm run sync:skill-version` to mirror the canonical HELab version into the skill metadata.');
+  }
+}
+
 function validateRequirementsLedger() {
   const requirementsPath = path.join(repoRoot, 'REQUIREMENTS.md');
   if (!fs.existsSync(requirementsPath)) {
@@ -315,6 +360,7 @@ function run() {
   validateDAGStructure();
   validateRequirementsLedger();
   validatePlanRequirementIds();
+  validateSkillVersionSync();
 
   const args = process.argv.slice(2).filter(a => a !== '--all');
   const allMode = process.argv.includes('--all');

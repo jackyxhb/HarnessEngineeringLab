@@ -32,6 +32,22 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Live-Linked Skill Version Sync
+
+- **Goal:** Align the repository contract with the real live-linked consumption model and add a mechanical method that syncs the `harnessing-agents` skill version from HELab's root version.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R004`, `HE-R005`
+- **Scope:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `ANCHORS.md`, `package.json`, `scripts/he-lint.js`, `scripts/`, `.agent/skills/harnessing-agents/SKILL.md`, and `PLANS.md`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Reframe docs so the skill is described as a live-linked HELab component rather than an independently released artifact
+  - [x] Add a deterministic sync command that copies the root version into the skill metadata
+  - [x] Add a validation gate that fails when `package.json` and the skill version diverge
+  - [x] Re-run quality checks and archive the plan
+- **Constraints:** Preserve `framework/` as canonical truth, keep the skill metadata concise, and prefer a mechanical guardrail over a documentation-only rule.
+- **Checkpoints:** Contract wording aligned; sync command available; lint gate catches version drift; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Framework-to-Skill Wording Alignment
 
 - **Goal:** Align the remaining protocol and released skill wording with the clarified contract that target projects are harnessed by running the `harnessing-agents` skill, including HELab self-host mode.

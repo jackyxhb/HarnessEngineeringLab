@@ -116,3 +116,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `PLANS.md`, `.agent/skills/harnessing-agents/`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and framework review criteria.
 - **Background:** Refined on 2026-04-09 after clarifying that target projects are harnessed by running the released skill in their own agentic environment, and this repository also uses that skill on itself.
 - **Date:** 2026-04-09
+
+### A13: Live-Linked Skill Version Source
+
+- **What:** Declared `package.json` as the canonical version source for the current live-linked `harnessing-agents` skill and required `.agent/skills/harnessing-agents/SKILL.md` to mirror that version.
+- **Why:** External projects currently consume the skill through a live link, and the skill shares core `framework/` files with HELab. A separate unsynchronized skill version creates an ambiguous downstream state instead of a real release boundary.
+- **Target:** `package.json`, `.agent/skills/harnessing-agents/SKILL.md`, `scripts/sync-skill-version.js`, `scripts/he-lint.js`, and root governance docs.
+- **Background:** Added on 2026-04-09 after clarifying that the skill is part of HELab today and does not yet have an independent packaging or release action.
+- **Date:** 2026-04-09
