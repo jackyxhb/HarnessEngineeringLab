@@ -34,6 +34,7 @@ _Evaluates if the agent has the right information at the right time without over
 - **Branch-Based Cognitive Memory (P1-9):** Are complex objectives decomposed into concurrent sub-task branches with structured commit messages acting as memory checkpoints?
 - **Requirements Ledger (P1-10):** Are all user stories, requirements, and functional scenarios captured in a unified ledger document before planning or execution begins?
 - **Socratic Questioning (P1-11):** Does the agent apply structured Socratic interrogation to extract complete, unambiguous information from unclear inputs before proceeding to execution?
+- **Skill Engineering (P1-12):** Are agent skills modular and loaded on-demand rather than bundled into a monolithic context? Do individual skills have explicit context budgets and remain independently maintainable?
 
 ## Pillar 2: Architectural Constraints (Constrain)
 

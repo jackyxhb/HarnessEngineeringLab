@@ -11,7 +11,7 @@ A feature is considered "mounted" when it has physical artifacts (files, directo
 ## Phase 1: Feature Comprehension & Design
 
 1. **Identify the Feature:** Prompt the user for the feature ID (e.g., `P1-8` Context Anchoring) or name to mount.
-2. **Review Canonical Definitions:** Read the feature's definition in `harnessing-agents/SKILL.md` and the `framework/HE Inverse Outcomes.md`. Pay close attention to its "Improvement Policies," "Actions," and "Tools".
+2. **Review Canonical Definitions:** Read the feature's definition in `harnessing-agents/SKILL.md` and the feature's modular file in `framework/features/`. Pay close attention to its "Improvement Policy," "Actions," and "Tools".
 3. **Design the Live Infrastructure:** Determine the physical requirements for the feature:
    - What new files or directories need to exist? (e.g., `ANCHORS.md`)
    - What data format/schema does the feature require?
