@@ -160,7 +160,7 @@ Format your response strictly using the HE-CLUES template format:
 **Prompt:**
 
 ```markdown
-Review the compiled HE-CLUES output from the previous auditors. Using `references/he-scoring.md` and `references/he-cascade-analysis.md`, score each gap across the 6 dimensions to calculate Priority Scores.
+Review the compiled HE-CLUES output from the previous auditors. Using `references/he-scoring.md` and the `downstream` / `impact_weight` fields in `framework/HE Index.md`, score each gap across the 6 dimensions to calculate Priority Scores.
 
 For each gap, verify:
 1. The "Governed By" field — preserve the EP-N backlink through to the implementation plan

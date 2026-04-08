@@ -1,6 +1,6 @@
 # Full Audit Workflow
 
-A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Execution Procedure.md`.
+A step-by-step procedure for auditing an AI agent harness. Each phase is self-contained and produces specific artifacts. Phases follow the Principle-to-Practice Chain (L1→L5→L1↩) per `framework/HE Harnessing Protocol.md`.
 
 > **Output Directory:** All `HE-` output files MUST be written to `./.harness/` in the target project root. Create the directory if it does not exist. Never write HE- files to the project root.
 
@@ -11,7 +11,7 @@ The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature i
 > **Chain Position:** Pre-chain — establishes scope before principle analysis begins.
 
 1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `.harness/HE-SCOPE.md`.
-2. **Quick Scan:** Run through the Quick-Start Evaluation (`references/he-quick-start.md`). Append results and current Harness Maturity Level to `.harness/HE-SCOPE.md`.
+2. **Quick Scan:** Walk `framework/HE Index.md` and check each of the 32 features' L2 targeted enhancement for presence in the target project. Append results and current Harness Maturity Level to `.harness/HE-SCOPE.md`.
 
 ## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
 

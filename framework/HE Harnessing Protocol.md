@@ -177,16 +177,16 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 ### Task 2.1: Score Foundation Features (P0-1 to P0-11)
 
-**Input:** `HE-CLUES.md` (Foundation section only), relevant `framework/features/P0-*.md` (L5 sections)
+**Input:** `HE-CLUES.md` (Foundation section only), `framework/cross-cutting/HE Evaluation Dimensions.md`, relevant `framework/features/P0-*.md` (L5 sections)
 **Actions:**
 
-1. For each Foundation feature (P0-1 to P0-11), score across all 6 dimensions (0–5):
-   - Implementation Maturity
-   - Operational Effectiveness
-   - Risk Exposure
-   - Cost-Efficiency
-   - Scalability (SAS→MAS)
-   - Human Role Evolution
+1. For each Foundation feature (P0-1 to P0-11), score across all 6 canonical dimensions (0–5) defined in `framework/cross-cutting/HE Evaluation Dimensions.md`:
+   - Maturity
+   - Effectiveness
+   - Risk
+   - Cost
+   - Scalability
+   - Human Role
 2. Note gap signals that match the framework's documented signals.
 3. Calculate composite score per feature.
 
@@ -232,17 +232,16 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 ### Task 2.5: Cross-Cutting Analysis & Prioritization
 
-**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `framework/cross-cutting/HE Cross Cutting Perspectives.md`
+**Input:** `HE-SCORES-Foundation.md`, `HE-SCORES-P1.md`, `HE-SCORES-P2.md`, `HE-SCORES-P3.md`, `framework/cross-cutting/HE Cross Cutting Perspectives.md`, `framework/cross-cutting/HE SAS MAS Readiness.md`
 **Actions:**
 
-1. Apply **Perspective A: Feedback Loop Chain** — identify broken links.
-2. Apply **Perspective B: Token Economics** — map token savers vs. spenders.
-3. Apply **Perspective C: Failure Cascade Map** — trace cascade chains for low-scored features.
-4. Apply **Perspective D: Scaling Readiness** — identify blockers.
-5. Apply **Perspective E: Human Role Progression** — determine current stage.
-6. Calculate **Priority Score** for each gap using the **Appendix C Assessment Matrix** logic:
+1. Apply **Perspective 1: Human Role Optimization** — identify where humans are bottlenecks vs. irreplaceable reviewers.
+2. Apply **Perspective 2: SAS→MAS Readiness** — identify scaling blockers using the canonical JSON matrix.
+3. Apply **Perspective 3: Agent Legibility** — flag codebase characteristics that degrade agent comprehension.
+4. Apply **Perspective 4: Entropy Trajectory** — detect whether the codebase is getting cleaner or dirtier over time.
+5. Calculate **Priority Score** for each gap using the **Appendix C Assessment Matrix** logic:
    `Priority Score = (5 - Composite) × Impact Weight × Cascade Length`
-7. Tier the results based on the score distribution: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
+6. Tier the results based on the score distribution: Tier 1 (Critical), Tier 2 (Important), Tier 3 (Enhancement).
 
 **Output:** `HE-PRIORITIES.md` — prioritized gap list with tier assignments and cross-cutting analysis summary.
 

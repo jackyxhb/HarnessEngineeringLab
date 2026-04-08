@@ -29,7 +29,7 @@ All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Navi
 3. **Principle files:** `framework/principles/EP-{num}.md` — one file per engineering principle, listing governed features.
 4. **Cross-cutting:** `framework/cross-cutting/` — concerns spanning multiple features (reward engineering, token economics, SAS→MAS readiness, prevention checklist, evaluation dimensions, perspectives).
 5. **Chain model:** `framework/HE Principle Practice Chain.md` — the L1→L5 methodology.
-6. **Execution procedure:** `framework/HE Execution Procedure.md` — step-by-step audit workflow.
+6. **Execution procedure:** `framework/HE Harnessing Protocol.md` — step-by-step audit workflow.
 
 **Navigation protocol:** Read `HE Index.md` first → identify target feature IDs → read only the specific `features/P*.md` files needed. Never pre-read all feature files.
 
@@ -52,7 +52,7 @@ Route by keyword in the user's input. If no keyword matches, **default to Mode 1
 
 ### Mode 1: Quick Scan — keyword: `scan` (DEFAULT)
 Runs the 32-item yes/no checklist against the target project. Produces a maturity level score.
-- **Reference:** `references/he-quick-start.md`
+- **Reference:** `framework/HE Index.md` — check each feature's L2 targeted enhancement for presence in the target project.
 - **Navigation:** Read `framework/HE Index.md` for the feature list with L1+L2 inline; check each feature's presence in the target project.
 - **Output:** `.harness/HE-SCOPE.md`
 
@@ -70,9 +70,8 @@ Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 
 
 These are used automatically during a full audit — users do not need to invoke them directly:
 - `references/he-scoring.md` — 6-dimension scoring + priority formula (Phase 2)
-- `references/he-scoping-evaluation.md` — 4 scoping dimensions (Phase 0)
 - `references/he-subagent-prompts.md` — parallel agent dispatch prompts (Phase 1)
-- `references/he-cascade-analysis.md` — feature dependency maps (Phase 2)
+- `framework/HE Index.md` — feature dependency maps (`downstream`, `impact_weight`) used by Phase 2 prioritization
 
 ## Context & Action Space Optimization
 

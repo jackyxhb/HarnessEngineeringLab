@@ -6,16 +6,16 @@ The 6 Evaluation Dimensions below score individual features. They are distinct f
 
 ## Evaluation Dimensions (0-5 Rubric)
 
-For each feature (P0-1 to P0-11, P1-1 to P1-12, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the following dimensions:
+For each feature (P0-1 to P0-11, P1-1 to P1-12, P2-1 to P2-5, P3-1 to P3-4), assign a score from 0-5 across the 6 canonical dimensions defined in `framework/cross-cutting/HE Evaluation Dimensions.md`:
 
 ```json
 [
-  { "dimension": "Implementation Maturity", "chain_level": "L4 (Actions & Tools)", "question": "How fully built is this feature?" },
-  { "dimension": "Operational Effectiveness", "chain_level": "L5 (Measurable Outcomes)", "question": "Does the feature actually work in practice?" },
-  { "dimension": "Risk Exposure", "chain_level": "L2 inverse (Enhancement at risk)", "question": "What breaks if this feature is absent or weak?" },
-  { "dimension": "Cost-Efficiency", "chain_level": "L4 (Action proportionality)", "question": "Is the investment proportional to the value?" },
-  { "dimension": "Scalability (SAS\u2192MAS)", "chain_level": "L3 (Design Decisions)", "question": "Will this feature survive the transition to Multi-Agent Systems?" },
-  { "dimension": "Human Role Evolution", "chain_level": "L2 (Enhancement trajectory)", "question": "Does this feature shift humans from writing code to designing systems?" }
+  { "dimension": "Maturity",      "chain_level": "L4 (Actions & Tools)",         "question": "What tier of implementation is in place?" },
+  { "dimension": "Effectiveness", "chain_level": "L5 (Measurable Outcomes)",     "question": "Does the feature achieve its L2 targeted enhancement?" },
+  { "dimension": "Risk",          "chain_level": "L2 inverse (Enhancement at risk)", "question": "What failure modes does the feature prevent?" },
+  { "dimension": "Cost",          "chain_level": "L4 (Action proportionality)",  "question": "What is the token/compute/human cost?" },
+  { "dimension": "Scalability",   "chain_level": "L3 (Design Decisions)",        "question": "Does the feature scale from SAS to MAS?" },
+  { "dimension": "Human Role",    "chain_level": "L2 (Enhancement trajectory)",  "question": "What is the human's optimal role?" }
 ]
 ```
 
@@ -59,105 +59,13 @@ Sort your prioritized gaps into execution tiers:
 
 ## Cross-Cutting Perspectives
 
-After scoring individual features, apply these 5 systemic perspectives to reveal gaps that span multiple features.
+After scoring individual features, apply the 4 canonical systemic perspectives to reveal gaps that span multiple features. Read them directly from the authoritative source:
 
 > **Source:** `framework/cross-cutting/HE Cross Cutting Perspectives.md`
 
-### A. Feedback Loop Chain
+1. **Human Role Optimization** — Where is the human adding irreplaceable value vs. acting as a bottleneck?
+2. **SAS→MAS Readiness** — See `framework/cross-cutting/HE SAS MAS Readiness.md` for the JSON scaling analysis.
+3. **Agent Legibility** — How easily can an agent understand and work within this codebase?
+4. **Entropy Trajectory** — Is the codebase getting cleaner or dirtier over time?
 
-Trace the harness feedback chain end-to-end:
-
-```text
-Agent writes code → Self-Verification catches errors → Linters enforce style →
-Auditors review architecture → Cleanups fix what slipped through →
-Observability reveals patterns → Humans improve the harness
-```
-
-**Gap test:** Remove one link. Does the system still converge on correct output? If not, that link is a critical dependency.
-
----
-
-### B. Token Economics
-
-Map each feature as a token saver or spender:
-
-```json
-{
-  "token_savers": [
-    "Context Compaction (P1-2)",
-    "Tool Offloading (P1-3)",
-    "Progressive Skills (P1-4)",
-    "Automated Linters (P2-1)",
-    "Planning & State Files (P1-7)",
-    "Context Anchoring (P1-8)",
-    "Branch Cognitive Memory (P1-9)"
-  ],
-  "token_spenders": [
-    "AI Auditors (P2-3)",
-    "Web Search & MCP (P1-6)",
-    "Verification (P0-3)",
-    "Inter-Agent Communication (P0-10)",
-    "Scheduled Cleanups (P3-1)"
-  ]
-}
-```
-
-**Gap test:** Is the net token balance positive? Are token spenders delivering proportional value?
-
----
-
-### C. Failure Cascade Map
-
-Trace chain failures from missing features:
-
-```text
-No Repository as Truth → Agent hallucinates architecture
-  → Linters can't catch semantic violations → AI Auditors give wrong feedback
-    → Entropy accumulates faster → Cleanups can't keep up
-```
-
-```text
-No Self-Verification → Agent ships broken code
-  → Escalation overloads humans → Humans lose trust
-    → Manual review replaces automation → Human role regresses
-```
-
-**Gap test:** For each feature scored 0-1, trace its cascade. Features with the longest cascade chains are the highest priority.
-
----
-
-### D. SAS-to-MAS Readiness
-
-Score key features on their MAS readiness stage:
-
-```json
-[
-  { "feature": "Filesystem & Git (P0-2)", "sas_only": "Single workspace", "mas_ready": "Git worktrees", "mas_optimized": "File locking + task claiming" },
-  { "feature": "Self-Verification (P0-3)", "sas_only": "Run tests locally", "mas_ready": "Gate on shared state", "mas_optimized": "Consensus voting" },
-  { "feature": "Orchestration (P0-5)", "sas_only": "Sequential tasks", "mas_ready": "Supervisor pattern", "mas_optimized": "Dynamic topology switching" },
-  { "feature": "Context Compaction (P1-2)", "sas_only": "Single window", "mas_ready": "Per-agent windows", "mas_optimized": "Distributed memory management" },
-  { "feature": "AI Auditors (P2-3)", "sas_only": "Single reviewer", "mas_ready": "Cooperative review", "mas_optimized": "Competition + coopetition" },
-  { "feature": "Context Anchoring (P1-8)", "sas_only": "Single-session memory", "mas_ready": "Persistent anchor files", "mas_optimized": "Shared anchor files" },
-  { "feature": "Branch Memory (P1-9)", "sas_only": "Sequential execution", "mas_ready": "Sub-task branches", "mas_optimized": "Parallel agents + merge gates" },
-  { "feature": "Escalation (P0-7)", "sas_only": "Alert human", "mas_ready": "Retry with different agent", "mas_optimized": "Tiered multi-agent escalation" }
-]
-```
-
-**Gap test:** If planning MAS adoption, any feature stuck in "SAS-Only" is a blocker.
-
----
-
-### E. Human Role Progression
-
-Map the team's current stage and identify the features needed to advance:
-
-```json
-[
-  { "stage": "Code Writer", "human_role": "Writes code, reviews manually", "enabling_features": [] },
-  { "stage": "Harness Builder", "human_role": "Builds scaffolding, reviews agent PRs", "enabling_features": ["P1-1", "P2-1", "P0-3"] },
-  { "stage": "System Architect", "human_role": "Designs environments, spot-checks", "enabling_features": ["P0-5", "P2-3", "P1-5"] },
-  { "stage": "Strategic Overseer", "human_role": "Sets goals, harness evolves autonomously", "enabling_features": ["P0-8", "P3-4", "P3-3"] }
-]
-```
-
-**Gap test:** At which stage is the team stuck? The features enabling the next stage are the improvement priority.
+**Gap test:** For each perspective, apply the diagnostic patterns in the canonical JSON manifests and flag any feature gap that is amplified by a systemic weakness (e.g., a low P0-3 Verification score compounded by an "Agent Legibility — bad module boundaries" finding becomes a Tier 1 priority).

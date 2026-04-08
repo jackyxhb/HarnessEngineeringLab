@@ -38,5 +38,5 @@ During harness audits, each feature is assessed across all 6 dimensions. The ass
 
 ## Related
 
-- [HE Execution Procedure](../HE%20Execution%20Procedure.md) — the procedural workflow for running assessments
+- [HE Harnessing Protocol](../HE%20Harnessing%20Protocol.md) — the procedural workflow for running assessments
 - [HE Index](../HE%20Index.md) — the navigation index for all features
