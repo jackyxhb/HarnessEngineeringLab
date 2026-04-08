@@ -6,6 +6,8 @@ A step-by-step procedure for auditing an AI agent harness. Each phase is self-co
 
 The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature in `framework/features/`.
 
+> **Canonical path rule:** Resolve every feature file through the `file` field in `framework/HE Index.md`. Do not infer paths like `framework/features/P2-3.md`; the canonical file for `P2-3` is `framework/features/P2-03.md`. When requirement traceability is requested, use the root `REQUIREMENTS.md` ledger.
+
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
 > **Chain Position:** Pre-chain — establishes scope before principle analysis begins.

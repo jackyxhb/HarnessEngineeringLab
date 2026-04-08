@@ -60,6 +60,10 @@ The live-linked skill surface. Target projects are currently harnessed by symlin
 
 The success test for this repository is therefore not just whether HELab contains a feature, but whether the skill can inspect, plan, apply, and verify that feature effectively in a target project.
 
+For feature lookups, the canonical navigation entry point is `framework/HE Index.md`; agents should resolve the exact feature-file path from its JSON `file` field and use the root `REQUIREMENTS.md` when requirement traceability is needed.
+
+Feature lookup suggestions should also be state-aware: they should check current HELab requirements, plans, and review history before proposing new local work, and they must not invent a target-project name the user did not provide.
+
 - **SKILL.md** — Skill entry point and routing surface
 - **references/** — Audit and scoring references used by the skill
 - **templates/** — Output templates written into a target project's `.harness/` directory

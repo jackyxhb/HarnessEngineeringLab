@@ -29,13 +29,13 @@ The primary success criterion for HELab and for this skill is **target-project d
 All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Navigate via the index:
 
 1. **Entry point:** `framework/HE Index.md` — JSON-based index with L1+L2 inline metadata for all 32 features, 19 principles, and 6 cross-cutting concerns.
-2. **Feature files:** `framework/features/P{pillar}-{num}.md` — one file per feature, containing the full L1→L5 vertical chain slice (principle → enhancement → design → actions/prevention → measurement).
+2. **Feature files:** one file per feature under `framework/features/`, containing the full L1→L5 vertical chain slice (principle → enhancement → design → actions/prevention → measurement). Resolve the exact path from the `file` field in `framework/HE Index.md` rather than inferring filenames.
 3. **Principle files:** `framework/principles/EP-{num}.md` — one file per engineering principle, listing governed features.
 4. **Cross-cutting:** `framework/cross-cutting/` — concerns spanning multiple features (reward engineering, token economics, SAS→MAS readiness, prevention checklist, evaluation dimensions, perspectives).
 5. **Chain model:** `framework/HE Principle Practice Chain.md` — the L1→L5 methodology.
 6. **Execution procedure:** `framework/HE Harnessing Protocol.md` — step-by-step audit workflow.
 
-**Navigation protocol:** Read `HE Index.md` first → identify target feature IDs → read only the specific `features/P*.md` files needed. Never pre-read all feature files.
+**Navigation protocol:** Read `framework/HE Index.md` first → identify the target feature ID → use the matching `file` field from the index JSON to open the canonical feature file (for example `P2-3` resolves to `framework/features/P2-03.md`) → read only the specific files needed. Never pre-read all feature files.
 
 ## When to Use
 
@@ -68,7 +68,28 @@ Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → 
 
 ### Mode 3: Feature Lookup — keyword: `feature`
 Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
-- **Navigation:** Read `framework/HE Index.md` → find feature ID → read `framework/features/{id}.md`.
+- **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Do not guess unpadded paths such as `framework/features/P2-3.md`.
+- **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
+
+#### Mode 3 Output Contract
+
+After presenting the feature chain, feature lookup must make any suggested next actions **state-aware**.
+
+Before suggesting next actions:
+
+1. Read the root `REQUIREMENTS.md` to see whether the requested feature already has a governing requirement in this repository.
+2. Read `PLANS.md` and `REVIEWS.md` when the workspace is HELab to determine whether the feature has already been implemented, mounted, or recently hardened here.
+3. Check whether the user explicitly named a target project. If not, do not invent one.
+
+Rules for suggested next actions:
+
+- Do **not** suggest “add a requirement” if an existing requirement already authorizes the relevant work.
+- Do **not** suggest “implement in HELab” if the feature has already been mounted or materially hardened in HELab.
+- If the feature is already implemented in HELab, prefer suggestions like refining the delivery pattern, extending verification, or applying the feature to a target project.
+- If no target project was explicitly named, use generic wording such as “apply to a target project” rather than guessing a repository name.
+- If the target project **was** explicitly named, use that exact project name and no other.
+
+The purpose of Mode 3 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
 
 ### Internal Tools (used within Full Audit, not user-invoked)
 

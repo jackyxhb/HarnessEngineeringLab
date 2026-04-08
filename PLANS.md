@@ -26,11 +26,39 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Active Plans
 
-_No active plans._
-
 ---
 
 ## Completed Plans
+
+### Plan: Feature Lookup State Awareness
+
+- **Goal:** Make Mode 3 feature lookup suggestions state-aware so the skill does not propose duplicate HELab work, invent new requirement IDs unnecessarily, or guess a target project name that the user did not specify.
+- **Requirement IDs:** `HE-R001`, `HE-R004`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` for review tracking. Out of scope: changing the canonical framework definitions for P2-3 itself.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a Mode 3 output contract that requires current-state checks before suggesting next actions
+  - [x] Prevent guessed target-project names and duplicate HELab implementation suggestions when the feature is already mounted locally
+  - [x] Run independent review, validate, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep feature lookup lightweight, and rely only on canonical state surfaces already present in the repo.
+- **Checkpoints:** State-aware follow-up rules added; stale-option guardrails added; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Feature Lookup Path Hardening
+
+- **Goal:** Prevent `harnessing-agents` feature lookups from guessing non-canonical paths like `framework/features/P2-3.md` or `docs/REQUIREMENTS.md` when the real sources are `framework/HE Index.md`, zero-padded feature files, and the root `REQUIREMENTS.md` ledger.
+- **Requirement IDs:** `HE-R001`, `HE-R004`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, relevant skill references, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` for review tracking. Out of scope: changes to support material under `docs/`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Update feature-mode instructions so agents resolve the feature path from `framework/HE Index.md` instead of inferring filenames
+  - [x] Explicitly bind requirement traceability requests to the root `REQUIREMENTS.md` ledger
+  - [x] Run independent review, validate, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep the instructions portable across IDEs, and avoid adding redundant navigation rules outside the canonical skill surfaces.
+- **Checkpoints:** Feature lookup path rule updated; requirements-ledger rule updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
 
 ### Plan: Target-Project P2-3 Delivery
 

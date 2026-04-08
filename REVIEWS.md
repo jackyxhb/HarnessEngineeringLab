@@ -147,6 +147,51 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the skill-side P2-3 target-project delivery patch that adds a reusable review-ledger template, a target-project remediation reference, and explicit execution guidance for mounting the review gate in external repositories.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-006",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R004", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/references/he-subagent-prompts.md",
+        "README.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the feature-lookup path hardening patch that forces canonical feature resolution through `framework/HE Index.md` and binds requirement traceability to the root `REQUIREMENTS.md` ledger.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-007",
+      "date": "2026-04-09",
+      "status": "approved-with-findings",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R004", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "README.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the Mode 3 state-aware follow-up rules that prevent duplicate HELab implementation suggestions, unnecessary requirement suggestions, and guessed target-project names during feature lookup.",
+      "findings": [
+        {
+          "severity": "medium",
+          "path": ".agent/skills/harnessing-agents/SKILL.md",
+          "summary": "The follow-up rules are strong behavioral guidance but are not mechanically enforced by a repository gate.",
+          "status": "accepted"
+        }
+      ]
     }
   ]
 }
