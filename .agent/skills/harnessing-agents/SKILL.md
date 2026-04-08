@@ -20,6 +20,8 @@ allowed-tools:
 
 This live-linked skill is the delivery mechanism for applying that framework in real projects. Target projects are currently harnessed by linking this skill into their own agentic environment, and HELab self-hosts by running the same skill on itself. Its metadata version mirrors HELab's root version because the skill is currently part of HELab rather than an independently packaged release.
 
+The primary success criterion for HELab and for this skill is **target-project delivery effectiveness**: the skill should be able to inspect, plan, apply, and verify the full Harness Engineering feature set in external projects. HELab self-hosting is the proving loop for that goal, not a substitute for it.
+
 **Core principle (EP-15):** When an agent fails, fix the environment — not the code. Add a mechanical guardrail (test, linter, structural constraint) so the agent self-corrects.
 
 ## Framework Architecture — DAG Navigation

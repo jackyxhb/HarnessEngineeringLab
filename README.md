@@ -1,6 +1,6 @@
 # Harness Engineering Lab
 
-A framework-first repository for **Harness Engineering** and the live-linked **`harnessing-agents` skill** that applies it in real projects.
+A framework-first repository for **Harness Engineering** and the live-linked **`harnessing-agents` skill** that applies it in real target projects.
 
 > _"The discipline shows up in the scaffolding, not the code."_
 
@@ -9,6 +9,8 @@ A framework-first repository for **Harness Engineering** and the live-linked **`
 Harness Engineering is the practice of designing the infrastructure, constraints, and feedback loops that surround an AI model to channel its power productively. If the model provides the raw intelligence, the harness is the system that makes that intelligence useful and capable of doing actual work.
 
 The core philosophy: **Humans steer, agents execute.** Engineers stop writing code and instead design verifiable constraints, build automated feedback loops, and orchestrate environments where AI writes the code for them.
+
+The repository's primary mission is to ensure the live-linked `harnessing-agents` skill can effectively apply the full Harness Engineering framework to target projects. HELab self-hosting is the proving loop for that mission: internal mounts matter when they harden or validate what the skill can do outside this repository.
 
 ## The 3-Pillar + 1-Foundation Framework
 
@@ -53,6 +55,8 @@ The canonical framework definitions and operational guides. This is the single s
 ### `.agent/skills/harnessing-agents/`
 
 The live-linked skill surface. Target projects are currently harnessed by symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness. Because the skill shares core files under `framework/`, changes in either place immediately affect linked downstream environments.
+
+The success test for this repository is therefore not just whether HELab contains a feature, but whether the skill can inspect, plan, apply, and verify that feature effectively in a target project.
 
 - **SKILL.md** — Skill entry point and routing surface
 - **references/** — Audit and scoring references used by the skill

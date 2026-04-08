@@ -101,6 +101,20 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "P2-3 self-hosting hardening on 2026-04-09"
+    },
+    {
+      "id": "HE-R008",
+      "title": "Target-project delivery primacy",
+      "applies_to": ["self-hosted", "target-project"],
+      "narrative": "HELab exists to make the live-linked harnessing-agents skill capable of effectively applying all Harness Engineering features to target projects. Self-hosting inside HELab is a validation and proving loop for that mission, not the terminal success criterion by itself.",
+      "acceptance_criteria": [
+        "Root governance docs describe target-project feature application as the primary mission of the repository and skill.",
+        "Self-hosted implementations are framed as proofs or hardening loops that strengthen the skill's ability to operate in target projects.",
+        "The live-linked skill overview explicitly states that its success is measured by effective target-project application of the framework, not merely by internal HELab completeness.",
+        "Strategic anchors preserve this priority across future sessions and architectural decisions."
+      ],
+      "status": "active",
+      "source": "User clarification about project mission on 2026-04-09, recorded in ANCHORS.md as A16"
     }
   ]
 }

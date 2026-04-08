@@ -18,7 +18,7 @@ Pending downstream changes for the next HELab version.
 
 ### Changed
 
-- None yet.
+- Clarified across the root governance docs and the live-linked skill contract that HELab's primary mission is effective target-project delivery of the full Harness Engineering feature set, with self-hosting treated as a proving loop rather than the end state.
 
 ### Fixed
 

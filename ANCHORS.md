@@ -140,3 +140,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `REVIEWS.md`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and root governance docs that define review-required surfaces.
 - **Background:** Added on 2026-04-09 after release/version hardening closed and the next highest-priority gap was generator/evaluator separation for core harness changes.
 - **Date:** 2026-04-09
+
+### A16: Target-Project Delivery Primacy
+
+- **What:** Declared that HELab's primary mission is to make the live-linked `harnessing-agents` skill capable of effectively applying all Harness Engineering features to target projects.
+- **Why:** This prevents agents from mistaking self-hosted completeness for the end goal. HELab self-hosting is a proving loop that should always be justified by stronger target-project delivery.
+- **Target:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `.agent/skills/harnessing-agents/SKILL.md`, and future prioritization decisions about which features to mount next.
+- **Background:** Added on 2026-04-09 after clarifying that the repository exists to strengthen the skill's external delivery capability, not merely to accumulate internal feature implementations.
+- **Date:** 2026-04-09

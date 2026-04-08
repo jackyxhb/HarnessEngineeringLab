@@ -32,6 +32,22 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Target-Project Delivery Primacy
+
+- **Goal:** Codify that HELab's primary mission is to make the live-linked `harnessing-agents` skill capable of effectively applying the full Harness Engineering framework to target projects.
+- **Requirement IDs:** `HE-R008`
+- **Scope:** `AGENTS.md`, `ANCHORS.md`, `REQUIREMENTS.md`, `README.md`, `.agent/skills/harnessing-agents/SKILL.md`, and `RELEASES.md`. Out of scope: implementing any new target-project feature mounts in this step.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a canonical requirement that target-project application effectiveness is the primary success criterion
+  - [x] Add a strategic anchor and repository-purpose wording that self-hosting is validation, not the end state
+  - [x] Update the live-linked skill overview so target-project delivery remains explicit during skill execution
+  - [x] Re-run validation and archive the plan
+- **Constraints:** Preserve the existing live-linked contract, avoid weakening the self-hosted proof role, and keep the new wording portable across IDEs and sessions.
+- **Checkpoints:** Requirement added; anchor added; repo and skill wording aligned; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: P2-3 Independent Review Gate
 
 - **Goal:** Mechanize P2-3 in the self-hosted harness by requiring a machine-readable independent review record for changes to core harness surfaces.

@@ -73,6 +73,61 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
           "status": "accepted"
         }
       ]
+    },
+    {
+      "id": "HE-REV-2026-04-09-003",
+      "date": "2026-04-09",
+      "status": "request-changes",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "AGENTS.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "README.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Initial independent review of the mission codification that makes target-project delivery effectiveness the repository's primary success criterion.",
+      "findings": [
+        {
+          "severity": "critical",
+          "path": "REVIEWS.md",
+          "summary": "Review-required surfaces changed without a corresponding review record for the mission-codification patch.",
+          "status": "fixed"
+        },
+        {
+          "severity": "medium",
+          "path": "PLANS.md",
+          "summary": "The active plan cited HE-R001 and HE-R002 instead of the newly added HE-R008 requirement.",
+          "status": "fixed"
+        }
+      ]
+    },
+    {
+      "id": "HE-REV-2026-04-09-004",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "AGENTS.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "README.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Second-pass approval of the mission codification that makes target-project delivery effectiveness the primary repository success criterion.",
+      "findings": []
     }
   ]
 }
