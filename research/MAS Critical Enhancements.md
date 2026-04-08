@@ -6,7 +6,7 @@ When transitioning from single-agent setups to Multi-Agent Systems (MAS), certai
 
 Here are the critical considerations that need improvement in the framework to properly support a multi-agent system, organized by the 3-Pillar + 1-Foundation structure:
 
-## 1. Foundational Infrastructure: Upgrading the Engine
+## 1. Foundation: Infrastructure (Execute) — Upgrading the Engine
 
 - **Concurrency Control and File Locking (P0-2):** In the current framework, the _Filesystem & Git Workspace_ acts as a shared ledger. However, when multiple agents work in parallel, they can easily overwrite each other's code, leading to file conflicts. The harness must introduce explicit **file locking** and task-claiming mechanisms to prevent race conditions when teammates try to execute the same task simultaneously.
 - **Inter-Agent Communication Protocols (P0-10 — The Mailbox):** Beyond reading and writing to a shared filesystem, multi-agent systems require a dedicated messaging bus. The harness needs a "Mailbox" system that supports distinct communication strategies, such as direct peer-to-peer (P2P) messaging, broadcasting, and idle notifications.
