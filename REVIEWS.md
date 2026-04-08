@@ -128,6 +128,25 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Second-pass approval of the mission codification that makes target-project delivery effectiveness the primary repository success criterion.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-005",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R002", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/",
+        "framework/HE Harnessing Protocol.md",
+        "README.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the skill-side P2-3 target-project delivery patch that adds a reusable review-ledger template, a target-project remediation reference, and explicit execution guidance for mounting the review gate in external repositories.",
+      "findings": []
     }
   ]
 }

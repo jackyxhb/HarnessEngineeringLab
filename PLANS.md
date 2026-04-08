@@ -32,6 +32,21 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Target-Project P2-3 Delivery
+
+- **Goal:** Make the live-linked `harnessing-agents` skill capable of planning and mounting a reusable P2-3 independent-review pattern in target projects rather than only describing the feature abstractly.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/`, `framework/HE Harnessing Protocol.md`, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` as needed for review. Out of scope: building a repo-specific validator for every possible target-project stack.
+- **Status:** `done`
+- **Steps:**
+  - [x] Design the reusable target-project P2-3 mount pattern and encode it in the skill references/templates
+  - [x] Update the skill and protocol so full audits can recommend and execute the target-project review gate concretely
+  - [x] Run independent review, validate the repository, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep audit artifacts under `.harness/`, and distinguish reusable target-project assets from HELab-only self-hosted enforcement.
+- **Checkpoints:** P2-3 mount reference exists; target-project review ledger template exists; skill/protocol wording explains how to apply the pattern; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Target-Project Delivery Primacy
 
 - **Goal:** Codify that HELab's primary mission is to make the live-linked `harnessing-agents` skill capable of effectively applying the full Harness Engineering framework to target projects.

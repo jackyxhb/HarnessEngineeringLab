@@ -126,7 +126,7 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 1. Check for **Automated Linters** (P2-1): Pre-commit hooks? Linting config? Formatting enforcement?
 2. Check for **Dependency Enforcement** (P2-2): Structural tests? Import restrictions? ArchUnit or equivalent?
-3. Check for **AI Auditors & Collaboration Channels** (P2-3): Secondary LLM review? Debate channels?
+3. Check for **AI Auditors & Collaboration Channels** (P2-3): Is there a machine-readable review ledger, a generator/evaluator separation rule in the canonical agent contract, and a repo-native gate or workflow that blocks self-grading?
 4. Check for **Bounded Autonomy & Access Control** (P2-4): Guardrails? Permission systems?
 5. Check for **Upstream Intake Gate** (P2-5): Validation that requirements are recorded in the ledger before planning proceeds? Mid-task sync-back mechanism?
 

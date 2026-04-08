@@ -175,4 +175,6 @@ Mathematically score each feature based on the 6 dimensions. Determine the criti
 Group the results into execution Tiers (Tier 1 Immediate, Tier 2 Mid-term, Tier 3 Long-term) based on scoring.
 
 Finally, output `.harness/HE-IMPLEMENTATION-PLAN.md` strictly following the format found in `templates/HE-IMPLEMENTATION-PLAN.md`. Each action item must reference the specific "L4: Concrete Actions & Tools" from the feature files. Do not invent new structures.
+
+If `P2-3` is a Tier 1 or Tier 2 gap, the plan must include a concrete target-project review mount pattern rather than a generic note. Use `references/he-p2-3-target-review-gate.md` and include, when applicable: a root `REVIEWS.md`, an `AGENTS.md` review hook, and a repo-native validation step.
 ```

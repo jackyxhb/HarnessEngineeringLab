@@ -14,7 +14,7 @@ Pending downstream changes for the next HELab version.
 
 ### What's New
 
-- None yet.
+- Added a reusable target-project `REVIEWS.md` template and a P2-3 remediation reference so the live-linked skill can mount an independent-review pattern in external projects.
 
 ### Changed
 
@@ -27,6 +27,7 @@ Pending downstream changes for the next HELab version.
 ### Tooling
 
 - Added a root `REVIEWS.md` ledger and a `he-lint` review gate for core harness surfaces.
+- Updated the full-audit references so P2-3 planning and execution now call for concrete target-project review assets instead of a generic recommendation.
 
 ### Downstream Impact
 

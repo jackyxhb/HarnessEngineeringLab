@@ -12,6 +12,8 @@ The core philosophy: **Humans steer, agents execute.** Engineers stop writing co
 
 The repository's primary mission is to ensure the live-linked `harnessing-agents` skill can effectively apply the full Harness Engineering framework to target projects. HELab self-hosting is the proving loop for that mission: internal mounts matter when they harden or validate what the skill can do outside this repository.
 
+Current work is judged by that standard: skill changes should improve the ability to inspect, plan, mount, and verify HE features in target projects, not just implement them locally inside HELab.
+
 ## The 3-Pillar + 1-Foundation Framework
 
 All harness engineering concepts are organized under a unified framework:

@@ -86,11 +86,13 @@ To prevent hallucination and token-bloat, this skill strictly enforces LLM Actio
 
 ## Output Directory Convention
 
-All output artifacts produced by this skill (`HE-SCOPE.md`, `HE-CLUES.md`, `HE-PRIORITIES.md`, `HE-IMPLEMENTATION-PLAN.md`, `HE-CHANGE-SUMMARY.md`, `HE-ASSESSMENT-REPORT.md`) **MUST be written to `./.harness/`** in the target project root — never to the project root itself.
+All audit artifacts produced by this skill (`HE-SCOPE.md`, `HE-CLUES.md`, `HE-PRIORITIES.md`, `HE-IMPLEMENTATION-PLAN.md`, `HE-CHANGE-SUMMARY.md`, `HE-ASSESSMENT-REPORT.md`) **MUST be written to `./.harness/`** in the target project root — never to the project root itself.
 
 - Create the `.harness/` directory if it does not exist.
 - All file references in plans, reports, and subagent outputs use the `.harness/` prefix (e.g., `.harness/HE-CLUES.md`).
 - This prevents HE audit artifacts from cluttering the target project's root directory.
+
+Mounted harness assets are different: when a remediation batch installs real infrastructure in the target project (for example `AGENTS.md`, `REVIEWS.md`, hooks, or CI files), those assets must be written to their canonical project locations rather than into `.harness/`.
 
 ## Emphasize Automated Tooling
 
@@ -108,6 +110,13 @@ Templates define the format; output files are written to `.harness/` in the targ
 - `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan → output: `.harness/HE-IMPLEMENTATION-PLAN.md`
 - `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary → output: `.harness/HE-CHANGE-SUMMARY.md`
 - `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report → output: `.harness/HE-ASSESSMENT-REPORT.md`
+
+## Mounting Assets
+
+Some features require reusable root-level harness assets in target projects. Use these assets when the implementation plan calls for them.
+
+- `templates/REVIEWS.md`: Root review-ledger template for mounting P2-3 independent review in a target project.
+- `references/he-p2-3-target-review-gate.md`: Canonical target-project remediation pattern for P2-3 review gating.
 
 ## Deployment
 
