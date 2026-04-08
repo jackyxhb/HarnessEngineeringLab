@@ -32,6 +32,22 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Release Baseline Migration
+
+- **Goal:** Migrate the temporary `1.0.0` root-version state onto the existing published tag line by releasing the current live-linked HELab changes as `v3.3.2`.
+- **Requirement IDs:** `HE-R005`, `HE-R006`
+- **Scope:** `package.json`, `.agent/skills/harnessing-agents/SKILL.md`, `RELEASES.md`, `PLANS.md`, git tag state, and the GitHub release record.
+- **Status:** `done`
+- **Steps:**
+  - [x] Move the root and mirrored skill version from `1.0.0` to `3.3.2`
+  - [x] Rewrite `RELEASES.md` so the pending changes land under a real `3.3.2` release entry instead of an unreleased `1.0.0` placeholder
+  - [x] Re-run validation and commit the release-baseline migration
+  - [ ] Create tag `v3.3.2` and publish the GitHub release
+- **Constraints:** Preserve the live-linked version-sync rule, avoid creating a backward-facing release tag, and make the published release history match the existing `v3.3.1` lineage.
+- **Checkpoints:** Root version advanced; release notes aligned; validation green; tag and GitHub release created.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Release Semantics Hardening
 
 - **Goal:** Make the live-linked HELab release model operational by adding a release-notes surface, aligning `/ccpr` with the root version contract, and enforcing downstream-impact updates through the harness.
