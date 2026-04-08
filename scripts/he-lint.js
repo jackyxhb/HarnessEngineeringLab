@@ -6,6 +6,24 @@ const { execSync } = require('child_process');
 
 const repoRoot = process.cwd();
 const requirementIds = new Set();
+const reviewIds = new Set();
+const reviewRecords = [];
+
+const REVIEW_REQUIRED_PREFIXES = [
+  'framework/',
+  '.agent/workflows/',
+  '.agent/skills/harnessing-agents/',
+];
+
+const REVIEW_REQUIRED_FILES = new Set([
+  'AGENTS.md',
+  'README.md',
+  'REQUIREMENTS.md',
+  'RELEASES.md',
+  'ANCHORS.md',
+  'scripts/he-lint.js',
+  'scripts/harness/audit.sh',
+]);
 
 // --- DYNAMIC REGISTRIES --- //
 const anchorsMap = new Map(); // Concept -> Source File
@@ -82,15 +100,39 @@ function extractSkillVersion(content) {
   return match ? match[1] : null;
 }
 
+function normalizeRelativePath(filePath) {
+  return filePath.split(path.sep).join('/');
+}
+
+function isReviewRequiredPath(filePath) {
+  return REVIEW_REQUIRED_PREFIXES.some(prefix => filePath.startsWith(prefix)) || REVIEW_REQUIRED_FILES.has(filePath);
+}
+
+function scopeEntryMatchesPath(scopeEntry, filePath) {
+  const normalizedScope = normalizeRelativePath(scopeEntry.trim());
+  if (!normalizedScope) return false;
+  if (normalizedScope.endsWith('/')) {
+    return filePath.startsWith(normalizedScope);
+  }
+  return filePath === normalizedScope;
+}
+
 function getGitChangedFiles() {
   const changed = new Set();
+  const commands = [
+    'git diff --name-only HEAD',
+    'git diff --cached --name-only HEAD',
+    'git diff --name-only',
+  ];
 
-  try {
-    const tracked = execSync('git diff --name-only HEAD', { cwd: repoRoot, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
-    tracked.split('\n').map(line => line.trim()).filter(Boolean).forEach(file => changed.add(file));
-  } catch {
-    // Ignore git diff failures and fall back to whatever can be observed.
-  }
+  commands.forEach(command => {
+    try {
+      const output = execSync(command, { cwd: repoRoot, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
+      output.split('\n').map(line => line.trim()).filter(Boolean).forEach(file => changed.add(file));
+    } catch {
+      // Ignore git diff failures and fall back to whatever can be observed.
+    }
+  });
 
   try {
     const untracked = execSync('git ls-files --others --exclude-standard', { cwd: repoRoot, encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
@@ -167,6 +209,156 @@ function validateSkillVersionSync() {
 
   if (skillVersion !== rootVersion) {
     reportError(skillPath, 0, `Version Sync: SKILL.md version "${skillVersion}" does not match package.json version "${rootVersion}".`, 'Run `npm run sync:skill-version` to mirror the canonical HELab version into the skill metadata.');
+  }
+}
+
+function validateReviewLedger() {
+  const reviewsPath = path.join(repoRoot, 'REVIEWS.md');
+  if (!fs.existsSync(reviewsPath)) {
+    reportError(reviewsPath, 0, 'Review Ledger: REVIEWS.md is missing.', 'Create REVIEWS.md with a machine-readable JSON ledger of review records.');
+    return;
+  }
+
+  const content = fs.readFileSync(reviewsPath, 'utf-8');
+  const jsonBlock = extractJsonCodeBlock(content);
+  if (!jsonBlock) {
+    reportError(reviewsPath, 0, 'Review Ledger: missing JSON code block.', 'Add a ```json block containing the canonical review ledger.');
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonBlock);
+  } catch (error) {
+    reportError(reviewsPath, 0, `Review Ledger: invalid JSON (${error.message}).`, 'Fix REVIEWS.md so the review ledger JSON parses cleanly.');
+    return;
+  }
+
+  const reviews = Array.isArray(parsed) ? parsed : parsed.reviews;
+  if (!Array.isArray(reviews)) {
+    reportError(reviewsPath, 0, 'Review Ledger: reviews must be an array.', 'Store review records in a top-level `reviews` array.');
+    return;
+  }
+
+  reviews.forEach((review, index) => {
+    const entryLine = index + 1;
+    if (!review || typeof review !== 'object') {
+      reportError(reviewsPath, entryLine, 'Review Ledger: entry is not an object.', 'Each review record must be a JSON object.');
+      return;
+    }
+
+    const {
+      id,
+      date,
+      status,
+      generator,
+      reviewer,
+      review_type: reviewType,
+      requirement_ids: requirementIdList,
+      scope_paths: scopePaths,
+      change_summary: changeSummary,
+      findings,
+    } = review;
+
+    if (!id || typeof id !== 'string') {
+      reportError(reviewsPath, entryLine, 'Review Ledger: entry missing string id.', 'Add a unique review id such as "HE-REV-2026-04-09-001".');
+      return;
+    }
+    if (reviewIds.has(id)) {
+      reportError(reviewsPath, entryLine, `Review Ledger: duplicate id "${id}".`, 'Ensure each review id is unique.');
+    }
+    reviewIds.add(id);
+
+    if (typeof date !== 'string' || date.trim() === '') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing date.`, 'Add an ISO date string such as "2026-04-09".');
+    }
+    if (!status || typeof status !== 'string') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing status.`, 'Add a review status such as "approved" or "approved-with-findings".');
+    }
+    if (typeof generator !== 'string' || generator.trim() === '') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing generator.`, 'Record the implementation identity for the change.');
+    }
+    if (typeof reviewer !== 'string' || reviewer.trim() === '') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing reviewer.`, 'Record the independent reviewer identity.');
+    }
+    if (typeof reviewType !== 'string' || reviewType.trim() === '') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing review_type.`, 'Record whether the reviewer was an agent or human.');
+    }
+    if (!Array.isArray(requirementIdList) || requirementIdList.length === 0) {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing requirement_ids.`, 'Reference one or more requirement IDs such as "HE-R007".');
+    }
+    if (!Array.isArray(scopePaths) || scopePaths.length === 0) {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing scope_paths.`, 'List the reviewed files or directories in scope_paths.');
+    }
+    if (typeof changeSummary !== 'string' || changeSummary.trim() === '') {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" missing change_summary.`, 'Summarize what the reviewer approved.');
+    }
+    if (!Array.isArray(findings)) {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" findings must be an array.`, 'Use an empty array when the reviewer found no issues.');
+    }
+
+    if (Array.isArray(scopePaths)) {
+      scopePaths.forEach(scopeEntry => {
+        if (typeof scopeEntry !== 'string' || scopeEntry.trim() === '') {
+          reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" contains an empty scope_paths entry.`, 'Each scope_paths entry must be a non-empty file or directory path.');
+          return;
+        }
+
+        const normalizedScope = normalizeRelativePath(scopeEntry.trim());
+        const scopePath = path.join(repoRoot, normalizedScope.replace(/\/$/, ''));
+        if (!fs.existsSync(scopePath)) {
+          reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" references missing scope path "${normalizedScope}".`, 'Use existing repository files or directories in scope_paths.');
+          return;
+        }
+
+        if (fs.statSync(scopePath).isDirectory() && !normalizedScope.endsWith('/')) {
+          reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" directory scope "${normalizedScope}" must end with "/".`, 'Use trailing slashes for directory scope entries so coverage checks stay deterministic.');
+        }
+      });
+    }
+
+    if (typeof generator === 'string' && typeof reviewer === 'string' && generator.trim() !== '' && generator.trim() === reviewer.trim()) {
+      reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" uses the same identity for generator and reviewer.`, 'Record a separate reviewer identity to preserve generator/evaluator separation.');
+    }
+
+    if (Array.isArray(requirementIdList)) {
+      requirementIdList.forEach(requirementId => {
+        if (!requirementIds.has(requirementId)) {
+          reportError(reviewsPath, entryLine, `Review Ledger: review "${id}" references unknown requirement ID "${requirementId}".`, 'Add the requirement to REQUIREMENTS.md or fix the referenced ID.');
+        }
+      });
+    }
+
+    reviewRecords.push(review);
+  });
+}
+
+function validateIndependentReviewCoverage(explicitFiles) {
+  const candidateFiles = explicitFiles.length > 0
+    ? explicitFiles.map(file => normalizeRelativePath(path.relative(repoRoot, path.resolve(file))))
+    : getGitChangedFiles().map(normalizeRelativePath);
+
+  const reviewRequiredFiles = candidateFiles.filter(isReviewRequiredPath);
+  if (reviewRequiredFiles.length === 0) return;
+
+  if (!candidateFiles.includes('REVIEWS.md')) {
+    reportError(path.join(repoRoot, 'REVIEWS.md'), 0, 'Independent Review: review-required surfaces changed without updating REVIEWS.md.', 'Add an approving review record in REVIEWS.md that covers the changed files before merging.');
+    return;
+  }
+
+  const approvedStatuses = new Set(['approved', 'approved-with-findings']);
+  const approvedReviews = reviewRecords.filter(review => approvedStatuses.has(review.status));
+  if (approvedReviews.length === 0) {
+    reportError(path.join(repoRoot, 'REVIEWS.md'), 0, 'Independent Review: no approving review record found for the current change.', 'Add an `approved` or `approved-with-findings` record to REVIEWS.md before merging review-required changes.');
+    return;
+  }
+
+  const uncoveredFiles = reviewRequiredFiles.filter(filePath => {
+    return !approvedReviews.some(review => Array.isArray(review.scope_paths) && review.scope_paths.some(scopeEntry => scopeEntryMatchesPath(scopeEntry, filePath)));
+  });
+
+  if (uncoveredFiles.length > 0) {
+    reportError(path.join(repoRoot, 'REVIEWS.md'), 0, `Independent Review: no approving review record covers ${uncoveredFiles.join(', ')}.`, 'Expand scope_paths in REVIEWS.md so the approving review explicitly covers every changed review-required surface.');
   }
 }
 
@@ -408,6 +600,7 @@ function run() {
   // Always validate DAG structure
   validateDAGStructure();
   validateRequirementsLedger();
+  validateReviewLedger();
   validatePlanRequirementIds();
   validateSkillVersionSync();
   validateReleaseNotesSurface();
@@ -415,6 +608,7 @@ function run() {
   const args = process.argv.slice(2).filter(a => a !== '--all');
   const allMode = process.argv.includes('--all');
   validateDownstreamImpactNotes(args);
+  validateIndependentReviewCoverage(args);
   if (args.length > 0 && !allMode) {
     // Run only on provided files (lint-staged)
     args.forEach(file => {
@@ -426,7 +620,7 @@ function run() {
     DIRS_TO_SCAN.forEach(dir => {
       walkDir(path.join(repoRoot, dir));
     });
-    ['README.md', 'AGENTS.md', 'ANCHORS.md', 'CLAUDE.md', 'PLANS.md', 'REQUIREMENTS.md', 'RELEASES.md'].forEach(file => scanFile(path.join(repoRoot, file)));
+    ['README.md', 'AGENTS.md', 'ANCHORS.md', 'CLAUDE.md', 'PLANS.md', 'REQUIREMENTS.md', 'RELEASES.md', 'REVIEWS.md'].forEach(file => scanFile(path.join(repoRoot, file)));
   }
 
   if (hasErrors) {

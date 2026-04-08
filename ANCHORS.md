@@ -132,3 +132,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `RELEASES.md`, `/ccpr`, `scripts/he-lint.js`, and governance docs describing live-linked downstream impact.
 - **Background:** Added on 2026-04-09 after version syncing was hardened and the next gap became downstream change traceability.
 - **Date:** 2026-04-09
+
+### A15: Root Review Ledger for P2-3
+
+- **What:** Added `REVIEWS.md` as the canonical machine-readable audit trail for independent review of HELab's core harness surfaces.
+- **Why:** P2-3 was previously described in the framework but not mechanically enforced in the self-hosted repository. Distinct generator and reviewer identities now become a hard gate instead of an honor system.
+- **Target:** `REVIEWS.md`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and root governance docs that define review-required surfaces.
+- **Background:** Added on 2026-04-09 after release/version hardening closed and the next highest-priority gap was generator/evaluator separation for core harness changes.
+- **Date:** 2026-04-09

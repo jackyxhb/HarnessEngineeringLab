@@ -26,11 +26,11 @@ Pending downstream changes for the next HELab version.
 
 ### Tooling
 
-- None yet.
+- Added a root `REVIEWS.md` ledger and a `he-lint` review gate for core harness surfaces.
 
 ### Downstream Impact
 
-- None yet.
+- Core HELab harness changes now require a machine-readable independent review record before merge.
 
 ## 3.3.2 - 2026-04-09
 

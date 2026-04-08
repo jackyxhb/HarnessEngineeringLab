@@ -69,6 +69,16 @@ HELab is the canonical version source for the current live-linked skill model.
 
 The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the shared `framework/` files it loads, that is also a downstream skill change.
 
+### Independent Review
+
+HELab now treats core harness surfaces as review-required and records approvals in `REVIEWS.md`.
+
+- **Review ledger:** `REVIEWS.md`
+- **Review-required surfaces:** `framework/`, `.agent/skills/harnessing-agents/`, `.agent/workflows/`, `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `RELEASES.md`, `ANCHORS.md`, `scripts/he-lint.js`, and `scripts/harness/audit.sh`
+- **Hard rule:** the generator recorded for a change cannot also be the reviewer who approves it
+
+The current self-hosted gate is enforced by `he-lint` and expects a machine-readable review record whenever one of those surfaces changes.
+
 ### `docs/`
 
 Support material only. Content under `docs/` is not part of the active project surface and should not be treated as authoritative over `framework/`.

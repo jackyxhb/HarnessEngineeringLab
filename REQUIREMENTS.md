@@ -87,6 +87,20 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "Follow-up hardening of the live-linked release model on 2026-04-09"
+    },
+    {
+      "id": "HE-R007",
+      "title": "Independent review gate for core harness surfaces",
+      "applies_to": ["self-hosted"],
+      "narrative": "Substantial changes to HELab's core harness surfaces must leave a machine-readable independent review record before merge. The implementation agent cannot be the same identity that certifies the change.",
+      "acceptance_criteria": [
+        "A canonical root review ledger exists and stores machine-readable review records.",
+        "Validation fails when review-required surfaces change without a corresponding review-ledger update.",
+        "Validation fails when an approving review record uses the same identity for both generator and reviewer.",
+        "Root governance docs describe which surfaces are review-required and where the review record must be stored."
+      ],
+      "status": "active",
+      "source": "P2-3 self-hosting hardening on 2026-04-09"
     }
   ]
 }

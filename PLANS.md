@@ -32,6 +32,21 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: P2-3 Independent Review Gate
+
+- **Goal:** Mechanize P2-3 in the self-hosted harness by requiring a machine-readable independent review record for changes to core harness surfaces.
+- **Requirement IDs:** `HE-R003`, `HE-R007`
+- **Scope:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `ANCHORS.md`, `PLANS.md`, `REVIEWS.md`, `scripts/he-lint.js`, `scripts/harness/audit.sh`. Out of scope: new CI workflows, release automation changes, and support material under `docs/`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a canonical root review ledger and document the review-required surfaces
+  - [x] Extend `he-lint` and `audit.sh` so review-required changes fail without a valid independent review record
+  - [x] Run an independent review pass for this change, record it in `REVIEWS.md`, and re-run validation
+- **Constraints:** Preserve the live-linked skill contract, keep the review artifact machine-readable, and do not fake a separate release boundary or human-only process.
+- **Checkpoints:** Review ledger exists; P2-3 gate fails closed; current change has a recorded independent review; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Release Baseline Migration
 
 - **Goal:** Migrate the temporary `1.0.0` root-version state onto the existing published tag line by releasing the current live-linked HELab changes as `v3.3.2`.

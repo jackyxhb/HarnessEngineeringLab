@@ -86,6 +86,15 @@ To prevent strategic drift across context window resets, agents rely on **Anchor
 - **For Multi-Step Tasks:** Read `REQUIREMENTS.md` and `PLANS.md` before starting. Append a new plan entry for any task requiring more than 3 sequential steps, and cite the relevant requirement IDs.
 - **When Making Decisions:** Write new anchor records to `ANCHORS.md` (using the `/anchor` workflow) when you resolve ambiguities, add new features, or alter the framework. Reference existing anchors (e.g., "per A3") in your reasoning.
 
+## Independent Review
+
+To self-host **P2-3 AI Auditors & Collaboration Channels**, the repository maintains a machine-readable review ledger at `REVIEWS.md`.
+
+- **Review-required surfaces:** `framework/`, `.agent/skills/harnessing-agents/`, `.agent/workflows/`, `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `RELEASES.md`, `ANCHORS.md`, `scripts/he-lint.js`, and `scripts/harness/audit.sh`.
+- **Before merge:** Any change touching a review-required surface must update `REVIEWS.md` with an approving machine-readable review record.
+- **Generator/evaluator separation:** The implementation agent identity recorded in `REVIEWS.md` must not be the same as the reviewer identity that certifies the change.
+- **Escalation:** If an independent reviewer cannot approve the change, record the findings in `REVIEWS.md` and escalate to the user instead of self-certifying.
+
 ## Available Tools & Commands
 
 All available tools and scripts. Undeclared tools do not exist for agents — if a tool is useful but not listed, add it here rather than using it undocumented.
@@ -119,6 +128,7 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **`EP-15` Never push to `main` when `npm run audit` exits with FAIL.** Consequence: a structurally degraded harness enters the main branch; missing critical files are invisible to agents until the next weekly GC remediation cycle completes.
 - **`EP-15` Never change the root version in `package.json` without syncing `.agent/skills/harnessing-agents/SKILL.md`.** Consequence: external projects consuming the live-linked skill see an ambiguous version state, and `he-lint` will fail the repository until the versions match.
 - **`EP-15` Never change `framework/` or `.agent/skills/harnessing-agents/` without updating `RELEASES.md`.** Consequence: linked downstream consumers lose a durable record of externally visible changes, and `he-lint` will fail until the release notes are updated.
+- **`EP-16` Never merge changes to review-required surfaces without updating `REVIEWS.md` with an independent approving reviewer.** Consequence: the same implementation identity silently self-certifies a core harness change, and `he-lint` will fail the repository until a separate reviewer is recorded.
 - **`EP-10` Never store project-wide rules exclusively in an IDE-specific file or proprietary memory system.** Consequence: agents running in other IDEs cannot discover the rules, fragmenting the harness. All global rules must live in `AGENTS.md`; IDE-specific files are shims only (per A8).
 - **`EP-15` Never deploy advisory or warning-level CI checks; all checks must be binary pass/fail.** Consequence: agents ignore warnings — only hard failures drive behavior change. Advisory warnings accumulate silently until they cascade into hard-to-diagnose failures.
 - **`EP-3` Never attribute an agent failure to the agent without first diagnosing the harness (1. Is the constraint in AGENTS.md? → 2. Is there a CI gate? → 3. Does the error message include remediation?).** Consequence: skipping harness diagnosis means the root cause (missing rule, missing gate, unclear error message) persists and the same failure recurs in every future agent run.
@@ -131,6 +141,7 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **Dual-mode contract:** This repository both ships the `harnessing-agents` skill for target-project use and self-hosts by running that same skill on itself. At present the skill is live-linked, not independently packaged, so changes to the skill surface and shared `framework/` files are effective immediately in linked external environments.
 - **Version rule:** `package.json` is the canonical HELab version source. `.agent/skills/harnessing-agents/SKILL.md` mirrors that version because the current skill surface is part of HELab, not an independently released artifact. Use `npm run sync:skill-version` after any root version change.
 - **Release-notes rule:** `RELEASES.md` is the canonical HELab release-notes surface. Update the `Unreleased` section whenever changes to `framework/` or `.agent/skills/harnessing-agents/` alter downstream behavior for linked consumers.
+- **Independent-review rule:** `REVIEWS.md` is the canonical machine-readable audit trail for review-required surfaces. Each approving record must include distinct generator and reviewer identities plus the paths covered by the review.
 - **Gap evaluation:** Use `framework/HE Index.md` to navigate feature nodes for multi-dimensional assessment of harness implementations. The `framework/features/` directory provides per-feature gap signals, improvement policies, and dependency maps, while `framework/cross-cutting/` contains evaluation perspectives.
 - **Unified features:** All 32 features are defined once as single files in `framework/features/`. Each feature description covers both single-agent and multi-agent behavior inline — no separate SAS/MAS documents. Creating split files causes definitions to diverge; `he-lint.js` will catch the count mismatch.
 - **Commit style:** `feat:` and `docs:` prefixes with descriptive messages. Generic messages like "update docs" block downstream automation from extracting semantic change history.
