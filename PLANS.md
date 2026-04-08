@@ -42,7 +42,7 @@ _No active plans._
   - [x] Move the root and mirrored skill version from `1.0.0` to `3.3.2`
   - [x] Rewrite `RELEASES.md` so the pending changes land under a real `3.3.2` release entry instead of an unreleased `1.0.0` placeholder
   - [x] Re-run validation and commit the release-baseline migration
-  - [ ] Create tag `v3.3.2` and publish the GitHub release
+  - [x] Create tag `v3.3.2` and publish the GitHub release
 - **Constraints:** Preserve the live-linked version-sync rule, avoid creating a backward-facing release tag, and make the published release history match the existing `v3.3.1` lineage.
 - **Checkpoints:** Root version advanced; release notes aligned; validation green; tag and GitHub release created.
 - **Blocking Issues:** None.
