@@ -16,7 +16,7 @@ Current work is judged by that standard: skill changes should improve the abilit
 
 ## The 3-Pillar + 1-Foundation Framework
 
-All harness engineering concepts are organized under a unified framework:
+All Harness Engineering concepts are organized under a unified framework:
 
 ```json
 [
