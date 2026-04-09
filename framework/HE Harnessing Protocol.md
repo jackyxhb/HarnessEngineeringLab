@@ -2,6 +2,8 @@
 
 A comprehensive, step-by-step procedure for executing Harness Engineering across all 32 core features. This protocol is the canonical procedure consumed by the released `harnessing-agents` skill when it audits and improves a target project, including when the target project is this repository itself in self-host mode. Each phase is designed as **a small, self-contained task** that fits reliably within a single agent context window — preventing hallucination, context rot, and premature exits.
 
+For terminology boundaries between canonical framework concepts and current skill-side delivery terms, see [HE-Terms.md](HE-Terms.md).
+
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 >
 > **Chain Flow:** The phases follow the Principle-to-Practice Chain (L1→L5): Scope (pre-chain) → Principles (L1) → Enhancements (L2) → Design Decisions (L3) → Actions (L4) → Results (L5) → Principle Feedback (L1 ↩).

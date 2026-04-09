@@ -475,6 +475,30 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the HE-R011 first-mount governance execution-capability tranche that adds a reusable docs-first governance mount pattern, wires the live-linked skill to route matching repo profiles through it, and folds back the ENCT implementation proof without promoting the protocol into canonical framework ontology.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-021",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R012"],
+      "scope_paths": [
+        "framework/HE-Terms.md",
+        "framework/HE Index.md",
+        "framework/HE Harnessing Protocol.md",
+        ".agent/skills/harnessing-agents/framework/HE-Terms.md",
+        ".agent/skills/harnessing-agents/framework/HE Index.md",
+        ".agent/skills/harnessing-agents/framework/HE Harnessing Protocol.md",
+        "REQUIREMENTS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "ANCHORS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the HE-R012 canonical terms reference batch that adds framework/HE-Terms.md, links it from the framework entry points, syncs the bundled runtime mirror, and defines Feature Package as a skill-side execution term rather than a canonical framework feature.",
+      "findings": []
     }
   ]
 }

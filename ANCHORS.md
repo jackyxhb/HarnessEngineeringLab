@@ -220,3 +220,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `.agent/skills/harnessing-agents/` execution references, target-project delivery capability, and future promotion decisions for `HE-R011` and `HE-R010`.
 - **Background:** Observed during the approved first-mount governance batch on `/Users/macbook1/work/ENCT/ENCT`, where the repository moved from `.harness/`-only audit artifacts to a passing root governance layer verified by `sh scripts/harness/smoke.sh`.
 - **Date:** 2026-04-09
+
+### A26: Terms Reference Distinguishes Framework And Delivery Language
+
+- **What:** Added a canonical terms reference under `framework/` and defined `Feature Package` as a skill-side execution bundle rather than a new framework feature.
+- **Why:** The project has accumulated more delivery-layer terminology than the framework entry points could currently anchor. Without a dedicated terms surface, newer execution terms risk drifting into framework ontology or being used inconsistently across governance, skill, and target-project proof work.
+- **Target:** `framework/`, the bundled runtime mirror, and future terminology decisions that cross the boundary between canonical framework concepts and skill-side delivery constructs.
+- **Background:** Decided after naming the first reusable multi-feature delivery bundle and needing a stable place to define `Feature Package`, `Repo Profile`, and related terms without prematurely promoting them into the canonical feature set.
+- **Date:** 2026-04-09

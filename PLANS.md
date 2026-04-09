@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R012 Canonical Terms Reference
+
+- **Goal:** Add a canonical terms reference under `framework/` so Harness Engineering terminology, including the new Feature Package concept, is discoverable and consistently scoped across framework and skill surfaces.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R012`
+- **Scope:** `framework/`, `.agent/skills/harnessing-agents/framework/`, `REQUIREMENTS.md`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: promoting skill-side terms into formal framework features or refactoring all existing documents to use the new glossary immediately.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add the requirement, active plan, and canonical framework terms file
+  - [x] Link the terms reference from framework entry points and sync the bundled runtime mirror
+  - [x] Record independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the framework canonical, distinguish framework ontology from skill-side execution terminology, and avoid turning the glossary into a second index or feature catalog.
+- **Checkpoints:** Requirement recorded; terms reference added; entry-point links added; runtime mirror synced; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R011 First-Mount Governance Capability
 
 - **Goal:** Turn the first-mount governance repo profile into a reusable execution pattern for the live-linked skill and prove it on ENCT with a narrow governance mount.

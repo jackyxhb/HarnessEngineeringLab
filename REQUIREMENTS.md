@@ -162,6 +162,20 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "User-approved execution-capability tranche on 2026-04-09"
+    },
+    {
+      "id": "HE-R012",
+      "title": "Canonical terms reference",
+      "applies_to": ["self-hosted", "target-project"],
+      "narrative": "The canonical framework surface must include a dedicated terms reference so agents and humans can distinguish core Harness Engineering ontology from skill-side execution terminology, reducing drift and overloaded term usage across framework, governance, and delivery guidance.",
+      "acceptance_criteria": [
+        "A root framework terms reference exists under framework/ and is discoverable from the framework entry points.",
+        "The terms reference distinguishes canonical framework terms from skill-side execution terms where their scopes differ.",
+        "The terms reference includes the major concepts actively used across the framework and current delivery layer, including the new Feature Package term.",
+        "The framework runtime bundle stays synchronized with the new canonical terms reference."
+      ],
+      "status": "active",
+      "source": "User-directed terminology consolidation on 2026-04-09"
     }
   ]
 }

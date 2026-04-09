@@ -19,6 +19,7 @@ Pending downstream changes for the next HELab version.
 - Added a second execution-guide tranche for `P0-1 Bash Sandboxes`, `P1-7 Planning, Task Lists & Blackboards`, and `P2-5 Upstream Intake Gate`.
 - Added `HE-R010` and a draft harness-injection protocol reference so the skill now has a permanent lifecycle model for slot classes, touch-points, safety levels, and proof obligations during target-project execution.
 - Added `HE-R011` to authorize a reusable first-mount governance execution pattern for documentation-heavy repositories.
+- Added `HE-R012` to authorize a canonical framework terms reference that distinguishes framework ontology from skill-side delivery terminology.
 
 ### Changed
 
@@ -32,6 +33,7 @@ Pending downstream changes for the next HELab version.
 - Recorded the encA0 protocol test as a fourth external proof that a mature repo can already have strong harness and verification surfaces while still needing selective mutation because its portable contracts, planning state, and harness audit docs have drifted out of sync with live enforcement.
 - Recorded the ENCT protocol test as a fifth external proof that documentation-heavy repositories with minimal harness infrastructure should be treated as first-mount governance targets rather than as application-style remediation cases.
 - Converted the ENCT repo profile from audit-only proof into a real execution proof by shipping a first-mount governance guide and applying it to ENCT with a passing smoke command.
+- Opened a canonical framework terms reference so growing delivery-layer vocabulary can be defined without overloading core framework terms.
 
 ### Fixed
 
@@ -48,6 +50,7 @@ Pending downstream changes for the next HELab version.
 - Added a fifth real target-project proof note from ENCT showing the draft protocol can identify a documentation-heavy knowledge archive as a first-mount governance case and stage the result entirely under `.harness/`.
 - Added a reusable first-mount governance mount pattern so the skill can execute the ENCT-style repo profile as a deterministic batch instead of composing the batch ad hoc from multiple feature guides.
 - Added a real execution proof in ENCT showing the first-mount governance pattern can install a portable contract, intake and planning ledgers, review tracking, and a lightweight smoke gate on a documentation-heavy archive.
+- Added `framework/HE-Terms.md` as the canonical reference for current Harness Engineering terminology, including the boundary between framework terms and skill-side execution terms like `Feature Package`.
 
 ### Downstream Impact
 
@@ -60,6 +63,7 @@ Pending downstream changes for the next HELab version.
 - The harness-injection draft now has four external proof points across different repo profiles, improving confidence that target-project audits should also distinguish drifted-harness repos from both missing-harness repos and intake-first repos before choosing a remediation batch.
 - The harness-injection draft now has five external proof points across different repo profiles, improving confidence that target-project audits should also distinguish documentation-heavy first-mount governance targets from both application repos and drifted-harness repos before choosing a remediation batch.
 - The live-linked skill now has a reusable execution path for first-mount governance targets, reducing the gap between repo-profile classification and narrow target-project remediation.
+- Agents and humans now have a canonical terminology reference in `framework/`, reducing drift between framework ontology and newer delivery-layer terms.
 
 ## 4.0.0 - 2026-04-09
 

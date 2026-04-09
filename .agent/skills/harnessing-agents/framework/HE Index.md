@@ -4,6 +4,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
 
 **Chain Model:** See [HE Principle Practice Chain.md](HE%20Principle%20Practice%20Chain.md) for the L1→L5 methodology.
 **Harnessing Protocol:** See [HE Harnessing Protocol.md](HE%20Harnessing%20Protocol.md) for the step-by-step audit workflow.
+**Terms Reference:** See [HE-Terms.md](HE-Terms.md) for canonical terminology and skill-side term boundaries.
 
 ---
 
