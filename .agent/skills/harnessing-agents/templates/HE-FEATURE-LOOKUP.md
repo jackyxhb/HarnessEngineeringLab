@@ -2,6 +2,8 @@
 
 Use this exact shape for Mode 3 (`feature`) responses. Do not replace it with a field/value table or a chain-only dump.
 
+Source the `Feature` metadata from the exact `framework/HE Index.md` entry for the requested feature. Source `L3`, `L4`, `L5`, and dependency details from the canonical feature file named in that entry's `file` field.
+
 ## Feature
 
 - **ID:** [Feature ID, e.g. `P2-3`]
@@ -39,7 +41,9 @@ Use this exact shape for Mode 3 (`feature`) responses. Do not replace it with a 
 ## Output Rules
 
 - Do not output a field/value table as the final answer unless the user explicitly requested tabular formatting.
+- Do not change canonical metadata after reading it: keep the exact feature ID, feature name, pillar, governing EP, L1, and L2 from `framework/HE Index.md`.
 - Do not stop after `Chain`; `Current State` and `Next Valid Actions` are required.
+- Do not invent a workspace or target-project name. If none was explicitly provided, say `this workspace` or `HELab` as appropriate.
 - If HELab already has the feature mounted or hardened, say so in `Current State` and shift `Next Valid Actions` toward delivery refinement, stronger verification, or application in a target project.
 - If no target project was named, use generic wording like “apply to a target project.”
 - If a target project was named, use that exact name only.

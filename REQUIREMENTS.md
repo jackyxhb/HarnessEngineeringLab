@@ -9,10 +9,12 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       "id": "HE-R001",
       "title": "Framework canonical source with skill delivery",
       "applies_to": ["self-hosted", "target-project"],
-      "narrative": "Canonical Harness Engineering truth lives in framework/. The live-linked harnessing-agents skill in .agent/skills/harnessing-agents/ derives from that framework and applies it to target projects and to this repository itself. Content under docs/ is support material only and must not override framework definitions unless the user explicitly asks to maintain it.",
+      "narrative": "Canonical Harness Engineering truth lives in framework/. The live-linked harnessing-agents skill in .agent/skills/harnessing-agents/ derives from that framework and applies it to target projects and to this repository itself. The shipped skill runtime must carry a synchronized bundled mirror of framework/ so target-project execution does not depend on sibling HELab paths. Content under docs/ is support material only and must not override framework definitions unless the user explicitly asks to maintain it.",
       "acceptance_criteria": [
         "Active harness tooling validates framework/, the live-linked skill surface, and root harness files as the active product surface.",
         "The skill surface stays consistent with the framework definitions it loads.",
+        "The shipped skill runtime includes a synchronized bundled mirror of framework/ for target-project execution.",
+        "Canonical framework edits trigger bundle-sync validation, and merge gates fail until the shipped runtime mirror matches the root framework/.",
         "Support material under docs/ is treated as optional and non-authoritative by default.",
         "Anchors and workflow instructions do not route agents through docs/ as canonical truth."
       ],
@@ -23,11 +25,12 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       "id": "HE-R002",
       "title": "Dual-mode skill contract",
       "applies_to": ["self-hosted", "target-project"],
-      "narrative": "This repository both ships the harnessing-agents skill for target-project use and self-hosts by running that same skill on itself. The framework defines the method; the skill is the live-linked delivery mechanism that applies it in agentic environments.",
+      "narrative": "This repository both ships the harnessing-agents skill for target-project use and self-hosts by running that same skill on itself. The framework defines the method; the skill is the live-linked delivery mechanism that applies it in agentic environments. The shipped skill must therefore be self-contained enough to execute against target projects without depending on sibling repository paths outside the skill payload.",
       "acceptance_criteria": [
         "Root governance docs describe the repository as both a framework source and a live-linked skill workspace.",
         "Local implementation claims are backed by mechanical checks or clearly framed as skill behavior in target projects.",
         "Target-project language refers to running the harnessing-agents skill, not merely reading the framework docs.",
+        "The live-linked skill surface carries the runtime framework context it needs for target-project execution.",
         "Strategic anchors reflect the dual-mode contract."
       ],
       "status": "active",

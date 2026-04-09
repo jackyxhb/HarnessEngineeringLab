@@ -148,3 +148,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `AGENTS.md`, `README.md`, `REQUIREMENTS.md`, `.agent/skills/harnessing-agents/SKILL.md`, and future prioritization decisions about which features to mount next.
 - **Background:** Added on 2026-04-09 after clarifying that the repository exists to strengthen the skill's external delivery capability, not merely to accumulate internal feature implementations.
 - **Date:** 2026-04-09
+
+### A17: Self-Contained Skill Runtime Bundle
+
+- **What:** Chose to keep the root `framework/` as canonical source of truth while shipping a synchronized runtime mirror of that framework inside `.agent/skills/harnessing-agents/framework/`.
+- **Why:** The live-linked skill was structurally dependent on sibling HELab paths, which is acceptable for self-hosting but weak for target-project portability. Bundling the runtime framework fixes that without collapsing HELab governance and shipped runtime into one indistinct surface.
+- **Target:** `.agent/skills/harnessing-agents/`, `framework/`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and root governance docs describing the dual-mode contract.
+- **Background:** Decided on 2026-04-09 after assessing whether HELab and the skill should fully converge. Full convergence was rejected as too destructive; the bundled-runtime model preserves canonical truth while improving external delivery.
+- **Date:** 2026-04-09

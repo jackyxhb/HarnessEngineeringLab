@@ -26,6 +26,55 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Active Plans
 
+---
+
+## Completed Plans
+
+### Plan: Skill Runtime Bundle Migration
+
+- **Goal:** Make the shipped `harnessing-agents` skill self-contained for target-project execution by bundling a synchronized runtime mirror of `framework/` inside the skill while keeping the root `framework/` as canonical source of truth.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/`, `framework/`, root governance docs, and harness tooling that validates or documents the current split contract. Out of scope: publishing an independently versioned skill package.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add a deterministic sync command that mirrors root `framework/` into `.agent/skills/harnessing-agents/framework/`
+  - [x] Update validation, audit, and governance to treat the skill bundle as a required shipped runtime mirror
+  - [x] Run independent review, validate, and archive the migration plan
+- **Constraints:** Keep root `framework/` canonical, avoid manual edits inside the bundled mirror, and preserve the dual-mode live-linked contract.
+- **Checkpoints:** Sync command exists; skill bundle exists; he-lint detects drift; docs describe the bundled runtime model.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: Feature Lookup Canonical Fidelity
+
+- **Goal:** Make Mode 3 feature lookups preserve canonical metadata and workspace grounding, so responses cannot substitute the wrong pillar, governing principle, feature chain, or workspace name.
+- **Requirement IDs:** `HE-R001`, `HE-R004`, `HE-R008`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`, `README.md`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md` for review tracking. Out of scope: parser-based enforcement outside the live-linked skill surface.
+- **Status:** `done`
+- **Steps:**
+  - [x] Require Mode 3 metadata fields to match the canonical `framework/HE Index.md` entry exactly
+  - [x] Require `Current State` to stay grounded in the actual workspace and forbid invented target/workspace names
+  - [x] Run independent review, validate, and archive the plan
+- **Constraints:** Preserve target-project delivery primacy, keep Mode 3 lightweight, and avoid claiming mechanical enforcement beyond the skill contract.
+- **Checkpoints:** Canonical-source rules added; workspace-grounding rules added; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: HELab Structural Convergence Assessment
+
+- **Goal:** Rigorously assess whether HELab should converge the project and live-linked skill into a more unified folder structure, including feasibility, migration cost, risks, and likely payoff for target-project delivery.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R008`
+- **Scope:** Repository structure, skill surface under `.agent/skills/harnessing-agents/`, canonical `framework/` surface, root governance files, and harness tooling that encodes current path assumptions. Out of scope: implementing the restructure in this step.
+- **Status:** `done`
+- **Steps:**
+  - [x] Inventory the current path-coupling points and duplication boundaries across framework, skill, tooling, and governance
+  - [x] Evaluate structural options, migration feasibility, and cost/risk tradeoffs against target-project delivery primacy
+  - [x] Deliver a critical recommendation with concrete migration paths, if any
+- **Constraints:** Treat `framework/` canonical-truth rules and the dual-mode live-linked contract as first-class constraints; do not propose a restructure that weakens downstream delivery clarity without a strong offsetting benefit.
+- **Checkpoints:** Coupling inventory complete; option matrix complete; recommendation tied to concrete repo surfaces.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Feature Lookup Output Enforcement
 
 - **Goal:** Make Mode 3 feature lookups produce a deterministic output shape that includes current-state checks and explicit next valid actions, so agents do not stop after only printing the L1â†’L5 chain.
@@ -40,10 +89,6 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 - **Checkpoints:** Required Mode 3 sections added; docs updated; review recorded; validation green.
 - **Blocking Issues:** None.
 - **Completed:** 2026-04-09
-
----
-
-## Completed Plans
 
 ### Plan: Feature Lookup Template Hardening
 

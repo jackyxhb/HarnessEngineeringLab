@@ -50,6 +50,7 @@ check_file "REVIEWS.md"                             "Independent review ledger"
 check_file "RELEASES.md"                            "HELab release notes"
 check_file "PLANS.md"                               "Active task state"
 check_file ".agent/skills/harnessing-agents/SKILL.md" "Live-linked harnessing-agents skill"
+check_file ".agent/skills/harnessing-agents/framework/HE Index.md" "Bundled skill runtime framework"
 check_file "scripts/he-lint.js"                     "HE consistency checker"
 check_file "scripts/harness/audit.sh"               "This audit script"
 check_file ".github/workflows/he-lint.yml"          "CI lint gate"
@@ -61,6 +62,8 @@ check_file "framework/HE Principle Practice Chain.md"  "Chain model meta-documen
 # Validate DAG structure: 32 feature files, 19 principle files
 FEAT_DIR="$REPO_ROOT/framework/features"
 PRINC_DIR="$REPO_ROOT/framework/principles"
+SKILL_FEAT_DIR="$REPO_ROOT/.agent/skills/harnessing-agents/framework/features"
+SKILL_PRINC_DIR="$REPO_ROOT/.agent/skills/harnessing-agents/framework/principles"
 
 if [[ -d "$FEAT_DIR" ]]; then
   FEAT_COUNT=$(find "$FEAT_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
@@ -84,6 +87,30 @@ if [[ -d "$PRINC_DIR" ]]; then
   fi
 else
   fail "framework/principles/ directory missing"
+fi
+
+if [[ -d "$SKILL_FEAT_DIR" ]]; then
+  SKILL_FEAT_COUNT=$(find "$SKILL_FEAT_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
+  if [[ "$SKILL_FEAT_COUNT" -eq 32 ]]; then
+    ok "Bundled skill feature files: $SKILL_FEAT_COUNT (expected 32)"
+    PASS=$((PASS + 1))
+  else
+    fail "Bundled skill feature files: found $SKILL_FEAT_COUNT, expected 32 in .agent/skills/harnessing-agents/framework/features/"
+  fi
+else
+  fail ".agent/skills/harnessing-agents/framework/features/ directory missing"
+fi
+
+if [[ -d "$SKILL_PRINC_DIR" ]]; then
+  SKILL_PRINC_COUNT=$(find "$SKILL_PRINC_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
+  if [[ "$SKILL_PRINC_COUNT" -eq 19 ]]; then
+    ok "Bundled skill principle files: $SKILL_PRINC_COUNT (expected 19)"
+    PASS=$((PASS + 1))
+  else
+    fail "Bundled skill principle files: found $SKILL_PRINC_COUNT, expected 19 in .agent/skills/harnessing-agents/framework/principles/"
+  fi
+else
+  fail ".agent/skills/harnessing-agents/framework/principles/ directory missing"
 fi
 
 echo ""

@@ -37,7 +37,7 @@ HarnessEngineeringLab/
 │   ├── principles/          ← 19 engineering principles (EP-1 to EP-19)
 │   └── cross-cutting/       ← Systemic risks and evaluation frameworks
 ├── .agent/skills/
-│   └── harnessing-agents/   ← Live-linked skill that audits and improves target projects
+│   └── harnessing-agents/   ← Live-linked skill with a bundled runtime mirror of framework/
 ├── docs/                    ← Non-core support material (not part of the active project surface)
 ├── .agent/workflows/        ← Agent workflow definitions (/polish, /reconcile, etc.)
 └── tmp/                     ← Working documents and drafts
@@ -56,7 +56,9 @@ The canonical framework definitions and operational guides. This is the single s
 
 ### `.agent/skills/harnessing-agents/`
 
-The live-linked skill surface. Target projects are currently harnessed by symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness. Because the skill shares core files under `framework/`, changes in either place immediately affect linked downstream environments.
+The live-linked skill surface. Target projects are currently harnessed by symlinking this skill into their agentic environment and running it there. This repository also self-hosts by running the same skill against itself to set up and improve its own harness.
+
+The root `framework/` directory remains canonical. The shipped skill now carries a synchronized runtime mirror under `.agent/skills/harnessing-agents/framework/` so target-project execution does not depend on sibling HELab paths outside the skill payload. Changes to the canonical root framework must be synced into that bundled mirror before merge.
 
 The success test for this repository is therefore not just whether HELab contains a feature, but whether the skill can inspect, plan, apply, and verify that feature effectively in a target project.
 
@@ -68,7 +70,10 @@ Mode 3 feature lookups are expected to return a complete response shape, not jus
 
 The canonical Mode 3 output shape lives in `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`. A field/value extraction table is not considered a compliant final response unless the user explicitly asks for tabular output.
 
+Mode 3 also has a canonical-fidelity requirement: feature metadata must match the `framework/HE Index.md` entry exactly, chain details must come from the canonical feature file, and `Current State` must stay grounded in the actual inspected workspace rather than an invented repository name.
+
 - **SKILL.md** — Skill entry point and routing surface
+- **framework/** — Bundled runtime mirror of the canonical HELab framework, shipped with the skill for target-project execution
 - **references/** — Audit and scoring references used by the skill
 - **templates/** — Output templates written into a target project's `.harness/` directory
 
@@ -78,10 +83,12 @@ HELab is the canonical version source for the current live-linked skill model.
 
 - **`package.json`** — Canonical HELab version.
 - **`.agent/skills/harnessing-agents/SKILL.md`** — Mirrored skill metadata version for downstream visibility.
+- **`.agent/skills/harnessing-agents/framework/`** — Shipped runtime mirror of the canonical `framework/` surface.
 - **`RELEASES.md`** — Canonical HELab release notes for downstream-facing changes.
 - **`npm run sync:skill-version`** — Syncs the root version into the skill metadata.
+- **`npm run sync:skill-framework`** — Syncs the canonical root `framework/` into the shipped skill runtime mirror.
 
-The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the shared `framework/` files it loads, that is also a downstream skill change.
+The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the canonical `framework/` that feeds its bundled runtime mirror, that is also a downstream skill change.
 
 ### Independent Review
 
