@@ -59,9 +59,10 @@ Score the identified gaps using the multi-dimensional framework.
 Translate prioritized gaps into a concrete implementation plan using the "Options" from each feature's 3-step chain.
 
 1. Map each gap to its **L4: Concrete Actions & Tools** from its respective `framework/features/P*.md` file.
-2. Map each gap to its **L5: Improvement Policies** tier from the same file.
-3. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
-4. Group into execution batches ordered by dependencies, then tiers.
+2. If a feature-specific implementation guide exists under `references/`, treat that guide as the canonical execution layer for Phase 3 and Phase 4 instead of inventing target-project steps from the abstract feature text.
+3. Map each gap to its **L5: Improvement Policies** tier from the same file.
+4. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
+5. Group into execution batches ordered by dependencies, then tiers.
 
 **Output:** `.harness/HE-IMPLEMENTATION-PLAN.md`
 > **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md` → **Output to:** `.harness/HE-IMPLEMENTATION-PLAN.md`
@@ -76,6 +77,8 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 
 Apply the remediation batches sequentially. Each action item should come directly from the "L4: Concrete Actions & Tools" section of the relevant feature.
 
+When a feature-specific implementation guide exists in `references/`, use that guide to determine the concrete files, commands, templates, and verification steps for the target project. Do not improvise those steps from the abstract feature file if the guide already exists.
+
 - **Light:** Update `AGENTS.md`, `.cursorrules`, `.agents` workflows.
 - **Medium:** Add pre-commit hooks, explicit structural linters, state tracking templates.
 - **Heavy:** Perform structural project refactoring, build orchestration middleware, wire up explicit test pipelines.
@@ -88,6 +91,11 @@ When the implementation plan includes **P2-3 AI Auditors & Collaboration Channel
 2. Update the target project's `AGENTS.md` (or equivalent canonical agent contract) with generator/evaluator separation, review-required surfaces, and escalation behavior.
 3. Add the narrowest repo-native gate that can fail review-required changes without an approving review record. Reuse an existing validation surface when possible; otherwise add the smallest maintainable hook or CI check that matches the target stack.
 4. Record the mounted files and verification results in `.harness/HE-CHANGE-SUMMARY.md`.
+
+### Additional Feature Guides
+
+- For **P0-3 Verification**, use `references/he-p0-3-verification-mount-pattern.md` when the target project lacks deterministic verification gates, pre-completion checks, or repo-native failure signals.
+- For **P1-10 Requirements Ledger**, use `references/he-p1-10-requirements-ledger-mount-pattern.md` when the target project plans or executes work without a machine-readable requirements ledger and pre-planning intake hook.
 
 **Output:** Modified codebase with per-agent modification summary.
 > **Use template:** `templates/HE-CHANGE-SUMMARY.md` → **Output to:** `.harness/HE-CHANGE-SUMMARY.md`

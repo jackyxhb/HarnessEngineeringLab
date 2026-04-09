@@ -156,3 +156,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `.agent/skills/harnessing-agents/`, `framework/`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, and root governance docs describing the dual-mode contract.
 - **Background:** Decided on 2026-04-09 after assessing whether HELab and the skill should fully converge. Full convergence was rejected as too destructive; the bundled-runtime model preserves canonical truth while improving external delivery.
 - **Date:** 2026-04-09
+
+### A18: Execution Guides Over Abstract Chains
+
+- **What:** Prioritized concrete target-project implementation guides as the next major hardening step for the live-linked `harnessing-agents` skill.
+- **Why:** The framework feature files define the L1-L5 chain well enough for diagnosis and planning, but most features still lack step-by-step execution guidance for Phase 4 remediation in target projects. Without that layer, the skill risks guessing files, commands, and verification steps instead of applying the framework mechanically.
+- **Target:** `REQUIREMENTS.md`, `PLANS.md`, `.agent/skills/harnessing-agents/`, future execution references/templates, and the next target-project delivery tranche.
+- **Background:** Chosen immediately after the `4.0.0` release based on a repo audit that identified concrete execution guidance as the largest remaining blocker between strong HELab self-hosting and reliable target-project delivery.
+- **Date:** 2026-04-09

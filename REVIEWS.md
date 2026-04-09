@@ -330,6 +330,29 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the HELab 4.0.0 release-cut patch that bumps the canonical root version, syncs the mirrored skill version, and converts the accumulated Unreleased notes into the `4.0.0 - 2026-04-09` release section while reopening `Unreleased` for future work.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-014",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R003", "HE-R008", "HE-R009"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-feature-implementation-guide-pattern.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/references/he-p0-3-verification-mount-pattern.md",
+        ".agent/skills/harnessing-agents/references/he-p1-10-requirements-ledger-mount-pattern.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the HE-R009 delivery batch that adds the canonical feature implementation-guide pattern, ships the first concrete target-project execution guides for P0-3 and P1-10, and updates the skill/audit flow to prefer guide-backed execution over abstract feature-only remediation.",
+      "findings": []
     }
   ]
 }

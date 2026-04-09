@@ -118,6 +118,21 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "User clarification about project mission on 2026-04-09, recorded in ANCHORS.md as A16"
+    },
+    {
+      "id": "HE-R009",
+      "title": "Concrete feature implementation guides",
+      "applies_to": ["target-project", "self-hosted"],
+      "narrative": "The live-linked harnessing-agents skill must ship concrete implementation guidance for applying Harness Engineering features in target projects. Phase 4 execution in the full-audit workflow must be able to map a detected feature gap to actionable files, commands, templates, and verification steps without relying on agent guesswork or conceptual-only feature text.",
+      "acceptance_criteria": [
+        "The repository defines a canonical pattern for feature implementation guides that is distinct from the abstract L1-L5 framework feature definition.",
+        "The harnessing-agents skill can route from a feature gap to concrete target-project implementation guidance without inventing filenames, workflows, or verification steps.",
+        "At least one bounded delivery slice of feature implementation guides is shipped and referenced from the live-linked skill surface.",
+        "Execution-oriented guidance preserves the root framework as canonical truth while adding target-project actionability rather than duplicating or mutating the framework definitions.",
+        "Validation and review surfaces remain consistent with any new guide pattern introduced for target-project execution."
+      ],
+      "status": "active",
+      "source": "Post-4.0.0 delivery-gap audit on 2026-04-09"
     }
   ]
 }
