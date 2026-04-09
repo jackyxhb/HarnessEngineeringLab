@@ -44,40 +44,33 @@ All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Insi
 - Establishing multi-agent systems (MAS) and managing coordination overhead.
 - Auditing existing AI infrastructure for gaps and vulnerabilities.
 
-## How to Use (3 Modes)
+## How to Use (2 Modes)
 
-Route by keyword in the user's input. If no keyword matches, **default to Mode 1 (Quick Scan)**.
+Route by keyword in the user's input. If no keyword matches, **default to Mode 1 (Full Audit)**.
 
 | Keyword | Mode | What It Does | Time |
 | --- | --- | --- | --- |
-| **`scan`** | Quick Scan | 32-item yes/no checklist → maturity score | ~5 min |
 | **`full`** | Full Audit | 6-phase lifecycle: Scope → Gaps → Score → Plan → Execute → Verify | 30–60 min |
 | **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain | ~2 min |
 
-### Mode 1: Quick Scan — keyword: `scan` (DEFAULT)
-Runs the 32-item yes/no checklist against the target project. Produces a maturity level score.
-- **Reference:** `framework/HE Index.md` — check each feature's L2 targeted enhancement for presence in the target project.
-- **Navigation:** Read `framework/HE Index.md` for the feature list with L1+L2 inline; check each feature's presence in the target project.
-- **Output:** `.harness/HE-SCOPE.md`
-
-### Mode 2: Full Audit — keyword: `full`
+### Mode 1: Full Audit — keyword: `full` (DEFAULT)
 Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
 - **Lifecycle discipline:** When the audit will touch a live target repository, also use `references/he-harness-injection-protocol-draft.md` to classify slots, distinguish staging versus live operational touch-points, and control when mutation is allowed.
 - **Output:** `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
 
-### Mode 3: Feature Lookup — keyword: `feature`
+### Mode 2: Feature Lookup — keyword: `feature`
 Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
 - **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Do not guess unpadded paths such as `framework/features/P2-3.md`.
 - **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
-- **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 3.
+- **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 2.
 - **Canonical Source Rule:** `Feature` metadata (`ID`, `Name`, `Pillar`, `Governed By`, `L1`, `L2`) must match the `framework/HE Index.md` entry for the requested feature exactly. Do not substitute alternate pillar labels, principle IDs, or renamed summaries from other docs.
 - **Chain Source Rule:** `L3`, `L4`, `L5`, and dependency details must be grounded in the canonical feature file referenced by the index `file` field.
 
-#### Mode 3 Output Contract
+#### Mode 2 Output Contract
 
-Mode 3 responses must not stop after printing the feature chain. After presenting the chain, feature lookup must make any suggested next actions **state-aware** and must emit the required sections below.
+Mode 2 responses must not stop after printing the feature chain. After presenting the chain, feature lookup must make any suggested next actions **state-aware** and must emit the required sections below.
 
 Before suggesting next actions:
 
@@ -96,7 +89,7 @@ Rules for suggested next actions:
 - Do **not** relabel the pillar, governing EP, or chain text with alternate terminology once the canonical index/feature-file values are known.
 - Do **not** attribute `Current State` findings to another workspace or repository unless the user explicitly named that target and the agent actually inspected it.
 
-The purpose of Mode 3 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
+The purpose of Mode 2 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
 
 #### Required Mode 3 Response Shape
 

@@ -18,7 +18,7 @@ Pending downstream changes for the next HELab version.
 
 ### Changed
 
-- None yet.
+- Revised the `harnessing-agents` skill to remove the quick scan mode and make full audit mode the default.
 
 ### Fixed
 
@@ -30,7 +30,7 @@ Pending downstream changes for the next HELab version.
 
 ### Downstream Impact
 
-- None yet.
+- The `harnessing-agents` skill now defaults to full audit mode instead of quick scan, affecting how target projects are audited by default.
 
 ## 4.1.0 - 2026-04-09
 

@@ -537,6 +537,20 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the v4.1.0 release cut that bumps the canonical HELab version and mirrored skill version, moves the accumulated Unreleased notes into a 4.1.0 release section, and prepares the repository for tag and GitHub release publication.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-10-001",
+      "date": "2026-04-10",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Plan subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md"
+      ],
+      "change_summary": "Revised the harnessing-agents skill to remove quick scan mode and make full audit mode default.",
+      "findings": []
     }
   ]
 }
