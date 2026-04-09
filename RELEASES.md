@@ -26,6 +26,10 @@ Pending downstream changes for the next HELab version.
 - Tightened the implementation-planning template so remediation entries must name the feature-specific guide used when a shipped mount pattern exists.
 - Folded the first real external target proof back into the skill guidance so audits preserve a target project's live execution-plan surface during inspection and retarget that plan only after a specific remediation batch is approved.
 - Began codifying target-repository mutation flow as a skill-side harness-injection protocol instead of leaving slot and touch-point handling implicit inside individual feature guides.
+- Recorded the CareerHelper protocol test as a second external proof that strong repos should be classified through slot and touch-point strength first, with live mutation deferred until a narrow approved batch exists.
+- Recorded the ServiceAgent protocol test as a third external proof that strong contract and verification surfaces do not eliminate the need for live planning, requirements-ledger, intake-gate, and review-ledger infrastructure.
+- Recorded the encA0 protocol test as a fourth external proof that a mature repo can already have strong harness and verification surfaces while still needing selective mutation because its portable contracts, planning state, and harness audit docs have drifted out of sync with live enforcement.
+- Recorded the ENCT protocol test as a fifth external proof that documentation-heavy repositories with minimal harness infrastructure should be treated as first-mount governance targets rather than as application-style remediation cases.
 
 ### Fixed
 
@@ -36,6 +40,10 @@ Pending downstream changes for the next HELab version.
 - Added a synthetic target-project proof under `tmp/` to exercise the shipped `P0-3` and `P1-10` guides end to end without claiming success against a real external repository.
 - Added a real target-project proof note from ACSS showing the shipped guide layer successfully drove focused `P2-5`, `P2-3`, and `P0-3` follow-on batches in an external repository.
 - Added a permanent draft reference that describes how the skill should classify repo slots, resolve concrete touch-points, stage mutations, and verify harness injection during target-project runs.
+- Added a second real target-project proof note from CareerHelper showing the draft protocol can stop at audit-only staging and still identify stronger pre-existing slots plus narrower Tier 1 gaps.
+- Added a third real target-project proof note from ServiceAgent showing the draft protocol can distinguish mature contract and verification surfaces from missing intake and live planning infrastructure without rewriting stable repo-native controls.
+- Added a fourth real target-project proof note from encA0 showing the draft protocol can identify a drifted-harness repo profile where the first safe batch is an audit refresh plus contract-sync planning rather than a new harness mount.
+- Added a fifth real target-project proof note from ENCT showing the draft protocol can identify a documentation-heavy knowledge archive as a first-mount governance case and stage the result entirely under `.harness/`.
 
 ### Downstream Impact
 
@@ -43,6 +51,10 @@ Pending downstream changes for the next HELab version.
 - Implementation plans now explicitly record which shipped guide was used when a feature has a mount pattern.
 - The full-audit guidance now tells the skill to keep audit planning in `.harness/` first when a target repo already has a live execution-plan surface, reducing the risk of overwriting active delivery work during inspection.
 - The live-linked skill now carries an explicit harness-injection draft that can standardize how future target-project runs move from inspection to safe, verified mutation.
+- The harness-injection draft now has two external proof points with different repo profiles, increasing confidence that selective mutation and staged planning should stay the default behavior for strong target repositories.
+- The harness-injection draft now has three external proof points across different repo profiles, improving confidence that target-project audits should distinguish contract strength, verification strength, and intake/planning weakness before selecting a remediation batch.
+- The harness-injection draft now has four external proof points across different repo profiles, improving confidence that target-project audits should also distinguish drifted-harness repos from both missing-harness repos and intake-first repos before choosing a remediation batch.
+- The harness-injection draft now has five external proof points across different repo profiles, improving confidence that target-project audits should also distinguish documentation-heavy first-mount governance targets from both application repos and drifted-harness repos before choosing a remediation batch.
 
 ## 4.0.0 - 2026-04-09
 

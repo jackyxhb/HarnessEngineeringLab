@@ -180,3 +180,35 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `.agent/skills/harnessing-agents/` references, full-audit execution behavior, and future target-project delivery experiments.
 - **Background:** Decided after distinguishing abstract harness slots from concrete touch-points and concluding that the concept should be coined first as a permanent skill asset rather than promoted immediately into the canonical framework.
 - **Date:** 2026-04-09
+
+### A21: Second External Proof Favors Selective Mutation
+
+- **What:** Recorded the CareerHelper protocol test as a second external proof that the harness-injection draft should classify strong repos through slots and touch-points first, stage findings under `.harness/`, and avoid live operational mutation until a narrow remediation batch is explicitly chosen.
+- **Why:** CareerHelper showed that a repository can already have strong verification, sandboxing, orchestration, MCP, and review automation while still lacking durable intake and review-ledger surfaces. The protocol added value by preventing an unnecessary broad remount and isolating the real Tier 1 gaps.
+- **Target:** `.agent/skills/harnessing-agents/` protocol guidance, future target-project audits, and promotion decisions for `HE-R010`.
+- **Background:** Observed during the protocol-only audit of `/Users/macbook1/work/Jack/CareerHelper`, where the safe result was `PLAN.md` activation plus `.harness/` artifacts, not immediate mutation of stronger live repo surfaces.
+- **Date:** 2026-04-09
+
+### A22: Third External Proof Separates Contract Strength From Intake Weakness
+
+- **What:** Recorded the ServiceAgent protocol test as a third external proof that a target repository can already have strong canonical agent contracts and verification while still lacking live planning, requirements-ledger, intake-gate, and review-ledger infrastructure.
+- **Why:** ServiceAgent showed a different profile from CareerHelper: `AGENTS.md`, `CLAUDE.md`, `HARNESS.md`, CI, and pre-commit validation were already strong, but those strengths did not provide durable authorization or active task-state control. The protocol added value by isolating intake and planning as the first follow-on batch instead of remounting contract or CI surfaces.
+- **Target:** `.agent/skills/harnessing-agents/` protocol guidance, target-project prioritization, and future promotion decisions for `HE-R010`.
+- **Background:** Observed during the protocol-only audit of `/Users/macbook1/work/Rush/ServiceAgent`, where the correct outcome was a staged `.harness/` plan that preserved existing contract and verification surfaces and prioritized `P1-10`, `P1-7`, `P2-5`, and `P2-3`.
+- **Date:** 2026-04-09
+
+### A23: Fourth External Proof Favors Refresh Over Remount
+
+- **What:** Recorded the encA0 protocol test as a fourth external proof that some target repositories already contain strong harness, requirements, CI, and ledger surfaces, but still need selective mutation because their portable rules, planning surfaces, and audit surfaces have drifted out of sync with live enforcement.
+- **Why:** encA0 introduced a different repo shape from the earlier proofs: not missing-harness and not intake-first, but a mature repo where the main risk is state-truth drift across multiple portable rule surfaces, planning documents, and stale harness audit artifacts. The protocol added value by favoring audit refresh and contract-sync planning over a broad remount.
+- **Target:** `.agent/skills/harnessing-agents/` protocol guidance, target-project prioritization, and future promotion decisions for `HE-R010`.
+- **Background:** Observed during the protocol-only audit of `/Users/macbook1/work/ENCT/encA0`, where the safe result was an in-place refresh of the existing `/harness` audit package on a branch, leaving live repo surfaces unchanged pending approval of a narrow remediation batch.
+- **Date:** 2026-04-09
+
+### A24: Fifth External Proof Confirms First-Mount Governance Shape
+
+- **What:** Recorded the ENCT protocol test as a fifth external proof that documentation-heavy repositories with almost no harness infrastructure should be audited as knowledge-product targets and staged through a fresh `.harness/` package before any governance mount is approved.
+- **Why:** ENCT added a new repo profile to the proof base: a theory/archive repository with readable content structure and an IDE-specific instruction shim, but no portable root contract, no intake or review ledgers, and no deterministic verification surface. The protocol added value by classifying it as a first-mount governance case rather than forcing application-style remediation logic.
+- **Target:** `.agent/skills/harnessing-agents/` protocol guidance, target-project prioritization, and future promotion decisions for `HE-R010`.
+- **Background:** Observed during the protocol-only audit of `/Users/macbook1/work/ENCT/ENCT`, where the safe result was an audit-only `.harness/` package on a branch, leaving the live archive content unchanged pending approval of a narrow first mount.
+- **Date:** 2026-04-09

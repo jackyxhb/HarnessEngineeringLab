@@ -96,7 +96,9 @@
     "HITL",
     "ACSS",
     "acss",
-    "overclaim"
+    "ENCT",
+    "overclaim",
+    "overclaiming"
   ],
   "ignorePaths": [
     "node_modules/**",

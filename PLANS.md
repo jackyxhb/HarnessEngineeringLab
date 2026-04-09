@@ -30,6 +30,66 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R010 ENCT Protocol Proof
+
+- **Goal:** Carry the ENCT harness-injection protocol test back into HELab so the fifth external proof becomes durable evidence for a documentation-heavy first-mount governance repo profile.
+- **Requirement IDs:** `HE-R008`, `HE-R010`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `.agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md`, and `REVIEWS.md`. Out of scope: changing canonical framework definitions or executing a remediation batch inside ENCT.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the ENCT protocol result as a strategic anchor and completed plan
+  - [x] Update release notes and the draft protocol reference with fifth-proof evidence
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the protocol framed as a skill-side asset, avoid overclaiming framework promotion readiness, and preserve the audit-only outcome in ENCT.
+- **Checkpoints:** Anchor recorded; release note updated; protocol draft evidence note updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: HE-R010 encA0 Protocol Proof
+
+- **Goal:** Carry the encA0 harness-injection protocol test back into HELab so the fourth external proof becomes durable evidence for a drifted-harness repo profile and sharper selective-mutation rules.
+- **Requirement IDs:** `HE-R008`, `HE-R010`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `.agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md`, and `REVIEWS.md`. Out of scope: changing canonical framework definitions or executing a remediation batch inside encA0.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the encA0 protocol result as a strategic anchor and completed plan
+  - [x] Update release notes and the draft protocol reference with fourth-proof evidence
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the protocol framed as a skill-side asset, avoid overclaiming framework promotion readiness, and preserve the audit-only outcome in encA0.
+- **Checkpoints:** Anchor recorded; release note updated; protocol draft evidence note updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: HE-R010 ServiceAgent Protocol Proof
+
+- **Goal:** Carry the ServiceAgent harness-injection protocol test back into HELab so the third external proof becomes durable evidence for the skill-side draft and sharper promotion criteria.
+- **Requirement IDs:** `HE-R008`, `HE-R010`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `.agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md`, and `REVIEWS.md`. Out of scope: changing canonical framework definitions or executing a remediation batch inside ServiceAgent.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the ServiceAgent protocol result as a strategic anchor and completed plan
+  - [x] Update release notes and the draft protocol reference with third-proof evidence
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the protocol framed as a skill-side asset, avoid overclaiming framework promotion readiness, and preserve the audit-only outcome in ServiceAgent.
+- **Checkpoints:** Anchor recorded; release note updated; protocol draft evidence note updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: HE-R010 CareerHelper Protocol Proof
+
+- **Goal:** Carry the CareerHelper harness-injection protocol test back into HELab so the second external proof becomes durable evidence for the skill-side draft and future promotion decisions.
+- **Requirement IDs:** `HE-R008`, `HE-R010`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `.agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md`, and `REVIEWS.md`. Out of scope: changing canonical framework definitions or executing a remediation batch inside CareerHelper.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the CareerHelper protocol result as a strategic anchor and completed plan
+  - [x] Update release notes and the draft protocol reference with second-proof evidence
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the protocol framed as a skill-side asset, avoid overclaiming framework promotion readiness from a single additional proof, and preserve the audit-only outcome in CareerHelper.
+- **Checkpoints:** Anchor recorded; release note updated; protocol draft evidence note added; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R010 Harness Injection Draft
 
 - **Goal:** Coin a permanent draft spec for slot-based harness injection so the live-linked skill has a durable lifecycle protocol for touching target repositories.

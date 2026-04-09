@@ -203,6 +203,21 @@ This draft does not replace feature-specific implementation guides.
 The protocol governs lifecycle and safety.
 The guides govern feature-specific execution details.
 
+## Proof Status
+
+Current external proof base:
+
+1. **ACSS** — showed that the protocol should preserve a target repo's active execution plan during inspection, stage audit artifacts under `.harness/`, and move into live mutation only for approved focused follow-on batches.
+2. **CareerHelper** — showed that the same protocol can correctly stop at audit-only staging when the target repo already has strong verification, sandboxing, orchestration, MCP, and review automation surfaces, leaving only narrower Tier 1 intake/review-durability gaps.
+3. **ServiceAgent** — showed that a target repo can already have strong portable contracts, harness history, CI, and pre-commit verification while still lacking live planning, requirements-ledger, intake-gate, and durable review-ledger surfaces.
+4. **encA0** — showed that a target repo can already have a substantial harness, requirements ledger, CI, scheduled maintenance, and execution history, yet still need selective mutation because its portable rule surfaces, planning surfaces, and audit surfaces have drifted out of sync with the live implementation and enforcement layer.
+5. **ENCT** — showed that a documentation-heavy theory/archive repository with only an IDE-specific instruction shim and no portable governance, planning, review, or verification surfaces should be treated as a first-mount governance target, with the audit staged entirely under `.harness/` until a narrow mount is approved.
+
+Current interpretation:
+
+- the draft has enough evidence to remain a durable skill-side execution asset
+- the draft now has better repo-shape diversity across missing-harness, strong-repo selective-mutation, intake-first, drifted-harness, and first-mount governance profiles, but still does not yet have enough repetition or cross-skill need to justify promotion into canonical `framework/` ontology
+
 ## Promotion Rule
 
 Keep this protocol in the skill surface until repeated target-project proofs show it is stable enough to become canonical framework doctrine.

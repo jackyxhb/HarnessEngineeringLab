@@ -69,7 +69,9 @@
     "sonoma",
     "ACSS",
     "acss",
-    "overclaim"
+    "ENCT",
+    "overclaim",
+    "overclaiming"
   ],
   "ignorePaths": [
     "node_modules",

@@ -417,6 +417,42 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the combined HE-R009 fold-back plus HE-R010 harness-injection draft batch that records the ACSS proof lesson, preserves active target-project planning during inspection, and adds a permanent skill-side protocol for slots, touch-points, lifecycle phases, safety levels, and proof requirements.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-018",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008", "HE-R010"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the CareerHelper protocol evidence fold-back that documents a second external proof supporting skill-side protocol lifecycle while preserving careful promotion thresholds and leaving CareerHelper at audit-only scope.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-019",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008", "HE-R010"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the remaining HE-R010 protocol-proof fold-back batch that records the ServiceAgent, encA0, and ENCT evidence, resolves the encA0 anchor wording to stay repo-agnostic at the rule layer, and keeps the protocol framed as a skill-side execution asset rather than a promoted framework concept.",
+      "findings": []
     }
   ]
 }
