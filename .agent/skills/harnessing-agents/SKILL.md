@@ -1,6 +1,6 @@
 ---
 name: harnessing-agents
-version: "3.3.2"
+version: "4.0.0"
 description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity.
 user-invocable: true
 allowed-tools:

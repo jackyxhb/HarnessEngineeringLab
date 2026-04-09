@@ -312,6 +312,24 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the rename of the P2-3 target-project review reference to `references/he-p2-3-review-mount-pattern.md` so the skill surface uses a more clearly instructional naming pattern without changing the reference semantics.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-013",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R005", "HE-R006"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md",
+        "package.json"
+      ],
+      "change_summary": "Approved the HELab 4.0.0 release-cut patch that bumps the canonical root version, syncs the mirrored skill version, and converts the accumulated Unreleased notes into the `4.0.0 - 2026-04-09` release section while reopening `Unreleased` for future work.",
+      "findings": []
     }
   ]
 }

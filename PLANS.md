@@ -26,6 +26,20 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Active Plans
 
+### Plan: HELab 4.0.0 Release Cut
+
+- **Goal:** Cut the next HELab release as `v4.0.0` so the shipped skill/runtime architecture changes and naming-surface changes are reflected in the canonical version, mirrored skill metadata, release notes, git tag, and GitHub release.
+- **Requirement IDs:** `HE-R005`, `HE-R006`
+- **Scope:** `package.json`, `.agent/skills/harnessing-agents/SKILL.md`, `RELEASES.md`, `PLANS.md`, `REVIEWS.md`, git tag state, and GitHub release notes. Out of scope: additional feature work beyond the already merged changes.
+- **Status:** `in-progress`
+- **Steps:**
+  - [x] Bump the canonical root version and mirrored skill version to `4.0.0`
+  - [x] Move `Unreleased` downstream changes into a `4.0.0` release section and re-open `Unreleased`
+  - [ ] Record independent review, validate, commit, tag `v4.0.0`, push, and create the GitHub release
+- **Constraints:** Keep `package.json` as the canonical version source, keep `.agent/skills/harnessing-agents/SKILL.md` mirrored to that version, and preserve an `Unreleased` section in `RELEASES.md` after the cut.
+- **Checkpoints:** Version surfaces updated; release notes cut; review recorded; validation green; tag pushed; GitHub release created.
+- **Blocking Issues:** None.
+
 ---
 
 ## Completed Plans

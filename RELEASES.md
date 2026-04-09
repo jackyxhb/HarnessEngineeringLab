@@ -14,23 +14,45 @@ Pending downstream changes for the next HELab version.
 
 ### What's New
 
+- None yet.
+
+### Changed
+
+- None yet.
+
+### Fixed
+
+- None yet.
+
+### Tooling
+
+- None yet.
+
+### Downstream Impact
+
+- None yet.
+
+## 4.0.0 - 2026-04-09
+
+### Summary
+
+Cut the first major HELab release that ships the self-contained runtime bundle for the live-linked `harnessing-agents` skill and codifies target-project delivery as the primary mission.
+
+### What's New
+
 - Added a reusable target-project `REVIEWS.md` template and a P2-3 remediation reference so the live-linked skill can mount an independent-review pattern in external projects.
 
 ### Changed
 
-- Renamed the P2-3 target-project review reference to `.agent/skills/harnessing-agents/references/he-p2-3-review-mount-pattern.md` so the `references/` surface uses a more clearly instructional naming pattern.
-- Renamed the target-project review-ledger template to `.agent/skills/harnessing-agents/templates/HE-REVIEWS.md` so the shipped skill templates follow the established `HE-` naming convention while keeping the mounted target-project ledger name `REVIEWS.md` unchanged.
 - Clarified across the root governance docs and the live-linked skill contract that HELab's primary mission is effective target-project delivery of the full Harness Engineering feature set, with self-hosting treated as a proving loop rather than the end state.
 - Began migrating the live-linked skill toward a self-contained shipped runtime by introducing a synchronized framework bundle under `.agent/skills/harnessing-agents/framework/`, while keeping the root `framework/` as canonical source of truth.
+- Renamed the target-project review-ledger template to `.agent/skills/harnessing-agents/templates/HE-REVIEWS.md` so the shipped skill templates follow the established `HE-` naming convention while keeping the mounted target-project ledger name `REVIEWS.md` unchanged.
+- Renamed the P2-3 target-project review reference to `.agent/skills/harnessing-agents/references/he-p2-3-review-mount-pattern.md` so the `references/` surface uses a more clearly instructional naming pattern.
 - Clarified feature-lookup navigation so the skill resolves canonical feature paths from `framework/HE Index.md` and uses the root `REQUIREMENTS.md` ledger for requirement traceability.
 - Clarified that Mode 3 feature lookups must check current HELab state before suggesting next actions, preventing duplicate local work and guessed target-project names.
 - Strengthened Mode 3 output rules so feature lookups must return a deterministic response shape with `Current State` and `Next Valid Actions`, preventing incomplete chain-only answers.
 - Added a dedicated Mode 3 feature-lookup template and explicitly disallowed field/value summary output as the default final response shape.
 - Hardened Mode 3 canonical fidelity so feature metadata must match `framework/HE Index.md`, chain details must come from the canonical feature file, and `Current State` cannot invent a workspace name.
-
-### Fixed
-
-- None yet.
 
 ### Tooling
 
@@ -40,6 +62,7 @@ Pending downstream changes for the next HELab version.
 
 ### Downstream Impact
 
+- Linked target projects now consume a self-contained skill runtime bundle instead of depending on sibling HELab framework paths, per [A17](ANCHORS.md).
 - Core HELab harness changes now require a machine-readable independent review record before merge.
 
 ## 3.3.2 - 2026-04-09
