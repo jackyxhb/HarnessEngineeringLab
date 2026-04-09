@@ -153,6 +153,135 @@ function extractJsonCodeBlock(content) {
   return match ? match[1].trim() : null;
 }
 
+const REQUIRED_FEATURE_HEADERS = [
+  '## L2: Targeted Enhancement',
+  '## L3: Design Decisions',
+  '## L4: Concrete Actions & Tools',
+  '## L4: Prevention',
+  '## L5: Gap Signals',
+  '## L5: Improvement Policies',
+  '## L5: Measurement',
+  '## Dependencies',
+];
+
+const INVALID_MEASUREMENT_PATTERNS = [
+  // Keep this list narrow: only reject phrases that are unambiguously gap signals.
+  /\bbecomes a bottleneck\b/i,
+  /\boverwrite each other's state\b/i,
+  /\blose context\b/i,
+  /^No clear path\b/i,
+];
+
+function getLineNumberForSnippet(content, snippet) {
+  const index = content.indexOf(snippet);
+  if (index === -1) return 0;
+  return content.slice(0, index).split('\n').length;
+}
+
+function getLineNumberForExactLine(lines, lineText) {
+  const index = lines.findIndex(line => line.trim() === lineText.trim());
+  return index === -1 ? 0 : index + 1;
+}
+
+function getFeatureIndexEntries() {
+  const indexPath = path.join(repoRoot, 'framework', 'HE Index.md');
+  if (!fs.existsSync(indexPath)) return [];
+
+  const content = fs.readFileSync(indexPath, 'utf-8');
+  const jsonBlock = extractJsonCodeBlock(content);
+  if (!jsonBlock) {
+    reportError(indexPath, 0, 'Feature Chain: HE Index.md is missing the canonical JSON DAG block.', 'Restore the HE Index JSON block so feature metadata can be validated mechanically.');
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(jsonBlock);
+    return Array.isArray(parsed.features) ? parsed.features : [];
+  } catch (error) {
+    reportError(indexPath, 0, `Feature Chain: HE Index.md has invalid JSON (${error.message}).`, 'Fix the JSON DAG block in HE Index.md so feature metadata can be parsed.');
+    return [];
+  }
+}
+
+function validateFeatureChainFiles() {
+  const featureEntries = getFeatureIndexEntries();
+  featureEntries.forEach(feature => {
+    const featurePath = path.join(repoRoot, feature.file);
+    if (!fs.existsSync(featurePath)) {
+      reportError(featurePath, 0, `Feature Chain: missing canonical feature file for ${feature.id}.`, 'Restore the feature file referenced by framework/HE Index.md.');
+      return;
+    }
+
+    const content = fs.readFileSync(featurePath, 'utf-8');
+    const lines = content.split('\n');
+
+    REQUIRED_FEATURE_HEADERS.forEach(header => {
+      if (!content.includes(header)) {
+        reportError(featurePath, 0, `Feature Chain: ${feature.id} is missing required section "${header}".`, 'Restore the canonical L2-L5 feature template sections.');
+      }
+    });
+
+    const chainMatch = content.match(/^> \*\*Chain:\*\* \[(EP-\d+)\]/m);
+    if (!chainMatch) {
+      reportError(featurePath, 0, `Feature Chain: ${feature.id} is missing its EP chain link.`, 'Add the canonical `> **Chain:** [EP-x](...)` line beneath the title.');
+    } else if (chainMatch[1] !== feature.ep) {
+      reportError(featurePath, getLineNumberForSnippet(content, chainMatch[0]), `Feature Chain: ${feature.id} links to ${chainMatch[1]} but HE Index declares ${feature.ep}.`, 'Update the feature file or HE Index.md so the EP mapping is identical in both places.');
+    }
+
+    const l2Match = content.match(/## L2: Targeted Enhancement\n\n([^\n]+)/);
+    if (!l2Match) {
+      reportError(featurePath, 0, `Feature Chain: ${feature.id} is missing L2 targeted-enhancement text.`, 'Restore the L2 targeted-enhancement sentence beneath the L2 heading.');
+    }
+
+    const improvementPoliciesMatch = content.match(/## L5: Improvement Policies\n\n```json\n([\s\S]*?)\n```/);
+    if (!improvementPoliciesMatch) {
+      reportError(featurePath, getLineNumberForSnippet(content, '## L5: Improvement Policies'), `Feature Chain: ${feature.id} must express L5 improvement policies as JSON.`, 'Replace narrative bullets with a canonical ```json improvement_policies block.');
+    } else {
+      try {
+        const parsed = JSON.parse(improvementPoliciesMatch[1]);
+        if (!Array.isArray(parsed.improvement_policies) || parsed.improvement_policies.length === 0) {
+          reportError(featurePath, getLineNumberForSnippet(content, '## L5: Improvement Policies'), `Feature Chain: ${feature.id} improvement_policies must be a non-empty array.`, 'Populate the JSON block with one or more improvement policy entries.');
+        }
+      } catch (error) {
+        reportError(featurePath, getLineNumberForSnippet(content, '## L5: Improvement Policies'), `Feature Chain: ${feature.id} improvement_policies JSON is invalid (${error.message}).`, 'Fix the JSON syntax so the feature remains machine-readable.');
+      }
+    }
+
+    const measurementMatch = content.match(/## L5: Measurement\n\n([\s\S]*?)\n## Dependencies/);
+    if (!measurementMatch) {
+      reportError(featurePath, getLineNumberForSnippet(content, '## L5: Measurement'), `Feature Chain: ${feature.id} is missing its L5 measurement section.`, 'Restore the L5 measurement bullets that describe observable success outcomes.');
+      return;
+    }
+
+    const measurementBullets = measurementMatch[1]
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.startsWith('- '));
+
+    if (measurementBullets.length === 0) {
+      reportError(featurePath, getLineNumberForSnippet(content, '## L5: Measurement'), `Feature Chain: ${feature.id} measurement section has no bullets.`, 'Add one or more measurement bullets describing observable success outcomes.');
+    }
+
+    measurementBullets.forEach(bullet => {
+      const bulletText = bullet.slice(2);
+      if (INVALID_MEASUREMENT_PATTERNS.some(pattern => pattern.test(bulletText))) {
+        reportError(featurePath, getLineNumberForExactLine(lines, bullet), `Feature Chain: ${feature.id} measurement bullet contains failure-state language instead of a measurable success outcome.`, 'Keep failure states in Gap Signals; reserve L5 Measurement for observable success metrics or success-state outcomes.');
+      }
+    });
+
+    const measurementLineIndex = lines.findIndex(line => line.trim() === '## L5: Measurement');
+    const dependenciesLineIndex = lines.findIndex((line, index) => index > measurementLineIndex && line.trim() === '## Dependencies');
+    if (measurementLineIndex !== -1 && dependenciesLineIndex !== -1) {
+      for (let index = measurementLineIndex + 1; index < dependenciesLineIndex; index += 1) {
+        const line = lines[index].trim();
+        if (line.startsWith('- ') && INVALID_MEASUREMENT_PATTERNS.some(pattern => pattern.test(line.slice(2)))) {
+          reportError(featurePath, index + 1, `Feature Chain: ${feature.id} measurement line is phrased as a gap signal.`, 'Move failure states back into Gap Signals and replace them with measurable success outcomes.');
+        }
+      }
+    }
+  });
+}
+
 function extractSkillVersion(content) {
   const match = content.match(/^version:\s*"([^"]+)"\s*$/m);
   return match ? match[1] : null;
@@ -657,6 +786,7 @@ function run() {
 
   // Always validate DAG structure
   validateDAGStructure();
+  validateFeatureChainFiles();
   validateRequirementsLedger();
   validateReviewLedger();
   validatePlanRequirementIds();

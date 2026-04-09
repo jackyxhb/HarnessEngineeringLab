@@ -30,6 +30,38 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: Feature Chain Compliance Remediation
+
+- **Goal:** Repair the confirmed feature-chain compliance defects, normalize the verified P1-6 source-of-truth drift, and teach `he-lint` to fail on the same defect class in future edits.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `framework/features/`, `.agent/skills/harnessing-agents/framework/features/`, `scripts/he-lint.js`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: broader wording cleanups across unrelated framework files.
+- **Status:** `done`
+- **Steps:**
+  - [x] Fix the confirmed feature-file defects in the canonical framework surface
+  - [x] Sync the bundled skill runtime mirror to the canonical framework state
+  - [x] Extend `he-lint` so feature-chain structure, EP mapping consistency, non-JSON improvement policies, and invalid L5 measurement bullets fail validation
+  - [x] Record release notes, independent review, and rerun validation
+- **Constraints:** Keep `framework/` canonical, preserve bundle parity with the shipped skill runtime, and avoid inventing new chain criteria beyond the repository's existing L1-L5 contract.
+- **Checkpoints:** Canonical feature files fixed; bundled runtime synced; `npm run smoke` fails on these defect classes if reintroduced; review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-10
+
+### Plan: Feature Chain Compliance Audit
+
+- **Goal:** Check every canonical feature file for integrity and compliance with the Principle-to-Practice Chain specification, then report concrete findings with exact references.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `framework/features/`, `framework/HE Principle Practice Chain.md`, `framework/HE Index.md`, and any directly needed cross-references under `framework/principles/`. Out of scope: `docs/`, skill-side execution guides, and unrelated wording cleanup outside the canonical framework surface.
+- **Status:** `done`
+- **Steps:**
+  - [x] Read the canonical chain specification and feature index structure
+  - [x] Inspect all 32 feature files for required chain completeness and structural integrity
+  - [x] Cross-check feature claims against linked principle practice expectations
+  - [x] Deliver a findings-first compliance review with exact file references
+- **Constraints:** Treat `framework/` as canonical truth, keep the audit grounded in the existing chain model rather than inventing new criteria, and do not treat `docs/` support material as authoritative.
+- **Checkpoints:** Plan recorded; feature sweep complete; findings verified against exact file lines; final review delivered.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-10
+
 ### Plan: HELab 4.1.0 Release Cut
 
 - **Goal:** Cut HELab `v4.1.0` so the first-mount governance capability, canonical terms reference, and terminology normalization land as a published release with synced version metadata, release notes, tag, and GitHub release.

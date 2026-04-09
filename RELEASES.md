@@ -24,15 +24,17 @@ Pending downstream changes for the next HELab version.
 
 ### Fixed
 
-- None yet.
+- Repaired `framework/features/P0-05.md` so its L3, L5 gap-signal, and L5 measurement sections align with the Principle-to-Practice Chain instead of carrying mixed-in corruption and failure-state bullets.
+- Normalized `framework/features/P1-04.md` to use the canonical JSON `improvement_policies` structure and synced `framework/features/P1-06.md` back to the L2 wording declared in `framework/HE Index.md`.
 
 ### Tooling
 
-- None yet.
+- Extended `scripts/he-lint.js` to validate canonical feature-chain structure, EP mapping consistency, JSON-formatted `improvement_policies`, and failure-state bullets accidentally placed in L5 measurement sections.
 
 ### Downstream Impact
 
 - The `harnessing-agents` skill now defaults to full audit mode instead of quick scan, affecting how target projects are audited by default.
+- Linked downstream consumers now receive corrected canonical feature definitions for `P0-5`, `P1-4`, and `P1-6`, and future regressions of the same class fail `npm run smoke` instead of passing silently.
 
 ## 4.1.0 - 2026-04-09
 

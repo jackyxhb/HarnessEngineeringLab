@@ -584,6 +584,51 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the entropy reconciliation fix for inconsistent capitalization in README.md to maintain canonical content integrity.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-10-004",
+      "date": "2026-04-10",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R004", "HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/",
+        ".agent/skills/harnessing-agents/",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md",
+        "scripts/he-lint.js"
+      ],
+      "change_summary": "Approved the feature-chain compliance remediation that repairs the canonical P0-5, P1-4, and P1-6 feature definitions, syncs the bundled runtime framework mirror, and extends he-lint to catch feature-chain drift and malformed L5 sections before merge.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-10-005",
+      "date": "2026-04-10",
+      "status": "approved-with-findings",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R003", "HE-R004", "HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/",
+        ".agent/skills/harnessing-agents/",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md",
+        "scripts/he-lint.js"
+      ],
+      "change_summary": "Final approval of the feature-chain compliance remediation after narrowing the validator away from repo-wide L2 paraphrase mismatches, rerunning smoke successfully, and archiving the completed remediation plan.",
+      "findings": [
+        {
+          "severity": "moderate",
+          "path": "PLANS.md",
+          "summary": "The remediation plan needed to be archived to Completed Plans after approval and successful validation.",
+          "status": "fixed"
+        }
+      ]
     }
   ]
 }
