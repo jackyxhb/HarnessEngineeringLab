@@ -295,6 +295,23 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the rename of the review-ledger template to `templates/HE-REVIEWS.md` so the skill template surface follows the established Harness Engineering naming convention while preserving the mounted target-project output name `REVIEWS.md`.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-012",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R002"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the rename of the P2-3 target-project review reference to `references/he-p2-3-review-mount-pattern.md` so the skill surface uses a more clearly instructional naming pattern without changing the reference semantics.",
+      "findings": []
     }
   ]
 }

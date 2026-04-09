@@ -1,4 +1,4 @@
-# P2-3 Target-Project Review Gate
+# P2-3 Review Mount Pattern
 
 Canonical remediation pattern for mounting **P2-3 AI Auditors & Collaboration Channels** in a target project.
 

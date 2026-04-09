@@ -178,5 +178,5 @@ Finally, output `.harness/HE-IMPLEMENTATION-PLAN.md` strictly following the form
 
 Always resolve feature-file paths from the `file` field in `framework/HE Index.md` instead of guessing filenames, and treat the root `REQUIREMENTS.md` as the canonical requirements registry when traceability is requested.
 
-If `P2-3` is a Tier 1 or Tier 2 gap, the plan must include a concrete target-project review mount pattern rather than a generic note. Use `references/he-p2-3-target-review-gate.md` and include, when applicable: a root `REVIEWS.md`, an `AGENTS.md` review hook, and a repo-native validation step.
+If `P2-3` is a Tier 1 or Tier 2 gap, the plan must include a concrete target-project review mount pattern rather than a generic note. Use `references/he-p2-3-review-mount-pattern.md` and include, when applicable: a root `REVIEWS.md`, an `AGENTS.md` review hook, and a repo-native validation step.
 ```

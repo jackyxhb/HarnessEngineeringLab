@@ -82,7 +82,7 @@ Apply the remediation batches sequentially. Each action item should come directl
 
 ### P2-3 Target-Project Mount Pattern
 
-When the implementation plan includes **P2-3 AI Auditors & Collaboration Channels**, do not stop at an abstract recommendation. Mount a concrete target-project review pattern using `references/he-p2-3-target-review-gate.md`:
+When the implementation plan includes **P2-3 AI Auditors & Collaboration Channels**, do not stop at an abstract recommendation. Mount a concrete target-project review pattern using `references/he-p2-3-review-mount-pattern.md`:
 
 1. Create a root `REVIEWS.md` from `templates/HE-REVIEWS.md` when the target project lacks a machine-readable review ledger.
 2. Update the target project's `AGENTS.md` (or equivalent canonical agent contract) with generator/evaluator separation, review-required surfaces, and escalation behavior.

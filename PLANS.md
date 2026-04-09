@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: P2-3 Reference Naming Alignment
+
+- **Goal:** Rename the P2-3 target-project review-gate reference to a more instructional name so the skill's `references/` surface clearly distinguishes procedural guidance from mounted target-project artifacts.
+- **Requirement IDs:** `HE-R001`, `HE-R002`
+- **Scope:** `.agent/skills/harnessing-agents/references/`, direct skill references to that file, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: changing the actual mounted target-project artifact names such as `REVIEWS.md`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Rename the P2-3 reference file to a more instructional name
+  - [x] Update all direct references to the renamed file
+  - [x] Record review, validate, and archive the plan
+- **Constraints:** Preserve the current P2-3 mounting behavior and keep the runtime target-project output names unchanged.
+- **Checkpoints:** Reference renamed; no stale paths remain; release note recorded; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Reviews Template Naming Alignment
 
 - **Goal:** Rename the target-project review-ledger template to `HE-REVIEWS.md` so the skill template surface follows the established Harness Engineering naming convention without changing the runtime root ledger name `REVIEWS.md`.
