@@ -34,6 +34,7 @@ Pending downstream changes for the next HELab version.
 - Recorded the ENCT protocol test as a fifth external proof that documentation-heavy repositories with minimal harness infrastructure should be treated as first-mount governance targets rather than as application-style remediation cases.
 - Converted the ENCT repo profile from audit-only proof into a real execution proof by shipping a first-mount governance guide and applying it to ENCT with a passing smoke command.
 - Opened a canonical framework terms reference so growing delivery-layer vocabulary can be defined without overloading core framework terms.
+- Normalized the live skill and protocol references to use `Repo Profile` and `Feature Package` consistently against `framework/HE-Terms.md`.
 
 ### Fixed
 

@@ -1,12 +1,14 @@
 # First-Mount Governance Mount Pattern
 
-Canonical execution pattern for documentation-heavy target repositories that lack a portable governance layer.
+Canonical execution pattern for the **first-mount governance** Repo Profile: documentation-heavy target repositories that lack a portable governance layer.
 
-Use this reference during **Phase 3 planning** and **Phase 4 execution** when the target repository is primarily a knowledge archive or theory/reference surface and the audit classifies it as a **first-mount governance** profile.
+Use this reference during **Phase 3 planning** and **Phase 4 execution** when the target repository is primarily a knowledge archive or theory/reference surface and the audit classifies it under the **first-mount governance** Repo Profile.
 
 ## Goal
 
 Turn a weak-governance documentation repository into a minimally agent-operable target without introducing application-style process overhead.
+
+This mount pattern is the first named **Feature Package** in the current delivery layer. See `framework/HE-Terms.md` for the boundary between Feature Packages, Repo Profiles, and canonical framework features.
 
 The minimum viable first-mount governance batch has 5 layers:
 

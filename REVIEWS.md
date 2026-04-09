@@ -499,6 +499,26 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the HE-R012 canonical terms reference batch that adds framework/HE-Terms.md, links it from the framework entry points, syncs the bundled runtime mirror, and defines Feature Package as a skill-side execution term rather than a canonical framework feature.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-022",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R012"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md",
+        ".agent/skills/harnessing-agents/references/he-first-mount-governance-mount-pattern.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the HE-R012 terminology-normalization batch that aligns Repo Profile and Feature Package usage across the live skill and protocol references with framework/HE-Terms.md without promoting those skill-side terms into framework ontology.",
+      "findings": []
     }
   ]
 }

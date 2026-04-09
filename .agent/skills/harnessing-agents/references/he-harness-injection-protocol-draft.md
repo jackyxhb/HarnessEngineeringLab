@@ -203,6 +203,8 @@ This draft does not replace feature-specific implementation guides.
 The protocol governs lifecycle and safety.
 The guides govern feature-specific execution details.
 
+For terminology boundaries, use `framework/HE-Terms.md`: repo-shape names in this draft are skill-side **Repo Profile** terms, and reusable multi-feature batches derived from them should be treated as **Feature Packages** rather than new framework features.
+
 ## Proof Status
 
 Current external proof base:
@@ -216,7 +218,7 @@ Current external proof base:
 Current interpretation:
 
 - the draft has enough evidence to remain a durable skill-side execution asset
-- the draft now has better repo-shape diversity across missing-harness, strong-repo selective-mutation, intake-first, drifted-harness, and first-mount governance profiles, and the last profile now has a concrete execution pattern plus one real implementation proof, but still does not yet have enough repetition or cross-skill need to justify promotion into canonical `framework/` ontology
+- the draft now has better Repo Profile diversity across missing-harness, strong-repo selective-mutation, intake-first, drifted-harness, and first-mount governance profiles, and the last profile now has a concrete Feature Package plus one real implementation proof, but still does not yet have enough repetition or cross-skill need to justify promotion into canonical `framework/` ontology
 
 ## Promotion Rule
 

@@ -30,6 +30,20 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R012 Terms Normalization
+
+- **Goal:** Normalize the highest-value skill and protocol surfaces so `Repo Profile` and `Feature Package` usage stays consistent with `framework/HE-Terms.md`.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R012`
+- **Scope:** `.agent/skills/harnessing-agents/SKILL.md`, `.agent/skills/harnessing-agents/references/`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: broad wording cleanup across all framework and support docs.
+- **Status:** `done`
+- **Steps:**
+  - [x] Normalize terminology in the live skill and protocol references
+  - [x] Record review, validate HELab, and archive the plan
+- **Constraints:** Keep the terms reference canonical, avoid rewriting stable content that does not materially benefit from the normalization, and do not promote skill-side terms into framework features.
+- **Checkpoints:** Skill docs updated; release note recorded; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R012 Canonical Terms Reference
 
 - **Goal:** Add a canonical terms reference under `framework/` so Harness Engineering terminology, including the new Feature Package concept, is discoverable and consistently scoped across framework and skill surfaces.
