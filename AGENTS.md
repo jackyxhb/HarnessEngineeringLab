@@ -40,6 +40,24 @@ All content is organized under this canonical structure. When editing or creatin
 - `docs/` — Non-core support material. It is not part of the active project surface and must not be treated as authoritative unless the user explicitly asks to work there.
 - `tmp/` — Working documents and drafts.
 
+## Centralized Logging Configuration
+
+To implement P1-5 Observability / Dashboards, all agent actions must produce centralized, machine-readable logs.
+
+- **Log Format:** All agent logs must be in JSON format with the following fields: `timestamp`, `agent_id`, `action`, `target`, `result`, `duration_ms`.
+- **Log Location:** Logs must be written to `.harness/agent-logs.jsonl` (JSON Lines format).
+- **Logging Triggers:** Log every tool use, file edit, command execution, and workflow invocation.
+- **Audit Trail:** Logs must be append-only and retained for at least 30 days.
+
+## Ralph Loops Configuration
+
+To implement P0-4 Ralph Loops for 100% task completion:
+
+- **Loop Budgets:** Maximum 3 reinjections per task to prevent infinite retries.
+- **Escalation Thresholds:** Escalate to human review after 2 failed reinjections.
+- **State Persistence:** Use `.harness/task-state.json` for cross-window state summaries.
+- **Exit Interception:** Run `node scripts/exit-interceptor.js` after task completion to detect premature exits.
+
 ## Workflows
 
 ### `/polish` — Feature Polishing & Addition Workflow

@@ -19,6 +19,8 @@ Pending downstream changes for the next HELab version.
 ### Changed
 
 - Revised the `harnessing-agents` skill to remove the quick scan mode and make full audit mode the default.
+- Implemented P1-5 Observability / Dashboards with centralized logging and real-time dashboards.
+- Implemented P0-4 Ralph Loops with exit interception hooks and prompt reinjection utilities.
 
 ### Fixed
 

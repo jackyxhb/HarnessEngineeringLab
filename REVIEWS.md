@@ -551,6 +551,25 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Revised the harnessing-agents skill to remove quick scan mode and make full audit mode default.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-10-002",
+      "date": "2026-04-10",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Plan subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        "AGENTS.md",
+        "framework/prompt-reinjection-utilities.md",
+        ".agent/skills/harnessing-agents/framework/prompt-reinjection-utilities.md",
+        "scripts/exit-interceptor.js",
+        "scripts/generate-observation-report.js",
+        ".harness/dashboard.md"
+      ],
+      "change_summary": "Approved the P1-5 and P0-4 remediation batch that implements observability dashboards and Ralph Loops for task completion reliability.",
+      "findings": []
     }
   ]
 }
