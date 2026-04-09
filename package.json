@@ -8,6 +8,7 @@
     "prepare": "husky",
     "lint": "lint-staged",
     "sync:skill-version": "node scripts/sync-skill-version.js",
+    "sync:skill-framework": "node scripts/sync-skill-framework.js",
     "version": "npm run sync:skill-version && git add .agent/skills/harnessing-agents/SKILL.md",
     "smoke": "node scripts/he-lint.js",
     "check": "markdownlint \"**/*.md\" --ignore node_modules && cspell \"**/*.md\" --no-progress && node scripts/he-lint.js",

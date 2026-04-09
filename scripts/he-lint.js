@@ -59,6 +59,23 @@ function buildDynamicRegistries() {
 const EXPECTED_FEATURE_FILES = 32;
 const EXPECTED_PRINCIPLE_FILES = 19;
 
+function listMarkdownFilesRecursive(dir, baseDir = dir) {
+  const collected = [];
+  if (!fs.existsSync(dir)) return collected;
+
+  fs.readdirSync(dir).forEach(entry => {
+    const fullPath = path.join(dir, entry);
+    const stat = fs.statSync(fullPath);
+    if (stat.isDirectory()) {
+      collected.push(...listMarkdownFilesRecursive(fullPath, baseDir));
+    } else if (entry.endsWith('.md')) {
+      collected.push(path.relative(baseDir, fullPath).split(path.sep).join('/'));
+    }
+  });
+
+  return collected.sort();
+}
+
 function validateDAGStructure() {
   // Validate feature files exist (filenames P0-01..P0-11, P1-01..P1-12, P2-01..P2-05, P3-01..P3-04)
   const featuresDir = path.join(repoRoot, 'framework', 'features');
@@ -88,6 +105,47 @@ function validateDAGStructure() {
   if (!fs.existsSync(indexPath)) {
     reportError(indexPath, 0, 'DAG Structure: framework/HE Index.md is missing.', 'Create HE Index.md — the DAG navigation index.');
   }
+}
+
+function validateSkillFrameworkBundle() {
+  const sourceFrameworkDir = path.join(repoRoot, 'framework');
+  const bundledFrameworkDir = path.join(repoRoot, '.agent', 'skills', 'harnessing-agents', 'framework');
+
+  if (!fs.existsSync(bundledFrameworkDir)) {
+    reportError(bundledFrameworkDir, 0, 'Skill Bundle: .agent/skills/harnessing-agents/framework/ is missing.', 'Run `npm run sync:skill-framework` to create the shipped runtime framework mirror.');
+    return;
+  }
+
+  const sourceFiles = listMarkdownFilesRecursive(sourceFrameworkDir);
+  const bundledFiles = listMarkdownFilesRecursive(bundledFrameworkDir);
+
+  const missingInBundle = sourceFiles.filter(file => !bundledFiles.includes(file));
+  const extraInBundle = bundledFiles.filter(file => !sourceFiles.includes(file));
+
+  if (missingInBundle.length > 0) {
+    reportError(bundledFrameworkDir, 0, `Skill Bundle: bundled framework is missing ${missingInBundle.join(', ')}.`, 'Run `npm run sync:skill-framework` so the shipped runtime mirror includes every canonical framework file.');
+  }
+
+  if (extraInBundle.length > 0) {
+    reportError(bundledFrameworkDir, 0, `Skill Bundle: bundled framework contains unexpected files ${extraInBundle.join(', ')}.`, 'Remove drift by re-running `npm run sync:skill-framework` from the canonical root framework source.');
+  }
+
+  sourceFiles.forEach(relativePath => {
+    const sourcePath = path.join(sourceFrameworkDir, relativePath);
+    const bundledPath = path.join(bundledFrameworkDir, relativePath);
+    if (!fs.existsSync(bundledPath)) return;
+
+    const sourceContent = fs.readFileSync(sourcePath, 'utf-8');
+    const bundledContent = fs.readFileSync(bundledPath, 'utf-8');
+    if (sourceContent !== bundledContent) {
+      reportError(
+        bundledPath,
+        0,
+        `Skill Bundle: bundled framework file "${relativePath}" is out of sync with root framework/.`,
+        'The shipped skill runtime must stay byte-for-byte synchronized with the canonical root framework. Run `npm run sync:skill-framework`, then commit the refreshed bundle alongside the root framework change.'
+      );
+    }
+  });
 }
 
 function extractJsonCodeBlock(content) {
@@ -603,6 +661,7 @@ function run() {
   validateReviewLedger();
   validatePlanRequirementIds();
   validateSkillVersionSync();
+  validateSkillFrameworkBundle();
   validateReleaseNotesSurface();
 
   const args = process.argv.slice(2).filter(a => a !== '--all');

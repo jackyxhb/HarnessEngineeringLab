@@ -1,1 +1,4 @@
+npm run sync:skill-version
+npm run sync:skill-framework
+git add .agent/skills/harnessing-agents/SKILL.md .agent/skills/harnessing-agents/framework
 npm run lint

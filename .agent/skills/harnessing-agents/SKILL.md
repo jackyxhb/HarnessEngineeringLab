@@ -18,7 +18,7 @@ allowed-tools:
 
 **Harness Engineering** is the discipline of designing the infrastructure, constraints, and feedback loops that surround an AI agent to make it productive, safe, and self-correcting. The framework spans 32 features across Foundation + 3 Pillars, organized through the Principle-to-Practice Chain (L1→L5).
 
-This live-linked skill is the delivery mechanism for applying that framework in real projects. Target projects are currently harnessed by linking this skill into their own agentic environment, and HELab self-hosts by running the same skill on itself. Its metadata version mirrors HELab's root version because the skill is currently part of HELab rather than an independently packaged release.
+This live-linked skill is the delivery mechanism for applying that framework in real projects. Target projects are currently harnessed by linking this skill into their own agentic environment, and HELab self-hosts by running the same skill on itself. Its metadata version mirrors HELab's root version because the skill is currently part of HELab rather than an independently packaged release. The shipped skill runtime carries its own synchronized `framework/` mirror so target-project execution does not depend on sibling HELab paths.
 
 The primary success criterion for HELab and for this skill is **target-project delivery effectiveness**: the skill should be able to inspect, plan, apply, and verify the full Harness Engineering feature set in external projects. HELab self-hosting is the proving loop for that goal, not a substitute for it.
 
@@ -26,7 +26,7 @@ The primary success criterion for HELab and for this skill is **target-project d
 
 ## Framework Architecture — DAG Navigation
 
-All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Navigate via the index:
+All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Inside the shipped skill, the `framework/` paths below refer to the bundled runtime mirror under this skill directory. In HELab, the root `framework/` remains canonical and must be synced into that mirror before merge. Navigate via the index:
 
 1. **Entry point:** `framework/HE Index.md` — JSON-based index with L1+L2 inline metadata for all 32 features, 19 principles, and 6 cross-cutting concerns.
 2. **Feature files:** one file per feature under `framework/features/`, containing the full L1→L5 vertical chain slice (principle → enhancement → design → actions/prevention → measurement). Resolve the exact path from the `file` field in `framework/HE Index.md` rather than inferring filenames.
@@ -71,6 +71,8 @@ Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 
 - **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Do not guess unpadded paths such as `framework/features/P2-3.md`.
 - **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
 - **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 3.
+- **Canonical Source Rule:** `Feature` metadata (`ID`, `Name`, `Pillar`, `Governed By`, `L1`, `L2`) must match the `framework/HE Index.md` entry for the requested feature exactly. Do not substitute alternate pillar labels, principle IDs, or renamed summaries from other docs.
+- **Chain Source Rule:** `L3`, `L4`, `L5`, and dependency details must be grounded in the canonical feature file referenced by the index `file` field.
 
 #### Mode 3 Output Contract
 
@@ -81,6 +83,7 @@ Before suggesting next actions:
 1. Read the root `REQUIREMENTS.md` to see whether the requested feature already has a governing requirement in this repository.
 2. Read `PLANS.md` and `REVIEWS.md` when the workspace is HELab to determine whether the feature has already been implemented, mounted, or recently hardened here.
 3. Check whether the user explicitly named a target project. If not, do not invent one.
+4. Confirm the current workspace identity from the actual repository you are inspecting. If no explicit project name is available, use neutral wording like `this workspace` or `HELab` rather than inventing a name.
 
 Rules for suggested next actions:
 
@@ -89,6 +92,8 @@ Rules for suggested next actions:
 - If the feature is already implemented in HELab, prefer suggestions like refining the delivery pattern, extending verification, or applying the feature to a target project.
 - If no target project was explicitly named, use generic wording such as “apply to a target project” rather than guessing a repository name.
 - If the target project **was** explicitly named, use that exact project name and no other.
+- Do **not** relabel the pillar, governing EP, or chain text with alternate terminology once the canonical index/feature-file values are known.
+- Do **not** attribute `Current State` findings to another workspace or repository unless the user explicitly named that target and the agent actually inspected it.
 
 The purpose of Mode 3 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
 
@@ -103,11 +108,13 @@ Every Mode 3 response must follow `templates/HE-FEATURE-LOOKUP.md` and contain t
 
 Minimum requirements:
 
+- `Feature` metadata must match the canonical `framework/HE Index.md` row for the requested feature.
 - `Current State` must explicitly say whether the feature already appears implemented, mounted, hardened, or still missing in HELab.
 - `Next Valid Actions` must always be present. A chain-only response is incomplete.
 - A field/value extraction table is not a valid final response shape unless the user explicitly asked for a table.
 - If the feature is already implemented in HELab, at least one next action should shift outward toward delivery refinement, verification hardening, or application in a target project.
 - If the user only asked for lookup and no action is needed, `Next Valid Actions` may say that no new HELab work is currently required and then name the next externalization step.
+- If the current workspace has not been explicitly named by the user, `Current State` must use `this workspace` or `HELab` rather than inventing a repository name.
 
 ### Internal Tools (used within Full Audit, not user-invoked)
 

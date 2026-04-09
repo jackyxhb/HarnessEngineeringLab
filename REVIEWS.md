@@ -255,6 +255,29 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
           "status": "accepted"
         }
       ]
+    },
+    {
+      "id": "HE-REV-2026-04-09-010",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R002", "HE-R004", "HE-R008"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/",
+        "AGENTS.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "README.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md",
+        "scripts/harness/audit.sh",
+        "scripts/he-lint.js"
+      ],
+      "change_summary": "Approved the bundled skill-runtime migration and Mode 3 canonical-fidelity hardening that ship a synchronized framework mirror inside the live-linked skill, enforce bundle drift checks, and require canonical feature metadata plus workspace-grounded state in feature lookups.",
+      "findings": []
     }
   ]
 }
