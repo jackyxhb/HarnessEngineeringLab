@@ -64,6 +64,7 @@ Runs the 32-item yes/no checklist against the target project. Produces a maturit
 Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
+- **Lifecycle discipline:** When the audit will touch a live target repository, also use `references/he-harness-injection-protocol-draft.md` to classify slots, distinguish staging versus live operational touch-points, and control when mutation is allowed.
 - **Output:** `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
 
 ### Mode 3: Feature Lookup — keyword: `feature`
@@ -176,6 +177,20 @@ Use feature implementation guides when a feature gap has already been identified
 - `references/he-p2-5-intake-gate-mount-pattern.md`: Concrete target-project remediation pattern for mounting P2-5 intake-gate enforcement.
 
 If a feature-specific implementation guide exists, prefer it during Phase 3 planning and Phase 4 execution before falling back to the abstract L4 section in `framework/features/P*.md`.
+
+## Harness Injection Lifecycle Draft
+
+Use `references/he-harness-injection-protocol-draft.md` when the skill needs to reason about *how* it should move through a target repository, not just *what* feature it should mount.
+
+The draft defines:
+
+- slot classes
+- concrete touch-point classes
+- lifecycle phases for staging versus live mutation
+- safety levels for repo surfaces
+- proof requirements for counting a harness injection as real
+
+This is currently a permanent skill-side execution asset, not yet a canonical `framework/` concept.
 
 ## Deployment
 

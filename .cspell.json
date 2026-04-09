@@ -93,7 +93,10 @@
     "Mags",
     "dashboarding",
     "Checkpointing",
-    "HITL"
+    "HITL",
+    "ACSS",
+    "acss",
+    "overclaim"
   ],
   "ignorePaths": [
     "node_modules/**",

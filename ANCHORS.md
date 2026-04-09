@@ -164,3 +164,19 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `REQUIREMENTS.md`, `PLANS.md`, `.agent/skills/harnessing-agents/`, future execution references/templates, and the next target-project delivery tranche.
 - **Background:** Chosen immediately after the `4.0.0` release based on a repo audit that identified concrete execution guidance as the largest remaining blocker between strong HELab self-hosting and reliable target-project delivery.
 - **Date:** 2026-04-09
+
+### A19: Real Target Proof Prefers Focused Follow-Ons
+
+- **What:** Captured the ACSS target-project proof result that guide-backed audits should write their planning artifacts under `.harness/` first, preserve any live production task-plan surface during inspection, and only retarget the target repo's active execution plan once a specific remediation batch is approved.
+- **Why:** The ACSS run proved that strong target repositories often need focused, guide-backed follow-ons rather than wholesale harness remounts. Preserving the target's live execution plan during the audit keeps delivery safe while still allowing mechanical remediation once a batch is chosen.
+- **Target:** `.agent/skills/harnessing-agents/` audit guidance, implementation-planning template, and future target-project delivery decisions.
+- **Background:** Observed during the first real external proof of the HE-R009 guide layer against `/Users/macbook1/work/CSS/ACSS`, where the successful sequence was audit package in `.harness/` → approved follow-on batch → branch-local execution-plan retargeting for the chosen remediation only.
+- **Date:** 2026-04-09
+
+### A20: Harness Injection Is A Skill Lifecycle Problem
+
+- **What:** Chose to model broad target-repository harnessing through a skill-side draft protocol built from slot classes, concrete touch-points, lifecycle phases, mutation safety levels, and proof requirements.
+- **Why:** The ACSS run and follow-up reasoning showed that repo intervention is broader than individual feature mount steps. The stable problem is how a skill moves through staging, live operational, verification, and audit surfaces without unsafe mutation or improvisation.
+- **Target:** `.agent/skills/harnessing-agents/` references, full-audit execution behavior, and future target-project delivery experiments.
+- **Background:** Decided after distinguishing abstract harness slots from concrete touch-points and concluding that the concept should be coined first as a permanent skill asset rather than promoted immediately into the canonical framework.
+- **Date:** 2026-04-09

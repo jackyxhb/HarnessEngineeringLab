@@ -14,6 +14,7 @@ The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature i
 
 1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `.harness/HE-SCOPE.md`.
 2. **Quick Scan:** Walk `framework/HE Index.md` and check each of the 32 features' L2 targeted enhancement for presence in the target project. Append results and current Harness Maturity Level to `.harness/HE-SCOPE.md`.
+3. **Classify injection context when live mutation is likely:** If the audit is expected to progress into repo edits, use `references/he-harness-injection-protocol-draft.md` to classify the target repo's planning, live operational, contract, verification, and volatile touch-points before Phase 3 or Phase 4 begins.
 
 ## Phase 1: Gap Analysis — 3-Step Chain Assessment (L1: Principles)
 
@@ -63,6 +64,19 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 3. Map each gap to its **L5: Improvement Policies** tier from the same file.
 4. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
 5. Group into execution batches ordered by dependencies, then tiers.
+6. When more than one plausible touch-point exists for a slot, prefer the one allowed by the harness-injection draft's lifecycle and safety rules rather than the most convenient file path.
+
+### Target Repositories With Active Delivery Plans
+
+If the target project already has a live execution-plan surface (for example `.agent/task_plan.md`, an active deployment plan, or another branch-local delivery tracker), do not overwrite that plan during the audit itself.
+
+Use this sequence instead:
+
+1. Write the audit outputs under `.harness/` as usual.
+2. Keep the target project's live plan surface intact while the audit is still in inspection/planning mode.
+3. Retarget the target project's active plan surface only after the user approves a specific remediation batch from `.harness/HE-IMPLEMENTATION-PLAN.md`.
+
+This preserves target-project delivery safety while still allowing the approved batch to become mechanically tracked once execution begins.
 
 **Output:** `.harness/HE-IMPLEMENTATION-PLAN.md`
 > **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md` → **Output to:** `.harness/HE-IMPLEMENTATION-PLAN.md`
@@ -78,6 +92,8 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 Apply the remediation batches sequentially. Each action item should come directly from the "L4: Concrete Actions & Tools" section of the relevant feature.
 
 When a feature-specific implementation guide exists in `references/`, use that guide to determine the concrete files, commands, templates, and verification steps for the target project. Do not improvise those steps from the abstract feature file if the guide already exists.
+
+When choosing between staging surfaces and live operational surfaces, apply `references/he-harness-injection-protocol-draft.md` so the skill mutates the target repo through an approved lifecycle instead of treating all touch-points as equally writable.
 
 - **Light:** Update `AGENTS.md`, `.cursorrules`, `.agents` workflows.
 - **Medium:** Add pre-commit hooks, explicit structural linters, state tracking templates.
@@ -124,5 +140,6 @@ If new features, prevention points, or patterns were discovered during the audit
 1. Update the harnessing-agents skill files (`.agent/skills/harnessing-agents/`) if new patterns warrant reference updates.
 2. Follow the `/polish` workflow if adding new features to the canonical framework.
 3. Propagate changes to `framework/` canonical documents and run `/revise-comments` only if the user explicitly wants support material under `docs/` reconciled.
+4. When a real target-project run proves a better audit or remediation sequence than the current skill guidance, fold that result back into the skill references and release notes instead of leaving the learning trapped in target-repo branches.
 
 **Output:** Updated skill and/or framework files (if applicable).

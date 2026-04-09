@@ -376,6 +376,47 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the HE-R009 tranche-two batch that ships concrete execution guides for P0-1, P1-7, and P2-5, tightens the implementation-plan template to require explicit guide lookup when available, and proves the shipped P0-3/P1-10 guide layer against a synthetic target repository under tmp/.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-016",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008", "HE-R009"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/templates/HE-IMPLEMENTATION-PLAN.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the HE-R009 real-target foldback batch that records the ACSS proof lesson in anchors and release notes, updates the full-audit guidance to preserve active target-project execution plans during inspection, and adds an implementation-plan rule that retargets those plans only after a remediation batch is approved.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-017",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R008", "HE-R009", "HE-R010"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md",
+        ".agent/skills/harnessing-agents/templates/HE-IMPLEMENTATION-PLAN.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the combined HE-R009 fold-back plus HE-R010 harness-injection draft batch that records the ACSS proof lesson, preserves active target-project planning during inspection, and adds a permanent skill-side protocol for slots, touch-points, lifecycle phases, safety levels, and proof requirements.",
+      "findings": []
     }
   ]
 }

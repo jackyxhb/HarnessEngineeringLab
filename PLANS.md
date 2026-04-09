@@ -30,6 +30,36 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R010 Harness Injection Draft
+
+- **Goal:** Coin a permanent draft spec for slot-based harness injection so the live-linked skill has a durable lifecycle protocol for touching target repositories.
+- **Requirement IDs:** `HE-R008`, `HE-R010`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `REQUIREMENTS.md`, `.agent/skills/harnessing-agents/SKILL.md`, `.agent/skills/harnessing-agents/references/`, and `REVIEWS.md`. Out of scope: changing canonical framework feature definitions or promoting the draft into `framework/` ontology.
+- **Status:** `done`
+- **Steps:**
+  - [x] Define the draft protocol as a skill-side reference with slot classes, touch-points, lifecycle phases, safety levels, and proof requirements
+  - [x] Wire the draft into the live-linked skill and full-audit guidance so agents can actually use it during target-project runs
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep the draft explicitly skill-side; do not overclaim it as settled framework doctrine; preserve target-project delivery primacy and the existing guide-backed execution model.
+- **Checkpoints:** Requirement added; draft reference added; skill/audit wiring updated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
+### Plan: HE-R009 Real Target Foldback
+
+- **Goal:** Fold the ACSS target-project delivery results back into HELab so the live-linked skill guidance reflects the proven audit/execution pattern rather than only synthetic proof.
+- **Requirement IDs:** `HE-R008`, `HE-R009`
+- **Scope:** `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `.agent/skills/harnessing-agents/` references/templates, and `REVIEWS.md` for review tracking. Out of scope: new framework feature definitions or another target-project remediation batch.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the strategic lesson from the ACSS proof in anchors and release notes
+  - [x] Update the full-audit/implementation-planning guidance so target projects with active plan surfaces are audited through `.harness/` first and retargeted only for approved follow-on batches
+  - [x] Run independent review, validate HELab, and archive the plan
+- **Constraints:** Keep `framework/` canonical, avoid inventing new framework features from one target-project run, and capture only delivery guidance that was mechanically demonstrated in ACSS.
+- **Checkpoints:** Anchor recorded; skill guidance updated; release note recorded; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R009 Guide Tranche Two
 
 - **Goal:** Ship the next high-leverage execution guides for `P0-1`, `P1-7`, and `P2-5`, tighten the implementation-plan template so guide lookup is explicit, and prove the shipped guide layer against a synthetic target repository.

@@ -133,6 +133,20 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "Post-4.0.0 delivery-gap audit on 2026-04-09"
+    },
+    {
+      "id": "HE-R010",
+      "title": "Harness injection protocol draft",
+      "applies_to": ["target-project", "self-hosted"],
+      "narrative": "The live-linked harnessing-agents skill should carry a draft protocol that models target-repository harnessing through slot classes, concrete touch-points, lifecycle phases, mutation safety levels, and proof requirements. The protocol is a skill-side execution asset that governs how the skill stages, injects, verifies, and records harness changes without yet promoting the concept into canonical framework ontology.",
+      "acceptance_criteria": [
+        "The repository ships a durable draft reference that defines harness slots, touch-points, lifecycle phases, and safety/proof rules for target-project execution.",
+        "The live-linked skill surface explicitly points agents at that draft when reasoning about target-repository mutation flow.",
+        "The full-audit workflow references the draft when target-project execution moves from inspection into mutation.",
+        "The draft stays framed as a skill-side protocol asset unless repeated target-project proofs justify promotion into the canonical framework."
+      ],
+      "status": "active",
+      "source": "User-directed protocol exploration on 2026-04-09"
     }
   ]
 }

@@ -17,12 +17,15 @@ Pending downstream changes for the next HELab version.
 - Added `HE-R009` to authorize concrete feature implementation guides as the next target-project delivery layer for the live-linked `harnessing-agents` skill.
 - Added the canonical `he-feature-implementation-guide-pattern.md` reference plus the first concrete target-project execution guides for `P0-3 Verification` and `P1-10 Requirements Ledger`.
 - Added a second execution-guide tranche for `P0-1 Bash Sandboxes`, `P1-7 Planning, Task Lists & Blackboards`, and `P2-5 Upstream Intake Gate`.
+- Added `HE-R010` and a draft harness-injection protocol reference so the skill now has a permanent lifecycle model for slot classes, touch-points, safety levels, and proof obligations during target-project execution.
 
 ### Changed
 
 - Recorded a new strategic anchor and active plan for shipping execution-oriented guide patterns that let the skill turn feature gaps into concrete remediation steps in target projects.
 - Updated the full-audit workflow and live-linked skill contract so Phase 3 planning and Phase 4 execution prefer feature-specific implementation guides when they exist instead of improvising from abstract feature text.
 - Tightened the implementation-planning template so remediation entries must name the feature-specific guide used when a shipped mount pattern exists.
+- Folded the first real external target proof back into the skill guidance so audits preserve a target project's live execution-plan surface during inspection and retarget that plan only after a specific remediation batch is approved.
+- Began codifying target-repository mutation flow as a skill-side harness-injection protocol instead of leaving slot and touch-point handling implicit inside individual feature guides.
 
 ### Fixed
 
@@ -31,11 +34,15 @@ Pending downstream changes for the next HELab version.
 ### Tooling
 
 - Added a synthetic target-project proof under `tmp/` to exercise the shipped `P0-3` and `P1-10` guides end to end without claiming success against a real external repository.
+- Added a real target-project proof note from ACSS showing the shipped guide layer successfully drove focused `P2-5`, `P2-3`, and `P0-3` follow-on batches in an external repository.
+- Added a permanent draft reference that describes how the skill should classify repo slots, resolve concrete touch-points, stage mutations, and verify harness injection during target-project runs.
 
 ### Downstream Impact
 
 - Target-project audits can now route directly to concrete execution guides for `P0-1`, `P0-3`, `P1-7`, `P1-10`, `P2-3`, and `P2-5` instead of improvising remediation from abstract feature text.
 - Implementation plans now explicitly record which shipped guide was used when a feature has a mount pattern.
+- The full-audit guidance now tells the skill to keep audit planning in `.harness/` first when a target repo already has a live execution-plan surface, reducing the risk of overwriting active delivery work during inspection.
+- The live-linked skill now carries an explicit harness-injection draft that can standardize how future target-project runs move from inspection to safe, verified mutation.
 
 ## 4.0.0 - 2026-04-09
 

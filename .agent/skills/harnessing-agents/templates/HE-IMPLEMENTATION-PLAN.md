@@ -63,3 +63,11 @@ Before filling a remediation entry, check whether a shipped guide exists under `
 
 - If a guide exists, the `Implementation Guide` field must name it and the action items must be derived from that guide rather than improvised from abstract feature text.
 - If no guide exists, write `None` in the `Implementation Guide` field and derive the action items from the feature's L4 section in `framework/features/P*.md`.
+
+## Active Plan Preservation Rule
+
+If the target project already has a live execution-plan surface outside `.harness/`:
+
+- Keep the audit plan in `.harness/HE-IMPLEMENTATION-PLAN.md` during inspection and recommendation.
+- Do not overwrite the target project's active plan surface just to record the audit findings.
+- Retarget the target project's live plan surface only once a specific remediation batch from this file is approved for execution.
