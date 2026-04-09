@@ -519,6 +519,24 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the HE-R012 terminology-normalization batch that aligns Repo Profile and Feature Package usage across the live skill and protocol references with framework/HE-Terms.md without promoting those skill-side terms into framework ontology.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-023",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R005", "HE-R006", "HE-R007"],
+      "scope_paths": [
+        "package.json",
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "RELEASES.md",
+        "PLANS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the v4.1.0 release cut that bumps the canonical HELab version and mirrored skill version, moves the accumulated Unreleased notes into a 4.1.0 release section, and prepares the repository for tag and GitHub release publication.",
+      "findings": []
     }
   ]
 }

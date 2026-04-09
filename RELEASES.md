@@ -14,6 +14,32 @@ Pending downstream changes for the next HELab version.
 
 ### What's New
 
+- None yet.
+
+### Changed
+
+- None yet.
+
+### Fixed
+
+- None yet.
+
+### Tooling
+
+- None yet.
+
+### Downstream Impact
+
+- None yet.
+
+## 4.1.0 - 2026-04-09
+
+### Summary
+
+Shipped the first reusable first-mount governance execution capability, added a canonical framework terms reference, and normalized the live skill language around Repo Profiles and Feature Packages.
+
+### What's New
+
 - Added `HE-R009` to authorize concrete feature implementation guides as the next target-project delivery layer for the live-linked `harnessing-agents` skill.
 - Added the canonical `he-feature-implementation-guide-pattern.md` reference plus the first concrete target-project execution guides for `P0-3 Verification` and `P1-10 Requirements Ledger`.
 - Added a second execution-guide tranche for `P0-1 Bash Sandboxes`, `P1-7 Planning, Task Lists & Blackboards`, and `P2-5 Upstream Intake Gate`.

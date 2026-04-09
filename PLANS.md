@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HELab 4.1.0 Release Cut
+
+- **Goal:** Cut HELab `v4.1.0` so the first-mount governance capability, canonical terms reference, and terminology normalization land as a published release with synced version metadata, release notes, tag, and GitHub release.
+- **Requirement IDs:** `HE-R005`, `HE-R006`, `HE-R007`
+- **Scope:** `package.json`, `.agent/skills/harnessing-agents/SKILL.md`, `RELEASES.md`, `PLANS.md`, `REVIEWS.md`, and git/GitHub release state. Out of scope: additional feature work beyond the already merged changes in `Unreleased`.
+- **Status:** `done`
+- **Steps:**
+  - [x] Bump the canonical version to `4.1.0` and sync the mirrored skill metadata
+  - [x] Move `Unreleased` into a `4.1.0` release section and reopen a fresh `Unreleased` block
+  - [x] Record independent review, validate, commit the release cut, tag `v4.1.0`, push, and publish the GitHub release
+- **Constraints:** Keep `package.json` as the canonical version source, keep `.agent/skills/harnessing-agents/SKILL.md` mirrored to it, preserve a fresh `Unreleased` section after the cut, and do not publish the release without a matching tag and release notes.
+- **Checkpoints:** Version surfaces updated; release notes cut; review recorded; validation green; tag pushed; GitHub release published.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R012 Terms Normalization
 
 - **Goal:** Normalize the highest-value skill and protocol surfaces so `Repo Profile` and `Feature Package` usage stays consistent with `framework/HE-Terms.md`.
