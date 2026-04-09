@@ -16,11 +16,13 @@ Pending downstream changes for the next HELab version.
 
 - Added `HE-R009` to authorize concrete feature implementation guides as the next target-project delivery layer for the live-linked `harnessing-agents` skill.
 - Added the canonical `he-feature-implementation-guide-pattern.md` reference plus the first concrete target-project execution guides for `P0-3 Verification` and `P1-10 Requirements Ledger`.
+- Added a second execution-guide tranche for `P0-1 Bash Sandboxes`, `P1-7 Planning, Task Lists & Blackboards`, and `P2-5 Upstream Intake Gate`.
 
 ### Changed
 
 - Recorded a new strategic anchor and active plan for shipping execution-oriented guide patterns that let the skill turn feature gaps into concrete remediation steps in target projects.
 - Updated the full-audit workflow and live-linked skill contract so Phase 3 planning and Phase 4 execution prefer feature-specific implementation guides when they exist instead of improvising from abstract feature text.
+- Tightened the implementation-planning template so remediation entries must name the feature-specific guide used when a shipped mount pattern exists.
 
 ### Fixed
 
@@ -28,11 +30,12 @@ Pending downstream changes for the next HELab version.
 
 ### Tooling
 
-- None yet.
+- Added a synthetic target-project proof under `tmp/` to exercise the shipped `P0-3` and `P1-10` guides end to end without claiming success against a real external repository.
 
 ### Downstream Impact
 
-- None yet.
+- Target-project audits can now route directly to concrete execution guides for `P0-1`, `P0-3`, `P1-7`, `P1-10`, `P2-3`, and `P2-5` instead of improvising remediation from abstract feature text.
+- Implementation plans now explicitly record which shipped guide was used when a feature has a mount pattern.
 
 ## 4.0.0 - 2026-04-09
 
