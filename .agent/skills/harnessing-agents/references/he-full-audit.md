@@ -65,6 +65,7 @@ Translate prioritized gaps into a concrete implementation plan using the "Option
 4. Classify by Remediation Level: Light (meta-docs), Medium (features), Heavy (architecture).
 5. Group into execution batches ordered by dependencies, then tiers.
 6. When more than one plausible touch-point exists for a slot, prefer the one allowed by the harness-injection draft's lifecycle and safety rules rather than the most convenient file path.
+7. When the harness-injection draft classifies the target as **first-mount governance**, use `references/he-first-mount-governance-mount-pattern.md` to build the initial batch instead of composing separate application-style remediations from scratch.
 
 ### Target Repositories With Active Delivery Plans
 
@@ -115,6 +116,7 @@ When the implementation plan includes **P2-3 AI Auditors & Collaboration Channel
 - For **P1-7 Planning, Task Lists & Blackboards**, use `references/he-p1-7-planning-mount-pattern.md` when multi-step work lacks a durable plan file, shared task surface, or resumable task state.
 - For **P1-10 Requirements Ledger**, use `references/he-p1-10-requirements-ledger-mount-pattern.md` when the target project plans or executes work without a machine-readable requirements ledger and pre-planning intake hook.
 - For **P2-5 Upstream Intake Gate**, use `references/he-p2-5-intake-gate-mount-pattern.md` when requirements may be recorded but planning/execution can still bypass intake validation.
+- For **first-mount governance** repo profiles, use `references/he-first-mount-governance-mount-pattern.md` when the target is documentation-heavy, lacks a portable governance layer, and needs a narrow initial batch centered on governance plus lightweight document-integrity verification.
 
 **Output:** Modified codebase with per-agent modification summary.
 > **Use template:** `templates/HE-CHANGE-SUMMARY.md` → **Output to:** `.harness/HE-CHANGE-SUMMARY.md`

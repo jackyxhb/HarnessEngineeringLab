@@ -30,6 +30,22 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R011 First-Mount Governance Capability
+
+- **Goal:** Turn the first-mount governance repo profile into a reusable execution pattern for the live-linked skill and prove it on ENCT with a narrow governance mount.
+- **Requirement IDs:** `HE-R003`, `HE-R008`, `HE-R009`, `HE-R010`, `HE-R011`
+- **Scope:** `REQUIREMENTS.md`, `PLANS.md`, `RELEASES.md`, `ANCHORS.md`, `REVIEWS.md`, `.agent/skills/harnessing-agents/` references/templates/contract surfaces, and the target repo `/Users/macbook1/work/ENCT/ENCT`. Out of scope: changing canonical framework feature definitions, restructuring ENCT content directories, or adding app-style CI/CD surfaces in ENCT.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add the new requirement and active plan for the first-mount governance execution tranche
+  - [x] Ship and wire a reusable first-mount governance execution guide in the live-linked skill
+  - [x] Mount the narrow governance batch in ENCT and verify it with a deterministic smoke command
+  - [x] Fold the real execution proof back into HELab, run independent review, validate, and archive the plan
+- **Constraints:** Keep the pattern skill-side, preserve ENCT as a documentation-heavy archive, avoid broad repo restructuring, and keep the mounted batch limited to governance plus lightweight verification.
+- **Checkpoints:** Requirement recorded; guide added; skill routing updated; ENCT governance files mounted; ENCT smoke command passes; review recorded; HELab validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R010 ENCT Protocol Proof
 
 - **Goal:** Carry the ENCT harness-injection protocol test back into HELab so the fifth external proof becomes durable evidence for a documentation-heavy first-mount governance repo profile.

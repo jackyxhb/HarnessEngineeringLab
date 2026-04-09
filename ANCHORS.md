@@ -212,3 +212,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `.agent/skills/harnessing-agents/` protocol guidance, target-project prioritization, and future promotion decisions for `HE-R010`.
 - **Background:** Observed during the protocol-only audit of `/Users/macbook1/work/ENCT/ENCT`, where the safe result was an audit-only `.harness/` package on a branch, leaving the live archive content unchanged pending approval of a narrow first mount.
 - **Date:** 2026-04-09
+
+### A25: First-Mount Governance Now Has Execution Proof
+
+- **What:** Promoted the first-mount governance repo profile from audit-only classification to a reusable execution capability by shipping a dedicated mount pattern in the live-linked skill and proving it on ENCT.
+- **Why:** The protocol could already identify documentation-heavy weak-governance repositories, but the skill still needed a deterministic first batch instead of hand-built remediation logic. The ENCT mount proved that a narrow governance sequence can install a root contract, intake and plan ledgers, review tracking, and a lightweight smoke gate without overfitting to application repos.
+- **Target:** `.agent/skills/harnessing-agents/` execution references, target-project delivery capability, and future promotion decisions for `HE-R011` and `HE-R010`.
+- **Background:** Observed during the approved first-mount governance batch on `/Users/macbook1/work/ENCT/ENCT`, where the repository moved from `.harness/`-only audit artifacts to a passing root governance layer verified by `sh scripts/harness/smoke.sh`.
+- **Date:** 2026-04-09

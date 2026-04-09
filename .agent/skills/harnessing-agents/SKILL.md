@@ -175,8 +175,11 @@ Use feature implementation guides when a feature gap has already been identified
 - `references/he-p1-7-planning-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-7 planning infrastructure.
 - `references/he-p1-10-requirements-ledger-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-10 requirements-ledger infrastructure.
 - `references/he-p2-5-intake-gate-mount-pattern.md`: Concrete target-project remediation pattern for mounting P2-5 intake-gate enforcement.
+- `references/he-first-mount-governance-mount-pattern.md`: Concrete repo-profile execution pattern for documentation-heavy targets that need an initial governance layer rather than application-style remediation.
 
 If a feature-specific implementation guide exists, prefer it during Phase 3 planning and Phase 4 execution before falling back to the abstract L4 section in `framework/features/P*.md`.
+
+When the harness-injection protocol classifies a target repository as **first-mount governance**, prefer `references/he-first-mount-governance-mount-pattern.md` as the execution layer and sequence the batch through `AGENTS.md`, `REQUIREMENTS.md`, `PLANS.md`, `REVIEWS.md`, and lightweight document-integrity verification.
 
 ## Harness Injection Lifecycle Draft
 

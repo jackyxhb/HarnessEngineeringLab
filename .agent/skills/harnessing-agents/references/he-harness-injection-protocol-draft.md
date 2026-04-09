@@ -211,12 +211,12 @@ Current external proof base:
 2. **CareerHelper** — showed that the same protocol can correctly stop at audit-only staging when the target repo already has strong verification, sandboxing, orchestration, MCP, and review automation surfaces, leaving only narrower Tier 1 intake/review-durability gaps.
 3. **ServiceAgent** — showed that a target repo can already have strong portable contracts, harness history, CI, and pre-commit verification while still lacking live planning, requirements-ledger, intake-gate, and durable review-ledger surfaces.
 4. **encA0** — showed that a target repo can already have a substantial harness, requirements ledger, CI, scheduled maintenance, and execution history, yet still need selective mutation because its portable rule surfaces, planning surfaces, and audit surfaces have drifted out of sync with the live implementation and enforcement layer.
-5. **ENCT** — showed that a documentation-heavy theory/archive repository with only an IDE-specific instruction shim and no portable governance, planning, review, or verification surfaces should be treated as a first-mount governance target, with the audit staged entirely under `.harness/` until a narrow mount is approved.
+5. **ENCT** — showed that a documentation-heavy theory/archive repository with only an IDE-specific instruction shim and no portable governance, planning, review, or verification surfaces should be treated as a first-mount governance target, and was later successfully mounted through a narrow governance batch with a passing smoke command.
 
 Current interpretation:
 
 - the draft has enough evidence to remain a durable skill-side execution asset
-- the draft now has better repo-shape diversity across missing-harness, strong-repo selective-mutation, intake-first, drifted-harness, and first-mount governance profiles, but still does not yet have enough repetition or cross-skill need to justify promotion into canonical `framework/` ontology
+- the draft now has better repo-shape diversity across missing-harness, strong-repo selective-mutation, intake-first, drifted-harness, and first-mount governance profiles, and the last profile now has a concrete execution pattern plus one real implementation proof, but still does not yet have enough repetition or cross-skill need to justify promotion into canonical `framework/` ontology
 
 ## Promotion Rule
 

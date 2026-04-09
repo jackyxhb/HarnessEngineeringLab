@@ -453,6 +453,28 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the remaining HE-R010 protocol-proof fold-back batch that records the ServiceAgent, encA0, and ENCT evidence, resolves the encA0 anchor wording to stay repo-agnostic at the rule layer, and keeps the protocol framed as a skill-side execution asset rather than a promoted framework concept.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-09-020",
+      "date": "2026-04-09",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R011"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/references/he-first-mount-governance-mount-pattern.md",
+        ".agent/skills/harnessing-agents/references/he-harness-injection-protocol-draft.md",
+        "ANCHORS.md",
+        "PLANS.md",
+        "RELEASES.md",
+        "REQUIREMENTS.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved the HE-R011 first-mount governance execution-capability tranche that adds a reusable docs-first governance mount pattern, wires the live-linked skill to route matching repo profiles through it, and folds back the ENCT implementation proof without promoting the protocol into canonical framework ontology.",
+      "findings": []
     }
   ]
 }

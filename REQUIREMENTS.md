@@ -147,6 +147,21 @@ Canonical requirements ledger for the self-hosted Harness Engineering repository
       ],
       "status": "active",
       "source": "User-directed protocol exploration on 2026-04-09"
+    },
+    {
+      "id": "HE-R011",
+      "title": "First-mount governance execution pattern",
+      "applies_to": ["target-project", "self-hosted"],
+      "narrative": "The live-linked harnessing-agents skill must ship a reusable execution pattern for documentation-heavy repositories that lack a portable governance layer. The pattern should convert the first-mount governance repo profile into a deterministic initial remediation batch covering a root agent contract, requirements ledger, plans ledger, review ledger, and lightweight document-integrity verification, then prove that batch on a real target project.",
+      "acceptance_criteria": [
+        "The repository ships a durable execution reference for the first-mount governance repo profile that reuses existing planning, requirements, review, and intake patterns instead of improvising target-project steps.",
+        "The live-linked skill surface explicitly routes matching repo profiles to that execution reference during planning or execution.",
+        "A real target-project proof demonstrates the pattern on a documentation-heavy repository without expanding into unrelated application-style infrastructure.",
+        "Verification for the target-project proof includes at least one deterministic command that validates the mounted governance surface.",
+        "The resulting guidance remains framed as a skill-side execution capability rather than a promoted canonical framework feature."
+      ],
+      "status": "active",
+      "source": "User-approved execution-capability tranche on 2026-04-09"
     }
   ]
 }
