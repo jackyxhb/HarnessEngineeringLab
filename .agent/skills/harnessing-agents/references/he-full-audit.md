@@ -94,8 +94,11 @@ When the implementation plan includes **P2-3 AI Auditors & Collaboration Channel
 
 ### Additional Feature Guides
 
+- For **P0-1 Bash Sandboxes**, use `references/he-p0-1-bash-sandbox-mount-pattern.md` when the target project lacks isolated, reproducible command execution for agent work.
 - For **P0-3 Verification**, use `references/he-p0-3-verification-mount-pattern.md` when the target project lacks deterministic verification gates, pre-completion checks, or repo-native failure signals.
+- For **P1-7 Planning, Task Lists & Blackboards**, use `references/he-p1-7-planning-mount-pattern.md` when multi-step work lacks a durable plan file, shared task surface, or resumable task state.
 - For **P1-10 Requirements Ledger**, use `references/he-p1-10-requirements-ledger-mount-pattern.md` when the target project plans or executes work without a machine-readable requirements ledger and pre-planning intake hook.
+- For **P2-5 Upstream Intake Gate**, use `references/he-p2-5-intake-gate-mount-pattern.md` when requirements may be recorded but planning/execution can still bypass intake validation.
 
 **Output:** Modified codebase with per-agent modification summary.
 > **Use template:** `templates/HE-CHANGE-SUMMARY.md` → **Output to:** `.harness/HE-CHANGE-SUMMARY.md`

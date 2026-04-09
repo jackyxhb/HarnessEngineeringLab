@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R009 Guide Tranche Two
+
+- **Goal:** Ship the next high-leverage execution guides for `P0-1`, `P1-7`, and `P2-5`, tighten the implementation-plan template so guide lookup is explicit, and prove the shipped guide layer against a synthetic target repository.
+- **Requirement IDs:** `HE-R003`, `HE-R008`, `HE-R009`
+- **Scope:** `PLANS.md`, `RELEASES.md`, `REVIEWS.md`, `.agent/skills/harnessing-agents/` references and templates, plus a synthetic proof target under `tmp/`. Out of scope: cutting a new HELab release or claiming proof against a real external repository.
+- **Status:** `done`
+- **Steps:**
+  - [x] Add the next bounded guide tranche for `P0-1`, `P1-7`, and `P2-5`
+  - [x] Tighten the implementation-planning surface so shipped guide lookup is explicit and required when available
+  - [x] Run a synthetic target-project proof for the shipped `P0-3` and `P1-10` guides, then record review, validate, and archive the plan
+- **Constraints:** Keep root `framework/` canonical; do not treat the synthetic repo as equivalent to a real external production target; preserve separation between abstract framework definitions and execution guidance.
+- **Checkpoints:** New guides added; plan template tightened; synthetic proof artifacts written; review recorded; validation green.
+- **Blocking Issues:** A real external target repository is not currently available in the workspace, so end-to-end proof will use a synthetic repo under `tmp/` for now.
+- **Completed:** 2026-04-09
+
 ### Plan: HE-R009 Guide Pattern
 
 - **Goal:** Define and ship the first bounded implementation-guide pattern that lets the live-linked `harnessing-agents` skill turn feature gaps into concrete target-project remediation steps instead of conceptual-only guidance.

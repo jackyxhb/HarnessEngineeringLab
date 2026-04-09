@@ -169,8 +169,11 @@ Some features require reusable root-level harness assets in target projects. Use
 Use feature implementation guides when a feature gap has already been identified and the skill needs concrete target-project execution steps instead of abstract L4-only guidance.
 
 - `references/he-feature-implementation-guide-pattern.md`: Canonical shape for execution-oriented feature guides.
+- `references/he-p0-1-bash-sandbox-mount-pattern.md`: Concrete target-project remediation pattern for mounting P0-1 bash-sandbox infrastructure.
 - `references/he-p0-3-verification-mount-pattern.md`: Concrete target-project remediation pattern for mounting P0-3 verification.
+- `references/he-p1-7-planning-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-7 planning infrastructure.
 - `references/he-p1-10-requirements-ledger-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-10 requirements-ledger infrastructure.
+- `references/he-p2-5-intake-gate-mount-pattern.md`: Concrete target-project remediation pattern for mounting P2-5 intake-gate enforcement.
 
 If a feature-specific implementation guide exists, prefer it during Phase 3 planning and Phase 4 execution before falling back to the abstract L4 section in `framework/features/P*.md`.
 
