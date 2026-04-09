@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: HE-R009 Guide Pattern
+
+- **Goal:** Define and ship the first bounded implementation-guide pattern that lets the live-linked `harnessing-agents` skill turn feature gaps into concrete target-project remediation steps instead of conceptual-only guidance.
+- **Requirement IDs:** `HE-R003`, `HE-R008`, `HE-R009`
+- **Scope:** `REQUIREMENTS.md`, `ANCHORS.md`, `PLANS.md`, `RELEASES.md`, `REVIEWS.md`, and the live-linked skill surfaces needed to define and prove the first implementation-guide delivery slice. Out of scope: delivering all 32 feature guides in one batch.
+- **Status:** `done`
+- **Steps:**
+  - [x] Define the canonical pattern and placement for execution-oriented feature implementation guides
+  - [x] Choose the first bounded delivery slice and wire it into the live-linked skill surface
+  - [x] Record review, validate, and archive the plan
+- **Constraints:** Keep root `framework/` canonical, avoid collapsing abstract feature definitions and execution recipes into one file, and optimize for target-project delivery rather than self-hosted completeness theater.
+- **Checkpoints:** Requirement added; guide-pattern decision recorded; first delivery slice integrated; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: HELab 4.0.0 Release Cut
 
 - **Goal:** Cut the next HELab release as `v4.0.0` so the shipped skill/runtime architecture changes and naming-surface changes are reflected in the canonical version, mirrored skill metadata, release notes, git tag, and GitHub release.

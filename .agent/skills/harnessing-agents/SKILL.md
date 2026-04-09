@@ -164,6 +164,16 @@ Some features require reusable root-level harness assets in target projects. Use
 - `templates/HE-REVIEWS.md`: Root review-ledger template for mounting P2-3 independent review in a target project.
 - `references/he-p2-3-review-mount-pattern.md`: Canonical target-project remediation pattern for mounting P2-3 review gating.
 
+## Feature Implementation Guides
+
+Use feature implementation guides when a feature gap has already been identified and the skill needs concrete target-project execution steps instead of abstract L4-only guidance.
+
+- `references/he-feature-implementation-guide-pattern.md`: Canonical shape for execution-oriented feature guides.
+- `references/he-p0-3-verification-mount-pattern.md`: Concrete target-project remediation pattern for mounting P0-3 verification.
+- `references/he-p1-10-requirements-ledger-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-10 requirements-ledger infrastructure.
+
+If a feature-specific implementation guide exists, prefer it during Phase 3 planning and Phase 4 execution before falling back to the abstract L4 section in `framework/features/P*.md`.
+
 ## Deployment
 
 This skill is maintained directly in the HELab workspace. To make it available globally across all projects, ensure the global symlink is active:
