@@ -161,7 +161,7 @@ Templates define the format; output files are written to `.harness/` in the targ
 
 Some features require reusable root-level harness assets in target projects. Use these assets when the implementation plan calls for them.
 
-- `templates/REVIEWS.md`: Root review-ledger template for mounting P2-3 independent review in a target project.
+- `templates/HE-REVIEWS.md`: Root review-ledger template for mounting P2-3 independent review in a target project.
 - `references/he-p2-3-target-review-gate.md`: Canonical target-project remediation pattern for P2-3 review gating.
 
 ## Deployment

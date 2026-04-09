@@ -27,7 +27,7 @@ When writing `.harness/HE-IMPLEMENTATION-PLAN.md`, use a P2-3 entry shaped like 
 
 ### 1. Mount the Root Review Ledger
 
-- Create `REVIEWS.md` in the target project root from `templates/REVIEWS.md`.
+- Create `REVIEWS.md` in the target project root from `templates/HE-REVIEWS.md`.
 - Keep the ledger machine-readable JSON inside a fenced `json` block.
 - Store at least these fields per review record:
   - `id`

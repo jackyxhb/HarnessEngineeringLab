@@ -30,6 +30,21 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Completed Plans
 
+### Plan: Reviews Template Naming Alignment
+
+- **Goal:** Rename the target-project review-ledger template to `HE-REVIEWS.md` so the skill template surface follows the established Harness Engineering naming convention without changing the runtime root ledger name `REVIEWS.md`.
+- **Requirement IDs:** `HE-R001`, `HE-R002`
+- **Scope:** `.agent/skills/harnessing-agents/templates/`, skill references that point to the template, `RELEASES.md`, `REVIEWS.md`, and `PLANS.md`. Out of scope: renaming the runtime root `REVIEWS.md` ledger used by HELab or target projects.
+- **Status:** `done`
+- **Steps:**
+  - [x] Rename the template file to `HE-REVIEWS.md`
+  - [x] Update all skill references to the renamed template path
+  - [x] Record review, validate, and archive the plan
+- **Constraints:** Keep the mounted target-project output file named `REVIEWS.md`; only rename the template asset inside the skill surface.
+- **Checkpoints:** Template renamed; references updated; release note recorded; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-09
+
 ### Plan: Skill Runtime Bundle Migration
 
 - **Goal:** Make the shipped `harnessing-agents` skill self-contained for target-project execution by bundling a synchronized runtime mirror of `framework/` inside the skill while keeping the root `framework/` as canonical source of truth.

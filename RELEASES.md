@@ -18,6 +18,7 @@ Pending downstream changes for the next HELab version.
 
 ### Changed
 
+- Renamed the target-project review-ledger template to `.agent/skills/harnessing-agents/templates/HE-REVIEWS.md` so the shipped skill templates follow the established `HE-` naming convention while keeping the mounted target-project ledger name `REVIEWS.md` unchanged.
 - Clarified across the root governance docs and the live-linked skill contract that HELab's primary mission is effective target-project delivery of the full Harness Engineering feature set, with self-hosting treated as a proving loop rather than the end state.
 - Began migrating the live-linked skill toward a self-contained shipped runtime by introducing a synchronized framework bundle under `.agent/skills/harnessing-agents/framework/`, while keeping the root `framework/` as canonical source of truth.
 - Clarified feature-lookup navigation so the skill resolves canonical feature paths from `framework/HE Index.md` and uses the root `REQUIREMENTS.md` ledger for requirement traceability.
@@ -33,7 +34,7 @@ Pending downstream changes for the next HELab version.
 ### Tooling
 
 - Added a root `REVIEWS.md` ledger and a `he-lint` review gate for core harness surfaces.
-- Updated the full-audit references so P2-3 planning and execution now call for concrete target-project review assets instead of a generic recommendation.
+- Updated the full-audit references so P2-3 planning and execution now call for concrete target-project review assets instead of a generic recommendation, now pointing at `templates/HE-REVIEWS.md`.
 
 ### Downstream Impact
 
