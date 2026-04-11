@@ -647,6 +647,76 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the formalization of the 6 Mandatory Skill Principles as top-priority governance for harnessing-agents and all future skills. Added canonical standard document, 7 enforcement rules in AGENTS.md (EP-12/EP-15), and anchor record A27. All changes synced to bundled skill mirror.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-11-002",
+      "date": "2026-04-11",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        "RELEASES.md",
+        ".cspell.json",
+        "cspell.json"
+      ],
+      "change_summary": "Approved Batch A-C of the harnessing-agents skill review pass: (A) removed orphaned Mode 3 labels in SKILL.md and HE-FEATURE-LOOKUP.md that contradicted the 2-mode routing table, (B) added .harness/HE-SCOPE.md to the Mode 1 output list and documented the Protocol-to-slim-flow collapse of HE-RECOMMENDATIONS.md into HE-IMPLEMENTATION-PLAN.md in both SKILL.md and references/he-full-audit.md, (C) replaced the hardcoded /Users/macbook1 deployment path with a git rev-parse --show-toplevel-based portable snippet, added an explicit ~/.claude/skills/ symlink mirror step, and appended routing keywords to the description field per HE Skill Creation Standard. Root framework/ canon was not touched, so no skill-framework mirror sync was required. Deeper reconciliation of framework/HE Harnessing Protocol.md Task 3.1 (HE-RECOMMENDATIONS.md) and Appendix C primary_output is deferred as follow-up work.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-11-003",
+      "date": "2026-04-11",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "framework/HE Skill Creation Standard.md",
+        ".agent/skills/harnessing-agents/framework/HE Skill Creation Standard.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Approved Batch D-F of the harnessing-agents skill review pass: (D) reworded the Internal Tools subsection in SKILL.md so references/he-subagent-prompts.md is explicitly an optional parallel-dispatch pattern for orchestrators with subagent capability, not a baseline Mode 1 requirement (resolves the contradiction between the prior wording and the Task-less allowed-tools list), (E) replaced all six SKILL.md line-number citations in framework/HE Skill Creation Standard.md with section-anchor references and synced the bundled mirror via npm run sync:skill-framework, (F) generalized the Mode 2 Output Contract state-check block in SKILL.md to detect HELab-style repos versus target projects and provide an explicit non-HELab fallback using .harness/ artifacts or native plan/requirement surfaces. npm run check passes cleanly.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-11-004",
+      "date": "2026-04-11",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        "framework/HE Index.md",
+        ".agent/skills/harnessing-agents/framework/HE Index.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Approved Batch G of the harnessing-agents skill review pass: (G-13) expanded the Emphasize Automated Tooling scan-target list in SKILL.md into grouped, explicitly non-exhaustive sub-lists covering modern agent contracts (AGENT.md, .cursor/rules/, .windsurfrules, .continue/, .claude/, .github/copilot-instructions.md, .aider.conf.yml), alternate CI surfaces (.gitlab-ci.yml, .circleci/, .pre-commit-config.yaml, lefthook.yml, Makefile, justfile), and workflow surfaces (.harness/, .claude/commands/, scripts/), (G-14) hoisted the Canonical Path Rule for zero-padded feature/principle filenames to the framework/HE Index.md header as the authoritative statement and trimmed the three duplicate reminders in SKILL.md navigation protocol, SKILL.md Mode 2 navigation, and references/he-full-audit.md into short references pointing at the index header, synced via npm run sync:skill-framework, (G-15) surfaced the Mode 1 user checkpoint (STOP gate) in SKILL.md so readers can see the Phase 3 plan-review requirement without drilling into references/he-full-audit.md Phase 3 or framework/HE Harnessing Protocol.md Task 3.2. npm run check passes cleanly.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-11-005",
+      "date": "2026-04-11",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        "framework/HE Harnessing Protocol.md",
+        ".agent/skills/harnessing-agents/framework/HE Harnessing Protocol.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Approved the Protocol reconciliation pass that closes the drift between framework/HE Harnessing Protocol.md and the slim single-agent flow used by the released harnessing-agents skill. Added an Execution Modes note to the Protocol preamble naming multi-agent dispatch mode (handoff artifacts required) and single-agent slim mode (handoff artifacts optional, collapse into working memory). Tagged Task 3.1's HE-RECOMMENDATIONS.md as a (handoff artifact) and Task 3.2's HE-IMPLEMENTATION-PLAN.md as a (shipped artifact). Updated Appendix C: annotated the existing 3 Decisions row with an artifact_class explaining the multi-agent/slim distinction and added a new 3 Plan row so the shipped HE-IMPLEMENTATION-PLAN.md finally appears in the assessment matrix. Bundled mirror synced via npm run sync:skill-framework. npm run check passes cleanly.",
+      "findings": []
     }
   ]
 }

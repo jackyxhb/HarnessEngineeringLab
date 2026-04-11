@@ -36,7 +36,7 @@ allowed-tools:
 - `npm run check` will fail if any skill metadata is missing or malformed
 - Missing `allowed-tools` triggers a review gate (requires explicit approval to add new tools)
 
-**Example:** `harnessing-agents` SKILL.md lines 1–12
+**Example:** `harnessing-agents` SKILL.md → YAML frontmatter (top of file)
 
 ---
 
@@ -65,7 +65,7 @@ Routes via keyword detection. If no keyword matches, **default to Mode 1**.
 - If only one mode exists, document it as `[DEFAULT ONLY]` with justification (rare)
 - Missing mode documentation blocks merge
 
-**Example:** `harnessing-agents` SKILL.md lines 47–67 (keywords: `full`, `feature`)
+**Example:** `harnessing-agents` SKILL.md → `## How to Use (2 Modes)` section (keywords: `full`, `feature`)
 
 ---
 
@@ -105,7 +105,7 @@ Every skill **must** define 3–5 **sequential, named phases** that govern execu
 - Skill execution must follow documented phases without deviation
 - Reviewers verify phases are mechanical, not conversational
 
-**Example:** `harnessing-agents` SKILL.md lines 56–61 (6-phase lifecycle)
+**Example:** `harnessing-agents` SKILL.md → `### Mode 1: Full Audit` section (6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification)
 
 ---
 
@@ -154,7 +154,7 @@ Skill version: {version from SKILL.md}
 - Output location must use the declared directory (`.harness/`, etc.)
 - Review gate checks that all outputs match template structure
 
-**Example:** `harnessing-agents` SKILL.md lines 145–150 and `templates/HE-CLUES.md`
+**Example:** `harnessing-agents` SKILL.md → `## Core Templates` section and `templates/HE-CLUES.md`
 
 ---
 
@@ -188,7 +188,7 @@ Every skill **must** load context in this order:
 - Pre-merge testing runs on repos of varying sizes
 - Recommended max mandatory-read per action path: ~200 lines (per P1-12)
 
-**Example:** `harnessing-agents` SKILL.md lines 121–125 and lines 65 (navigation protocol)
+**Example:** `harnessing-agents` SKILL.md → `## Context & Action Space Optimization` section, plus the navigation-protocol paragraph in `### Mode 2: Feature Lookup`
 
 ---
 
@@ -232,7 +232,7 @@ If user DID name target project:
 - Suggested actions must cite the state they checked (e.g., "per PLANS.md, feature X is in progress")
 - Escalation if state cannot be determined
 
-**Example:** `harnessing-agents` SKILL.md lines 72–89
+**Example:** `harnessing-agents` SKILL.md → `### Mode 2: Feature Lookup` → `#### Mode 2 Output Contract` subsection
 
 ---
 

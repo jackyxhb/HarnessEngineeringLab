@@ -7,6 +7,8 @@ For terminology boundaries between canonical framework concepts and current skil
 > **Design Principle:** Every task produces a concrete, verifiable artifact. Tasks are sequenced so each one can be executed independently — an agent picking up Task 3.2 needs only the outputs of its predecessors, not the full conversation history of the entire procedure.
 >
 > **Chain Flow:** The phases follow the Principle-to-Practice Chain (L1→L5): Scope (pre-chain) → Principles (L1) → Enhancements (L2) → Design Decisions (L3) → Actions (L4) → Results (L5) → Principle Feedback (L1 ↩).
+>
+> **Execution Modes:** This procedure supports two execution modes. In **multi-agent dispatch mode**, sibling tasks within a phase (e.g. 1.1–1.4, 2.1–2.4) run on separate agents, so every task must persist its output to a named artifact for the next agent to consume. In **single-agent slim mode** — used by the released `harnessing-agents` skill's Mode 1 Full Audit (see `references/he-full-audit.md`) — a single agent walks the phases sequentially and may collapse intermediate handoff artifacts (e.g. Task 3.1's `HE-RECOMMENDATIONS.md`) into working memory that flows directly into the next phase's shipped artifact. Where a task's output is annotated **"(handoff artifact)"**, it is required for multi-agent dispatch and optional for slim mode; outputs annotated **"(shipped artifact)"** are required in both modes.
 
 ## Procedure Schema & Safeguards
 
@@ -269,7 +271,7 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
    - **Medium** — Add new features (pre-commit hooks, test suites, scripts)
    - **Heavy** — Reform project architecture (ci/cd pipelines, orchestration layer, middleware)
 
-**Output:** `HE-RECOMMENDATIONS.md` — a structured list of design decisions per feature, actions/tools needed, and remediation level.
+**Output:** `HE-RECOMMENDATIONS.md` **(handoff artifact)** — a structured list of design decisions per feature, actions/tools needed, and remediation level. Required when Task 3.1 and Task 3.2 run on different agents; in single-agent slim mode (see `references/he-full-audit.md` Phase 3) these recommendations are drafted in working memory and written directly into `HE-IMPLEMENTATION-PLAN.md` during Task 3.2 without a persisted intermediate file.
 
 **Context needed:** `HE-PRIORITIES.md` + relevant `framework/features/*.md`.
 **Estimated tokens:** ~4,000
@@ -278,7 +280,7 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 ### Task 3.2: Build Implementation Plan (User Review Required)
 
-**Input:** `HE-RECOMMENDATIONS.md`, `HE-SCOPE.md`
+**Input:** `HE-RECOMMENDATIONS.md` (multi-agent mode) or Task 3.1's design decisions in working memory (slim mode), plus `HE-SCOPE.md`
 **Actions:**
 
 1. Group design decisions into **implementation batches** ordered by:
@@ -292,9 +294,9 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
    - Estimated effort
 3. Present the plan to the user for review.
 
-**Output:** `HE-IMPLEMENTATION-PLAN.md` — the actionable plan, confirmed by user.
+**Output:** `HE-IMPLEMENTATION-PLAN.md` **(shipped artifact)** — the actionable plan, confirmed by user. This is the user-facing Phase 3 output in both multi-agent and slim execution modes.
 
-**Context needed:** `HE-RECOMMENDATIONS.md` + `HE-SCOPE.md`.
+**Context needed:** `HE-RECOMMENDATIONS.md` (multi-agent) or Task 3.1's in-memory decisions (slim) + `HE-SCOPE.md`.
 **Estimated tokens:** ~3,500
 
 > [!IMPORTANT]
@@ -550,7 +552,17 @@ This matrix defines the measurables, sources of truth, and scoring methods used 
     "source_of_truth": "L4 Actions/Tools",
     "evaluation_method": "Type Classification",
     "scoring_value": "Light / Medium / Heavy",
-    "primary_output": "HE-RECOMMENDATIONS"
+    "primary_output": "HE-RECOMMENDATIONS.md",
+    "artifact_class": "handoff — required for multi-agent dispatch, optional in slim single-agent mode (collapses into HE-IMPLEMENTATION-PLAN.md)"
+  },
+  {
+    "phase": "3 Plan",
+    "measurable": "User-Confirmed Execution Plan",
+    "source_of_truth": "HE-RECOMMENDATIONS.md + HE-SCOPE.md",
+    "evaluation_method": "Batch Ordering + User Review",
+    "scoring_value": "Tiered Batches (Light → Medium → Heavy)",
+    "primary_output": "HE-IMPLEMENTATION-PLAN.md",
+    "artifact_class": "shipped — required in both multi-agent and slim modes; gated on explicit user confirmation before Phase 4"
   },
   {
     "phase": "5 Results",

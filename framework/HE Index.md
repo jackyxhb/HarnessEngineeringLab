@@ -6,6 +6,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
 **Harnessing Protocol:** See [HE Harnessing Protocol.md](HE%20Harnessing%20Protocol.md) for the step-by-step audit workflow.
 **Terms Reference:** See [HE-Terms.md](HE-Terms.md) for canonical terminology and skill-side term boundaries.
 
+> **Canonical Path Rule:** Always resolve feature file paths from the `file` field in this index — never guess filenames. Feature filenames are **zero-padded to two digits**: the feature ID `P2-3` resolves to `framework/features/P2-03.md`, not `framework/features/P2-3.md`. The same rule applies to `P0-1` → `P0-01.md`, `P1-7` → `P1-07.md`, etc. Principle files follow the same padding: `EP-3` → `framework/principles/EP-03.md`.
+
 ---
 
 ## DAG Structure

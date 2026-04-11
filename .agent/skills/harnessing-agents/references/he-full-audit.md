@@ -6,7 +6,7 @@ A step-by-step procedure for auditing an AI agent harness. Each phase is self-co
 
 The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature in `framework/features/`.
 
-> **Canonical path rule:** Resolve every feature file through the `file` field in `framework/HE Index.md`. Do not infer paths like `framework/features/P2-3.md`; the canonical file for `P2-3` is `framework/features/P2-03.md`. When requirement traceability is requested, use the root `REQUIREMENTS.md` ledger.
+> **Canonical path rule:** Resolve every feature file through the `file` field in `framework/HE Index.md`. Feature and principle filenames are zero-padded (see the `HE Index.md` header's **Canonical Path Rule** for the authoritative statement — e.g. `P2-3` resolves to `framework/features/P2-03.md`). When requirement traceability is requested, use the root `REQUIREMENTS.md` ledger.
 
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
@@ -81,6 +81,8 @@ This preserves target-project delivery safety while still allowing the approved 
 
 **Output:** `.harness/HE-IMPLEMENTATION-PLAN.md`
 > **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md` → **Output to:** `.harness/HE-IMPLEMENTATION-PLAN.md`
+>
+> **Protocol collapse note:** The canonical `framework/HE Harnessing Protocol.md` splits this phase into Task 3.1 (`HE-RECOMMENDATIONS.md`, design-decision scratchpad) and Task 3.2 (`HE-IMPLEMENTATION-PLAN.md`, the shipped artifact). The slim `full` flow used by this skill collapses both tasks into this single step — draft design decisions in working memory and write them straight into `.harness/HE-IMPLEMENTATION-PLAN.md`. No separate `HE-RECOMMENDATIONS.md` file is shipped.
 
 **Trajectory Reduction Checkpoint:** Flush all remediation policy references. Retain only the finalized implementation plan.
 

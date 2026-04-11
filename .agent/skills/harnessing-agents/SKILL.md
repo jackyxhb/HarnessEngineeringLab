@@ -1,7 +1,7 @@
 ---
 name: harnessing-agents
 version: "4.1.0"
-description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity.
+description: Evaluate and improve AI agent harness maturity for any project. Use when assessing existing agent infrastructure, designing new harness scaffolding, fixing repeated agent failures, scaling SAS to MAS, or running a full harness audit-and-improvement cycle (Inspect → Plan → Execute) to reach maximum maturity. Keywords: full, feature.
 user-invocable: true
 allowed-tools:
   - Read
@@ -35,7 +35,7 @@ All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Insi
 5. **Chain model:** `framework/HE Principle Practice Chain.md` — the L1→L5 methodology.
 6. **Execution procedure:** `framework/HE Harnessing Protocol.md` — step-by-step audit workflow.
 
-**Navigation protocol:** Read `framework/HE Index.md` first → identify the target feature ID → use the matching `file` field from the index JSON to open the canonical feature file (for example `P2-3` resolves to `framework/features/P2-03.md`) → read only the specific files needed. Never pre-read all feature files.
+**Navigation protocol:** Read `framework/HE Index.md` first → identify the target feature ID → use the matching `file` field from the index JSON to open the canonical feature file → read only the specific files needed. Never pre-read all feature files. Feature and principle filenames are zero-padded to two digits (e.g. `P2-3` → `framework/features/P2-03.md`, `EP-3` → `framework/principles/EP-03.md`); the canonical statement of this rule lives in the `HE Index.md` header.
 
 ## When to Use
 
@@ -58,11 +58,13 @@ Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → 
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
 - **Lifecycle discipline:** When the audit will touch a live target repository, also use `references/he-harness-injection-protocol-draft.md` to classify slots, distinguish staging versus live operational touch-points, and control when mutation is allowed.
-- **Output:** `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
+- **Output:** `.harness/HE-SCOPE.md`, `.harness/HE-CLUES.md`, `.harness/HE-PRIORITIES.md`, `.harness/HE-IMPLEMENTATION-PLAN.md`, `.harness/HE-CHANGE-SUMMARY.md`, `.harness/HE-ASSESSMENT-REPORT.md`
+- **Protocol relationship:** The slim `full` flow collapses the canonical Protocol's `HE-RECOMMENDATIONS.md` (Protocol Task 3.1) into `HE-IMPLEMENTATION-PLAN.md` (Protocol Task 3.2). Design decisions are drafted in working memory and written out directly to the implementation plan; no separate `HE-RECOMMENDATIONS.md` artifact is shipped.
+- **User checkpoint (STOP gate):** After Phase 3 (Planning) writes `.harness/HE-IMPLEMENTATION-PLAN.md`, the skill **MUST STOP and present the plan for user review** before proceeding to Phase 4 (Execution). Do not apply any remediation batch — Light, Medium, or Heavy — without explicit user confirmation of the plan. This gate is defined canonically in `references/he-full-audit.md` Phase 3 and mirrors the Protocol's Task 3.2 `STOP` requirement.
 
 ### Mode 2: Feature Lookup — keyword: `feature`
 Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
-- **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Do not guess unpadded paths such as `framework/features/P2-3.md`.
+- **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Feature filenames are zero-padded (see `HE Index.md` header's **Canonical Path Rule** for the authoritative statement); do not guess unpadded paths.
 - **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
 - **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 2.
 - **Canonical Source Rule:** `Feature` metadata (`ID`, `Name`, `Pillar`, `Governed By`, `L1`, `L2`) must match the `framework/HE Index.md` entry for the requested feature exactly. Do not substitute alternate pillar labels, principle IDs, or renamed summaries from other docs.
@@ -72,28 +74,35 @@ Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 
 
 Mode 2 responses must not stop after printing the feature chain. After presenting the chain, feature lookup must make any suggested next actions **state-aware** and must emit the required sections below.
 
-Before suggesting next actions:
+Before suggesting next actions, inspect the current workspace's state. The sources of truth depend on whether the workspace is HELab or a target project:
 
-1. Read the root `REQUIREMENTS.md` to see whether the requested feature already has a governing requirement in this repository.
-2. Read `PLANS.md` and `REVIEWS.md` when the workspace is HELab to determine whether the feature has already been implemented, mounted, or recently hardened here.
-3. Check whether the user explicitly named a target project. If not, do not invent one.
-4. Confirm the current workspace identity from the actual repository you are inspecting. If no explicit project name is available, use neutral wording like `this workspace` or `HELab` rather than inventing a name.
+1. **Detect workspace type.** If the repository root contains all of `REQUIREMENTS.md`, `PLANS.md`, and `REVIEWS.md`, treat it as HELab (or a HELab-style repo). Otherwise treat it as a target project.
+2. **HELab-style state check.** When the HELab trio is present:
+   - Read `REQUIREMENTS.md` to see whether the requested feature already has a governing requirement.
+   - Read `PLANS.md` to see whether the feature is actively planned or in progress.
+   - Read `REVIEWS.md` to see whether the feature has been recently mounted, hardened, or reviewed.
+3. **Target-project state check.** When the HELab trio is absent:
+   - Inspect `.harness/HE-PRIORITIES.md` and `.harness/HE-IMPLEMENTATION-PLAN.md` if they exist (prior harnessing-agents runs).
+   - Check whatever native plan/requirement surface the target project uses (e.g. `docs/adr/`, `tasks.md`, GitHub issues referenced in-repo, or a `ROADMAP.md`).
+   - If none of those surfaces exist, state explicitly in `Current State` that no prior feature-state record is available, then proceed to recommend the next valid action from the live repository files alone.
+4. **Name discipline.** Check whether the user explicitly named a target project. If not, do not invent one. Confirm the current workspace identity from the actual repository you are inspecting. If no explicit project name is available, use neutral wording like `this workspace` rather than inventing a name (use `HELab` only when the HELab trio is present).
 
 Rules for suggested next actions:
 
-- Do **not** suggest “add a requirement” if an existing requirement already authorizes the relevant work.
-- Do **not** suggest “implement in HELab” if the feature has already been mounted or materially hardened in HELab.
-- If the feature is already implemented in HELab, prefer suggestions like refining the delivery pattern, extending verification, or applying the feature to a target project.
+- Do **not** suggest “add a requirement” if an existing requirement in the inspected state sources already authorizes the relevant work.
+- Do **not** suggest “implement this feature” if the current workspace already has it mounted or materially hardened (HELab trio, `.harness/` artifacts, or native in-repo evidence).
+- If the feature is already implemented in the current workspace, prefer suggestions like refining the delivery pattern, extending verification, or applying the feature to another target project.
 - If no target project was explicitly named, use generic wording such as “apply to a target project” rather than guessing a repository name.
 - If the target project **was** explicitly named, use that exact project name and no other.
 - Do **not** relabel the pillar, governing EP, or chain text with alternate terminology once the canonical index/feature-file values are known.
 - Do **not** attribute `Current State` findings to another workspace or repository unless the user explicitly named that target and the agent actually inspected it.
+- When the target-project state check found no prior record of the feature, state that explicitly in `Current State` and do **not** backfill guesses about its maturity.
 
 The purpose of Mode 2 is not just to explain the feature. It must suggest the next valid action from the **current repository state**.
 
-#### Required Mode 3 Response Shape
+#### Required Mode 2 Response Shape
 
-Every Mode 3 response must follow `templates/HE-FEATURE-LOOKUP.md` and contain these sections, in order:
+Every Mode 2 response must follow `templates/HE-FEATURE-LOOKUP.md` and contain these sections, in order:
 
 1. `Feature` — the canonical feature name and ID.
 2. `Chain` — the L1→L5 breakdown.
@@ -110,12 +119,12 @@ Minimum requirements:
 - If the user only asked for lookup and no action is needed, `Next Valid Actions` may say that no new HELab work is currently required and then name the next externalization step.
 - If the current workspace has not been explicitly named by the user, `Current State` must use `this workspace` or `HELab` rather than inventing a repository name.
 
-### Internal Tools (used within Full Audit, not user-invoked)
+### Internal Tools (consumed during Full Audit, not user-invoked)
 
-These are used automatically during a full audit — users do not need to invoke them directly:
-- `references/he-scoring.md` — 6-dimension scoring + priority formula (Phase 2)
-- `references/he-subagent-prompts.md` — parallel agent dispatch prompts (Phase 1)
-- `framework/HE Index.md` — feature dependency maps (`downstream`, `impact_weight`) used by Phase 2 prioritization
+These are consumed during a full audit — users do not need to invoke them directly:
+- `references/he-scoring.md` — 6-dimension scoring + priority formula, applied in Phase 2 of Mode 1.
+- `framework/HE Index.md` — feature dependency maps (`downstream`, `impact_weight`) used by Phase 2 prioritization.
+- `references/he-subagent-prompts.md` — **optional** parallel-dispatch prompt templates for orchestrators that have subagent capability (e.g., Claude Code with the `Task` / `Agent` tool enabled). The baseline Mode 1 flow in `references/he-full-audit.md` is a sequential single-agent walk and does **not** require these prompts. This skill's declared `allowed-tools` list intentionally excludes `Task` / `Agent`; if a parent harness wants to parallelize Phase 1 by dispatching subagents, it must do so at the orchestrator level and pass in the prompt text from `he-subagent-prompts.md`. The skill itself cannot launch subagents.
 
 ## Context & Action Space Optimization
 
@@ -138,7 +147,11 @@ Mounted harness assets are different: when a remediation batch installs real inf
 
 When auditing or remediating harness gaps, rely strictly on **mechanical enforcement** rather than manual observation.
 
-- **Do Not rely on general conversational output:** Agents must use specific filesystem tools (`Glob`, `Grep`, `Read`) to explicitly scan targets such as `CLAUDE.md`, `.cursorrules`, `.github/workflows/`, `.husky/`, `.agent/`, and `AGENTS.md`.
+- **Do Not rely on general conversational output:** Agents must use specific filesystem tools (`Glob`, `Grep`, `Read`) to explicitly scan agent-contract, rule, and automation surfaces. The scan list below is **non-exhaustive** — inspect anything the target project actually uses:
+  - **Agent contracts & rules (portable):** `AGENTS.md`, `AGENT.md`
+  - **Agent contracts & rules (IDE-specific):** `CLAUDE.md` (and nested `CLAUDE.md` files in subdirectories), `.cursorrules`, `.cursor/rules/`, `.windsurfrules`, `.continue/`, `.claude/`, `.github/copilot-instructions.md`, `.aider.conf.yml`
+  - **Automation & CI surfaces:** `.github/workflows/`, `.gitlab-ci.yml`, `.circleci/`, `.husky/`, `.pre-commit-config.yaml`, `lefthook.yml`, `Makefile`, `justfile`
+  - **Agent workflow surfaces:** `.agent/`, `.harness/`, `.claude/commands/`, `scripts/` (for repo-native verification hooks)
 - **Do Not assume architecture:** Always parse configuration targets natively.
 - **Do Not stray from templates:** When gathering data, constructing plans, or reporting findings, rigidly adhere to output formats in the `templates/` directory.
 
@@ -190,10 +203,19 @@ This is currently a permanent skill-side execution asset, not yet a canonical `f
 
 ## Deployment
 
-This skill is maintained directly in the HELab workspace. To make it available globally across all projects, ensure the global symlink is active:
+This skill is maintained directly in the HELab workspace. To make it available globally across all projects, ensure a symlink from your global agent-skills directory points at this skill. Run the commands below from any location inside a HELab checkout so `git rev-parse` resolves the repo root portably:
 
 ```bash
-ln -sfn /Users/macbook1/work/HE/HELab/.agent/skills/harnessing-agents ~/.agents/skills/harnessing-agents
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+mkdir -p "${HOME}/.agents/skills"
+ln -sfn "${REPO_ROOT}/.agent/skills/harnessing-agents" "${HOME}/.agents/skills/harnessing-agents"
 ```
 
-Verify with: `ls -la ~/.agents/skills/harnessing-agents/SKILL.md`
+Claude Code additionally reads skills from `~/.claude/skills/`. If that directory is not already chained to `~/.agents/skills/`, mirror the symlink there as well:
+
+```bash
+mkdir -p "${HOME}/.claude/skills"
+ln -sfn "${HOME}/.agents/skills/harnessing-agents" "${HOME}/.claude/skills/harnessing-agents"
+```
+
+Verify with: `ls -la "${HOME}/.agents/skills/harnessing-agents/SKILL.md"`

@@ -1,6 +1,6 @@
 # HE-FEATURE-LOOKUP
 
-Use this exact shape for Mode 3 (`feature`) responses. Do not replace it with a field/value table or a chain-only dump.
+Use this exact shape for Mode 2 (`feature`) responses. Do not replace it with a field/value table or a chain-only dump.
 
 Source the `Feature` metadata from the exact `framework/HE Index.md` entry for the requested feature. Source `L3`, `L4`, `L5`, and dependency details from the canonical feature file named in that entry's `file` field.
 
