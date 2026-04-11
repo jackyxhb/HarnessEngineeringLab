@@ -546,9 +546,7 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "reviewer": "Plan subagent",
       "review_type": "agent",
       "requirement_ids": ["HE-R001"],
-      "scope_paths": [
-        ".agent/skills/harnessing-agents/SKILL.md"
-      ],
+      "scope_paths": [".agent/skills/harnessing-agents/SKILL.md"],
       "change_summary": "Revised the harnessing-agents skill to remove quick scan mode and make full audit mode default.",
       "findings": []
     },
@@ -579,9 +577,7 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "reviewer": "entropy-reconcile-workflow",
       "review_type": "agent",
       "requirement_ids": ["HE-R004"],
-      "scope_paths": [
-        "README.md"
-      ],
+      "scope_paths": ["README.md"],
       "change_summary": "Approved the entropy reconciliation fix for inconsistent capitalization in README.md to maintain canonical content integrity.",
       "findings": []
     },
@@ -726,10 +722,7 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "reviewer": "Jack Xiao",
       "review_type": "manual",
       "requirement_ids": ["HE-R001"],
-      "scope_paths": [
-        "README.md",
-        "RELEASES.md"
-      ],
+      "scope_paths": ["README.md", "RELEASES.md"],
       "change_summary": "Full project review discovered 3 stale Mode 3 references in README.md (the skill has only 2 modes: full and feature). Replaced all Mode 3 labels with Mode 2 in the Feature Lookup section. Updated RELEASES.md to include README.md in the existing Mode 3 cleanup entry.",
       "findings": []
     }

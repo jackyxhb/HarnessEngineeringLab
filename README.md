@@ -20,10 +20,26 @@ All Harness Engineering concepts are organized under a unified framework:
 
 ```json
 [
-  { "layer": "Foundation: Infrastructure (Execute)", "role": "Execution engine and orchestration", "key_question": "Where does the agent run safely?" },
-  { "layer": "Pillar 1: Context Engineering (Inform)", "role": "Memory, knowledge, and real-time data", "key_question": "What does the agent know?" },
-  { "layer": "Pillar 2: Architectural Constraints (Constrain)", "role": "Mechanical enforcement of boundaries", "key_question": "What can the agent do?" },
-  { "layer": "Pillar 3: Entropy Management (Maintain)", "role": "Long-term codebase health", "key_question": "How does the system stay healthy?" }
+  {
+    "layer": "Foundation: Infrastructure (Execute)",
+    "role": "Execution engine and orchestration",
+    "key_question": "Where does the agent run safely?"
+  },
+  {
+    "layer": "Pillar 1: Context Engineering (Inform)",
+    "role": "Memory, knowledge, and real-time data",
+    "key_question": "What does the agent know?"
+  },
+  {
+    "layer": "Pillar 2: Architectural Constraints (Constrain)",
+    "role": "Mechanical enforcement of boundaries",
+    "key_question": "What can the agent do?"
+  },
+  {
+    "layer": "Pillar 3: Entropy Management (Maintain)",
+    "role": "Long-term codebase health",
+    "key_question": "How does the system stay healthy?"
+  }
 ]
 ```
 
@@ -132,7 +148,11 @@ The framework scales naturally from a single agent to multi-agent systems. All 3
 [
   { "level": "Basic", "scope": "Single developer", "setup_time": "1–2 hours" },
   { "level": "Team", "scope": "3–10 developers", "setup_time": "1–2 days" },
-  { "level": "Production", "scope": "Engineering organization", "setup_time": "1–2 weeks" }
+  {
+    "level": "Production",
+    "scope": "Engineering organization",
+    "setup_time": "1–2 weeks"
+  }
 ]
 ```
 
