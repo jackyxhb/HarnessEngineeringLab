@@ -66,11 +66,11 @@ For feature lookups, the canonical navigation entry point is `framework/HE Index
 
 Feature lookup suggestions should also be state-aware: they should check current HELab requirements, plans, and review history before proposing new local work, and they must not invent a target-project name the user did not provide.
 
-Mode 3 feature lookups are expected to return a complete response shape, not just the feature chain: `Feature`, `Chain`, `Current State`, and `Next Valid Actions`.
+Mode 2 feature lookups are expected to return a complete response shape, not just the feature chain: `Feature`, `Chain`, `Current State`, and `Next Valid Actions`.
 
-The canonical Mode 3 output shape lives in `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`. A field/value extraction table is not considered a compliant final response unless the user explicitly asks for tabular output.
+The canonical Mode 2 output shape lives in `.agent/skills/harnessing-agents/templates/HE-FEATURE-LOOKUP.md`. A field/value extraction table is not considered a compliant final response unless the user explicitly asks for tabular output.
 
-Mode 3 also has a canonical-fidelity requirement: feature metadata must match the `framework/HE Index.md` entry exactly, chain details must come from the canonical feature file, and `Current State` must stay grounded in the actual inspected workspace rather than an invented repository name.
+Mode 2 also has a canonical-fidelity requirement: feature metadata must match the `framework/HE Index.md` entry exactly, chain details must come from the canonical feature file, and `Current State` must stay grounded in the actual inspected workspace rather than an invented repository name.
 
 - **SKILL.md** — Skill entry point and routing surface
 - **framework/** — Bundled runtime mirror of the canonical HELab framework, shipped with the skill for target-project execution

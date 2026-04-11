@@ -717,6 +717,21 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the Protocol reconciliation pass that closes the drift between framework/HE Harnessing Protocol.md and the slim single-agent flow used by the released harnessing-agents skill. Added an Execution Modes note to the Protocol preamble naming multi-agent dispatch mode (handoff artifacts required) and single-agent slim mode (handoff artifacts optional, collapse into working memory). Tagged Task 3.1's HE-RECOMMENDATIONS.md as a (handoff artifact) and Task 3.2's HE-IMPLEMENTATION-PLAN.md as a (shipped artifact). Updated Appendix C: annotated the existing 3 Decisions row with an artifact_class explaining the multi-agent/slim distinction and added a new 3 Plan row so the shipped HE-IMPLEMENTATION-PLAN.md finally appears in the assessment matrix. Bundled mirror synced via npm run sync:skill-framework. npm run check passes cleanly.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-12-001",
+      "date": "2026-04-12",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        "README.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Full project review discovered 3 stale Mode 3 references in README.md (the skill has only 2 modes: full and feature). Replaced all Mode 3 labels with Mode 2 in the Feature Lookup section. Updated RELEASES.md to include README.md in the existing Mode 3 cleanup entry.",
+      "findings": []
     }
   ]
 }
