@@ -8,9 +8,13 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 
 ## Unreleased
 
+No pending changes.
+
+## 4.1.1 - 2026-04-12
+
 ### Summary
 
-Pending downstream changes for the next HELab version.
+Skill quality, accuracy, and robustness improvements. Added anti-termination constraint to Phase 0 so audits can never be falsely terminated based on project type. Cleaned up stale mode references, reconciled the Protocol with the slim single-agent execution model, hardened the scan-target list, and improved portability of skill installation paths.
 
 ### What's New
 
