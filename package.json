@@ -1,6 +1,6 @@
 {
   "name": "harnessengineeringlab",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "A framework-first Harness Engineering repository whose live-linked harnessing-agents skill is consumed by target projects and self-hosted in HELab.",
   "main": "index.js",
   "scripts": {
