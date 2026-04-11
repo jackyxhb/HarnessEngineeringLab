@@ -629,6 +629,24 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
           "status": "fixed"
         }
       ]
+    },
+    {
+      "id": "HE-REV-2026-04-11-001",
+      "date": "2026-04-11",
+      "status": "approved",
+      "generator": "Claude (Haiku 4.5)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R001"],
+      "scope_paths": [
+        "framework/HE Skill Creation Standard.md",
+        ".agent/skills/harnessing-agents/framework/HE Skill Creation Standard.md",
+        "AGENTS.md",
+        "ANCHORS.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Approved the formalization of the 6 Mandatory Skill Principles as top-priority governance for harnessing-agents and all future skills. Added canonical standard document, 7 enforcement rules in AGENTS.md (EP-12/EP-15), and anchor record A27. All changes synced to bundled skill mirror.",
+      "findings": []
     }
   ]
 }

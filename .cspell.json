@@ -98,7 +98,8 @@
     "acss",
     "ENCT",
     "overclaim",
-    "overclaiming"
+    "overclaiming",
+    "Xiao"
   ],
   "ignorePaths": [
     "node_modules/**",

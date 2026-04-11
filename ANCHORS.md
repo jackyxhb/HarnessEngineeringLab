@@ -228,3 +228,11 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `framework/`, the bundled runtime mirror, and future terminology decisions that cross the boundary between canonical framework concepts and skill-side delivery constructs.
 - **Background:** Decided after naming the first reusable multi-feature delivery bundle and needing a stable place to define `Feature Package`, `Repo Profile`, and related terms without prematurely promoting them into the canonical feature set.
 - **Date:** 2026-04-09
+
+### A27: 6 Mandatory Skill Principles
+
+- **What:** Formalized the 6 Mandatory Principles for professional skill creation and made them top-priority governance for the `harnessing-agents` skill and all future skills in HELab. The principles are: (1) Metadata Clarity, (2) Dual-Mode Routing, (3) Mechanical Phases, (4) Output Templates, (5) Progressive Context Loading, and (6) State-Aware Actions. Documented in `framework/HE Skill Creation Standard.md` and enforced via AGENTS.md DO NOT rules (7 new rules, each tied to EP-12 or EP-15). All rules block merge until satisfied.
+- **Why:** The `harnessing-agents` skill is the primary delivery mechanism for Harness Engineering to external projects. Without formalized skill creation standards, skill quality drifts, context load explodes, templates become inconsistent, and target-project delivery becomes unreliable. These 6 principles enforce the exact recipe used in `harnessing-agents` v4.1.0, which is proven and scalable.
+- **Target:** `framework/HE Skill Creation Standard.md` (canonical source), AGENTS.md (enforcement rules), `.agent/skills/harnessing-agents/framework/HE Skill Creation Standard.md` (bundled mirror), REVIEWS.md (skill review gate), `npm run check` (pre-commit validation of metadata).
+- **Background:** Extracted from analysis of `harnessing-agents` v4.1.0 and formalized during skill governance hardening. The skill already satisfies all 6 principles; they are now codified as the standard all future skills must match. Violations require documented justification in ANCHORS.md and explicit user approval, not self-certification.
+- **Date:** 2026-04-11

@@ -14,7 +14,7 @@ Pending downstream changes for the next HELab version.
 
 ### What's New
 
-- None yet.
+- Added `framework/HE Skill Creation Standard.md` — canonical recipe for professional skill creation. Codifies the 6 Mandatory Principles (Metadata Clarity, Dual-Mode Routing, Mechanical Phases, Output Templates, Progressive Context Loading, State-Aware Actions) extracted from `harnessing-agents` v4.1.0. Governs all future skills in HELab and is top-priority governance for the live-linked skill surface.
 
 ### Changed
 

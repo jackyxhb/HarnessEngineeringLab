@@ -156,6 +156,24 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **`EP-3` Never attribute an agent failure to the agent without first diagnosing the harness (1. Is the constraint in AGENTS.md? → 2. Is there a CI gate? → 3. Does the error message include remediation?).** Consequence: skipping harness diagnosis means the root cause (missing rule, missing gate, unclear error message) persists and the same failure recurs in every future agent run.
 - **`EP-9` Never choose bleeding-edge or poorly-documented technology stacks for agent-authored code without explicit justification.** Consequence: agents generate more hallucinations and incorrect patterns with novel frameworks lacking training-data representation, increasing correction overhead and token waste.
 
+### Skill-Specific Rules (P1-12 Skill Engineering)
+
+Enforcement for the **6 Mandatory Skill Principles** (see `framework/HE Skill Creation Standard.md`). All skills shipped from HELab — especially `harnessing-agents` — must satisfy these rules before merge.
+
+- **`EP-12` Never ship a skill without a complete YAML metadata header.** The header must include `name`, `version`, `description`, `user-invocable`, and `allowed-tools`. Consequence: automation cannot discover the skill, users cannot understand scope, version sync gates fail, and review automation breaks. Action: validation happens in `npm run check` (pre-commit hook).
+
+- **`EP-12` Never ship a skill with only one mode of operation.** Every skill must define 2 modes: Full (default, comprehensive) and Targeted (keyword-triggered, fast). Consequence: users cannot control depth, leading to unnecessary context load and wasted cycles. Action: document both modes with routing keywords, time estimates, and explicit output contracts in the SKILL.md metadata.
+
+- **`EP-12` Never execute a skill without defining 3–5 mechanical, sequential phases.** Each phase must have a fixed structure (input → check → output), not free-form reasoning. Consequence: agents hallucinate or improvise execution paths, breaking reproducibility and debuggability. Action: document phases in SKILL.md before implementing; reviewers verify phases are mechanical, not conversational.
+
+- **`EP-12` Never produce skill output as free-form prose.** All outputs must match exact templates stored in `templates/` directory and must be written to a dedicated output directory (`.harness/`, `.audit/`, etc., never root). Consequence: downstream skills cannot parse outputs, target projects get cluttered with artifacts, and findings become non-actionable. Action: define templates before coding; review gates verify output locations match declarations.
+
+- **`EP-12` Never pre-read entire file trees or omit progressive context loading.** Skills must read an index first, identify only what's needed from the index, load specific files only, and flush completed work before the next phase. Target: max ~200 lines mandatory-read per action path. Consequence: token explosion, hallucination from information overload, and inability to scale to large repositories. Action: context-loading audit during skill review; pre-merge testing on repos of varying sizes (10 files, 1000 files, 100K files).
+
+- **`EP-12` Never suggest next actions without checking current state.** Before proposing work, read REQUIREMENTS.md / PLANS.md / REVIEWS.md (for HELab) to confirm the work is not already done. Do not invent project names; use exact names the user provided or neutral wording (`this workspace`, `HELab`). Consequence: duplicate work, wasted cycles, erosion of user trust. Action: state-awareness audit during skill review; suggested actions must cite the state document they checked (e.g., "per PLANS.md, feature X is in progress").
+
+- **`EP-15` Never change `framework/` or `.agent/skills/harnessing-agents/` without syncing and updating release notes.** When the Skill Creation Standard is updated, sync it to `.agent/skills/harnessing-agents/framework/` (via `npm run sync:skill-framework`) and update `RELEASES.md` with the change. Consequence: target projects run against stale standards, skill quality diverges between HELab and external delivery, and downstream change traceability is lost.
+
 ## Conventions
 
 - **File naming:** Title Case with spaces, max 5 words. Use `HE` prefix for general docs, `MAS` for multi-agent specific content. Violation causes naming entropy that breaks cross-link validation and file-search heuristics.
