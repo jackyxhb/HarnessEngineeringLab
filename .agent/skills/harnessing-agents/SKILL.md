@@ -55,6 +55,7 @@ Route by keyword in the user's input. If no keyword matches, **default to Mode 1
 
 ### Mode 1: Full Audit — keyword: `full` (DEFAULT)
 Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
+- **Anti-termination rule:** Phase 0 scoping is informational only. Never terminate, skip, or reduce the audit based on project type, tech stack, or scale. If this skill is executing, agents are involved and all phases apply.
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
 - **Lifecycle discipline:** When the audit will touch a live target repository, also use `references/he-harness-injection-protocol-draft.md` to classify slots, distinguish staging versus live operational touch-points, and control when mutation is allowed.

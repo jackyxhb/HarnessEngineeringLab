@@ -26,6 +26,8 @@ Before executing any tasks, agents MUST load and anchor to the authoritative JSO
 
 ### Task 0.1: Identify Target Project & Scale
 
+> **Anti-termination rule:** Phase 0 is informational only. Do not skip, terminate, or reduce subsequent phases based on project type, tech stack, or scale classification. If this procedure is executing, agents are involved and all phases apply. There is no "audit not applicable" exit path.
+
 **Input:** Target project path or repository URL
 **Actions:**
 

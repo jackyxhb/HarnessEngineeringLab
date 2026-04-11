@@ -11,6 +11,8 @@ The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature i
 ## Phase 0: Pre-Flight (Pre-chain: Scope)
 
 > **Chain Position:** Pre-chain — establishes scope before principle analysis begins.
+>
+> **Anti-termination rule:** Phase 0 is informational only. Do not skip, terminate, or reduce subsequent phases based on project type, tech stack, or scale classification. If this skill is executing, agents are involved and all phases apply. There is no "audit not applicable" exit path.
 
 1. **Identify Project:** Scan the repository root. Identify project type, scale (SAS/MAS), and tech stack. Create `.harness/HE-SCOPE.md`.
 2. **Quick Scan:** Walk `framework/HE Index.md` and check each of the 32 features' L2 targeted enhancement for presence in the target project. Append results and current Harness Maturity Level to `.harness/HE-SCOPE.md`.

@@ -725,6 +725,23 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "scope_paths": ["README.md", "RELEASES.md"],
       "change_summary": "Full project review discovered 3 stale Mode 3 references in README.md (the skill has only 2 modes: full and feature). Replaced all Mode 3 labels with Mode 2 in the Feature Lookup section. Updated RELEASES.md to include README.md in the existing Mode 3 cleanup entry.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-12-002",
+      "date": "2026-04-12",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R008", "HE-R009"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/references/he-full-audit.md",
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "framework/HE Harnessing Protocol.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Added anti-termination constraint to Phase 0 in he-full-audit.md, HE Harnessing Protocol.md, and SKILL.md. A target-project audit on an iOS app incorrectly terminated at Phase 0 claiming the project was not a candidate for Harness Engineering. Root cause: Phase 0 told agents what to record but never prohibited early exit based on project type. The fix adds an explicit boxed rule that Phase 0 is informational only and all phases must proceed. Framework mirror synced.",
+      "findings": []
     }
   ]
 }
