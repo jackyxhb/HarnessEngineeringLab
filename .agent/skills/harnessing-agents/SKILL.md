@@ -180,6 +180,7 @@ Use feature implementation guides when a feature gap has already been identified
 - `references/he-p0-1-bash-sandbox-mount-pattern.md`: Concrete target-project remediation pattern for mounting P0-1 bash-sandbox infrastructure.
 - `references/he-p0-3-verification-mount-pattern.md`: Concrete target-project remediation pattern for mounting P0-3 verification.
 - `references/he-p1-7-planning-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-7 planning infrastructure.
+- `references/he-p1-9-branch-enforcement-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-9 branch-based cognitive memory.
 - `references/he-p1-10-requirements-ledger-mount-pattern.md`: Concrete target-project remediation pattern for mounting P1-10 requirements-ledger infrastructure.
 - `references/he-p2-5-intake-gate-mount-pattern.md`: Concrete target-project remediation pattern for mounting P2-5 intake-gate enforcement.
 - `references/he-first-mount-governance-mount-pattern.md`: Concrete Feature Package mount pattern for the first-mount governance Repo Profile.

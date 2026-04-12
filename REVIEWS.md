@@ -774,6 +774,21 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Added P1-9 branch-enforcement mount pattern, wired into Phase 4 feature guides, hardened assessment template with mandatory evidence proof gate, added Phase 5 proof gate blockquote. Fixes two compounding bugs: P1-9 was assessed but never mounted, and the assessment report allowed features to be marked done without execution evidence.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-12-005",
+      "date": "2026-04-12",
+      "status": "approved",
+      "generator": "Claude (Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R009"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Added P1-9 mount pattern reference to the Feature Implementation Guides section of SKILL.md so agents discover the new mount pattern from the skill entry point.",
+      "findings": []
     }
   ]
 }

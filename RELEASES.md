@@ -14,6 +14,7 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 - **Phase 4 feature guide:** Wired P1-9 into the full-audit Additional Feature Guides so gap-to-execution routing exists for branch enforcement.
 - **Assessment proof gate:** Hardened `templates/HE-ASSESSMENT-REPORT.md` Section 2 with a mandatory evidence citation rule — every feature marked `[x]` must cross-reference a concrete file or gate from `HE-CHANGE-SUMMARY.md`. Features assessed but not mounted must remain `[ ]` with a deferral reason.
 - **Phase 5 proof gate:** Added an assessment proof gate blockquote to Phase 5 in `he-full-audit.md` reinforcing the evidence-over-discussion rule during verification.
+- **SKILL.md guide list:** Added `he-p1-9-branch-enforcement-mount-pattern.md` to the Feature Implementation Guides section so agents discover the new P1-9 mount pattern from the skill entry point.
 
 ## 4.1.1 - 2026-04-12
 
