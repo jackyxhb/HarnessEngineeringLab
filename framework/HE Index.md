@@ -145,9 +145,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "pillar_name": "Foundation: Infrastructure (Execute)",
       "ep": "EP-1",
       "L1": "Isolation prevents contamination",
-      "L2": "Zero cross-contamination between agent environments",
+      "L2": "Zero cross-contamination between agent execution environments",
       "file": "framework/features/P0-01.md",
-      "downstream": ["P0-3", "P0-5", "P1-3", "P1-6", "P3-1"]
+      "downstream": ["P0-3", "P0-5", "P1-3", "P3-1"]
     },
     {
       "id": "P0-2",
@@ -158,7 +158,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Agent work is persistent, versioned, and conflict-free",
       "file": "framework/features/P0-02.md",
-      "downstream": ["P0-9", "P1-7", "P1-9", "P3-1"]
+      "downstream": ["P0-9", "P1-3", "P1-7", "P1-9", "P3-1"]
     },
     {
       "id": "P0-3",
@@ -211,7 +211,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "pillar_name": "Foundation: Infrastructure (Execute)",
       "ep": "EP-7",
       "L1": "Every action must be traceable",
-      "L2": "Every agent action is attributable; stuck agents detected within time bounds",
+      "L2": "Every agent action is attributable; stuck agents are detected and escalated within defined time bounds",
       "file": "framework/features/P0-07.md",
       "downstream": []
     },
@@ -269,7 +269,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "Agent context accuracy without human briefing",
       "file": "framework/features/P1-01.md",
-      "downstream": ["P2-2", "P3-2"]
+      "downstream": ["P0-11", "P2-2", "P3-2"]
     },
     {
       "id": "P1-2",
@@ -280,7 +280,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Sustained reasoning quality across long tasks",
       "file": "framework/features/P1-02.md",
-      "downstream": []
+      "downstream": ["P0-4"]
     },
     {
       "id": "P1-3",
@@ -311,7 +311,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "pillar_name": "Pillar 1: Context Engineering (Inform)",
       "ep": "EP-8",
       "L1": "You cannot improve what you do not measure",
-      "L2": "Agents and humans have real-time visibility into system behavior",
+      "L2": "Agents and humans have real-time visibility into system behavior and health",
       "file": "framework/features/P1-05.md",
       "downstream": ["P0-7", "P0-8"]
     },
@@ -346,7 +346,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Strategic goals and critical decisions persist across all context resets",
       "file": "framework/features/P1-08.md",
-      "downstream": []
+      "downstream": ["P0-4"]
     },
     {
       "id": "P1-9",
@@ -489,7 +489,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "pillar_name": "Pillar 3: Entropy Management (Maintain)",
       "ep": "EP-11",
       "L1": "If it's not in the repo, it doesn't exist",
-      "L2": "Core system documentation automatically stays in sync with codebase",
+      "L2": "Canonical governance documents auto-update when features land; redundant concepts are merged",
       "file": "framework/features/P3-04.md",
       "downstream": ["P1-1"]
     }
