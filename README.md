@@ -50,7 +50,7 @@ HarnessEngineeringLab/
 ├── ANCHORS.md               ← Strategic decision records (Context Anchoring)
 ├── framework/               ← Core framework definitions & operational guides
 │   ├── features/            ← 32 core feature definitions (P0-1 to P3-4)
-│   ├── principles/          ← 19 engineering principles (EP-1 to EP-19)
+│   ├── principles/          ← 16 engineering principles
 │   └── cross-cutting/       ← Systemic risks and evaluation frameworks
 ├── .agent/skills/
 │   └── harnessing-agents/   ← Live-linked skill with a bundled runtime mirror of framework/
@@ -67,7 +67,7 @@ The canonical framework definitions and operational guides. This is the single s
 - **HE Principle Practice Chain.md** — The 5-level Principle-to-Practice Chain methodology
 - **HE Harnessing Protocol.md** — Step-by-step procedure for applying harness engineering
 - **features/** — 32 modular feature files (L1→L5 chains)
-- **principles/** — 19 modular engineering principle files (EP-1 to EP-19)
+- **principles/** — 16 modular engineering principle files
 - **cross-cutting/** — Reward Engineering, Token Economics, Prevention Checklist
 
 ### `.agent/skills/harnessing-agents/`

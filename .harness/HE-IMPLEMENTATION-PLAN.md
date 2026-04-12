@@ -46,6 +46,7 @@
 **Current State:** `audit.sh` provides structural observability (file existence, workflow registry, pre-commit health). `generate-observation-report.js` is functional but depends on `agent-logs.jsonl` which is never populated because IDE agents don't emit structured file-based logs.
 **Root Cause:** IDE agents (Claude Code, GitHub Copilot, Cursor, Windsurf) don't write to repo log files. The AGENTS.md logging spec is aspirational.
 **Remediation:**
+
 1. Wire `generate-observation-report.js` into `npm run audit` so it runs alongside `audit.sh`.
 2. Extend `audit.sh` to append a structural observation entry to `agent-logs.jsonl` each time it runs, providing minimum data flow for the report generator.
 3. Update AGENTS.md logging configuration to mark runtime agent logging as IDE-dependent and add the audit-based observability as the achievable baseline.
@@ -69,6 +70,7 @@
 **Current State:** AGENTS.md specifies logging format but no operational escalation rules. No heartbeat or stuck-detection mechanism.
 **Root Cause:** True automated escalation (heartbeat monitoring, external orchestrator) requires MAS infrastructure that doesn't exist in SAS context. However, contract-level escalation rules are achievable.
 **Remediation:**
+
 1. Add escalation protocol rules to AGENTS.md: if an agent hits 3 consecutive failures on the same step, STOP execution and present a diagnostic to the user.
 2. This complements Ralph Loops (P0-4) configuration already in AGENTS.md by adding the "what to do when stuck" contract.
 
@@ -87,6 +89,7 @@
 **Current State:** `exit-interceptor.js` exists with `checkPrematureExit()` and `triggerReinjection()` functions. Not wired into any workflow. AGENTS.md references `node scripts/exit-interceptor.js` but no workflow calls it.
 **Root Cause:** The script was created as infrastructure-first without a caller. IDE agents don't run post-task hooks automatically.
 **Remediation:**
+
 1. Wire exit-interceptor into `npm run audit` as a check: if `.harness/task-state.json` exists and shows incomplete steps, emit a warning.
 2. Add an AGENTS.md rule: after completing a multi-step task, agents should verify completion by checking the todo list or task state against the original objective before declaring done.
 
@@ -118,8 +121,8 @@ All Batch 1 changes can be implemented in a single commit. Batch 2 changes depen
 
 ## Summary
 
-| Batch | Items | Files Touched | Estimated Scope |
-|-------|-------|---------------|-----------------|
-| 1 | 3 | AGENTS.md, audit.sh, package.json | 5 edits across 3 files |
-| 2 | 2 | AGENTS.md, audit.sh | 3 edits across 2 files |
-| Total | 5 | 3 unique files | 8 edits |
+| Batch | Items | Files Touched                     | Estimated Scope        |
+| ----- | ----- | --------------------------------- | ---------------------- |
+| 1     | 3     | AGENTS.md, audit.sh, package.json | 5 edits across 3 files |
+| 2     | 2     | AGENTS.md, audit.sh               | 3 edits across 2 files |
+| Total | 5     | 3 unique files                    | 8 edits                |

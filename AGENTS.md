@@ -16,10 +16,26 @@ All content is organized under this canonical structure. When editing or creatin
 
 ```json
 [
-  { "layer": "Foundation: Infrastructure (Execute)", "role": "Execution engine & orchestration", "verb": "Execute" },
-  { "layer": "Pillar 1: Context Engineering (Inform)", "role": "Memory, knowledge, real-time data", "verb": "Inform" },
-  { "layer": "Pillar 2: Architectural Constraints (Constrain)", "role": "Mechanical enforcement of boundaries", "verb": "Constrain" },
-  { "layer": "Pillar 3: Entropy Management (Maintain)", "role": "Long-term codebase health", "verb": "Maintain" }
+  {
+    "layer": "Foundation: Infrastructure (Execute)",
+    "role": "Execution engine & orchestration",
+    "verb": "Execute"
+  },
+  {
+    "layer": "Pillar 1: Context Engineering (Inform)",
+    "role": "Memory, knowledge, real-time data",
+    "verb": "Inform"
+  },
+  {
+    "layer": "Pillar 2: Architectural Constraints (Constrain)",
+    "role": "Mechanical enforcement of boundaries",
+    "verb": "Constrain"
+  },
+  {
+    "layer": "Pillar 3: Entropy Management (Maintain)",
+    "role": "Long-term codebase health",
+    "verb": "Maintain"
+  }
 ]
 ```
 
@@ -33,7 +49,7 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Directory Layout
 
-- `framework/` — **Canonical knowledge source.** Core framework definitions (32 features), 19 engineering principles, and enhancement options. This root surface is authoritative and must never be edited indirectly through support material or the bundled skill mirror.
+- `framework/` — **Canonical knowledge source.** Core framework definitions (32 features), 16 engineering principles, and enhancement options. This root surface is authoritative and must never be edited indirectly through support material or the bundled skill mirror.
 - `.agent/skills/harnessing-agents/` — **Live-linked skill surface.** The skill that audits and improves target projects and that this repository also runs on itself. It ships with a synchronized runtime mirror at `.agent/skills/harnessing-agents/framework/` so target-project execution has local access to the framework context it needs.
 - `.agent/workflows/` — Active agent workflow definitions that operate on the canonical framework surface.
 - `scripts/` — Active harness tooling that validates and audits the canonical framework surface and live-linked skill surface.

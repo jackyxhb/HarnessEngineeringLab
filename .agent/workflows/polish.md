@@ -13,7 +13,7 @@ Run this workflow when you encounter a new architectural requirement, a powerful
 1. **Identify the Gap/Insight:** What new behavior, rule, or failure mode is the user proposing? What existing project evidence motivates it?
 2. **Determine Target:** Decide whether to enrich an _existing_ feature (e.g., modifying `P1-8 Context Anchoring`) or create a _new_ core feature slot (e.g., adding `P{pillar}-NEXT …`). Let the user decide if ambiguous.
    - **Constraint rule:** The framework is intentionally bounded (32 features). Prefer enriching an existing feature unless the new concept is distinctly different AND occupies an unoccupied architectural slot. Adding a feature increments the canonical count and triggers `he-lint.js` to enforce `EXPECTED_FEATURE_FILES`.
-3. **Identify the Governing Principle:** Which of the 19 engineering principles (`framework/principles/EP-*.md`) governs this behavior? If none fits, the insight may be a new principle, not a new feature — escalate before proceeding.
+3. **Identify the Governing Principle:** Which of the 16 engineering principles (`framework/principles/EP-*.md`) governs this behavior? If none fits, the insight may be a new principle, not a new feature — escalate before proceeding.
 
 ## Phase 2: Execution (Drafting)
 
@@ -24,7 +24,7 @@ Produce a draft that fills every required slot of the canonical feature file tem
    - **L2 Targeted Enhancement:** The concrete enhancement stated as an outcome.
    - **L3 Design Decisions:** One-line design pattern(s) selected.
    - **L4 Concrete Actions & Tools:** `**Action:**` and `**Tool:**` bullets.
-   - **L4 Prevention:** At least one `**\`P{id}\` Prevent {FailureMode}:**` item. If the feature is data-bearing, add a matching `Prevent Narrative {Artifact}` item to enforce P1-1 Machine-Readability First.
+   - **L4 Prevention:** At least one `**\`P{id}\` Prevent {FailureMode}:\*\*`item. If the feature is data-bearing, add a matching`Prevent Narrative {Artifact}` item to enforce P1-1 Machine-Readability First.
    - **L5 Gap Signals:** Observable signs that the feature is absent or weak in a target project.
    - **L5 Improvement Policies:** JSON block only — never Markdown tables (P1-1).
    - **L5 Measurement:** Concrete metrics for the enhancement.

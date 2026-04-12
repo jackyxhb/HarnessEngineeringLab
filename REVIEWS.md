@@ -798,11 +798,31 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "reviewer": "Jack Xiao",
       "review_type": "manual",
       "requirement_ids": ["HE-R009"],
-      "scope_paths": [
-        "AGENTS.md",
-        "scripts/harness/audit.sh"
-      ],
+      "scope_paths": ["AGENTS.md", "scripts/harness/audit.sh"],
       "change_summary": "Self-host audit remediation: added Socratic Pause protocol (P1-11), sandbox risk acceptance (P0-1), two-tier observability model (P1-5), escalation protocol (P0-7), completion verification rule (P0-4). Wired audit.sh to emit structured log entries and generate observation reports.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-13-001",
+      "date": "2026-04-13",
+      "status": "approved",
+      "generator": "GitHub Copilot (Claude Opus 4.6)",
+      "reviewer": "User",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R004"],
+      "scope_paths": [
+        "framework/principles/",
+        "framework/features/",
+        "framework/HE Index.md",
+        "framework/cross-cutting/HE Prevention Checklist.md",
+        "framework/HE-Terms.md",
+        "scripts/he-lint.js",
+        "README.md",
+        "AGENTS.md",
+        "RELEASES.md",
+        ".agent/workflows/polish.md"
+      ],
+      "change_summary": "Consolidated 19 engineering principles to 16 by merging EP-6 into EP-9, EP-13 into EP-12, and EP-19 into EP-11. Deleted 3 principle files (EP-06.md, EP-13.md, EP-19.md). Updated all governed-feature mappings, feature chain headers, HE Index.md, Prevention Checklist, HE-Terms, README, AGENTS.md, he-lint.js expected count, and RELEASES.md. Synced skill framework mirror.",
       "findings": []
     }
   ]

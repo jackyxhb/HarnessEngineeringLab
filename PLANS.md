@@ -26,6 +26,29 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 
 ## Active Plans
 
+_No active plans._
+
+---
+
+## Completed Plans
+
+### Plan: Consolidate Engineering Principles (19 → 16)
+
+- **Goal:** Eliminate 3 redundant/narrow engineering principles by merging their governed features into stronger parent principles. EP-19 → EP-11, EP-6 → EP-9, EP-13 → EP-12.
+- **Requirement IDs:** `HE-R004`
+- **Scope:** `framework/principles/`, `framework/features/`, `framework/HE Index.md`, `framework/cross-cutting/HE Prevention Checklist.md`, `framework/HE-Terms.md`, `scripts/he-lint.js`, `README.md`, `AGENTS.md`, `.harness/HE-CLUES.md`, `RELEASES.md`, `REVIEWS.md`. Out of scope: renumbering remaining principle IDs (gaps at EP-6, EP-13, EP-19 are accepted).
+- **Status:** `done`
+- **Steps:**
+  - [x] Delete EP-06.md, EP-13.md, EP-19.md; update EP-09.md, EP-11.md, EP-12.md with absorbed features
+  - [x] Update feature files P0-6, P1-6, P3-2, P3-4 chain headers
+  - [x] Update HE Index.md (remove 3 principles, update governs + feature ep fields)
+  - [x] Update Prevention Checklist, HE-Terms, HE-CLUES, README, AGENTS.md, he-lint.js
+  - [x] Sync skill framework mirror, update RELEASES.md, validate with npm run check
+- **Constraints:** Preserve all 32 features unchanged. Do not renumber principle IDs. Keep historical PLANS.md and ANCHORS.md references intact.
+- **Checkpoints:** Principle files updated; feature chains updated; index updated; lint green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-13
+
 ### Plan: P1-9 Mount Pattern and Assessment Proof Gate
 
 - **Goal:** Ship a P1-9 branch-enforcement mount pattern so Phase 4 can install branch-based cognitive memory in target projects, and harden the assessment report template so features cannot be marked done without verified execution evidence.
@@ -41,10 +64,6 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 - **Checkpoints:** Mount pattern created; Phase 4 wired; template hardened; validation green.
 - **Blocking Issues:** None.
 - **Completed:** 2026-04-12
-
----
-
-## Completed Plans
 
 ### Plan: Feature Chain Compliance Remediation
 

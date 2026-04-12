@@ -23,11 +23,12 @@
 **Current State:** `scripts/exit-interceptor.js` exists with `checkPrematureExit()` and `triggerReinjection()` exports. AGENTS.md specifies loop budgets (max 3 reinjections), escalation thresholds (2 failed → human), and state persistence via `.harness/task-state.json`. However: (1) `exit-interceptor.js` is not wired into any workflow, pre-commit hook, or CI gate; (2) `.harness/task-state.json` does not exist; (3) `.harness/reinjection-log.jsonl` does not exist; (4) no agent workflow references the exit interceptor.
 **Prevention Active:** "Prevent Premature Exits" — agents can stop mid-task and declare "done" without any interception. "Prevent Narrative Task State" — no machine-readable task state is being produced.
 **Recommended Options:**
+
 - Wire `exit-interceptor.js` as a post-task hook or AGENTS.md instruction for agents to run before closing.
 - Seed `.harness/task-state.json` schema so the script can read it.
 - Add AGENTS.md instruction: "Run `node scripts/exit-interceptor.js` after task completion."
-**Severity:** Important — causes friction (premature task abandonment is a known agent failure mode)
-**Remediation Level:** Medium — add feature/hook
+  **Severity:** Important — causes friction (premature task abandonment is a known agent failure mode)
+  **Remediation Level:** Medium — add feature/hook
 
 ---
 
@@ -48,11 +49,12 @@
 **Current State:** AGENTS.md specifies JSON logging format (timestamp, agent_id, action, target, result, duration_ms), log location (`.harness/agent-logs.jsonl`), logging triggers (every tool use, file edit, command execution), and 30-day retention. `scripts/exit-interceptor.js` contains heartbeat-style monitoring. `scripts/generate-observation-report.js` reads `agent-logs.jsonl`. However: (1) `.harness/agent-logs.jsonl` does not exist — no agent actually emits logs to it; (2) no escalation triggers are mechanically wired; (3) no notification integrations exist.
 **Prevention Active:** "Prevent Silent Looping" — no heartbeat monitoring is active. "Prevent Narrative Audit Trails" — audit logs are not being generated at all, making JSON standardization moot.
 **Recommended Options:**
+
 - The logging spec is aspirational: current IDE agents (Claude Code, VS Code Copilot) do not natively emit JSON logs to a repo file. Mechanical enforcement requires an agent wrapper or post-session hook that doesn't yet exist at the IDE level.
 - Accept the gap for now; add a stub `.harness/agent-logs.jsonl` with schema documentation so future tooling can target it.
 - Wire `exit-interceptor.js` heartbeat check into the `/cognitive-branch` workflow as a pre-merge validation.
-**Severity:** Important — causes friction (no operational traceability)
-**Remediation Level:** Medium — add feature/hook
+  **Severity:** Important — causes friction (no operational traceability)
+  **Remediation Level:** Medium — add feature/hook
 
 ---
 
@@ -84,17 +86,18 @@
 **Current State:** `scripts/generate-observation-report.js` exists — reads `.harness/agent-logs.jsonl` and produces summary stats. `.harness/observation-report.json` exists as a stub. `.harness/dashboard.md` exists. `audit.sh` tracks structural integrity (21 required files, feature/principle counts, workflow registry). Weekly GC workflow produces GitHub Issues for violations. However: (1) `agent-logs.jsonl` doesn't exist, so observation reports are empty; (2) no real-time alerting; (3) harness structural integrity IS monitored (via audit.sh + CI).
 **Prevention Active:** "Prevent Blind Execution" — agent actions do not produce an audit trail that a separate auditor can verify. "Prevent Narrative Observability Metrics" — no metrics are being generated.
 **Recommended Options:**
+
 - Structural observability (audit.sh, he-lint, CI) is strong. The gap is in runtime agent-action observability.
 - Same root cause as P0-7: IDE agents don't natively emit repo-file logs.
 - Strengthen what's working: add he-lint result metrics to observation-report.json; wire audit.sh results into dashboard.md.
-**Severity:** Important — causes friction
-**Remediation Level:** Medium — add feature/hook
+  **Severity:** Important — causes friction
+  **Remediation Level:** Medium — add feature/hook
 
 ---
 
 **Area:** Pillar 1
 **Feature:** P1-6 Web Search & MCP Integration
-**Governed By:** EP-13 — Current signals outperform stale snapshots
+**Governed By:** EP-12 — Finite attention demands active management
 **Current State:** `.continue/mcpServers/` directory exists with MCP server configuration. IDE-level MCP and web search tools are available (VS Code has `vscode-websearchforcopilot_webSearch`; Claude Code has web search tools). No repo-level manifest of available MCP capabilities. No audit trail of external data used in agent decisions.
 **Prevention Active:** None critically. "Prevent Knowledge Silos" is partially mitigated by IDE-level web search access. "Prevent Narrative MCP Server Manifests" — no machine-readable MCP capability manifest exists at the repo level.
 **Recommended Options:** Defer — MCP integration is IDE-managed. Document available MCP servers in AGENTS.md for agent awareness.
@@ -109,11 +112,12 @@
 **Current State:** No explicit Socratic questioning protocol. No mechanical gate that forces agents to pause and clarify before executing on ambiguous inputs. AGENTS.md has extensive rules and conventions but no "Socratic pause" requirement. The harnessing-agents skill has Mode routing (keywords trigger specific modes), which is a form of intent disambiguation, but no structured inquiry template for general agent tasks.
 **Prevention Active:** "Prevent Premature Execution" — agents can start implementation on ambiguous inputs without surfacing assumptions. No record of clarifications is maintained.
 **Recommended Options:**
+
 - Add an AGENTS.md instruction requiring agents to confirm understanding of multi-step tasks before execution.
 - This is primarily a skill/workflow concern — the harnessing-agents skill already routes by keyword; general agent behavior is harder to gate mechanically without IDE-level support.
 - Add a Socratic pause requirement in AGENTS.md for any task involving changes to review-required surfaces.
-**Severity:** Important — causes friction (misunderstood tasks waste agent cycles)
-**Remediation Level:** Light — meta-doc update (AGENTS.md instruction)
+  **Severity:** Important — causes friction (misunderstood tasks waste agent cycles)
+  **Remediation Level:** Light — meta-doc update (AGENTS.md instruction)
 
 ---
 
@@ -123,10 +127,11 @@
 **Current State:** `he-lint.js` validates: feature file count (32), principle file count (19), feature ID format, requirement-gate consistency, review-ledger format, downstream reference validity. No import-graph analysis (repo has no application code with imports). No architectural boundary definitions beyond feature/principle structure. For a docs-first repo, the "dependency" concern maps to: do feature files reference correct dependency IDs? he-lint validates this.
 **Prevention Active:** Partially addressed. "Prevent Boundary Overreach" — not applicable to a docs repo in the traditional sense. he-lint does enforce the feature-to-principle dependency structure and downstream references.
 **Recommended Options:**
+
 - For HELab's docs-first nature, dependency enforcement IS implemented via he-lint's structural validation.
 - Could strengthen by adding cross-reference validation: verify that every `downstream` link in HE Index.md matches a corresponding "Required by" or "Interacts with" entry in the target feature file.
-**Severity:** Enhancement — nice to have
-**Remediation Level:** Medium — add feature/hook (he-lint enhancement)
+  **Severity:** Enhancement — nice to have
+  **Remediation Level:** Medium — add feature/hook (he-lint enhancement)
 
 ---
 
@@ -136,10 +141,11 @@
 **Current State:** AGENTS.md has 18 DO NOT rules with consequence statements. The harnessing-agents skill declares `allowed-tools` constraints. `.claude/settings.local.json` may contain Claude Code-specific permission settings. No machine-readable permission manifest. No tiered permission model. No secret scanning or PII detection in CI (not needed — no application code or secrets in a framework docs repo).
 **Prevention Active:** "Prevent Unauthorized Privilege Escalation" — partially addressed by DO NOT rules; not mechanically enforced beyond agent contract text. "Prevent Narrative Permission Policies" — no JSON permission manifests.
 **Recommended Options:**
+
 - For a docs-first repo, the risk profile is low. The primary risk is agents editing canonical surfaces without review — which P2-3 and P2-5 already gate.
 - Document the risk acceptance: for HELab, bounded autonomy is achieved through review gates + intake gates rather than tool-access whitelists.
-**Severity:** Enhancement — nice to have
-**Remediation Level:** Light — meta-doc update
+  **Severity:** Enhancement — nice to have
+  **Remediation Level:** Light — meta-doc update
 
 ---
 

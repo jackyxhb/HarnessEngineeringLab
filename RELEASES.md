@@ -10,6 +10,7 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 
 ### What's New
 
+- **Principle consolidation (19 → 16):** Merged 3 redundant/narrow engineering principles into stronger parents. EP-6 (Scaffolding is temporary) absorbed into EP-9 (Standard operations reduce variance); EP-13 (Current signals outperform stale snapshots) absorbed into EP-12 (Finite attention demands active management); EP-19 (Documentation must live with the code) absorbed into EP-11 (If it's not in the repo, it doesn't exist). All 32 features preserved unchanged; governed-feature mappings updated. Retired principle IDs (EP-6, EP-13, EP-19) leave gaps in the numbering — no renumbering applied.
 - **P1-9 mount pattern:** Added `references/he-p1-9-branch-enforcement-mount-pattern.md` — the skill can now physically install branch-based cognitive memory in target projects during Phase 4 execution instead of only assessing the gap.
 - **Phase 4 feature guide:** Wired P1-9 into the full-audit Additional Feature Guides so gap-to-execution routing exists for branch enforcement.
 - **Assessment proof gate:** Hardened `templates/HE-ASSESSMENT-REPORT.md` Section 2 with a mandatory evidence citation rule — every feature marked `[x]` must cross-reference a concrete file or gate from `HE-CHANGE-SUMMARY.md`. Features assessed but not mounted must remain `[ ]` with a deferral reason.

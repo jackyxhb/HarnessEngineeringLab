@@ -28,7 +28,7 @@ The primary success criterion for HELab and for this skill is **target-project d
 
 All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Inside the shipped skill, the `framework/` paths below refer to the bundled runtime mirror under this skill directory. In HELab, the root `framework/` remains canonical and must be synced into that mirror before merge. Navigate via the index:
 
-1. **Entry point:** `framework/HE Index.md` — JSON-based index with L1+L2 inline metadata for all 32 features, 19 principles, and 6 cross-cutting concerns.
+1. **Entry point:** `framework/HE Index.md` — JSON-based index with L1+L2 inline metadata for all 32 features, 16 principles, and 6 cross-cutting concerns.
 2. **Feature files:** one file per feature under `framework/features/`, containing the full L1→L5 vertical chain slice (principle → enhancement → design → actions/prevention → measurement). Resolve the exact path from the `file` field in `framework/HE Index.md` rather than inferring filenames.
 3. **Principle files:** `framework/principles/EP-{num}.md` — one file per engineering principle, listing governed features.
 4. **Cross-cutting:** `framework/cross-cutting/` — concerns spanning multiple features (reward engineering, token economics, SAS→MAS readiness, prevention checklist, evaluation dimensions, perspectives).
@@ -48,13 +48,15 @@ All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Insi
 
 Route by keyword in the user's input. If no keyword matches, **default to Mode 1 (Full Audit)**.
 
-| Keyword | Mode | What It Does | Time |
-| --- | --- | --- | --- |
-| **`full`** | Full Audit | 6-phase lifecycle: Scope → Gaps → Score → Plan → Execute → Verify | 30–60 min |
-| **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain | ~2 min |
+| Keyword       | Mode           | What It Does                                                      | Time      |
+| ------------- | -------------- | ----------------------------------------------------------------- | --------- |
+| **`full`**    | Full Audit     | 6-phase lifecycle: Scope → Gaps → Score → Plan → Execute → Verify | 30–60 min |
+| **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain                     | ~2 min    |
 
 ### Mode 1: Full Audit — keyword: `full` (DEFAULT)
+
 Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
+
 - **Anti-termination rule:** Phase 0 scoping is informational only. Never terminate, skip, or reduce the audit based on project type, tech stack, or scale. If this skill is executing, agents are involved and all phases apply.
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
@@ -64,7 +66,9 @@ Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → 
 - **User checkpoint (STOP gate):** After Phase 3 (Planning) writes `.harness/HE-IMPLEMENTATION-PLAN.md`, the skill **MUST STOP and present the plan for user review** before proceeding to Phase 4 (Execution). Do not apply any remediation batch — Light, Medium, or Heavy — without explicit user confirmation of the plan. This gate is defined canonically in `references/he-full-audit.md` Phase 3 and mirrors the Protocol's Task 3.2 `STOP` requirement.
 
 ### Mode 2: Feature Lookup — keyword: `feature`
+
 Look up a specific feature's full chain (L1 Principle → L2 Enhancement → L3 Design → L4 Actions/Prevention → L5 Gaps/Measurement). The user should specify a feature ID (e.g., `P0-9`) or feature name.
+
 - **Navigation:** Read `framework/HE Index.md` → find the requested feature ID in the JSON → open the exact canonical path in that feature's `file` field. Feature filenames are zero-padded (see `HE Index.md` header's **Canonical Path Rule** for the authoritative statement); do not guess unpadded paths.
 - **Traceability:** If the user asks for requirement traceability, read the root `REQUIREMENTS.md` ledger. Do not look under `docs/` for canonical requirements.
 - **Output Template:** Use `templates/HE-FEATURE-LOOKUP.md` as the response shape for Mode 2.
@@ -123,6 +127,7 @@ Minimum requirements:
 ### Internal Tools (consumed during Full Audit, not user-invoked)
 
 These are consumed during a full audit — users do not need to invoke them directly:
+
 - `references/he-scoring.md` — 6-dimension scoring + priority formula, applied in Phase 2 of Mode 1.
 - `framework/HE Index.md` — feature dependency maps (`downstream`, `impact_weight`) used by Phase 2 prioritization.
 - `references/he-subagent-prompts.md` — **optional** parallel-dispatch prompt templates for orchestrators that have subagent capability (e.g., Claude Code with the `Task` / `Agent` tool enabled). The baseline Mode 1 flow in `references/he-full-audit.md` is a sequential single-agent walk and does **not** require these prompts. This skill's declared `allowed-tools` list intentionally excludes `Task` / `Agent`; if a parent harness wants to parallelize Phase 1 by dispatching subagents, it must do so at the orchestrator level and pass in the prompt text from `he-subagent-prompts.md`. The skill itself cannot launch subagents.
@@ -130,6 +135,7 @@ These are consumed during a full audit — users do not need to invoke them dire
 ## Context & Action Space Optimization
 
 To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
+
 - **Progressive Context Loading:** Do not pre-read all feature files. Read the index first, then load only the specific feature files needed for the current task.
 - **Trajectory Reduction:** After completing any major phase (e.g. Inspect), summarize findings into the requested template, then flush raw file contents from active working memory before proceeding.
 - **ReAct Formatting:** When analyzing gaps, wrap logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
@@ -191,7 +197,7 @@ When the harness-injection protocol classifies a target repository under the **f
 
 ## Harness Injection Lifecycle Draft
 
-Use `references/he-harness-injection-protocol-draft.md` when the skill needs to reason about *how* it should move through a target repository, not just *what* feature it should mount.
+Use `references/he-harness-injection-protocol-draft.md` when the skill needs to reason about _how_ it should move through a target repository, not just _what_ feature it should mount.
 
 The draft defines:
 

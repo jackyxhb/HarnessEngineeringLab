@@ -24,7 +24,7 @@ A top-level functional grouping in the framework. Harness Engineering uses three
 
 ### Engineering Principle
 
-A first-principles rule (`EP-1` through `EP-19`) that governs one or more features. Principles explain *why* a feature exists and what failure mode it must mechanically prevent.
+A first-principles rule (`EP-1` through `EP-18`, with gaps at retired IDs) that governs one or more features. Principles explain _why_ a feature exists and what failure mode it must mechanically prevent.
 
 ### Feature
 
