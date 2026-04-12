@@ -1,62 +1,187 @@
-# HE-PRIORITIES.md
+# HE-PRIORITIES
 
-## Gap Scoring Results
+**Date:** 2026-04-12
+**Auditor:** GitHub Copilot (Claude Opus 4.6)
+**Target:** HELab (self-host)
 
-Scored the identified gaps across 6 evaluation dimensions (Maturity, Effectiveness, Risk, Cost, Scalability, Human Role) using the rubric from `references/he-scoring.md`.
+## Scoring Methodology
 
-### Individual Feature Scores
+Per `references/he-scoring.md`: 6 dimensions (0–5), Priority Score = `(5 - Composite) × Impact Weight × Cascade Length`.
 
-#### P0-4 Ralph Loops
-- **Maturity:** 2 (Basic - partially implemented in workflows)
-- **Effectiveness:** 2 (Not fully achieving 100% completion)
-- **Risk:** 3 (Prevents some premature exits)
-- **Cost:** 2 (Moderate implementation cost)
-- **Scalability:** 3 (Scales for decomposed tasks)
-- **Human Role:** 3 (Human monitors long tasks)
-- **Composite Score:** 2.5
-- **Impact Weight:** 1 (0 downstream dependencies)
-- **Cascade Length:** 2 (Moderate failure propagation)
-- **Priority Score:** 5.0
+- **Impact Weight** = downstream dependency count from `framework/HE Index.md` (0 → 1).
+- **Cascade Length** = failure propagation severity (1 = localized, 2 = moderate, 3 = systemic).
 
-#### P1-5 Observability / Dashboards
-- **Maturity:** 2 (Basic logging and audits exist)
-- **Effectiveness:** 2 (Partial visibility, no real-time dashboards)
-- **Risk:** 2 (Some blind execution occurs)
-- **Cost:** 3 (Higher cost for dashboard implementation)
-- **Scalability:** 2 (Limited to current workflows)
-- **Human Role:** 2 (Increased human review burden)
-- **Composite Score:** 2.17
-- **Impact Weight:** 2 (2 downstream dependencies: P0-7, P0-8)
-- **Cascade Length:** 2 (Important for system health)
-- **Priority Score:** 11.32
+## Per-Feature Scores
 
-#### P3-1 Scheduled Cleanups
-- **Maturity:** 1 (Ad-hoc manual cleanups)
-- **Effectiveness:** 1 (Entropy accumulates without schedule)
-- **Risk:** 2 (Codebase quality degrades over time)
-- **Cost:** 1 (Low implementation cost)
-- **Scalability:** 2 (Manual process doesn't scale)
-- **Human Role:** 4 (Human performs cleanups)
-- **Composite Score:** 1.83
-- **Impact Weight:** 1 (0 downstream dependencies)
-- **Cascade Length:** 1 (Localized entropy issues)
-- **Priority Score:** 3.17
+```json
+[
+  {
+    "id": "P1-11",
+    "name": "Socratic Questioning",
+    "scores": { "maturity": 0, "effectiveness": 0, "risk": 3, "cost": 4, "scalability": 1, "human_role": 2 },
+    "composite": 1.67,
+    "impact_weight": 4,
+    "cascade_length": 2,
+    "priority_score": 26.64,
+    "tier": 1,
+    "note": "4 downstream (P1-10, P1-8, P2-5, P1-7). Ambiguous inputs cascade into wrong plans and execution."
+  },
+  {
+    "id": "P0-1",
+    "name": "Bash Sandboxes",
+    "scores": { "maturity": 1, "effectiveness": 2, "risk": 1, "cost": 4, "scalability": 1, "human_role": 3 },
+    "composite": 2.0,
+    "impact_weight": 5,
+    "cascade_length": 1,
+    "priority_score": 15.0,
+    "tier": 1,
+    "note": "5 downstream (P0-3, P0-5, P1-3, P1-6, P3-1). High formula score but docs-first repo has inherently low contamination risk. Light remediation: document risk acceptance."
+  },
+  {
+    "id": "P1-5",
+    "name": "Observability / Dashboards",
+    "scores": { "maturity": 1, "effectiveness": 1, "risk": 2, "cost": 3, "scalability": 1, "human_role": 2 },
+    "composite": 1.67,
+    "impact_weight": 2,
+    "cascade_length": 2,
+    "priority_score": 13.32,
+    "tier": 1,
+    "note": "2 downstream (P0-7, P0-8). P0-7 also broken — shared root cause. Structural observability (audit.sh) works; runtime observability absent."
+  },
+  {
+    "id": "P0-7",
+    "name": "Escalation Policies & Audit Trails",
+    "scores": { "maturity": 1, "effectiveness": 0, "risk": 2, "cost": 3, "scalability": 1, "human_role": 1 },
+    "composite": 1.33,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 3.67,
+    "tier": 2,
+    "note": "Logging spec aspirational — IDE agents don't natively emit repo-file logs. Root-cause shared with P1-5."
+  },
+  {
+    "id": "P0-10",
+    "name": "Inter-Agent Communication (The Mailbox)",
+    "scores": { "maturity": 0, "effectiveness": 0, "risk": 1, "cost": 4, "scalability": 0, "human_role": 3 },
+    "composite": 1.33,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 3.67,
+    "tier": 3,
+    "note": "SAS-primary; zero operational need currently."
+  },
+  {
+    "id": "P0-4",
+    "name": "Ralph Loops",
+    "scores": { "maturity": 1, "effectiveness": 0, "risk": 2, "cost": 3, "scalability": 1, "human_role": 2 },
+    "composite": 1.5,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 3.5,
+    "tier": 2,
+    "note": "Script exists but disconnected from any agent workflow. Wiring cost is moderate."
+  },
+  {
+    "id": "P0-5",
+    "name": "Orchestration Logic",
+    "scores": { "maturity": 2, "effectiveness": 3, "risk": 2, "cost": 4, "scalability": 1, "human_role": 3 },
+    "composite": 2.5,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.5,
+    "tier": 3,
+    "note": "SAS-primary; workflows adequate for current scale."
+  },
+  {
+    "id": "P2-4",
+    "name": "Bounded Autonomy & Access Control",
+    "scores": { "maturity": 2, "effectiveness": 2, "risk": 2, "cost": 4, "scalability": 2, "human_role": 3 },
+    "composite": 2.5,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.5,
+    "tier": 3,
+    "note": "DO NOT rules + review gates provide proxy enforcement. Low risk for docs-first repo."
+  },
+  {
+    "id": "P1-6",
+    "name": "Web Search & MCP Integration",
+    "scores": { "maturity": 2, "effectiveness": 3, "risk": 2, "cost": 4, "scalability": 2, "human_role": 3 },
+    "composite": 2.67,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.33,
+    "tier": 3,
+    "note": "IDE-managed. Functional for agent work."
+  },
+  {
+    "id": "P1-3",
+    "name": "Tool Offloading",
+    "scores": { "maturity": 3, "effectiveness": 3, "risk": 2, "cost": 4, "scalability": 3, "human_role": 3 },
+    "composite": 3.0,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.0,
+    "tier": 3,
+    "note": "Skill-level enforcement sufficient. Repo-level gate not needed."
+  },
+  {
+    "id": "P2-2",
+    "name": "Dependency Enforcement",
+    "scores": { "maturity": 3, "effectiveness": 3, "risk": 2, "cost": 4, "scalability": 3, "human_role": 3 },
+    "composite": 3.0,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.0,
+    "tier": 3,
+    "note": "he-lint validates structural deps. No import-graph needed for docs-first repo."
+  },
+  {
+    "id": "P3-3",
+    "name": "Pattern Auditing",
+    "scores": { "maturity": 3, "effectiveness": 3, "risk": 2, "cost": 4, "scalability": 3, "human_role": 3 },
+    "composite": 3.0,
+    "impact_weight": 1,
+    "cascade_length": 1,
+    "priority_score": 2.0,
+    "tier": 3,
+    "note": "he-lint + /reconcile + weekly GC cover structural patterns. No application code patterns to audit."
+  }
+]
+```
 
-## Execution Tiers
+## Cross-Cutting Perspective Amplification
 
-Based on priority scores and the tier definitions:
+1. **Agent Legibility** — P1-11 amplified. Ambiguous inputs reduce agent comprehension of tasks. Combined with strong contract surfaces (AGENTS.md), the gap is specifically in pre-execution disambiguation rather than general legibility.
 
-- **Tier 1 (Critical - Immediate):** P1-5 Observability / Dashboards (Priority: 11.32)
-- **Tier 2 (Important - Mid-term):** P0-4 Ralph Loops (Priority: 5.0)
-- **Tier 3 (Enhancement - Long-term):** P3-1 Scheduled Cleanups (Priority: 3.17)
+2. **Entropy Trajectory** — P1-5 amplified. Agent behavior entropy is unmeasured. Structural entropy (file counts, naming, sync) is well-controlled by he-lint + weekly GC.
 
-## Cross-Cutting Perspectives
+3. **Human Role Optimization** — Current stage: **Harness Builder**. Human has strong governance tools but lacks real-time visibility (P1-5 gap). Strengthening observability would shift human toward proactive oversight.
 
-Applied systemic perspectives from `framework/cross-cutting/HE Cross Cutting Perspectives.md`:
+4. **SAS→MAS Readiness** — P0-5, P0-10 are MAS concerns. HELab is SAS-primary. Not amplified for current cycle.
 
-1. **Human Role Optimization:** Human is bottleneck for reviews and cleanups; agents need more autonomy in observability and task completion.
-2. **SAS→MAS Readiness:** Good for MAS, but observability gaps limit multi-agent coordination visibility.
-3. **Agent Legibility:** Codebase is legible, but lack of automated signals makes agent understanding harder.
-4. **Entropy Trajectory:** Entropy is managed manually but trends toward accumulation without scheduling.
+## Tier Summary
 
-These perspectives amplify the P1-5 gap as Tier 1 due to systemic observability weaknesses.
+### Tier 1: Critical (Immediate)
+| Rank | Feature | Score | Remediation |
+|------|---------|-------|-------------|
+| 1 | P1-11 Socratic Questioning | 26.64 | Light |
+| 2 | P0-1 Bash Sandboxes | 15.0 | Light |
+| 3 | P1-5 Observability / Dashboards | 13.32 | Medium |
+
+### Tier 2: Important (Mid-term)
+| Rank | Feature | Score | Remediation |
+|------|---------|-------|-------------|
+| 4 | P0-7 Escalation Policies & Audit Trails | 3.67 | Medium |
+| 5 | P0-4 Ralph Loops | 3.5 | Medium |
+
+### Tier 3: Enhance (Long-term)
+| Rank | Feature | Score | Remediation |
+|------|---------|-------|-------------|
+| 6 | P0-10 Inter-Agent Communication | 3.67 | Light (defer) |
+| 7 | P0-5 Orchestration Logic | 2.5 | Light (defer) |
+| 8 | P2-4 Bounded Autonomy | 2.5 | Light (defer) |
+| 9 | P1-6 Web Search & MCP | 2.33 | Light (defer) |
+| 10 | P1-3 Tool Offloading | 2.0 | Light (defer) |
+| 11 | P2-2 Dependency Enforcement | 2.0 | Light (defer) |
+| 12 | P3-3 Pattern Auditing | 2.0 | Light (defer) |

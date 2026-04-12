@@ -1,8 +1,10 @@
 {
-  "timestamp": "2026-04-09T14:09:28.214Z",
-  "total_actions": 0,
-  "actions_by_type": {},
+  "timestamp": "2026-04-12T00:46:26.929Z",
+  "total_actions": 1,
+  "actions_by_type": {
+    "structural-audit": 1
+  },
   "average_duration": 0,
   "error_rate": 0,
-  "summary": "No logs available"
+  "summary": "Processed 1 actions with 0% error rate"
 }

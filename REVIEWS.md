@@ -789,6 +789,21 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Added P1-9 mount pattern reference to the Feature Implementation Guides section of SKILL.md so agents discover the new mount pattern from the skill entry point.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-12-006",
+      "date": "2026-04-12",
+      "status": "approved",
+      "generator": "GitHub Copilot (Claude Opus 4.6)",
+      "reviewer": "Jack Xiao",
+      "review_type": "manual",
+      "requirement_ids": ["HE-R009"],
+      "scope_paths": [
+        "AGENTS.md",
+        "scripts/harness/audit.sh"
+      ],
+      "change_summary": "Self-host audit remediation: added Socratic Pause protocol (P1-11), sandbox risk acceptance (P0-1), two-tier observability model (P1-5), escalation protocol (P0-7), completion verification rule (P0-4). Wired audit.sh to emit structured log entries and generate observation reports.",
+      "findings": []
     }
   ]
 }

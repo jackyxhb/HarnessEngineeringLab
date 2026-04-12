@@ -42,12 +42,22 @@ All content is organized under this canonical structure. When editing or creatin
 
 ## Centralized Logging Configuration
 
-To implement P1-5 Observability / Dashboards, all agent actions must produce centralized, machine-readable logs.
+To implement P1-5 Observability / Dashboards, the repository uses a two-tier observability model:
+
+### Tier 1: Structural Observability (Achievable Baseline)
+
+The `npm run audit` command runs `audit.sh` + `generate-observation-report.js`, producing `.harness/observation-report.json`. This provides harness-level observability: file existence, workflow registry health, anchor freshness, and pre-commit liveness. Each audit run also appends a structured entry to `.harness/agent-logs.jsonl`.
+
+### Tier 2: Runtime Agent Logging (IDE-Dependent)
+
+Full per-action agent logging depends on the IDE agent runtime. Not all agentic IDEs support writing structured logs to repository files. The specification below is the target contract for IDEs that support it:
 
 - **Log Format:** All agent logs must be in JSON format with the following fields: `timestamp`, `agent_id`, `action`, `target`, `result`, `duration_ms`.
 - **Log Location:** Logs must be written to `.harness/agent-logs.jsonl` (JSON Lines format).
 - **Logging Triggers:** Log every tool use, file edit, command execution, and workflow invocation.
 - **Audit Trail:** Logs must be append-only and retained for at least 30 days.
+
+> **Implementation note:** If the current IDE agent cannot emit file-based logs, Tier 1 structural observability via `npm run audit` remains the operational baseline.
 
 ## Ralph Loops Configuration
 
@@ -57,6 +67,16 @@ To implement P0-4 Ralph Loops for 100% task completion:
 - **Escalation Thresholds:** Escalate to human review after 2 failed reinjections.
 - **State Persistence:** Use `.harness/task-state.json` for cross-window state summaries.
 - **Exit Interception:** Run `node scripts/exit-interceptor.js` after task completion to detect premature exits.
+- **`EP-14` Completion Verification:** Before declaring a multi-step task complete, agents must verify all planned steps (from the todo list, plan entry, or original objective) are finished. Consequence of violation: premature "done" declarations leave work incomplete and break task history.
+
+### Escalation Protocol (P0-7)
+
+When an agent encounters repeated failures on the same step:
+
+- **3 consecutive same-step failures** → STOP execution immediately. Present a structured diagnostic to the user: what was attempted, what failed, and the suspected root cause.
+- **Do not** silently retry the same approach beyond the 3-attempt limit. Consequence of violation: infinite loops waste tokens and context budget while producing no progress.
+- **Diagnostic format:** Include the step description, the 3 error messages or outcomes, and a proposed alternative approach (if one exists).
+- **Note:** Automated escalation routing (Slack, email, orchestrator) requires MAS infrastructure. In SAS mode the escalation target is always the human in the current session.
 
 ## Workflows
 
@@ -91,6 +111,15 @@ Intelligent commit workflow: stages changes, generates descriptive commit messag
 ### `/ccpr` — Claude Commit, Push & Release
 
 Extended commit workflow: commits, pushes, creates a pull request, and after merge creates a GitHub release with version tag and release notes.
+
+## Socratic Pause Protocol
+
+To implement P1-11 Socratic Questioning and prevent wasted execution on ambiguous inputs:
+
+- **`EP-14` Mandatory Disambiguation:** Before starting implementation on any task where the objective has more than one valid interpretation, the agent must pause and ask the user clarifying questions. Consequence of violation: agent builds the wrong feature, causing full rework and wasted tokens.
+- **Trigger:** If the input contains ambiguous scope, unstated assumptions, or terms that could map to multiple implementation paths, surface those assumptions explicitly and wait for confirmation before proceeding.
+- **Format:** Clarification requests must be concrete questions (not open-ended "anything else?"), each naming the specific ambiguity and the options the agent sees.
+- **Exception:** Single, mechanically obvious tasks (fix a typo, rename a variable, run a specific command) do not require a Socratic pause.
 
 ## Task Execution & Cognitive Memory
 
@@ -190,3 +219,4 @@ Enforcement for the **6 Mandatory Skill Principles** (see `framework/HE Skill Cr
 - **Rule entries:** Every rule added to `AGENTS.md` must state the consequence of violation. Generic advice (e.g., "follow best practices") will be removed on the next `/reconcile` run.
 - **IDE shim pattern (P0-11):** `AGENTS.md` is the canonical rule surface. IDE-specific files (`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `.windsurfrules`) must be thin shims that reference `AGENTS.md` and contain only IDE-specific overrides. When rules change, update `AGENTS.md` first, then verify shims remain consistent.
 - **Machine-Readability First (P1-1):** Prioritize JSON or structured code blocks over Markdown tables for all framework data (measurables, dependency graphs, scoring matrices). Consequence: Markdown tables are difficult for agents to parse deterministically; JSON allows for reliable automation and state management.
+- **Sandbox risk acceptance (P0-1):** HELab is a docs-first, no-build-artifact repository. Agents edit only Markdown and run linters/validators — full sandbox isolation (ephemeral containers, network egress control) is accepted as not-applicable. Consequence of omission: unnecessary infrastructure investment for zero-risk workloads. **Re-evaluate if application code, Docker builds, or arbitrary package installs are added to the repository.**

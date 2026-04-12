@@ -1,33 +1,37 @@
-# HE-CHANGE-SUMMARY
+# HE Change Summary
 
-## Completed Action 1-1: P1-5 Observability / Dashboards
+**Date:** 2026-04-12
+**Auditor:** GitHub Copilot (Claude Opus 4.6)
+**Target:** HELab (self-host)
 
-### Files Modified / Created
-1. `AGENTS.md` — Added Centralized Logging Configuration section with JSON format requirements
-2. `scripts/generate-observation-report.js` — Created script for JSON-standardized observation reports
-3. `.harness/dashboard.md` — Created real-time dashboard file for performance tracking
+## Changes Applied
 
-### Verification
-**Command Run:** `node scripts/generate-observation-report.js`
-**Result:** Pass — Generated observation-report.json with metrics structure
+### Batch 1: Tier 1 — Critical
 
-### State
-**Progress:** Tier 1 Complete
-**Next Recommended Action:** Proceed to Tier 2 (P0-4 Ralph Loops)
+| # | Feature | File | Change |
+|---|---------|------|--------|
+| 1 | P1-11 Socratic Questioning | `AGENTS.md` | Added `## Socratic Pause Protocol` section with mandatory disambiguation rule, trigger conditions, format requirements, and exception clause. |
+| 2 | P0-1 Bash Sandboxes | `AGENTS.md` | Added `Sandbox risk acceptance (P0-1)` convention documenting that full isolation is not applicable for a docs-first repo, with re-evaluation trigger. |
+| 3 | P1-5 Observability | `AGENTS.md` | Replaced monolithic logging config with two-tier model: Tier 1 structural (audit-based, achievable), Tier 2 runtime (IDE-dependent, aspirational). |
+| 3 | P1-5 Observability | `scripts/harness/audit.sh` | Added Section 6 (exit interceptor check) and Section 7 (log entry emission + observation report generation). Added `AUDIT_START_TS` for duration tracking. |
 
----
+### Batch 2: Tier 2 — Important
 
-## Completed Action 2-1: P0-4 Ralph Loops
+| # | Feature | File | Change |
+|---|---------|------|--------|
+| 4 | P0-7 Escalation | `AGENTS.md` | Added `### Escalation Protocol (P0-7)` subsection under Ralph Loops with 3-failure stop rule, diagnostic format, and SAS/MAS note. |
+| 5 | P0-4 Ralph Loops | `AGENTS.md` | Added `EP-14 Completion Verification` bullet: agents must verify all planned steps before declaring done. |
+| 5 | P0-4 Ralph Loops | `scripts/harness/audit.sh` | Added Section 6: if `task-state.json` exists, run `exit-interceptor.js` and report incomplete tasks. |
 
-### Files Modified / Created
-1. `scripts/exit-interceptor.js` — Implemented exit interception hooks for premature completion detection
-2. `framework/prompt-reinjection-utilities.md` — Added prompt reinjection utilities with state schema
-3. `AGENTS.md` — Added Ralph Loops Configuration section with loop budgets and escalation thresholds
+### Supporting
 
-### Verification
-**Command Run:** `node scripts/exit-interceptor.js test-task 5`
-**Result:** Pass — Script ran without errors, created reinjection log structure
+| # | File | Change |
+|---|------|--------|
+| 6 | `REVIEWS.md` | Added review record `HE-REV-2026-04-12-006` covering AGENTS.md and scripts/harness/audit.sh. |
 
-### State
-**Progress:** Tier 2 Complete
-**Next Recommended Action:** Proceed to Phase 5 Verification
+## Verification
+
+- `npm run smoke` → PASS (he-lint clean)
+- `npm run audit` → PASS (33/33 checks, 0 warnings, 0 failures)
+- `.harness/agent-logs.jsonl` → structured audit entry emitted
+- `.harness/observation-report.json` → generated successfully

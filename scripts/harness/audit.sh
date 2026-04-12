@@ -14,6 +14,8 @@ set -uo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO_ROOT"
 
+AUDIT_START_TS=$(date +%s)
+
 PASS=0
 WARN=0
 FAIL=0
@@ -180,6 +182,64 @@ if [[ -f ".husky/pre-commit" ]]; then
   else
     warn "Pre-commit hook exists but may not be calling the lint suite"
   fi
+fi
+
+echo ""
+
+# --- 6. Exit interceptor check (P0-4 Ralph Loops) ---
+echo "--- 6. Exit interceptor (P0-4) ---"
+
+TASK_STATE="$REPO_ROOT/.harness/task-state.json"
+if [[ -f "$TASK_STATE" ]]; then
+  if command -v node &>/dev/null; then
+    INTERCEPTOR_OUT=$(node "$REPO_ROOT/scripts/exit-interceptor.js" "audit-check" 999 2>&1) || true
+    if echo "$INTERCEPTOR_OUT" | grep -q "Premature exit"; then
+      warn "Incomplete task detected in .harness/task-state.json — $INTERCEPTOR_OUT"
+    else
+      ok "No incomplete tasks in task-state.json"
+      PASS=$((PASS + 1))
+    fi
+  else
+    warn "Node.js not available — skipping exit-interceptor check"
+  fi
+else
+  ok "No task-state.json present (no pending tasks)"
+  PASS=$((PASS + 1))
+fi
+
+echo ""
+
+# --- 7. Emit structural audit log entry (P1-5 Observability) ---
+AUDIT_LOG="$REPO_ROOT/.harness/agent-logs.jsonl"
+mkdir -p "$REPO_ROOT/.harness"
+
+AUDIT_RESULT="pass"
+if [[ $FAIL -gt 0 ]]; then
+  AUDIT_RESULT="fail"
+elif [[ $WARN -gt 0 ]]; then
+  AUDIT_RESULT="warn"
+fi
+
+START_TS="${AUDIT_START_TS:-$(date +%s)}"
+END_TS=$(date +%s)
+DURATION_MS=$(( (END_TS - START_TS) * 1000 ))
+
+printf '{"timestamp":"%s","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"%s","duration_ms":%d,"pass":%d,"warn":%d,"fail":%d}\n' \
+  "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" \
+  "$AUDIT_RESULT" \
+  "$DURATION_MS" \
+  "$PASS" "$WARN" "$FAIL" >> "$AUDIT_LOG"
+
+echo "--- 7. Observation report ---"
+
+if command -v node &>/dev/null && [[ -f "$REPO_ROOT/scripts/generate-observation-report.js" ]]; then
+  node "$REPO_ROOT/scripts/generate-observation-report.js" 2>&1 || warn "Observation report generation failed"
+  if [[ -f "$REPO_ROOT/.harness/observation-report.json" ]]; then
+    ok "Observation report generated at .harness/observation-report.json"
+    PASS=$((PASS + 1))
+  fi
+else
+  warn "Skipping observation report (node or script unavailable)"
 fi
 
 echo ""

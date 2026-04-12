@@ -72,7 +72,8 @@
     "ENCT",
     "overclaim",
     "overclaiming",
-    "toplevel"
+    "toplevel",
+    "websearchforcopilot"
   ],
   "ignorePaths": [
     "node_modules",
