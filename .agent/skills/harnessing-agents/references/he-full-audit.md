@@ -25,6 +25,7 @@ The audit uses the **L1→L5 Principle-to-Practice Chain** defined per-feature i
 Systematically inspect the project for harness gaps using the per-feature files in `framework/features/`.
 
 For each feature (P0-1 through P3-4, 32 total), navigate via `framework/HE Index.md`:
+
 1. **L3: Design Decisions** — Does the project implement this feature as defined?
 2. **L4: Prevention** — Is the prevention failure currently active in the project?
 3. **L4: Actions & Tools** — Which actions and tools should be recommended?
@@ -33,9 +34,10 @@ For each feature (P0-1 through P3-4, 32 total), navigate via `framework/HE Index
 Scan order:
 Search `framework/HE Index.md` for features, then read the respective `framework/features/P*.md` files.
 
-*For each feature, record: current state, active prevention failures, recommended options, severity, and remediation level.*
+_For each feature, record: current state, active prevention failures, recommended options, severity, and remediation level._
 
 **Output:** Merge all findings into a master report.
+
 > **Use template:** `templates/HE-CLUES.md` → **Output to:** `.harness/HE-CLUES.md`
 
 **Trajectory Reduction Checkpoint:** After generating `.harness/HE-CLUES.md`, flush all raw file contents and terminal outputs from active memory. Carry forward ONLY the compiled template output.
@@ -82,6 +84,7 @@ Use this sequence instead:
 This preserves target-project delivery safety while still allowing the approved batch to become mechanically tracked once execution begins.
 
 **Output:** `.harness/HE-IMPLEMENTATION-PLAN.md`
+
 > **Use template:** `templates/HE-IMPLEMENTATION-PLAN.md` → **Output to:** `.harness/HE-IMPLEMENTATION-PLAN.md`
 >
 > **Protocol collapse note:** The canonical `framework/HE Harnessing Protocol.md` splits this phase into Task 3.1 (`HE-RECOMMENDATIONS.md`, design-decision scratchpad) and Task 3.2 (`HE-IMPLEMENTATION-PLAN.md`, the shipped artifact). The slim `full` flow used by this skill collapses both tasks into this single step — draft design decisions in working memory and write them straight into `.harness/HE-IMPLEMENTATION-PLAN.md`. No separate `HE-RECOMMENDATIONS.md` file is shipped.
@@ -119,15 +122,19 @@ When the implementation plan includes **P2-3 AI Auditors & Collaboration Channel
 - For **P0-3 Verification**, use `references/he-p0-3-verification-mount-pattern.md` when the target project lacks deterministic verification gates, pre-completion checks, or repo-native failure signals.
 - For **P1-7 Planning, Task Lists & Blackboards**, use `references/he-p1-7-planning-mount-pattern.md` when multi-step work lacks a durable plan file, shared task surface, or resumable task state.
 - For **P1-10 Requirements Ledger**, use `references/he-p1-10-requirements-ledger-mount-pattern.md` when the target project plans or executes work without a machine-readable requirements ledger and pre-planning intake hook.
+- For **P1-9 Branch-Based Cognitive Memory**, use `references/he-p1-9-branch-enforcement-mount-pattern.md` when agents can execute complex multi-step work on the default branch without creating task branches or building checkpointed cognitive history.
 - For **P2-5 Upstream Intake Gate**, use `references/he-p2-5-intake-gate-mount-pattern.md` when requirements may be recorded but planning/execution can still bypass intake validation.
 - For the **first-mount governance** Repo Profile, use `references/he-first-mount-governance-mount-pattern.md` when the target is documentation-heavy, lacks a portable governance layer, and needs a narrow initial Feature Package centered on governance plus lightweight document-integrity verification.
 
 **Output:** Modified codebase with per-agent modification summary.
+
 > **Use template:** `templates/HE-CHANGE-SUMMARY.md` → **Output to:** `.harness/HE-CHANGE-SUMMARY.md`
 
 ## Phase 5: Verification & Assessment (L5: Measurable Outcomes)
 
 > **Chain Position:** L5 — measures observable results to verify all changes produce concrete enhancement.
+>
+> **Assessment proof gate:** When filling the Before vs. After checklist, every feature marked as done (`[x]`) must cite a concrete file, command, or gate from `.harness/HE-CHANGE-SUMMARY.md` as evidence. Features that were assessed and planned but not physically mounted during Phase 4 must remain unchecked (`[ ]`) with an explicit deferral reason. Do not mark a feature as done based on discussion, planning, or recommendation alone.
 
 1. Re-run the Quick Scan checklist (evaluating L2 targets from `framework/HE Index.md`). Compare unchecked → checked conversions.
 2. Re-check each feature's L4: Prevention — verify that previously active prevention failures are now resolved.
@@ -135,6 +142,7 @@ When the implementation plan includes **P2-3 AI Auditors & Collaboration Channel
 4. Generate the final assessment comparing the initial state to the final milestone.
 
 **Output:** `.harness/HE-ASSESSMENT-REPORT.md`
+
 > **Use template:** `templates/HE-ASSESSMENT-REPORT.md` → **Output to:** `.harness/HE-ASSESSMENT-REPORT.md`
 
 ## Phase 6: Skill & Knowledge Sync — Optional (L1 ↩: Principle Feedback)

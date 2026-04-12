@@ -26,6 +26,22 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** �
 
 ## Active Plans
 
+### Plan: P1-9 Mount Pattern and Assessment Proof Gate
+
+- **Goal:** Ship a P1-9 branch-enforcement mount pattern so Phase 4 can install branch-based cognitive memory in target projects, and harden the assessment report template so features cannot be marked done without verified execution evidence.
+- **Requirement IDs:** `HE-R008`, `HE-R009`
+- **Scope:** `.agent/skills/harnessing-agents/references/`, `.agent/skills/harnessing-agents/templates/HE-ASSESSMENT-REPORT.md`, `.agent/skills/harnessing-agents/references/he-full-audit.md`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: changing canonical `framework/features/P1-09.md` or promoting the mount pattern into framework ontology.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create `he-p1-9-branch-enforcement-mount-pattern.md` following the established mount-pattern structure
+  - [x] Wire the new pattern into Phase 4 feature guides in `he-full-audit.md`
+  - [x] Harden `HE-ASSESSMENT-REPORT.md` Section 2 with a proof gate requiring change-summary cross-references
+  - [x] Sync framework mirror, update RELEASES.md, add REVIEWS.md record, validate
+- **Constraints:** Follow existing mount-pattern structure (Goal → Planning → Execution → Verification → Do Not). Keep the pattern skill-side. Assessment proof gate must be mechanical, not advisory.
+- **Checkpoints:** Mount pattern created; Phase 4 wired; template hardened; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-12
+
 ---
 
 ## Completed Plans
