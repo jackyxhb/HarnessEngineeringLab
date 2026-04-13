@@ -16,7 +16,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
 
 - **`origin`**: The first-principle or discipline (Physics, Economics, Engineering) that source-codes the rule.
 - **`governs`**: The direct feature IDs (P0-1 through P3-4) that must mechanically enforce this principle.
-- **`downstream`**: Features that depend on this node; changes here ripple to these targets.
+- **`downstream`**: Features directly downstream of this node in the framework graph. This field can capture hard dependencies as well as explicit enablement, protection, maintenance, or feedback relationships declared in the feature files; changes here ripple to these targets.
 
 ```json
 {

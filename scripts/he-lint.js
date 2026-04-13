@@ -274,8 +274,34 @@ function getFeatureIndexEntries() {
   }
 }
 
+function extractFeatureDependencyClaims(content) {
+  const lines = content.split("\n");
+  const requires = new Set();
+  const requiredBy = [];
+
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+    const ids = [...trimmed.matchAll(/P\d-\d+/g)].map((match) => match[0]);
+
+    if (trimmed.startsWith("**Requires:**")) {
+      ids.forEach((id) => requires.add(id));
+    }
+
+    if (trimmed.startsWith("**Required by:**")) {
+      ids.forEach((id) => {
+        requiredBy.push({ id, lineNumber: index + 1 });
+      });
+    }
+  });
+
+  return { requires, requiredBy };
+}
+
 function validateFeatureChainFiles() {
   const featureEntries = getFeatureIndexEntries();
+  const featureEntryById = new Map(
+    featureEntries.map((feature) => [feature.id, feature]),
+  );
   featureEntries.forEach((feature) => {
     const featurePath = path.join(repoRoot, feature.file);
     if (!fs.existsSync(featurePath)) {
@@ -290,6 +316,7 @@ function validateFeatureChainFiles() {
 
     const content = fs.readFileSync(featurePath, "utf-8");
     const lines = content.split("\n");
+    const dependencyClaims = extractFeatureDependencyClaims(content);
 
     REQUIRED_FEATURE_HEADERS.forEach((header) => {
       if (!content.includes(header)) {
@@ -433,6 +460,35 @@ function validateFeatureChainFiles() {
         }
       }
     }
+
+    dependencyClaims.requiredBy.forEach(({ id: dependentId, lineNumber }) => {
+      const dependentFeature = featureEntryById.get(dependentId);
+      if (!dependentFeature) {
+        reportError(
+          featurePath,
+          lineNumber,
+          `Feature Chain: ${feature.id} lists unknown dependent feature ${dependentId} under Required by.`,
+          "Replace the unknown feature reference with a canonical feature ID from framework/HE Index.md or remove the unsupported dependency claim.",
+        );
+        return;
+      }
+
+      const dependentPath = path.join(repoRoot, dependentFeature.file);
+      if (!fs.existsSync(dependentPath)) {
+        return;
+      }
+
+      const dependentContent = fs.readFileSync(dependentPath, "utf-8");
+      const dependentClaims = extractFeatureDependencyClaims(dependentContent);
+      if (!dependentClaims.requires.has(feature.id)) {
+        reportError(
+          featurePath,
+          lineNumber,
+          `Feature Chain: ${feature.id} claims it is required by ${dependentId}, but ${dependentId} does not declare ${feature.id} under **Requires:**.`,
+          "Keep `Required by` lines truthful: either remove the unsupported dependent from this feature file or add the matching `**Requires:**` declaration in the dependent feature file if the dependency is real.",
+        );
+      }
+    });
   });
 }
 

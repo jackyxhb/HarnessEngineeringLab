@@ -865,6 +865,26 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Corrected P3-3 feature file L2 text to match the outcome-focused Index wording after an external edit reverted the prior fix. Bundle mirror synced.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-13-004",
+      "date": "2026-04-13",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R003", "HE-R004", "HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/HE Index.md",
+        "framework/features/P0-01.md",
+        "scripts/he-lint.js",
+        ".agent/skills/harnessing-agents/framework/",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Dependency metadata hardening: clarified that HE Index downstream edges represent broader graph relationships than hard Requires links, removed the unsupported P0-1 Required by claims for P0-5 and P1-3, extended he-lint to fail on unsupported Required by assertions, and synced the bundled framework mirror.",
+      "findings": []
     }
   ]
 }

@@ -32,6 +32,39 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Dependency Metadata Contradiction Remediation
+
+- **Goal:** Resolve the confirmed canonical dependency-metadata contradiction, clarify the HE Index graph semantics so soft downstream relationships are not misread as hard prerequisites, and add lint coverage for unsupported `Required by` claims.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `framework/HE Index.md`, `framework/features/P0-01.md`, `.agent/skills/harnessing-agents/framework/`, `scripts/he-lint.js`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: broad reclassification of every downstream edge in the framework graph.
+- **Status:** `done`
+- **Steps:**
+  - [x] Clarify graph semantics in `framework/HE Index.md`
+  - [x] Remove the unsupported hard dependency claim from `framework/features/P0-01.md`
+  - [x] Add a lint rule that fails on unsupported `Required by` claims
+  - [x] Sync the bundled skill framework mirror, update release/review ledgers, and validate
+- **Constraints:** Keep `framework/` canonical, avoid broad DAG rewrites without a separate audit, and enforce only the dependency claims the framework actually models as hard facts.
+- **Checkpoints:** Canonical files updated; lint rule added; bundle synced; review recorded; validation green.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-13
+
+### Plan: Feature-Principle Contradiction Audit
+
+- **Goal:** Review the canonical framework features and engineering principles for contradictions, broken mappings, or mutually incompatible enforcement claims, then deliver a findings-first audit with exact references.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `framework/features/`, `framework/principles/`, `framework/HE Index.md`, and `framework/HE Principle Practice Chain.md`. Out of scope: `docs/`, skill-side execution guides, and unrelated wording cleanup outside the canonical framework surface.
+- **Status:** `done`
+- **Steps:**
+  - [x] Read the canonical index and chain model to establish expected mappings
+  - [x] Cross-check feature files against their governing principles and index metadata
+  - [x] Identify confirmed contradictions and separate them from harmless wording variance
+  - [x] Run repository validation commands relevant to framework integrity
+  - [x] Deliver a findings-first audit with exact file references
+- **Constraints:** Treat `framework/` as canonical truth, keep the audit grounded in the existing L1-L5 model, and do not treat support material under `docs/` as authoritative.
+- **Checkpoints:** Plan recorded; mapping sweep complete; contradiction candidates verified; validation run complete; findings delivered.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-13
+
 ### Plan: Consolidate Engineering Principles (19 → 16)
 
 - **Goal:** Eliminate 3 redundant/narrow engineering principles by merging their governed features into stronger parent principles. EP-19 → EP-11, EP-6 → EP-9, EP-13 → EP-12.
