@@ -32,6 +32,21 @@ _No active plans._
 
 ## Completed Plans
 
+### Plan: Structural Audit Principle Count Alignment
+
+- **Goal:** Align the structural harness audit with the canonical 16-principle framework state so `npm run audit` stops failing on stale count expectations.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R007`
+- **Scope:** `scripts/harness/audit.sh`, `PLANS.md`, `RELEASES.md`, and `REVIEWS.md`. Out of scope: further framework or principle-model changes.
+- **Status:** `done`
+- **Steps:**
+  - [x] Update the structural audit principle-count expectations to 16 for both canonical and bundled framework checks
+  - [x] Re-run `npm run check` and `npm run audit`
+  - [x] Record the required review ledger entry and archive the completed plan
+- **Constraints:** Keep the 16-principle model as canonical, change only the stale audit expectation, and do not reopen the earlier principle-consolidation scope.
+- **Checkpoints:** Active plan recorded; audit script fixed; validation green; review recorded; plan archived.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-13
+
 ### Plan: Dependency Metadata Contradiction Remediation
 
 - **Goal:** Resolve the confirmed canonical dependency-metadata contradiction, clarify the HE Index graph semantics so soft downstream relationships are not misread as hard prerequisites, and add lint coverage for unsupported `Required by` claims.

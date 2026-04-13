@@ -885,6 +885,23 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Dependency metadata hardening: clarified that HE Index downstream edges represent broader graph relationships than hard Requires links, removed the unsupported P0-1 Required by claims for P0-5 and P1-3, extended he-lint to fail on unsupported Required by assertions, and synced the bundled framework mirror.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-13-005",
+      "date": "2026-04-13",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R003", "HE-R004", "HE-R007"],
+      "scope_paths": [
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md",
+        "scripts/harness/audit.sh"
+      ],
+      "change_summary": "Approved the structural audit principle-count alignment that updates audit.sh from the stale 19-principle assumption to the canonical 16-principle model, records the repair in the unreleased ledger, and archives the completed remediation plan after validation.",
+      "findings": []
     }
   ]
 }

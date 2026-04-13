@@ -1,1 +1,4 @@
 {"timestamp":"2026-04-12T00:46:26Z","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"pass","duration_ms":0,"pass":32,"warn":0,"fail":0}
+{"timestamp":"2026-04-13T06:16:14Z","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"fail","duration_ms":0,"pass":30,"warn":0,"fail":2}
+{"timestamp":"2026-04-13T06:17:34Z","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"pass","duration_ms":0,"pass":32,"warn":0,"fail":0}
+{"timestamp":"2026-04-13T06:18:53Z","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"pass","duration_ms":0,"pass":32,"warn":0,"fail":0}

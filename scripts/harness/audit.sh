@@ -61,7 +61,7 @@ check_file ".husky/pre-commit"                      "Pre-commit hook"
 check_file "framework/HE Index.md"                    "DAG navigation index"
 check_file "framework/HE Principle Practice Chain.md"  "Chain model meta-document"
 
-# Validate DAG structure: 32 feature files, 19 principle files
+# Validate DAG structure: 32 feature files, 16 principle files
 FEAT_DIR="$REPO_ROOT/framework/features"
 PRINC_DIR="$REPO_ROOT/framework/principles"
 SKILL_FEAT_DIR="$REPO_ROOT/.agent/skills/harnessing-agents/framework/features"
@@ -81,11 +81,11 @@ fi
 
 if [[ -d "$PRINC_DIR" ]]; then
   PRINC_COUNT=$(find "$PRINC_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
-  if [[ "$PRINC_COUNT" -eq 19 ]]; then
-    ok "Principle files: $PRINC_COUNT (expected 19)"
+  if [[ "$PRINC_COUNT" -eq 16 ]]; then
+    ok "Principle files: $PRINC_COUNT (expected 16)"
     PASS=$((PASS + 1))
   else
-    fail "Principle files: found $PRINC_COUNT, expected 19 in framework/principles/"
+    fail "Principle files: found $PRINC_COUNT, expected 16 in framework/principles/"
   fi
 else
   fail "framework/principles/ directory missing"
@@ -105,11 +105,11 @@ fi
 
 if [[ -d "$SKILL_PRINC_DIR" ]]; then
   SKILL_PRINC_COUNT=$(find "$SKILL_PRINC_DIR" -maxdepth 1 -name "*.md" | wc -l | tr -d ' ')
-  if [[ "$SKILL_PRINC_COUNT" -eq 19 ]]; then
-    ok "Bundled skill principle files: $SKILL_PRINC_COUNT (expected 19)"
+  if [[ "$SKILL_PRINC_COUNT" -eq 16 ]]; then
+    ok "Bundled skill principle files: $SKILL_PRINC_COUNT (expected 16)"
     PASS=$((PASS + 1))
   else
-    fail "Bundled skill principle files: found $SKILL_PRINC_COUNT, expected 19 in .agent/skills/harnessing-agents/framework/principles/"
+    fail "Bundled skill principle files: found $SKILL_PRINC_COUNT, expected 16 in .agent/skills/harnessing-agents/framework/principles/"
   fi
 else
   fail ".agent/skills/harnessing-agents/framework/principles/ directory missing"
