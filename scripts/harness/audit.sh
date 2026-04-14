@@ -14,7 +14,15 @@ set -uo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO_ROOT"
 
-AUDIT_START_TS=$(date +%s)
+get_epoch_ms() {
+  if command -v node &>/dev/null; then
+    node -e 'process.stdout.write(String(Date.now()))'
+  else
+    date +%s000
+  fi
+}
+
+AUDIT_START_TS=$(get_epoch_ms)
 
 PASS=0
 WARN=0
@@ -60,6 +68,10 @@ check_file ".github/workflows/he-weekly-gc.yml"     "Weekly entropy scan"
 check_file ".husky/pre-commit"                      "Pre-commit hook"
 check_file "framework/HE Index.md"                    "DAG navigation index"
 check_file "framework/HE Principle Practice Chain.md"  "Chain model meta-document"
+check_file ".harness/task-state.schema.json"         "Ralph Loop task-state schema"
+check_file ".harness/escalation-rules.json"          "Escalation rules manifest"
+check_file ".harness/agent-permissions.json"         "Bounded autonomy permission manifest"
+check_file ".harness/mcp-capabilities.json"          "MCP capability manifest"
 
 # Validate DAG structure: 32 feature files, 16 principle files
 FEAT_DIR="$REPO_ROOT/framework/features"
@@ -114,6 +126,31 @@ if [[ -d "$SKILL_PRINC_DIR" ]]; then
 else
   fail ".agent/skills/harnessing-agents/framework/principles/ directory missing"
 fi
+
+echo ""
+
+# --- 1b. JSON manifest validation ---
+echo "--- 1b. JSON manifest validation ---"
+
+validate_json_file() {
+  local f="$1"
+  local label="$2"
+  if command -v node &>/dev/null; then
+    if node -e "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));" "$REPO_ROOT/$f" 2>/dev/null; then
+      ok "$label parses as valid JSON"
+      PASS=$((PASS + 1))
+    else
+      fail "$label is not valid JSON: $f"
+    fi
+  else
+    warn "Node.js not available — skipping JSON validation for $f"
+  fi
+}
+
+validate_json_file ".harness/task-state.schema.json" "Task-state schema"
+validate_json_file ".harness/escalation-rules.json" "Escalation rules"
+validate_json_file ".harness/agent-permissions.json" "Permission manifest"
+validate_json_file ".harness/mcp-capabilities.json" "MCP capability manifest"
 
 echo ""
 
@@ -192,7 +229,13 @@ echo "--- 6. Exit interceptor (P0-4) ---"
 TASK_STATE="$REPO_ROOT/.harness/task-state.json"
 if [[ -f "$TASK_STATE" ]]; then
   if command -v node &>/dev/null; then
-    INTERCEPTOR_OUT=$(node "$REPO_ROOT/scripts/exit-interceptor.js" "audit-check" 999 2>&1) || true
+    if node -e "const state = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8')); const required = ['task_id', 'status', 'expected_steps', 'completed_steps', 'reinjections_used', 'last_heartbeat_at']; const missing = required.filter(key => !(key in state)); if (missing.length > 0) { process.stderr.write(missing.join(',')); process.exit(1); }" "$TASK_STATE" 2>/dev/null; then
+      ok "task-state.json includes required Ralph Loop fields"
+      PASS=$((PASS + 1))
+    else
+      fail "task-state.json is missing required Ralph Loop fields"
+    fi
+    INTERCEPTOR_OUT=$(node "$REPO_ROOT/scripts/exit-interceptor.js" --mode=audit 2>&1) || true
     if echo "$INTERCEPTOR_OUT" | grep -q "Premature exit"; then
       warn "Incomplete task detected in .harness/task-state.json — $INTERCEPTOR_OUT"
     else
@@ -221,8 +264,8 @@ elif [[ $WARN -gt 0 ]]; then
 fi
 
 START_TS="${AUDIT_START_TS:-$(date +%s)}"
-END_TS=$(date +%s)
-DURATION_MS=$(( (END_TS - START_TS) * 1000 ))
+END_TS=$(get_epoch_ms)
+DURATION_MS=$(( END_TS - START_TS ))
 
 printf '{"timestamp":"%s","agent_id":"harness-audit","action":"structural-audit","target":"HELab","result":"%s","duration_ms":%d,"pass":%d,"warn":%d,"fail":%d}\n' \
   "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" \
@@ -237,6 +280,12 @@ if command -v node &>/dev/null && [[ -f "$REPO_ROOT/scripts/generate-observation
   if [[ -f "$REPO_ROOT/.harness/observation-report.json" ]]; then
     ok "Observation report generated at .harness/observation-report.json"
     PASS=$((PASS + 1))
+  fi
+  if [[ -f "$REPO_ROOT/.harness/dashboard.md" ]]; then
+    ok "Dashboard generated at .harness/dashboard.md"
+    PASS=$((PASS + 1))
+  else
+    fail "Dashboard missing: .harness/dashboard.md"
   fi
 else
   warn "Skipping observation report (node or script unavailable)"

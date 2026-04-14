@@ -1,128 +1,106 @@
-# HE Implementation Plan
+# HE-IMPLEMENTATION-PLAN
 
-**Date:** 2026-04-12
-**Auditor:** GitHub Copilot (Claude Opus 4.6)
-**Target:** HELab (self-host)
-**Scope:** Tier 1 + Tier 2 gaps from HE-PRIORITIES.md
+**Project Scope:** HELab, SAS-primary self-host for a docs-first framework repository with Node-based harness tooling and a live-linked delivery skill.
 
----
+## Tier 1 (Immediate Execution)
 
-## Batch 1: Tier 1 — Critical (Immediate)
+### 1-1. P1-5 Observability / Dashboards
 
-### 1.1 P1-11 Socratic Questioning — Light
+- **Remediation Level:** Medium
+- **Prevention Active:** `P1-5` Prevent Blind Execution — structural audit signals exist, but they do not yet provide a broader action stream or a generated dashboard humans can rely on.
+- **Dependencies:** None
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `scripts/generate-observation-report.js` — Extend the JSON report so it captures freshness, last failing audit, and additional harness signal categories beyond the current aggregate count.
+  - `.harness/dashboard.md` or a new generator under `scripts/` — Replace the placeholder dashboard with generated values sourced from `observation-report.json` and recent `agent-logs.jsonl` entries.
+  - `package.json` / `scripts/` — Route additional repo-native harness actions (`smoke`, `check`, sync flows) through the same JSON logging schema so the dashboard is not audit-only.
+- **Remediation Tier:** Tier 1 — Enable centralized logging and JSON-standardized observation outputs.
+- **Verification:** Run `npm run audit` and confirm the report includes richer metrics and the dashboard renders live values rather than placeholders.
 
-**Current State:** No disambiguation protocol exists. Agents may silently interpret ambiguous inputs.
-**Root Cause:** Missing contract-level rule in AGENTS.md.
-**Remediation:** Add a Socratic Pause protocol to AGENTS.md under `## Task Execution & Cognitive Memory`.
+### 1-2. P0-4 Ralph Loops
 
-**Changes:**
-| File | Action | Description |
-|------|--------|-------------|
-| `AGENTS.md` | Edit | Add Socratic Pause rule mandating agents surface assumptions and ask clarifying questions before executing ambiguous tasks. Include machine-readable escalation: if input has >1 valid interpretation, agent must ask before proceeding. |
+- **Remediation Level:** Medium
+- **Prevention Active:** `P0-4` Prevent Premature Exits and `P0-4` Prevent Narrative Task State — task completion is still verified mostly by contract, not by a normal task-state + reinjection path.
+- **Dependencies:** `P1-7`, `P1-2`, `P1-8`
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `.harness/task-state.json` — Define a machine-readable task-state schema with `taskId`, `expectedSteps`, `completedSteps`, and compact state summary fields.
+  - `scripts/exit-interceptor.js` — Upgrade the current placeholder so it validates the task-state schema, emits deterministic failure codes/messages, and logs reinjection metadata consistently.
+  - `scripts/harness/audit.sh` or `.agent/workflows/cognitive-branch.md` — Hook task-state validation into a real multi-step completion path rather than relying on an optional audit-time check only.
+- **Remediation Tier:** Tier 1 — Implement exit interception and JSON-standardized state reinjection.
+- **Verification:** Create a synthetic incomplete `task-state.json`, run the interceptor, and confirm it reports a premature exit and writes reinjection metadata.
 
-**Verification:** `npm run smoke` passes. Next ambiguous task triggers clarification instead of silent assumption.
-**Risk:** Low — pure contract change, no script or CI modification.
+### 1-3. P0-7 Escalation Policies & Audit Trails
 
----
-
-### 1.2 P0-1 Bash Sandboxes — Light
-
-**Current State:** No sandbox isolation. Agents execute on the developer's machine.
-**Root Cause:** HELab is a docs-first repo with no application code. Sandbox isolation has near-zero operational value here.
-**Remediation:** Document explicit risk acceptance per L5 improvement policy: "For docs-first repositories where agents edit only Markdown and run only linters/validators, sandbox isolation is not required. This decision should be revisited if application code is added."
-
-**Changes:**
-| File | Action | Description |
-|------|--------|-------------|
-| `AGENTS.md` | Edit | Add a risk-acceptance note under `## Conventions` documenting that sandbox isolation (P0-1) is accepted as not-applicable for a docs-first, no-build-artifact repo. Cite conditions for re-evaluation. |
-
-**Verification:** `npm run smoke` passes.
-**Risk:** None — documents existing reality.
-
----
-
-### 1.3 P1-5 Observability / Dashboards — Medium
-
-**Current State:** `audit.sh` provides structural observability (file existence, workflow registry, pre-commit health). `generate-observation-report.js` is functional but depends on `agent-logs.jsonl` which is never populated because IDE agents don't emit structured file-based logs.
-**Root Cause:** IDE agents (Claude Code, GitHub Copilot, Cursor, Windsurf) don't write to repo log files. The AGENTS.md logging spec is aspirational.
-**Remediation:**
-
-1. Wire `generate-observation-report.js` into `npm run audit` so it runs alongside `audit.sh`.
-2. Extend `audit.sh` to append a structural observation entry to `agent-logs.jsonl` each time it runs, providing minimum data flow for the report generator.
-3. Update AGENTS.md logging configuration to mark runtime agent logging as IDE-dependent and add the audit-based observability as the achievable baseline.
-
-**Changes:**
-| File | Action | Description |
-|------|--------|-------------|
-| `scripts/harness/audit.sh` | Edit | Append a JSON Lines entry to `.harness/agent-logs.jsonl` at the end of each audit run (timestamp, agent_id="harness-audit", action="structural-audit", result, duration_ms). |
-| `package.json` | Edit | Chain `generate-observation-report.js` into the `audit` npm script. |
-| `AGENTS.md` | Edit | Update Centralized Logging Configuration to distinguish achievable baseline (audit-triggered) from aspirational runtime logging (IDE-dependent). |
-
-**Verification:** `npm run audit` produces `.harness/observation-report.json` with at least one entry. `npm run smoke` passes.
-**Risk:** Low — extends existing scripts, no new dependencies.
+- **Remediation Level:** Medium
+- **Prevention Active:** `P0-7` Prevent Silent Looping and `P0-7` Prevent Narrative Audit Trails — the trail is partial and escalation thresholds are not yet machine-readable.
+- **Dependencies:** `P0-3`, `P1-5`
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `.harness/escalation-rules.json` or another canonical config surface — Define escalation triggers for same-step failures, stale task-state, and timeout thresholds.
+  - `scripts/exit-interceptor.js` / `scripts/` — Emit structured escalation events when those thresholds trip.
+  - `.harness/dashboard.md` / observation pipeline — Surface escalation status in a human-visible audit output.
+- **Remediation Tier:** Tier 1 — Define escalation triggers and route stuck tasks to human-visible alerts.
+- **Verification:** Simulate a threshold breach and confirm a structured escalation event is recorded and surfaced.
 
 ---
 
-## Batch 2: Tier 2 — Important (Mid-term)
+## Tier 2 (Mid-term Execution)
 
-### 2.1 P0-7 Escalation Policies & Audit Trails — Medium
+### 2-1. P2-4 Bounded Autonomy & Access Control
 
-**Current State:** AGENTS.md specifies logging format but no operational escalation rules. No heartbeat or stuck-detection mechanism.
-**Root Cause:** True automated escalation (heartbeat monitoring, external orchestrator) requires MAS infrastructure that doesn't exist in SAS context. However, contract-level escalation rules are achievable.
-**Remediation:**
+- **Remediation Level:** Light
+- **Prevention Active:** `P2-4` Prevent Narrative Permission Policies — permission boundaries are real but not canonically materialized in a repo-level manifest.
+- **Dependencies:** None
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `AGENTS.md`-adjacent JSON manifest or a new config file under `scripts/`/`.harness/` — Define tiered permission levels from read-only through high-risk actions.
+  - Map existing tool restrictions (`allowed-tools`, local IDE allow-lists, review gates) into that canonical manifest.
+  - Add explicit human-approval mapping for the highest-risk operations touching review-required surfaces.
+- **Remediation Tier:** Tier 1 — Define tiered permission models as machine-readable manifests.
+- **Verification:** Validate that the manifest covers current tool classes and names the approval gate for high-risk changes.
 
-1. Add escalation protocol rules to AGENTS.md: if an agent hits 3 consecutive failures on the same step, STOP execution and present a diagnostic to the user.
-2. This complements Ralph Loops (P0-4) configuration already in AGENTS.md by adding the "what to do when stuck" contract.
+### 2-2. P1-6 Web Search & MCP Integration
 
-**Changes:**
-| File | Action | Description |
-|------|--------|-------------|
-| `AGENTS.md` | Edit | Add an Escalation Protocol subsection under Ralph Loops Configuration. Define: 3 consecutive same-step failures → stop + present diagnostic. Document that automated escalation (notifications, orchestrator routing) requires MAS infrastructure. |
-
-**Verification:** `npm run smoke` passes.
-**Risk:** Low — contract-level rule.
-
----
-
-### 2.2 P0-4 Ralph Loops — Medium
-
-**Current State:** `exit-interceptor.js` exists with `checkPrematureExit()` and `triggerReinjection()` functions. Not wired into any workflow. AGENTS.md references `node scripts/exit-interceptor.js` but no workflow calls it.
-**Root Cause:** The script was created as infrastructure-first without a caller. IDE agents don't run post-task hooks automatically.
-**Remediation:**
-
-1. Wire exit-interceptor into `npm run audit` as a check: if `.harness/task-state.json` exists and shows incomplete steps, emit a warning.
-2. Add an AGENTS.md rule: after completing a multi-step task, agents should verify completion by checking the todo list or task state against the original objective before declaring done.
-
-**Changes:**
-| File | Action | Description |
-|------|--------|-------------|
-| `scripts/harness/audit.sh` | Edit | Add an exit-interceptor check: if `.harness/task-state.json` exists, run `node scripts/exit-interceptor.js` and report incomplete tasks as a warning. |
-| `AGENTS.md` | Edit | Add a completion verification rule: agents must verify all planned steps are done before declaring task complete. Reference P0-4 Ralph Loops. |
-
-**Verification:** `npm run audit` includes exit-interceptor output when task-state.json is present. `npm run smoke` passes.
-**Risk:** Low — extends audit workflow, no breaking changes.
+- **Remediation Level:** Light
+- **Prevention Active:** `P1-6` Prevent Narrative MCP Server Manifests — runtime capability is not declared canonically inside the repo.
+- **Dependencies:** None
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `.continue/mcpServers/` or another canonical config surface — Add a JSON capability manifest describing available MCP and web-search paths used by self-hosted audits.
+  - Add a short canonical note distinguishing checked-in capability declarations from IDE-global tool availability.
+  - Extend the observability trail to record when external search or MCP context materially informs a decision.
+- **Remediation Tier:** Tier 1 — Adopt JSON-standardized MCP capability manifests.
+- **Verification:** Confirm the manifest is checked in, machine-readable, and references the actual search/MCP surfaces available to this workspace.
 
 ---
 
-## Batch 3: Tier 3 — Deferred
+## Tier 3 (Long-term Backlog)
 
-Features P0-5, P0-10, P1-3, P1-6, P2-2, P2-4, P3-3 score ≤ 2.5 and are contextually adequate for HELab's docs-first, SAS-primary profile. **No action this cycle.** Re-evaluate if HELab adds application code or transitions to MAS.
+### 3-1. P0-5 Orchestration Logic
+
+- **Reason Deferred:** HELab remains SAS-primary; a router/topology layer adds more complexity than value at the current operating scale.
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `.agent/workflows/` — Revisit supervisor routing and context-preserving handoff protocols when routine MAS execution becomes normal.
+
+### 3-2. P0-10 Inter-Agent Communication (The Mailbox)
+
+- **Reason Deferred:** No sustained MAS message-passing demand exists yet; mailbox infrastructure would be speculative.
+- **Implementation Guide:** `None`
+- **Action Items** _(from the feature's guide when present; otherwise from the feature's L4 section):_
+  - `.harness/mailbox/` or equivalent future surface — Introduce a file-backed mailbox and strict JSON message schema only when MAS coordination becomes a real bottleneck.
 
 ---
 
 ## Execution Order
 
 ```text
-Batch 1 (3 items):  P1-11 → P0-1 → P1-5
-Batch 2 (2 items):  P0-7 → P0-4
+Tier 1: P1-5 → P0-4 → P0-7
+Tier 2: P2-4 → P1-6
+Tier 3: P0-5 / P0-10 only if HELab shifts into sustained MAS operation
 ```
 
-All Batch 1 changes can be implemented in a single commit. Batch 2 changes depend on Batch 1's AGENTS.md edits being in place.
+## Execution Status
 
-## Summary
-
-| Batch | Items | Files Touched                     | Estimated Scope        |
-| ----- | ----- | --------------------------------- | ---------------------- |
-| 1     | 3     | AGENTS.md, audit.sh, package.json | 5 edits across 3 files |
-| 2     | 2     | AGENTS.md, audit.sh               | 3 edits across 2 files |
-| Total | 5     | 3 unique files                    | 8 edits                |
+User approval for the Tier 1 + Tier 2 batch was granted on 2026-04-14. The actions above were executed in this cycle and verified with `npm run observe`, `npm run audit`, and `npm run check`.

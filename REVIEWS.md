@@ -902,6 +902,51 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       ],
       "change_summary": "Approved the structural audit principle-count alignment that updates audit.sh from the stale 19-principle assumption to the canonical 16-principle model, records the repair in the unreleased ledger, and archives the completed remediation plan after validation.",
       "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-14-001",
+      "date": "2026-04-14",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R001", "HE-R002", "HE-R003", "HE-R006", "HE-R007", "HE-R008"],
+      "scope_paths": [
+        "AGENTS.md",
+        "package.json",
+        "PLANS.md",
+        "RELEASES.md",
+        "REVIEWS.md",
+        "scripts/generate-observation-report.js",
+        "scripts/task-state.js",
+        "scripts/exit-interceptor.js",
+        "scripts/harness/audit.sh",
+        ".harness/task-state.schema.json",
+        ".harness/escalation-rules.json",
+        ".harness/agent-permissions.json",
+        ".harness/mcp-capabilities.json",
+        ".harness/HE-SCOPE.md",
+        ".harness/HE-CLUES.md",
+        ".harness/HE-PRIORITIES.md",
+        ".harness/HE-IMPLEMENTATION-PLAN.md",
+        ".harness/HE-CHANGE-SUMMARY.md",
+        ".harness/HE-ASSESSMENT-REPORT.md"
+      ],
+      "change_summary": "Approved the HELab Tier 1 + Tier 2 harness remediation batch: generated observability outputs, canonical Ralph Loop task-state tooling, machine-readable escalation rules, permission and MCP capability manifests, and the refreshed audit package after cleanup of synthetic task-state and invalid duration telemetry.",
+      "findings": [
+        {
+          "severity": "info",
+          "path": ".harness/reinjection-log.jsonl",
+          "summary": "Synthetic reinjection validation evidence remains in the repo as an intentional proof artifact for the new exit-interceptor path.",
+          "status": "accepted"
+        },
+        {
+          "severity": "info",
+          "path": ".harness/mcp-capabilities.json",
+          "summary": "P1-6 remains partial because the repo now declares capability shape but still ships no checked-in MCP server manifests.",
+          "status": "accepted"
+        }
+      ]
     }
   ]
 }

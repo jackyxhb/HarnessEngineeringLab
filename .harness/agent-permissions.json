@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "active_profile": "repo-maintainer",
+  "profiles": {
+    "read-only": {
+      "filesystem": "read-only",
+      "shell": "none",
+      "network": "disallowed",
+      "human_approval_required": false
+    },
+    "repo-maintainer": {
+      "filesystem": "workspace-write",
+      "shell": "repo-local-commands-only",
+      "network": "read-only-research",
+      "human_approval_required": false
+    },
+    "high-risk": {
+      "filesystem": "workspace-write",
+      "shell": "restricted",
+      "network": "restricted",
+      "human_approval_required": true,
+      "approval_triggers": [
+        "production deployment",
+        "database migration",
+        "external API side effect",
+        "secret rotation",
+        "destructive git operation"
+      ]
+    }
+  },
+  "allowed_paths": [
+    ".agent/",
+    ".harness/",
+    ".husky/",
+    ".github/",
+    "framework/",
+    "scripts/",
+    "tmp/",
+    "README.md",
+    "AGENTS.md",
+    "ANCHORS.md",
+    "PLANS.md",
+    "RELEASES.md",
+    "REQUIREMENTS.md",
+    "REVIEWS.md"
+  ],
+  "denied_operations": [
+    "production deployment without approval",
+    "database migration without approval",
+    "external side-effect call without approval",
+    "destructive git reset or checkout",
+    "secret or PII exfiltration"
+  ],
+  "local_override_observations": [
+    {
+      "source": ".claude/settings.local.json",
+      "role": "informational-only",
+      "note": "Local IDE allow-lists may be stricter than this canonical manifest and must not replace it as the durable policy surface."
+    }
+  ]
+}

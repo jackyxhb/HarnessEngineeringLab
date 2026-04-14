@@ -1,278 +1,94 @@
-# HE Assessment Report
+# HE-ASSESSMENT-REPORT
 
-**Date:** 2026-04-12
-**Auditor:** GitHub Copilot (Claude Opus 4.6)
-**Target:** HELab (self-host)
-**Version:** 4.1.1
+## 1. Executive Summary
+
+**Initial Maturity Level:** 3.8 / 5
+**Final Maturity Level:** 4.1 / 5
+**Total Delta:** +0.3 points
+**Human Role Stage:** Harness Builder
+
+**High-Level Statement:** This cycle moved HELab from planning-only assessment into a real execution batch. The repo now has generated observability outputs, machine-readable escalation and permission manifests, and a canonical task-state utility with reinjection proof. The remaining backlog is narrower than before, but Ralph Loops, escalation breadth, and MCP integration remain partial rather than fully closed in ordinary self-hosted operation.
 
 ---
 
-## Executive Summary
+## 2. Before vs. After Quick Checklist
 
-HELab's harness maturity improved from **3.2/5** to an estimated **3.6/5** after remediating 5 features across Tier 1 and Tier 2 gaps. The remaining 7 Tier 3 gaps are contextually adequate for HELab's docs-first, SAS-primary profile and require no action this cycle.
+> **Proof gate:** Every feature marked `[x]` in the "After" column **must** cite the concrete file, command, or gate that was created or modified as evidence. Cross-reference the entry in `.harness/HE-CHANGE-SUMMARY.md`. If no corresponding change-summary entry exists for a feature, it was not executed this cycle and **must** remain `[ ]` with a deferral reason — do not mark it `[x]` based on discussion, planning, or recommendation alone. Features that were assessed and planned but not physically mounted are reported as `[ ]` — assessed, not mounted: [reason].
 
-## Feature Status (Post-Remediation)
+### Foundation
+
+- `[ ]` → `[ ]` P0-4 Ralph Loops — improved, still partial: `.harness/task-state.schema.json`, `scripts/task-state.js`, `scripts/exit-interceptor.js`, and `.harness/reinjection-log.jsonl` now exist, but normal multi-step work is not yet consistently routed through them.
+- `[ ]` → `[ ]` P0-7 Escalation Policies & Audit Trails — improved, still partial: `.harness/escalation-rules.json`, `scripts/exit-interceptor.js`, and generated observability outputs now surface escalation and reinjection state, but external notification remains out of scope in SAS mode.
+- `[ ]` → `[ ]` P0-10 Inter-Agent Communication (The Mailbox) — deferred: MAS-only need not yet active in HELab.
+
+### Pillar 1 (Inform)
+
+- `[ ]` → `[x]` P1-5 Observability / Dashboards — mounted: `scripts/generate-observation-report.js` now generates richer JSON metrics and `.harness/dashboard.md`, and `scripts/harness/audit.sh` verifies both outputs.
+- `[ ]` → `[ ]` P1-6 Web Search & MCP Integration — improved, still partial: `.harness/mcp-capabilities.json` and `AGENTS.md` now provide the canonical machine-readable MCP/web-search capability surface, but HELab still ships no checked-in MCP server manifest and does not log external lookups.
+
+### Pillar 2 (Constrain)
+
+- `[ ]` → `[x]` P2-4 Bounded Autonomy & Access Control — mounted: `.harness/agent-permissions.json`, `AGENTS.md`, and `scripts/harness/audit.sh` now provide a canonical bounded-autonomy manifest and enforcement check.
+
+---
+
+## 3. Notable Improvements
+
+1. **Ralph Loop baseline added:** HELab now has a durable task-state schema and CLI, plus reinjection logging that can prove incomplete-task interception in a machine-readable way.
+2. **Observability moved from placeholder to generated output:** The dashboard is now produced from code, backed by richer JSON metrics and tied into the structural audit.
+3. **Portable safety and capability manifests added:** Permission policy and MCP capability state now live in repo-visible JSON manifests instead of only local IDE configuration.
+
+---
+
+## 4. Remaining Backlog
+
+**Tier 3 / Residual Gaps (Not Fixed This Cycle):**
 
 ```json
 [
   {
-    "id": "P0-1",
-    "name": "Bash Sandboxes",
-    "pre": "Partial",
-    "post": "Present",
-    "action": "Documented risk acceptance"
+    "feature": "P0-4 Ralph Loops",
+    "ep": "EP-4",
+    "tier": 1,
+    "reason_deferred": "The state utility and reinjection path exist, but ordinary multi-step work is not yet consistently routed through them."
   },
   {
-    "id": "P0-2",
-    "name": "Filesystem",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
+    "feature": "P0-7 Escalation Policies & Audit Trails",
+    "ep": "EP-7",
+    "tier": 1,
+    "reason_deferred": "Repo-visible escalation outputs exist, but broader action logging and external notification remain intentionally limited in SAS mode."
   },
   {
-    "id": "P0-3",
-    "name": "Git & File Locking",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
+    "feature": "P1-6 Web Search & MCP Integration",
+    "ep": "EP-12",
+    "tier": 2,
+    "reason_deferred": "The capability manifest is now canonical, but no checked-in MCP server manifests or external lookup traces are present."
   },
   {
-    "id": "P0-4",
-    "name": "Ralph Loops",
-    "pre": "Partial",
-    "post": "Present",
-    "action": "Added completion verification rule; wired exit-interceptor into audit"
+    "feature": "P0-10 Inter-Agent Communication (The Mailbox)",
+    "ep": "EP-5",
+    "tier": 3,
+    "reason_deferred": "SAS-primary operation does not justify mailbox infrastructure yet."
   },
   {
-    "id": "P0-5",
-    "name": "Orchestration Logic",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (SAS-adequate)"
+    "feature": "P0-5 Orchestration Logic",
+    "ep": "EP-5",
+    "tier": 3,
+    "reason_deferred": "MAS router/topology work is deferred until regular multi-agent execution is needed."
   },
   {
-    "id": "P0-6",
-    "name": "Rippable Middleware",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P0-7",
-    "name": "Escalation Policies & Audit Trails",
-    "pre": "Partial",
-    "post": "Present",
-    "action": "Added escalation protocol with 3-failure stop rule"
-  },
-  {
-    "id": "P0-8",
-    "name": "Harness Versioning",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P0-9",
-    "name": "Smart Command Wrappers",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P0-10",
-    "name": "Inter-Agent Communication",
-    "pre": "Not Impl",
-    "post": "Not Impl",
-    "action": "Deferred (SAS-primary)"
-  },
-  {
-    "id": "P0-11",
-    "name": "Portable Agent Surface",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-1",
-    "name": "Repository as Truth",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-2",
-    "name": "Context Compaction & Memory",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-3",
-    "name": "Tool Offloading",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (IDE concern)"
-  },
-  {
-    "id": "P1-4",
-    "name": "Progressive Skills",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-5",
-    "name": "Observability / Dashboards",
-    "pre": "Partial",
-    "post": "Present",
-    "action": "Wired two-tier observability; audit emits log entries and generates reports"
-  },
-  {
-    "id": "P1-6",
-    "name": "Web Search & MCP Integration",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (IDE-managed)"
-  },
-  {
-    "id": "P1-7",
-    "name": "Planning, Task Lists & Blackboards",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-8",
-    "name": "Context Anchoring",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-9",
-    "name": "Branch-Based Cognitive Memory",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-10",
-    "name": "Requirements Ledger",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P1-11",
-    "name": "Socratic Questioning",
-    "pre": "Not Impl",
-    "post": "Present",
-    "action": "Added Socratic Pause protocol to AGENTS.md"
-  },
-  {
-    "id": "P1-12",
-    "name": "Skill Engineering",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P2-1",
-    "name": "Automated Linters",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P2-2",
-    "name": "Dependency Enforcement",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (he-lint covers structural deps)"
-  },
-  {
-    "id": "P2-3",
-    "name": "AI Auditors & Collaboration",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P2-4",
-    "name": "Bounded Autonomy & Access Control",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (DO NOT rules sufficient)"
-  },
-  {
-    "id": "P2-5",
-    "name": "Upstream Intake Gate",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P3-1",
-    "name": "Scheduled Cleanups",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P3-2",
-    "name": "Documentation Sync",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
-  },
-  {
-    "id": "P3-3",
-    "name": "Pattern Auditing",
-    "pre": "Partial",
-    "post": "Partial",
-    "action": "Deferred (he-lint + /reconcile sufficient)"
-  },
-  {
-    "id": "P3-4",
-    "name": "Consolidation Loop",
-    "pre": "Present",
-    "post": "Present",
-    "action": "None"
+    "feature": "P1-5 Observability / Dashboards",
+    "ep": "EP-8",
+    "tier": 3,
+    "reason_deferred": "Full per-action IDE tool logging and external alert integrations remain runtime-dependent; the repo now implements the structural baseline."
   }
 ]
 ```
 
-## Summary Counts
+---
 
-| Status          | Pre-Audit | Post-Audit |
-| --------------- | --------- | ---------- |
-| Present         | 20        | 25         |
-| Partial         | 10        | 6          |
-| Not Implemented | 2         | 1          |
+## 5. Next Milestone
 
-## Estimated Maturity
-
-- **Pre-audit:** 3.2 / 5
-- **Post-audit:** 3.6 / 5
-
-## Remaining Gaps (Deferred)
-
-| Feature                           | Reason                                      |
-| --------------------------------- | ------------------------------------------- |
-| P0-5 Orchestration Logic          | SAS-primary; workflows adequate             |
-| P0-10 Inter-Agent Communication   | SAS-primary; no operational need            |
-| P1-3 Tool Offloading              | IDE-managed concern                         |
-| P1-6 Web Search & MCP Integration | IDE-managed; functional                     |
-| P2-2 Dependency Enforcement       | he-lint validates structural deps           |
-| P2-4 Bounded Autonomy             | DO NOT rules + review gates sufficient      |
-| P3-3 Pattern Auditing             | he-lint + /reconcile + weekly GC sufficient |
-
-## Verification Evidence
-
-> **Proof gate:** All changes verified mechanically before this report was written.
-
-- `npm run smoke` → **PASS** (he-lint clean, no violations)
-- `npm run audit` → **PASS** (33/33 checks, 0 warnings, 0 failures)
-- `.harness/agent-logs.jsonl` → structured audit entry emitted with valid JSON
-- `.harness/observation-report.json` → generated with metrics from log data
-- `REVIEWS.md` → record HE-REV-2026-04-12-006 added (generator ≠ reviewer)
+**Current Stage:** Harness Builder
+**Next Stage:** Strategic Overseer
+**Features Needed:** `P0-5 Orchestration Logic` and `P0-10 Inter-Agent Communication` when HELab moves beyond SAS-primary execution

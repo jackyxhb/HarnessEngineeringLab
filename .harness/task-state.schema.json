@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HELab Ralph Loop Task State",
+  "type": "object",
+  "required": [
+    "version",
+    "task_id",
+    "title",
+    "status",
+    "expected_steps",
+    "completed_steps",
+    "reinjections_used",
+    "max_reinjections",
+    "consecutive_failures",
+    "started_at",
+    "updated_at",
+    "last_heartbeat_at"
+  ],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "plan_ref": { "type": ["string", "null"] },
+    "requirement_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "blocked", "completed", "escalated"]
+    },
+    "expected_steps": { "type": "integer", "minimum": 0 },
+    "completed_steps": { "type": "integer", "minimum": 0 },
+    "completed_step_labels": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "current_step": { "type": ["string", "null"] },
+    "state_summary": { "type": "string" },
+    "reinjections_used": { "type": "integer", "minimum": 0 },
+    "max_reinjections": { "type": "integer", "minimum": 1 },
+    "consecutive_failures": { "type": "integer", "minimum": 0 },
+    "last_failure": {
+      "type": ["object", "null"],
+      "properties": {
+        "timestamp": { "type": "string" },
+        "step": { "type": ["string", "null"] },
+        "message": { "type": "string" }
+      },
+      "required": ["timestamp", "message"]
+    },
+    "reinjection_summary": { "type": ["object", "null"] },
+    "escalation_summary": { "type": ["object", "null"] },
+    "started_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "last_heartbeat_at": { "type": "string" }
+  },
+  "additionalProperties": false
+}

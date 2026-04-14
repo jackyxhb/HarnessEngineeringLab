@@ -26,11 +26,31 @@ Active task planning file. Implements **Practice 5: Optimize For Agent Flow** â€
 
 ## Active Plans
 
-_No active plans._
+None.
 
 ---
 
 ## Completed Plans
+
+### Plan: HELab Full Harness Audit 2026-04-14
+
+- **Goal:** Complete a fresh `harnessing-agents` full audit for HELab, execute the user-approved Tier 1 + Tier 2 remediation batch, and refresh the `.harness/HE-*` audit package against the resulting repo state.
+- **Requirement IDs:** `HE-R001`, `HE-R002`, `HE-R003`, `HE-R006`, `HE-R007`, `HE-R008`
+- **Scope:** `.harness/HE-*`, `.harness/*.json*`, `AGENTS.md`, `package.json`, `RELEASES.md`, `scripts/generate-observation-report.js`, `scripts/exit-interceptor.js`, `scripts/task-state.js`, `scripts/harness/audit.sh`, `PLANS.md`, and `REVIEWS.md`. Out of scope: canonical `framework/` edits, skill-surface edits, and MAS-only `P0-5` / `P0-10` infrastructure.
+- **Status:** `done`
+- **Steps:**
+  - [x] Run Phase 0 pre-flight and refresh project scope evidence from live repository files
+  - [x] Reassess current feature gaps and write `.harness/HE-CLUES.md`
+  - [x] Re-score remaining gaps and write `.harness/HE-PRIORITIES.md`
+  - [x] Translate the prioritized gaps into `.harness/HE-IMPLEMENTATION-PLAN.md`
+  - [x] Obtain user approval for the Tier 1 + Tier 2 remediation batch
+  - [x] Implement Tier 1 features (`P1-5`, `P0-4`, `P0-7`) and Tier 2 features (`P2-4`, `P1-6`)
+  - [x] Validate with `npm run observe`, `npm run audit`, and `npm run check`
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Follow the `harnessing-agents` full-audit stop gate until approval. Keep `framework/` canonical. Keep MAS-only work deferred.
+- **Checkpoints:** Scope refreshed; clues refreshed; plan approved; manifests and scripts mounted; reinjection path exercised; validation green; review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
 
 ### Plan: Structural Audit Principle Count Alignment
 

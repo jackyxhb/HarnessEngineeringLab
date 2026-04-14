@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "web_search": {
+    "required_for": [
+      "external research",
+      "version checks",
+      "fast-moving ecosystem questions"
+    ],
+    "source": "runtime-provided"
+  },
+  "mcp": {
+    "checked_in_registry_paths": [
+      ".continue/mcpServers/"
+    ],
+    "checked_in_servers": [],
+    "local_override_paths": [
+      ".claude/"
+    ],
+    "capability_classes": [
+      "documentation",
+      "repository automation",
+      "external search",
+      "browser automation"
+    ],
+    "current_repo_state": "no checked-in MCP server manifests present"
+  },
+  "audit_requirements": {
+    "log_external_data_usage": true,
+    "prefer_machine_readable_manifests": true
+  }
+}

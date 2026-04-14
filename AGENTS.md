@@ -62,7 +62,7 @@ To implement P1-5 Observability / Dashboards, the repository uses a two-tier obs
 
 ### Tier 1: Structural Observability (Achievable Baseline)
 
-The `npm run audit` command runs `audit.sh` + `generate-observation-report.js`, producing `.harness/observation-report.json`. This provides harness-level observability: file existence, workflow registry health, anchor freshness, and pre-commit liveness. Each audit run also appends a structured entry to `.harness/agent-logs.jsonl`.
+The `npm run audit` command runs `audit.sh` + `generate-observation-report.js`, producing `.harness/observation-report.json` and `.harness/dashboard.md`. This provides harness-level observability: file existence, workflow registry health, anchor freshness, pre-commit liveness, task-state visibility, escalation-event visibility, and manifest presence checks. Each audit run also appends a structured entry to `.harness/agent-logs.jsonl`.
 
 ### Tier 2: Runtime Agent Logging (IDE-Dependent)
 
@@ -72,6 +72,7 @@ Full per-action agent logging depends on the IDE agent runtime. Not all agentic 
 - **Log Location:** Logs must be written to `.harness/agent-logs.jsonl` (JSON Lines format).
 - **Logging Triggers:** Log every tool use, file edit, command execution, and workflow invocation.
 - **Audit Trail:** Logs must be append-only and retained for at least 30 days.
+- **Dashboard Contract:** `.harness/dashboard.md` must be generated from `.harness/observation-report.json`, never maintained by hand.
 
 > **Implementation note:** If the current IDE agent cannot emit file-based logs, Tier 1 structural observability via `npm run audit` remains the operational baseline.
 
@@ -82,7 +83,10 @@ To implement P0-4 Ralph Loops for 100% task completion:
 - **Loop Budgets:** Maximum 3 reinjections per task to prevent infinite retries.
 - **Escalation Thresholds:** Escalate to human review after 2 failed reinjections.
 - **State Persistence:** Use `.harness/task-state.json` for cross-window state summaries.
+- **State Schema:** `.harness/task-state.json` must conform to `.harness/task-state.schema.json`; narrative-only task snapshots are not allowed.
 - **Exit Interception:** Run `node scripts/exit-interceptor.js` after task completion to detect premature exits.
+- **State Utility:** Use `npm run task-state -- <command>` to create heartbeats, mark steps, record failures, and close task state without inventing ad hoc JSON.
+- **Heartbeat Scope:** Stale-heartbeat thresholds only apply when a task opts into `.harness/task-state.json` via the state utility; SAS-mode work without an active task-state file is outside heartbeat enforcement.
 - **`EP-14` Completion Verification:** Before declaring a multi-step task complete, agents must verify all planned steps (from the todo list, plan entry, or original objective) are finished. Consequence of violation: premature "done" declarations leave work incomplete and break task history.
 
 ### Escalation Protocol (P0-7)
@@ -92,7 +96,15 @@ When an agent encounters repeated failures on the same step:
 - **3 consecutive same-step failures** → STOP execution immediately. Present a structured diagnostic to the user: what was attempted, what failed, and the suspected root cause.
 - **Do not** silently retry the same approach beyond the 3-attempt limit. Consequence of violation: infinite loops waste tokens and context budget while producing no progress.
 - **Diagnostic format:** Include the step description, the 3 error messages or outcomes, and a proposed alternative approach (if one exists).
+- **Machine-readable rules:** Escalation thresholds and routes live in `.harness/escalation-rules.json`, and emitted escalation events append to `.harness/escalation-events.jsonl`.
 - **Note:** Automated escalation routing (Slack, email, orchestrator) requires MAS infrastructure. In SAS mode the escalation target is always the human in the current session.
+
+## Canonical Capability Manifests
+
+To keep Tier 2 integrations and safety controls portable instead of IDE-local only:
+
+- `.harness/agent-permissions.json` is the canonical machine-readable permission manifest for P2-4 bounded autonomy. Local IDE allow-lists may be stricter, but they must not be the only durable policy surface.
+- `.harness/mcp-capabilities.json` is the canonical machine-readable manifest for P1-6 web-search and MCP capability discovery, including checked-in registry paths and whether the current repository ships any MCP servers.
 
 ## Workflows
 
@@ -170,6 +182,9 @@ All available tools and scripts. Undeclared tools do not exist for agents — if
 - `npm run check` — Full quality gate: markdownlint + cspell + he-lint.js. Equivalent to what CI runs. Use before pushing.
 - `npm run ci` — Alias for `npm run check`. Use in automated contexts.
 - `npm run audit` — Structural integrity audit: verifies the active harness files exist, workflows are registered, tmp/ is clean, and anchor count is healthy. Exit 0 = PASS.
+- `npm run observe` — Rebuild `.harness/observation-report.json` and `.harness/dashboard.md` from the current JSONL logs and task-state files.
+- `npm run task-state -- <command>` — Manage `.harness/task-state.json` using the canonical state utility (`start`, `heartbeat`, `step`, `fail`, `complete`, `reset`, `show`).
+- `npm run exit-check -- [--mode=audit]` — Run the Ralph Loops exit interceptor manually to detect incomplete or stale tasks and emit reinjection/escalation events.
 - `node scripts/he-lint.js` — Canonical HE consistency checker for the active framework surface. Runs on `git commit` (pre-commit hook) and in CI on every push/PR.
 - `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
 - `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.

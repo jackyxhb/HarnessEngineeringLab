@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "thresholds": {
+    "max_reinjections": 3,
+    "escalate_after_reinjections": 2,
+    "consecutive_failures": 3,
+    "heartbeat_stale_minutes": 30,
+    "active_state_timeout_minutes": 60
+  },
+  "routing": {
+    "first_response": "retry-same-agent",
+    "second_response": "different-agent",
+    "final_response": "human-review"
+  },
+  "human_target": "current-session-user",
+  "diagnostic_fields": [
+    "task_id",
+    "title",
+    "reason",
+    "completed_steps",
+    "expected_steps",
+    "reinjections_used",
+    "max_reinjections",
+    "consecutive_failures",
+    "last_failure",
+    "proposed_next_action"
+  ]
+}
