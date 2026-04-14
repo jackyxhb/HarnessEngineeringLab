@@ -1,0 +1,677 @@
+{
+    "$schema": "./measurement-schema.json",
+    "version": "1.0.0",
+    "generated_from": "framework/HE Measurement Standards.md",
+    "feature_measurements": [
+        {
+            "feature_id": "P0-5",
+            "measurement_binding": "P0-5",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-5-task-throughput-scale",
+                    "outcome": "Task throughput scales > 70% linearly with added agents",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/orchestration-metrics.json",
+                    "collection_trigger": "npm run observe after MAS orchestration telemetry is mounted",
+                    "formula": "throughput_with_n_agents / (throughput_with_one_agent * n_agents)",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-task-throughput-scale",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.7,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already declares the 70% scaling floor; HELab does not yet emit MAS throughput telemetry.",
+                    "enforcement_surface": {
+                        "type": "future-observation-input",
+                        "path": ".harness/orchestration-metrics.json"
+                    }
+                },
+                {
+                    "metric_id": "p0-5-coordination-overhead-ratio",
+                    "outcome": "Coordination overhead grows sublinearly relative to team size",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/router-events.jsonl",
+                    "collection_trigger": "npm run observe after router events are mounted",
+                    "formula": "coordination_events / completed_tasks",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-coordination-overhead-ratio",
+                    "threshold": {
+                        "operator": "<",
+                        "target": 1,
+                        "unit": "events-per-task-growth"
+                    },
+                    "threshold_justification": "Sublinear overhead requires the coordination burden to grow slower than task completion volume.",
+                    "enforcement_surface": {
+                        "type": "future-router-log",
+                        "path": ".harness/router-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-5-supervisor-queue-latency-ms",
+                    "outcome": "Supervisor queue latency stays < N seconds under peak orchestration load",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/orchestration-metrics.json",
+                    "collection_trigger": "npm run observe after queue telemetry is mounted",
+                    "formula": "p95(supervisor_queue_wait_ms)",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-supervisor-queue-latency-ms",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 5000,
+                        "unit": "ms"
+                    },
+                    "threshold_justification": "The placeholder N is operationalized to 5 seconds as the first binary queue-latency ceiling for reviewable orchestration health.",
+                    "enforcement_surface": {
+                        "type": "future-queue-metric",
+                        "path": ".harness/orchestration-metrics.json"
+                    }
+                },
+                {
+                    "metric_id": "p0-5-duplicate-task-assignment-rate",
+                    "outcome": "Duplicate-task assignment rate -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/router-events.jsonl",
+                    "collection_trigger": "npm run observe after router task-claim telemetry is mounted",
+                    "formula": "duplicate_assignments / total_assignments",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-duplicate-task-assignment-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already states the target as zero duplicate assignment incidents.",
+                    "enforcement_surface": {
+                        "type": "future-router-log",
+                        "path": ".harness/router-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-5-cross-agent-state-overwrites",
+                    "outcome": "Cross-agent state overwrite incidents -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/router-events.jsonl",
+                    "collection_trigger": "npm run observe after shared-state telemetry is mounted",
+                    "formula": "count(overwrite_incident)",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-cross-agent-state-overwrites",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "The canonical success state is zero overwrite incidents.",
+                    "enforcement_surface": {
+                        "type": "future-state-audit-log",
+                        "path": ".harness/router-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-5-handoff-context-loss-incidents",
+                    "outcome": "Handoff context-loss incidents -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/router-events.jsonl",
+                    "collection_trigger": "npm run observe after handoff telemetry is mounted",
+                    "formula": "count(context_loss_incident)",
+                    "storage_key": "measurement_health.features.P0-5.metrics.p0-5-handoff-context-loss-incidents",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "The feature already states zero handoff context-loss incidents as the success condition.",
+                    "enforcement_surface": {
+                        "type": "future-handoff-log",
+                        "path": ".harness/router-events.jsonl"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-10",
+            "measurement_binding": "P0-10",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-10-p2p-delivery-latency-ms",
+                    "outcome": "P2P message delivery latency < N seconds",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mailbox-events.jsonl",
+                    "collection_trigger": "npm run observe after mailbox telemetry is mounted",
+                    "formula": "p95(delivered_at - sent_at)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-p2p-delivery-latency-ms",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 5000,
+                        "unit": "ms"
+                    },
+                    "threshold_justification": "The placeholder N is operationalized to 5 seconds as the first bounded-latency ceiling for mailbox delivery.",
+                    "enforcement_surface": {
+                        "type": "future-mailbox-log",
+                        "path": ".harness/mailbox-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-10-lost-messages",
+                    "outcome": "0 lost messages",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mailbox-events.jsonl",
+                    "collection_trigger": "npm run observe after mailbox telemetry is mounted",
+                    "formula": "count(sent_without_delivery_ack)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-lost-messages",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "messages"
+                    },
+                    "threshold_justification": "The feature already defines zero lost messages as the success state.",
+                    "enforcement_surface": {
+                        "type": "future-mailbox-log",
+                        "path": ".harness/mailbox-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-10-broadcast-fanout-cycles",
+                    "outcome": "Broadcast fan-out complete within 1 cycle",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mailbox-events.jsonl",
+                    "collection_trigger": "npm run observe after broadcast telemetry is mounted",
+                    "formula": "max(delivery_cycle_count_per_broadcast)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-broadcast-fanout-cycles",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 1,
+                        "unit": "cycles"
+                    },
+                    "threshold_justification": "The feature already defines one delivery cycle as the bounded fan-out success state.",
+                    "enforcement_surface": {
+                        "type": "future-broadcast-log",
+                        "path": ".harness/mailbox-events.jsonl"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-1",
+            "measurement_binding": "P1-1",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 10080,
+            "metrics": [
+                {
+                    "metric_id": "p1-1-human-conversation-onboarding-count",
+                    "outcome": "New agent onboarding requires 0 human conversations",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/repository-truth-score.json",
+                    "collection_trigger": "weekly audit after onboarding telemetry is mounted",
+                    "formula": "count(human_clarification_conversations_per_new_agent)",
+                    "storage_key": "measurement_health.features.P1-1.metrics.p1-1-human-conversation-onboarding-count",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "conversations"
+                    },
+                    "threshold_justification": "The feature states zero human briefing as the desired onboarding outcome, but HELab does not yet record onboarding telemetry.",
+                    "enforcement_surface": {
+                        "type": "future-onboarding-audit",
+                        "path": ".harness/repository-truth-score.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-1-convention-hallucination-rate",
+                    "outcome": "Hallucination rate on project conventions -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/repository-truth-score.json",
+                    "collection_trigger": "weekly audit after convention-eval telemetry is mounted",
+                    "formula": "incorrect_convention_claims / total_convention_claims_checked",
+                    "storage_key": "measurement_health.features.P1-1.metrics.p1-1-convention-hallucination-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already expresses zero convention hallucination as the success state.",
+                    "enforcement_surface": {
+                        "type": "future-convention-audit",
+                        "path": ".harness/repository-truth-score.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-1-agent-legibility-score",
+                    "outcome": "Agent Legibility Score >= 3.0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/repository-truth-score.json",
+                    "collection_trigger": "weekly audit after legibility scoring is mounted",
+                    "formula": "weighted score across rule discoverability, tool declaration, path clarity, and structural machine-readability",
+                    "storage_key": "measurement_health.features.P1-1.metrics.p1-1-agent-legibility-score",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 3,
+                        "unit": "score"
+                    },
+                    "threshold_justification": "The feature already defines 3.0 as the minimum acceptable legibility score.",
+                    "enforcement_surface": {
+                        "type": "future-legibility-audit",
+                        "path": ".harness/repository-truth-score.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-5",
+            "measurement_binding": "P1-5",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 5,
+            "metrics": [
+                {
+                    "metric_id": "p1-5-dashboard-freshness-minutes",
+                    "outcome": "Dashboard freshness < 5 minutes",
+                    "status": "implemented",
+                    "event_source": ".harness/observation-report.json",
+                    "collection_trigger": "npm run observe",
+                    "formula": "now - observation_report.timestamp",
+                    "storage_key": "measurement_health.features.P1-5.metrics.p1-5-dashboard-freshness-minutes",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 5,
+                        "unit": "minutes"
+                    },
+                    "threshold_justification": "The feature already sets the five-minute dashboard freshness target.",
+                    "enforcement_surface": {
+                        "type": "observation-report",
+                        "path": ".harness/observation-report.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-5-structural-signal-automation-rate",
+                    "outcome": "Harness structural integrity signals 100% automated",
+                    "status": "proxy-mounted",
+                    "event_source": "scripts/harness/audit.sh and .harness/observation-report.json",
+                    "collection_trigger": "npm run observe after npm run audit",
+                    "formula": "automated_structural_signals / declared_structural_signals",
+                    "storage_key": "measurement_health.features.P1-5.metrics.p1-5-structural-signal-automation-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already defines full automation coverage as the target; HELab currently uses structural-audit proxies rather than per-command telemetry.",
+                    "enforcement_surface": {
+                        "type": "audit-script",
+                        "path": "scripts/harness/audit.sh"
+                    }
+                },
+                {
+                    "metric_id": "p1-5-task-artifact-retention-rate",
+                    "outcome": "Agent task artifact retention = 100%",
+                    "status": "proxy-mounted",
+                    "event_source": ".harness/task-state.json and .harness/agent-logs.jsonl",
+                    "collection_trigger": "npm run observe",
+                    "formula": "retained_task_artifacts / expected_task_artifacts",
+                    "storage_key": "measurement_health.features.P1-5.metrics.p1-5-task-artifact-retention-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature defines 100% retention as the target; current calculation uses existing `.harness` artifacts as the retention proxy.",
+                    "enforcement_surface": {
+                        "type": "observation-generator",
+                        "path": "scripts/generate-observation-report.js"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-11",
+            "measurement_binding": "P1-11",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-11-clarification-pass-rate",
+                    "outcome": "Pre-execution clarification pass rate = 100% for ambiguous inputs",
+                    "status": "proxy-mounted",
+                    "event_source": "chat transcripts plus .harness/inquiry-response.schema.json bindings",
+                    "collection_trigger": "manual review plus npm run smoke",
+                    "formula": "ambiguous_tasks_with_recorded_socratic_pause / ambiguous_tasks_detected",
+                    "storage_key": "measurement_health.features.P1-11.metrics.p1-11-clarification-pass-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature defines a full clarification pass rate as the success condition; current enforcement is a repository proxy until inquiry logs are mounted.",
+                    "enforcement_surface": {
+                        "type": "schema-binding-and-review",
+                        "path": ".harness/inquiry-response.schema.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-11-rework-from-assumption-count",
+                    "outcome": "Post-execution 'I assumed you meant...' rework -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/inquiry-audit.json",
+                    "collection_trigger": "future inquiry audit",
+                    "formula": "count(rework_events_tagged_assumption_error)",
+                    "storage_key": "measurement_health.features.P1-11.metrics.p1-11-rework-from-assumption-count",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "rework-events"
+                    },
+                    "threshold_justification": "The feature already states zero assumption-driven rework as the target, but HELab does not yet persist those events.",
+                    "enforcement_surface": {
+                        "type": "future-inquiry-audit",
+                        "path": ".harness/inquiry-audit.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-11-inquiry-schema-conformance-rate",
+                    "outcome": "Inquiry-response schema conformance = 100% against .harness/inquiry-response.schema.json",
+                    "status": "implemented",
+                    "event_source": ".harness/inquiry-response.schema.json",
+                    "collection_trigger": "npm run smoke",
+                    "formula": "valid_inquiry_records / total_inquiry_records_checked",
+                    "storage_key": "measurement_health.features.P1-11.metrics.p1-11-inquiry-schema-conformance-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already defines full schema conformance as the success state and the schema surface now exists.",
+                    "enforcement_surface": {
+                        "type": "schema-contract",
+                        "path": ".harness/inquiry-response.schema.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P2-3",
+            "measurement_binding": "P2-3",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p2-3-independent-review-rate",
+                    "outcome": "100% of substantial outputs independently reviewed",
+                    "status": "implemented",
+                    "event_source": "REVIEWS.md and scripts/he-lint.js",
+                    "collection_trigger": "npm run smoke",
+                    "formula": "review_required_changes_with_approval_record / review_required_changes_detected",
+                    "storage_key": "measurement_health.features.P2-3.metrics.p2-3-independent-review-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already requires full independent review coverage and the repository enforces it mechanically.",
+                    "enforcement_surface": {
+                        "type": "review-ledger-gate",
+                        "path": "scripts/he-lint.js"
+                    }
+                },
+                {
+                    "metric_id": "p2-3-defect-escape-rate",
+                    "outcome": "Defect escape rate < 5%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/review-quality.json",
+                    "collection_trigger": "future review-quality audit",
+                    "formula": "post-merge defects attributable to reviewed changes / reviewed changes",
+                    "storage_key": "measurement_health.features.P2-3.metrics.p2-3-defect-escape-rate",
+                    "threshold": {
+                        "operator": "<",
+                        "target": 0.05,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already specifies the 5% ceiling; HELab does not yet emit post-merge defect attribution telemetry.",
+                    "enforcement_surface": {
+                        "type": "future-review-quality-audit",
+                        "path": ".harness/review-quality.json"
+                    }
+                },
+                {
+                    "metric_id": "p2-3-generator-evaluator-separation-rate",
+                    "outcome": "Generator/evaluator separation enforced",
+                    "status": "implemented",
+                    "event_source": "REVIEWS.md and scripts/he-lint.js",
+                    "collection_trigger": "npm run smoke",
+                    "formula": "approvals_with_distinct_generator_and_reviewer / approval_records_checked",
+                    "storage_key": "measurement_health.features.P2-3.metrics.p2-3-generator-evaluator-separation-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The repository already enforces a binary generator/reviewer separation rule on approving reviews.",
+                    "enforcement_surface": {
+                        "type": "review-ledger-gate",
+                        "path": "scripts/he-lint.js"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P2-5",
+            "measurement_binding": "P2-5",
+            "status": "implemented",
+            "collection_trigger": "npm run smoke",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p2-5-unregistered-requirements-to-planning-count",
+                    "outcome": "0 unregistered requirements reaching planning phase",
+                    "status": "implemented",
+                    "event_source": "PLANS.md, REQUIREMENTS.md, and scripts/he-lint.js",
+                    "collection_trigger": "npm run smoke",
+                    "formula": "count(active_plan_requirement_ids_missing_from_requirements_ledger)",
+                    "storage_key": "measurement_health.features.P2-5.metrics.p2-5-unregistered-requirements-to-planning-count",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "plans"
+                    },
+                    "threshold_justification": "The feature already defines zero unregistered requirements reaching planning as the target and `he-lint` enforces it.",
+                    "enforcement_surface": {
+                        "type": "requirements-gate",
+                        "path": "scripts/he-lint.js"
+                    }
+                },
+                {
+                    "metric_id": "p2-5-intake-gate-enforcement-rate",
+                    "outcome": "Intake gate enforcement rate = 100%",
+                    "status": "implemented",
+                    "event_source": "PLANS.md, REQUIREMENTS.md, and scripts/he-lint.js",
+                    "collection_trigger": "npm run smoke",
+                    "formula": "validated_plans / active_plans_checked",
+                    "storage_key": "measurement_health.features.P2-5.metrics.p2-5-intake-gate-enforcement-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already requires full intake-gate enforcement and the repository has a binary plan/requirements gate.",
+                    "enforcement_surface": {
+                        "type": "requirements-gate",
+                        "path": "scripts/he-lint.js"
+                    }
+                },
+                {
+                    "metric_id": "p2-5-bypass-attempt-rate",
+                    "outcome": "Bypass attempt rate -> 0",
+                    "status": "proxy-mounted",
+                    "event_source": "scripts/he-lint.js failures and PLANS.md review history",
+                    "collection_trigger": "npm run observe after npm run smoke",
+                    "formula": "failed_requirement_gate_checks / planning_or_execution_attempts_checked",
+                    "storage_key": "measurement_health.features.P2-5.metrics.p2-5-bypass-attempt-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature states zero bypass attempts as the goal; current proxy counts lint-detected bypass attempts instead of a dedicated runtime counter.",
+                    "enforcement_surface": {
+                        "type": "requirements-gate",
+                        "path": "scripts/he-lint.js"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P3-1",
+            "measurement_binding": "P3-1",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 10080,
+            "metrics": [
+                {
+                    "metric_id": "p3-1-entropy-persistence-cycles",
+                    "outcome": "Entropy never persists > 1 GC cycle",
+                    "status": "proxy-mounted",
+                    "event_source": "scripts/harness/audit.sh and tmp/ stale-file checks",
+                    "collection_trigger": "npm run audit",
+                    "formula": "max(open_entropy_findings_age_in_cleanup_cycles)",
+                    "storage_key": "measurement_health.features.P3-1.metrics.p3-1-entropy-persistence-cycles",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 1,
+                        "unit": "gc-cycles"
+                    },
+                    "threshold_justification": "The feature already defines one garbage-collection cycle as the maximum tolerated persistence window.",
+                    "enforcement_surface": {
+                        "type": "audit-script",
+                        "path": "scripts/harness/audit.sh"
+                    }
+                },
+                {
+                    "metric_id": "p3-1-dead-code-ratio",
+                    "outcome": "Dead code ratio -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/cleanup-report.json",
+                    "collection_trigger": "future cleanup audit",
+                    "formula": "dead_code_lines / total_lines_checked",
+                    "storage_key": "measurement_health.features.P3-1.metrics.p3-1-dead-code-ratio",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already states a zero dead-code target, but HELab does not yet emit cleanup-report telemetry.",
+                    "enforcement_surface": {
+                        "type": "future-cleanup-report",
+                        "path": ".harness/cleanup-report.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-1-orphan-file-count",
+                    "outcome": "Orphan file count -> 0",
+                    "status": "proxy-mounted",
+                    "event_source": "scripts/harness/audit.sh and tmp/ stale-file checks",
+                    "collection_trigger": "npm run audit",
+                    "formula": "count(files flagged as orphaned or stale by the cleanup audit)",
+                    "storage_key": "measurement_health.features.P3-1.metrics.p3-1-orphan-file-count",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "files"
+                    },
+                    "threshold_justification": "The feature defines zero orphan files as the target; current structural audit checks provide the mounted proxy.",
+                    "enforcement_surface": {
+                        "type": "audit-script",
+                        "path": "scripts/harness/audit.sh"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P3-3",
+            "measurement_binding": "P3-3",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 10080,
+            "metrics": [
+                {
+                    "metric_id": "p3-3-pattern-variants-per-operation",
+                    "outcome": "Pattern variants per operation -> 1 (canonical)",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/pattern-audit-report.json",
+                    "collection_trigger": "future pattern audit",
+                    "formula": "max(pattern_variants_detected_per_operation_class)",
+                    "storage_key": "measurement_health.features.P3-3.metrics.p3-3-pattern-variants-per-operation",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 1,
+                        "unit": "variants"
+                    },
+                    "threshold_justification": "The feature already sets one canonical variant as the target, but periodic pattern-audit telemetry is not mounted yet.",
+                    "enforcement_surface": {
+                        "type": "future-pattern-audit",
+                        "path": ".harness/pattern-audit-report.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-3-circular-dependency-count",
+                    "outcome": "Circular dependency count -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/pattern-audit-report.json",
+                    "collection_trigger": "future pattern audit",
+                    "formula": "count(circular_dependency_edges)",
+                    "storage_key": "measurement_health.features.P3-3.metrics.p3-3-circular-dependency-count",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "cycles"
+                    },
+                    "threshold_justification": "The feature defines zero circular dependencies as the target, but the dependency-graph audit is not mounted yet.",
+                    "enforcement_surface": {
+                        "type": "future-pattern-audit",
+                        "path": ".harness/pattern-audit-report.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-3-pattern-convergence-rate",
+                    "outcome": "Pattern convergence rate > 90%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/pattern-audit-report.json",
+                    "collection_trigger": "future pattern audit",
+                    "formula": "canonical_pattern_matches / total_pattern_instances_checked",
+                    "storage_key": "measurement_health.features.P3-3.metrics.p3-3-pattern-convergence-rate",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.9,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature already defines 90% convergence as the first success threshold.",
+                    "enforcement_surface": {
+                        "type": "future-pattern-audit",
+                        "path": ".harness/pattern-audit-report.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-3-pattern-audit-schema-conformance-rate",
+                    "outcome": "Pattern audit and anti-pattern schema conformance = 100%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/pattern-audit-report.schema.json and .harness/anti-pattern-definition.schema.json",
+                    "collection_trigger": "future pattern-audit generation and validation pass",
+                    "formula": "valid_pattern_artifacts / total_pattern_artifacts_checked",
+                    "storage_key": "measurement_health.features.P3-3.metrics.p3-3-pattern-audit-schema-conformance-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The canonical schemas already define the target state, but the repository does not yet generate pattern-audit artifacts to measure conformance automatically.",
+                    "enforcement_surface": {
+                        "type": "future-pattern-audit",
+                        "path": ".harness/pattern-audit-report.schema.json"
+                    }
+                }
+            ]
+        }
+    ]
+}

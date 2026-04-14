@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "enforcement_checks": [
+        {
+            "check_id": "prevention-binding-registry",
+            "gate": "lint",
+            "script": "scripts/he-lint.js",
+            "target": ".harness/prevention-rules-registry.json",
+            "failure_mode": "hard-fail"
+        },
+        {
+            "check_id": "requirement-ledger-gate",
+            "gate": "lint",
+            "script": "scripts/he-lint.js",
+            "target": "PLANS.md + REQUIREMENTS.md",
+            "failure_mode": "hard-fail"
+        },
+        {
+            "check_id": "permission-manifest-audit",
+            "gate": "audit",
+            "script": "scripts/harness/audit.sh",
+            "target": ".harness/agent-permissions.json",
+            "failure_mode": "hard-fail"
+        },
+        {
+            "check_id": "observation-report-audit",
+            "gate": "audit",
+            "script": "scripts/harness/audit.sh",
+            "target": ".harness/observation-report.json",
+            "failure_mode": "hard-fail"
+        }
+    ]
+}

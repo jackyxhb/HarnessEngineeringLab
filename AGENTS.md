@@ -106,6 +106,19 @@ To keep Tier 2 integrations and safety controls portable instead of IDE-local on
 - `.harness/agent-permissions.json` is the canonical machine-readable permission manifest for P2-4 bounded autonomy. Local IDE allow-lists may be stricter, but they must not be the only durable policy surface.
 - `.harness/mcp-capabilities.json` is the canonical machine-readable manifest for P1-6 web-search and MCP capability discovery, including checked-in registry paths and whether the current repository ships any MCP servers.
 
+## Canonical Machine-Readable Schemas
+
+To keep feature-level machine-readable contracts enforceable instead of advisory only:
+
+- `.harness/task-state.schema.json` is the canonical schema for P0-4 Ralph Loop task-state records.
+- `.harness/anchor-record.schema.json` is the canonical schema for P1-8 Context Anchoring records.
+- `.harness/requirement-entry.schema.json` and `.harness/compliance-record.schema.json` are the canonical schemas for P1-10 Requirements Ledger entries and compliance records.
+- `.harness/inquiry-response.schema.json` is the canonical schema for P1-11 Socratic Questioning records.
+- `.harness/skill-manifest.schema.json` and `.harness/tool-definition.schema.json` are the canonical schemas for P1-12 Skill Engineering manifest projections.
+- `.harness/anti-pattern-definition.schema.json` and `.harness/pattern-audit-report.schema.json` are the canonical schemas for P3-3 Pattern Auditing artifacts.
+- `.harness/consolidation-audit-report.schema.json` and `.harness/adr-record.schema.json` are the canonical schemas for P3-4 Consolidation Loop artifacts.
+- `framework/schemas/prevention-rules-registry.schema.json` is the canonical schema for Tranche 2 prevention-binding records, and `.harness/prevention-rules-registry.json` is the live registry that records whether each targeted prevention rule is implemented or explicitly declared unmounted.
+
 ## Workflows
 
 ### `/polish` — Feature Polishing & Addition Workflow
@@ -119,6 +132,10 @@ Enforces P1-9 by breaking down complex parent tasks into isolated git sub-task t
 ### `/reconcile` — Workspace Entropy Audit
 
 Systematically audits the entire workspace for entropy: broken content, inconsistent terminology, duplication, orphan concepts, and concept chain gaps. Produces a findings report, applies approved fixes, and commits.
+
+### `/review-all-features` — Canonical Feature Assessment
+
+Runs a framework-wide assessment of the canonical `framework/features/` surface by dispatching one isolated subagent review per feature, reconciling each result against `framework/HE Index.md` and the governing principle, and producing a consolidated assessment report.
 
 ### `/mount` — Mount a Framework Feature
 
@@ -187,6 +204,7 @@ All available tools and scripts. Undeclared tools do not exist for agents — if
 - `npm run exit-check -- [--mode=audit]` — Run the Ralph Loops exit interceptor manually to detect incomplete or stale tasks and emit reinjection/escalation events.
 - `node scripts/he-lint.js` — Canonical HE consistency checker for the active framework surface. Runs on `git commit` (pre-commit hook) and in CI on every push/PR.
 - `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
+- `/review-all-features` — Canonical feature assessment workflow. Run when you need a full or pillar-scoped assessment of the framework feature set using isolated subagent reviews plus one aggregate report.
 - `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.
 - `/cognitive-branch` — Complex task execution with branch memory (P1-9). Use for any multi-step objective.
 - `/ccp` — Intelligent commit wrapper: stages, generates message, and pushes.
@@ -205,6 +223,8 @@ Explicit forbidden operations. Each entry states the action and the consequence 
 - **`EP-11` Never treat anything under `docs/` as canonical project truth.** Consequence: support material can override the framework in agent reasoning and create silent harness drift. Action: prefer `framework/` for all decisions; only edit or reference `docs/` when explicitly requested.
 - **`EP-11` Never create SAS-only or MAS-only variants of core feature definitions.** Consequence: parallel files diverge and agents load contradictory definitions. All 32 features are unified through `framework/HE Index.md` and single DAG node files (per A4).
 - **`EP-11` Never introduce a new workflow or script without adding it to `## Available Tools & Commands`.** Consequence: the tool is invisible to agents and effectively non-existent as a harness resource.
+- **`EP-11` Never add a machine-readable requirement to a feature without binding it to a checked-in schema surface.** Consequence: agents and validators will enforce different data shapes, causing silent drift across ledgers, audits, and manifests. Action: create or update the corresponding `.harness/*.schema.json` file and reference it directly from the governing feature file.
+- **`EP-8`, `EP-17`, `EP-18` Never add or retain a prevention rule without a declared enforcement binding or explicit unmounted status in `.harness/prevention-rules-registry.json`.** Consequence: prevention language becomes advisory drift, and agents cannot tell whether a constraint is mechanically enforced or still pending. Action: bind the rule to a concrete lint/audit/runtime surface or mark it `declared-unmounted` with a reason.
 - **`EP-2` Never mark a `PLANS.md` entry status as `done` without moving it to the Completed Plans section.** Consequence: task history is lost; future agents cannot examine resolved blocking issues, constraints applied, or decisions made during the task — rebuilding that context costs a full conversation replay.
 - **`EP-15` Never push to `main` when `npm run audit` exits with FAIL.** Consequence: a structurally degraded harness enters the main branch; missing critical files are invisible to agents until the next weekly GC remediation cycle completes.
 - **`EP-15` Never change the root version in `package.json` without syncing `.agent/skills/harnessing-agents/SKILL.md`.** Consequence: external projects consuming the live-linked skill see an ambiguous version state, and `he-lint` will fail the repository until the versions match.

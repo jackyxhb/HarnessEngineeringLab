@@ -1,0 +1,181 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Harness Engineering Measurement Definitions",
+    "type": "object",
+    "required": [
+        "version",
+        "generated_from",
+        "feature_measurements"
+    ],
+    "properties": {
+        "version": {
+            "type": "string"
+        },
+        "generated_from": {
+            "type": "string",
+            "const": "framework/HE Measurement Standards.md"
+        },
+        "feature_measurements": {
+            "type": "array",
+            "minItems": 9,
+            "items": {
+                "$ref": "#/$defs/featureMeasurement"
+            }
+        }
+    },
+    "$defs": {
+        "featureMeasurement": {
+            "type": "object",
+            "required": [
+                "feature_id",
+                "measurement_binding",
+                "status",
+                "collection_trigger",
+                "freshness_slo_minutes",
+                "metrics"
+            ],
+            "properties": {
+                "feature_id": {
+                    "type": "string",
+                    "enum": [
+                        "P0-5",
+                        "P0-10",
+                        "P1-1",
+                        "P1-5",
+                        "P1-11",
+                        "P2-3",
+                        "P2-5",
+                        "P3-1",
+                        "P3-3"
+                    ]
+                },
+                "measurement_binding": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "implemented",
+                        "proxy-mounted",
+                        "declared-unmounted"
+                    ]
+                },
+                "collection_trigger": {
+                    "type": "string"
+                },
+                "freshness_slo_minutes": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "metrics": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/metricDefinition"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "metricDefinition": {
+            "type": "object",
+            "required": [
+                "metric_id",
+                "outcome",
+                "status",
+                "event_source",
+                "collection_trigger",
+                "formula",
+                "storage_key",
+                "threshold",
+                "threshold_justification",
+                "enforcement_surface"
+            ],
+            "properties": {
+                "metric_id": {
+                    "type": "string"
+                },
+                "outcome": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "implemented",
+                        "proxy-mounted",
+                        "declared-unmounted"
+                    ]
+                },
+                "event_source": {
+                    "type": "string"
+                },
+                "collection_trigger": {
+                    "type": "string"
+                },
+                "formula": {
+                    "type": "string"
+                },
+                "storage_key": {
+                    "type": "string"
+                },
+                "threshold": {
+                    "$ref": "#/$defs/threshold"
+                },
+                "threshold_justification": {
+                    "type": "string"
+                },
+                "enforcement_surface": {
+                    "$ref": "#/$defs/enforcementSurface"
+                }
+            },
+            "additionalProperties": false
+        },
+        "threshold": {
+            "type": "object",
+            "required": [
+                "operator",
+                "target",
+                "unit"
+            ],
+            "properties": {
+                "operator": {
+                    "type": "string",
+                    "enum": [
+                        "<",
+                        "<=",
+                        ">",
+                        ">=",
+                        "="
+                    ]
+                },
+                "target": {
+                    "type": [
+                        "number",
+                        "integer"
+                    ]
+                },
+                "unit": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "enforcementSurface": {
+            "type": "object",
+            "required": [
+                "type",
+                "path"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

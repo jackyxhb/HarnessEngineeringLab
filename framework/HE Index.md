@@ -17,6 +17,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
 - **`origin`**: The first-principle or discipline (Physics, Economics, Engineering) that source-codes the rule.
 - **`governs`**: The direct feature IDs (P0-1 through P3-4) that must mechanically enforce this principle.
 - **`downstream`**: Features directly downstream of this node in the framework graph. This field can capture hard dependencies as well as explicit enablement, protection, maintenance, or feedback relationships declared in the feature files; changes here ripple to these targets.
+- **`measurement_binding`**: Registry key in `.harness/measurement-definitions.json` used to operationalize the feature's L5 measurement section.
 
 ```json
 {
@@ -147,7 +148,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Isolation prevents contamination",
       "L2": "Zero cross-contamination between agent execution environments",
       "file": "framework/features/P0-01.md",
-      "downstream": ["P0-3", "P0-5", "P1-3", "P3-1"]
+      "downstream": ["P0-3", "P3-1"]
     },
     {
       "id": "P0-2",
@@ -169,7 +170,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Verify before declaring completion",
       "L2": "Agents autonomously detect and correct errors before human review",
       "file": "framework/features/P0-03.md",
-      "downstream": ["P0-7"]
+      "downstream": ["P0-7", "P2-3"]
     },
     {
       "id": "P0-4",
@@ -191,6 +192,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Coordination cost must stay bounded",
       "L2": "Agent coordination overhead stays sublinear relative to team size",
       "file": "framework/features/P0-05.md",
+      "measurement_binding": "P0-5",
       "downstream": []
     },
     {
@@ -235,7 +237,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Standard operations reduce variance",
       "L2": "Zero variance in common CLI workflow execution",
       "file": "framework/features/P0-09.md",
-      "downstream": []
+      "downstream": ["P3-1", "P3-3"]
     },
     {
       "id": "P0-10",
@@ -246,6 +248,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Coordination cost must stay bounded",
       "L2": "Agents can coordinate without supervisor bottleneck, with bounded overhead",
       "file": "framework/features/P0-10.md",
+      "measurement_binding": "P0-10",
       "downstream": ["P0-5"]
     },
     {
@@ -269,6 +272,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "Agent context accuracy without human briefing",
       "file": "framework/features/P1-01.md",
+      "measurement_binding": "P1-1",
       "downstream": ["P0-11", "P2-2", "P3-2"]
     },
     {
@@ -313,6 +317,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "You cannot improve what you do not measure",
       "L2": "Agents and humans have real-time visibility into system behavior and health",
       "file": "framework/features/P1-05.md",
+      "measurement_binding": "P1-5",
       "downstream": ["P0-7", "P0-8"]
     },
     {
@@ -379,6 +384,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Clarity before commitment",
       "L2": "Zero ambiguous inputs reaching the execution phase",
       "file": "framework/features/P1-11.md",
+      "measurement_binding": "P1-11",
       "downstream": ["P1-10", "P1-8", "P2-5", "P1-7"]
     },
     {
@@ -424,7 +430,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "No author is their own best reviewer",
       "L2": "Every substantial output is independently reviewed before merging",
       "file": "framework/features/P2-03.md",
-      "downstream": ["P0-3"]
+      "measurement_binding": "P2-3",
+      "downstream": []
     },
     {
       "id": "P2-4",
@@ -446,6 +453,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Clarity before commitment",
       "L2": "No planning or execution proceeds on unrecorded requirements",
       "file": "framework/features/P2-05.md",
+      "measurement_binding": "P2-5",
       "downstream": []
     },
 
@@ -458,6 +466,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Entropy requires scheduled countering",
       "L2": "Entropy never accumulates beyond one GC cycle",
       "file": "framework/features/P3-01.md",
+      "measurement_binding": "P3-1",
       "downstream": []
     },
     {
@@ -480,6 +489,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Entropy requires scheduled countering",
       "L2": "Coding patterns converge to canonical forms; no circular deps persist",
       "file": "framework/features/P3-03.md",
+      "measurement_binding": "P3-3",
       "downstream": []
     },
     {

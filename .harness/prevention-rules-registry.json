@@ -1,0 +1,169 @@
+{
+    "version": 1,
+    "rules": [
+        {
+            "rule_id": "P0-8-unversioned-prompts",
+            "feature_id": "P0-8",
+            "rule_label": "Prevent Unversioned Prompts",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No prompt-version scanner is mounted in this repository yet."
+            },
+            "unmounted_reason": "Prompt-template version enforcement has not yet been mounted as a dedicated lint or runtime check."
+        },
+        {
+            "rule_id": "P0-8-version-manifests",
+            "feature_id": "P0-8",
+            "rule_label": "Prevent Narrative Version Manifests",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No canonical harness version manifest exists yet beyond current release/version surfaces."
+            },
+            "unmounted_reason": "A dedicated version-manifest artifact has not yet been introduced for runtime enforcement."
+        },
+        {
+            "rule_id": "P1-2-context-overflow",
+            "feature_id": "P1-2",
+            "rule_label": "Prevent Context Overflow",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "Compaction automation and summary-cycle enforcement are not mounted yet."
+            },
+            "unmounted_reason": "Context-window compaction is described but no repo-local guard enforces summarization cadence or token thresholds yet."
+        },
+        {
+            "rule_id": "P1-2-narrative-context-summaries",
+            "feature_id": "P1-2",
+            "rule_label": "Prevent Narrative Context Summaries",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No canonical context-summary schema exists in the current tranche."
+            },
+            "unmounted_reason": "Machine-readable context-summary records require a later tranche before this rule can be enforced mechanically."
+        },
+        {
+            "rule_id": "P1-5-blind-execution",
+            "feature_id": "P1-5",
+            "rule_label": "Prevent Blind Execution",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "The repo has observation surfaces, but no binary gate proves every action emitted an auditor-verifiable audit trail."
+            },
+            "unmounted_reason": "A universal per-command audit-trail gate is not yet mounted in the current harness runtime."
+        },
+        {
+            "rule_id": "P1-5-narrative-observability-metrics",
+            "feature_id": "P1-5",
+            "rule_label": "Prevent Narrative Observability Metrics",
+            "binding_status": "implemented",
+            "enforcement_surface": {
+                "type": "json-artifact",
+                "path": ".harness/observation-report.json",
+                "check": "scripts/harness/audit.sh",
+                "notes": "Observation report generation and JSON parsing are already mounted."
+            }
+        },
+        {
+            "rule_id": "P2-4-prompt-injections-and-data-leakage",
+            "feature_id": "P2-4",
+            "rule_label": "Prevent Prompt Injections and Data Leakage",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No checked-in prompt-injection or PII scanner exists yet."
+            },
+            "unmounted_reason": "Prompt-injection and data-leakage defenses are specified but not yet mounted as deterministic repo-local gates."
+        },
+        {
+            "rule_id": "P2-4-malicious-emergent-behaviors",
+            "feature_id": "P2-4",
+            "rule_label": "Prevent Malicious Emergent Behaviors",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No swarm-runtime enforcement exists in this SAS-mode repository."
+            },
+            "unmounted_reason": "MAS-specific malicious-behavior controls remain design-only until a swarm runtime is mounted."
+        },
+        {
+            "rule_id": "P2-4-unauthorized-privilege-escalation",
+            "feature_id": "P2-4",
+            "rule_label": "Prevent Unauthorized Privilege Escalation",
+            "binding_status": "implemented",
+            "enforcement_surface": {
+                "type": "permission-manifest",
+                "path": ".harness/agent-permissions.json",
+                "check": "scripts/harness/audit.sh",
+                "notes": "The canonical permission manifest exists and is validated as JSON during audit."
+            }
+        },
+        {
+            "rule_id": "P2-4-narrative-permission-policies",
+            "feature_id": "P2-4",
+            "rule_label": "Prevent Narrative Permission Policies",
+            "binding_status": "implemented",
+            "enforcement_surface": {
+                "type": "permission-manifest",
+                "path": ".harness/agent-permissions.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "The policy surface is bound to the canonical JSON manifest."
+            }
+        },
+        {
+            "rule_id": "P2-5-unregistered-work",
+            "feature_id": "P2-5",
+            "rule_label": "Prevent Unregistered Work",
+            "binding_status": "implemented",
+            "enforcement_surface": {
+                "type": "lint-rule",
+                "path": "scripts/he-lint.js",
+                "check": "validatePlanRequirementIds",
+                "notes": "Requirement IDs are enforced against REQUIREMENTS.md before work can remain valid."
+            }
+        },
+        {
+            "rule_id": "P3-3-pattern-drift",
+            "feature_id": "P3-3",
+            "rule_label": "Prevent Pattern Drift",
+            "binding_status": "declared-unmounted",
+            "enforcement_surface": {
+                "type": "registry-gate",
+                "path": ".harness/prevention-rules-registry.json",
+                "check": "validatePreventionRuleBindings",
+                "notes": "No periodic pattern-audit job is mounted yet."
+            },
+            "unmounted_reason": "Pattern-audit scheduling and automated drift enforcement are still pending future work."
+        },
+        {
+            "rule_id": "P3-3-narrative-pattern-audits",
+            "feature_id": "P3-3",
+            "rule_label": "Prevent Narrative Pattern Audits",
+            "binding_status": "implemented",
+            "enforcement_surface": {
+                "type": "schema-binding",
+                "path": ".harness/pattern-audit-report.schema.json",
+                "check": "validateMachineReadableSchemaBindings",
+                "notes": "Pattern-audit artifact shapes are already bound to canonical schemas from Tranche 1."
+            }
+        }
+    ]
+}

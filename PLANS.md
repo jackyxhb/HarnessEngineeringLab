@@ -32,6 +32,158 @@ None.
 
 ## Completed Plans
 
+### Plan: Cross-Tranche Measurement Definitions
+
+- **Goal:** Add a canonical measurement standards surface and live definitions registry for the nine high-severity measurement features, bind those features and the index to that registry, and extend lint plus observability so measurement coverage and freshness are mechanically surfaced.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `framework/HE Measurement Standards.md`, `.harness/measurement-schema.json`, `.harness/measurement-definitions.json`, `framework/HE Index.md`, `framework/features/P0-05.md`, `framework/features/P0-10.md`, `framework/features/P1-01.md`, `framework/features/P1-05.md`, `framework/features/P1-11.md`, `framework/features/P2-03.md`, `framework/features/P2-05.md`, `framework/features/P3-01.md`, `framework/features/P3-03.md`, `scripts/he-lint.js`, `scripts/generate-observation-report.js`, `scripts/harness/audit.sh`, `.agent/skills/harnessing-agents/framework/`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: mounting new MAS runtime telemetry not already present in HELab, changing unrelated feature DAG edges, and redesigning prevention bindings beyond measurement references.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create the canonical measurement standards doc and machine-readable definitions registry for the nine targeted features
+  - [x] Bind the targeted feature files and HE Index metadata to the measurement registry
+  - [x] Extend lint, observability, and structural-audit surfaces; sync the bundle; validate; and record review closeout
+- **Constraints:** Keep `framework/` canonical, keep new validation binary pass/fail, and distinguish mounted versus declared-unmounted measurement surfaces instead of inventing unavailable telemetry.
+- **Checkpoints:** Plan recorded; standards and registry added; feature and index bindings added; lint and observability updated; bundled mirror synced; validation green; review recorded.
+- **Blocking Issues:** Independent review found that the P3-3 schema-conformance metric overstated mounted telemetry; resolved by downgrading that metric to `declared-unmounted`, aligning the feature text, and re-running `observe` plus `check`.
+- **Completed:** 2026-04-14
+
+### Plan: Tranche 3 Graph Reconciliation
+
+- **Goal:** Reconcile the remaining targeted graph drift between `framework/HE Index.md` and the canonical feature files for `P0-1`, `P0-9`, and `P2-3`, then harden `he-lint` so the corrected relationships cannot silently drift again.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `framework/HE Index.md`, `framework/features/P0-03.md`, `framework/features/P0-09.md`, `scripts/he-lint.js`, `.agent/skills/harnessing-agents/framework/`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: cross-tranche measurement work, new schema layers, and broad graph normalization beyond the targeted Issue 4 nodes.
+- **Status:** `done`
+- **Steps:**
+  - [x] Correct the targeted downstream edges in `framework/HE Index.md` and clarify `P0-9` to name explicit downstream feature IDs
+  - [x] Extend `scripts/he-lint.js` with targeted graph-reconciliation checks for the corrected nodes
+  - [x] Sync the bundled framework mirror, validate, and record review closeout
+- **Constraints:** Keep `framework/` canonical, keep the lint gate binary pass/fail, and do not widen the tranche into non-targeted DAG rewrites.
+- **Checkpoints:** Plan recorded; index and feature metadata corrected; lint gate added; bundled mirror synced; validation green; review recorded.
+- **Blocking Issues:** Independent review initially found a remaining `P0-3`/`P2-3` dependency asymmetry; resolved by updating `framework/features/P0-03.md` and re-running validation.
+- **Completed:** 2026-04-14
+
+### Plan: Tranche 2 Enforcement Bindings
+
+- **Goal:** Bind the six high-severity prevention-rule features to concrete enforcement artifacts through a canonical registry, feature-level references, lint validation, and structural-audit visibility.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `framework/features/P0-08.md`, `framework/features/P1-02.md`, `framework/features/P1-05.md`, `framework/features/P2-04.md`, `framework/features/P2-05.md`, `framework/features/P3-03.md`, `framework/schemas/`, `.harness/prevention-rules-registry.json`, `.harness/prevention-enforcement-config.json`, `scripts/he-lint.js`, `scripts/harness/audit.sh`, `.agent/skills/harnessing-agents/framework/`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: Issue 1 measurement definitions, new runtime guardrail implementations beyond declarative binding, and Issue 4 graph reconciliation.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create the prevention registry schema and canonical `.harness` registry/config files
+  - [x] Update the six affected feature files to reference the enforcement registry and concrete surfaces
+  - [x] Extend lint and audit validation, sync the bundled framework mirror, and record review closeout
+- **Constraints:** Keep `framework/` canonical, keep Tranche 2 focused on enforcement binding rather than full feature implementation, and make every new gate binary pass/fail.
+- **Checkpoints:** Plan recorded; registry/config added; feature bindings added; lint/audit gates updated; bundled mirror synced; validation green; review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Tranche 1 Shared Schemas
+
+- **Goal:** Implement the shared schema layer for the 6 machine-readable requirement features so Tranche 1 of the high-severity issue plan is real, linted, and synchronized into the bundled skill runtime.
+- **Requirement IDs:** `HE-R003`, `HE-R004`, `HE-R006`, `HE-R007`
+- **Scope:** `.harness/*.schema.json`, `framework/features/P1-08.md`, `framework/features/P1-10.md`, `framework/features/P1-11.md`, `framework/features/P1-12.md`, `framework/features/P3-03.md`, `framework/features/P3-04.md`, `AGENTS.md`, `scripts/he-lint.js`, `.agent/skills/harnessing-agents/framework/`, `RELEASES.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: Issue 1 measurement schema implementation work, Issue 3 enforcement registry work, and Issue 4 graph reconciliation.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create the canonical `.harness/*.schema.json` files for the 6 affected features
+  - [x] Update the affected feature files and `AGENTS.md` to bind machine-readable requirements to checked-in schemas
+  - [x] Extend `scripts/he-lint.js`, sync the bundled framework mirror, validate, and record review closeout
+- **Constraints:** Keep `framework/` canonical, keep the first tranche limited to schema definition and schema binding, and do not start the measurement or enforcement tranches in the same batch.
+- **Checkpoints:** Plan recorded; schemas created; feature bindings added; lint gate added; bundled mirror synced; validation green; review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: High-Severity Issue Implementation Plans
+
+- **Goal:** Produce one implementation plan per high-severity issue cluster from `.harness/HE-ASSESSMENT-REPORT.md`, using isolated subagents and a reconciled parent-agent artifact.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `.harness/HE-ASSESSMENT-REPORT.md`, new `.harness/` planning artifact(s), `PLANS.md`, and `REVIEWS.md`. Out of scope: applying the framework remediations themselves, editing `framework/`, or changing workflow/skill surfaces.
+- **Status:** `done`
+- **Steps:**
+  - [x] Dispatch one isolated subagent for each of the 4 highest-severity confirmed issues
+  - [x] Reconcile the 4 subagent outputs into a single implementation-planning artifact under `.harness/`
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Treat the current assessment report as the issue source of record, keep `framework/` canonical and unchanged, and separate planning from implementation.
+- **Checkpoints:** Plan recorded; 4 issue plans drafted; consolidated artifact written; review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Review-All-Features Final Report
+
+- **Goal:** Populate `.harness/HE-ASSESSMENT-REPORT.md` with the final aggregate report derived from the completed 32-feature review, using the canonical review-all-features template and the approved feature matrix.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `.harness/HE-ASSESSMENT-REPORT.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: `framework/` edits, workflow edits, and any remediation of the assessment findings.
+- **Status:** `done`
+- **Steps:**
+  - [x] Rewrite the assessment report to match the canonical review-all-features template
+  - [x] Preserve the assessed verdict distribution and systemic patterns from the completed feature review
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Use the matrix as the source of record for per-feature verdicts, keep findings first, and do not re-adjudicate feature outcomes while writing the report.
+- **Checkpoints:** Plan recorded; report rewritten; independent review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Review-All-Features Matrix
+
+- **Goal:** Convert the completed feature assessment into a compact markdown matrix with one row per canonical feature and a short remediation note.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `.harness/HE-FEATURE-MATRIX.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: `framework/` edits, workflow edits, and any implementation of the remediation notes.
+- **Status:** `done`
+- **Steps:**
+  - [x] Draft the full 32-feature matrix from the completed assessment results
+  - [x] Write the matrix artifact under `.harness/`
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Preserve the prior assessment verdicts, keep notes short and action-oriented, and do not reopen feature adjudication during matrix formatting.
+- **Checkpoints:** Plan recorded; matrix artifact created; independent review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Review-All-Features Report Template
+
+- **Goal:** Add an exact aggregate-report template for `/review-all-features` and bind the workflow to that template so full feature assessments produce a consistent final structure.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `.agent/workflows/review-all-features.md`, `.agent/workflows/templates/`, `PLANS.md`, and `REVIEWS.md`. Out of scope: `framework/` edits, changes to feature definitions, and any remediation of findings discovered by the workflow.
+- **Status:** `done`
+- **Steps:**
+  - [x] Create a canonical aggregate assessment template under `.agent/workflows/templates/`
+  - [x] Update `/review-all-features` to require that template in Phase 5
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Keep the template machine-readable in structure, keep `framework/` canonical, and preserve isolated subagent reviews as the core workflow execution model.
+- **Checkpoints:** Plan recorded; template file created; workflow updated; independent review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Review-All-Features Workflow
+
+- **Goal:** Distill the full feature-by-feature assessment method into a reusable `/review-all-features` workflow that dispatches one isolated subagent review per canonical feature, reconciles the results, and produces a consolidated assessment report.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `.agent/workflows/review-all-features.md`, `AGENTS.md`, `PLANS.md`, and `REVIEWS.md`. Out of scope: `framework/` edits, skill-surface edits, and applying any feature remediations.
+- **Status:** `done`
+- **Steps:**
+  - [x] Read existing workflow conventions and define the workflow phases
+  - [x] Create the new `/review-all-features` workflow file
+  - [x] Register the workflow in `AGENTS.md`
+  - [x] Record the required independent review and archive the plan
+- **Constraints:** Keep `framework/` canonical, treat `docs/` as non-authoritative, and preserve the requirement that each feature review runs in a fresh subagent context.
+- **Checkpoints:** Plan recorded; workflow file created; AGENTS entry added; independent review recorded.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
+### Plan: Feature-by-Feature Framework Assessment
+
+- **Goal:** Review every canonical framework feature file through isolated subagent tasks, identify confirmed problems and polish opportunities, reconcile each feature against the index and governing principle, and deliver a consolidated assessment report with per-feature recommendations and implementation planning direction.
+- **Requirement IDs:** `HE-R003`, `HE-R004`
+- **Scope:** `framework/features/`, `framework/HE Index.md`, `framework/principles/`, and directly needed canonical cross-references. Out of scope: `docs/`, skill-side references, and applying framework edits during this assessment pass.
+- **Status:** `done`
+- **Steps:**
+  - [x] Record the assessment plan and execution method
+  - [x] Dispatch one isolated subagent review per feature file
+  - [x] Reconcile subagent findings against canonical index and principle metadata
+  - [x] Consolidate the per-feature outputs into a single assessment report for the user
+- **Constraints:** Treat `framework/` as canonical truth, keep each feature review isolated in a fresh subagent context, and separate confirmed issues from lower-confidence polish recommendations.
+- **Checkpoints:** Plan recorded; all 32 feature tasks dispatched; aggregate matrix complete; final report delivered.
+- **Blocking Issues:** None.
+- **Completed:** 2026-04-14
+
 ### Plan: HELab Full Harness Audit 2026-04-14
 
 - **Goal:** Complete a fresh `harnessing-agents` full audit for HELab, execute the user-approved Tier 1 + Tier 2 remediation batch, and refresh the `.harness/HE-*` audit package against the resulting repo state.

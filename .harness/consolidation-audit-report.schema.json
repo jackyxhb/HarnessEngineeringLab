@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "HELab Consolidation Audit Report",
+    "type": "object",
+    "required": [
+        "audit_run_id",
+        "timestamp",
+        "reconciliations",
+        "doc_to_code_discrepancies"
+    ],
+    "properties": {
+        "audit_run_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "timestamp": {
+            "type": "string",
+            "minLength": 1
+        },
+        "reconciliations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "doc_type",
+                    "count_before",
+                    "count_after",
+                    "diffs_applied"
+                ],
+                "properties": {
+                    "doc_type": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "count_before": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "count_after": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "diffs_applied": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "doc_to_code_discrepancies": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        }
+    },
+    "additionalProperties": false
+}

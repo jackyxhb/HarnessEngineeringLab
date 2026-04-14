@@ -1,0 +1,49 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "HELab Architecture Decision Record",
+    "type": "object",
+    "required": [
+        "adr_id",
+        "pattern_name",
+        "decision",
+        "context",
+        "consequences",
+        "status",
+        "created_at"
+    ],
+    "properties": {
+        "adr_id": {
+            "type": "string",
+            "pattern": "^ADR-\\d+$"
+        },
+        "pattern_name": {
+            "type": "string",
+            "minLength": 1
+        },
+        "decision": {
+            "type": "string",
+            "minLength": 1
+        },
+        "context": {
+            "type": "string",
+            "minLength": 1
+        },
+        "consequences": {
+            "type": "string",
+            "minLength": 1
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "proposed",
+                "accepted",
+                "deprecated"
+            ]
+        },
+        "created_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+    },
+    "additionalProperties": false
+}

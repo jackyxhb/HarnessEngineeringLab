@@ -1,0 +1,98 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "HELab Prevention Rules Registry",
+    "type": "object",
+    "required": [
+        "version",
+        "rules"
+    ],
+    "properties": {
+        "version": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "rules": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "rule_id",
+                    "feature_id",
+                    "rule_label",
+                    "binding_status",
+                    "enforcement_surface"
+                ],
+                "properties": {
+                    "rule_id": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "feature_id": {
+                        "type": "string",
+                        "pattern": "^P[0-3]-\\d+$"
+                    },
+                    "rule_label": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "binding_status": {
+                        "type": "string",
+                        "enum": [
+                            "implemented",
+                            "declared-unmounted"
+                        ]
+                    },
+                    "enforcement_surface": {
+                        "type": "object",
+                        "required": [
+                            "type",
+                            "path"
+                        ],
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "path": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "check": {
+                                "type": "string"
+                            },
+                            "notes": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "unmounted_reason": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "binding_status": {
+                                    "const": "declared-unmounted"
+                                }
+                            },
+                            "required": [
+                                "binding_status"
+                            ]
+                        },
+                        "then": {
+                            "required": [
+                                "unmounted_reason"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}

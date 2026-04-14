@@ -1,94 +1,178 @@
-# HE-ASSESSMENT-REPORT
+# Review-All-Features Assessment Report
 
-## 1. Executive Summary
+## Scope
 
-**Initial Maturity Level:** 3.8 / 5
-**Final Maturity Level:** 4.1 / 5
-**Total Delta:** +0.3 points
-**Human Role Stage:** Harness Builder
+- **Run Date:** 2026-04-14
+- **Scope Type:** full
+- **Scope Target:** all 32 features
+- **Canonical Sources:** `framework/HE Index.md`, `framework/features/`, `framework/principles/`
+- **Execution Mode:** isolated subagent review per feature + parent-agent reconciliation
 
-**High-Level Statement:** This cycle moved HELab from planning-only assessment into a real execution batch. The repo now has generated observability outputs, machine-readable escalation and permission manifests, and a canonical task-state utility with reinjection proof. The remaining backlog is narrower than before, but Ralph Loops, escalation breadth, and MCP integration remain partial rather than fully closed in ordinary self-hosted operation.
+## Overall Assessment
 
----
+- **Overall Verdict:** `needs-remediation`
+- **Features Reviewed:** 32
+- **Healthy:** 1
+- **Needs Polish:** 10
+- **Needs Remediation:** 21
+- **Primary Risk Statement:** The framework is conceptually coherent, but too many features stop at policy language and do not complete the chain into concrete schemas, thresholds, enforcement hooks, or measurable collection mechanics. The dominant risk is not missing ideas; it is incomplete operational definition work for already-defined ideas.
 
-## 2. Before vs. After Quick Checklist
-
-> **Proof gate:** Every feature marked `[x]` in the "After" column **must** cite the concrete file, command, or gate that was created or modified as evidence. Cross-reference the entry in `.harness/HE-CHANGE-SUMMARY.md`. If no corresponding change-summary entry exists for a feature, it was not executed this cycle and **must** remain `[ ]` with a deferral reason — do not mark it `[x]` based on discussion, planning, or recommendation alone. Features that were assessed and planned but not physically mounted are reported as `[ ]` — assessed, not mounted: [reason].
+## Status Summary
 
 ### Foundation
 
-- `[ ]` → `[ ]` P0-4 Ralph Loops — improved, still partial: `.harness/task-state.schema.json`, `scripts/task-state.js`, `scripts/exit-interceptor.js`, and `.harness/reinjection-log.jsonl` now exist, but normal multi-step work is not yet consistently routed through them.
-- `[ ]` → `[ ]` P0-7 Escalation Policies & Audit Trails — improved, still partial: `.harness/escalation-rules.json`, `scripts/exit-interceptor.js`, and generated observability outputs now surface escalation and reinjection state, but external notification remains out of scope in SAS mode.
-- `[ ]` → `[ ]` P0-10 Inter-Agent Communication (The Mailbox) — deferred: MAS-only need not yet active in HELab.
+- `healthy:` P0-2
+- `needs-polish:` P0-3, P0-7
+- `needs-remediation:` P0-1, P0-4, P0-5, P0-6, P0-8, P0-9, P0-10, P0-11
 
-### Pillar 1 (Inform)
+### Pillar 1
 
-- `[ ]` → `[x]` P1-5 Observability / Dashboards — mounted: `scripts/generate-observation-report.js` now generates richer JSON metrics and `.harness/dashboard.md`, and `scripts/harness/audit.sh` verifies both outputs.
-- `[ ]` → `[ ]` P1-6 Web Search & MCP Integration — improved, still partial: `.harness/mcp-capabilities.json` and `AGENTS.md` now provide the canonical machine-readable MCP/web-search capability surface, but HELab still ships no checked-in MCP server manifest and does not log external lookups.
+- `healthy:` none
+- `needs-polish:` P1-1, P1-3, P1-7, P1-9, P1-10, P1-12
+- `needs-remediation:` P1-2, P1-4, P1-5, P1-6, P1-8, P1-11
 
-### Pillar 2 (Constrain)
+### Pillar 2
 
-- `[ ]` → `[x]` P2-4 Bounded Autonomy & Access Control — mounted: `.harness/agent-permissions.json`, `AGENTS.md`, and `scripts/harness/audit.sh` now provide a canonical bounded-autonomy manifest and enforcement check.
+- `healthy:` none
+- `needs-polish:` P2-1
+- `needs-remediation:` P2-2, P2-3, P2-4, P2-5
 
----
+### Pillar 3
 
-## 3. Notable Improvements
+- `healthy:` none
+- `needs-polish:` P3-4
+- `needs-remediation:` P3-1, P3-2, P3-3
 
-1. **Ralph Loop baseline added:** HELab now has a durable task-state schema and CLI, plus reinjection logging that can prove incomplete-task interception in a machine-readable way.
-2. **Observability moved from placeholder to generated output:** The dashboard is now produced from code, backed by richer JSON metrics and tied into the structural audit.
-3. **Portable safety and capability manifests added:** Permission policy and MCP capability state now live in repo-visible JSON manifests instead of only local IDE configuration.
+## Highest-Severity Confirmed Issues
 
----
+1. **Measurements exist without operational definitions**
 
-## 4. Remaining Backlog
+- **Severity:** high
+- **Affected Features:** `P0-5`, `P0-10`, `P1-1`, `P1-5`, `P1-11`, `P2-3`, `P2-5`, `P3-1`, `P3-3`
+- **Why It Matters:** L5 claims are frequently not auditable because thresholds, formulas, collection mechanics, or scope are missing, so the framework cannot enforce or even reliably measure its own success criteria.
+- **Representative Evidence:** `/Users/macbook1/work/HE/HELab/framework/features/P0-05.md`, `/Users/macbook1/work/HE/HELab/framework/features/P1-11.md`, `/Users/macbook1/work/HE/HELab/framework/features/P2-03.md`
+- **Fix Direction:** Replace aspirational metrics with exact thresholds, event sources, and storage/reporting contracts.
 
-**Tier 3 / Residual Gaps (Not Fixed This Cycle):**
+1. **Machine-readable requirements are declared without schemas**
 
-```json
-[
-  {
-    "feature": "P0-4 Ralph Loops",
-    "ep": "EP-4",
-    "tier": 1,
-    "reason_deferred": "The state utility and reinjection path exist, but ordinary multi-step work is not yet consistently routed through them."
-  },
-  {
-    "feature": "P0-7 Escalation Policies & Audit Trails",
-    "ep": "EP-7",
-    "tier": 1,
-    "reason_deferred": "Repo-visible escalation outputs exist, but broader action logging and external notification remain intentionally limited in SAS mode."
-  },
-  {
-    "feature": "P1-6 Web Search & MCP Integration",
-    "ep": "EP-12",
-    "tier": 2,
-    "reason_deferred": "The capability manifest is now canonical, but no checked-in MCP server manifests or external lookup traces are present."
-  },
-  {
-    "feature": "P0-10 Inter-Agent Communication (The Mailbox)",
-    "ep": "EP-5",
-    "tier": 3,
-    "reason_deferred": "SAS-primary operation does not justify mailbox infrastructure yet."
-  },
-  {
-    "feature": "P0-5 Orchestration Logic",
-    "ep": "EP-5",
-    "tier": 3,
-    "reason_deferred": "MAS router/topology work is deferred until regular multi-agent execution is needed."
-  },
-  {
-    "feature": "P1-5 Observability / Dashboards",
-    "ep": "EP-8",
-    "tier": 3,
-    "reason_deferred": "Full per-action IDE tool logging and external alert integrations remain runtime-dependent; the repo now implements the structural baseline."
-  }
-]
-```
+- **Severity:** high
+- **Affected Features:** `P1-8`, `P1-10`, `P1-11`, `P1-12`, `P3-3`, `P3-4`
+- **Why It Matters:** Multiple features require JSON or structured artifacts but never define the canonical schema, which guarantees inconsistent implementations and prevents automated validation.
+- **Representative Evidence:** `/Users/macbook1/work/HE/HELab/framework/features/P1-08.md`, `/Users/macbook1/work/HE/HELab/framework/features/P1-10.md`, `/Users/macbook1/work/HE/HELab/framework/features/P3-03.md`
+- **Fix Direction:** Introduce shared schemas and cross-reference them directly from the affected feature files.
 
----
+1. **Prevention rules are not bound to enforcement artifacts**
 
-## 5. Next Milestone
+- **Severity:** high
+- **Affected Features:** `P0-8`, `P1-2`, `P1-5`, `P2-4`, `P2-5`, `P3-3`
+- **Why It Matters:** A repeated pattern is “must prevent X” without a linter, hook, runtime gate, or audit job. That leaves core constraints advisory instead of mechanically enforced.
+- **Representative Evidence:** `/Users/macbook1/work/HE/HELab/framework/features/P0-08.md`, `/Users/macbook1/work/HE/HELab/framework/features/P2-04.md`, `/Users/macbook1/work/HE/HELab/framework/features/P3-03.md`
+- **Fix Direction:** Require every L4 prevention rule to name a concrete enforcement surface or explicitly declare itself unmounted.
 
-**Current Stage:** Harness Builder
-**Next Stage:** Strategic Overseer
-**Features Needed:** `P0-5 Orchestration Logic` and `P0-10 Inter-Agent Communication` when HELab moves beyond SAS-primary execution
+1. **Canonical graph drift still exists in key places**
+
+- **Severity:** high
+- **Affected Features:** `P0-1`, `P0-9`, `P2-3`
+- **Why It Matters:** When feature files and `HE Index.md` disagree on dependencies or downstream relationships, the framework stops being a reliable DAG and agents cannot trust navigation or reconciliation rules.
+- **Representative Evidence:** `/Users/macbook1/work/HE/HELab/framework/HE Index.md`, `/Users/macbook1/work/HE/HELab/framework/features/P0-01.md`, `/Users/macbook1/work/HE/HELab/framework/features/P2-03.md`
+- **Fix Direction:** Run a targeted dependency/metadata reconciliation pass and lock the relationship semantics with lint coverage.
+
+## Systemic Patterns
+
+1. **Undefined Schema Pattern**
+
+- **Description:** Features require machine-readable artifacts but omit the canonical shape.
+- **Affected Features:** P1-8, P1-10, P1-11, P1-12, P3-3, P3-4
+- **Typical Fix Shape:** schema definition
+
+1. **Advisory Prevention Pattern**
+
+- **Description:** Prevention language is strong, but no enforcement hook is specified.
+- **Affected Features:** P0-8, P1-2, P1-5, P2-4, P2-5, P3-3
+- **Typical Fix Shape:** enforcement hook
+
+1. **Metric Without Instrumentation Pattern**
+
+- **Description:** Features define target outcomes without formulas, triggers, or artifact collection paths.
+- **Affected Features:** P0-5, P0-10, P1-1, P1-5, P1-11, P2-3, P3-1
+- **Typical Fix Shape:** measurement rewrite
+
+1. **Graph Reconciliation Pattern**
+
+- **Description:** The index and feature files disagree on dependency direction or downstream relationships.
+- **Affected Features:** P0-1, P0-9, P2-3
+- **Typical Fix Shape:** graph reconciliation
+
+1. **Scope Ambiguity Pattern**
+
+- **Description:** Features do not cleanly distinguish SAS vs MAS, HELab vs target-project, or advisory manifest vs runtime enforcement.
+- **Affected Features:** P1-6, P2-2, P2-3, P2-4
+- **Typical Fix Shape:** scope clarification
+
+## Feature Notes
+
+- `P0-1` — needs-remediation; the feature still claims too much isolation/security behavior without a concrete sandboxing model or reconciled dependency graph.
+- `P0-2` — healthy; the persistence/versioning core is sound and mostly needs only boundary and rollout polish.
+- `P0-3` — needs-polish; verification logic is solid, but MAS collective-review behavior and self-fix metrics need definition.
+- `P0-4` — needs-remediation; loop budgets, escalation thresholds, and measurement mechanics are still internally ambiguous.
+- `P0-5` — needs-remediation; orchestration remains conceptually strong but lacks defined thresholds, schemas, and topology execution rules.
+- `P0-6` — needs-remediation; middleware removal readiness is not yet backed by a protocol, removal-test harness, or grounded governing principle language.
+- `P0-7` — needs-polish; attribution and escalation are blended together and should be operationalized as separate concerns.
+- `P0-8` — needs-remediation; versioning rules exist without real gates, concrete experiment artifacts, or a settled observability dependency.
+- `P0-9` — needs-remediation; wrapper tooling and downstream graph claims need reconciliation with actual repo mechanisms.
+- `P0-10` — needs-remediation; mailbox schema, message limits, and bounded-overhead rules are still too ambiguous to enforce.
+- `P0-11` — needs-remediation; portability is well-framed, but shim validation and sync remain mostly declarative.
+- `P1-1` — needs-polish; the feature is canonically important, but its own metric and machine-readability claims are incomplete.
+- `P1-2` — needs-remediation; memory compaction still mixes opaque tooling guidance with unbound enforcement language.
+- `P1-3` — needs-polish; tool-offloading mechanics are mostly sound but need cleaner terminology and context-budget enforcement details.
+- `P1-4` — needs-remediation; progressive-skill loading is not fully defined and still lacks actual routing and prevention mechanics.
+- `P1-5` — needs-remediation; observability needs explicit storage, freshness, and auditor-loop contracts before it is mechanically usable.
+- `P1-6` — needs-remediation; the feature needs clearer principle grounding and a precise output-budget relationship with tool offloading.
+- `P1-7` — needs-polish; planning is structurally strong, but its machine-readable format and reminder-injection contract remain unresolved.
+- `P1-8` — needs-remediation; anchoring needs a schema, recall-hook execution flow, and Ralph Loop integration details.
+- `P1-9` — needs-polish; the core idea works, but branch naming, approval-of-evidence shape, and merge strategy need specification.
+- `P1-10` — needs-polish; the ledger concept is sound, but it still needs a formal schema and clearer state transitions.
+- `P1-11` — needs-remediation; ambiguity scoring and clarification-record storage are both missing, leaving the gate abstract.
+- `P1-12` — needs-polish; skill engineering should bind more directly to the Skill Creation Standard and measurable context-budget reduction.
+- `P2-1` — needs-polish; automated linters are structurally fine but key metrics and sensor mappings remain not fully defined.
+- `P2-2` — needs-remediation; dependency enforcement still lacks scope clarity and a settled tool/enforcement model.
+- `P2-3` — needs-remediation; independent review needs a precise definition of substantial output and corrected graph metadata.
+- `P2-4` — needs-remediation; the permissions manifest exists, but runtime enforcement and measurable access-control signals do not.
+- `P2-5` — needs-remediation; the intake gate still lacks deterministic sequencing, clarity thresholds, and risk-routing mechanics.
+- `P3-1` — needs-remediation; cleanup cadence and GC-cycle meaning are not concretely defined at the feature level.
+- `P3-2` — needs-remediation; documentation sync needs a real schema and a resolved stance on detection-only vs generation-driven sync.
+- `P3-3` — needs-remediation; pattern auditing still has no durable artifact, schedule contract, or JSON enforcement loop.
+- `P3-4` — needs-polish; consolidation is conceptually right but still depends on undefined artifacts and underspecified triggers.
+
+## Recommended Remediation Order
+
+1. **Tranche 1:** shared contracts and schemas
+
+- target features: P1-8, P1-10, P1-11, P1-12, P3-3, P3-4
+- outcome: the framework gains canonical machine-readable artifacts that downstream enforcement and audits can rely on.
+
+1. **Tranche 2:** enforcement artifact binding
+
+- target features: P0-8, P1-2, P1-5, P2-4, P2-5, P3-3
+- outcome: prevention rules stop being advisory and become attached to real hooks, scripts, or gates.
+
+1. **Tranche 3:** graph and dependency reconciliation
+
+- target features: P0-1, P0-9, P2-3
+- outcome: `HE Index.md` and the feature files regain canonical agreement on dependency and downstream semantics.
+
+1. **Tranche 4:** scope and mode clarification
+
+- target features: P1-6, P2-2, P2-3, P2-4
+- outcome: ambiguous SAS vs MAS and HELab vs target-project claims are turned into explicit operating modes.
+
+## Residual Risks
+
+- This report distills a large isolated-subagent run; any future feature edits should re-check the few graph-sensitive items before treating the verdicts as durable.
+- The report compresses feature-level details into an aggregate form; the matrix remains the best short per-feature index, and the original subagent analyses contain finer-grained evidence not repeated here.
+
+## Method Notes
+
+- One isolated subagent reviewed each feature.
+- The parent agent reconciled subagent outputs against canonical index and principle metadata.
+- No framework edits were applied during the assessment pass unless explicitly stated.

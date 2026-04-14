@@ -233,6 +233,118 @@ const INVALID_MEASUREMENT_PATTERNS = [
   /^No clear path\b/i,
 ];
 
+const CANONICAL_JSON_SCHEMA_URI =
+  "https://json-schema.org/draft/2020-12/schema";
+
+const MACHINE_READABLE_SCHEMA_BINDINGS = {
+  "P1-8": {
+    file: "framework/features/P1-08.md",
+    schemaRefs: [".harness/anchor-record.schema.json"],
+  },
+  "P1-10": {
+    file: "framework/features/P1-10.md",
+    schemaRefs: [
+      ".harness/requirement-entry.schema.json",
+      ".harness/compliance-record.schema.json",
+    ],
+  },
+  "P1-11": {
+    file: "framework/features/P1-11.md",
+    schemaRefs: [".harness/inquiry-response.schema.json"],
+  },
+  "P1-12": {
+    file: "framework/features/P1-12.md",
+    schemaRefs: [
+      ".harness/skill-manifest.schema.json",
+      ".harness/tool-definition.schema.json",
+    ],
+  },
+  "P3-3": {
+    file: "framework/features/P3-03.md",
+    schemaRefs: [
+      ".harness/anti-pattern-definition.schema.json",
+      ".harness/pattern-audit-report.schema.json",
+    ],
+  },
+  "P3-4": {
+    file: "framework/features/P3-04.md",
+    schemaRefs: [
+      ".harness/consolidation-audit-report.schema.json",
+      ".harness/adr-record.schema.json",
+    ],
+  },
+};
+
+const PREVENTION_BINDING_SCHEMA_PATH =
+  "framework/schemas/prevention-rules-registry.schema.json";
+const PREVENTION_REGISTRY_PATH = ".harness/prevention-rules-registry.json";
+const PREVENTION_CONFIG_PATH = ".harness/prevention-enforcement-config.json";
+
+const PREVENTION_BINDING_FEATURES = {
+  "P0-8": {
+    file: "framework/features/P0-08.md",
+    ruleIds: ["P0-8-unversioned-prompts", "P0-8-version-manifests"],
+  },
+  "P1-2": {
+    file: "framework/features/P1-02.md",
+    ruleIds: ["P1-2-context-overflow", "P1-2-narrative-context-summaries"],
+  },
+  "P1-5": {
+    file: "framework/features/P1-05.md",
+    ruleIds: ["P1-5-blind-execution", "P1-5-narrative-observability-metrics"],
+  },
+  "P2-4": {
+    file: "framework/features/P2-04.md",
+    ruleIds: [
+      "P2-4-prompt-injections-and-data-leakage",
+      "P2-4-malicious-emergent-behaviors",
+      "P2-4-unauthorized-privilege-escalation",
+      "P2-4-narrative-permission-policies",
+    ],
+  },
+  "P2-5": {
+    file: "framework/features/P2-05.md",
+    ruleIds: ["P2-5-unregistered-work"],
+  },
+  "P3-3": {
+    file: "framework/features/P3-03.md",
+    ruleIds: ["P3-3-pattern-drift", "P3-3-narrative-pattern-audits"],
+  },
+};
+
+const GRAPH_RECONCILIATION_RULES = {
+  "P0-1": {
+    file: "framework/features/P0-01.md",
+    downstreamSource: "requiredBy",
+  },
+  "P0-9": {
+    file: "framework/features/P0-09.md",
+    downstreamSource: "enables",
+    requireExplicitEnables: true,
+  },
+  "P2-3": {
+    file: "framework/features/P2-03.md",
+    downstreamSource: "none",
+    mirrorRequiresIntoIndex: true,
+  },
+};
+
+const MEASUREMENT_STANDARDS_PATH = "framework/HE Measurement Standards.md";
+const MEASUREMENT_SCHEMA_PATH = ".harness/measurement-schema.json";
+const MEASUREMENT_DEFINITIONS_PATH = ".harness/measurement-definitions.json";
+
+const MEASUREMENT_BINDING_FEATURES = {
+  "P0-5": { file: "framework/features/P0-05.md" },
+  "P0-10": { file: "framework/features/P0-10.md" },
+  "P1-1": { file: "framework/features/P1-01.md" },
+  "P1-5": { file: "framework/features/P1-05.md" },
+  "P1-11": { file: "framework/features/P1-11.md" },
+  "P2-3": { file: "framework/features/P2-03.md" },
+  "P2-5": { file: "framework/features/P2-05.md" },
+  "P3-1": { file: "framework/features/P3-01.md" },
+  "P3-3": { file: "framework/features/P3-03.md" },
+};
+
 function getLineNumberForSnippet(content, snippet) {
   const index = content.indexOf(snippet);
   if (index === -1) return 0;
@@ -242,6 +354,381 @@ function getLineNumberForSnippet(content, snippet) {
 function getLineNumberForExactLine(lines, lineText) {
   const index = lines.findIndex((line) => line.trim() === lineText.trim());
   return index === -1 ? 0 : index + 1;
+}
+
+function validateCanonicalJsonSchemaFile(relativePath) {
+  const absolutePath = path.join(repoRoot, relativePath);
+  if (!fs.existsSync(absolutePath)) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: missing canonical schema file ${relativePath}.`,
+      "Create the referenced `.harness/*.schema.json` file before binding machine-readable requirements to it.",
+    );
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(absolutePath, "utf-8"));
+  } catch (error) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} is invalid JSON (${error.message}).`,
+      "Fix the schema JSON so feature-level machine-readable contracts remain parseable.",
+    );
+    return;
+  }
+
+  if (parsed.$schema !== CANONICAL_JSON_SCHEMA_URI) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} must declare the canonical Draft 2020-12 $schema URI.`,
+      "Set `$schema` to `https://json-schema.org/draft/2020-12/schema`.",
+    );
+  }
+
+  if (typeof parsed.title !== "string" || parsed.title.trim().length === 0) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} is missing a non-empty title.`,
+      "Add a concise schema title so the canonical contract is self-describing.",
+    );
+  }
+
+  if (parsed.type !== "object") {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} must declare a top-level object schema.`,
+      "Set the schema `type` to `object` to match the repo's canonical record pattern.",
+    );
+  }
+
+  if (!Array.isArray(parsed.required) || parsed.required.length === 0) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} must declare a non-empty required array.`,
+      "List the required fields for the machine-readable record so validation is enforceable.",
+    );
+  }
+
+  if (
+    !parsed.properties ||
+    typeof parsed.properties !== "object" ||
+    Array.isArray(parsed.properties)
+  ) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} must declare a properties object.`,
+      "Define the canonical record fields under `properties`.",
+    );
+  }
+
+  if (parsed.additionalProperties !== false) {
+    reportError(
+      absolutePath,
+      0,
+      `Schema Binding: ${relativePath} must set additionalProperties to false.`,
+      "Keep canonical record schemas closed by default so validators do not accept drifted fields.",
+    );
+  }
+}
+
+function validateMachineReadableSchemaBindings() {
+  const validatedSchemas = new Set();
+
+  Object.entries(MACHINE_READABLE_SCHEMA_BINDINGS).forEach(
+    ([featureId, binding]) => {
+      const featurePath = path.join(repoRoot, binding.file);
+      if (!fs.existsSync(featurePath)) {
+        reportError(
+          featurePath,
+          0,
+          `Schema Binding: missing feature file for ${featureId}.`,
+          "Restore the canonical feature file before validating its machine-readable schema bindings.",
+        );
+        return;
+      }
+
+      const content = fs.readFileSync(featurePath, "utf-8");
+      binding.schemaRefs.forEach((schemaRef) => {
+        if (!content.includes(schemaRef)) {
+          reportError(
+            featurePath,
+            getLineNumberForSnippet(content, "## L4: Prevention") ||
+              getLineNumberForSnippet(
+                content,
+                "## L4: Concrete Actions & Tools",
+              ),
+            `Schema Binding: ${featureId} does not reference required schema ${schemaRef}.`,
+            "Reference the canonical `.harness/*.schema.json` path directly from the governing feature file so machine-readable contracts are enforceable.",
+          );
+        }
+
+        if (!validatedSchemas.has(schemaRef)) {
+          validateCanonicalJsonSchemaFile(schemaRef);
+          validatedSchemas.add(schemaRef);
+        }
+      });
+    },
+  );
+}
+
+function readJsonFile(relativePath, label) {
+  const absolutePath = path.join(repoRoot, relativePath);
+  if (!fs.existsSync(absolutePath)) {
+    reportError(
+      absolutePath,
+      0,
+      `${label}: missing file ${relativePath}.`,
+      `Restore ${relativePath} before relying on it as a canonical validation surface.`,
+    );
+    return null;
+  }
+
+  try {
+    return JSON.parse(fs.readFileSync(absolutePath, "utf-8"));
+  } catch (error) {
+    reportError(
+      absolutePath,
+      0,
+      `${label}: ${relativePath} is invalid JSON (${error.message}).`,
+      `Fix ${relativePath} so the canonical registry/config remains machine-readable.`,
+    );
+    return null;
+  }
+}
+
+function validatePreventionRuleBindings() {
+  validateCanonicalJsonSchemaFile(PREVENTION_BINDING_SCHEMA_PATH);
+
+  const registry = readJsonFile(PREVENTION_REGISTRY_PATH, "Prevention Binding");
+  const config = readJsonFile(PREVENTION_CONFIG_PATH, "Prevention Binding");
+  if (!registry || !config) return;
+
+  if (!Array.isArray(registry.rules) || registry.rules.length === 0) {
+    reportError(
+      path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+      0,
+      "Prevention Binding: registry must contain a non-empty rules array.",
+      "Populate `.harness/prevention-rules-registry.json` with one binding record per targeted prevention rule.",
+    );
+    return;
+  }
+
+  if (
+    !Array.isArray(config.enforcement_checks) ||
+    config.enforcement_checks.length === 0
+  ) {
+    reportError(
+      path.join(repoRoot, PREVENTION_CONFIG_PATH),
+      0,
+      "Prevention Binding: config must contain a non-empty enforcement_checks array.",
+      "List the mounted lint/audit checks in `.harness/prevention-enforcement-config.json`.",
+    );
+  }
+
+  const registryRuleIds = new Set();
+  registry.rules.forEach((rule, index) => {
+    const lineNumber = index + 1;
+    if (!rule || typeof rule !== "object") {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        "Prevention Binding: registry entry is not an object.",
+        "Each prevention-rule binding must be a JSON object.",
+      );
+      return;
+    }
+
+    const {
+      rule_id: ruleId,
+      feature_id: featureId,
+      binding_status: bindingStatus,
+      enforcement_surface: enforcementSurface,
+      unmounted_reason: unmountedReason,
+    } = rule;
+
+    if (!ruleId || typeof ruleId !== "string") {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        "Prevention Binding: registry entries must include a string rule_id.",
+        "Add a stable rule_id such as `P2-5-unregistered-work`.",
+      );
+      return;
+    }
+
+    if (registryRuleIds.has(ruleId)) {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        `Prevention Binding: duplicate rule_id ${ruleId}.`,
+        "Keep rule_id values unique so enforcement status is not ambiguous.",
+      );
+    }
+    registryRuleIds.add(ruleId);
+
+    if (!PREVENTION_BINDING_FEATURES[featureId]) {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        `Prevention Binding: ${ruleId} references unsupported feature ${featureId}.`,
+        "Keep the Tranche 2 registry limited to the targeted prevention-binding features.",
+      );
+    }
+
+    if (
+      bindingStatus !== "implemented" &&
+      bindingStatus !== "declared-unmounted"
+    ) {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        `Prevention Binding: ${ruleId} must use binding_status implemented or declared-unmounted.`,
+        "Use only the canonical prevention-binding statuses.",
+      );
+    }
+
+    if (!enforcementSurface || typeof enforcementSurface !== "object") {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        `Prevention Binding: ${ruleId} is missing an enforcement_surface object.`,
+        "Point every prevention rule at a concrete lint/audit/runtime surface.",
+      );
+      return;
+    }
+
+    if (
+      !enforcementSurface.path ||
+      typeof enforcementSurface.path !== "string"
+    ) {
+      reportError(
+        path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+        lineNumber,
+        `Prevention Binding: ${ruleId} must declare enforcement_surface.path.`,
+        "Reference a concrete repository path for the enforcement surface.",
+      );
+    } else {
+      const enforcementPath = path.join(repoRoot, enforcementSurface.path);
+      if (!fs.existsSync(enforcementPath)) {
+        reportError(
+          path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+          lineNumber,
+          `Prevention Binding: ${ruleId} points at missing enforcement surface ${enforcementSurface.path}.`,
+          "Create the referenced enforcement surface or update the registry entry.",
+        );
+      }
+    }
+
+    if (bindingStatus === "declared-unmounted") {
+      if (!unmountedReason || typeof unmountedReason !== "string") {
+        reportError(
+          path.join(repoRoot, PREVENTION_REGISTRY_PATH),
+          lineNumber,
+          `Prevention Binding: ${ruleId} is declared-unmounted but missing unmounted_reason.`,
+          "Explain why the prevention rule is still unmounted so future tranches know what is missing.",
+        );
+      }
+    }
+  });
+
+  Object.entries(PREVENTION_BINDING_FEATURES).forEach(
+    ([featureId, binding]) => {
+      const featurePath = path.join(repoRoot, binding.file);
+      if (!fs.existsSync(featurePath)) {
+        reportError(
+          featurePath,
+          0,
+          `Prevention Binding: missing feature file for ${featureId}.`,
+          "Restore the feature file before validating its enforcement bindings.",
+        );
+        return;
+      }
+
+      const content = fs.readFileSync(featurePath, "utf-8");
+      if (!content.includes("## Enforcement Bindings")) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## L4: Prevention"),
+          `Prevention Binding: ${featureId} is missing an Enforcement Bindings section.`,
+          "Add an explicit section that points the feature's prevention rules at the canonical registry.",
+        );
+      }
+
+      if (!content.includes(PREVENTION_REGISTRY_PATH)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## Enforcement Bindings") ||
+            getLineNumberForSnippet(content, "## L4: Prevention"),
+          `Prevention Binding: ${featureId} does not reference ${PREVENTION_REGISTRY_PATH}.`,
+          "Reference the live prevention registry directly from the feature file.",
+        );
+      }
+
+      if (!content.includes(PREVENTION_BINDING_SCHEMA_PATH)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## Enforcement Bindings") ||
+            getLineNumberForSnippet(content, "## L4: Prevention"),
+          `Prevention Binding: ${featureId} does not reference ${PREVENTION_BINDING_SCHEMA_PATH}.`,
+          "Reference the canonical prevention-registry schema from the feature file.",
+        );
+      }
+
+      binding.ruleIds.forEach((ruleId) => {
+        if (!registryRuleIds.has(ruleId)) {
+          reportError(
+            featurePath,
+            getLineNumberForSnippet(content, "## Enforcement Bindings") ||
+              getLineNumberForSnippet(content, "## L4: Prevention"),
+            `Prevention Binding: ${featureId} is missing registry entry ${ruleId}.`,
+            "Add the missing rule_id to `.harness/prevention-rules-registry.json`.",
+          );
+        }
+      });
+    },
+  );
+
+  config.enforcement_checks.forEach((check, index) => {
+    const lineNumber = index + 1;
+    if (!check || typeof check !== "object") {
+      reportError(
+        path.join(repoRoot, PREVENTION_CONFIG_PATH),
+        lineNumber,
+        "Prevention Binding: enforcement_checks entry is not an object.",
+        "Each enforcement check must be a JSON object.",
+      );
+      return;
+    }
+
+    if (!check.script || typeof check.script !== "string") {
+      reportError(
+        path.join(repoRoot, PREVENTION_CONFIG_PATH),
+        lineNumber,
+        "Prevention Binding: each enforcement check must declare a script path.",
+        "Point each configured enforcement check at the script that runs it.",
+      );
+      return;
+    }
+
+    const scriptPath = path.join(repoRoot, check.script);
+    if (!fs.existsSync(scriptPath)) {
+      reportError(
+        path.join(repoRoot, PREVENTION_CONFIG_PATH),
+        lineNumber,
+        `Prevention Binding: configured script ${check.script} does not exist.`,
+        "Create the referenced script or update the enforcement config.",
+      );
+    }
+  });
 }
 
 function getFeatureIndexEntries() {
@@ -278,6 +765,8 @@ function extractFeatureDependencyClaims(content) {
   const lines = content.split("\n");
   const requires = new Set();
   const requiredBy = [];
+  const enables = [];
+  const enableLines = [];
 
   lines.forEach((line, index) => {
     const trimmed = line.trim();
@@ -292,9 +781,512 @@ function extractFeatureDependencyClaims(content) {
         requiredBy.push({ id, lineNumber: index + 1 });
       });
     }
+
+    if (trimmed.startsWith("**Enables:**")) {
+      enableLines.push({
+        ids,
+        lineNumber: index + 1,
+      });
+      ids.forEach((id) => {
+        enables.push({ id, lineNumber: index + 1 });
+      });
+    }
   });
 
-  return { requires, requiredBy };
+  return { requires, requiredBy, enables, enableLines };
+}
+
+function getSortedUniqueIds(values) {
+  return [...new Set(values)].sort();
+}
+
+function haveSameIds(left, right) {
+  return (
+    left.length === right.length &&
+    left.every((value, index) => value === right[index])
+  );
+}
+
+function validateGraphReconciliation() {
+  const indexPath = path.join(repoRoot, "framework", "HE Index.md");
+  const indexContent = fs.existsSync(indexPath)
+    ? fs.readFileSync(indexPath, "utf-8")
+    : "";
+  const featureEntries = getFeatureIndexEntries();
+  const featureEntryById = new Map(
+    featureEntries.map((feature) => [feature.id, feature]),
+  );
+
+  Object.entries(GRAPH_RECONCILIATION_RULES).forEach(([featureId, rule]) => {
+    const featureEntry = featureEntryById.get(featureId);
+    if (!featureEntry) {
+      reportError(
+        indexPath,
+        0,
+        `Graph Reconciliation: HE Index.md is missing feature ${featureId}.`,
+        "Restore the canonical feature entry before validating graph reconciliation rules.",
+      );
+      return;
+    }
+
+    const featurePath = path.join(repoRoot, rule.file);
+    if (!fs.existsSync(featurePath)) {
+      reportError(
+        featurePath,
+        0,
+        `Graph Reconciliation: missing feature file for ${featureId}.`,
+        "Restore the canonical feature file before validating graph reconciliation rules.",
+      );
+      return;
+    }
+
+    const content = fs.readFileSync(featurePath, "utf-8");
+    const claims = extractFeatureDependencyClaims(content);
+    const declaredDownstream = getSortedUniqueIds(
+      featureEntry.downstream || [],
+    );
+    let expectedDownstream = [];
+
+    if (rule.downstreamSource === "requiredBy") {
+      expectedDownstream = getSortedUniqueIds(
+        claims.requiredBy.map((claim) => claim.id),
+      );
+    }
+
+    if (rule.downstreamSource === "enables") {
+      if (rule.requireExplicitEnables) {
+        claims.enableLines.forEach(({ ids, lineNumber }) => {
+          if (ids.length === 0) {
+            reportError(
+              featurePath,
+              lineNumber,
+              `Graph Reconciliation: ${featureId} uses a vague **Enables:** clause without explicit feature IDs.`,
+              "Name the enabled canonical feature IDs directly or remove the unsupported downstream claim.",
+            );
+          }
+        });
+      }
+
+      expectedDownstream = getSortedUniqueIds(
+        claims.enables.map((claim) => claim.id),
+      );
+    }
+
+    if (!haveSameIds(declaredDownstream, expectedDownstream)) {
+      reportError(
+        indexPath,
+        getLineNumberForSnippet(indexContent, `"id": "${featureId}"`),
+        `Graph Reconciliation: ${featureId} downstream in HE Index.md does not match its canonical ${rule.downstreamSource} declarations.`,
+        `Update ${featureId} in framework/HE Index.md so downstream is ${JSON.stringify(expectedDownstream)}.`,
+      );
+    }
+
+    if (rule.mirrorRequiresIntoIndex) {
+      claims.requires.forEach((requiredId) => {
+        const requiredFeature = featureEntryById.get(requiredId);
+        if (!requiredFeature) {
+          reportError(
+            featurePath,
+            getLineNumberForSnippet(content, "**Requires:**"),
+            `Graph Reconciliation: ${featureId} requires unknown feature ${requiredId}.`,
+            "Use only canonical feature IDs declared in framework/HE Index.md.",
+          );
+          return;
+        }
+
+        if (!(requiredFeature.downstream || []).includes(featureId)) {
+          reportError(
+            indexPath,
+            getLineNumberForSnippet(indexContent, `"id": "${requiredId}"`),
+            `Graph Reconciliation: ${featureId} requires ${requiredId}, but HE Index.md does not list ${featureId} downstream of ${requiredId}.`,
+            `Mirror the canonical requires edge by adding ${featureId} to ${requiredId}'s downstream array in framework/HE Index.md.`,
+          );
+        }
+      });
+    }
+  });
+}
+
+function validateMeasurementOperationalDefinitions() {
+  const standardsPath = path.join(repoRoot, MEASUREMENT_STANDARDS_PATH);
+  if (!fs.existsSync(standardsPath)) {
+    reportError(
+      standardsPath,
+      0,
+      "Measurement Binding: missing framework/HE Measurement Standards.md.",
+      "Create the canonical measurement standards document before binding L5 measurements to the registry.",
+    );
+  }
+
+  validateCanonicalJsonSchemaFile(MEASUREMENT_SCHEMA_PATH);
+
+  const definitions = readJsonFile(
+    MEASUREMENT_DEFINITIONS_PATH,
+    "Measurement Binding",
+  );
+  if (!definitions) return;
+
+  const definitionsPath = path.join(repoRoot, MEASUREMENT_DEFINITIONS_PATH);
+  if (definitions.$schema !== "./measurement-schema.json") {
+    reportError(
+      definitionsPath,
+      0,
+      "Measurement Binding: .harness/measurement-definitions.json must declare $schema ./measurement-schema.json.",
+      "Point the definitions registry at the canonical measurement schema file.",
+    );
+  }
+
+  if (definitions.generated_from !== MEASUREMENT_STANDARDS_PATH) {
+    reportError(
+      definitionsPath,
+      0,
+      "Measurement Binding: measurement definitions must declare framework/HE Measurement Standards.md as generated_from.",
+      "Keep the definitions registry tied to the canonical standards document.",
+    );
+  }
+
+  if (
+    !Array.isArray(definitions.feature_measurements) ||
+    definitions.feature_measurements.length === 0
+  ) {
+    reportError(
+      definitionsPath,
+      0,
+      "Measurement Binding: .harness/measurement-definitions.json must contain a non-empty feature_measurements array.",
+      "Add one measurement definition entry for each targeted feature.",
+    );
+    return;
+  }
+
+  const featureEntries = getFeatureIndexEntries();
+  const featureEntryById = new Map(
+    featureEntries.map((feature) => [feature.id, feature]),
+  );
+  const definitionsByFeature = new Map();
+
+  definitions.feature_measurements.forEach((featureMeasurement, index) => {
+    const lineNumber = index + 1;
+    if (!featureMeasurement || typeof featureMeasurement !== "object") {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        "Measurement Binding: feature measurement entry is not an object.",
+        "Use one JSON object per feature measurement binding.",
+      );
+      return;
+    }
+
+    const {
+      feature_id: featureId,
+      measurement_binding: measurementBinding,
+      status,
+      collection_trigger: collectionTrigger,
+      freshness_slo_minutes: freshnessSloMinutes,
+      metrics,
+    } = featureMeasurement;
+
+    if (!MEASUREMENT_BINDING_FEATURES[featureId]) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: unsupported feature_id ${featureId} in measurement definitions.`,
+        "Keep the registry limited to the nine targeted measurement features for this tranche.",
+      );
+      return;
+    }
+
+    if (definitionsByFeature.has(featureId)) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: duplicate measurement definition for ${featureId}.`,
+        "Keep exactly one registry entry per targeted feature.",
+      );
+    }
+    definitionsByFeature.set(featureId, featureMeasurement);
+
+    if (measurementBinding !== featureId) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: ${featureId} must use the same value for measurement_binding and feature_id.`,
+        "Mirror the canonical feature ID in the registry binding key.",
+      );
+    }
+
+    if (
+      status !== "implemented" &&
+      status !== "proxy-mounted" &&
+      status !== "declared-unmounted"
+    ) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: ${featureId} has invalid status ${status}.`,
+        "Use only implemented, proxy-mounted, or declared-unmounted for measurement bindings.",
+      );
+    }
+
+    if (!collectionTrigger || typeof collectionTrigger !== "string") {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: ${featureId} must declare collection_trigger.`,
+        "Name the command or workflow that refreshes the metric binding.",
+      );
+    }
+
+    if (typeof freshnessSloMinutes !== "number" || freshnessSloMinutes <= 0) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: ${featureId} must declare a positive freshness_slo_minutes value.`,
+        "Set the freshness SLO in minutes for each feature measurement binding.",
+      );
+    }
+
+    if (!Array.isArray(metrics) || metrics.length === 0) {
+      reportError(
+        definitionsPath,
+        lineNumber,
+        `Measurement Binding: ${featureId} must contain one or more metric definitions.`,
+        "Add at least one metric object for each bound feature.",
+      );
+      return;
+    }
+
+    metrics.forEach((metric, metricIndex) => {
+      if (!metric || typeof metric !== "object") {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${featureId} metric ${metricIndex + 1} is not an object.`,
+          "Use JSON objects for all metric definitions.",
+        );
+        return;
+      }
+
+      const metricLabel =
+        metric.metric_id || `${featureId} metric ${metricIndex + 1}`;
+
+      [
+        "metric_id",
+        "outcome",
+        "status",
+        "event_source",
+        "collection_trigger",
+        "formula",
+        "storage_key",
+        "threshold_justification",
+      ].forEach((field) => {
+        if (!metric[field] || typeof metric[field] !== "string") {
+          reportError(
+            definitionsPath,
+            lineNumber,
+            `Measurement Binding: ${metricLabel} is missing string field ${field}.`,
+            "Complete all required metric-definition fields in the measurement registry.",
+          );
+        }
+      });
+
+      if (
+        metric.status !== "implemented" &&
+        metric.status !== "proxy-mounted" &&
+        metric.status !== "declared-unmounted"
+      ) {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${metricLabel} has invalid status ${metric.status}.`,
+          "Use only implemented, proxy-mounted, or declared-unmounted for metric statuses.",
+        );
+      }
+
+      if (
+        !metric.storage_key ||
+        !metric.storage_key.startsWith(
+          `measurement_health.features.${featureId}.metrics.`,
+        )
+      ) {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${metricLabel} must store under measurement_health.features.${featureId}.metrics.*.`,
+          "Keep metric storage keys namespaced by feature ID in the observation report.",
+        );
+      }
+
+      if (
+        !metric.threshold ||
+        typeof metric.threshold !== "object" ||
+        Array.isArray(metric.threshold)
+      ) {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${metricLabel} must declare a threshold object.`,
+          "Define operator, target, and unit for every metric threshold.",
+        );
+      } else {
+        if (
+          typeof metric.threshold.operator !== "string" ||
+          !["<", "<=", ">", ">=", "="].includes(metric.threshold.operator)
+        ) {
+          reportError(
+            definitionsPath,
+            lineNumber,
+            `Measurement Binding: ${metricLabel} has invalid threshold operator ${metric.threshold.operator}.`,
+            "Use one of <, <=, >, >=, or = for threshold.operator.",
+          );
+        }
+
+        if (typeof metric.threshold.target !== "number") {
+          reportError(
+            definitionsPath,
+            lineNumber,
+            `Measurement Binding: ${metricLabel} must use a numeric threshold target.`,
+            "Set threshold.target to a number.",
+          );
+        }
+
+        if (
+          !metric.threshold.unit ||
+          typeof metric.threshold.unit !== "string"
+        ) {
+          reportError(
+            definitionsPath,
+            lineNumber,
+            `Measurement Binding: ${metricLabel} must declare threshold.unit.`,
+            "Name the threshold unit for every metric.",
+          );
+        }
+      }
+
+      if (
+        !metric.enforcement_surface ||
+        typeof metric.enforcement_surface !== "object" ||
+        Array.isArray(metric.enforcement_surface)
+      ) {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${metricLabel} must declare an enforcement_surface object.`,
+          "Reference the script, artifact, or future surface that owns the metric.",
+        );
+      } else if (
+        !metric.enforcement_surface.type ||
+        !metric.enforcement_surface.path
+      ) {
+        reportError(
+          definitionsPath,
+          lineNumber,
+          `Measurement Binding: ${metricLabel} enforcement_surface requires type and path.`,
+          "Complete the enforcement_surface object for every metric.",
+        );
+      } else if (metric.status !== "declared-unmounted") {
+        const enforcementPath = path.join(
+          repoRoot,
+          metric.enforcement_surface.path,
+        );
+        if (!fs.existsSync(enforcementPath)) {
+          reportError(
+            definitionsPath,
+            lineNumber,
+            `Measurement Binding: ${metricLabel} points at missing mounted enforcement surface ${metric.enforcement_surface.path}.`,
+            "Use an existing path for implemented or proxy-mounted metrics, or mark the metric declared-unmounted.",
+          );
+        }
+      }
+    });
+  });
+
+  Object.entries(MEASUREMENT_BINDING_FEATURES).forEach(
+    ([featureId, binding]) => {
+      const featureEntry = featureEntryById.get(featureId);
+      const featurePath = path.join(repoRoot, binding.file);
+
+      if (!featureEntry) {
+        reportError(
+          path.join(repoRoot, "framework", "HE Index.md"),
+          0,
+          `Measurement Binding: HE Index.md is missing targeted feature ${featureId}.`,
+          "Restore the canonical feature entry before validating measurement bindings.",
+        );
+        return;
+      }
+
+      if (featureEntry.measurement_binding !== featureId) {
+        reportError(
+          path.join(repoRoot, "framework", "HE Index.md"),
+          getLineNumberForSnippet(
+            fs.readFileSync(
+              path.join(repoRoot, "framework", "HE Index.md"),
+              "utf-8",
+            ),
+            `"id": "${featureId}"`,
+          ),
+          `Measurement Binding: ${featureId} must declare measurement_binding ${featureId} in framework/HE Index.md.`,
+          "Mirror the canonical feature ID into the index measurement_binding field.",
+        );
+      }
+
+      if (!fs.existsSync(featurePath)) {
+        reportError(
+          featurePath,
+          0,
+          `Measurement Binding: missing feature file for ${featureId}.`,
+          "Restore the canonical feature file before validating measurement bindings.",
+        );
+        return;
+      }
+
+      const content = fs.readFileSync(featurePath, "utf-8");
+      if (!content.includes("## Measurement Bindings")) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## L5: Measurement"),
+          `Measurement Binding: ${featureId} must declare a ## Measurement Bindings section.`,
+          "Bind the feature's L5 measurement outcomes to the shared registry and standards document.",
+        );
+      }
+
+      if (!content.includes(MEASUREMENT_STANDARDS_PATH)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## Measurement Bindings"),
+          `Measurement Binding: ${featureId} does not reference framework/HE Measurement Standards.md.`,
+          "Reference the canonical measurement standards document from the feature file.",
+        );
+      }
+
+      if (!content.includes(MEASUREMENT_DEFINITIONS_PATH)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## Measurement Bindings"),
+          `Measurement Binding: ${featureId} does not reference .harness/measurement-definitions.json.`,
+          "Reference the shared measurement registry from the feature file.",
+        );
+      }
+
+      if (!content.includes(`**Binding Key:** \`${featureId}\``)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, "## Measurement Bindings"),
+          `Measurement Binding: ${featureId} must declare its binding key in the feature file.`,
+          "Add a Binding Key line that matches the registry and index metadata.",
+        );
+      }
+
+      if (!definitionsByFeature.has(featureId)) {
+        reportError(
+          definitionsPath,
+          0,
+          `Measurement Binding: .harness/measurement-definitions.json is missing ${featureId}.`,
+          "Add a feature measurement entry for every targeted L5 measurement surface.",
+        );
+      }
+    },
+  );
 }
 
 function validateFeatureChainFiles() {
@@ -1346,6 +2338,10 @@ function run() {
   // Always validate DAG structure
   validateDAGStructure();
   validateFeatureChainFiles();
+  validateGraphReconciliation();
+  validateMeasurementOperationalDefinitions();
+  validateMachineReadableSchemaBindings();
+  validatePreventionRuleBindings();
   validateRequirementsLedger();
   validateReviewLedger();
   validatePlanRequirementIds();

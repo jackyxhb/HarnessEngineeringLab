@@ -48,6 +48,35 @@ const MCP_CAPABILITIES_FILE = path.join(
   ".harness",
   "mcp-capabilities.json",
 );
+const MEASUREMENT_SCHEMA_FILE = path.join(
+  __dirname,
+  "..",
+  ".harness",
+  "measurement-schema.json",
+);
+const MEASUREMENT_DEFINITIONS_FILE = path.join(
+  __dirname,
+  "..",
+  ".harness",
+  "measurement-definitions.json",
+);
+const MEASUREMENT_STANDARDS_FILE = path.join(
+  __dirname,
+  "..",
+  "framework",
+  "HE Measurement Standards.md",
+);
+const EXPECTED_MEASUREMENT_FEATURES = [
+  "P0-5",
+  "P0-10",
+  "P1-1",
+  "P1-5",
+  "P1-11",
+  "P2-3",
+  "P2-5",
+  "P3-1",
+  "P3-3",
+];
 
 function readJson(filePath, fallbackValue) {
   if (!fs.existsSync(filePath)) {
@@ -110,6 +139,7 @@ function buildAlerts({
   taskState,
   escalationEvents,
   reportTimestamp,
+  measurementHealth,
 }) {
   const alerts = [];
   const staleHeartbeatMinutes = differenceInMinutes(
@@ -158,7 +188,63 @@ function buildAlerts({
     });
   }
 
+  if (
+    measurementHealth &&
+    measurementHealth.missing_feature_bindings.length > 0
+  ) {
+    alerts.push({
+      severity: "high",
+      type: "measurement-coverage",
+      message: `Measurement registry is missing bindings for ${measurementHealth.missing_feature_bindings.join(", ")}`,
+    });
+  }
+
   return alerts;
+}
+
+function buildMeasurementHealth(reportTimestamp) {
+  const definitions = readJson(MEASUREMENT_DEFINITIONS_FILE, null);
+  const featureMeasurements = Array.isArray(definitions?.feature_measurements)
+    ? definitions.feature_measurements
+    : [];
+  const metricsByStatus = {};
+  let totalMetricsDefined = 0;
+
+  featureMeasurements.forEach((featureMeasurement) => {
+    const metrics = Array.isArray(featureMeasurement.metrics)
+      ? featureMeasurement.metrics
+      : [];
+    metrics.forEach((metric) => {
+      const status = metric.status || "unknown";
+      metricsByStatus[status] = (metricsByStatus[status] || 0) + 1;
+      totalMetricsDefined += 1;
+    });
+  });
+
+  const boundFeatureIds = new Set(
+    featureMeasurements
+      .map((featureMeasurement) => featureMeasurement.feature_id)
+      .filter(Boolean),
+  );
+
+  return {
+    standards_present: fs.existsSync(MEASUREMENT_STANDARDS_FILE),
+    schema_present: fs.existsSync(MEASUREMENT_SCHEMA_FILE),
+    registry_present: Boolean(definitions),
+    registry_age_minutes: fs.existsSync(MEASUREMENT_DEFINITIONS_FILE)
+      ? differenceInMinutes(
+          fs.statSync(MEASUREMENT_DEFINITIONS_FILE).mtime,
+          new Date(reportTimestamp),
+        )
+      : null,
+    expected_feature_count: EXPECTED_MEASUREMENT_FEATURES.length,
+    defined_feature_count: featureMeasurements.length,
+    total_metrics_defined: totalMetricsDefined,
+    missing_feature_bindings: EXPECTED_MEASUREMENT_FEATURES.filter(
+      (featureId) => !boundFeatureIds.has(featureId),
+    ),
+    metrics_by_status: metricsByStatus,
+  };
 }
 
 function renderDashboard(report) {
@@ -233,6 +319,19 @@ function renderDashboard(report) {
     `- MCP Manifest Present: ${report.system_health.mcp_manifest_present}`,
     `- Task-State Schema Present: ${report.system_health.task_state_schema_present}`,
     `- Escalation Rules Present: ${report.system_health.escalation_rules_present}`,
+    `- Measurement Standards Present: ${report.measurement_health.standards_present}`,
+    `- Measurement Schema Present: ${report.measurement_health.schema_present}`,
+    `- Measurement Registry Present: ${report.measurement_health.registry_present}`,
+    "",
+    "## Measurement Health",
+    "",
+    `- Bound Features: ${report.measurement_health.defined_feature_count}/${report.measurement_health.expected_feature_count}`,
+    `- Total Metrics Defined: ${report.measurement_health.total_metrics_defined}`,
+    `- Registry Age: ${report.measurement_health.registry_age_minutes ?? "n/a"} minute(s)`,
+    `- Missing Bindings: ${report.measurement_health.missing_feature_bindings.length > 0 ? report.measurement_health.missing_feature_bindings.join(", ") : "none"}`,
+    ...Object.entries(report.measurement_health.metrics_by_status).map(
+      ([status, count]) => `- ${status}: ${count}`,
+    ),
   ].join("\n");
 }
 
@@ -244,6 +343,7 @@ function generateReport() {
   const taskState = readJson(TASK_STATE_FILE, null);
   const permissions = readJson(PERMISSIONS_FILE, null);
   const mcpCapabilities = readJson(MCP_CAPABILITIES_FILE, null);
+  const measurementHealth = buildMeasurementHealth(reportTimestamp);
   const totalActions = logs.length;
   const actionsByType = {};
   const resultsByType = {};
@@ -317,6 +417,7 @@ function generateReport() {
         path.join(__dirname, "..", ".harness", "escalation-rules.json"),
       ),
     },
+    measurement_health: measurementHealth,
     summary:
       totalActions > 0
         ? `Processed ${totalActions} actions with ${(errorRate * 100).toFixed(1)}% error rate`
@@ -328,6 +429,7 @@ function generateReport() {
     taskState: report.task_state,
     escalationEvents,
     reportTimestamp,
+    measurementHealth,
   });
 
   fs.writeFileSync(REPORT_FILE, JSON.stringify(report, null, 2));

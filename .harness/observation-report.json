@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-04-13T13:43:54.454Z",
-  "total_actions": 7,
+  "timestamp": "2026-04-14T11:36:16.405Z",
+  "total_actions": 8,
   "unique_agents": 1,
   "actions_by_type": {
-    "structural-audit": 7
+    "structural-audit": 8
   },
   "results_by_type": {
-    "pass": 6,
+    "pass": 7,
     "fail": 1
   },
-  "average_duration_ms": 148,
-  "p95_duration_ms": 589,
-  "error_rate": 0.14285714285714285,
+  "average_duration_ms": 226,
+  "p95_duration_ms": 772,
+  "error_rate": 0.125,
   "recent_actions": [
     {
       "timestamp": "2026-04-12T00:46:26Z",
@@ -89,6 +89,17 @@
       "pass": 40,
       "warn": 0,
       "fail": 0
+    },
+    {
+      "timestamp": "2026-04-14T11:32:07Z",
+      "agent_id": "harness-audit",
+      "action": "structural-audit",
+      "target": "HELab",
+      "result": "pass",
+      "duration_ms": 772,
+      "pass": 49,
+      "warn": 0,
+      "fail": 0
     }
   ],
   "escalation_summary": {
@@ -110,6 +121,21 @@
     "task_state_schema_present": true,
     "escalation_rules_present": true
   },
-  "summary": "Processed 7 actions with 14.3% error rate",
+  "measurement_health": {
+    "standards_present": true,
+    "schema_present": true,
+    "registry_present": true,
+    "registry_age_minutes": 0,
+    "expected_feature_count": 9,
+    "defined_feature_count": 9,
+    "total_metrics_defined": 31,
+    "missing_feature_bindings": [],
+    "metrics_by_status": {
+      "declared-unmounted": 19,
+      "implemented": 6,
+      "proxy-mounted": 6
+    }
+  },
+  "summary": "Processed 8 actions with 12.5% error rate",
   "alerts": []
 }

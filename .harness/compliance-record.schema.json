@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "HELab Requirement Compliance Record",
+    "type": "object",
+    "required": [
+        "requirement_id",
+        "validated_at",
+        "status",
+        "evidence",
+        "auditor_id"
+    ],
+    "properties": {
+        "requirement_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "validated_at": {
+            "type": "string",
+            "minLength": 1
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "met",
+                "partial",
+                "unmet"
+            ]
+        },
+        "evidence": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minLength": 1
+            },
+            "minItems": 1
+        },
+        "auditor_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "notes": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}
