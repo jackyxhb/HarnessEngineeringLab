@@ -32,10 +32,10 @@ Use this workflow when you need a repository-wide assessment of the **32 canonic
 
 1. Launch **one subagent per feature**. Each subagent must start in a clean context and review only the minimum canonical files needed for that feature.
 2. Each subagent review must perform four passes:
-    - review the feature file itself
-    - moderate severity and separate confirmed findings from softer polish suggestions
-    - reconcile the feature against `framework/HE Index.md` and its governing principle
-    - propose recommendations or implementation-planning notes specific to that feature
+   - review the feature file itself
+   - moderate severity and separate confirmed findings from softer polish suggestions
+   - reconcile the feature against `framework/HE Index.md` and its governing principle
+   - propose recommendations or implementation-planning notes specific to that feature
 3. Each subagent must return machine-readable output only. Use this JSON contract:
 
 ```json
@@ -72,24 +72,24 @@ Use this workflow when you need a repository-wide assessment of the **32 canonic
 
 1. Collect all subagent JSON outputs.
 2. Reconcile cross-feature inconsistencies centrally. Pay special attention to:
-    - feature file vs. `HE Index.md` dependency mismatches
-    - feature file vs. governing principle misalignment
-    - prevention rules that lack enforcement artifacts
-    - measurements that lack thresholds, schemas, or collection mechanics
-    - SAS vs. MAS scope ambiguity
+   - feature file vs. `HE Index.md` dependency mismatches
+   - feature file vs. governing principle misalignment
+   - prevention rules that lack enforcement artifacts
+   - measurements that lack thresholds, schemas, or collection mechanics
+   - SAS vs. MAS scope ambiguity
 3. Group findings into two levels:
-    - per-feature findings
-    - systemic framework findings that repeat across multiple features
+   - per-feature findings
+   - systemic framework findings that repeat across multiple features
 4. Do not repeat every low-signal polish note in the main report. Distill recurring patterns.
 
 ## Phase 5: Produce The Assessment Report
 
 1. Deliver one aggregate report to the user with these sections:
-    - overall assessment
-    - feature status summary by pillar
-    - highest-severity confirmed issues
-    - recurring systemic patterns
-    - recommended remediation order
+   - overall assessment
+   - feature status summary by pillar
+   - highest-severity confirmed issues
+   - recurring systemic patterns
+   - recommended remediation order
 2. Use the exact template at `.agent/workflows/templates/review-all-features-report.md` for the aggregate report shape.
 3. Findings must come first. Summaries are secondary.
 4. If no confirmed problems are found for a feature, say so explicitly and note any residual implementation risk.

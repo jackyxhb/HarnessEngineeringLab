@@ -11,6 +11,22 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-15-013",
+      "date": "2026-04-15",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R003", "HE-R004"],
+      "scope_paths": [
+        ".agent/workflows/review-all-features.md",
+        ".harness/HE-FEATURE-MATRIX.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved two formatting-only follow-up edits: normalized nested bullet indentation in /review-all-features and normalized the P0-6 row spacing in HE-FEATURE-MATRIX.md.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-14-012",
       "date": "2026-04-14",
       "status": "approved",
