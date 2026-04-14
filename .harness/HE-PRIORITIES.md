@@ -126,9 +126,9 @@ Per `references/he-scoring.md`: 6 dimensions (0–5), `Priority Score = (5 - Com
 
 ### Tier 2: Mid-term
 
-| Rank | Feature                                | Score | Remediation |
-| ---- | -------------------------------------- | ----- | ----------- |
-| 3    | P1-6 Web Search & MCP Integration      | 2.17  | Light       |
+| Rank | Feature                           | Score | Remediation |
+| ---- | --------------------------------- | ----- | ----------- |
+| 3    | P1-6 Web Search & MCP Integration | 2.17  | Light       |
 
 ### Tier 3: Deferred / MAS-triggered
 

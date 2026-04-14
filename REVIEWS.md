@@ -910,7 +910,14 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
       "generator": "GitHub Copilot",
       "reviewer": "Explore subagent",
       "review_type": "agent",
-      "requirement_ids": ["HE-R001", "HE-R002", "HE-R003", "HE-R006", "HE-R007", "HE-R008"],
+      "requirement_ids": [
+        "HE-R001",
+        "HE-R002",
+        "HE-R003",
+        "HE-R006",
+        "HE-R007",
+        "HE-R008"
+      ],
       "scope_paths": [
         "AGENTS.md",
         "package.json",
