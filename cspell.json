@@ -73,7 +73,12 @@
     "overclaim",
     "overclaiming",
     "toplevel",
-    "websearchforcopilot"
+    "websearchforcopilot",
+    "acks",
+    "collab",
+    "docstrings",
+    "operationalization",
+    "Operationalization"
   ],
   "ignorePaths": [
     "node_modules",

@@ -5,7 +5,8 @@
       "Read(//Users/macbook1/**)",
       "Bash(gh pr:*)",
       "Bash(gh release:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Read(//tmp/**)"
     ]
   }
 }

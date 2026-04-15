@@ -11,6 +11,27 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-16-014",
+      "date": "2026-04-16",
+      "status": "approved",
+      "generator": "Team B",
+      "reviewer": "Claude Code",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/features/P1-09.md",
+        "framework/features/P2-03.md",
+        "framework/features/P3-04.md",
+        ".agent/skills/harnessing-agents/framework/features/P1-09.md",
+        ".agent/skills/harnessing-agents/framework/features/P2-03.md",
+        ".agent/skills/harnessing-agents/framework/features/P3-04.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved addition of explicit 'Scope: SAS vs MAS' sections to three feature files (P1-9, P2-3, P3-4) to distinguish single-agent and multi-agent deployment behavior, clarify transition paths, and improve framework comprehensibility for downstream consumers. Each section includes SAS scope, MAS scope, and transition path descriptions. Updated RELEASES.md with downstream impact note. Synced bundled skill framework mirror.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-15-013",
       "date": "2026-04-15",
       "status": "approved",
