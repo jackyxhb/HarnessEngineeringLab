@@ -38,6 +38,8 @@
                 "feature_id": {
                     "type": "string",
                     "enum": [
+                        "P0-2",
+                        "P0-3",
                         "P0-5",
                         "P0-10",
                         "P1-1",

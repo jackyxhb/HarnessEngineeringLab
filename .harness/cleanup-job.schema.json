@@ -1,0 +1,197 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Cleanup Job Specification",
+    "description": "Machine-readable definition of scheduled cleanup tasks for entropy management",
+    "type": "object",
+    "required": [
+        "job_id",
+        "name",
+        "description",
+        "schedule",
+        "targets",
+        "cleanup_rules",
+        "metrics_tracking"
+    ],
+    "properties": {
+        "job_id": {
+            "type": "string",
+            "pattern": "^CJ-\\d+$"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 1
+        },
+        "description": {
+            "type": "string",
+            "minLength": 1
+        },
+        "schedule": {
+            "type": "object",
+            "required": ["cron_expression", "timezone"],
+            "properties": {
+                "cron_expression": {
+                    "type": "string",
+                    "description": "Standard 5-field cron expression"
+                },
+                "timezone": {
+                    "type": "string",
+                    "default": "UTC"
+                },
+                "next_run": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+                }
+            },
+            "additionalProperties": false
+        },
+        "targets": {
+            "type": "object",
+            "properties": {
+                "dead_code": {
+                    "type": "boolean",
+                    "description": "Enable dead-code removal detection"
+                },
+                "stale_branches": {
+                    "type": "boolean",
+                    "description": "Enable stale branch detection and pruning"
+                },
+                "orphan_files": {
+                    "type": "boolean",
+                    "description": "Enable orphan file detection"
+                },
+                "temporary_files": {
+                    "type": "boolean",
+                    "description": "Enable temporary file cleanup"
+                },
+                "old_logs": {
+                    "type": "boolean",
+                    "description": "Enable old log rotation"
+                }
+            },
+            "additionalProperties": false
+        },
+        "cleanup_rules": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "rule_id",
+                    "type",
+                    "selector",
+                    "action"
+                ],
+                "properties": {
+                    "rule_id": {
+                        "type": "string",
+                        "pattern": "^CLP-\\d+$"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["dead-code", "stale-branch", "orphan-file", "temporary", "log-rotation"]
+                    },
+                    "selector": {
+                        "type": "object",
+                        "properties": {
+                            "path_pattern": {
+                                "type": "string",
+                                "description": "Glob or regex pattern for target files/directories"
+                            },
+                            "age_days": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "description": "Files/branches older than this are candidates for cleanup"
+                            },
+                            "exclude_patterns": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": ["delete", "archive", "report", "notify"]
+                    },
+                    "dry_run": {
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "approval_required": {
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "metrics_tracking": {
+            "type": "object",
+            "required": ["enabled"],
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "track_dead_code_ratio": {
+                    "type": "boolean"
+                },
+                "track_stale_branch_count": {
+                    "type": "boolean"
+                },
+                "track_orphan_file_count": {
+                    "type": "boolean"
+                },
+                "track_cleanup_success_rate": {
+                    "type": "boolean"
+                },
+                "report_location": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "notifications": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "on_completion": {
+                    "type": "boolean"
+                },
+                "on_error": {
+                    "type": "boolean"
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Email, Slack channel, or logging location"
+                }
+            },
+            "additionalProperties": false
+        },
+        "last_run": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": ["success", "partial", "failed", "skipped"]
+                },
+                "items_processed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "items_removed": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

@@ -11,6 +11,37 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-16-017",
+      "date": "2026-04-16",
+      "status": "pending-human-review",
+      "generator": "Claude Code (P1 Remediation Agent)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/features/P1-02.md",
+        "framework/features/P1-05.md",
+        "framework/features/P1-06.md",
+        "framework/features/P1-11.md",
+        "framework/HE Index.md",
+        ".harness/measurement-definitions.json",
+        ".harness/prevention-rules-registry.json",
+        ".harness/L4-P1-2-tool-specification.md",
+        ".harness/L4-P1-5-tool-specification.md",
+        ".harness/L4-P1-6-tool-specification.md",
+        ".harness/L4-P1-11-tool-specification.md",
+        ".agent/skills/harnessing-agents/framework/features/P1-02.md",
+        ".agent/skills/harnessing-agents/framework/features/P1-05.md",
+        ".agent/skills/harnessing-agents/framework/features/P1-06.md",
+        ".agent/skills/harnessing-agents/framework/features/P1-11.md",
+        ".agent/skills/harnessing-agents/framework/HE Index.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Tranche 1 P1 remediation: Added measurement bindings and L4 tool specifications for P1-2, P1-5, P1-6, P1-11. Created L4 tool specification documents with concrete operational recipes (context-summary generator + compaction policy for P1-2; task-artifact enforcement + Tier 1/2 observability gates for P1-5; MCP capability discovery + caching/filtering for P1-6; Socratic pause automation + assumption-rework tracking for P1-11). Added missing measurement_binding fields to HE Index for P1-2 and P1-6. Populated measurement-definitions.json with 3 metrics each for P1-2 and P1-6, following existing patterns for other features. Added Enforcement Bindings sections to P1-6 and P1-11 feature files referencing prevention-rules-registry.json. Registered 4 new prevention rules (P1-6-knowledge-silos [implemented], P1-6-narrative-mcp-manifests [implemented], P1-11-premature-execution [declared-unmounted], P1-11-narrative-inquiry-logs [implemented]) in prevention-rules-registry.json with full binding details. All 4 features now have explicit SAS vs MAS scope sections in respective L4 tool specifications. Synced bundled skill framework via npm run sync:skill-framework. Updated RELEASES.md with comprehensive change description.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-16-015",
       "date": "2026-04-16",
       "status": "approved",

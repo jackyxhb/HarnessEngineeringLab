@@ -159,6 +159,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Agent work is persistent, versioned, and conflict-free",
       "file": "framework/features/P0-02.md",
+      "measurement_binding": "P0-2",
       "downstream": ["P0-9", "P1-3", "P1-7", "P1-9", "P3-1"]
     },
     {
@@ -170,6 +171,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Verify before declaring completion",
       "L2": "Agents autonomously detect and correct errors before human review",
       "file": "framework/features/P0-03.md",
+      "measurement_binding": "P0-3",
       "downstream": ["P0-7", "P2-3"]
     },
     {
@@ -204,7 +206,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Standard operations reduce variance",
       "L2": "Any harness layer can be removed without breaking the rest",
       "file": "framework/features/P0-06.md",
-      "downstream": ["P0-8"]
+      "downstream": ["P0-8"],
+      "measurement_binding": "P0-6"
     },
     {
       "id": "P0-7",
@@ -215,7 +218,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Every action must be traceable",
       "L2": "Every agent action is attributable; stuck agents are detected and escalated within defined time bounds",
       "file": "framework/features/P0-07.md",
-      "downstream": []
+      "downstream": [],
+      "measurement_binding": "P0-7"
     },
     {
       "id": "P0-8",
@@ -226,7 +230,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "You cannot improve what you do not measure",
       "L2": "Harness configurations are reproducible and comparable with data",
       "file": "framework/features/P0-08.md",
-      "downstream": []
+      "downstream": [],
+      "measurement_binding": "P0-8"
     },
     {
       "id": "P0-9",
@@ -284,6 +289,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Sustained reasoning quality across long tasks",
       "file": "framework/features/P1-02.md",
+      "measurement_binding": "P1-2",
       "downstream": ["P0-4"]
     },
     {
@@ -329,6 +335,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Agent answers reflect current state of the world",
       "file": "framework/features/P1-06.md",
+      "measurement_binding": "P1-6",
       "downstream": []
     },
     {

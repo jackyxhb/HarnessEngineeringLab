@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HELab Router Events (JSONL)",
+  "type": "object",
+  "required": [
+    "version",
+    "timestamp",
+    "task_id",
+    "event_type"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema version for router events"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the event occurred"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique task identifier"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "task_claimed",
+        "task_routed",
+        "task_conflict_detected",
+        "topology_switched",
+        "handoff_initiated",
+        "handoff_completed",
+        "duplicate_assignment_detected",
+        "state_overwrite_incident",
+        "context_loss_incident"
+      ],
+      "description": "Type of routing or coordination event"
+    },
+    "source_agent": {
+      "type": ["string", "null"],
+      "description": "Agent ID that originated the event (null for system events)"
+    },
+    "target_agents": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Agent IDs assigned or targeted by this event"
+    },
+    "selected_topology": {
+      "type": ["string", "null"],
+      "enum": ["supervisor", "hierarchical", "p2p", "blackboard", "swarm", null],
+      "description": "Topology used for routing decision (null if not applicable)"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Task priority queue level (0 lowest, 5 highest)"
+    },
+    "context_fields": {
+      "type": "object",
+      "description": "Context summary for handoffs (subset of prior agent findings)",
+      "properties": {
+        "prior_agent": { "type": ["string", "null"] },
+        "prior_findings_summary_chars": { "type": "integer", "minimum": 0 },
+        "required_state_keys": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "incident_details": {
+      "type": ["object", "null"],
+      "description": "Details if event_type indicates a conflict or incident",
+      "properties": {
+        "description": { "type": "string" },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"]
+        }
+      }
+    },
+    "duration_ms": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Duration (ms) of the routing operation"
+    }
+  },
+  "additionalProperties": false
+}

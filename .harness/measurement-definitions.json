@@ -127,72 +127,6 @@
             ]
         },
         {
-            "feature_id": "P0-10",
-            "measurement_binding": "P0-10",
-            "status": "declared-unmounted",
-            "collection_trigger": "npm run observe",
-            "freshness_slo_minutes": 1440,
-            "metrics": [
-                {
-                    "metric_id": "p0-10-p2p-delivery-latency-ms",
-                    "outcome": "P2P message delivery latency < N seconds",
-                    "status": "declared-unmounted",
-                    "event_source": ".harness/mailbox-events.jsonl",
-                    "collection_trigger": "npm run observe after mailbox telemetry is mounted",
-                    "formula": "p95(delivered_at - sent_at)",
-                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-p2p-delivery-latency-ms",
-                    "threshold": {
-                        "operator": "<=",
-                        "target": 5000,
-                        "unit": "ms"
-                    },
-                    "threshold_justification": "The placeholder N is operationalized to 5 seconds as the first bounded-latency ceiling for mailbox delivery.",
-                    "enforcement_surface": {
-                        "type": "future-mailbox-log",
-                        "path": ".harness/mailbox-events.jsonl"
-                    }
-                },
-                {
-                    "metric_id": "p0-10-lost-messages",
-                    "outcome": "0 lost messages",
-                    "status": "declared-unmounted",
-                    "event_source": ".harness/mailbox-events.jsonl",
-                    "collection_trigger": "npm run observe after mailbox telemetry is mounted",
-                    "formula": "count(sent_without_delivery_ack)",
-                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-lost-messages",
-                    "threshold": {
-                        "operator": "=",
-                        "target": 0,
-                        "unit": "messages"
-                    },
-                    "threshold_justification": "The feature already defines zero lost messages as the success state.",
-                    "enforcement_surface": {
-                        "type": "future-mailbox-log",
-                        "path": ".harness/mailbox-events.jsonl"
-                    }
-                },
-                {
-                    "metric_id": "p0-10-broadcast-fanout-cycles",
-                    "outcome": "Broadcast fan-out complete within 1 cycle",
-                    "status": "declared-unmounted",
-                    "event_source": ".harness/mailbox-events.jsonl",
-                    "collection_trigger": "npm run observe after broadcast telemetry is mounted",
-                    "formula": "max(delivery_cycle_count_per_broadcast)",
-                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-broadcast-fanout-cycles",
-                    "threshold": {
-                        "operator": "<=",
-                        "target": 1,
-                        "unit": "cycles"
-                    },
-                    "threshold_justification": "The feature already defines one delivery cycle as the bounded fan-out success state.",
-                    "enforcement_surface": {
-                        "type": "future-broadcast-log",
-                        "path": ".harness/mailbox-events.jsonl"
-                    }
-                }
-            ]
-        },
-        {
             "feature_id": "P1-1",
             "measurement_binding": "P1-1",
             "status": "declared-unmounted",
@@ -259,6 +193,72 @@
             ]
         },
         {
+            "feature_id": "P1-2",
+            "measurement_binding": "P1-2",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe after context-compaction infrastructure is mounted",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-2-context-window-utilization",
+                    "outcome": "Context utilization efficiency > 70%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/context-compaction-audit.json",
+                    "collection_trigger": "npm run observe after per-action context tracking is mounted",
+                    "formula": "useful_tokens / total_tokens_in_window",
+                    "storage_key": "measurement_health.features.P1-2.metrics.p1-2-context-window-utilization",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.7,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature defines > 70% utilization as the target efficiency baseline for context compaction.",
+                    "enforcement_surface": {
+                        "type": "future-context-audit",
+                        "path": ".harness/context-compaction-audit.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-2-chunk-efficiency",
+                    "outcome": "Output quality at token 100K ≈ quality at token 10K (< 10% degradation)",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/context-compaction-audit.json",
+                    "collection_trigger": "automated quality evaluation after compaction cycles",
+                    "formula": "quality_score_at_100k / quality_score_at_10k",
+                    "storage_key": "measurement_health.features.P1-2.metrics.p1-2-chunk-efficiency",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.9,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature requires output quality to remain within 10% of baseline when context exceeds 100K tokens (90% retention = 1.0 / 1.11 coefficient).",
+                    "enforcement_surface": {
+                        "type": "future-quality-eval",
+                        "path": ".harness/context-compaction-audit.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-2-compaction-summary-schema-conformance",
+                    "outcome": "All context summaries conform to context-summary.schema.json",
+                    "status": "implemented",
+                    "event_source": ".harness/context-summary.schema.json",
+                    "collection_trigger": "npm run smoke validates schema conformance",
+                    "formula": "valid_context_summaries / total_context_summaries_checked",
+                    "storage_key": "measurement_health.features.P1-2.metrics.p1-2-compaction-summary-schema-conformance",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature mandates machine-readable context summaries; schema exists and can be validated.",
+                    "enforcement_surface": {
+                        "type": "schema-contract",
+                        "path": ".harness/context-summary.schema.json"
+                    }
+                }
+            ]
+        },
+        {
             "feature_id": "P1-5",
             "measurement_binding": "P1-5",
             "status": "proxy-mounted",
@@ -320,6 +320,72 @@
                     "enforcement_surface": {
                         "type": "observation-generator",
                         "path": "scripts/generate-observation-report.js"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-6",
+            "measurement_binding": "P1-6",
+            "status": "proxy-mounted",
+            "collection_trigger": "npm run observe",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-6-outdated-answer-rate",
+                    "outcome": "Outdated-answer rate -> 0 for rapidly evolving domains",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/knowledge-lookup.jsonl",
+                    "collection_trigger": "evaluation after knowledge-lookup audit telemetry is mounted",
+                    "formula": "outdated_answers_detected / queries_in_evolving_domains",
+                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-outdated-answer-rate",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature defines zero outdated answers as the success state; requires active knowledge-lookup auditing.",
+                    "enforcement_surface": {
+                        "type": "future-knowledge-audit",
+                        "path": ".harness/knowledge-lookup.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p1-6-cache-hit-rate",
+                    "outcome": "External lookup cache hit rate > 60%",
+                    "status": "proxy-mounted",
+                    "event_source": ".harness/search-cache.json",
+                    "collection_trigger": "npm run observe after cache operations are tracked",
+                    "formula": "cache_hits / (cache_hits + cache_misses)",
+                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-cache-hit-rate",
+                    "threshold": {
+                        "operator": ">",
+                        "target": 0.6,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature targets > 60% cache hit rate to reduce redundant external API lookups.",
+                    "enforcement_surface": {
+                        "type": "cache-metrics",
+                        "path": ".harness/search-cache.json"
+                    }
+                },
+                {
+                    "metric_id": "p1-6-mcp-capabilities-schema-conformance",
+                    "outcome": "MCP capabilities manifest conforms to mcp-capabilities.schema.json",
+                    "status": "implemented",
+                    "event_source": ".harness/mcp-capabilities.json",
+                    "collection_trigger": "npm run smoke validates schema conformance",
+                    "formula": "valid_mcp_manifest_records / total_manifest_entries_checked",
+                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-mcp-capabilities-schema-conformance",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature mandates JSON-standardized MCP manifests; schema exists and can be validated against .harness/mcp-capabilities.json.",
+                    "enforcement_surface": {
+                        "type": "schema-contract",
+                        "path": ".harness/mcp-capabilities.schema.json"
                     }
                 }
             ]
@@ -589,6 +655,138 @@
             ]
         },
         {
+            "feature_id": "P0-2",
+            "measurement_binding": "P0-2",
+            "status": "implemented",
+            "collection_trigger": "npm run audit and git log analysis",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-2-state-loss-incidents",
+                    "outcome": "0 state loss incidents per sprint",
+                    "status": "implemented",
+                    "event_source": "git log and task-state.json",
+                    "collection_trigger": "npm run audit parses task-state.json for incomplete transactions; git log checked for orphaned branches.",
+                    "formula": "count(incomplete_task_states) + count(abandoned_branches)",
+                    "storage_key": "measurement_health.features.P0-2.metrics.p0-2-state-loss-incidents",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "The feature already defines zero state loss as the target; Git persistence ensures all committed work survives session resets.",
+                    "enforcement_surface": {
+                        "type": "audit-script",
+                        "path": "scripts/harness/audit.sh"
+                    }
+                },
+                {
+                    "metric_id": "p0-2-agent-changes-git-tracked",
+                    "outcome": "100% of agent changes Git-tracked",
+                    "status": "implemented",
+                    "event_source": ".harness/agent-logs.jsonl and git status",
+                    "collection_trigger": "npm run audit checks for untracked changes and uncommitted work in .harness/agent-logs.jsonl",
+                    "formula": "tracked_agent_commits / total_agent_work_attempts",
+                    "storage_key": "measurement_health.features.P0-2.metrics.p0-2-agent-changes-git-tracked",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature declares 100% git tracking as the standard; AGENTS.md rules enforce commits via pre-commit hooks and linting.",
+                    "enforcement_surface": {
+                        "type": "pre-commit-hook",
+                        "path": ".git/hooks/pre-commit"
+                    }
+                },
+                {
+                    "metric_id": "p0-2-file-conflict-incidents-mas",
+                    "outcome": "0 file conflict incidents in MAS",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/file-lock-audit.json (future MAS)",
+                    "collection_trigger": "future MAS telemetry after file-locking infrastructure is mounted",
+                    "formula": "count(concurrent_write_conflicts)",
+                    "storage_key": "measurement_health.features.P0-2.metrics.p0-2-file-conflict-incidents-mas",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "MAS file-locking is deferred to Phase 2; SAS mode uses per-agent worktrees, eliminating conflicts. Metric will be operationalized once distributed locking is mounted.",
+                    "enforcement_surface": {
+                        "type": "future-file-lock-audit",
+                        "path": ".harness/file-lock-audit.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-3",
+            "measurement_binding": "P0-3",
+            "status": "implemented",
+            "collection_trigger": "npm run smoke and npm run check",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-3-agent-self-fix-rate",
+                    "outcome": "Agent self-fix rate > 80%",
+                    "status": "proxy-mounted",
+                    "event_source": ".harness/agent-logs.jsonl and escalation-events.jsonl",
+                    "collection_trigger": "npm run audit parses agent-logs and escalation-events to calculate fix attempts before escalation",
+                    "formula": "successful_self_fixes / (successful_self_fixes + escalations)",
+                    "storage_key": "measurement_health.features.P0-3.metrics.p0-3-agent-self-fix-rate",
+                    "threshold": {
+                        "operator": ">",
+                        "target": 0.8,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature declares 80% self-fix rate as the minimum; escalation events provide the current collection proxy.",
+                    "enforcement_surface": {
+                        "type": "escalation-event-log",
+                        "path": ".harness/escalation-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-3-human-review-rate",
+                    "outcome": "Human-required review rate < 20% of tasks",
+                    "status": "proxy-mounted",
+                    "event_source": ".harness/escalation-events.jsonl and REVIEWS.md",
+                    "collection_trigger": "npm run audit counts human-escalation records; REVIEWS.md tracks review-required surfaces.",
+                    "formula": "escalated_tasks / total_task_attempts",
+                    "storage_key": "measurement_health.features.P0-3.metrics.p0-3-human-review-rate",
+                    "threshold": {
+                        "operator": "<",
+                        "target": 0.2,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature sets 20% as the acceptable human-review threshold; escalation-events and REVIEWS.md provide collection surfaces.",
+                    "enforcement_surface": {
+                        "type": "review-ledger",
+                        "path": "REVIEWS.md"
+                    }
+                },
+                {
+                    "metric_id": "p0-3-unverified-commits",
+                    "outcome": "0 broken code reaching main without test execution",
+                    "status": "implemented",
+                    "event_source": "npm run smoke and npm run check (pre-commit), CI log",
+                    "collection_trigger": "pre-commit hook blocks commits failing he-lint; CI blocks push if npm run check fails",
+                    "formula": "commits_reaching_main_with_failed_tests / total_commits_to_main",
+                    "storage_key": "measurement_health.features.P0-3.metrics.p0-3-unverified-commits",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "commits"
+                    },
+                    "threshold_justification": "The feature declares zero broken code as the success state; pre-commit and CI gates mechanically enforce this.",
+                    "enforcement_surface": {
+                        "type": "pre-commit-hook",
+                        "path": ".git/hooks/pre-commit"
+                    }
+                }
+            ]
+        },
+        {
             "feature_id": "P3-3",
             "measurement_binding": "P3-3",
             "status": "proxy-mounted",
@@ -669,6 +867,405 @@
                     "enforcement_surface": {
                         "type": "future-pattern-audit",
                         "path": ".harness/pattern-audit-report.schema.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-6",
+            "measurement_binding": "P0-6",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe after feature-flag registry is mounted",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-6-middleware-independently-toggleable",
+                    "outcome": "Each middleware component independently toggleable (0 hidden dependencies)",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/feature-flag-registry.json",
+                    "collection_trigger": "test-middleware-removal.js after Tranche 4",
+                    "formula": "components_passing_removal_test / total_registered_components",
+                    "storage_key": "measurement_health.features.P0-6.metrics.p0-6-middleware-independently-toggleable",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature requires 100% of middleware to be independently removable without cascade failures.",
+                    "enforcement_surface": {
+                        "type": "removal-test-harness",
+                        "path": ".agent/workflows/test-middleware-removal.js"
+                    }
+                },
+                {
+                    "metric_id": "p0-6-removal-cascade-failures",
+                    "outcome": "Removal of any single layer causes 0 cascade failures",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/feature-flag-registry.json and test results",
+                    "collection_trigger": "test-middleware-removal.js validation phase",
+                    "formula": "count(cascade_failure_detected) when toggling each flag",
+                    "storage_key": "measurement_health.features.P0-6.metrics.p0-6-removal-cascade-failures",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "failures"
+                    },
+                    "threshold_justification": "The feature explicitly states zero cascade failures as the success criterion.",
+                    "enforcement_surface": {
+                        "type": "removal-test-harness",
+                        "path": ".agent/workflows/test-middleware-removal.js"
+                    }
+                },
+                {
+                    "metric_id": "p0-6-middleware-count-decrease",
+                    "outcome": "Middleware count decreases as model capabilities increase",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/feature-flag-registry.json historical snapshots",
+                    "collection_trigger": "monthly trend analysis after registry is populated",
+                    "formula": "avg(middleware_count_trend_per_month)",
+                    "storage_key": "measurement_health.features.P0-6.metrics.p0-6-middleware-count-decrease",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 0,
+                        "unit": "new-components-per-month",
+                        "description": "More removals than additions per month"
+                    },
+                    "threshold_justification": "The feature targets middleware reduction as models improve; negative slope indicates healthy obsolescence.",
+                    "enforcement_surface": {
+                        "type": "future-registry-trend",
+                        "path": ".harness/feature-flag-registry.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-7",
+            "measurement_binding": "P0-7",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe after escalation infrastructure is mounted",
+            "freshness_slo_minutes": 60,
+            "metrics": [
+                {
+                    "metric_id": "p0-7-time-to-escalation",
+                    "outcome": "Time-to-escalation < N minutes (configurable)",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/escalation-events.jsonl",
+                    "collection_trigger": "heartbeat monitoring and orchestrator escalation gate",
+                    "formula": "p95(timestamp(escalation_event) - timestamp(detection_trigger))",
+                    "storage_key": "measurement_health.features.P0-7.metrics.p0-7-time-to-escalation",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 300,
+                        "unit": "seconds",
+                        "description": "5 minutes default escalation window"
+                    },
+                    "threshold_justification": "The feature declares configurable time limits; 5 minutes is the operational baseline for SAS mode.",
+                    "enforcement_surface": {
+                        "type": "heartbeat-monitoring",
+                        "path": ".harness/heartbeat-protocol.schema.json and escalation-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-7-actions-audit-logged",
+                    "outcome": "100% of actions audit-logged",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/escalation-events.jsonl and .harness/agent-logs.jsonl",
+                    "collection_trigger": "npm run observe after audit collection is enabled",
+                    "formula": "logged_actions / total_actions_executed",
+                    "storage_key": "measurement_health.features.P0-7.metrics.p0-7-actions-audit-logged",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature requires all actions to be traceable; 100% coverage is the baseline.",
+                    "enforcement_surface": {
+                        "type": "audit-logging",
+                        "path": ".harness/agent-logs.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-7-unattributed-actions",
+                    "outcome": "0 unattributed actions in the system",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/escalation-events.jsonl and .harness/agent-logs.jsonl",
+                    "collection_trigger": "audit integrity check after every audit cycle",
+                    "formula": "count(actions_without_agent_id)",
+                    "storage_key": "measurement_health.features.P0-7.metrics.p0-7-unattributed-actions",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "actions"
+                    },
+                    "threshold_justification": "The feature explicitly requires zero unattributed actions for full traceability.",
+                    "enforcement_surface": {
+                        "type": "audit-validation",
+                        "path": ".harness/agent-logs.jsonl"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-8",
+            "measurement_binding": "P0-8",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe after A/B testing pipeline is mounted",
+            "freshness_slo_minutes": 10080,
+            "metrics": [
+                {
+                    "metric_id": "p0-8-harness-changes-version-controlled",
+                    "outcome": "100% of harness changes version-controlled",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/harness-version-manifest.json and git log",
+                    "collection_trigger": "npm run observe after version-manifest collection is enabled",
+                    "formula": "git_commits_with_framework_changes / total_harness_modifications_made",
+                    "storage_key": "measurement_health.features.P0-8.metrics.p0-8-harness-changes-version-controlled",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "The feature declares 100% version control as the baseline for reproducibility.",
+                    "enforcement_surface": {
+                        "type": "git-audit",
+                        "path": ".harness/harness-version-manifest.json"
+                    }
+                },
+                {
+                    "metric_id": "p0-8-ab-comparison-data-available",
+                    "outcome": "A/B comparison data available per config change",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/ab-test-results.jsonl (deferred)",
+                    "collection_trigger": "A/B testing pipeline after Tranche 4 tool specification",
+                    "formula": "count(ab_test_runs_with_statistical_comparison) / total_config_changes",
+                    "storage_key": "measurement_health.features.P0-8.metrics.p0-8-ab-comparison-data-available",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.5,
+                        "unit": "ratio",
+                        "description": "At least 50% of significant config changes have A/B comparison"
+                    },
+                    "threshold_justification": "The feature targets A/B comparison data availability; 50% is an achievable baseline for initial implementation.",
+                    "enforcement_surface": {
+                        "type": "ab-testing-pipeline",
+                        "path": ".harness/ab-test-results.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-8-regression-detection-time",
+                    "outcome": "Regression detection time < 1 sprint",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/observation-report.json and performance baselines",
+                    "collection_trigger": "post-deployment performance monitoring",
+                    "formula": "days_from_deployment_to_regression_alert",
+                    "storage_key": "measurement_health.features.P0-8.metrics.p0-8-regression-detection-time",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 7,
+                        "unit": "days"
+                    },
+                    "threshold_justification": "The feature defines 1 sprint (7 days) as the SLA for regression detection.",
+                    "enforcement_surface": {
+                        "type": "performance-monitoring",
+                        "path": ".harness/observation-report.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-10",
+            "measurement_binding": "P0-10",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe after mailbox infrastructure is mounted",
+            "freshness_slo_minutes": 5,
+            "metrics": [
+                {
+                    "metric_id": "p0-10-p2p-delivery-latency",
+                    "outcome": "P2P message delivery latency < N seconds",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mailbox-events.jsonl (deferred)",
+                    "collection_trigger": "mailbox poller script and delivery monitoring",
+                    "formula": "p95(message_delivery_timestamp - message_creation_timestamp)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-p2p-delivery-latency",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 5000,
+                        "unit": "ms"
+                    },
+                    "threshold_justification": "The feature specifies delivery within 1 polling cycle; 5 seconds is the operational baseline for SAS mode.",
+                    "enforcement_surface": {
+                        "type": "mailbox-monitoring",
+                        "path": ".harness/mailbox-events.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-10-lost-messages",
+                    "outcome": "0 lost messages",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mailbox.jsonl and .harness/mailbox-acks.jsonl",
+                    "collection_trigger": "ack reconciliation and delivery validation",
+                    "formula": "count(sent_message_id) - count(ack_received_message_id)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-lost-messages",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "messages"
+                    },
+                    "threshold_justification": "The feature declares zero lost messages as the baseline; acknowledged delivery is required for MAS safety.",
+                    "enforcement_surface": {
+                        "type": "mailbox-validation",
+                        "path": ".harness/mailbox-acks.jsonl"
+                    }
+                },
+                {
+                    "metric_id": "p0-10-broadcast-fan-out-cycles",
+                    "outcome": "Broadcast fan-out complete within 1 cycle",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/broadcast-events.jsonl (deferred)",
+                    "collection_trigger": "broadcast routing completion tracking",
+                    "formula": "broadcast_completion_timestamp - broadcast_initiation_timestamp (in polling cycles)",
+                    "storage_key": "measurement_health.features.P0-10.metrics.p0-10-broadcast-fan-out-cycles",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 1,
+                        "unit": "cycles"
+                    },
+                    "threshold_justification": "The feature requires broadcast completion within 1 polling cycle for efficient MAS coordination.",
+                    "enforcement_surface": {
+                        "type": "mailbox-broadcast",
+                        "path": ".harness/broadcast-events.jsonl"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P2-4",
+            "measurement_binding": "P2-4",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit and bounded-autonomy-policy validation",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p2-4-privilege-escalation-attempts",
+                    "outcome": "0 unauthorized privilege escalation attempts",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/bounded-autonomy-policy.json and agent audit logs",
+                    "collection_trigger": "audit.sh validates agent-permissions.json and privilege levels",
+                    "formula": "count(escalation_attempts where not approved)",
+                    "storage_key": "measurement_health.features.P2-4.metrics.p2-4-privilege-escalation-attempts",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "Zero unauthorized privilege escalation is the required baseline for safety.",
+                    "enforcement_surface": {
+                        "type": "permission-manifest-validation",
+                        "path": ".harness/agent-permissions.json"
+                    }
+                },
+                {
+                    "metric_id": "p2-4-prompt-injection-incidents",
+                    "outcome": "0 prompt injection incidents detected",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/bounded-autonomy-policy.json prompt-injection-rules",
+                    "collection_trigger": "prompt injection scanner (deferred to Tranche 4)",
+                    "formula": "count(injection_attempts detected by pattern matching)",
+                    "storage_key": "measurement_health.features.P2-4.metrics.p2-4-prompt-injection-incidents",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "The feature declares zero prompt injection incidents as the safety baseline.",
+                    "enforcement_surface": {
+                        "type": "policy-rule-validation",
+                        "path": ".harness/bounded-autonomy-policy.json"
+                    }
+                },
+                {
+                    "metric_id": "p2-4-data-leakage-events",
+                    "outcome": "0 data leakage events (PII, secrets, credentials)",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/bounded-autonomy-policy.json data-leakage-rules and secret-scan logs",
+                    "collection_trigger": "secret/PII scanner (deferred to Tranche 4)",
+                    "formula": "count(pii_exposed or secret_exposed events)",
+                    "storage_key": "measurement_health.features.P2-4.metrics.p2-4-data-leakage-events",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "events"
+                    },
+                    "threshold_justification": "Zero data leakage events is the required baseline for data protection compliance.",
+                    "enforcement_surface": {
+                        "type": "policy-rule-validation",
+                        "path": ".harness/bounded-autonomy-policy.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P3-4",
+            "measurement_binding": "P3-4",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit and consolidation-audit tracking",
+            "freshness_slo_minutes": 10080,
+            "metrics": [
+                {
+                    "metric_id": "p3-4-concept-forking-incidents",
+                    "outcome": "Concept forking incidents -> 0",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/consolidation-audit-report.schema.json redundancy_findings",
+                    "collection_trigger": "weekly consolidation loop (deferred to Tranche 4)",
+                    "formula": "count(redundant_concepts_detected)",
+                    "storage_key": "measurement_health.features.P3-4.metrics.p3-4-concept-forking-incidents",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "incidents"
+                    },
+                    "threshold_justification": "The feature requires zero redundant or forked concepts after consolidation.",
+                    "enforcement_surface": {
+                        "type": "consolidation-audit-report",
+                        "path": ".harness/consolidation-audit-report.schema.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-4-adr-adoption-rate",
+                    "outcome": "ADR adoption rate >= 90% for new patterns",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/adr-record.schema.json",
+                    "collection_trigger": "ADR ledger tracking (deferred to Tranche 4)",
+                    "formula": "count(patterns_with_adr) / count(new_patterns)",
+                    "storage_key": "measurement_health.features.P3-4.metrics.p3-4-adr-adoption-rate",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.9,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "90% ADR coverage ensures new patterns are documented before introduction.",
+                    "enforcement_surface": {
+                        "type": "adr-record-ledger",
+                        "path": ".harness/adr-record.schema.json"
+                    }
+                },
+                {
+                    "metric_id": "p3-4-changelog-currency",
+                    "outcome": "Changelog completeness >= 95% within 24 hours of feature change",
+                    "status": "declared-unmounted",
+                    "event_source": "RELEASES.md and .harness/consolidation-audit-report.schema.json",
+                    "collection_trigger": "changelog-generation automation (deferred to Tranche 4)",
+                    "formula": "count(entries_in_changelog) / count(changes_landed)",
+                    "storage_key": "measurement_health.features.P3-4.metrics.p3-4-changelog-currency",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.95,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "95% changelog completeness within 24 hours ensures downstream consumers see accurate change history.",
+                    "enforcement_surface": {
+                        "type": "changelog-validation",
+                        "path": "RELEASES.md"
                     }
                 }
             ]

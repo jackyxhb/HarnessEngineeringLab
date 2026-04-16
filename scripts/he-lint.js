@@ -341,11 +341,15 @@ const PREVENTION_BINDING_FEATURES = {
   },
   "P3-1": {
     file: "framework/features/P3-01.md",
-    ruleIds: [],
+    ruleIds: ["P3-1-codebase-entropy", "P3-1-narrative-cleanup-reports"],
   },
   "P3-3": {
     file: "framework/features/P3-03.md",
     ruleIds: ["P3-3-pattern-drift", "P3-3-narrative-pattern-audits"],
+  },
+  "P3-4": {
+    file: "framework/features/P3-04.md",
+    ruleIds: ["P3-4-concept-forking-prevention", "P3-4-narrative-consolidation-records"],
   },
 };
 
@@ -392,9 +396,11 @@ const MEASUREMENT_BINDING_FEATURES = {
   "P1-11": { file: "framework/features/P1-11.md" },
   "P2-1": { file: "framework/features/P2-01.md" },
   "P2-3": { file: "framework/features/P2-03.md" },
+  "P2-4": { file: "framework/features/P2-04.md" },
   "P2-5": { file: "framework/features/P2-05.md" },
   "P3-1": { file: "framework/features/P3-01.md" },
   "P3-3": { file: "framework/features/P3-03.md" },
+  "P3-4": { file: "framework/features/P3-04.md" },
 };
 
 function getLineNumberForSnippet(content, snippet) {
