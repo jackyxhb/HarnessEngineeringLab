@@ -392,6 +392,7 @@ const MEASUREMENT_BINDING_FEATURES = {
   "P1-3": { file: "framework/features/P1-03.md" },
   "P1-4": { file: "framework/features/P1-04.md" },
   "P1-5": { file: "framework/features/P1-05.md" },
+  "P1-6": { file: "framework/features/P1-06.md" },
   "P1-7": { file: "framework/features/P1-07.md" },
   "P1-8": { file: "framework/features/P1-08.md" },
   "P1-9": { file: "framework/features/P1-09.md" },
@@ -399,10 +400,12 @@ const MEASUREMENT_BINDING_FEATURES = {
   "P1-11": { file: "framework/features/P1-11.md" },
   "P1-12": { file: "framework/features/P1-12.md" },
   "P2-1": { file: "framework/features/P2-01.md" },
+  "P2-2": { file: "framework/features/P2-02.md" },
   "P2-3": { file: "framework/features/P2-03.md" },
   "P2-4": { file: "framework/features/P2-04.md" },
   "P2-5": { file: "framework/features/P2-05.md" },
   "P3-1": { file: "framework/features/P3-01.md" },
+  "P3-2": { file: "framework/features/P3-02.md" },
   "P3-3": { file: "framework/features/P3-03.md" },
   "P3-4": { file: "framework/features/P3-04.md" },
 };
@@ -1349,6 +1352,156 @@ function validateMeasurementOperationalDefinitions() {
       }
     },
   );
+}
+
+function validateNoDuplicateSections() {
+  const featureEntries = getFeatureIndexEntries();
+
+  featureEntries.forEach((feature) => {
+    const featurePath = path.join(repoRoot, feature.file);
+    if (!fs.existsSync(featurePath)) return;
+
+    const content = fs.readFileSync(featurePath, "utf-8");
+    const lines = content.split("\n");
+
+    // Check for duplicate L5 Improvement Policies sections
+    const l5Count = lines.filter(
+      (line) => line.includes("## L5: Improvement Policies"),
+    ).length;
+    if (l5Count > 1) {
+      reportError(
+        featurePath,
+        0,
+        `Structure: ${feature.id} has ${l5Count} "## L5: Improvement Policies" sections (should be 1).`,
+        "Remove duplicate L5 Improvement Policies section, keeping the first authoritative one.",
+      );
+    }
+
+    // Check for duplicate L4 sections
+    const l4ConcreteCount = lines.filter(
+      (line) => line.includes("## L4: Concrete Actions"),
+    ).length;
+    const l4PreventionCount = lines.filter(
+      (line) => line.includes("## L4: Prevention"),
+    ).length;
+
+    if (l4ConcreteCount > 1) {
+      reportError(
+        featurePath,
+        0,
+        `Structure: ${feature.id} has ${l4ConcreteCount} "## L4: Concrete Actions & Tools" sections (should be 1).`,
+        "Keep only one L4: Concrete Actions & Tools section.",
+      );
+    }
+
+    if (l4PreventionCount > 1) {
+      reportError(
+        featurePath,
+        0,
+        `Structure: ${feature.id} has ${l4PreventionCount} "## L4: Prevention" sections (should be 1).`,
+        "Keep only one L4: Prevention section.",
+      );
+    }
+  });
+}
+
+function validateNoDuplicateDeclarations() {
+  const featureEntries = getFeatureIndexEntries();
+
+  featureEntries.forEach((feature) => {
+    const featurePath = path.join(repoRoot, feature.file);
+    if (!fs.existsSync(featurePath)) return;
+
+    const content = fs.readFileSync(featurePath, "utf-8");
+    const lines = content.split("\n");
+
+    // Check for duplicate Binding Key declarations
+    const bindingKeyPattern = /\*\*Binding Key:\*\*/g;
+    const bindingKeyMatches = content.match(bindingKeyPattern) || [];
+
+    if (bindingKeyMatches.length > 1) {
+      reportError(
+        featurePath,
+        0,
+        `Structure: ${feature.id} has ${bindingKeyMatches.length} "**Binding Key:**" declarations (should be 1).`,
+        "Keep only the first Binding Key declaration in the Measurement Bindings section.",
+      );
+    }
+
+    // Check for duplicate Enforcement Bindings headers
+    const enforcementCount = lines.filter(
+      (line) => line.includes("## Enforcement Bindings"),
+    ).length;
+    if (enforcementCount > 1) {
+      reportError(
+        featurePath,
+        0,
+        `Structure: ${feature.id} has ${enforcementCount} "## Enforcement Bindings" sections (should be 0 or 1).`,
+        "Remove duplicate Enforcement Bindings sections.",
+      );
+    }
+  });
+}
+
+function validateMeasurementRegistry() {
+  const measurementDefPath = path.join(
+    repoRoot,
+    ".harness",
+    "measurement-definitions.json",
+  );
+  if (!fs.existsSync(measurementDefPath)) return;
+
+  let measurementDefs;
+  try {
+    measurementDefs = JSON.parse(
+      fs.readFileSync(measurementDefPath, "utf-8"),
+    );
+  } catch (error) {
+    reportError(
+      measurementDefPath,
+      0,
+      `Measurement Registry: measurement-definitions.json is invalid JSON (${error.message}).`,
+      "Fix the JSON syntax in .harness/measurement-definitions.json.",
+    );
+    return;
+  }
+
+  if (
+    !Array.isArray(measurementDefs.feature_measurements) ||
+    measurementDefs.feature_measurements.length === 0
+  ) {
+    return;
+  }
+
+  const registeredKeys = new Set(
+    measurementDefs.feature_measurements.map((def) => def.measurement_binding),
+  );
+
+  const featureEntries = getFeatureIndexEntries();
+
+  featureEntries.forEach((feature) => {
+    const featurePath = path.join(repoRoot, feature.file);
+    if (!fs.existsSync(featurePath)) return;
+
+    const content = fs.readFileSync(featurePath, "utf-8");
+
+    // Extract Binding Key from file if present
+    const bindingKeyMatch = content.match(
+      /\*\*Binding Key:\*\*\s+`?([^`\n]+)`?/,
+    );
+    if (bindingKeyMatch) {
+      const declaredKey = bindingKeyMatch[1].trim();
+
+      if (!registeredKeys.has(declaredKey)) {
+        reportError(
+          featurePath,
+          getLineNumberForSnippet(content, bindingKeyMatch[0]),
+          `Registry: ${feature.id} declares Binding Key "${declaredKey}" but no entry exists in .harness/measurement-definitions.json.`,
+          "Add a measurement definition entry for this feature to the registry, or remove the Binding Key declaration if measurement is deferred.",
+        );
+      }
+    }
+  });
 }
 
 function validateFeatureChainFiles() {
@@ -2400,6 +2553,9 @@ function run() {
   // Always validate DAG structure
   validateDAGStructure();
   validateFeatureChainFiles();
+  validateNoDuplicateSections();
+  validateNoDuplicateDeclarations();
+  validateMeasurementRegistry();
   validateGraphReconciliation();
   validateMeasurementOperationalDefinitions();
   validateMachineReadableSchemaBindings();

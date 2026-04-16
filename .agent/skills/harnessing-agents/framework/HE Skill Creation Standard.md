@@ -236,6 +236,27 @@ If user DID name target project:
 
 ---
 
+## Framework Content Quality Standards
+
+### L2 Targeted Enhancement Completeness
+
+The L2 section must be 2-3 complete sentences that:
+1. Restate the governing engineering principle (Chain EP-*) in domain-specific terms
+2. Articulate the first-order outcome (what becomes true if L2 is achieved)
+3. Explain the operational consequence or constraint that L2 introduces
+
+**Pattern (Bad):**
+- "Agents can offload tool invocation to avoid context bloat"
+
+**Pattern (Good):**
+- "Agents can offload tool invocation to avoid context bloat. Tool output consumption becomes a first-class constraint on window utilization. Agent decision quality depends on staying below the consumption threshold."
+
+**Why this matters:** Sparse L2 sections undermine the entire L1→L5 chain coherency. During framework audits, sparse L2 often signals that the feature designer didn't fully think through the principle's operational implications.
+
+**Enforcement:** All new features must pass this standard before merge. Quarterly coherency audits check for sparse L2 regressions.
+
+---
+
 ## Applying the 6 Principles to `harnessing-agents`
 
 The `harnessing-agents` skill **is the reference implementation** of all 6 principles. Any deviation must be:

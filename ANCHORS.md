@@ -236,3 +236,32 @@ This file implements **Context Anchoring (P1-8)** for the HarnessEngineeringLab 
 - **Target:** `framework/HE Skill Creation Standard.md` (canonical source), AGENTS.md (enforcement rules), `.agent/skills/harnessing-agents/framework/HE Skill Creation Standard.md` (bundled mirror), REVIEWS.md (skill review gate), `npm run check` (pre-commit validation of metadata).
 - **Background:** Extracted from analysis of `harnessing-agents` v4.1.0 and formalized during skill governance hardening. The skill already satisfies all 6 principles; they are now codified as the standard all future skills must match. Violations require documented justification in ANCHORS.md and explicit user approval, not self-certification.
 - **Date:** 2026-04-11
+
+### A28: Content-Level Auditing Gap (2026-04-17)
+
+**Discovery:** Framework integrity audit (2026-04-17) identified 65 structural issues that the automated linter could not detect, including 3 duplicate L5 sections, 16 duplicate Binding Key declarations, 4 missing registry entries, and sparse L2 content across 5 features.
+
+**Root Cause:** The he-lint.js linter validates **presence** (is `## L5: Improvement Policies` present?) but not **uniqueness** (does it appear only once?) or **quality** (is L2 substantive?). No automated checks existed for:
+- Duplicate section detection
+- Binding Key declaration uniqueness
+- Registry entry completeness
+- L2 content quality (word count, sentence count)
+- Prevention rule formatting consistency
+
+**Resolution:** Implement 10-item governance improvement plan:
+1. Enhance linter with content-level validation (duplication, registry checks)
+2. Create quarterly coherency audit process
+3. Split validation into Tier 1 (structural) and Tier 2 (quality)
+4. Document L2 completeness standards
+5. Add registry completeness rules
+6. Add duplication detection to pre-commit
+7. Make framework audits release blockers
+8. Separate governance into 3 tiers
+9. Add framework health dashboard
+10. Document this discovery (this anchor)
+
+**Status:** In progress; linter enhancements and process documentation underway.
+
+**Impact:** Prevents future regressions; establishes coherency-checking as first-class gate alongside structural validation.
+
+**Date:** 2026-04-17

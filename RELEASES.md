@@ -6,6 +6,19 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 - **Mirrored skill metadata version:** `.agent/skills/harnessing-agents/SKILL.md`
 - **Downstream impact rule:** If changes under `framework/` or `.agent/skills/harnessing-agents/` affect linked consumers, update the `Unreleased` section before merging.
 
+## Release Checklist
+
+Before cutting any release tag, verify:
+- [ ] `npm run smoke` passes (structural validation)
+- [ ] `npm run audit` passes (quality & coherency validation) — NEW
+- [ ] Feature coherency audit completed (manual or automated agent audit)
+- [ ] All review records in REVIEWS.md cover changed files
+- [ ] RELEASES.md Unreleased section documents all downstream impacts
+- [ ] No outstanding measurement-definition registry gaps
+- [ ] No duplicate section incidents detected
+
+If any item fails, resolve before tagging the release.
+
 ## Unreleased
 
 ### Prevention Rule Formatting & L2 Content Expansion

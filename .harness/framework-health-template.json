@@ -1,0 +1,41 @@
+{
+  "audit_date": "YYYY-MM-DDTHH:MM:SSZ",
+  "audit_version": "1.0",
+  "summary": {
+    "overall_health": "healthy|at-risk|critical",
+    "metrics_version": "X.Y.Z"
+  },
+  "tier_1_structural": {
+    "status": "passing|failing",
+    "checks_passed": 0,
+    "checks_failed": 0,
+    "last_audit": "YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "tier_2_quality": {
+    "status": "passing|failing",
+    "duplication_incidents": 0,
+    "duplicate_sections": 0,
+    "duplicate_declarations": 0,
+    "sparse_l2_sections": 0,
+    "registry_gaps": 0,
+    "formatting_violations": 0,
+    "last_audit": "YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "tier_3_governance": {
+    "status": "passing|failing",
+    "p2_3_violations": 0,
+    "review_coverage_complete": true,
+    "downstream_impact_documented": true,
+    "release_checklist_complete": true,
+    "last_audit": "YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "historical_trends": {
+    "critical_issues_found": 0,
+    "critical_issues_resolved": 0,
+    "quarters_since_last_coherency_audit": 0,
+    "total_audits_completed": 0,
+    "avg_resolution_time_days": 0
+  },
+  "next_scheduled_audit": "YYYY-MM-DD",
+  "notes": "Audit notes and observations"
+}

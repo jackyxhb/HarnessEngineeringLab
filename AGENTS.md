@@ -119,6 +119,130 @@ To keep feature-level machine-readable contracts enforceable instead of advisory
 - `.harness/consolidation-audit-report.schema.json` and `.harness/adr-record.schema.json` are the canonical schemas for P3-4 Consolidation Loop artifacts.
 - `framework/schemas/prevention-rules-registry.schema.json` is the canonical schema for Tranche 2 prevention-binding records, and `.harness/prevention-rules-registry.json` is the live registry that records whether each targeted prevention rule is implemented or explicitly declared unmounted.
 
+## Framework Governance Tiers
+
+HELab enforces framework quality through **three independent tiers** of validation. Each tier has distinct goals, automation level, and blocking authority.
+
+### Tier 1: Structural Validation (Automated, Always Blocking)
+
+**Goal:** Ensure files exist, sections are present, schemas are valid, JSON is parseable.
+
+**Tools:** `npm run smoke` (he-lint.js with structural checks)
+
+**Checks:**
+- Feature files exist (P0-01.md through P3-04.md)
+- Required sections present (L2, L3, L4, L5)
+- JSON improvement_policies is valid
+- Skill bundle is synced
+- Review records cover all review-required surfaces
+- ID format compliance (numeric only, no leading zeros)
+
+**Blocking:** ✅ YES. Fails in pre-commit hook; prevents merge.
+
+**Who owns:** Linter (automated).
+
+**SLA:** Must pass before commit.
+
+---
+
+### Tier 2: Quality & Coherency Validation (Mostly Automated, Release Blocking)
+
+**Goal:** Ensure content is coherent, non-redundant, complete, and matches registry state.
+
+**Tools:** `npm run audit` (comprehensive quality checks)
+
+**Checks:**
+- No duplicate sections (L5, L4, etc.)
+- No duplicate declarations (Binding Keys, etc.)
+- All declared binding keys exist in registry
+- L2 sections are substantive (>= 2 sentences)
+- Prevention rules have consistent formatting
+- Registry entries match measurement bindings declarations
+- No sparse content or vague language
+
+**Blocking:** ✅ YES for releases. Optional for development.
+
+**Who owns:** Audit script (automated) + Manual review (P2-3).
+
+**SLA:** Must pass before release tag.
+
+---
+
+### Tier 3: Governance & Impact Validation (Manual, Process Blocking)
+
+**Goal:** Ensure changes are properly reviewed, documented, and have explicit downstream impact statements.
+
+**Tools:** REVIEWS.md (P2-3 separation), RELEASES.md (impact notes), AGENTS.md (policy adherence)
+
+**Checks:**
+- Every review-required surface has distinct generator/reviewer identities (P2-3)
+- RELEASES.md documents all downstream impacts for target projects
+- All dependency changes are documented in Dependencies section
+- Skill bundle mirror is synchronized post-change
+- Release checklist completed before tagging
+- Framework health metrics recorded
+
+**Blocking:** ✅ YES for releases + PRs affecting governance surfaces.
+
+**Who owns:** Human reviewers (Jack Xiao or project leads).
+
+**SLA:** Must complete before merge to main.
+
+---
+
+### Integrated Example: Release Workflow
+
+```text
+Developer commits → Tier 1 (smoke) ✓ → Tier 2 (audit) ✓ → Tier 3 (review) ✓ → Tag Release
+                    (structural)         (quality)         (governance)
+
+If any tier fails: resolve before proceeding to next tier.
+If Tier 2 fails during development: optional fix before next sprint.
+If Tier 2 fails before release: required fix before tag.
+If Tier 3 fails: human reviewer must approve or request changes.
+```
+
+### Tier Maintenance
+
+- **Tier 1:** Update he-lint.js as structural requirements evolve
+- **Tier 2:** Update audit tools as quality standards change
+- **Tier 3:** Update AGENTS.md and REVIEWS.md as governance needs shift
+
+Each tier is independently testable and documentable.
+
+### Framework Health Metrics
+
+**Location:** `.harness/framework-health.json`
+
+**Purpose:** Track framework quality across three tiers (structural, quality, governance). Updated after each audit.
+
+**Update Cadence:**
+- After every release
+- After quarterly coherency audits
+- When Tier 2 audit finds issues
+
+**Key Metrics:**
+- Tier 1 Structural: `checks_passed`, `checks_failed`
+- Tier 2 Quality: `duplication_incidents`, `registry_gaps`, `sparse_l2_sections`, `formatting_violations`
+- Tier 3 Governance: `p2_3_violations`, `review_coverage_complete`, `downstream_impact_documented`
+- Historical: `critical_issues_found`, `quarters_since_last_coherency_audit`
+
+**Visibility:** Include summary in RELEASES.md as:
+
+```markdown
+### Framework Health (2026-04-17)
+- Tier 1 (Structural): ✓ Passing
+- Tier 2 (Quality): ✓ Passing (0 issues)
+- Tier 3 (Governance): ✓ Passing
+- Next audit: 2026-07-17
+```
+
+**Use cases:**
+- Track regression trends over quarters
+- Identify which tier is most problematic
+- Prove framework health to downstream consumers
+- Plan maintenance sprints based on accumulating issues
+
 ## Workflows
 
 ### `/polish` — Feature Polishing & Addition Workflow

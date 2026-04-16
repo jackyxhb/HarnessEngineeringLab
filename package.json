@@ -16,7 +16,7 @@
     "smoke": "node scripts/he-lint.js",
     "check": "markdownlint \"**/*.md\" --ignore node_modules && cspell \"**/*.md\" --no-progress && node scripts/he-lint.js",
     "ci": "npm run check",
-    "audit": "bash scripts/harness/audit.sh"
+    "audit": "node scripts/framework-audit.js"
   },
   "repository": {
     "type": "git",

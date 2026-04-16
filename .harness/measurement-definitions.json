@@ -1457,6 +1457,34 @@
             ]
         },
         {
+            "feature_id": "P1-6",
+            "measurement_binding": "P1-6",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe (MCP capability audit)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-6-mcp-capability-discovery",
+                    "outcome": "All installed MCP servers discoverable via capability manifest",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/mcp-capabilities.json",
+                    "collection_trigger": "npm run observe (future MCP audit)",
+                    "formula": "discovered_capabilities / installed_mcp_servers",
+                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-mcp-capability-discovery",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "All MCP capabilities must be discoverable to enable agents to make routing decisions.",
+                    "enforcement_surface": {
+                        "type": "capability-manifest-audit",
+                        "path": ".harness/mcp-capabilities.json"
+                    }
+                }
+            ]
+        },
+        {
             "feature_id": "P1-9",
             "measurement_binding": "P1-9",
             "status": "declared-unmounted",
@@ -1536,6 +1564,62 @@
                     "enforcement_surface": {
                         "type": "future-stub",
                         "path": ".harness/p2-1-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P2-2",
+            "measurement_binding": "P2-2",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (dependency graph audit)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p2-2-circular-dependency-incidents",
+                    "outcome": "Zero circular dependencies in dependency graph",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/dependency-audit-report.json",
+                    "collection_trigger": "npm run audit (future dependency linter)",
+                    "formula": "circular_dependencies_detected",
+                    "storage_key": "measurement_health.features.P2-2.metrics.p2-2-circular-dependency-incidents",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "count"
+                    },
+                    "threshold_justification": "Circular dependencies create maintenance debt and prevent deterministic builds.",
+                    "enforcement_surface": {
+                        "type": "dependency-audit-linter",
+                        "path": ".harness/dependency-audit-report.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P3-2",
+            "measurement_binding": "P3-2",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe (documentation staleness audit)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p3-2-documentation-staleness",
+                    "outcome": "Documentation staleness < 30 days",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/doc-staleness-audit.json",
+                    "collection_trigger": "npm run observe (future documentation audit)",
+                    "formula": "max_days_since_doc_update",
+                    "storage_key": "measurement_health.features.P3-2.metrics.p3-2-documentation-staleness",
+                    "threshold": {
+                        "operator": "<",
+                        "target": 30,
+                        "unit": "days"
+                    },
+                    "threshold_justification": "Documentation must be updated within 30 days of code changes to prevent agent decision quality degradation.",
+                    "enforcement_surface": {
+                        "type": "documentation-audit",
+                        "path": ".harness/doc-staleness-audit.json"
                     }
                 }
             ]

@@ -540,6 +540,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Mechanical enforcement over advisory guidance",
       "L2": "Architectural boundaries mechanically enforced, not just documented",
       "file": "framework/features/P2-02.md",
+      "measurement_binding": "P2-2",
       "downstream": [
         "P3-3"
       ]
@@ -601,6 +602,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "Documentation always matches the current state of the code",
       "file": "framework/features/P3-02.md",
+      "measurement_binding": "P3-2",
       "downstream": [
         "P3-4"
       ]
