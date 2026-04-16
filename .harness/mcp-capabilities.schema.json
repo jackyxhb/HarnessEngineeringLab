@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Capabilities Manifest",
+  "description": "Machine-readable manifest for Model Context Protocol server discovery and capability registration (P1-06)",
+  "type": "object",
+  "required": ["version", "servers"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version (1.0.0)"
+    },
+    "discovery_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp of last capability discovery/validation"
+    },
+    "servers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["server_id", "name", "type"],
+        "properties": {
+          "server_id": {
+            "type": "string",
+            "description": "Unique identifier for MCP server"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable server name"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["stdio", "sse", "tcp"],
+            "description": "MCP server transport type"
+          },
+          "uri": {
+            "type": "string",
+            "description": "Server URI or path (for stdio, path to executable)"
+          },
+          "capabilities": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of resource/tool capabilities provided"
+          },
+          "authenticated": {
+            "type": "boolean",
+            "description": "Whether server requires authentication"
+          },
+          "liveness_check_interval_seconds": {
+            "type": "integer",
+            "description": "How often to ping server for liveness"
+          },
+          "last_checked": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of last liveness check"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["available", "unavailable", "degraded"],
+            "description": "Current operational status"
+          }
+        }
+      }
+    },
+    "web_search_config": {
+      "type": "object",
+      "description": "Web search tool configuration",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "provider": { "type": "string" },
+        "rate_limit_per_minute": { "type": "integer" },
+        "freshness_threshold_days": { "type": "integer" }
+      }
+    }
+  }
+}

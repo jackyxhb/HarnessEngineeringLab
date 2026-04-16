@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Context Summary Schema",
+  "description": "Machine-readable contract for context-window compaction summaries (P1-02)",
+  "type": "object",
+  "required": ["summary_id", "timestamp", "task_id", "tokens_used", "key_decisions", "compressed_context"],
+  "properties": {
+    "summary_id": {
+      "type": "string",
+      "description": "Unique identifier for this summary (UUID)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp when summary was generated"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Reference to parent task (from task-state.json)"
+    },
+    "tokens_used": {
+      "type": "integer",
+      "description": "Approximate tokens consumed before compaction"
+    },
+    "tokens_after_compaction": {
+      "type": "integer",
+      "description": "Approximate tokens after compaction"
+    },
+    "key_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "decision_id": { "type": "string" },
+          "description": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "rationale": { "type": "string" }
+        },
+        "required": ["decision_id", "description", "timestamp"]
+      },
+      "description": "Key architectural decisions and trade-offs made during task"
+    },
+    "compressed_context": {
+      "type": "string",
+      "description": "The actual compacted context payload (JSON-serialized)"
+    },
+    "memory_anchors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "References to P1-08 anchors that should be restored on reinjection"
+    },
+    "compression_ratio": {
+      "type": "number",
+      "description": "tokens_after_compaction / tokens_used"
+    }
+  }
+}

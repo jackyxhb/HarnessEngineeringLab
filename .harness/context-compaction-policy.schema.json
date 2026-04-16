@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Context Compaction Policy",
+  "description": "Configuration and policy for context-window management and summarization (P1-02)",
+  "type": "object",
+  "required": ["policy_id", "compaction_triggers"],
+  "properties": {
+    "policy_id": {
+      "type": "string",
+      "description": "Identifier for this policy configuration"
+    },
+    "compaction_triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["trigger_type", "threshold"],
+        "properties": {
+          "trigger_type": {
+            "type": "string",
+            "enum": ["token_count", "time_elapsed", "message_count", "manual"],
+            "description": "What causes compaction to occur"
+          },
+          "threshold": {
+            "oneOf": [
+              { "type": "integer", "description": "Token count threshold" },
+              { "type": "integer", "description": "Minutes elapsed" },
+              { "type": "integer", "description": "Number of messages" }
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": ["compress", "offload", "archive"],
+            "description": "Action to take when triggered"
+          }
+        }
+      }
+    },
+    "summarization_config": {
+      "type": "object",
+      "properties": {
+        "max_summary_tokens": { "type": "integer" },
+        "preserve_decision_count": { "type": "integer" },
+        "compression_target_ratio": { "type": "number" }
+      }
+    },
+    "offload_targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target_type": { "type": "string", "enum": ["file", "vector-db", "archive"] },
+          "location": { "type": "string" },
+          "retention_days": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

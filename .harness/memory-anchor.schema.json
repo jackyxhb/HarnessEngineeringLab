@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Memory Anchor Schema",
+  "description": "Machine-readable anchor records for P1-08 Context Anchoring and P1-02 explicit memory anchors",
+  "type": "object",
+  "required": ["anchor_id", "title", "created_at", "strategic_importance"],
+  "properties": {
+    "anchor_id": {
+      "type": "string",
+      "pattern": "^A\\d+$",
+      "description": "Anchor identifier (A1, A2, etc.)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title of the anchor"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp when anchor was first established"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp of last update"
+    },
+    "what": {
+      "type": "string",
+      "description": "The action or decision taken"
+    },
+    "why": {
+      "type": "string",
+      "description": "Strategic rationale for the decision"
+    },
+    "target": {
+      "type": "string",
+      "description": "The system, architecture, or workflow affected"
+    },
+    "background": {
+      "type": "string",
+      "description": "Relevant historical context"
+    },
+    "strategic_importance": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Importance level for context prioritization"
+    },
+    "related_anchors": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^A\\d+$" },
+      "description": "References to related anchors (A1, A2, etc.)"
+    },
+    "invalidation_conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Conditions under which this anchor should be revisited or revoked"
+    }
+  }
+}

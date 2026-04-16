@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dependency White-List Schema (P2-02)",
+  "description": "Machine-readable architectural dependency boundaries, layer assignments, and allowed/forbidden relationships. Enforced by madge, validate-dependencies.js, and CI gates.",
+  "type": "object",
+  "required": ["version", "boundaries", "allowed_paths", "forbidden_paths"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version (semver, e.g. 1.0.0)"
+    },
+    "boundaries": {
+      "type": "array",
+      "description": "Per-module layer assignments and dependency constraints",
+      "items": {
+        "type": "object",
+        "required": ["module_id", "layer_assignment"],
+        "properties": {
+          "module_id": {
+            "type": "string",
+            "description": "Module or package identifier (e.g., 'framework/features/P0-01', 'src/auth')"
+          },
+          "layer_assignment": {
+            "type": "string",
+            "enum": ["foundation", "context-engineering", "constraints", "entropy-management"],
+            "description": "Architectural layer per 3-Pillar+1-Foundation model"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable purpose of this module"
+          },
+          "allowed_dependencies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Explicit modules this module may import (glob patterns allowed)"
+          },
+          "forbidden_dependencies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Explicit modules to never import (glob patterns allowed)"
+          }
+        }
+      }
+    },
+    "allowed_paths": {
+      "type": "array",
+      "description": "Explicitly allowed import relationships",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Source module (glob pattern, e.g., 'framework/features/P1-*')"
+          },
+          "to": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            ],
+            "description": "Target module(s) (glob pattern)"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Justification for this allowed path"
+          },
+          "exceptions": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Specific file/module exceptions (reference escalation IDs, e.g., 'dep-exc-001')"
+          }
+        }
+      }
+    },
+    "forbidden_paths": {
+      "type": "array",
+      "description": "Explicitly forbidden import relationships",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Source module (glob pattern)"
+          },
+          "to": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            ],
+            "description": "Target module(s) (glob pattern)"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why this dependency path is forbidden (architectural or risk-based)"
+          }
+        }
+      }
+    },
+    "circular_dependency_rules": {
+      "type": "array",
+      "description": "Rules explicitly declaring modules that must not form cycles",
+      "items": {
+        "type": "object",
+        "required": ["rule_id"],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "description": "Unique identifier for this rule"
+          },
+          "modules": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Modules that must not form a cycle"
+          },
+          "description": {
+            "type": "string",
+            "description": "Why this cycle must be prevented"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

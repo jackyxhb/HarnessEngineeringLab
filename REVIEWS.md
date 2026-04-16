@@ -11,6 +11,40 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-16-015",
+      "date": "2026-04-16",
+      "status": "approved",
+      "generator": "Claude Code (Agent 3)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R009"],
+      "scope_paths": [
+        "framework/features/P0-09.md",
+        ".agent/skills/harnessing-agents/framework/features/P0-09.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved polish of P0-9 (Smart Command Wrappers) from high-level feature overview to operational clarity. Enhanced L3 Design Decisions with concrete specification of three workflows (/ccp, /ccpr, /reconcile), tool stack (Markdown definitions + npm scripts + git + gh CLI), and cost stratification model with four tiers (smoke < 2s, check < 30s, audit < 60s, LLM review unlimited). Enhanced L4 Actions with detailed step-by-step execution for each workflow including concrete CLI examples, error handling, and latency enforcement gates. Added explicit output format standards (JSON for agent parsing, Markdown for human review). Specified prevention rules P0-9-1 and P0-9-2 with enforcement binding to npm run smoke, he-lint.js, and CI gates. L1, L2, and L5 sections preserved unchanged. Synced bundled skill framework mirror. Updated RELEASES.md with downstream impact note.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-16-016",
+      "date": "2026-04-16",
+      "status": "approved",
+      "generator": "Claude Code (Agent 2)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R008"],
+      "scope_paths": [
+        "framework/features/P0-04.md",
+        ".agent/skills/harnessing-agents/framework/features/P0-04.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Approved polish of P0-4 (Ralph Loops) from high-level overview to operational clarity. Enhanced L3 with state machine diagram (pending → active → reinjected → completed/escalated) and JSON task-state structure example with annotated fields. Enhanced L4 Actions with three subsections: (1) Exit Interception with < 1s detection latency and 30-min heartbeat timeout; (2) State Persistence & Reinjection with compression targets (< 500 tokens), injection formatting, and acceptance criteria; (3) Loop Budget Enforcement with deterministic escalation rules (N=3 hard limit, condition-based triggers). Enhanced L4 Prevention with concrete mechanisms: N-reinjections (threshold 3), entropy-based (consecutive_failures >= 3), time-based (heartbeat > 30 min). Added escalation event JSON example. Enhanced L5 with concrete thresholds: reinjection < 3, detection < 1s, escalation visibility < 5 min, premature-exit 0%, long-horizon completion > 95%, reinjection success > 80%. Added observability artifacts and sample dashboard metrics. L1, L2, L5 sections preserved. Synced bundled framework via npm run sync:skill-framework. Updated RELEASES.md.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-16-014",
       "date": "2026-04-16",
       "status": "approved",

@@ -6,7 +6,10 @@
       "Bash(gh pr:*)",
       "Bash(gh release:*)",
       "Bash(npm run:*)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(node:*)",
+      "Bash(npx markdownlint:*)",
+      "Bash(npx cspell:*)"
     ]
   }
 }

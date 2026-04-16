@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Harness Version Manifest Schema",
+  "description": "Immutable snapshot of harness configuration for reproducibility and comparability (P0-08)",
+  "type": "object",
+  "required": ["version", "timestamp", "git_commit", "prompts", "tools"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$",
+      "description": "Semantic version (semver) string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 timestamp of manifest creation"
+    },
+    "git_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$",
+      "description": "Full git commit hash at manifest creation time"
+    },
+    "snapshot_id": {
+      "type": "string",
+      "description": "Unique identifier for this immutable snapshot (UUID)"
+    },
+    "prompts": {
+      "type": "object",
+      "description": "Hashes of all agent prompts and system instructions",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "sha256": { "type": "string" },
+          "version": { "type": "string" }
+        },
+        "required": ["file_path", "sha256"]
+      }
+    },
+    "tools": {
+      "type": "object",
+      "description": "Versions and hashes of all tool definitions",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "version": { "type": "string" },
+          "sha256": { "type": "string" }
+        },
+        "required": ["file_path", "version"]
+      }
+    },
+    "model_version": {
+      "type": "string",
+      "description": "LLM model identifier and version (e.g., claude-opus-4-6)"
+    },
+    "model_context_window": {
+      "type": "integer",
+      "description": "Declared context window size in tokens"
+    },
+    "framework_version": {
+      "type": "string",
+      "description": "Version of Harness Engineering framework in use"
+    },
+    "comparability_metadata": {
+      "type": "object",
+      "description": "A/B test variant metadata for performance comparison",
+      "properties": {
+        "variant_id": { "type": "string" },
+        "test_id": { "type": "string" },
+        "comparison_dimensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

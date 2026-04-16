@@ -75,10 +75,22 @@
     "toplevel",
     "websearchforcopilot",
     "acks",
+    "capturable",
     "collab",
     "docstrings",
+    "inodes",
+    "libseccomp",
+    "npmjs",
+    "nspawn",
     "operationalization",
-    "Operationalization"
+    "Operationalization",
+    "pypi",
+    "rustc",
+    "substeps",
+    "tcpdump",
+    "tmpfs",
+    "unlogged",
+    "venv"
   ],
   "ignorePaths": [
     "node_modules",

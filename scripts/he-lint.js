@@ -281,9 +281,38 @@ const PREVENTION_REGISTRY_PATH = ".harness/prevention-rules-registry.json";
 const PREVENTION_CONFIG_PATH = ".harness/prevention-enforcement-config.json";
 
 const PREVENTION_BINDING_FEATURES = {
+  // Expanded for Tranche 2 completion: Issues #1 & #2
+  "P0-2": {
+    file: "framework/features/P0-02.md",
+    ruleIds: [],
+  },
+  "P0-3": {
+    file: "framework/features/P0-03.md",
+    ruleIds: [],
+  },
+  "P0-5": {
+    file: "framework/features/P0-05.md",
+    ruleIds: [],
+  },
+  "P0-6": {
+    file: "framework/features/P0-06.md",
+    ruleIds: [],
+  },
+  "P0-7": {
+    file: "framework/features/P0-07.md",
+    ruleIds: [],
+  },
   "P0-8": {
     file: "framework/features/P0-08.md",
     ruleIds: ["P0-8-unversioned-prompts", "P0-8-version-manifests"],
+  },
+  "P0-9": {
+    file: "framework/features/P0-09.md",
+    ruleIds: [],
+  },
+  "P0-10": {
+    file: "framework/features/P0-10.md",
+    ruleIds: [],
   },
   "P1-2": {
     file: "framework/features/P1-02.md",
@@ -292,6 +321,10 @@ const PREVENTION_BINDING_FEATURES = {
   "P1-5": {
     file: "framework/features/P1-05.md",
     ruleIds: ["P1-5-blind-execution", "P1-5-narrative-observability-metrics"],
+  },
+  "P1-11": {
+    file: "framework/features/P1-11.md",
+    ruleIds: [],
   },
   "P2-4": {
     file: "framework/features/P2-04.md",
@@ -305,6 +338,10 @@ const PREVENTION_BINDING_FEATURES = {
   "P2-5": {
     file: "framework/features/P2-05.md",
     ruleIds: ["P2-5-unregistered-work"],
+  },
+  "P3-1": {
+    file: "framework/features/P3-01.md",
+    ruleIds: [],
   },
   "P3-3": {
     file: "framework/features/P3-03.md",
@@ -334,11 +371,26 @@ const MEASUREMENT_SCHEMA_PATH = ".harness/measurement-schema.json";
 const MEASUREMENT_DEFINITIONS_PATH = ".harness/measurement-definitions.json";
 
 const MEASUREMENT_BINDING_FEATURES = {
+  // Expanded for Tranche 2 completion: Issues #1 & #2
+  "P0-1": { file: "framework/features/P0-01.md" },
+  "P0-2": { file: "framework/features/P0-02.md" },
+  "P0-3": { file: "framework/features/P0-03.md" },
+  "P0-4": { file: "framework/features/P0-04.md" },
   "P0-5": { file: "framework/features/P0-05.md" },
+  "P0-6": { file: "framework/features/P0-06.md" },
+  "P0-7": { file: "framework/features/P0-07.md" },
+  "P0-8": { file: "framework/features/P0-08.md" },
+  "P0-9": { file: "framework/features/P0-09.md" },
   "P0-10": { file: "framework/features/P0-10.md" },
+  "P0-11": { file: "framework/features/P0-11.md" },
   "P1-1": { file: "framework/features/P1-01.md" },
+  "P1-2": { file: "framework/features/P1-02.md" },
   "P1-5": { file: "framework/features/P1-05.md" },
+  "P1-7": { file: "framework/features/P1-07.md" },
+  "P1-8": { file: "framework/features/P1-08.md" },
+  "P1-10": { file: "framework/features/P1-10.md" },
   "P1-11": { file: "framework/features/P1-11.md" },
+  "P2-1": { file: "framework/features/P2-01.md" },
   "P2-3": { file: "framework/features/P2-03.md" },
   "P2-5": { file: "framework/features/P2-05.md" },
   "P3-1": { file: "framework/features/P3-01.md" },
