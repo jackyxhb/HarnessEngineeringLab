@@ -11,6 +11,22 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-17-002",
+      "date": "2026-04-17",
+      "status": "approved",
+      "generator": "Claude Code (Release Agent)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R005", "HE-R006"],
+      "scope_paths": [
+        "package.json",
+        ".agent/skills/harnessing-agents/SKILL.md",
+        "RELEASES.md"
+      ],
+      "change_summary": "Bumped HELab version from 4.1.1 to 4.2.0. Synced mirrored skill metadata. Moved Unreleased section to 4.2.0 release notes with summary of deep registry synchronization work. Created fresh Unreleased section for next cycle.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-17-001",
       "date": "2026-04-17",
       "status": "approved",

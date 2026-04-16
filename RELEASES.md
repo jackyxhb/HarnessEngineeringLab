@@ -8,6 +8,14 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 
 ## Unreleased
 
+*No unreleased changes yet.*
+
+## 4.2.0 - 2026-04-17
+
+### Summary
+
+Complete registry synchronization and binding hardening. Resolved all he-lint validation gaps by coordinating updates across measurement-definitions, prevention-rules-registry, HE Index, and feature files. Created deferred enforcement surfaces for all prevention rules targeting Tranche 4 (MAS infrastructure).
+
 ### What's New
 
 - **Architectural Binding Remediation (P0-P3):** Resolved strict logical rule constraints by synchronizing the measurement and prevention registries with the framework features.
