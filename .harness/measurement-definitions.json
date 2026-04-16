@@ -1401,6 +1401,118 @@
             ]
         },
         {
+            "feature_id": "P1-3",
+            "measurement_binding": "P1-3",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe (post-task)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-3-tool-output-context-ratio",
+                    "outcome": "Tool output context consumption < 15% of window",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/tool-outputs/ directory validation",
+                    "collection_trigger": "npm run observe (post-task)",
+                    "formula": "tool_output_tokens / total_context_window_tokens",
+                    "storage_key": "measurement_health.features.P1-3.metrics.p1-3-tool-output-context-ratio",
+                    "threshold": {
+                        "operator": "<=",
+                        "target": 0.15,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "Tool output context consumption must not exceed 15% of available window to preserve agent reasoning capacity.",
+                    "enforcement_surface": {
+                        "type": "tool-outputs-validation",
+                        "path": ".harness/tool-outputs/"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-4",
+            "measurement_binding": "P1-4",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe (post-task analysis)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-4-skill-selection-accuracy",
+                    "outcome": "Skill-selection accuracy > 90%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/skill-performance.jsonl",
+                    "collection_trigger": "npm run observe (post-task analysis)",
+                    "formula": "correct_selections / total_selections",
+                    "storage_key": "measurement_health.features.P1-4.metrics.p1-4-skill-selection-accuracy",
+                    "threshold": {
+                        "operator": ">=",
+                        "target": 0.9,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "Skill-selection accuracy must exceed 90% to ensure agents load task-relevant capabilities efficiently.",
+                    "enforcement_surface": {
+                        "type": "skill-performance-audit",
+                        "path": ".harness/skill-performance.jsonl"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-9",
+            "measurement_binding": "P1-9",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run observe (branch analysis)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-9-branch-naming-compliance",
+                    "outcome": "Branch naming convention compliance = 100%",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/branch-*-checkpoint.json and git branch naming",
+                    "collection_trigger": "Pre-commit hook validation and npm run observe",
+                    "formula": "compliant_branch_names / total_branches_created",
+                    "storage_key": "measurement_health.features.P1-9.metrics.p1-9-branch-naming-compliance",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "All cognitive-branch tracking branches must conform to naming convention for automated task-resumption and addressability.",
+                    "enforcement_surface": {
+                        "type": "pre-commit-hook",
+                        "path": ".git/hooks/pre-commit"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-12",
+            "measurement_binding": "P1-12",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run smoke (skill manifest validation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-12-skill-file-size-compliance",
+                    "outcome": "All skill reference files < 200 lines",
+                    "status": "declared-unmounted",
+                    "event_source": ".agent/skills/ directory and linter scan",
+                    "collection_trigger": "npm run lint:skill-size (pre-commit) and npm run smoke",
+                    "formula": "skill_files_under_200_lines / total_skill_files",
+                    "storage_key": "measurement_health.features.P1-12.metrics.p1-12-skill-file-size-compliance",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 1,
+                        "unit": "ratio"
+                    },
+                    "threshold_justification": "All skill reference files must stay under 200 lines to maintain mandatory-read context efficiency and prevent skill module bloat.",
+                    "enforcement_surface": {
+                        "type": "skill-size-linter",
+                        "path": ".agent/skills/"
+                    }
+                }
+            ]
+        },
+        {
             "feature_id": "P2-1",
             "measurement_binding": "P2-1",
             "status": "declared-unmounted",

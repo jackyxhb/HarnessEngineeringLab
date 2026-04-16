@@ -12,7 +12,15 @@
       "Bash(npx cspell:*)",
       "Bash(/tmp/final_validation.sh)",
       "Bash(perl -i -pe 's/\\\\n{3,}/\\\\n\\\\n/g' .agent/skills/harnessing-agents/framework/features/P0-01.md .agent/skills/harnessing-agents/framework/features/P0-04.md framework/features/P0-01.md framework/features/P0-04.md)",
-      "Bash(perl -i -pe 's/[ \\\\t]+$//' RELEASES.md)"
+      "Bash(perl -i -pe 's/[ \\\\t]+$//' RELEASES.md)",
+      "Bash(/tmp/audit_features.sh)",
+      "Bash(/tmp/audit_features2.sh)",
+      "Bash(/tmp/deep_audit.sh)",
+      "Bash(/tmp/final_audit.sh)",
+      "Bash(/tmp/comprehensive_audit.sh)",
+      "Bash(/tmp/principles_audit.sh)",
+      "Bash(/tmp/final_summary.sh)",
+      "Bash(/tmp/dag_consistency.sh)"
     ]
   }
 }

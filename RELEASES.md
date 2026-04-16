@@ -8,7 +8,20 @@ Canonical release notes for HELab and the live-linked `harnessing-agents` skill 
 
 ## Unreleased
 
-*No unreleased changes yet.*
+### Prevention Rule Formatting & L2 Content Expansion
+
+**Summary:** Fixed prevention rule formatting inconsistencies and expanded sparse L2 goal descriptions across 5 features to improve clarity and operational context.
+
+**Changes:**
+- **Prevention Rule Formatting (P0-9):** Removed backtick contamination from rule declarations `P0-9-1` and `P0-9-2` — prevention rule IDs in feature prose should never be wrapped in backticks
+- **L2 Expansion (P1-5):** Expanded "real-time visibility" to include measurability as a first-class constraint, automated detection of failures, and the role of audit trails in optimization
+- **L2 Expansion (P3-2):** Expanded "code-doc sync" to emphasize co-evolution in commits, staleness as entropy, and the consequence of divergence on agent decision quality
+- **L2 Expansion (P3-3):** Expanded "pattern convergence" to explain why entropy requires scheduled auditing, the cost of circular dependencies, and the enforcement benefit of structured anti-pattern definitions
+- **L2 Expansion (P2-2):** Expanded "mechanical boundaries" to clarify why advisory architecture is invisible to agents, the cascading cost of silent coupling, and pre-commit validation benefits
+- **L2 Expansion (P2-4):** Expanded "proportional capabilities" to explain blast-radius risk, the role of tool whitelists and permission tiers, and automated enforcement benefits
+- **Framework Sync:** Synced bundled skill runtime via `npm run sync:skill-framework` to maintain byte-for-byte parity
+
+**Downstream Impact:** All prevention rule declarations now follow consistent formatting standards. L2 sections for 5 features are now 2-3 full sentences (vs. 1 sparse line), providing clearer operational rationale aligned to their governing engineering principles. Framework quality gates remain satisfied.
 
 ## 4.2.0 - 2026-04-17
 

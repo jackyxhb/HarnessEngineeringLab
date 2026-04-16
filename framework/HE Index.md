@@ -379,6 +379,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Tool outputs never dominate the context window",
       "file": "framework/features/P1-03.md",
+      "measurement_binding": "P1-3",
       "downstream": [
         "P1-2"
       ]
@@ -392,6 +393,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Only task-relevant capabilities are in context at any time",
       "file": "framework/features/P1-04.md",
+      "measurement_binding": "P1-4",
       "downstream": [
         "P0-5"
       ]
@@ -460,6 +462,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Complex objectives decompose into checkpointed sub-tasks with cognitive history that survives context resets and enables parallel execution",
       "file": "framework/features/P1-09.md",
+      "measurement_binding": "P1-9",
       "downstream": [
         "P0-5"
       ]
@@ -506,6 +509,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Agent skills are modular, context-efficient, and tunable",
       "file": "framework/features/P1-12.md",
+      "measurement_binding": "P1-12",
       "downstream": [
         "P1-4",
         "P1-2",
