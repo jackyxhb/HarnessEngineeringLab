@@ -30,112 +30,160 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "principle": "Isolation prevents contamination",
       "origin": "Thermodynamics, clean-room engineering",
       "file": "framework/principles/EP-01.md",
-      "governs": ["P0-1"]
+      "governs": [
+        "P0-1"
+      ]
     },
     {
       "id": "EP-2",
       "principle": "State must outlive the session",
       "origin": "Database durability (ACID), journaling filesystems",
       "file": "framework/principles/EP-02.md",
-      "governs": ["P0-2", "P1-7", "P1-8", "P1-9"]
+      "governs": [
+        "P0-2",
+        "P1-7",
+        "P1-8",
+        "P1-9"
+      ]
     },
     {
       "id": "EP-3",
       "principle": "Verify before declaring completion",
       "origin": "Test-driven development, flight pre-checks",
       "file": "framework/principles/EP-03.md",
-      "governs": ["P0-3"]
+      "governs": [
+        "P0-3"
+      ]
     },
     {
       "id": "EP-4",
       "principle": "Committed tasks must be completed",
       "origin": "Transaction guarantees, contract law",
       "file": "framework/principles/EP-04.md",
-      "governs": ["P0-4"]
+      "governs": [
+        "P0-4"
+      ]
     },
     {
       "id": "EP-5",
       "principle": "Coordination cost must stay bounded",
       "origin": "Brooks's Law, network topology theory",
       "file": "framework/principles/EP-05.md",
-      "governs": ["P0-5", "P0-10"]
+      "governs": [
+        "P0-5",
+        "P0-10"
+      ]
     },
     {
       "id": "EP-7",
       "principle": "Every action must be traceable",
       "origin": "Financial auditing, chain of custody",
       "file": "framework/principles/EP-07.md",
-      "governs": ["P0-7"]
+      "governs": [
+        "P0-7"
+      ]
     },
     {
       "id": "EP-8",
       "principle": "You cannot improve what you do not measure",
       "origin": "Deming, scientific method",
       "file": "framework/principles/EP-08.md",
-      "governs": ["P0-8", "P1-5"]
+      "governs": [
+        "P0-8",
+        "P1-5"
+      ]
     },
     {
       "id": "EP-9",
       "principle": "Standard operations reduce variance",
       "origin": "Manufacturing SOPs, aviation checklists",
       "file": "framework/principles/EP-09.md",
-      "governs": ["P0-6", "P0-9"]
+      "governs": [
+        "P0-6",
+        "P0-9"
+      ]
     },
     {
       "id": "EP-10",
       "principle": "Portability over proprietary convenience",
       "origin": "Open standards, POSIX, web standards",
       "file": "framework/principles/EP-10.md",
-      "governs": ["P0-11"]
+      "governs": [
+        "P0-11"
+      ]
     },
     {
       "id": "EP-11",
       "principle": "If it's not in the repo, it doesn't exist",
       "origin": "Infrastructure as Code, GitOps",
       "file": "framework/principles/EP-11.md",
-      "governs": ["P1-1", "P1-10", "P3-2", "P3-4"]
+      "governs": [
+        "P1-1",
+        "P1-10",
+        "P3-2",
+        "P3-4"
+      ]
     },
     {
       "id": "EP-12",
       "principle": "Finite attention demands active management",
       "origin": "Cognitive load theory, working memory limits",
       "file": "framework/principles/EP-12.md",
-      "governs": ["P1-2", "P1-3", "P1-4", "P1-6", "P1-12"]
+      "governs": [
+        "P1-2",
+        "P1-3",
+        "P1-4",
+        "P1-6",
+        "P1-12"
+      ]
     },
     {
       "id": "EP-14",
       "principle": "Clarity before commitment",
       "origin": "Requirements engineering, Socratic method",
       "file": "framework/principles/EP-14.md",
-      "governs": ["P1-11", "P2-5"]
+      "governs": [
+        "P1-11",
+        "P2-5"
+      ]
     },
     {
       "id": "EP-15",
       "principle": "Mechanical enforcement over advisory guidance",
       "origin": "Type systems, compiler enforcement, guardrails",
       "file": "framework/principles/EP-15.md",
-      "governs": ["P2-1", "P2-2"]
+      "governs": [
+        "P2-1",
+        "P2-2"
+      ]
     },
     {
       "id": "EP-16",
       "principle": "No author is their own best reviewer",
       "origin": "Peer review, scientific replication",
       "file": "framework/principles/EP-16.md",
-      "governs": ["P2-3"]
+      "governs": [
+        "P2-3"
+      ]
     },
     {
       "id": "EP-17",
       "principle": "Capabilities proportional to risk",
       "origin": "Principle of least privilege, defense in depth",
       "file": "framework/principles/EP-17.md",
-      "governs": ["P2-4"]
+      "governs": [
+        "P2-4"
+      ]
     },
     {
       "id": "EP-18",
       "principle": "Entropy requires scheduled countering",
       "origin": "Second law of thermodynamics, maintenance engineering",
       "file": "framework/principles/EP-18.md",
-      "governs": ["P3-1", "P3-3"]
+      "governs": [
+        "P3-1",
+        "P3-3"
+      ]
     }
   ],
   "features": [
@@ -148,7 +196,11 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Isolation prevents contamination",
       "L2": "Zero cross-contamination between agent execution environments",
       "file": "framework/features/P0-01.md",
-      "downstream": ["P0-3", "P3-1"]
+      "measurement_binding": "P0-1",
+      "downstream": [
+        "P0-3",
+        "P3-1"
+      ]
     },
     {
       "id": "P0-2",
@@ -160,7 +212,13 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Agent work is persistent, versioned, and conflict-free",
       "file": "framework/features/P0-02.md",
       "measurement_binding": "P0-2",
-      "downstream": ["P0-9", "P1-3", "P1-7", "P1-9", "P3-1"]
+      "downstream": [
+        "P0-9",
+        "P1-3",
+        "P1-7",
+        "P1-9",
+        "P3-1"
+      ]
     },
     {
       "id": "P0-3",
@@ -172,7 +230,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Agents autonomously detect and correct errors before human review",
       "file": "framework/features/P0-03.md",
       "measurement_binding": "P0-3",
-      "downstream": ["P0-7", "P2-3"]
+      "downstream": [
+        "P0-7",
+        "P2-3"
+      ]
     },
     {
       "id": "P0-4",
@@ -183,6 +244,7 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Committed tasks must be completed",
       "L2": "100% task completion rate regardless of context window exhaustion",
       "file": "framework/features/P0-04.md",
+      "measurement_binding": "P0-4",
       "downstream": []
     },
     {
@@ -206,7 +268,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Standard operations reduce variance",
       "L2": "Any harness layer can be removed without breaking the rest",
       "file": "framework/features/P0-06.md",
-      "downstream": ["P0-8"],
+      "downstream": [
+        "P0-8"
+      ],
       "measurement_binding": "P0-6"
     },
     {
@@ -242,7 +306,11 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Standard operations reduce variance",
       "L2": "Zero variance in common CLI workflow execution",
       "file": "framework/features/P0-09.md",
-      "downstream": ["P3-1", "P3-3"]
+      "measurement_binding": "P0-9",
+      "downstream": [
+        "P3-1",
+        "P3-3"
+      ]
     },
     {
       "id": "P0-10",
@@ -254,7 +322,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Agents can coordinate without supervisor bottleneck, with bounded overhead",
       "file": "framework/features/P0-10.md",
       "measurement_binding": "P0-10",
-      "downstream": ["P0-5"]
+      "downstream": [
+        "P0-5"
+      ]
     },
     {
       "id": "P0-11",
@@ -265,9 +335,11 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Portability over proprietary convenience",
       "L2": "Agent instructions are discoverable and functional from any IDE",
       "file": "framework/features/P0-11.md",
-      "downstream": ["P0-6"]
+      "downstream": [
+        "P0-6"
+      ],
+      "measurement_binding": "P0-11"
     },
-
     {
       "id": "P1-1",
       "name": "Repository as Truth",
@@ -278,7 +350,11 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Agent context accuracy without human briefing",
       "file": "framework/features/P1-01.md",
       "measurement_binding": "P1-1",
-      "downstream": ["P0-11", "P2-2", "P3-2"]
+      "downstream": [
+        "P0-11",
+        "P2-2",
+        "P3-2"
+      ]
     },
     {
       "id": "P1-2",
@@ -290,7 +366,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Sustained reasoning quality across long tasks",
       "file": "framework/features/P1-02.md",
       "measurement_binding": "P1-2",
-      "downstream": ["P0-4"]
+      "downstream": [
+        "P0-4"
+      ]
     },
     {
       "id": "P1-3",
@@ -301,7 +379,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Tool outputs never dominate the context window",
       "file": "framework/features/P1-03.md",
-      "downstream": ["P1-2"]
+      "downstream": [
+        "P1-2"
+      ]
     },
     {
       "id": "P1-4",
@@ -312,7 +392,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Only task-relevant capabilities are in context at any time",
       "file": "framework/features/P1-04.md",
-      "downstream": ["P0-5"]
+      "downstream": [
+        "P0-5"
+      ]
     },
     {
       "id": "P1-5",
@@ -324,7 +406,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Agents and humans have real-time visibility into system behavior and health",
       "file": "framework/features/P1-05.md",
       "measurement_binding": "P1-5",
-      "downstream": ["P0-7", "P0-8"]
+      "downstream": [
+        "P0-7",
+        "P0-8"
+      ]
     },
     {
       "id": "P1-6",
@@ -347,7 +432,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Complex tasks survive context resets and are decomposed before execution",
       "file": "framework/features/P1-07.md",
-      "downstream": ["P0-4"]
+      "downstream": [
+        "P0-4"
+      ],
+      "measurement_binding": "P1-7"
     },
     {
       "id": "P1-8",
@@ -358,7 +446,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Strategic goals and critical decisions persist across all context resets",
       "file": "framework/features/P1-08.md",
-      "downstream": ["P0-4"]
+      "downstream": [
+        "P0-4"
+      ],
+      "measurement_binding": "P1-8"
     },
     {
       "id": "P1-9",
@@ -369,7 +460,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "State must outlive the session",
       "L2": "Complex objectives decompose into checkpointed sub-tasks with cognitive history that survives context resets and enables parallel execution",
       "file": "framework/features/P1-09.md",
-      "downstream": ["P0-5"]
+      "downstream": [
+        "P0-5"
+      ]
     },
     {
       "id": "P1-10",
@@ -380,7 +473,12 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "All requirements formally recorded before any planning or execution",
       "file": "framework/features/P1-10.md",
-      "downstream": ["P1-7", "P1-8", "P2-5"]
+      "downstream": [
+        "P1-7",
+        "P1-8",
+        "P2-5"
+      ],
+      "measurement_binding": "P1-10"
     },
     {
       "id": "P1-11",
@@ -392,7 +490,12 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L2": "Zero ambiguous inputs reaching the execution phase",
       "file": "framework/features/P1-11.md",
       "measurement_binding": "P1-11",
-      "downstream": ["P1-10", "P1-8", "P2-5", "P1-7"]
+      "downstream": [
+        "P1-10",
+        "P1-8",
+        "P2-5",
+        "P1-7"
+      ]
     },
     {
       "id": "P1-12",
@@ -403,9 +506,13 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Finite attention demands active management",
       "L2": "Agent skills are modular, context-efficient, and tunable",
       "file": "framework/features/P1-12.md",
-      "downstream": ["P1-4", "P1-2", "P1-3", "P1-7"]
+      "downstream": [
+        "P1-4",
+        "P1-2",
+        "P1-3",
+        "P1-7"
+      ]
     },
-
     {
       "id": "P2-1",
       "name": "Automated Linters",
@@ -415,7 +522,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Mechanical enforcement over advisory guidance",
       "L2": "Zero style/type/structural violations reaching the main branch",
       "file": "framework/features/P2-01.md",
-      "downstream": ["P3-3"]
+      "downstream": [
+        "P3-3"
+      ],
+      "measurement_binding": "P2-1"
     },
     {
       "id": "P2-2",
@@ -426,7 +536,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Mechanical enforcement over advisory guidance",
       "L2": "Architectural boundaries mechanically enforced, not just documented",
       "file": "framework/features/P2-02.md",
-      "downstream": ["P3-3"]
+      "downstream": [
+        "P3-3"
+      ]
     },
     {
       "id": "P2-3",
@@ -449,7 +561,8 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "Capabilities proportional to risk",
       "L2": "Agent capabilities are proportional to task risk at all times",
       "file": "framework/features/P2-04.md",
-      "downstream": []
+      "downstream": [],
+      "measurement_binding": "P2-4"
     },
     {
       "id": "P2-5",
@@ -463,7 +576,6 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "measurement_binding": "P2-5",
       "downstream": []
     },
-
     {
       "id": "P3-1",
       "name": "Scheduled Cleanups",
@@ -485,7 +597,9 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "Documentation always matches the current state of the code",
       "file": "framework/features/P3-02.md",
-      "downstream": ["P3-4"]
+      "downstream": [
+        "P3-4"
+      ]
     },
     {
       "id": "P3-3",
@@ -508,7 +622,10 @@ The Directed Acyclic Graph (DAG) index for the Harness Engineering framework. Th
       "L1": "If it's not in the repo, it doesn't exist",
       "L2": "Canonical governance documents auto-update when features land; redundant concepts are merged",
       "file": "framework/features/P3-04.md",
-      "downstream": ["P1-1"]
+      "downstream": [
+        "P1-1"
+      ],
+      "measurement_binding": "P3-4"
     }
   ],
   "cross_cutting": [

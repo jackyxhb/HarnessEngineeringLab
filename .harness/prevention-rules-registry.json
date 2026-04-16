@@ -271,12 +271,12 @@
             "rule_label": "Prevent Non-Parseable Orchestration Plans",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "schema-binding",
-                "path": ".harness/orchestration-metrics.schema.json and .harness/router-events.schema.json",
-                "check": "validateMachineReadableSchemaBindings",
-                "notes": "Schemas exist and are ready; collection will begin once MAS router infrastructure is mounted and emits telemetry."
+                "type": "future-implementation",
+                "path": ".harness/orchestration-metrics.schema.json",
+                "notes": "MAS orchestration telemetry artifacts (.harness/orchestration-metrics.json, .harness/router-events.jsonl) will be created and validated once MAS router infrastructure is mounted."
             },
-            "unmounted_reason": "Orchestration telemetry artifacts (.harness/orchestration-metrics.json, .harness/router-events.jsonl) will be created and validated once MAS router infrastructure is mounted; schemas are checked in and ready for Tranche 2+ implementation."
+            "unmounted_reason": "MAS orchestration telemetry artifacts (.harness/orchestration-metrics.json, .harness/router-events.jsonl) will be created and validated once MAS router infrastructure is mounted.",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P0-6-monolithic-harnesses",
@@ -310,12 +310,12 @@
             "rule_label": "Prevent Over-Engineering the Control Flow",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "removal-test-harness",
-                "path": ".agent/workflows/test-middleware-removal.js (deferred)",
-                "check": "removal_checklist in feature-flag-registry.json",
-                "notes": "Per-component removal testing prevents brittle control flow from accumulating."
+                "type": "future-implementation",
+                "path": ".agent/workflows/test-middleware-removal.js",
+                "notes": "Middleware removal test harness is deferred to Tranche 4; currently no automated check validates removal safety."
             },
-            "unmounted_reason": "Middleware removal test harness is deferred to Tranche 4 L4 tool specification; currently no automated check validates removal safety."
+            "unmounted_reason": "Middleware removal test harness is deferred to Tranche 4; currently no automated check validates removal safety.",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P0-7-silent-looping",
@@ -323,12 +323,12 @@
             "rule_label": "Prevent Silent Looping",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "heartbeat-monitoring",
-                "path": ".harness/heartbeat-protocol.schema.json and escalation-events.jsonl",
-                "check": "escalation_recommended field in heartbeat records",
-                "notes": "Heartbeat schema defined; orchestrator must poll .harness/escalation-events.jsonl after heartbeat monitoring is mounted."
+                "type": "future-implementation",
+                "path": ".harness/heartbeat-protocol.schema.json",
+                "notes": "External orchestrator or cron job for heartbeat monitoring is deferred to Tranche 4; schema is ready for implementation."
             },
-            "unmounted_reason": "External orchestrator or cron job for heartbeat monitoring is deferred to Tranche 4 L4 tool specification; schema is ready for implementation."
+            "unmounted_reason": "External orchestrator or cron job for heartbeat monitoring is deferred to Tranche 4; schema is ready for implementation.",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P0-7-narrative-audit-trails",
@@ -349,12 +349,12 @@
             "rule_label": "Prevent Unbounded Communication",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "schema-binding",
-                "path": ".harness/mailbox-interface.schema.json (message_count_limit_per_task field)",
-                "check": "message_count validation in mailbox poller",
-                "notes": "Mailbox schema enforces message-count limits per task and mandatory structured objective updates in each message."
+                "type": "future-implementation",
+                "path": ".harness/mailbox-interface.schema.json",
+                "notes": "Mailbox poller script and message-count enforcement are deferred to Tranche 4 L4 tool specification."
             },
-            "unmounted_reason": "Mailbox poller script (.agent/workflows/poll-mailbox.js) and message-count enforcement are deferred to Tranche 4 L4 tool specification."
+            "unmounted_reason": "Mailbox poller script and message-count enforcement are deferred to Tranche 4 L4 tool specification.",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P0-10-narrative-inter-agent-messaging",
@@ -368,30 +368,6 @@
                 "notes": "All inter-agent communication must conform to mailbox-interface schema for automated routing and observability."
             },
             "unmounted_reason": "Mailbox message validation gate is part of Tranche 4 L4 mailbox interface tool specification."
-        },
-        {
-            "rule_id": "P1-6-knowledge-silos",
-            "feature_id": "P1-6",
-            "rule_label": "Prevent Knowledge Silos",
-            "binding_status": "implemented",
-            "enforcement_surface": {
-                "type": "schema-binding",
-                "path": ".harness/mcp-capabilities.schema.json",
-                "check": "validateMachineReadableSchemaBindings",
-                "notes": "MCP capability manifests must conform to .harness/mcp-capabilities.schema.json; agents auto-discover available MCP servers and web-search tooling."
-            }
-        },
-        {
-            "rule_id": "P1-6-narrative-mcp-manifests",
-            "feature_id": "P1-6",
-            "rule_label": "Prevent Narrative MCP Server Manifests",
-            "binding_status": "implemented",
-            "enforcement_surface": {
-                "type": "schema-binding",
-                "path": ".harness/mcp-capabilities.schema.json",
-                "check": "validateMachineReadableSchemaBindings",
-                "notes": "MCP server configurations and capability definitions must follow JSON schema to ensure automated tool-binding and liveness monitoring."
-            }
         },
         {
             "rule_id": "P1-11-premature-execution",
@@ -467,14 +443,14 @@
             "rule_label": "Prevent Pattern Divergence",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "pattern-audit-job",
-                "path": ".harness/pattern-audit-report.schema.json and .harness/anti-pattern-definition.schema.json",
-                "check": "validatePatternAuditArtifacts",
-                "notes": "Pattern audit and anti-pattern schemas exist; periodic audit job and automated enforcement linter are not yet mounted."
+                "type": "future-implementation",
+                "path": ".harness/pattern-audit-report.schema.json",
+                "notes": "Pattern-drift periodic audit job and anti-pattern linter enforcement are deferred to Tranche 4 L4 tool specification."
             },
-            "unmounted_reason": "Schemas are checked in and ready; pattern-drift periodic audit job and anti-pattern linter enforcement are deferred to Tranche 4 L4 tool specification.",
+            "unmounted_reason": "Pattern-drift periodic audit job and anti-pattern linter enforcement are deferred to Tranche 4 L4 tool specification.",
             "sas_status": "Partial",
-            "mas_status": "Planned"
+            "mas_status": "Planned",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P3-4-concept-forking-prevention",
@@ -482,14 +458,14 @@
             "rule_label": "Prevent Concept Forking and Redundancy",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "consolidation-loop-job",
-                "path": ".harness/adr-record.schema.json and .harness/consolidation-audit-report.schema.json",
-                "check": "validateConsolidationAuditResults",
-                "notes": "ADR and consolidation audit schemas exist; automated weekly consolidation loop and ADR prompt system are not yet mounted."
+                "type": "future-implementation",
+                "path": ".harness/adr-record.schema.json",
+                "notes": "Automated ADR prompt system, concept-deduplication logic, and scheduled reconciliation loop are deferred to Tranche 4 L4 tool specification."
             },
-            "unmounted_reason": "Schemas are defined and ready; automated ADR prompt system, concept-deduplication logic, and scheduled reconciliation loop are deferred to Tranche 4 L4 tool specification.",
+            "unmounted_reason": "Automated ADR prompt system, concept-deduplication logic, and scheduled reconciliation loop are deferred to Tranche 4 L4 tool specification.",
             "sas_status": "Partial",
-            "mas_status": "Planned"
+            "mas_status": "Planned",
+            "status": "declared-unmounted"
         },
         {
             "rule_id": "P3-4-narrative-consolidation-records",
@@ -497,10 +473,9 @@
             "rule_label": "Prevent Narrative Consolidation Records",
             "binding_status": "declared-unmounted",
             "enforcement_surface": {
-                "type": "schema-binding",
-                "path": ".harness/adr-record.schema.json and .harness/consolidation-audit-report.schema.json",
-                "check": "validateMachineReadableSchemaBindings",
-                "notes": "Consolidation audit results and ADR records must follow machine-readable JSON schemas for automated health tracking."
+                "type": "future-implementation",
+                "path": ".harness/consolidation-audit-report.schema.json",
+                "notes": "Schemas exist; consolidation loop automation and ADR generation are deferred to Tranche 4."
             },
             "unmounted_reason": "Schemas exist; consolidation loop automation and ADR generation are deferred to Tranche 4."
         }

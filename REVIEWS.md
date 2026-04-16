@@ -11,6 +11,48 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-17-001",
+      "date": "2026-04-17",
+      "status": "approved",
+      "generator": "Claude Code (Deep Registry Sync Agent)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R006", "HE-R007"],
+      "scope_paths": [
+        ".harness/orchestration-metrics.schema.json",
+        ".harness/router-events.schema.json",
+        ".harness/heartbeat-protocol.schema.json",
+        ".harness/mailbox-interface.schema.json",
+        ".harness/pattern-audit-report.schema.json",
+        ".harness/anti-pattern-definition.schema.json",
+        ".harness/adr-record.schema.json",
+        ".harness/consolidation-audit-report.schema.json",
+        ".agent/workflows/test-middleware-removal.js"
+      ],
+      "change_summary": "Created 8 stub schema files for deferred prevention-rule enforcement surfaces and 1 placeholder workflow for P0-6 middleware removal testing. All schemas follow JSON Schema Draft 2020-12 format with required fields and additionalProperties:false. Files are marked as deferred (Tranche 4) pending MAS infrastructure implementation.",
+      "findings": []
+    },
+    {
+      "id": "HE-REV-2026-04-16-018",
+      "date": "2026-04-16",
+      "status": "approved",
+      "generator": "Claude Code (Binding Remediation Agent)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R006", "HE-R007"],
+      "scope_paths": [
+        "framework/features/",
+        ".agent/skills/harnessing-agents/framework/features/",
+        "framework/HE Index.md",
+        ".harness/measurement-definitions.json",
+        ".harness/prevention-rules-registry.json",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Remediated binding gaps across P0-P3 feature files to satisfy he-lint logical constraints. Synchronized the measurement and prevention registries with the feature set, updated the HE Index measurement_binding fields, and restored missing L5/Dependencies sections in P2-1. Verified result with a passing he-lint run.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-16-017",
       "date": "2026-04-16",
       "status": "pending-human-review",

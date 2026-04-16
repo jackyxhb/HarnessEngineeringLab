@@ -1,49 +1,13 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "HELab Pattern Audit Report",
-    "type": "object",
-    "required": [
-        "audit_run_id",
-        "timestamp",
-        "scope",
-        "patterns_found",
-        "circular_dependency_count",
-        "convergence_rate_pct",
-        "audit_tool_version"
-    ],
-    "properties": {
-        "audit_run_id": {
-            "type": "string",
-            "minLength": 1
-        },
-        "timestamp": {
-            "type": "string",
-            "minLength": 1
-        },
-        "scope": {
-            "type": "string",
-            "minLength": 1
-        },
-        "patterns_found": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "minLength": 1
-            }
-        },
-        "circular_dependency_count": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "convergence_rate_pct": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "audit_tool_version": {
-            "type": "string",
-            "minLength": 1
-        }
-    },
-    "additionalProperties": false
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pattern Audit Report",
+  "description": "Schema for pattern convergence audits (deferred to Tranche 4)",
+  "type": "object",
+  "properties": {
+    "timestamp": { "type": "string" },
+    "patterns_audited": { "type": "array" },
+    "convergence_rate": { "type": "number" }
+  },
+  "required": ["timestamp"],
+  "additionalProperties": false
 }

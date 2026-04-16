@@ -325,72 +325,6 @@
             ]
         },
         {
-            "feature_id": "P1-6",
-            "measurement_binding": "P1-6",
-            "status": "proxy-mounted",
-            "collection_trigger": "npm run observe",
-            "freshness_slo_minutes": 1440,
-            "metrics": [
-                {
-                    "metric_id": "p1-6-outdated-answer-rate",
-                    "outcome": "Outdated-answer rate -> 0 for rapidly evolving domains",
-                    "status": "declared-unmounted",
-                    "event_source": ".harness/knowledge-lookup.jsonl",
-                    "collection_trigger": "evaluation after knowledge-lookup audit telemetry is mounted",
-                    "formula": "outdated_answers_detected / queries_in_evolving_domains",
-                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-outdated-answer-rate",
-                    "threshold": {
-                        "operator": "=",
-                        "target": 0,
-                        "unit": "ratio"
-                    },
-                    "threshold_justification": "The feature defines zero outdated answers as the success state; requires active knowledge-lookup auditing.",
-                    "enforcement_surface": {
-                        "type": "future-knowledge-audit",
-                        "path": ".harness/knowledge-lookup.jsonl"
-                    }
-                },
-                {
-                    "metric_id": "p1-6-cache-hit-rate",
-                    "outcome": "External lookup cache hit rate > 60%",
-                    "status": "proxy-mounted",
-                    "event_source": ".harness/search-cache.json",
-                    "collection_trigger": "npm run observe after cache operations are tracked",
-                    "formula": "cache_hits / (cache_hits + cache_misses)",
-                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-cache-hit-rate",
-                    "threshold": {
-                        "operator": ">",
-                        "target": 0.6,
-                        "unit": "ratio"
-                    },
-                    "threshold_justification": "The feature targets > 60% cache hit rate to reduce redundant external API lookups.",
-                    "enforcement_surface": {
-                        "type": "cache-metrics",
-                        "path": ".harness/search-cache.json"
-                    }
-                },
-                {
-                    "metric_id": "p1-6-mcp-capabilities-schema-conformance",
-                    "outcome": "MCP capabilities manifest conforms to mcp-capabilities.schema.json",
-                    "status": "implemented",
-                    "event_source": ".harness/mcp-capabilities.json",
-                    "collection_trigger": "npm run smoke validates schema conformance",
-                    "formula": "valid_mcp_manifest_records / total_manifest_entries_checked",
-                    "storage_key": "measurement_health.features.P1-6.metrics.p1-6-mcp-capabilities-schema-conformance",
-                    "threshold": {
-                        "operator": "=",
-                        "target": 1,
-                        "unit": "ratio"
-                    },
-                    "threshold_justification": "The feature mandates JSON-standardized MCP manifests; schema exists and can be validated against .harness/mcp-capabilities.json.",
-                    "enforcement_surface": {
-                        "type": "schema-contract",
-                        "path": ".harness/mcp-capabilities.schema.json"
-                    }
-                }
-            ]
-        },
-        {
             "feature_id": "P1-11",
             "measurement_binding": "P1-11",
             "status": "proxy-mounted",
@@ -730,7 +664,7 @@
                 {
                     "metric_id": "p0-3-agent-self-fix-rate",
                     "outcome": "Agent self-fix rate > 80%",
-                    "status": "proxy-mounted",
+                    "status": "declared-unmounted",
                     "event_source": ".harness/agent-logs.jsonl and escalation-events.jsonl",
                     "collection_trigger": "npm run audit parses agent-logs and escalation-events to calculate fix attempts before escalation",
                     "formula": "successful_self_fixes / (successful_self_fixes + escalations)",
@@ -742,7 +676,7 @@
                     },
                     "threshold_justification": "The feature declares 80% self-fix rate as the minimum; escalation events provide the current collection proxy.",
                     "enforcement_surface": {
-                        "type": "escalation-event-log",
+                        "type": "future-escalation-log",
                         "path": ".harness/escalation-events.jsonl"
                     }
                 },
@@ -1266,6 +1200,230 @@
                     "enforcement_surface": {
                         "type": "changelog-validation",
                         "path": "RELEASES.md"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-1",
+            "measurement_binding": "P0-1",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-1-placeholder",
+                    "outcome": "Placeholder metric for P0-1",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p0-1-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P0-1.metrics.p0-1-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p0-1-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-4",
+            "measurement_binding": "P0-4",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-4-placeholder",
+                    "outcome": "Placeholder metric for P0-4",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p0-4-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P0-4.metrics.p0-4-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p0-4-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-9",
+            "measurement_binding": "P0-9",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-9-placeholder",
+                    "outcome": "Placeholder metric for P0-9",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p0-9-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P0-9.metrics.p0-9-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p0-9-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P0-11",
+            "measurement_binding": "P0-11",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p0-11-placeholder",
+                    "outcome": "Placeholder metric for P0-11",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p0-11-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P0-11.metrics.p0-11-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p0-11-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-7",
+            "measurement_binding": "P1-7",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-7-placeholder",
+                    "outcome": "Placeholder metric for P1-7",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p1-7-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P1-7.metrics.p1-7-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p1-7-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-8",
+            "measurement_binding": "P1-8",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-8-placeholder",
+                    "outcome": "Placeholder metric for P1-8",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p1-8-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P1-8.metrics.p1-8-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p1-8-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P1-10",
+            "measurement_binding": "P1-10",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p1-10-placeholder",
+                    "outcome": "Placeholder metric for P1-10",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p1-10-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P1-10.metrics.p1-10-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p1-10-metrics.json"
+                    }
+                }
+            ]
+        },
+        {
+            "feature_id": "P2-1",
+            "measurement_binding": "P2-1",
+            "status": "declared-unmounted",
+            "collection_trigger": "npm run audit (stub - future implementation)",
+            "freshness_slo_minutes": 1440,
+            "metrics": [
+                {
+                    "metric_id": "p2-1-placeholder",
+                    "outcome": "Placeholder metric for P2-1",
+                    "status": "declared-unmounted",
+                    "event_source": ".harness/p2-1-metrics.json (future)",
+                    "collection_trigger": "Future implementation",
+                    "formula": "tbd",
+                    "storage_key": "measurement_health.features.P2-1.metrics.p2-1-placeholder",
+                    "threshold": {
+                        "operator": "=",
+                        "target": 0,
+                        "unit": "placeholder"
+                    },
+                    "threshold_justification": "Placeholder stub until feature measurement is fully specified.",
+                    "enforcement_surface": {
+                        "type": "future-stub",
+                        "path": ".harness/p2-1-metrics.json"
                     }
                 }
             ]

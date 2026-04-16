@@ -9,7 +9,10 @@
       "Read(//tmp/**)",
       "Bash(node:*)",
       "Bash(npx markdownlint:*)",
-      "Bash(npx cspell:*)"
+      "Bash(npx cspell:*)",
+      "Bash(/tmp/final_validation.sh)",
+      "Bash(perl -i -pe 's/\\\\n{3,}/\\\\n\\\\n/g' .agent/skills/harnessing-agents/framework/features/P0-01.md .agent/skills/harnessing-agents/framework/features/P0-04.md framework/features/P0-01.md framework/features/P0-04.md)",
+      "Bash(perl -i -pe 's/[ \\\\t]+$//' RELEASES.md)"
     ]
   }
 }

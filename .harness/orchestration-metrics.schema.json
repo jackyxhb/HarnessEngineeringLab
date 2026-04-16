@@ -1,62 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HELab Orchestration Metrics",
+  "title": "Orchestration Metrics",
+  "description": "Schema for MAS orchestration telemetry metrics (deferred to Tranche 4)",
   "type": "object",
-  "required": [
-    "version",
-    "timestamp",
-    "topology_active",
-    "queue_depth",
-    "agent_utilization",
-    "supervisor_latency_ms"
-  ],
   "properties": {
-    "version": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Schema version for this metrics artifact"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp when metrics were collected"
-    },
-    "topology_active": {
-      "type": "string",
-      "enum": ["supervisor", "hierarchical", "p2p", "blackboard", "swarm"],
-      "description": "Currently active orchestration topology"
-    },
-    "queue_depth": {
-      "type": "integer",
-      "minimum": 0,
-      "description": "Number of tasks waiting in the task queue"
-    },
-    "agent_utilization": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 1,
-      "description": "Ratio of active agents to total agent pool (0.0 to 1.0)"
-    },
-    "supervisor_latency_ms": {
-      "type": "integer",
-      "minimum": 0,
-      "description": "P95 latency (ms) for supervisor to assign tasks from queue"
-    },
-    "task_throughput_per_minute": {
-      "type": "number",
-      "minimum": 0,
-      "description": "Tasks completed per minute in current topology"
-    },
-    "coordination_overhead_ratio": {
-      "type": "number",
-      "minimum": 0,
-      "description": "Coordination messages per completed task (lower is better)"
-    },
-    "collection_window_seconds": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Duration (seconds) over which this metric sample was collected"
-    }
+    "timestamp": { "type": "string" },
+    "agent_id": { "type": "string" },
+    "metric_type": { "type": "string" }
   },
+  "required": ["timestamp", "agent_id"],
   "additionalProperties": false
 }
