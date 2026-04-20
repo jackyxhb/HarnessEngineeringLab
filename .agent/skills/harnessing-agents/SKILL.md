@@ -48,15 +48,17 @@ All framework knowledge is organized as a **Directed Acyclic Graph (DAG)**. Insi
 
 Route by keyword in the user's input. If no keyword matches, **default to Mode 1 (Full Audit)**.
 
-| Keyword       | Mode           | What It Does                                                      | Time      |
-| ------------- | -------------- | ----------------------------------------------------------------- | --------- |
-| **`full`**    | Full Audit     | 6-phase lifecycle: Scope → Gaps → Score → Plan → Execute → Verify | 30–60 min |
-| **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain                     | ~2 min    |
+| Keyword       | Mode           | What It Does                                                                         | Time      |
+| ------------- | -------------- | ------------------------------------------------------------------------------------ | --------- |
+| **`full`**    | Full Audit     | Pre-flight scope + 5-phase mechanical audit cycle: Gaps → Score → Plan → Execute → Verify | 30–60 min |
+| **`feature`** | Feature Lookup | Look up a specific feature's full L1→L5 chain                                        | ~2 min    |
 
 ### Mode 1: Full Audit — keyword: `full` (DEFAULT)
 
-Complete 6-phase lifecycle: Scope → Gap Analysis → Scoring → Planning → Execution → Verification.
+Complete the 5-phase mechanical audit cycle: Gap Analysis → Scoring → Planning → Execution → Verification.
 
+- **Phase 0 (pre-flight scope):** Informational setup that precedes the mechanical cycle.
+- **Optional feedback loop:** Skill and knowledge sync happens only when the audit discovers reusable new patterns or framework gaps.
 - **Anti-termination rule:** Phase 0 scoping is informational only. Never terminate, skip, or reduce the audit based on project type, tech stack, or scale. If this skill is executing, agents are involved and all phases apply.
 - **Reference:** `references/he-full-audit.md`
 - **Navigation:** For each gap, read the specific `framework/features/P*.md` file to access L4 actions, L4 prevention, and L5 improvement policies.
@@ -137,6 +139,7 @@ These are consumed during a full audit — users do not need to invoke them dire
 To prevent hallucination and token-bloat, this skill strictly enforces LLM Action Space Optimization principles:
 
 - **Progressive Context Loading:** Do not pre-read all feature files. Read the index first, then load only the specific feature files needed for the current task.
+- **Line-count target:** Keep mandatory reading to about 200 lines or less per action path whenever possible.
 - **Trajectory Reduction:** After completing any major phase (e.g. Inspect), summarize findings into the requested template, then flush raw file contents from active working memory before proceeding.
 - **ReAct Formatting:** When analyzing gaps, wrap logical deductions in `<scratchpad>` or `<thought>` tags before generating final template outputs.
 
@@ -166,7 +169,9 @@ When auditing or remediating harness gaps, rely strictly on **mechanical enforce
 
 Templates define the format; output files are written to `.harness/` in the target project.
 
+- `templates/HE-SCOPE.md`: Pre-flight scope and maturity assessment → output: `.harness/HE-SCOPE.md`
 - `templates/HE-CLUES.md`: Clue collection format → output: `.harness/HE-CLUES.md`
+- `templates/HE-PRIORITIES.md`: Gap scoring and prioritization → output: `.harness/HE-PRIORITIES.md`
 - `templates/HE-IMPLEMENTATION-PLAN.md`: Tiered remediation plan → output: `.harness/HE-IMPLEMENTATION-PLAN.md`
 - `templates/HE-CHANGE-SUMMARY.md`: Per-agent change summary → output: `.harness/HE-CHANGE-SUMMARY.md`
 - `templates/HE-ASSESSMENT-REPORT.md`: Before/after milestone report → output: `.harness/HE-ASSESSMENT-REPORT.md`

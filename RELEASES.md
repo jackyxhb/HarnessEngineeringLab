@@ -21,6 +21,17 @@ If any item fails, resolve before tagging the release.
 
 ## Unreleased
 
+### Skill Output Template Completion & Audit Alignment
+
+**Summary:** Completed the missing Mode 1 skill templates and aligned the live-linked skill contract with the EP-12 audit expectations for phase structure and progressive context loading.
+
+**Changes:**
+- **Template completion:** Added `.agent/skills/harnessing-agents/templates/HE-SCOPE.md` for Phase 0 pre-flight assessments and `.agent/skills/harnessing-agents/templates/HE-PRIORITIES.md` for Phase 2 scoring and prioritization output.
+- **Mode contract clarification:** Updated `.agent/skills/harnessing-agents/SKILL.md` to describe the full audit as a 5-phase mechanical cycle with Phase 0 as pre-flight scope and Phase 6 as an optional feedback loop.
+- **Context budget guidance:** Added an explicit ~200-line mandatory-read target to the skill's context-loading rules and listed the two new templates under the core template catalog for discoverability.
+
+**Downstream Impact:** Linked downstream users of the live skill now get explicit template-backed outputs for scope and prioritization plus clearer execution rules for audit pacing and context discipline.
+
 ### Prevention Rule Formatting & L2 Content Expansion
 
 **Summary:** Fixed prevention rule formatting inconsistencies and expanded sparse L2 goal descriptions across 5 features to improve clarity and operational context.

@@ -1,51 +1,18 @@
 {
-  "timestamp": "2026-04-16T15:03:13.645Z",
-  "total_actions": 13,
+  "timestamp": "2026-04-20T12:26:29.736Z",
+  "total_actions": 16,
   "unique_agents": 1,
   "actions_by_type": {
-    "structural-audit": 13
+    "structural-audit": 16
   },
   "results_by_type": {
-    "pass": 12,
+    "pass": 15,
     "fail": 1
   },
-  "average_duration_ms": 418,
+  "average_duration_ms": 481,
   "p95_duration_ms": 801,
-  "error_rate": 0.07692307692307693,
+  "error_rate": 0.0625,
   "recent_actions": [
-    {
-      "timestamp": "2026-04-13T06:18:53Z",
-      "agent_id": "harness-audit",
-      "action": "structural-audit",
-      "target": "HELab",
-      "result": "pass",
-      "duration_ms": 0,
-      "pass": 32,
-      "warn": 0,
-      "fail": 0
-    },
-    {
-      "timestamp": "2026-04-13T12:38:10Z",
-      "agent_id": "harness-audit",
-      "action": "structural-audit",
-      "target": "HELab",
-      "result": "pass",
-      "duration_ms": 0,
-      "pass": 32,
-      "warn": 0,
-      "fail": 0
-    },
-    {
-      "timestamp": "2026-04-13T13:38:15Z",
-      "agent_id": "harness-audit",
-      "action": "structural-audit",
-      "target": "HELab",
-      "result": "pass",
-      "duration_ms": 589,
-      "pass": 41,
-      "warn": 0,
-      "fail": 0
-    },
     {
       "timestamp": "2026-04-13T13:43:54Z",
       "agent_id": "harness-audit",
@@ -122,6 +89,39 @@
       "pass": 49,
       "warn": 0,
       "fail": 0
+    },
+    {
+      "timestamp": "2026-04-16T15:17:08Z",
+      "agent_id": "harness-audit",
+      "action": "structural-audit",
+      "target": "HELab",
+      "result": "pass",
+      "duration_ms": 747,
+      "pass": 49,
+      "warn": 0,
+      "fail": 0
+    },
+    {
+      "timestamp": "2026-04-20T12:23:19Z",
+      "agent_id": "harness-audit",
+      "action": "structural-audit",
+      "target": "HELab",
+      "result": "pass",
+      "duration_ms": 756,
+      "pass": 49,
+      "warn": 0,
+      "fail": 0
+    },
+    {
+      "timestamp": "2026-04-20T12:26:29Z",
+      "agent_id": "harness-audit",
+      "action": "structural-audit",
+      "target": "HELab",
+      "result": "pass",
+      "duration_ms": 758,
+      "pass": 49,
+      "warn": 0,
+      "fail": 0
     }
   ],
   "escalation_summary": {
@@ -147,17 +147,17 @@
     "standards_present": true,
     "schema_present": true,
     "registry_present": true,
-    "registry_age_minutes": 22,
+    "registry_age_minutes": 5599,
     "expected_feature_count": 9,
-    "defined_feature_count": 29,
-    "total_metrics_defined": 67,
+    "defined_feature_count": 32,
+    "total_metrics_defined": 70,
     "missing_feature_bindings": [],
     "metrics_by_status": {
-      "declared-unmounted": 50,
+      "declared-unmounted": 53,
       "implemented": 10,
       "proxy-mounted": 7
     }
   },
-  "summary": "Processed 13 actions with 7.7% error rate",
+  "summary": "Processed 16 actions with 6.3% error rate",
   "alerts": []
 }

@@ -1,18 +1,18 @@
 # Agent Observability Dashboard
 
-Generated from [.harness/observation-report.json](.harness/observation-report.json) at 2026-04-16T15:03:13.645Z.
+Generated from [.harness/observation-report.json](.harness/observation-report.json) at 2026-04-20T12:26:29.736Z.
 
 ## Current Metrics
 
-- Total Actions: 13
+- Total Actions: 16
 - Unique Agents: 1
-- Error Rate: 7.7%
-- Average Duration: 418 ms
+- Error Rate: 6.3%
+- Average Duration: 481 ms
 - 95th Percentile Duration: 801 ms
 
 ## Result Breakdown
 
-- pass: 12
+- pass: 15
 - fail: 1
 
 ## Task State
@@ -27,9 +27,6 @@ Generated from [.harness/observation-report.json](.harness/observation-report.js
 
 ## Recent Activity
 
-- 2026-04-13T06:18:53Z | structural-audit | pass | HELab
-- 2026-04-13T12:38:10Z | structural-audit | pass | HELab
-- 2026-04-13T13:38:15Z | structural-audit | pass | HELab
 - 2026-04-13T13:43:54Z | structural-audit | pass | HELab
 - 2026-04-14T11:32:07Z | structural-audit | pass | HELab
 - 2026-04-16T14:59:16Z | structural-audit | pass | HELab
@@ -37,6 +34,9 @@ Generated from [.harness/observation-report.json](.harness/observation-report.js
 - 2026-04-16T15:00:02Z | structural-audit | pass | HELab
 - 2026-04-16T15:02:52Z | structural-audit | pass | HELab
 - 2026-04-16T15:03:13Z | structural-audit | pass | HELab
+- 2026-04-16T15:17:08Z | structural-audit | pass | HELab
+- 2026-04-20T12:23:19Z | structural-audit | pass | HELab
+- 2026-04-20T12:26:29Z | structural-audit | pass | HELab
 
 ## Alerts
 
@@ -54,10 +54,10 @@ Generated from [.harness/observation-report.json](.harness/observation-report.js
 
 ## Measurement Health
 
-- Bound Features: 29/9
-- Total Metrics Defined: 67
-- Registry Age: 22 minute(s)
+- Bound Features: 32/9
+- Total Metrics Defined: 70
+- Registry Age: 5599 minute(s)
 - Missing Bindings: none
-- declared-unmounted: 50
+- declared-unmounted: 53
 - implemented: 10
 - proxy-mounted: 7

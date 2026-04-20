@@ -11,6 +11,25 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-21-006",
+      "date": "2026-04-21",
+      "status": "approved",
+      "generator": "GitHub Copilot",
+      "reviewer": "Explore subagent",
+      "review_type": "agent",
+      "requirement_ids": ["HE-R004", "HE-R006", "HE-R007"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/SKILL.md",
+        ".agent/skills/harnessing-agents/templates/HE-SCOPE.md",
+        ".agent/skills/harnessing-agents/templates/HE-PRIORITIES.md",
+        ".harness/SKILL-AUDIT-2026-04-17.md",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Completed the missing Mode 1 skill output templates for Phase 0 and Phase 2, then aligned the live-linked skill contract with the EP-12 audit by clarifying the 5-phase mechanical cycle, marking the knowledge-sync step as optional, and adding the explicit context-loading line budget plus template catalog references.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-17-005",
       "date": "2026-04-17",
       "status": "approved",
