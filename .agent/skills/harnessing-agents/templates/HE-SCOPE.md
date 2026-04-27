@@ -12,18 +12,21 @@
 **Project Name:** _(e.g., "DataPipeline Orchestrator")_
 
 **Project Type:** _(Select one)_
+
 - [ ] Framework/Library
 - [ ] Application (Standalone/Web)
 - [ ] Service/Microservice
 - [ ] CLI Tool
 - [ ] Agent/Automation Platform
-- [ ] Other: _______________
+- [ ] Other: ******\_\_\_******
 
 **Scale Classification:** _(Select one)_
+
 - [ ] **SAS** — Single-Agent System (one agent, sequential or minimal coordination)
 - [ ] **MAS** — Multi-Agent System (multiple agents, distributed coordination, messaging)
 
 **Tech Stack:**
+
 - **Primary Language:** _(e.g., Python, TypeScript, Go, Rust)_
 - **Agent Framework/Runtime:** _(e.g., Claude SDK, LangChain, LlamaIndex, Custom)_
 - **Key Dependencies:** _(e.g., FastAPI, PostgreSQL, Redis, Kubernetes)_
@@ -34,28 +37,29 @@
 ## 2. Quick Feature Scan (L2 Targeted Enhancement Presence)
 
 **Instructions:** Walk `framework/HE Index.md` and check each feature's L2 targeted enhancement for presence in this project. Mark presence as:
+
 - **Y** = L2 enhancement is implemented/present
 - **N** = L2 enhancement is absent
 - **Partial** = Partial/incomplete implementation of L2 enhancement
 
-| Feature | Name | L2 Target | Present? | Notes |
-|---------|------|-----------|----------|-------|
-| P0-1 | Principle Alignment | Agent design follows stated engineering principles | _____ | |
-| P0-2 | Metadata Discipline | Consistent harness metadata (versioning, ownership) | _____ | |
-| P0-3 | Routing & Orchestration | Multi-agent routing and task dispatch | _____ | |
-| P0-4 | Workflow Phases | Explicit phase management (e.g., Pre/Post hooks) | _____ | |
-| P1-1 | Goal Clarity | Agent goals explicitly defined and tracked | _____ | |
-| P1-2 | Safety Boundaries | Injection, prompt, and capability boundaries present | _____ | |
-| P1-3 | Action Constraints | Explicit permission/prohibition framework | _____ | |
-| P1-4 | Tool Auditing | Discovered tools audited for safety & capability | _____ | |
-| P2-1 | Context Loading | State/context passed explicitly to agents | _____ | |
-| P2-2 | Error Recovery | Defined fallback & recovery mechanisms | _____ | |
-| P2-3 | Execution Isolation | Agent execution sandboxed/isolated | _____ | |
-| P2-4 | Decision Transparency | Agent reasoning/decisions logged & inspectable | _____ | |
-| P3-1 | State Awareness | Agent maintains & validates internal state | _____ | |
-| P3-2 | Deadlock Prevention | Mechanisms prevent circular waits/deadlock | _____ | |
-| P3-3 | Graceful Degradation | Fallback behavior on cascade failure | _____ | |
-| P3-4 | Observability | Traces, metrics, & dashboards in production | _____ | |
+| Feature | Name                    | L2 Target                                            | Present? | Notes |
+| ------- | ----------------------- | ---------------------------------------------------- | -------- | ----- |
+| P0-1    | Principle Alignment     | Agent design follows stated engineering principles   | **\_**   |       |
+| P0-2    | Metadata Discipline     | Consistent harness metadata (versioning, ownership)  | **\_**   |       |
+| P0-3    | Routing & Orchestration | Multi-agent routing and task dispatch                | **\_**   |       |
+| P0-4    | Workflow Phases         | Explicit phase management (e.g., Pre/Post hooks)     | **\_**   |       |
+| P1-1    | Goal Clarity            | Agent goals explicitly defined and tracked           | **\_**   |       |
+| P1-2    | Safety Boundaries       | Injection, prompt, and capability boundaries present | **\_**   |       |
+| P1-3    | Action Constraints      | Explicit permission/prohibition framework            | **\_**   |       |
+| P1-4    | Tool Auditing           | Discovered tools audited for safety & capability     | **\_**   |       |
+| P2-1    | Context Loading         | State/context passed explicitly to agents            | **\_**   |       |
+| P2-2    | Error Recovery          | Defined fallback & recovery mechanisms               | **\_**   |       |
+| P2-3    | Execution Isolation     | Agent execution sandboxed/isolated                   | **\_**   |       |
+| P2-4    | Decision Transparency   | Agent reasoning/decisions logged & inspectable       | **\_**   |       |
+| P3-1    | State Awareness         | Agent maintains & validates internal state           | **\_**   |       |
+| P3-2    | Deadlock Prevention     | Mechanisms prevent circular waits/deadlock           | **\_**   |       |
+| P3-3    | Graceful Degradation    | Fallback behavior on cascade failure                 | **\_**   |       |
+| P3-4    | Observability           | Traces, metrics, & dashboards in production          | **\_**   |       |
 
 ```text
 Add additional feature rows as needed. Reference the HE Index.md file header for
@@ -88,7 +92,7 @@ canonical feature file paths (e.g., P0-1 resolves to framework/features/P0-01.md
   - Production-grade: All 32 features implemented; automated failure detection, graceful degradation, full observability.
   - Example: Harness certification pathway complete; continuous audit integration.
 
-**Current Assessment:** **Level ___**
+**Current Assessment:** **Level \_\_\_**
 
 **Justification:**
 _(Briefly explain why this level was chosen. Reference key observations from the feature scan above.)_
@@ -107,13 +111,13 @@ no metadata discipline for ownership tracking, and tool auditing is informal.
 
 **Reference:** `references/he-harness-injection-protocol-draft.md`
 
-| Context Type | Present? | Risk Level | Notes |
-|--------------|----------|-----------|-------|
-| **Planning Context** | Yes/No | Low/Medium/High | _(New features, design docs, roadmap edits)_ |
-| **Live Operational** | Yes/No | Low/Medium/High | _(Active agent processes, logs, state)_ |
-| **Contract/Interfaces** | Yes/No | Low/Medium/High | _(API signatures, tool bindings, protocols)_ |
-| **Verification/Testing** | Yes/No | Low/Medium/High | _(Test suites, CI/CD pipelines, validation logic)_ |
-| **Volatile Touch-Points** | Yes/No | Low/Medium/High | _(Frequently modified files, hot-reload code, config)_ |
+| Context Type              | Present? | Risk Level      | Notes                                                  |
+| ------------------------- | -------- | --------------- | ------------------------------------------------------ |
+| **Planning Context**      | Yes/No   | Low/Medium/High | _(New features, design docs, roadmap edits)_           |
+| **Live Operational**      | Yes/No   | Low/Medium/High | _(Active agent processes, logs, state)_                |
+| **Contract/Interfaces**   | Yes/No   | Low/Medium/High | _(API signatures, tool bindings, protocols)_           |
+| **Verification/Testing**  | Yes/No   | Low/Medium/High | _(Test suites, CI/CD pipelines, validation logic)_     |
+| **Volatile Touch-Points** | Yes/No   | Low/Medium/High | _(Frequently modified files, hot-reload code, config)_ |
 
 **Injection Risk Summary:**
 _(Identify the highest-risk areas where harness edits should be applied cautiously or staged incrementally.)_
@@ -130,7 +134,7 @@ audit will recommend new safety boundaries that must be backward-compatible.
 
 ## 5. Audit Metadata
 
-**Audit Date:** _______________
+**Audit Date:** ******\_\_\_******
 
 **Auditor/Agent:** _(Name or identifier of agent conducting audit)_
 

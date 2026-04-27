@@ -130,6 +130,7 @@ HELab enforces framework quality through **three independent tiers** of validati
 **Tools:** `npm run smoke` (he-lint.js with structural checks)
 
 **Checks:**
+
 - Feature files exist (P0-01.md through P3-04.md)
 - Required sections present (L2, L3, L4, L5)
 - JSON improvement_policies is valid
@@ -152,6 +153,7 @@ HELab enforces framework quality through **three independent tiers** of validati
 **Tools:** `npm run audit` (comprehensive quality checks)
 
 **Checks:**
+
 - No duplicate sections (L5, L4, etc.)
 - No duplicate declarations (Binding Keys, etc.)
 - All declared binding keys exist in registry
@@ -175,6 +177,7 @@ HELab enforces framework quality through **three independent tiers** of validati
 **Tools:** REVIEWS.md (P2-3 separation), RELEASES.md (impact notes), AGENTS.md (policy adherence)
 
 **Checks:**
+
 - Every review-required surface has distinct generator/reviewer identities (P2-3)
 - RELEASES.md documents all downstream impacts for target projects
 - All dependency changes are documented in Dependencies section
@@ -217,11 +220,13 @@ Each tier is independently testable and documentable.
 **Purpose:** Track framework quality across three tiers (structural, quality, governance). Updated after each audit.
 
 **Update Cadence:**
+
 - After every release
 - After quarterly coherency audits
 - When Tier 2 audit finds issues
 
 **Key Metrics:**
+
 - Tier 1 Structural: `checks_passed`, `checks_failed`
 - Tier 2 Quality: `duplication_incidents`, `registry_gaps`, `sparse_l2_sections`, `formatting_violations`
 - Tier 3 Governance: `p2_3_violations`, `review_coverage_complete`, `downstream_impact_documented`
@@ -231,6 +236,7 @@ Each tier is independently testable and documentable.
 
 ```markdown
 ### Framework Health (2026-04-17)
+
 - Tier 1 (Structural): ✓ Passing
 - Tier 2 (Quality): ✓ Passing (0 issues)
 - Tier 3 (Governance): ✓ Passing
@@ -238,6 +244,7 @@ Each tier is independently testable and documentable.
 ```
 
 **Use cases:**
+
 - Track regression trends over quarters
 - Identify which tier is most problematic
 - Prove framework health to downstream consumers
@@ -318,15 +325,17 @@ To self-host **P2-3 AI Auditors & Collaboration Channels**, the repository maint
 All available tools and scripts. Undeclared tools do not exist for agents — if a tool is useful but not listed, add it here rather than using it undocumented.
 
 - `npm run smoke` — Fast HE consistency check (he-lint.js only). Run before any commit to verify feature IDs and pillar labels. Target runtime < 2s.
+- `npm run smoke:strict` — Strict HE consistency check (he-lint.js with working-tree and untracked-file scope). Run before push/review to mirror CI-style gating.
 - `npm run sync:skill-version` — Copy the canonical HELab version from `package.json` into `.agent/skills/harnessing-agents/SKILL.md`.
 - `npm run sync:skill-framework` — Copy the canonical root `framework/` into `.agent/skills/harnessing-agents/framework/` so the shipped skill runtime stays self-contained.
-- `npm run check` — Full quality gate: markdownlint + cspell + he-lint.js. Equivalent to what CI runs. Use before pushing.
+- `npm run check` — Full quality gate: markdownlint + cspell + strict he-lint.js. Equivalent to what CI runs. Use before pushing.
 - `npm run ci` — Alias for `npm run check`. Use in automated contexts.
 - `npm run audit` — Structural integrity audit: verifies the active harness files exist, workflows are registered, tmp/ is clean, and anchor count is healthy. Exit 0 = PASS.
 - `npm run observe` — Rebuild `.harness/observation-report.json` and `.harness/dashboard.md` from the current JSONL logs and task-state files.
 - `npm run task-state -- <command>` — Manage `.harness/task-state.json` using the canonical state utility (`start`, `heartbeat`, `step`, `fail`, `complete`, `reset`, `show`).
 - `npm run exit-check -- [--mode=audit]` — Run the Ralph Loops exit interceptor manually to detect incomplete or stale tasks and emit reinjection/escalation events.
-- `node scripts/he-lint.js` — Canonical HE consistency checker for the active framework surface. Runs on `git commit` (pre-commit hook) and in CI on every push/PR.
+- `node scripts/he-lint.js` — Canonical HE consistency checker for the active framework surface (default staged-change scope for local ergonomics).
+- `node scripts/he-lint.js --include-working-tree` — Canonical strict mode used by CI/release checks (includes working tree and untracked files).
 - `/reconcile` — Manual entropy audit workflow. Run when content drift is suspected or after large structural changes. Requires agent invocation.
 - `/review-all-features` — Canonical feature assessment workflow. Run when you need a full or pillar-scoped assessment of the framework feature set using isolated subagent reviews plus one aggregate report.
 - `/polish` — Feature polishing + addition workflow. Use when adding or upgrading framework features.

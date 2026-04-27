@@ -13,6 +13,7 @@ Priority Score = (5 - Composite Score) × Impact Weight × Cascade Length
 ```
 
 **Key Definitions:**
+
 - **Composite Score:** Average of the 6 dimension scores (0–5 scale)
 - **Impact Weight:** Count of downstream features that explicitly depend on this feature (per `framework/HE Index.md`). Weight = 1 if no downstream dependencies, else Weight = Dependency Count
 - **Cascade Length:** Severity of failure propagation. Score: 1 (localized), 2 (moderate pipeline), 3 (systemic/> 3 systems fail simultaneously)
@@ -124,6 +125,7 @@ Tier 3 (Long-term):  [N] gaps
 **Priority Score:** 4.2 (Composite: 2.5 → (5 - 2.5) = 2.5 × Impact Weight: 3 × Cascade: 1.4 ≈ 4.2)
 **Composite Score:** 2.5 (Maturity: 2, Effectiveness: 2, Risk: 3 plus 1 boost, Scalability: 2, Cost: 3, Human Role: 3)
 **Dimensions:**
+
 - Maturity: 2 (Basic — test suite exists but no gate)
 - Effectiveness: 2 (Basic — tests run but not enforced)
 - Risk: 4 (Reliable — with boost from active "Cascading Hallucinations" failure)
@@ -137,9 +139,10 @@ Tier 3 (Long-term):  [N] gaps
 **Severity:** Critical
 **Remediation Level:** Medium
 **Description:**
-  Verification gates are missing at task-completion boundaries. Agents can finalize work without passing test suites, allowing undetected errors to propagate into downstream tasks. This directly enables the "Cascading Hallucinations" anti-pattern. Immediate fix: add a pre-commit verification hook that fails task finalization if tests do not pass.
+Verification gates are missing at task-completion boundaries. Agents can finalize work without passing test suites, allowing undetected errors to propagate into downstream tasks. This directly enables the "Cascading Hallucinations" anti-pattern. Immediate fix: add a pre-commit verification hook that fails task finalization if tests do not pass.
 
 **Recommended Next Steps:**
+
 1. Implement `TaskCompleted` hook that returns non-zero exit code when verification fails
 2. Gate task-state transitions to prevent completion when verification is unmet
 3. Document the verification contract in P0-3 enforcement binding
@@ -161,6 +164,7 @@ Tier 3 (Long-term):  [N] gaps
 **Priority Score:** 2.8 (Composite: 2.2 → (5 - 2.2) = 2.8 × Impact Weight: 2 × Cascade: 1.0 ≈ 2.8)
 **Composite Score:** 2.2 (Maturity: 2, Effectiveness: 2, Risk: 2, Scalability: 3, Cost: 2, Human Role: 2)
 **Dimensions:**
+
 - Maturity: 2 (Basic — branching exists but no structured cognitive memory)
 - Effectiveness: 2 (Basic — branches created ad-hoc, not systematically)
 - Risk: 2 (Partial — no enforcement that complex tasks use branching)
@@ -174,9 +178,10 @@ Tier 3 (Long-term):  [N] gaps
 **Severity:** Important
 **Remediation Level:** Medium
 **Description:**
-  Complex tasks are not systematically partitioned into isolated sub-task branches. This prevents building cognitive memory through explicit commit history. While branching is available, there is no structural enforcement or templates to guide agents when to use the `/cognitive-branch` workflow. Mid-term fix: document branching criteria in AGENTS.md, create example templates for complexity classification.
+Complex tasks are not systematically partitioned into isolated sub-task branches. This prevents building cognitive memory through explicit commit history. While branching is available, there is no structural enforcement or templates to guide agents when to use the `/cognitive-branch` workflow. Mid-term fix: document branching criteria in AGENTS.md, create example templates for complexity classification.
 
 **Recommended Next Steps:**
+
 1. Define criteria in AGENTS.md for when `/cognitive-branch` is mandatory (3+ steps)
 2. Add pre-branch checklist template to PLANS.md
 3. Update scaffolding to suggest `/cognitive-branch` during task initiation
@@ -198,6 +203,7 @@ Tier 3 (Long-term):  [N] gaps
 **Priority Score:** 1.1 (Composite: 3.5 → (5 - 3.5) = 1.5 × Impact Weight: 1 × Cascade: 1.0 ≈ 1.1)
 **Composite Score:** 3.5 (Maturity: 4, Effectiveness: 3, Risk: 3, Scalability: 4, Cost: 3, Human Role: 3)
 **Dimensions:**
+
 - Maturity: 4 (Optimized — cron-based cleanups run reliably)
 - Effectiveness: 3 (Functional — scheduled cleanup executes as planned)
 - Risk: 3 (Reliable — prevents manual cleanup bottleneck)
@@ -211,9 +217,10 @@ Tier 3 (Long-term):  [N] gaps
 **Severity:** Enhancement
 **Remediation Level:** Light
 **Description:**
-  Scheduled cleanup infrastructure is functional but not monitored for drift. Cleanup policies exist but are not automatically adapted based on accumulating entropy. Long-term improvement: add observability hooks to detect cleanup policy degradation and suggest refinements.
+Scheduled cleanup infrastructure is functional but not monitored for drift. Cleanup policies exist but are not automatically adapted based on accumulating entropy. Long-term improvement: add observability hooks to detect cleanup policy degradation and suggest refinements.
 
 **Recommended Next Steps:**
+
 1. Add entropy-trend analysis to cleanup reports
 2. Create a simple monitoring dashboard for cleanup success rate
 3. Document threshold for policy refresh (quarterly vs. annually)
@@ -302,6 +309,7 @@ This is a detailed example showing how a complete gap entry should be structured
 **Composite Score:** 2.1
 
 **Dimensions:**
+
 - Maturity: 1 (Ad-hoc — manual task-state tracking, no structured reinjection loop)
 - Effectiveness: 2 (Basic — some tasks resubmitted on failure, but not mechanical)
 - Risk: 4 (Reliable — with boost for active "Premature Task Completion" prevention failure) [3 + 1 boost]
@@ -320,9 +328,10 @@ This is a detailed example showing how a complete gap entry should be structured
 **Remediation Level:** Heavy
 
 **Description:**
-  Task completion verification is missing mechanical enforcement. Agents can mark tasks as complete without checking all planned steps (from todo list, plan entry, or original objective). This directly enables the "Premature Task Completion" anti-pattern (EP-14 violation). Currently there is no `.harness/task-state.json` integration, no reinjection loop, and no escalation trigger. Heavy fix: implement the Ralph Loops infrastructure with mechanical phase gates, state persistence, and bounded reinjection.
+Task completion verification is missing mechanical enforcement. Agents can mark tasks as complete without checking all planned steps (from todo list, plan entry, or original objective). This directly enables the "Premature Task Completion" anti-pattern (EP-14 violation). Currently there is no `.harness/task-state.json` integration, no reinjection loop, and no escalation trigger. Heavy fix: implement the Ralph Loops infrastructure with mechanical phase gates, state persistence, and bounded reinjection.
 
 **Recommended Next Steps (Immediate):**
+
 1. Implement `.harness/task-state.json` schema and `npm run task-state` utility
 2. Add `task-state.schema.json` to `.harness/` with canonical structure
 3. Create pre-commit hook that blocks completion when task-state shows unfinished steps
@@ -336,6 +345,7 @@ This is a detailed example showing how a complete gap entry should be structured
 If the audit included cross-cutting perspective analysis (from `framework/cross-cutting/HE Cross Cutting Perspectives.md`), note any features whose gaps are amplified by systemic weaknesses:
 
 **Example:**
+
 - **Human Role Optimization Weakness:** P0-4 Ralph Loops gap is amplified by the lack of P1-11 Socratic Questioning — agents cannot ask for clarification on ambiguous task objectives, leading to failed reinjections.
 - **Agent Legibility Weakness:** P0-3 Verification gap is amplified by poor boundary definition in P2-1 Linters — agents cannot easily identify what to test.
 

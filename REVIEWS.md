@@ -11,6 +11,30 @@ Canonical machine-readable review ledger for HELab's review-required surfaces.
 {
   "reviews": [
     {
+      "id": "HE-REV-2026-04-27-007",
+      "date": "2026-04-27",
+      "status": "approved",
+      "generator": "Claude Opus 4.6 (CCP Agent)",
+      "reviewer": "Jack Xiao (Human)",
+      "review_type": "human",
+      "requirement_ids": ["HE-R006", "HE-R007"],
+      "scope_paths": [
+        ".agent/skills/harnessing-agents/templates/HE-PRIORITIES.md",
+        ".agent/skills/harnessing-agents/templates/HE-SCOPE.md",
+        ".harness/SKILL-AUDIT-2026-04-17.md",
+        "AGENTS.md",
+        "README.md",
+        "scripts/he-lint.js",
+        "scripts/task-state.js",
+        "scripts/framework-audit.js",
+        "scripts/generate-observation-report.js",
+        "RELEASES.md",
+        "REVIEWS.md"
+      ],
+      "change_summary": "Task-state completion guard, CI strict mode, and formatting cleanup: (1) Hardened task-state.js complete command with completed_steps >= expected_steps validation and --force override with audit trail; (2) Switched CI workflows to --include-working-tree strict mode; (3) Added smoke:strict script alias; (4) Expanded AGENTS.md governance tiers documentation; (5) Added README.md framework health section; (6) Normalized quote style and markdown table alignment across scripts and skill templates.",
+      "findings": []
+    },
+    {
       "id": "HE-REV-2026-04-21-006",
       "date": "2026-04-21",
       "status": "approved",

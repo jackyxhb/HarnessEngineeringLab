@@ -349,7 +349,10 @@ const PREVENTION_BINDING_FEATURES = {
   },
   "P3-4": {
     file: "framework/features/P3-04.md",
-    ruleIds: ["P3-4-concept-forking-prevention", "P3-4-narrative-consolidation-records"],
+    ruleIds: [
+      "P3-4-concept-forking-prevention",
+      "P3-4-narrative-consolidation-records",
+    ],
   },
 };
 
@@ -1365,8 +1368,8 @@ function validateNoDuplicateSections() {
     const lines = content.split("\n");
 
     // Check for duplicate L5 Improvement Policies sections
-    const l5Count = lines.filter(
-      (line) => line.includes("## L5: Improvement Policies"),
+    const l5Count = lines.filter((line) =>
+      line.includes("## L5: Improvement Policies"),
     ).length;
     if (l5Count > 1) {
       reportError(
@@ -1378,11 +1381,11 @@ function validateNoDuplicateSections() {
     }
 
     // Check for duplicate L4 sections
-    const l4ConcreteCount = lines.filter(
-      (line) => line.includes("## L4: Concrete Actions"),
+    const l4ConcreteCount = lines.filter((line) =>
+      line.includes("## L4: Concrete Actions"),
     ).length;
-    const l4PreventionCount = lines.filter(
-      (line) => line.includes("## L4: Prevention"),
+    const l4PreventionCount = lines.filter((line) =>
+      line.includes("## L4: Prevention"),
     ).length;
 
     if (l4ConcreteCount > 1) {
@@ -1429,8 +1432,8 @@ function validateNoDuplicateDeclarations() {
     }
 
     // Check for duplicate Enforcement Bindings headers
-    const enforcementCount = lines.filter(
-      (line) => line.includes("## Enforcement Bindings"),
+    const enforcementCount = lines.filter((line) =>
+      line.includes("## Enforcement Bindings"),
     ).length;
     if (enforcementCount > 1) {
       reportError(
@@ -1453,9 +1456,7 @@ function validateMeasurementRegistry() {
 
   let measurementDefs;
   try {
-    measurementDefs = JSON.parse(
-      fs.readFileSync(measurementDefPath, "utf-8"),
-    );
+    measurementDefs = JSON.parse(fs.readFileSync(measurementDefPath, "utf-8"));
   } catch (error) {
     reportError(
       measurementDefPath,
@@ -1724,13 +1725,13 @@ function scopeEntryMatchesPath(scopeEntry, filePath) {
   return filePath === normalizedScope;
 }
 
-function getGitChangedFiles() {
+function getGitChangedFiles({ includeWorkingTree = false } = {}) {
   const changed = new Set();
-  const commands = [
-    "git diff --name-only HEAD",
-    "git diff --cached --name-only HEAD",
-    "git diff --name-only",
-  ];
+  const commands = ["git diff --cached --name-only HEAD"];
+
+  if (includeWorkingTree) {
+    commands.push("git diff --name-only HEAD", "git diff --name-only");
+  }
 
   commands.forEach((command) => {
     try {
@@ -1749,19 +1750,21 @@ function getGitChangedFiles() {
     }
   });
 
-  try {
-    const untracked = execSync("git ls-files --others --exclude-standard", {
-      cwd: repoRoot,
-      encoding: "utf-8",
-      stdio: ["ignore", "pipe", "ignore"],
-    });
-    untracked
-      .split("\n")
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .forEach((file) => changed.add(file));
-  } catch {
-    // Ignore git ls-files failures and fall back to tracked changes only.
+  if (includeWorkingTree) {
+    try {
+      const untracked = execSync("git ls-files --others --exclude-standard", {
+        cwd: repoRoot,
+        encoding: "utf-8",
+        stdio: ["ignore", "pipe", "ignore"],
+      });
+      untracked
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .forEach((file) => changed.add(file));
+    } catch {
+      // Ignore git ls-files failures and fall back to tracked changes only.
+    }
   }
 
   return Array.from(changed);
@@ -1790,13 +1793,13 @@ function validateReleaseNotesSurface() {
   }
 }
 
-function validateDownstreamImpactNotes(explicitFiles) {
+function validateDownstreamImpactNotes(explicitFiles, options = {}) {
   const candidateFiles =
     explicitFiles.length > 0
       ? explicitFiles.map((file) =>
           path.relative(repoRoot, path.resolve(file)).split(path.sep).join("/"),
         )
-      : getGitChangedFiles();
+      : getGitChangedFiles(options);
 
   const downstreamPrefixes = ["framework/", ".agent/skills/harnessing-agents/"];
   const hasDownstreamChange = candidateFiles.some((file) =>
@@ -2128,13 +2131,13 @@ function validateReviewLedger() {
   });
 }
 
-function validateIndependentReviewCoverage(explicitFiles) {
+function validateIndependentReviewCoverage(explicitFiles, options = {}) {
   const candidateFiles =
     explicitFiles.length > 0
       ? explicitFiles.map((file) =>
           normalizeRelativePath(path.relative(repoRoot, path.resolve(file))),
         )
-      : getGitChangedFiles().map(normalizeRelativePath);
+      : getGitChangedFiles(options).map(normalizeRelativePath);
 
   const reviewRequiredFiles = candidateFiles.filter(isReviewRequiredPath);
   if (reviewRequiredFiles.length === 0) return;
@@ -2569,8 +2572,10 @@ function run() {
 
   const args = process.argv.slice(2).filter((a) => a !== "--all");
   const allMode = process.argv.includes("--all");
-  validateDownstreamImpactNotes(args);
-  validateIndependentReviewCoverage(args);
+  const includeWorkingTree = process.argv.includes("--include-working-tree");
+  const changeDetectionOptions = { includeWorkingTree };
+  validateDownstreamImpactNotes(args, changeDetectionOptions);
+  validateIndependentReviewCoverage(args, changeDetectionOptions);
   if (args.length > 0 && !allMode) {
     // Run only on provided files (lint-staged)
     args.forEach((file) => {

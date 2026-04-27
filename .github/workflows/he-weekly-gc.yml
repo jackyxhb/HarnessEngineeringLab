@@ -26,7 +26,7 @@ jobs:
 
       - name: Run HE Lint GC scan
         id: lint
-        run: node scripts/he-lint.js 2>&1 | tee lint-output.txt; exit ${PIPESTATUS[0]}
+        run: node scripts/he-lint.js --include-working-tree 2>&1 | tee lint-output.txt; exit ${PIPESTATUS[0]}
         continue-on-error: true
 
       - name: Build issue body
@@ -46,7 +46,7 @@ jobs:
             '\`\`\`',
             '',
             '**Next steps:**',
-            '1. Run \`node scripts/he-lint.js\` locally to reproduce',
+            '1. Run \`npm run smoke:strict\` locally to reproduce',
             '2. Fix each violation (the \`\u21b3 Fix:\` line in each error tells you what to do)',
             '3. Commit with \`docs: fix HE lint violations\`',
             '',

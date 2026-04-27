@@ -106,6 +106,20 @@ HELab is the canonical version source for the current live-linked skill model.
 
 The skill does not currently have an independent release boundary. If a HELab change affects the skill surface or the canonical `framework/` that feeds its bundled runtime mirror, that is also a downstream skill change.
 
+### Validation Commands
+
+Use the validation mode that matches your workflow stage:
+
+- `npm run smoke` — Fast local check. Uses staged-change scope by default and is optimized for in-progress development.
+- `npm run smoke:strict` — Strict local check. Includes working tree and untracked files to mirror CI-style change detection.
+- `npm run check` — Full quality gate (markdownlint + cspell + strict he-lint).
+- `npm run audit` — Tier 1 + Tier 2 audit pass, including strict he-lint in the coherency phase.
+
+Rule of thumb:
+
+- During active editing, run `npm run smoke` frequently.
+- Before pushing or handing off for review, run `npm run smoke:strict` or `npm run check`.
+
 ### Independent Review
 
 HELab now treats core harness surfaces as review-required and records approvals in `REVIEWS.md`.

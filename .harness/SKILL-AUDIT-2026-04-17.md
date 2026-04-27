@@ -1,4 +1,5 @@
 # Harnessing-Agents Skill Audit Report
+
 **Date:** 2026-04-17  
 **Scope:** 6 Mandatory Skill Principles (EP-12) audit  
 **Skill:** `.agent/skills/harnessing-agents/`  
@@ -23,6 +24,7 @@ The `harnessing-agents` skill is **largely compliant** with the 6 mandatory skil
 **Status:** **PASS**
 
 All required metadata fields present and properly populated:
+
 - `name`: harnessing-agents ✓
 - `version`: 4.2.0 (synced with root package.json) ✓
 - `description`: Clear, outcome-focused ✓
@@ -39,10 +41,10 @@ All required metadata fields present and properly populated:
 
 Both modes fully documented with keyword routing, time estimates, and output contracts:
 
-| Mode | Keyword | Time | Output Contract | Status |
-|------|---------|------|-----------------|--------|
-| Full Audit | `full` | 30–60 min | 6 artifacts (.harness/*.md) | ✓ |
-| Feature Lookup | `feature` | ~2 min | Response shape (Feature, Chain, Current State, Next Actions) | ✓ |
+| Mode           | Keyword   | Time      | Output Contract                                              | Status |
+| -------------- | --------- | --------- | ------------------------------------------------------------ | ------ |
+| Full Audit     | `full`    | 30–60 min | 6 artifacts (.harness/\*.md)                                 | ✓      |
+| Feature Lookup | `feature` | ~2 min    | Response shape (Feature, Chain, Current State, Next Actions) | ✓      |
 
 **Default Mode:** Full Audit (line 49) — explicit and clear.
 
@@ -57,6 +59,7 @@ Both modes fully documented with keyword routing, time estimates, and output con
 **Finding:** Skill documents **6 phases** when requirement specifies **3–5 mechanical phases**.
 
 Documented phases (from SKILL.md line 58 and he-full-audit.md):
+
 1. Phase 0: Pre-Flight (Scope) — Mechanical ✓
 2. Phase 1: Gap Analysis — Mechanical ✓
 3. Phase 2: Gap Scoring — Mechanical ✓
@@ -70,6 +73,7 @@ Documented phases (from SKILL.md line 58 and he-full-audit.md):
 **Impact:** Violates the 3–5 mechanical phase requirement if Phase 6 is counted as mandatory.
 
 **Remediation Options:**
+
 1. **Reframe Phase 0 as pre-chain:** Count only Phases 1–5 = 5 phases (within spec).
 2. **Clarify Phase 6 status:** Revise SKILL.md line 58 to: "5-phase mechanical audit cycle with 1 optional feedback loop."
 
@@ -83,21 +87,22 @@ Documented phases (from SKILL.md line 58 and he-full-audit.md):
 
 **Finding:** 2 of 6 Mode 1 output artifacts lack corresponding templates.
 
-| Artifact | Template | Exists? | Status |
-|----------|----------|---------|--------|
-| HE-SCOPE.md | templates/HE-SCOPE.md | ❌ | Missing |
-| HE-CLUES.md | templates/HE-CLUES.md | ✓ | ✓ |
-| HE-PRIORITIES.md | templates/HE-PRIORITIES.md | ❌ | Missing |
-| HE-IMPLEMENTATION-PLAN.md | templates/HE-IMPLEMENTATION-PLAN.md | ✓ | ✓ |
-| HE-CHANGE-SUMMARY.md | templates/HE-CHANGE-SUMMARY.md | ✓ | ✓ |
-| HE-ASSESSMENT-REPORT.md | templates/HE-ASSESSMENT-REPORT.md | ✓ | ✓ |
-| Mode 2: HE-FEATURE-LOOKUP.md | templates/HE-FEATURE-LOOKUP.md | ✓ | ✓ |
+| Artifact                     | Template                            | Exists? | Status  |
+| ---------------------------- | ----------------------------------- | ------- | ------- |
+| HE-SCOPE.md                  | templates/HE-SCOPE.md               | ❌      | Missing |
+| HE-CLUES.md                  | templates/HE-CLUES.md               | ✓       | ✓       |
+| HE-PRIORITIES.md             | templates/HE-PRIORITIES.md          | ❌      | Missing |
+| HE-IMPLEMENTATION-PLAN.md    | templates/HE-IMPLEMENTATION-PLAN.md | ✓       | ✓       |
+| HE-CHANGE-SUMMARY.md         | templates/HE-CHANGE-SUMMARY.md      | ✓       | ✓       |
+| HE-ASSESSMENT-REPORT.md      | templates/HE-ASSESSMENT-REPORT.md   | ✓       | ✓       |
+| Mode 2: HE-FEATURE-LOOKUP.md | templates/HE-FEATURE-LOOKUP.md      | ✓       | ✓       |
 
 **Issue:** HE-SCOPE.md and HE-PRIORITIES.md are listed as Phase 0 and Phase 2 outputs (SKILL.md line 64, he-full-audit.md lines 17, 56) but lack enforcing templates.
 
 **Impact:** Phase 0 (scoping) and Phase 2 (prioritization) outputs are not shape-constrained, risking inconsistent formatting in target projects.
 
 **Remediation:** Create two template files:
+
 - `templates/HE-SCOPE.md` — scope/project-type classification template
 - `templates/HE-PRIORITIES.md` — prioritized feature/gap ranking template
 
@@ -111,12 +116,12 @@ Documented phases (from SKILL.md line 58 and he-full-audit.md):
 
 **Finding:** Progressive context-loading discipline is documented qualitatively but lacks quantitative enforcement targets.
 
-| Check | Found? | Line | Status |
-|-------|--------|------|--------|
-| Read index first pattern | ✓ | 38, 72, 139 | ✓ |
-| Explicit line-count limits (~200 lines) | ❌ | N/A | Missing |
-| Trajectory reduction / flush discipline | ✓ | 140 | ✓ |
-| Navigation prevents pre-reading | ✓ | 38, 62, 72, 139 | ✓ |
+| Check                                   | Found? | Line            | Status  |
+| --------------------------------------- | ------ | --------------- | ------- |
+| Read index first pattern                | ✓      | 38, 72, 139     | ✓       |
+| Explicit line-count limits (~200 lines) | ❌     | N/A             | Missing |
+| Trajectory reduction / flush discipline | ✓      | 140             | ✓       |
+| Navigation prevents pre-reading         | ✓      | 38, 62, 72, 139 | ✓       |
 
 **Issue:** SKILL.md documents the pattern (index-first, never pre-read, trajectory reduction) but does not include the quantitative budget: **max ~200 lines mandatory-read per action path**. This limit is stated in AGENTS.md (P1-12 rules, line 375) but not echoed in SKILL.md.
 
@@ -139,13 +144,13 @@ Documented phases (from SKILL.md line 58 and he-full-audit.md):
 
 All state-awareness requirements met:
 
-| Check | Line | Status |
-|-------|------|--------|
-| Workspace detection (HELab vs. target) | 84 | ✓ |
-| HELab state checks (REQUIREMENTS/PLANS/REVIEWS) | 85–88 | ✓ |
-| Target-project state checks (.harness/, native surfaces) | 89–92 | ✓ |
-| Name-discipline rules (avoid inventing names) | 93, 100–101, 125 | ✓ |
-| Anti-duplication rules (don't repeat suggestions) | 97–104 | ✓ |
+| Check                                                    | Line             | Status |
+| -------------------------------------------------------- | ---------------- | ------ |
+| Workspace detection (HELab vs. target)                   | 84               | ✓      |
+| HELab state checks (REQUIREMENTS/PLANS/REVIEWS)          | 85–88            | ✓      |
+| Target-project state checks (.harness/, native surfaces) | 89–92            | ✓      |
+| Name-discipline rules (avoid inventing names)            | 93, 100–101, 125 | ✓      |
+| Anti-duplication rules (don't repeat suggestions)        | 97–104           | ✓      |
 
 **Findings:** Mode 2 comprehensively implements state-awareness with five independent safeguards against hallucination and duplicate suggestions.
 
@@ -153,29 +158,32 @@ All state-awareness requirements met:
 
 ## Summary Table
 
-| Principle | Dimension | Status | Effort to Fix |
-|-----------|-----------|--------|---------------|
-| EP-12.1 | YAML Metadata | ✅ PASS | — |
-| EP-12.2 | 2-Mode Contract | ✅ PASS | — |
-| EP-12.3 | 3–5 Mechanical Phases | ⚠️ WARN | Low (clarification text) |
-| EP-12.4 | Output Templates | ⚠️ WARN | Medium (2 templates to create) |
-| EP-12.5 | Progressive Context Loading | ⚠️ WARN | Low (documentation sync) |
-| EP-12.6 | State-Awareness | ✅ PASS | — |
+| Principle | Dimension                   | Status  | Effort to Fix                  |
+| --------- | --------------------------- | ------- | ------------------------------ |
+| EP-12.1   | YAML Metadata               | ✅ PASS | —                              |
+| EP-12.2   | 2-Mode Contract             | ✅ PASS | —                              |
+| EP-12.3   | 3–5 Mechanical Phases       | ⚠️ WARN | Low (clarification text)       |
+| EP-12.4   | Output Templates            | ⚠️ WARN | Medium (2 templates to create) |
+| EP-12.5   | Progressive Context Loading | ⚠️ WARN | Low (documentation sync)       |
+| EP-12.6   | State-Awareness             | ✅ PASS | —                              |
 
 ---
 
 ## Remediation Roadmap
 
 ### High Priority (Blocking External Delivery)
+
 None identified. No fails; warnings are non-blocking.
 
 ### Medium Priority (Before Major Release)
+
 1. **Create missing templates** (Principle 4)
    - `templates/HE-SCOPE.md`
    - `templates/HE-PRIORITIES.md`
    - Estimated effort: 2–4 hours
 
 ### Low Priority (Documentation Hygiene)
+
 1. **Clarify Phase 6 optionality** (Principle 3)
    - Update SKILL.md line 58
    - Estimated effort: 30 min
@@ -191,11 +199,13 @@ None identified. No fails; warnings are non-blocking.
 **The `harnessing-agents` skill is production-ready for external delivery with 3 documented enhancements.**
 
 No architectural issues were found. The three warnings are:
+
 - **Principle 3:** Clarification needed (no code change required)
 - **Principle 4:** Templates missing (executable, scoped)
 - **Principle 5:** Documentation sync (reference clarification)
 
 **Next Steps:**
+
 1. Create the two missing templates (HE-SCOPE.md, HE-PRIORITIES.md)
 2. Update SKILL.md with clarifications
 3. Re-run audit to confirm full pass

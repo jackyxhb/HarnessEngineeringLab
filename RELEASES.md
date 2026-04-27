@@ -21,6 +21,21 @@ If any item fails, resolve before tagging the release.
 
 ## Unreleased
 
+### Task-State Completion Guard, CI Strict Mode & Formatting
+
+**Summary:** Hardened the task-state utility with a completion guard, switched CI workflows to strict lint mode, and applied formatting cleanup across skill templates and harness scripts.
+
+**Changes:**
+
+- **task-state.js completion guard:** `complete` now validates `completed_steps >= expected_steps` before marking a task done. Pass `--force=true` to override, which records a `completion_override` audit trail entry.
+- **CI strict mode:** GitHub Actions workflows (`he-lint.yml`, `he-weekly-gc.yml`) now invoke `he-lint.js --include-working-tree` for full-scope validation matching `npm run smoke:strict`.
+- **package.json:** Added `smoke:strict` script alias for local strict-mode linting.
+- **AGENTS.md:** Expanded Framework Governance Tiers documentation with integrated release workflow example.
+- **README.md:** Added framework health metrics section.
+- **Formatting cleanup:** Normalized quote style in `task-state.js`, `framework-audit.js`, `generate-observation-report.js`; fixed markdown table alignment in skill templates (`HE-PRIORITIES.md`, `HE-SCOPE.md`) and `SKILL-AUDIT-2026-04-17.md`.
+
+**Downstream Impact:** Linked skill consumers now get stricter CI validation parity with local `npm run smoke:strict`. The task-state utility prevents premature task completion, improving Ralph Loop (P0-4) enforcement for target-project runs. Formatting fixes improve readability but carry no behavioral change.
+
 ### Skill Output Template Completion & Audit Alignment
 
 **Summary:** Completed the missing Mode 1 skill templates and aligned the live-linked skill contract with the EP-12 audit expectations for phase structure and progressive context loading.

@@ -42,7 +42,7 @@ function runCheck(name, command, isTier2 = false) {
 console.log("--- Tier 1: Structural Validation ---");
 const tier1Pass = runCheck(
   "Structural validation (audit.sh)",
-  "bash scripts/harness/audit.sh"
+  "bash scripts/harness/audit.sh",
 );
 
 // Tier 2: Quality checks
@@ -54,22 +54,22 @@ console.log("\n--- Tier 2: Content Quality Validation ---");
 // - Binding key existence validation
 const tier2Quality = runCheck(
   "Content coherency (he-lint.js with quality checks)",
-  "node scripts/he-lint.js",
-  true
+  "node scripts/he-lint.js --include-working-tree",
+  true,
 );
 
 // Code formatting checks
 console.log("\n--- Tier 2: Code Quality ---");
 const markdownLint = runCheck(
   "Markdown linting",
-  "markdownlint \"**/*.md\" --ignore node_modules",
-  true
+  'markdownlint "**/*.md" --ignore node_modules',
+  true,
 );
 
 const spellCheck = runCheck(
   "Spell checking",
-  "cspell \"**/*.md\" --no-progress",
-  true
+  'cspell "**/*.md" --no-progress',
+  true,
 );
 
 // Summary
@@ -82,7 +82,8 @@ if (failCount > 0) {
   console.error("[FAILED] Framework coherency audit found issues.");
   console.error("Issues:");
   if (!tier1Pass) console.error("  - Tier 1 structural checks failed");
-  if (!tier2Quality) console.error("  - Tier 2 quality/coherency checks failed");
+  if (!tier2Quality)
+    console.error("  - Tier 2 quality/coherency checks failed");
   if (!markdownLint) console.error("  - Markdown linting failed");
   if (!spellCheck) console.error("  - Spell checking failed");
   console.error("\nFix all issues before release.");

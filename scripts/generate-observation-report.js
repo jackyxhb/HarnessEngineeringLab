@@ -91,12 +91,26 @@ function readJsonLines(filePath) {
     return [];
   }
 
-  return fs
-    .readFileSync(filePath, "utf8")
+  const parsed = [];
+  fs.readFileSync(filePath, "utf8")
     .split("\n")
     .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => JSON.parse(line));
+    .forEach((line, index) => {
+      if (!line) {
+        return;
+      }
+
+      try {
+        parsed.push(JSON.parse(line));
+      } catch (error) {
+        // Keep reporting resilient even if a single JSONL record is malformed.
+        console.warn(
+          `[OBSERVE] Skipping malformed JSONL entry at ${path.basename(filePath)}:${index + 1} (${error.message})`,
+        );
+      }
+    });
+
+  return parsed;
 }
 
 function toIsoTimestamp(value) {

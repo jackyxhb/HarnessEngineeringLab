@@ -28,4 +28,4 @@ jobs:
         run: npx cspell "**/*.md" --no-progress
 
       - name: Run HE Lint (full scan)
-        run: node scripts/he-lint.js
+        run: node scripts/he-lint.js --include-working-tree
