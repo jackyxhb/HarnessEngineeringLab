@@ -4,7 +4,11 @@
       "mcp__multi-ai-collab__grok_think_deep",
       "Read(//Users/macbook1/**)",
       "Bash(gh pr:*)",
-      "Bash(gh release:*)"
+      "Bash(gh release:*)",
+      "Bash(node scripts/he-lint.js)",
+      "Bash(bash:*)",
+      "Bash(npx markdownlint:*)",
+      "Bash(npx cspell:*)"
     ]
   }
 }
