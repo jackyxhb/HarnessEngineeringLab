@@ -1,0 +1,43 @@
+name: Nightly Harness Audit
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Baseline harness audit
+        run: scripts/audit_harness.sh .
+
+      - name: Entropy check
+        run: scripts/harness/entropy_check.sh
+
+      - name: Stale branch detection
+        run: |
+          for branch in $(git branch -r --merged origin/main | grep -v 'main\|HEAD' | tr -d ' '); do
+            echo "Stale branch: $branch"
+          done || echo "branch_check_skipped"
+
+      - name: Publish audit status
+        run: |
+          echo '{"job":"nightly_audit","status":"success","timestamp":"'$GITHUB_RUN_ATTEMPT'"}' > scripts/.ci_status.json
+        if: success()
+
+      - name: Publish audit status
+        run: |
+          echo '{"job":"nightly_audit","status":"failure","timestamp":"'$GITHUB_RUN_ATTEMPT'"}' > scripts/.ci_status.json
+        if: failure()
